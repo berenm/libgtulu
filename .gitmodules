@@ -1,0 +1,3 @@
+[submodule "ext/liblogging"]
+	path = ext/liblogging
+	url = https://github.com/rout/liblogging.git

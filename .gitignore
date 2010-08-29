@@ -10,6 +10,7 @@
 .*
 # except for .gitignore
 !.gitignore
+!.gitmodules
 !.cproject
 !.project
 !.dep.inc
