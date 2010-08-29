@@ -1,0 +1,49 @@
+import type ;
+import generators ;
+import common ;
+import "class" : new ;
+
+type.register SHADER : vs vert vertex fs frag fragment gs geom geometry ;
+
+class shader : generator {
+  import "class" : new ;
+
+  rule __init__ ( * : * ) {
+    generator.__init__ $(1) : $(2) : $(3) : $(4) : $(5) : $(6) : $(7) : $(8) : $(9) ;
+  }
+    
+  rule run ( project name ? : property-set : sources * ) {
+    local type = SHADER ;
+    for local source in $(sources) {
+      if [ $(source).type ] != SHADER {
+        type = [ $(source).type ] ;
+      }
+    }
+    
+    local loc = [ MATCH ".*(<location>).*" : [ $(property-set).str ] ] ;
+    if ! $(loc) {
+      property-set = [ $(property-set).add-raw <location>generated/ ] ;
+    }
+      
+    local target ;
+    if $(type) = SHADER {
+      local action = [ new action $(sources) : shader.compile : $(property-set) ] ;
+      target = [ new file-target $(name) : CPP : $(project) : $(action) ] ;
+    }
+
+    return [ virtual-target.register $(target) ] ;
+  }
+}
+
+generators.register [ new shader shader.shader : SHADER : CPP ] ;
+
+rule compile ( target : sources + : properties * ) {
+  local matches = [ MATCH "<p(.*)>(.+)_program_format.cpp" : $(target) ] ;
+
+  NAME on $(<) = $(matches[2]) ;
+  DESTINATION on $(<) = $(matches[1]) ;
+}
+
+actions compile {
+  compiler -p $(NAME) -d $(DESTINATION) $(>) 1>/dev/null 2>/dev/null
+}
