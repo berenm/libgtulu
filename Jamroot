@@ -1,8 +1,8 @@
 import path ;
 import doxygen : doxygen ;
 
-lib logging : : <search>../liblogging/dist/lib32
-                <search>../liblogging/dist/lib64 ;
+lib logging : : <search>ext/liblogging/dist/lib32
+                <search>ext/liblogging/dist/lib64 ;
 
 lib GL ;
 lib GLU ;
@@ -33,7 +33,7 @@ project gtulu : requirements
   <library>boost_date_time
   <library>boost_system
   <library>logging
-  <include>../liblogging/include/
+  <include>ext/liblogging/include/
   <variant>coverage:<library>gcov
   <include>include/
   <threading>multi
