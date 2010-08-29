@@ -34,9 +34,9 @@ path-constant TOP : . ;
 
 rule objs ( sources + : properties * ) {
   for local name in $(sources) {
-    name_o = [ MATCH "^(.+).cpp$" : $(name) ] ;
+    name_o = [ MATCH "^$(TOP)/(.+).cpp$" : $(name) ] ;
     if ! $(name_o) {
-      name_o = [ MATCH "^(.+)$" : $(name) ] ;
+      name_o = [ MATCH "^$(TOP)/(.+)$" : $(name) ] ;
       name_o = $(name_o).o ;
     }
     objects += $(name_o) ;
@@ -47,7 +47,7 @@ rule objs ( sources + : properties * ) {
 }
 
 
-gtulu_src = [ path.glob-tree src/gtulu : *.cpp ] ;
+gtulu_src = [ path.glob-tree $(TOP)/src/gtulu : *.cpp ] ;
 alias gtulu_objs : [ objs $(gtulu_src) ] ;
 
 lib gtulu
