@@ -1,49 +1,46 @@
-import type ;
-import generators ;
-import common ;
-import "class" : new ;
+module shader {
+  import feature ;
+  import generators ;
+  import toolset ;
+  import type ;
+  import property ;
 
-type.register SHADER : vs vert vertex fs frag fragment gs geom geometry ;
+  type.register SHADER : vs vert vertex fs frag fragment gs geom geometry ;
 
-class shader : generator {
-  import "class" : new ;
+  feature.feature shader-compiler : : free dependency ;
+  feature.feature shader-name : : free ;
+  feature.feature shader-templates : : free ;
 
-  rule __init__ ( * : * ) {
-    generator.__init__ $(1) : $(2) : $(3) : $(4) : $(5) : $(6) : $(7) : $(8) : $(9) ;
-  }
+  toolset.flags shader.compile COMPILER <shader-compiler> ;
+  toolset.flags shader.compile PROGRAM <shader-name> ;
+  toolset.flags shader.compile DESTINATION <location> ;
+  toolset.flags shader.compile TEMPLATES <shader-templates> ;
+
+  generators.register-composing shader.compile : SHADER : CPP(%_program_format) HPP(%_program_format) ;
+
+  rule compile ( targets + : sources + : properties * ) {
+    local templates = [ property.select <shader-templates> : $(properties) ] ;
     
-  rule run ( project name ? : property-set : sources * ) {
-    local type = SHADER ;
-    for local source in $(sources) {
-      if [ $(source).type ] != SHADER {
-        type = [ $(source).type ] ;
-      }
+    if ! $(templates) {
+      local compiler = [ property.select <shader-compiler> : $(properties) ] ;
+      local lproject = [ $(compiler:B).project ] ;
+      templates = [ $(lproject).location ] ;
+      templates = $(templates)/include/gtulu/templates/ ;
     }
-    
-    local loc = [ MATCH ".*(<location>).*" : [ $(property-set).str ] ] ;
-    if ! $(loc) {
-      property-set = [ $(property-set).add-raw <location>generated/ ] ;
-    }
-      
-    local target ;
-    if $(type) = SHADER {
-      local action = [ new action $(sources) : shader.compile : $(property-set) ] ;
-      target = [ new file-target $(name) : CPP : $(project) : $(action) ] ;
-    }
-
-    return [ virtual-target.register $(target) ] ;
+        
+    TEMPLATES on $(<) = $(templates) ;
   }
-}
+  
+  actions compile bind COMPILER DESTINATION {
+    $(COMPILER) -d $(DESTINATION) -p $(PROGRAM) -t $(TEMPLATES) $(>) 2>/dev/null >/dev/null
+  }
 
-generators.register [ new shader shader.shader : SHADER : CPP ] ;
-
-rule compile ( target : sources + : properties * ) {
-  local matches = [ MATCH "<p(.*)>(.+)_program_format.cpp" : $(target) ] ;
-
-  NAME on $(<) = $(matches[2]) ;
-  DESTINATION on $(<) = $(matches[1]) ;
-}
-
-actions compile {
-  compiler -p $(NAME) -d $(DESTINATION) $(>) 1>/dev/null 2>/dev/null
+  rule program ( name : sources + : properties * ) {
+    cpp $(name) : $(sources) 
+                : <shader-compiler>compiler
+                  <shader-name>$(name) 
+                  <location>generated/ 
+                  <link>static 
+                  $(properties) ;
+  }
 }
