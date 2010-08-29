@@ -1,0 +1,79 @@
+/**
+ * @file
+ * @date 19 déc. 2009
+ * @todo comment
+ */
+
+#ifndef IN_GTULU_INTERNAL_UNIFORM_HPP_
+#error "gtulu/internal/uniform/uniform_matrix.hpp should not be included directly, please include gtulu/internal/uniform.hpp instead."
+#endif
+
+#ifndef GTULU_INTERNAL_UNIFORM_MATRIX_HPP_
+#define GTULU_INTERNAL_UNIFORM_MATRIX_HPP_
+
+#include "gtulu/opengl.hpp"
+#include "gtulu/internal/formats/uniform.hpp"
+
+#include "gtulu/internal/formats/conversions/dimension.hpp"
+
+namespace gtulu {
+  namespace internal {
+
+    namespace uniform {
+      namespace matrix {
+
+        template< typename type_t, typename dimension_t >
+        struct uniform_binder;
+
+#define DECLARE_BINDER(type_m, suffix_m, dimension1_m, dimension2_m) \
+    template< > \
+      struct uniform_binder< fut::type_m, fc::to_typename< dimension1_m, dimension2_m >::type > { \
+          inline static void bind(const location_t location, const ::boost::uint32_t number, const fu::to_typename< fut::type_m >::type* values, bool transpose = false) { \
+            __gl_debug(glUniformMatrix##suffix_m##fv, (location)(number)(transpose)(values)); \
+            glUniformMatrix##suffix_m##fv(location, number, transpose, values); \
+            __gl_check_error \
+          } \
+      };
+
+        DECLARE_BINDER(floating, 2, 2, 2)
+        DECLARE_BINDER(floating, 2x3, 2, 3)
+        DECLARE_BINDER(floating, 2x4, 2, 4)
+        DECLARE_BINDER(floating, 3x2, 3, 2)
+        DECLARE_BINDER(floating, 3, 3, 3)
+        DECLARE_BINDER(floating, 3x4, 3, 4)
+        DECLARE_BINDER(floating, 4x2, 4, 2)
+        DECLARE_BINDER(floating, 4x3, 4, 3)
+        DECLARE_BINDER(floating, 4, 4, 4)
+
+#undef DECLARE_BINDER
+
+        template< typename format_t, typename binder_t = uniform_binder< typename format_t::info::type,
+            typename format_t::info::dimension > , typename value_t = typename fu::to_typename<
+            typename format_t::info::type >::type >
+        struct uniform {
+            typedef format_t format;
+            typedef value_t value_type;
+            typedef binder_t binder;
+        };
+      } // namespace matrix
+#define DECLARE_UNIFORM(format_m) \
+    typedef matrix::uniform< fu::format_m > format_m;
+      DECLARE_UNIFORM(gl_float_mat2)
+      DECLARE_UNIFORM(gl_float_mat2x3)
+      DECLARE_UNIFORM(gl_float_mat2x4)
+      DECLARE_UNIFORM(gl_float_mat3x2)
+      DECLARE_UNIFORM(gl_float_mat3)
+      DECLARE_UNIFORM(gl_float_mat3x4)
+      DECLARE_UNIFORM(gl_float_mat4x2)
+      DECLARE_UNIFORM(gl_float_mat4x3)
+      DECLARE_UNIFORM(gl_float_mat4)
+
+#undef DECLARE_UNIFORM
+    } // namespace uniform
+
+    namespace gium = ::gtulu::internal::uniform::matrix;
+
+  } // namespace internal
+} // namespace gtulu
+
+#endif /* GTULU_INTERNAL_UNIFORM_MATRIX_HPP_ */

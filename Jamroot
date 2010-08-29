@@ -1,0 +1,101 @@
+import path ;
+import doxygen : doxygen ;
+
+lib logging : : <search>../liblogging/dist/lib32
+                <search>../liblogging/dist/lib64 ;
+
+lib GL ;
+lib GLU ;
+lib glut ;
+lib boost_thread ;
+lib boost_program_options ;
+lib boost_filesystem ;
+lib boost_regex ;
+lib boost_iostreams ;
+lib boost_date_time ;
+lib boost_system ;
+lib gcov ;
+
+variant coverage : <variant>debug
+                   <cflags>-fprofile-arcs
+                   <cflags>-ftest-coverage
+                   ; 
+
+project gtulu : requirements
+  <library>GL/<link>shared
+  <library>GLU/<link>shared
+  <library>glut/<link>shared
+  <library>boost_thread
+  <library>boost_program_options
+  <library>boost_filesystem
+  <library>boost_regex
+  <library>boost_iostreams
+  <library>boost_date_time
+  <library>boost_system
+  <library>logging
+  <include>../liblogging/include/
+  <variant>coverage:<library>gcov
+  <include>include/
+  <threading>multi
+  <cflags>-std=c++0x
+  ;
+
+path-constant TOP : . ;
+
+rule objs ( sources + : properties * ) {
+  for local name in $(sources) {
+    name_o = [ MATCH "^(.+).cpp$" : $(name) ] ;
+    if ! $(name_o) {
+      name_o = [ MATCH "^(.+)$" : $(name) ] ;
+      name_o = $(name_o).o ;
+    }
+    objects += $(name_o) ;
+    obj $(name_o) : $(name) : $(properties) ;
+  }
+  
+  return $(objects) ;
+}
+
+
+gtulu_src = [ path.glob-tree src/gtulu : *.cpp ] ;
+alias gtulu_objs : [ objs $(gtulu_src) ] ;
+
+lib gtulu
+    : gtulu_objs ;
+
+
+exe compiler
+    : src/compile.cpp src/common.cpp gtulu  
+    : <link>static
+    ;
+
+    
+
+install bin_dist 
+    : compiler 
+    : <location>./dist/ ;
+    
+      
+install lib64so_dist 
+    : gtulu
+    : <location>./dist/lib64/
+      <link>shared ;
+    
+install lib32so_dist 
+    : gtulu
+    : <location>./dist/lib32/
+      <link>shared 
+      <architecture>x86
+      <address-model>32 ;
+      
+install lib64a_dist 
+    : gtulu
+    : <location>./dist/lib64/
+      <link>static ;
+    
+install lib32a_dist 
+    : gtulu
+    : <location>./dist/lib32/
+      <link>static 
+      <architecture>x86
+      <address-model>32 ;
