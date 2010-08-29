@@ -1,6 +1,8 @@
 import path ;
 import doxygen : doxygen ;
 
+use-project /liblogging : ext/liblogging ;
+
 lib GL ;
 lib GLU ;
 lib glut ;

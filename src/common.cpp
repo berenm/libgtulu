@@ -20,10 +20,6 @@ static void reshape(::boost::int32_t w, ::boost::int32_t h) {
 
 void init_gl(::boost::int32_t argc, char** argv) {
   glutInit(&argc, argv);
-  glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
-
-  glutDisplayFunc(do_frame); // Register The Display Function
-  glutReshapeFunc(reshape);
 
   glutInitContextVersion(3, 3);
   glutInitContextFlags(GLUT_DEBUG); // GLUT_FORWARD_COMPATIBLE
@@ -31,7 +27,12 @@ void init_gl(::boost::int32_t argc, char** argv) {
   glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
   glutInitWindowSize(500, 500);
   glutInitWindowPosition(100, 100);
+
   glutCreateWindow(argv[0]);
+
+  glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
+  glutDisplayFunc(do_frame); // Register The Display Function
+  glutReshapeFunc(reshape);
 
   __info
     << "Vendor: " << glGetString(GL_VENDOR);
