@@ -20,6 +20,10 @@ namespace gtulu {
 
 #include "gtulu/internal/error.hpp"
 
+#if defined(NO_GTULU_DEBUG) || defined(NDEBUG)
+#define __gl_check_error ;
+#define __gl_debug(function_m, arguments_m) ;
+#else
 #define __gl_check_error \
     { \
       ::gtulu::internal::error::code::gl_constant __gl_error; \
@@ -45,12 +49,13 @@ namespace gtulu {
             break; \
         } \
       }; \
-    } \
+    }
 
 #define __gl_debug_step(n, data_m, argument_m) \
   << argument_m << " "
 
 #define __gl_debug(function_m, arguments_m) \
   __debugM(gl) << BOOST_PP_STRINGIZE(function_m) << "( " BOOST_PP_SEQ_FOR_EACH(__gl_debug_step, ~, arguments_m) << ")";
+#endif
 
 #endif /* OPENGL_HPP_ */

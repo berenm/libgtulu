@@ -24,16 +24,9 @@ namespace gtulu {
     namespace objects {
       template< >
       template< typename target_type_t >
-      void slot_binder< texture_base >::bind(const plug< texture_base >& pluggable_object) {
-        __gl_debug(glBindTexture, (ftf::from_type< typename target_type_t::info::format >())(*pluggable_object))
-        glBindTexture(ftf::from_type< typename target_type_t::info::format >::value, *pluggable_object);
-        __gl_check_error
-      }
-      template< >
-      template< typename target_type_t >
-      void slot_binder< texture_base >::clear() {
-        __gl_debug(glBindTexture, (ftf::from_type< typename target_type_t::info::format >())(0))
-        glBindTexture(ftf::from_type< typename target_type_t::info::format >::value, 0);
+      void slot_binder< texture_base >::bind(::boost::uint32_t handle_) {
+        __gl_debug(glBindTexture, (ftf::from_type< typename target_type_t::info::format >())(handle_))
+        glBindTexture(ftf::from_type< typename target_type_t::info::format >::value, handle_);
         __gl_check_error
       }
     } // namespace objects
@@ -79,7 +72,13 @@ namespace gtulu {
           }
 
           inline void load(const data_type* data, ::std::size_t width, ::std::size_t height) {
+            bind();
             load(data, 0, width, height, 0);
+            compute_mipmaps();
+          }
+
+          inline void compute_mipmaps() {
+            bind();
             __gl_debug(glGenerateMipmap, (ftf::from_type< typename texture_format_t::target::info::format >()))
             glGenerateMipmap(ftf::from_type< typename texture_format_t::target::info::format >::value);
             __gl_check_error

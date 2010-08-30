@@ -17,8 +17,7 @@
 namespace gtulu {
   namespace internal {
 
-#define FRAMEBUFFER_SLOTS ((read_draw_framebuffer, GL_FRAMEBUFFER)) \
-                          ((read_framebuffer, GL_READ_FRAMEBUFFER)) \
+#define FRAMEBUFFER_SLOTS ((read_framebuffer, GL_READ_FRAMEBUFFER)) \
                           ((draw_framebuffer, GL_DRAW_FRAMEBUFFER)) \
 
     namespace framebuffer {
@@ -53,23 +52,23 @@ namespace gtulu {
     namespace objects {
       template< >
       template< typename target_type_t >
-      void slot_binder< framebuffer_base >::bind(const plug< framebuffer_base >& pluggable_object) {
-        __gl_debug(glBindFramebuffer, (gifs::from_type< target_type_t >())(*pluggable_object))
-        glBindFramebuffer(gifs::from_type< target_type_t >::value, *pluggable_object);
-        __gl_check_error
-      }
-      template< >
-      template< typename target_type_t >
-      void slot_binder< framebuffer_base >::clear() {
-        __gl_debug(glBindFramebuffer, (gifs::from_type< target_type_t >())(0))
-        glBindFramebuffer(gifs::from_type< target_type_t >::value, 0);
-        __gl_check_error
+      void slot_binder< framebuffer_base >::bind(::boost::uint32_t handle_) {
+        static ::boost::uint32_t bound_handle_ = 0;
+
+        if (bound_handle_ != handle_) {
+          __gl_debug(glBindFramebuffer, (gifs::from_type< target_type_t >())(handle_))
+          glBindFramebuffer(gifs::from_type< target_type_t >::value, handle_);
+          __gl_check_error
+          bound_handle_ = handle_;
+        }
       }
     } // namespace objects
 
     namespace framebuffer {
       template< typename slot_type_t >
       struct framebuffer_slot {
+          typedef slot_type_t slot_type;
+
           static inline void bind(const gio::plug< gio::framebuffer_base >& framebuffer) {
             gio::slot_binder< gio::framebuffer_base >::bind< slot_type_t >(framebuffer);
           }
@@ -80,7 +79,6 @@ namespace gtulu {
 #define DECLARE_SLOT(slot_type_m) \
   typedef framebuffer_slot< slots::gl_##slot_type_m > slot_type_m##_slot; \
 
-      DECLARE_SLOT(read_draw_framebuffer)
       DECLARE_SLOT(read_framebuffer)
       DECLARE_SLOT(draw_framebuffer)
 
@@ -89,14 +87,26 @@ namespace gtulu {
 
     namespace objects {
       struct framebuffer_base: public plug< framebuffer_base > {
-          template< typename slot_type_t = gif::read_draw_framebuffer_slot >
+          template< typename slot_type_t = gif::draw_framebuffer_slot >
           inline void bind() const {
             slot_type_t::bind(*this);
           }
 
-          template< typename slot_type_t = gif::read_draw_framebuffer_slot >
+          template< typename slot_type_t = gif::draw_framebuffer_slot >
           inline void unbind() const {
             slot_type_t::unbind(*this);
+          }
+
+          void set_viewport(::boost::uint32_t width, ::boost::uint32_t height, ::boost::uint32_t depth = 1,
+                            ::boost::uint32_t origin_x = 0, ::boost::uint32_t origin_y = 0, ::boost::uint32_t origin_z =
+                                0) {
+            __gl_debug(glViewport, (origin_x)(origin_y)(width)(height))
+            glViewport(origin_x, origin_y, width, height);
+            __gl_check_error
+
+            __gl_debug(glDepthRange, (origin_z)(depth))
+            glDepthRange(origin_z, depth);
+            __gl_check_error
           }
       };
 
@@ -105,11 +115,21 @@ namespace gtulu {
       };
 
       template< typename framebuffer_format_t >
-      struct default_framebuffer: public framebuffer_base, virtual public object_base, public framebuffer_format_t {
+      struct default_framebuffer: virtual public object_base, public framebuffer_format_t {
+          //          void set_default_viewport() {
+          //            framebuffer_format_t::bind();
+          //            ::boost::int32_t data[4];
+          //
+          //            __gl_debug(glGetIntegerv, (GL_VIEWPORT)(data))
+          //            glGetIntegerv(GL_VIEWPORT, data);
+          //            __gl_check_error
+          //
+          //            framebuffer_format_t::set_viewport(data[2], data[3], 1, data[0], data[1]);
+          //          }
       };
 
       template< typename framebuffer_format_t, typename layered_t = gif::layered::no >
-      struct framebuffer: public framebuffer_base, public object< framebuffer_base > , public framebuffer_format_t {
+      struct framebuffer: public object< framebuffer_base > , public framebuffer_format_t {
       };
     } // namespace objects
 

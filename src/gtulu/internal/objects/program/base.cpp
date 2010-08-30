@@ -22,18 +22,6 @@ namespace gtulu {
         __gl_check_error
       }
 
-      void program_base::enable() const {
-        __gl_debug(glUseProgram, (handle_));
-        glUseProgram(handle_);
-        __gl_check_error
-      }
-
-      void program_base::disable() const {
-        __gl_debug(glUseProgram, (0));
-        glUseProgram(0);
-        __gl_check_error
-      }
-
       void program_base::attach(const gio::shader_base& shader) {
         __gl_debug(glAttachShader, (handle_)(*shader));
         glAttachShader(handle_, *shader);

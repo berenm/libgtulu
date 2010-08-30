@@ -37,18 +37,18 @@ namespace gtulu {
             glDrawBuffers(colors.size(), colors.data());
           }
 
-          template< typename temporary_framebuffer_slot_t = gif::slots::gl_draw_framebuffer, typename texture_format_t >
+          template< typename framebuffer_slot_type_t, typename texture_format_t >
           void set(const ::boost::uint32_t location, const gio::texture< texture_format_t >& drawable) {
             ::boost::shared_ptr< attachment > attachment = manager.get_current_or_new(drawable);
-            gif::attacher< temporary_framebuffer_slot_t >::template attach< gif::layered::no >(
+            gif::attacher< framebuffer_slot_type_t >::template attach< gif::layered::no >(
                 attachment->get_color_number(), drawable, 0, 0);
             colors[location] = attachment->get_color_number();
           }
 
-          template< typename temporary_framebuffer_slot_t = gif::slots::gl_draw_framebuffer >
+          template< typename framebuffer_slot_type_t >
           void set(const ::boost::uint32_t location, const gio::renderbuffer_base& drawable) {
             ::boost::shared_ptr< attachment > attachment = manager.get_current_or_new(drawable);
-            gif::attacher< temporary_framebuffer_slot_t >::attach(attachment->get_color_number(), drawable);
+            gif::attacher< framebuffer_slot_type_t >::attach(attachment->get_color_number(), drawable);
             colors[location] = attachment->get_color_number();
           }
       };
@@ -66,7 +66,7 @@ namespace gtulu {
             glDrawBuffers(4, colors.data());
           }
 
-          template< typename temporary_framebuffer_slot_t = gif::slots::gl_draw_framebuffer >
+          template< typename framebuffer_slot_type_t >
           void set(const ::boost::uint32_t location, const gio::default_drawable drawable) {
             colors[location] = static_cast< ::boost::uint32_t > (drawable);
           }

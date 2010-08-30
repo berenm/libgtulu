@@ -60,17 +60,15 @@ namespace gtulu {
     namespace objects {
       template< >
       template< typename target_type_t >
-      void slot_binder< buffer_base >::bind(const plug< buffer_base >& pluggable_object) {
-        __gl_debug(glBindBuffer, (gibs::from_type< target_type_t >())(*pluggable_object))
-        glBindBuffer(gibs::from_type< target_type_t >::value, *pluggable_object);
-        __gl_check_error
-      }
-      template< >
-      template< typename target_type_t >
-      void slot_binder< buffer_base >::clear() {
-        __gl_debug(glBindBuffer, (gibs::from_type< target_type_t >())(0))
-        glBindBuffer(gibs::from_type< target_type_t >::value, 0);
-        __gl_check_error
+      void slot_binder< buffer_base >::bind(::boost::uint32_t handle_) {
+        static ::boost::uint32_t bound_handle_ = 0;
+
+        if (bound_handle_ != handle_) {
+          __gl_debug(glBindBuffer, (gibs::from_type< target_type_t >())(handle_))
+          glBindBuffer(gibs::from_type< target_type_t >::value, handle_);
+          __gl_check_error
+          bound_handle_ = handle_;
+        }
       }
     } // namespace objects
 

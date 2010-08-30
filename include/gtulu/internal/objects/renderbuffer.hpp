@@ -19,16 +19,9 @@ namespace gtulu {
     namespace objects {
       template< >
       template< typename target_type_t >
-      void slot_binder< renderbuffer_base >::bind(const plug< renderbuffer_base >& pluggable_object) {
-        __gl_debug(glBindRenderbuffer, (ftf::from_type< typename target_type_t::info::format >())(*pluggable_object))
-        glBindRenderbuffer(ftf::from_type< typename target_type_t::info::format >::value, *pluggable_object);
-        __gl_check_error
-      }
-      template< >
-      template< typename target_type_t >
-      void slot_binder< renderbuffer_base >::clear() {
-        __gl_debug(glBindRenderbuffer, (ftf::from_type< typename target_type_t::info::format >())(0))
-        glBindRenderbuffer(ftf::from_type< typename target_type_t::info::format >::value, 0);
+      void slot_binder< renderbuffer_base >::bind(::boost::uint32_t handle_) {
+        __gl_debug(glBindRenderbuffer, (ftf::from_type< typename target_type_t::info::format >())(handle_))
+        glBindRenderbuffer(ftf::from_type< typename target_type_t::info::format >::value, handle_);
         __gl_check_error
       }
     } // namespace objects

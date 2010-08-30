@@ -38,10 +38,18 @@ namespace gtulu {
       template< typename object_type_t >
       struct slot_binder {
           template< typename target_type_t = void >
-          static void bind(const plug< object_type_t >& pluggable_object);
+          static void bind(const plug< object_type_t >& pluggable_object) {
+            bind< target_type_t > (*pluggable_object);
+          }
 
           template< typename target_type_t = void >
-          static void clear();
+          static void clear() {
+            bind< target_type_t > (0);
+          }
+
+        protected:
+          template< typename target_type_t = void >
+          static void bind(::boost::uint32_t handle_);
       };
     } // namespace objects
 

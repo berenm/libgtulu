@@ -29,6 +29,8 @@ project gtulu : requirements
   <include>ext/liblogging/include/
   <include>include/
   <threading>multi
+  <variant>debug:<define>GTULU_DEBUG
+  <variant>release:<define>NO_GTULU_DEBUG
   <cflags>-std=c++0x
   ;
 

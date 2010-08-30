@@ -18,17 +18,15 @@ namespace gtulu {
     namespace objects {
       template< >
       template< typename target_type_t >
-      void slot_binder< vertexarray_base >::bind(const plug< vertexarray_base >& pluggable_object) {
-        __gl_debug(glBindVertexArray, (*pluggable_object));
-        glBindVertexArray(*pluggable_object);
-        __gl_check_error
-      }
-      template< >
-      template< typename target_type_t >
-      void slot_binder< vertexarray_base >::clear() {
-        __gl_debug(glBindVertexArray, (0));
-        glBindVertexArray(0);
-        __gl_check_error
+      void slot_binder< vertexarray_base >::bind(::boost::uint32_t handle_) {
+        static ::boost::uint32_t bound_handle_ = 0;
+
+        if (bound_handle_ != handle_) {
+          __gl_debug(glBindVertexArray, (handle_));
+          glBindVertexArray(handle_);
+          __gl_check_error
+          bound_handle_ = handle_;
+        }
       }
     } // namespace objects
 
@@ -48,13 +46,6 @@ namespace gtulu {
     namespace objects {
 
       struct vertexarray_base: public plug< vertexarray_base > {
-      };
-
-      template< typename vertexarray_format_t >
-      struct vertexarray: public vertexarray_base,
-                          public object< vertexarray_base > ,
-                          public vertexarray_format_t,
-                          public gid::drawable {
           inline void bind() const {
             giv::vertexarray_slot::bind(*this);
           }
@@ -62,6 +53,10 @@ namespace gtulu {
           inline void unbind() const {
             giv::vertexarray_slot::unbind(*this);
           }
+      };
+
+      template< typename vertexarray_format_t >
+      struct vertexarray: public object< vertexarray_base > , public vertexarray_format_t {
       };
 
     } // namespace objects

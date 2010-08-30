@@ -114,9 +114,10 @@ namespace gtulu {
       };
 
       struct drawable {
-          template< typename drawing_mode_t = mode::gl_triangles >
+        protected:
+          template< typename drawing_mode_t >
           inline void draw(const ::boost::uint32_t start, const ::boost::uint32_t count,
-                           const ::boost::uint32_t instance_count = 1) {
+                           const ::boost::uint32_t instance_count) {
             if (instance_count > 1) {
               __gl_debug(glDrawArraysInstanced, (mode::from_type< drawing_mode_t >())(start)(count)(instance_count));
               glDrawArraysInstanced(mode::from_type< drawing_mode_t >::value, start, count, instance_count);
@@ -127,7 +128,7 @@ namespace gtulu {
             __gl_check_error
           }
 
-          template< typename drawing_mode_t = mode::gl_triangles >
+          template< typename drawing_mode_t >
           inline void draw(const ::boost::uint32_t starts[], const ::boost::uint32_t counts[],
                            const ::std::size_t count) {
             __gl_debug(glMultiDrawArrays, (mode::from_type< drawing_mode_t >())(starts)(counts)(count));
@@ -135,10 +136,10 @@ namespace gtulu {
             __gl_check_error
           }
 
-          template< typename drawing_mode_t = mode::gl_triangles, typename buffer_format_t, typename buffer_usage_t >
+          template< typename drawing_mode_t, typename buffer_format_t, typename buffer_usage_t >
           inline void draw(const gio::buffer< buffer_format_t, buffer_usage_t >& buffer, const ::boost::uint32_t count,
-                           const ::boost::uint32_t offset = 0, const ::boost::uint32_t instance_count = 1,
-                           const ::boost::uint32_t base_vertex = 0) {
+                           const ::boost::uint32_t offset, const ::boost::uint32_t instance_count,
+                           const ::boost::uint32_t base_vertex) {
             if (instance_count > 1) {
               checked_drawer< drawing_mode_t, buffer_format_t, buffer_usage_t >::draw(buffer, count, offset,
                   instance_count, base_vertex);
@@ -148,16 +149,16 @@ namespace gtulu {
             }
           }
 
-          template< typename drawing_mode_t = mode::gl_triangles, typename buffer_format_t, typename buffer_usage_t >
+          template< typename drawing_mode_t, typename buffer_format_t, typename buffer_usage_t >
           inline void draw(const draw_mode_t mode, const gio::buffer< buffer_format_t, buffer_usage_t >& buffer,
                            const ::boost::uint32_t count, const ::boost::uint32_t min_index,
-                           const ::boost::uint32_t max_index, const ::boost::uint32_t offset = 0,
-                           const ::boost::uint32_t base_vertex = 0) {
+                           const ::boost::uint32_t max_index, const ::boost::uint32_t offset,
+                           const ::boost::uint32_t base_vertex) {
             checked_drawer< drawing_mode_t, buffer_format_t, buffer_usage_t >::draw(buffer, count, min_index,
                 max_index, offset, base_vertex);
           }
 
-          template< typename drawing_mode_t = mode::gl_triangles, typename buffer_format_t, typename buffer_usage_t >
+          template< typename drawing_mode_t, typename buffer_format_t, typename buffer_usage_t >
           inline static void draw(const draw_mode_t mode, const gio::buffer< buffer_format_t, buffer_usage_t >& buffer,
                                   const ::boost::uint32_t counts[], const ::boost::uint32_t offsets[],
                                   const ::std::size_t count) {

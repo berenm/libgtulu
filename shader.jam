@@ -16,7 +16,7 @@ module shader {
   toolset.flags shader.compile DESTINATION <location> ;
   toolset.flags shader.compile TEMPLATES <shader-templates> ;
 
-  generators.register-composing shader.compile : SHADER : CPP(%_program_format) HPP(%_program_format) ;
+  generators.register-composing shader.compile : SHADER CPP HPP : CPP(%_program_format) HPP(%_program_format) ;
 
   rule compile ( targets + : sources + : properties * ) {
     local templates = [ property.select <shader-templates> : $(properties) ] ;
@@ -27,16 +27,25 @@ module shader {
       templates = [ $(lproject).location ] ;
       templates = $(templates)/include/gtulu/templates/ ;
     }
+    
+    local shaders = "" ;
+    for source in $(sources) {
+      local type = [ type.type $(source) ] ;
+      if $(type) = SHADER {
+        shaders = $(shaders) $(source:G=) ;
+      }
+    }
         
     TEMPLATES on $(<) = $(templates) ;
+    SOURCES on $(<) = $(shaders) ;
   }
   
   actions compile bind COMPILER DESTINATION {
-    $(COMPILER) -d $(DESTINATION) -p $(PROGRAM) -t $(TEMPLATES) $(>) 2>/dev/null >/dev/null
+    $(COMPILER) -d $(DESTINATION) -p $(PROGRAM) -t $(TEMPLATES) $(SOURCES) 2>/dev/null >/dev/null
   }
 
   rule program ( name : sources + : properties * ) {
-    cpp $(name) : $(sources) 
+    cpp $(name) : $(sources) ext/libgtulu/include/gtulu/templates/static_program_format.hpp
                 : <shader-compiler>compiler
                   <shader-name>$(name) 
                   <location>generated/ 

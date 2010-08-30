@@ -19,7 +19,6 @@ namespace gtulu {
   namespace internal {
 
     namespace objects {
-
       template< typename program_format_t >
       struct program: virtual public program_base, public object< program_base > , public program_format_t {
       };
