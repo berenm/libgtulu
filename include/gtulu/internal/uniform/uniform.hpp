@@ -6,13 +6,10 @@
 
 #ifndef IN_GTULU_INTERNAL_UNIFORM_HPP_
 #error "gtulu/internal/uniform/uniform.hpp should not be included directly, please include gtulu/internal/uniform.hpp instead."
-#endif
+#endif /* IN_GTULU_INTERNAL_UNIFORM_HPP_ */
 
 #ifndef GTULU_INTERNAL_UNIFORM_UNIFORM_HPP_
 #define GTULU_INTERNAL_UNIFORM_UNIFORM_HPP_
-
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/uniform.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -26,21 +23,17 @@ namespace gtulu {
     template< > \
     struct uniform_binder< fut::type_m > { \
         inline static void bind(const location_t location, const fu::to_typename< fut::type_m >::type value) { \
-          __gl_debug(glUniform1##suffix_m, (location)(value)); \
-          glUniform1##suffix_m(location, value); \
-          __gl_check_error \
+          fnc:: gl_uniform_1##suffix_m ::call(location, value); \
         } \
         inline static void bind(const location_t location, const ::boost::uint32_t number, const fu::to_typename< fut::type_m >::type* values) { \
-          __gl_debug(glUniform1##suffix_m##v, (location)(number)(values)); \
-          glUniform1##suffix_m##v(location, number, values); \
-          __gl_check_error \
+          fnc:: gl_uniform_1##suffix_m##v ::call(location, number, values); \
         } \
     };
 
-      DECLARE_BINDER(floating, f)
-      DECLARE_BINDER(integer, i)
-      DECLARE_BINDER(unsigned_integer, ui)
-      DECLARE_BINDER(boolean, i)
+      DECLARE_BINDER(floating, _f)
+      DECLARE_BINDER(integer, _i)
+      DECLARE_BINDER(unsigned_integer, _ui)
+      DECLARE_BINDER(boolean, _i)
 #undef DECLARE_BINDER
 
       template< typename format_t, typename binder_t = uniform_binder< typename format_t::info::type > ,

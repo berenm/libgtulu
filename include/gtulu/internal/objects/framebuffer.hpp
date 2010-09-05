@@ -8,6 +8,9 @@
 #define GTULU_INTERNAL_OBJECTS_FRAMEBUFFER_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/objects/object.hpp"
 #include "gtulu/internal/objects/drawable.hpp"
 
@@ -17,14 +20,10 @@
 namespace gtulu {
   namespace internal {
 
-#define FRAMEBUFFER_SLOTS ((read_framebuffer, GL_READ_FRAMEBUFFER)) \
-                          ((draw_framebuffer, GL_DRAW_FRAMEBUFFER)) \
-
     namespace framebuffer {
       namespace slots {
-#define CONSTANT_LIST FRAMEBUFFER_SLOTS
-#include "meta/declare_constants.hpp"
-#undef CONSTANT_LIST
+        typedef cst::gl_read_framebuffer gl_read_framebuffer;
+        typedef cst::gl_draw_framebuffer gl_draw_framebuffer;
       } // namespace slots
 
       namespace builtin {
@@ -56,9 +55,7 @@ namespace gtulu {
         static ::boost::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
-          __gl_debug(glBindFramebuffer, (gifs::from_type< target_type_t >())(handle_))
-          glBindFramebuffer(gifs::from_type< target_type_t >::value, handle_);
-          __gl_check_error
+          fnc::gl_bind_framebuffer::call< target_type_t >(handle_);
           bound_handle_ = handle_;
         }
       }
@@ -100,13 +97,8 @@ namespace gtulu {
           void set_viewport(::boost::uint32_t width, ::boost::uint32_t height, ::boost::uint32_t depth = 1,
                             ::boost::uint32_t origin_x = 0, ::boost::uint32_t origin_y = 0, ::boost::uint32_t origin_z =
                                 0) {
-            __gl_debug(glViewport, (origin_x)(origin_y)(width)(height))
-            glViewport(origin_x, origin_y, width, height);
-            __gl_check_error
-
-            __gl_debug(glDepthRange, (origin_z)(depth))
-            glDepthRange(origin_z, depth);
-            __gl_check_error
+            fnc::gl_viewport::call(origin_x, origin_y, width, height);
+            fnc::gl_depth_range::call(origin_z, depth);
           }
       };
 

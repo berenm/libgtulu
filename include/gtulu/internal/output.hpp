@@ -8,6 +8,9 @@
 #define GTULU_INTERNAL_OUTPUT_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/formats/output.hpp"
 
 #define IN_GTULU_INTERNAL_OUTPUT_HPP_

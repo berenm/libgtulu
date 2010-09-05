@@ -1,6 +1,6 @@
 /**
  * @file
- * @date 21 nov. 2009
+ * @date 3 sept. 2010
  * @todo comment
  */
 
@@ -11,11 +11,58 @@ namespace gtulu {
 
     namespace formats {
       namespace attribute {
+
         namespace format {
-#define CONSTANT_LIST ATTRIBUTE_FORMATS
-#include "meta/define_constants.hpp"
-#undef CONSTANT_LIST
+          const cst::gl_constant_base get(::boost::uint32_t value) {
+            switch (value) {
+              case gl_float::value:
+                return gl_float();
+              case gl_float_vec2::value:
+                return gl_float_vec2();
+              case gl_float_vec3::value:
+                return gl_float_vec3();
+              case gl_float_vec4::value:
+                return gl_float_vec4();
+              case gl_int::value:
+                return gl_int();
+              case gl_int_vec2::value:
+                return gl_int_vec2();
+              case gl_int_vec3::value:
+                return gl_int_vec3();
+              case gl_int_vec4::value:
+                return gl_int_vec4();
+              case gl_unsigned_int::value:
+                return gl_unsigned_int();
+              case gl_unsigned_int_vec2::value:
+                return gl_unsigned_int_vec2();
+              case gl_unsigned_int_vec3::value:
+                return gl_unsigned_int_vec3();
+              case gl_unsigned_int_vec4::value:
+                return gl_unsigned_int_vec4();
+              case gl_float_mat2::value:
+                return gl_float_mat2();
+              case gl_float_mat3::value:
+                return gl_float_mat3();
+              case gl_float_mat4::value:
+                return gl_float_mat4();
+              case gl_float_mat2x3::value:
+                return gl_float_mat2x3();
+              case gl_float_mat2x4::value:
+                return gl_float_mat2x4();
+              case gl_float_mat3x2::value:
+                return gl_float_mat3x2();
+              case gl_float_mat3x4::value:
+                return gl_float_mat3x4();
+              case gl_float_mat4x2::value:
+                return gl_float_mat4x2();
+              case gl_float_mat4x3::value:
+                return gl_float_mat4x3();
+              default:
+                return cst::invalid_constant();
+            }
+          }
         } // namespace format
+
       } // namespace attribute
     } // namespace formats
 

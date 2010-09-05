@@ -8,6 +8,8 @@
 #define GTULU_INTERNAL_FORMAT_RENDERBUFFER_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+
 #include "gtulu/internal/formats/common.hpp"
 
 #include "gtulu/internal/formats/constraints/data.hpp"

@@ -40,12 +40,12 @@ namespace gtulu {
           bool parse_outputs = false;
 
           if (extension.compare(".fs") == 0 || extension.compare(".frag") == 0) {
-            gio::shader_base::create_shader< fst::gl_fragment >();
+            gio::shader_base::create_shader< fst::gl_fragment_shader >();
             parse_outputs = true;
           } else if (extension.compare(".vs") == 0 || extension.compare(".vert") == 0) {
-            gio::shader_base::create_shader< fst::gl_vertex >();
+            gio::shader_base::create_shader< fst::gl_vertex_shader >();
           } else if (extension.compare(".gs") == 0 || extension.compare(".geom") == 0) {
-            gio::shader_base::create_shader< fst::gl_geometry >();
+            gio::shader_base::create_shader< fst::gl_geometry_shader >();
           } else {
             __error
               << "Unknown shader extension " << extension << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
@@ -82,18 +82,7 @@ namespace gtulu {
                 size = -1;
               }
 
-              const fof::gl_constant& type = fof::gl_constant::get(type_name);
-
-              output_info info;
-
-              info.type = type;
-              info.name = name;
-              info.id = id++;
-              info.index = -1;
-              info.location = -1;
-              info.size = size;
-
-              outputs_.push_back(info);
+              outputs_.push_back(output_info(id++, name, fof::get(type_name), size, -1, -1));
               ++it;
             }
           }
@@ -113,10 +102,8 @@ namespace gtulu {
             log_ = "";
           } else {
             char* buffer = new char[length];
-            __gl_debug(glGetShaderInfoLog, (gio::shader_base::handle_)(length)(&length)(buffer));
-            glGetShaderInfoLog(gio::shader_base::handle_, length, reinterpret_cast< ::boost::int32_t* > (&length),
-                buffer);
-            __gl_check_error
+            fnc::gl_get_shader_info_log::call(gio::shader_base::handle_, length,
+                reinterpret_cast< ::boost::int32_t* > (&length), buffer);
 
             log_ = ::std::string(buffer);
 

@@ -8,6 +8,9 @@
 #define GTULU_INTERNAL_FORMATS_SHADER_DYNAMIC_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/formats/shader.hpp"
 #include "gtulu/internal/formats/output.hpp"
 
@@ -27,9 +30,28 @@ namespace gtulu {
       namespace shader {
 
         struct output_info {
+            output_info(::boost::uint32_t id_in, ::std::string name_in, const cst::gl_constant_base& type_in,
+                        ::boost::uint32_t size_in, location_t location_in, ::boost::uint32_t index_in) :
+              id(id_in), name(name_in), type(type_in), size(size_in), location(location_in), index(index_in) {
+            }
+            output_info(const output_info& copy) :
+              id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location),
+                  index(copy.index) {
+            }
+
+            output_info& operator=(output_info const& copy) {
+              id = copy.id;
+              name = copy.name;
+              type = copy.type;
+              size = copy.size;
+              location = copy.location;
+              index = copy.index;
+              return *this;
+            }
+
             ::boost::uint32_t id;
             ::std::string name;
-            fof::gl_constant type;
+            cst::gl_constant_base type;
             ::boost::uint32_t size;
             location_t location;
             ::boost::uint32_t index;

@@ -5,18 +5,13 @@
  */
 
 #ifndef IN_GTULU_INTERNAL_ATTRIBUTE_HPP_
-#error "gtulu/internal/formats/attribute/attribute_vector.hpp should not be included directly, please include gtulu/internal/formats/attribute.hpp instead."
-#endif
+#error "gtulu/internal/attribute/attribute_vector.hpp should not be included directly, please include gtulu/internal/attribute.hpp instead."
+#endif /* IN_GTULU_INTERNAL_ATTRIBUTE_HPP_ */
 
 #ifndef GTULU_INTERNAL_ATTRIBUTE_VECTOR_HPP_
 #define GTULU_INTERNAL_ATTRIBUTE_VECTOR_HPP_
 
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/attribute.hpp"
-
 #include "gtulu/internal/formats/conversions/dimension.hpp"
-
-#include "gtulu/internal/attribute/attribute_buffer.hpp"
 
 #include <boost/preprocessor.hpp>
 
@@ -31,20 +26,14 @@ namespace gtulu {
 
 #define DECLARE_BINDER_METHOD_LITERAL(count_m, prefix_m, value_type_m, suffix_m, method_suffix_m) \
     inline static void BOOST_PP_CAT(bind, method_suffix_m)(const location_t location, BOOST_PP_ENUM_PARAMS(count_m, const value_type_m value)) { \
-      __gl_debug(BOOST_PP_SEQ_CAT((glVertexAttrib)(prefix_m)(count_m)(suffix_m)), (location)); \
-      BOOST_PP_SEQ_CAT((glVertexAttrib)(prefix_m)(count_m)(suffix_m))(location, BOOST_PP_ENUM_PARAMS(count_m, value)); \
-      __gl_debug(glDisableVertexAttribArray, (location)); \
-      glDisableVertexAttribArray(location); \
-      __gl_check_error \
+      fnc:: BOOST_PP_SEQ_CAT((gl_vertex_attrib)(prefix_m)(_)(count_m)(suffix_m)) ::call(location, BOOST_PP_ENUM_PARAMS(count_m, value)); \
+      fnc::gl_disable_vertex_attrib_array::call(location); \
     } \
 
 #define DECLARE_BINDER_METHOD_ARRAY(count_m, prefix_m, value_type_m, suffix_m, method_suffix_m) \
     inline static void BOOST_PP_CAT(bind, method_suffix_m)(const location_t location, const value_type_m* values) { \
-      __gl_debug(BOOST_PP_SEQ_CAT((glVertexAttrib)(prefix_m)(count_m)(suffix_m)(v)), (location)(values)); \
-      BOOST_PP_SEQ_CAT((glVertexAttrib)(prefix_m)(count_m)(suffix_m)(v))(location, values); \
-      __gl_debug(glDisableVertexAttribArray, (location)); \
-      glDisableVertexAttribArray(location); \
-    __gl_check_error \
+      fnc:: BOOST_PP_SEQ_CAT((gl_vertex_attrib)(prefix_m)(_)(count_m)(suffix_m)(v)) ::call(location, values); \
+      fnc::gl_disable_vertex_attrib_array::call(location); \
     } \
 
 #define DECLARE_BINDER_METHOD(count_m, prefix_m, value_type_m, suffix_m) \
@@ -62,35 +51,35 @@ namespace gtulu {
         DECLARE_BINDER_METHODS(value_types_count_m, value_types_m, prefix_m, count_m) \
     }; \
 
-        DECLARE_BINDER(integer, 1, ((::boost::int32_t, i)), I, 2)
-        DECLARE_BINDER(integer, 1, ((::boost::int32_t, i)), I, 3)
-        DECLARE_BINDER(integer, 1, ((::boost::int32_t, i)), I, 4)
+        DECLARE_BINDER(integer, 1, ((::boost::int32_t, _i)), _i, 2)
+        DECLARE_BINDER(integer, 1, ((::boost::int32_t, _i)), _i, 3)
+        DECLARE_BINDER(integer, 1, ((::boost::int32_t, _i)), _i, 4)
 
-        DECLARE_BINDER(unsigned_integer, 1, ((::boost::uint32_t, ui)), I, 2)
-        DECLARE_BINDER(unsigned_integer, 1, ((::boost::uint32_t, ui)), I, 3)
-        DECLARE_BINDER(unsigned_integer, 1, ((::boost::uint32_t, ui)), I, 4)
+        DECLARE_BINDER(unsigned_integer, 1, ((::boost::uint32_t, _ui)), _i, 2)
+        DECLARE_BINDER(unsigned_integer, 1, ((::boost::uint32_t, _ui)), _i, 3)
+        DECLARE_BINDER(unsigned_integer, 1, ((::boost::uint32_t, _ui)), _i, 4)
 
-        DECLARE_BINDER(floating, 3, ((double, d), (float, f), (::boost::int16_t, s)), BOOST_PP_EMPTY(), 2)
-        DECLARE_BINDER(floating, 3, ((double, d), (float, f), (::boost::int16_t, s)), BOOST_PP_EMPTY(), 3)
+        DECLARE_BINDER(floating, 3, ((double, _d), (float, _f), (::boost::int16_t, _s)), BOOST_PP_EMPTY(), 2)
+        DECLARE_BINDER(floating, 3, ((double, _d), (float, _f), (::boost::int16_t, _s)), BOOST_PP_EMPTY(), 3)
 
         template< >
         struct attribute_binder< fat::floating, favc::four > {
-            DECLARE_BINDER_METHODS(3, ((double, d), (float, f), (::boost::int16_t, s)), BOOST_PP_EMPTY(), 4)
+            DECLARE_BINDER_METHODS(3, ((double, _d), (float, _f), (::boost::int16_t, _s)), BOOST_PP_EMPTY(), 4)
 
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int32_t, i, BOOST_PP_EMPTY())
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int8_t, b, BOOST_PP_EMPTY())
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint32_t, ui, BOOST_PP_EMPTY())
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint16_t, us, BOOST_PP_EMPTY())
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint8_t, ub, BOOST_PP_EMPTY())
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int32_t, _i, BOOST_PP_EMPTY())
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int8_t, _b, BOOST_PP_EMPTY())
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint32_t, _ui, BOOST_PP_EMPTY())
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint16_t, _us, BOOST_PP_EMPTY())
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint8_t, _ub, BOOST_PP_EMPTY())
 
-            DECLARE_BINDER_METHOD_LITERAL(4, BOOST_PP_EMPTY(), ::boost::uint8_t, Nub, _normalized)
+            DECLARE_BINDER_METHOD_LITERAL(4, BOOST_PP_EMPTY(), ::boost::uint8_t, _nub, _normalized)
 
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int32_t, Ni, _normalized)
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int16_t, Ns, _normalized)
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int8_t, Nb, _normalized)
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint32_t, Nui, _normalized)
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint16_t, Nus, _normalized)
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint8_t, Nub, _normalized)
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int32_t, _ni, _normalized)
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int16_t, _ns, _normalized)
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int8_t, _nb, _normalized)
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint32_t, _nui, _normalized)
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint16_t, _nus, _normalized)
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint8_t, _nub, _normalized)
         };
 
 #undef DECLARE_BINDER

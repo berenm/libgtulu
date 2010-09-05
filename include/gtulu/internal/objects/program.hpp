@@ -8,6 +8,8 @@
 #define GTULU_INTERNAL_PROGRAM_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
 
 #include "gtulu/internal/formats/program.hpp"
 #include "gtulu/internal/formats/program/dynamic.hpp"

@@ -5,14 +5,11 @@
  */
 
 #ifndef IN_GTULU_INTERNAL_ATTRIBUTE_HPP_
-#error "gtulu/internal/formats/attribute/attribute_buffer.hpp should not be included directly, please include gtulu/internal/formats/attribute.hpp instead."
-#endif
+#error "gtulu/internal/attribute/attribute_buffer.hpp should not be included directly, please include gtulu/internal/attribute.hpp instead."
+#endif /* IN_GTULU_INTERNAL_ATTRIBUTE_HPP_ */
 
 #ifndef GTULU_INTERNAL_ATTRIBUTE_BUFFER_HPP_
 #define GTULU_INTERNAL_ATTRIBUTE_BUFFER_HPP_
-
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/attribute.hpp"
 
 #include "gtulu/internal/formats/conversions/dimension.hpp"
 
@@ -112,11 +109,8 @@ namespace gtulu {
                                is_order_count_compatible< data_order_t, count_m > { \
             inline static void bind(const location_t location, const gio::buffer< buffer_format_t >& buffer, const ::boost::uint32_t offset, const ::boost::uint32_t stride) { \
               gib::array_buffer_slot::bind(buffer); \
-              __gl_debug(glVertexAttribPointer, (location)((buffer_binder_order< count_m, data_order_t >::size_value))(typename buffer_format_t::info::format())(fdn::is_normalized< normalize_t >::value)(stride)(reinterpret_cast< const GLvoid* > (offset))); \
-              glVertexAttribPointer(location, buffer_binder_order< count_m, data_order_t >::size_value, fdf::from_type< typename buffer_format_t::info::format >::value, fdn::is_normalized< normalize_t >::value, stride, reinterpret_cast< const GLvoid* > (offset)); \
-              __gl_debug(glEnableVertexAttribArray, (location)); \
-              glEnableVertexAttribArray(location); \
-              __gl_check_error \
+              fnc::gl_vertex_attrib_pointer::call(location, buffer_binder_order< count_m, data_order_t >::size_value, buffer_format_t::info::format::value, fdn::is_normalized< normalize_t >::value, stride, reinterpret_cast< const GLvoid* > (offset)); \
+              fnc::gl_enable_vertex_attrib_array::call(location); \
             } \
         }; \
     }; \
@@ -137,13 +131,11 @@ namespace gtulu {
         struct checked_binder: is_buffer_format_compatible< attribute_type_t, buffer_format_t > { \
             inline static void bind(const location_t location, const gio::buffer< buffer_format_t >& buffer, const ::boost::uint32_t offset, const ::boost::uint32_t stride) { \
               gib::array_buffer_slot::bind(buffer); \
-              __gl_debug(glVertexAttribIPointer, (location)(count_m)(typename buffer_format_t::info::format())(stride)(reinterpret_cast< const GLvoid* > (offset))); \
-              glVertexAttribIPointer(location, count_m, fdf::from_type< typename buffer_format_t::info::format >::value, stride, reinterpret_cast< const GLvoid* > (offset)); \
-              __gl_debug(glEnableVertexAttribArray, (location)); \
-              glEnableVertexAttribArray(location); \
-              __gl_check_error  } \
-            }; \
+              fnc::gl_vertex_attrib_ipointer::call(location, count_m, buffer_format_t::info::format::value, stride, reinterpret_cast< const GLvoid* > (offset)); \
+              fnc::gl_enable_vertex_attrib_array::call(location); \
+            } \
         }; \
+    }; \
 
       DECLARE_INTEGER_BUFFER_BINDER(integer, 1)
       DECLARE_INTEGER_BUFFER_BINDER(integer, 2)

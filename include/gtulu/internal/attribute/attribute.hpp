@@ -5,16 +5,11 @@
  */
 
 #ifndef IN_GTULU_INTERNAL_ATTRIBUTE_HPP_
-#error "gtulu/internal/formats/attribute/attribute.hpp should not be included directly, please include gtulu/internal/formats/attribute.hpp instead."
-#endif
+#error "gtulu/internal/attribute/attribute.hpp should not be included directly, please include gtulu/internal/attribute.hpp instead."
+#endif /* IN_GTULU_INTERNAL_ATTRIBUTE_HPP_ */
 
 #ifndef GTULU_INTERNAL_ATTRIBUTE_ATTRIBUTE_HPP_
 #define GTULU_INTERNAL_ATTRIBUTE_ATTRIBUTE_HPP_
-
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/attribute.hpp"
-
-#include "gtulu/internal/attribute/attribute_buffer.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -26,18 +21,12 @@ namespace gtulu {
 
 #define DECLARE_BINDER_METHOD(prefix_m, value_type_m, suffix_m) \
     inline static void bind(const location_t location, const value_type_m value) { \
-      __gl_debug(BOOST_PP_SEQ_CAT((glVertexAttrib)(prefix_m)(1)(suffix_m)), (location)(value)); \
-      BOOST_PP_SEQ_CAT((glVertexAttrib)(prefix_m)(1)(suffix_m))(location, value); \
-      __gl_debug(glDisableVertexAttribArray, (location)); \
-      glDisableVertexAttribArray(location); \
-      __gl_check_error \
+      fnc:: BOOST_PP_SEQ_CAT((gl_vertex_attrib)(prefix_m)(_1)(suffix_m)) ::call(location, value); \
+      fnc::gl_disable_vertex_attrib_array::call(location); \
     } \
     inline static void bind(const location_t location, const value_type_m* values) { \
-      __gl_debug(BOOST_PP_SEQ_CAT((glVertexAttrib)(prefix_m)(1)(suffix_m)(v)), (location)(values)); \
-      BOOST_PP_SEQ_CAT((glVertexAttrib)(prefix_m)(1)(suffix_m)(v))(location, values); \
-      __gl_debug(glDisableVertexAttribArray, (location)); \
-      glDisableVertexAttribArray(location); \
-      __gl_check_error \
+      fnc:: BOOST_PP_SEQ_CAT((gl_vertex_attrib)(prefix_m)(_1)(suffix_m)(v)) ::call(location, values); \
+      fnc::gl_disable_vertex_attrib_array::call(location); \
     } \
 
 #define DECLARE_BINDER_METHOD_TUPLE(n, prefix_m, tuple_m) BOOST_PP_EXPAND(DECLARE_BINDER_METHOD BOOST_PP_APPLY((BOOST_PP_SEQ_TO_TUPLE(BOOST_PP_SEQ_PUSH_FRONT(BOOST_PP_TUPLE_TO_SEQ(2, tuple_m), prefix_m)))))
@@ -48,9 +37,9 @@ namespace gtulu {
         BOOST_PP_LIST_FOR_EACH(DECLARE_BINDER_METHOD_TUPLE, prefix_m, BOOST_PP_TUPLE_TO_LIST(value_types_count_m, value_types_m)) \
   }; \
 
-      DECLARE_BINDER(floating, 3, ((double, d), (float, f), (::boost::int16_t, s)), BOOST_PP_EMPTY())
-      DECLARE_BINDER(integer, 1, ((::boost::int32_t, i)), I)
-      DECLARE_BINDER(unsigned_integer, 1, ((::boost::uint32_t, ui)), I)
+      DECLARE_BINDER(floating, 3, ((double, _d), (float, _f), (::boost::int16_t, _s)), BOOST_PP_EMPTY())
+      DECLARE_BINDER(integer, 1, ((::boost::int32_t, _i)), _i)
+      DECLARE_BINDER(unsigned_integer, 1, ((::boost::uint32_t, _ui)), _i)
 
 #undef DECLARE_BINDER
 #undef DECLARE_BINDER_METHOD_TUPLE

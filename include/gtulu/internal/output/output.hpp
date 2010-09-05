@@ -6,13 +6,10 @@
 
 #ifndef IN_GTULU_INTERNAL_OUTPUT_HPP_
 #error "gtulu/internal/output/output.hpp should not be included directly, please include gtulu/internal/output.hpp instead."
-#endif
+#endif /* IN_GTULU_INTERNAL_OUTPUT_HPP_ */
 
 #ifndef GTULU_INTERNAL_OUTPUT_OUTPUT_HPP_
 #define GTULU_INTERNAL_OUTPUT_OUTPUT_HPP_
-
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/output.hpp"
 
 namespace gtulu {
   namespace internal {

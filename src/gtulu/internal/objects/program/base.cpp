@@ -4,6 +4,10 @@
  * @todo comment
  */
 
+#include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/objects/program/base.hpp"
 
 namespace gtulu {
@@ -11,27 +15,19 @@ namespace gtulu {
 
     namespace objects {
       void program_base::link() {
-        __gl_debug(glLinkProgram, (handle_));
-        glLinkProgram(handle_);
-        __gl_check_error
+        fnc::gl_link_program::call(handle_);
       }
 
       void program_base::validate() {
-        __gl_debug(glValidateProgram, (handle_));
-        glValidateProgram(handle_);
-        __gl_check_error
+        fnc::gl_validate_program::call(handle_);
       }
 
       void program_base::attach(const gio::shader_base& shader) {
-        __gl_debug(glAttachShader, (handle_)(*shader));
-        glAttachShader(handle_, *shader);
-        __gl_check_error
+        fnc::gl_attach_shader::call(handle_, *shader);
       }
 
       void program_base::detach(const gio::shader_base& shader) {
-        __gl_debug(glDetachShader, (handle_)(*shader));
-        glDetachShader(handle_, *shader);
-        __gl_check_error
+        fnc::gl_detach_shader::call(handle_, *shader);
       }
     } // namespace objects
 

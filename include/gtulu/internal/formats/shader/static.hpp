@@ -7,9 +7,6 @@
 #ifndef GTULU_INTERNAL_FORMATS_SHADER_STATIC_HPP_
 #define GTULU_INTERNAL_FORMATS_SHADER_STATIC_HPP_
 
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/shader.hpp"
-
 #include "gtulu/internal/objects/shader/base.hpp"
 
 namespace gtulu {

@@ -6,13 +6,10 @@
 
 #ifndef IN_GTULU_INTERNAL_UNIFORM_HPP_
 #error "gtulu/internal/uniform/uniform_sampler.hpp should not be included directly, please include gtulu/internal/uniform.hpp instead."
-#endif
+#endif /* IN_GTULU_INTERNAL_UNIFORM_HPP_ */
 
 #ifndef GTULU_INTERNAL_UNIFORM_SAMPLER_HPP_
 #define GTULU_INTERNAL_UNIFORM_SAMPLER_HPP_
-
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/uniform.hpp"
 
 #include "gtulu/internal/formats/internal.hpp"
 #include "gtulu/internal/formats/target.hpp"
@@ -39,9 +36,7 @@ namespace gtulu {
               ::boost::shared_ptr< texture_unit > unit_ptr = texture_unit_manager::instance().get_current_or_new(
                   texture);
               unit_ptr->bind(texture);
-              __gl_debug(glUniform1i, (location)(**unit_ptr));
-              glUniform1i(location, **unit_ptr);
-              __gl_check_error
+              fnc::gl_uniform_1_i::call(location, **unit_ptr);
             }
         };
 

@@ -8,14 +8,14 @@
 
 #include "gtulu/internal/texture_unit_manager.hpp"
 
+#include "gtulu/internal/context.hpp"
+
 namespace gtulu {
   namespace internal {
     ::boost::thread_specific_ptr< texture_unit_manager > texture_unit_manager::instance_ptr;
 
     texture_unit_manager::texture_unit_manager() {
-      __gl_debug(glGetIntegerv, ("gl_max_combined_texture_image_units")(&max_texture_unit));
-      glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, reinterpret_cast< ::boost::int32_t* > (&max_texture_unit));
-      __gl_check_error
+      max_texture_unit = gic::parameter_gettor< gicp::gl_max_combined_texture_image_units >::get();
 
       __info
         << "Max combined texture units " << max_texture_unit;

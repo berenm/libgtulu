@@ -8,6 +8,7 @@
 #define GTULU_INTERNAL_FORMATS_SHADER_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -15,26 +16,18 @@ namespace gtulu {
     namespace formats {
       namespace shader {
 
-#define SHADER_ATTRIBUTES ((shader_type, GL_SHADER_TYPE)) \
-                          ((delete_status, GL_DELETE_STATUS)) \
-                          ((compile_status, GL_COMPILE_STATUS)) \
-                          ((info_log_length, GL_INFO_LOG_LENGTH)) \
-                          ((shader_source_length, GL_SHADER_SOURCE_LENGTH)) \
-
         namespace attribute {
-#define CONSTANT_LIST SHADER_ATTRIBUTES
-#include "meta/declare_constants.hpp"
-#undef CONSTANT_LIST
+          typedef cst::gl_shader_type gl_shader_type;
+          typedef cst::gl_delete_status gl_delete_status;
+          typedef cst::gl_compile_status gl_compile_status;
+          typedef cst::gl_info_log_length gl_info_log_length;
+          typedef cst::gl_shader_source_length gl_shader_source_length;
         } // namespace attribute
 
-#define SHADER_TYPES  ((vertex, GL_VERTEX_SHADER)) \
-                      ((geometry, GL_GEOMETRY_SHADER)) \
-                      ((fragment, GL_FRAGMENT_SHADER)) \
-
         namespace type {
-#define CONSTANT_LIST SHADER_TYPES
-#include "meta/declare_constants.hpp"
-#undef CONSTANT_LIST
+          typedef cst::gl_vertex_shader gl_vertex_shader;
+          typedef cst::gl_geometry_shader gl_geometry_shader;
+          typedef cst::gl_fragment_shader gl_fragment_shader;
         } // namespace type
 
       } // namespace shader

@@ -8,6 +8,9 @@
 #define GTULU_INTERNAL_OBJECTS_FRAMEBUFFER_FORMAT_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/objects/framebuffer.hpp"
 
 #include "gtulu/internal/objects/framebuffer/attachment_manager.hpp"
@@ -33,8 +36,7 @@ namespace gtulu {
           }
 
           void bind_colors() const {
-            __gl_debug(glDrawBuffers, (colors.size())(colors.data()));
-            glDrawBuffers(colors.size(), colors.data());
+            fnc::gl_draw_buffers::call(colors.size(), colors.data());
           }
 
           template< typename framebuffer_slot_type_t, typename texture_format_t >
@@ -62,8 +64,7 @@ namespace gtulu {
           }
 
           void bind_colors() const {
-            __gl_debug(glDrawBuffers, (4)(colors.data()));
-            glDrawBuffers(4, colors.data());
+            fnc::gl_draw_buffers::call(4, colors.data());
           }
 
           template< typename framebuffer_slot_type_t >

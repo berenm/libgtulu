@@ -8,38 +8,66 @@
 #define GTULU_INTERNAL_ERROR_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
 
-#include <logging/logging.hpp>
+#if defined(NO_GTULU_DEBUG) || defined(NDEBUG)
+#define __gl_check_error ;
+#define __gl_debug(function_m, arguments_m) ;
+#else
+#define __gl_check_error \
+    { \
+      ::boost::int32_t __gl_error; \
+      while ((__gl_error = glGetError()) \
+                        != ::gtulu::internal::error::no_error::value) { \
+        switch (__gl_error) { \
+          case ::gtulu::internal::error::invalid_enum::value: \
+          case ::gtulu::internal::error::invalid_value::value: \
+          case ::gtulu::internal::error::invalid_operation::value: \
+          case ::gtulu::internal::error::invalid_framebuffer_operation::value: \
+            __errorM(gl) \
+              << __gl_error; \
+            break; \
+          case ::gtulu::internal::error::out_of_memory::value: \
+            __fatalM(gl) \
+              << __gl_error; \
+            break; \
+          case ::gtulu::internal::error::no_error::value: \
+            break; \
+          default: \
+            __errorM(gl) \
+              << "unknown error code" << __gl_error; \
+            break; \
+        } \
+      }; \
+    }
+
+#define __gl_debug __debugM(gl)
+#endif
 
 namespace gtulu {
   namespace internal {
 
     namespace error {
-
-#define ERROR_CODES ((no_error, GL_NO_ERROR)) \
-                    ((invalid_enum, GL_INVALID_ENUM)) \
-                    ((invalid_value, GL_INVALID_VALUE)) \
-                    ((invalid_operation, GL_INVALID_OPERATION)) \
-                    ((invalid_framebuffer_operation, GL_INVALID_FRAMEBUFFER_OPERATION)) \
-                    ((out_of_memory, GL_OUT_OF_MEMORY)) \
-
       namespace code {
-#define CONSTANT_LIST ERROR_CODES
-#include "meta/declare_constants.hpp"
-#undef CONSTANT_LIST
+        typedef cst::gl_no_error no_error;
+        typedef cst::gl_invalid_enum invalid_enum;
+        typedef cst::gl_invalid_value invalid_value;
+        typedef cst::gl_invalid_operation invalid_operation;
+        typedef cst::gl_invalid_framebuffer_operation invalid_framebuffer_operation;
+        typedef cst::gl_out_of_memory out_of_memory;
       } // namespace code
 
       template< typename error_code_t >
-      struct error: public code::from_type< error_code_t > {
-          using code::from_type< error_code_t >::value;
+      struct error: public error_code_t {
+          using error_code_t::value;
       };
 
-      typedef error< code::gl_no_error > no_error;
-      typedef error< code::gl_invalid_enum > invalid_enum;
-      typedef error< code::gl_invalid_value > invalid_value;
-      typedef error< code::gl_invalid_operation > invalid_operation;
-      typedef error< code::gl_invalid_framebuffer_operation > invalid_framebuffer_operation;
-      typedef error< code::gl_out_of_memory > out_of_memory;
+      typedef error< code::no_error > no_error;
+      typedef error< code::invalid_enum > invalid_enum;
+      typedef error< code::invalid_value > invalid_value;
+      typedef error< code::invalid_operation > invalid_operation;
+      typedef error< code::invalid_framebuffer_operation > invalid_framebuffer_operation;
+      typedef error< code::out_of_memory > out_of_memory;
 
     } // namespace error
 

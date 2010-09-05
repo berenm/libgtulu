@@ -8,6 +8,8 @@
 #define GTULU_INTERNAL_SHADER_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
 
 #include "gtulu/internal/formats/shader.hpp"
 #include "gtulu/internal/formats/shader/dynamic.hpp"

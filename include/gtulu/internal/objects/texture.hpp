@@ -8,6 +8,9 @@
 #define GTULU_INTERNAL_OBJECTS_TEXTURE_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/objects/object.hpp"
 #include "gtulu/internal/objects/drawable.hpp"
 
@@ -25,9 +28,7 @@ namespace gtulu {
       template< >
       template< typename target_type_t >
       void slot_binder< texture_base >::bind(::boost::uint32_t handle_) {
-        __gl_debug(glBindTexture, (ftf::from_type< typename target_type_t::info::format >())(handle_))
-        glBindTexture(ftf::from_type< typename target_type_t::info::format >::value, handle_);
-        __gl_check_error
+        fnc::gl_bind_texture::call< typename target_type_t::info::format >(handle_);
       }
     } // namespace objects
 
@@ -79,9 +80,7 @@ namespace gtulu {
 
           inline void compute_mipmaps() {
             bind();
-            __gl_debug(glGenerateMipmap, (ftf::from_type< typename texture_format_t::target::info::format >()))
-            glGenerateMipmap(ftf::from_type< typename texture_format_t::target::info::format >::value);
-            __gl_check_error
+            fnc::gl_generate_mipmap::call< typename texture_format_t::target::info::format >();
           }
       };
 

@@ -8,6 +8,9 @@
 #define GTULU_INTERNAL_OBJECTS_PROGRAM_BASE_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/objects/object.hpp"
 #include "gtulu/internal/formats/program.hpp"
 #include "gtulu/internal/objects/shader/base.hpp"
@@ -22,9 +25,7 @@ namespace gtulu {
         static ::boost::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
-          __gl_debug(glUseProgram, (handle_));
-          glUseProgram(handle_);
-          __gl_check_error
+          fnc::gl_use_program::call(handle_);
           bound_handle_ = handle_;
         }
       }
@@ -64,8 +65,7 @@ namespace gtulu {
           template< typename program_attribute_t >
           inline ::boost::uint32_t get() const {
             ::boost::int32_t data;
-            __gl_debug(glGetProgramiv, (handle_)(fpa::from_type< program_attribute_t >())(&data));
-            glGetProgramiv(handle_, fpa::from_type< program_attribute_t >::value, &data);
+            fnc::gl_get_programiv::call< program_attribute_t >(handle_, &data);
             return data;
           }
 

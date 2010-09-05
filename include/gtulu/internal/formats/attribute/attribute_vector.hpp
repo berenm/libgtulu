@@ -6,15 +6,10 @@
 
 #ifndef IN_GTULU_INTERNAL_FORMAT_ATTRIBUTE_HPP_
 #error "formats/attribute/attribute_vector.hpp should not be included directly, please include formats/attribute.hpp instead."
-#endif
+#endif /* IN_GTULU_INTERNAL_FORMAT_ATTRIBUTE_HPP_ */
 
 #ifndef GTULU_INTERNAL_FORMAT_ATTRIBUTE_VECTOR_HPP_
 #define GTULU_INTERNAL_FORMAT_ATTRIBUTE_VECTOR_HPP_
-
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/common.hpp"
-
-#include "gtulu/internal/formats/attribute/attribute.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -31,10 +26,10 @@ namespace gtulu {
 
           template< typename format_t, typename type_t, typename count_t >
           struct attribute_metadata: fa::attribute_metadata< format_t, fab::vector, type_t > {
-              using fa::attribute_metadata< format_t, fab::vector, type_t >::format;
-              using fa::attribute_metadata< format_t, fab::vector, type_t >::base;
-              using fa::attribute_metadata< format_t, fab::vector, type_t >::type;
-              typedef count_t count;
+            using fa::attribute_metadata< format_t, fab::vector, type_t >::format;
+            using fa::attribute_metadata< format_t, fab::vector, type_t >::base;
+            using fa::attribute_metadata< format_t, fab::vector, type_t >::type;
+            typedef count_t count;
           };
 
           template< typename format_t >

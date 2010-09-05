@@ -6,13 +6,10 @@
 
 #ifndef IN_GTULU_INTERNAL_FORMAT_OUTPUT_HPP_
 #error "gtulu/internal/formats/output/output.hpp should not be included directly, please include gtulu/internal/formats/output.hpp instead."
-#endif
+#endif /* IN_GTULU_INTERNAL_FORMAT_OUTPUT_HPP_ */
 
 #ifndef GTULU_INTERNAL_FORMAT_OUTPUT_OUTPUT_HPP_
 #define GTULU_INTERNAL_FORMAT_OUTPUT_OUTPUT_HPP_
-
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/common.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -20,23 +17,21 @@ namespace gtulu {
     namespace formats {
       namespace output {
 
-#define OUTPUT_FORMATS  ((float, GL_FLOAT)) \
-                        ((float_vec2, GL_FLOAT_VEC2)) \
-                        ((float_vec3, GL_FLOAT_VEC3)) \
-                        ((float_vec4, GL_FLOAT_VEC4)) \
-                        ((int, GL_INT)) \
-                        ((int_vec2, GL_INT_VEC2)) \
-                        ((int_vec3, GL_INT_VEC3)) \
-                        ((int_vec4, GL_INT_VEC4)) \
-                        ((unsigned_int, GL_UNSIGNED_INT)) \
-                        ((unsigned_int_vec2, GL_UNSIGNED_INT_VEC2)) \
-                        ((unsigned_int_vec3, GL_UNSIGNED_INT_VEC3)) \
-                        ((unsigned_int_vec4, GL_UNSIGNED_INT_VEC4)) \
-
         namespace format {
-#define CONSTANT_LIST OUTPUT_FORMATS
-#include "meta/declare_constants.hpp"
-#undef CONSTANT_LIST
+          typedef cst::gl_float gl_float;
+          typedef cst::gl_float_vec2 gl_float_vec2;
+          typedef cst::gl_float_vec3 gl_float_vec3;
+          typedef cst::gl_float_vec4 gl_float_vec4;
+          typedef cst::gl_int gl_int;
+          typedef cst::gl_int_vec2 gl_int_vec2;
+          typedef cst::gl_int_vec3 gl_int_vec3;
+          typedef cst::gl_int_vec4 gl_int_vec4;
+          typedef cst::gl_unsigned_int gl_unsigned_int;
+          typedef cst::gl_unsigned_int_vec2 gl_unsigned_int_vec2;
+          typedef cst::gl_unsigned_int_vec3 gl_unsigned_int_vec3;
+          typedef cst::gl_unsigned_int_vec4 gl_unsigned_int_vec4;
+
+          const cst::gl_constant_base get(::std::string type_name);
         } // namespace format
 
         DECLARE_TRAIT_ASPECT(base, struct,
@@ -51,10 +46,10 @@ namespace gtulu {
 
         template< typename format_t, typename base_t, typename type_t >
         struct output_metadata {
-            typedef format_t format;
-            typedef base_t base;
-            typedef type_t type;
-            typedef fcd::one count;
+          typedef format_t format;
+          typedef base_t base;
+          typedef type_t type;
+          typedef fcd::one count;
         };
 
         template< typename format_t >

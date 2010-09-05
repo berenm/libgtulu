@@ -8,6 +8,8 @@
 #define GTULU_INTERNAL_FORMAT_TARGET_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+
 #include "gtulu/internal/formats/common.hpp"
 
 namespace gtulu {
@@ -16,28 +18,24 @@ namespace gtulu {
     namespace formats {
       namespace target {
 
-#define TARGET_FORMATS  ((texture_1d, GL_TEXTURE_1D)) \
-                        ((texture_1d_array, GL_TEXTURE_1D_ARRAY)) \
-                        ((texture_2d, GL_TEXTURE_2D)) \
-                        ((texture_2d_array, GL_TEXTURE_2D_ARRAY)) \
-                        ((texture_2d_multisample, GL_TEXTURE_2D_MULTISAMPLE)) \
-                        ((texture_2d_multisample_array, GL_TEXTURE_2D_MULTISAMPLE_ARRAY)) \
-                        ((texture_3d, GL_TEXTURE_3D)) \
-                        ((texture_rectangle, GL_TEXTURE_RECTANGLE)) \
-                        ((texture_buffer, GL_TEXTURE_BUFFER)) \
-                        ((texture_cube_map, GL_TEXTURE_CUBE_MAP)) \
-                        ((texture_cube_map_negative_x, GL_TEXTURE_CUBE_MAP_NEGATIVE_X)) \
-                        ((texture_cube_map_negative_y, GL_TEXTURE_CUBE_MAP_NEGATIVE_Y)) \
-                        ((texture_cube_map_negative_z, GL_TEXTURE_CUBE_MAP_NEGATIVE_Z)) \
-                        ((texture_cube_map_positive_x, GL_TEXTURE_CUBE_MAP_POSITIVE_X)) \
-                        ((texture_cube_map_positive_y, GL_TEXTURE_CUBE_MAP_POSITIVE_Y)) \
-                        ((texture_cube_map_positive_z, GL_TEXTURE_CUBE_MAP_POSITIVE_Z)) \
-                        ((renderbuffer, GL_RENDERBUFFER)) \
-
         namespace format {
-#define CONSTANT_LIST TARGET_FORMATS
-#include "meta/declare_constants.hpp"
-#undef CONSTANT_LIST
+          typedef cst::gl_texture_1d gl_texture_1d;
+          typedef cst::gl_texture_1d_array gl_texture_1d_array;
+          typedef cst::gl_texture_2d gl_texture_2d;
+          typedef cst::gl_texture_2d_array gl_texture_2d_array;
+          typedef cst::gl_texture_2d_multisample gl_texture_2d_multisample;
+          typedef cst::gl_texture_2d_multisample_array gl_texture_2d_multisample_array;
+          typedef cst::gl_texture_3d gl_texture_3d;
+          typedef cst::gl_texture_rectangle gl_texture_rectangle;
+          typedef cst::gl_texture_buffer gl_texture_buffer;
+          typedef cst::gl_texture_cube_map gl_texture_cube_map;
+          typedef cst::gl_texture_cube_map_negative_x gl_texture_cube_map_negative_x;
+          typedef cst::gl_texture_cube_map_negative_y gl_texture_cube_map_negative_y;
+          typedef cst::gl_texture_cube_map_negative_z gl_texture_cube_map_negative_z;
+          typedef cst::gl_texture_cube_map_positive_x gl_texture_cube_map_positive_x;
+          typedef cst::gl_texture_cube_map_positive_y gl_texture_cube_map_positive_y;
+          typedef cst::gl_texture_cube_map_positive_z gl_texture_cube_map_positive_z;
+          typedef cst::gl_renderbuffer gl_renderbuffer;
         } // namespace format
 
         DECLARE_TRAIT_ASPECT(base, struct,

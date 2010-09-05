@@ -6,15 +6,10 @@
 
 #ifndef IN_GTULU_INTERNAL_FORMAT_UNIFORM_HPP_
 #error "gtulu/internal/formats/uniform/uniform_matrix.hpp should not be included directly, please include gtulu/internal/formats/uniform.hpp instead."
-#endif
+#endif /* IN_GTULU_INTERNAL_FORMAT_UNIFORM_HPP_ */
 
 #ifndef GTULU_INTERNAL_FORMAT_UNIFORM_MATRIX_HPP_
 #define GTULU_INTERNAL_FORMAT_UNIFORM_MATRIX_HPP_
-
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/common.hpp"
-
-#include "gtulu/internal/formats/uniform/uniform.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -37,11 +32,11 @@ namespace gtulu {
 
           template< typename format_t, typename type_t, typename dimension_t >
           struct uniform_metadata: fu::uniform_metadata< format_t, fub::matrix, type_t > {
-              using fu::uniform_metadata< format_t, fub::matrix, type_t >::format;
-              using fu::uniform_metadata< format_t, fub::matrix, type_t >::base;
-              using fu::uniform_metadata< format_t, fub::matrix, type_t >::type;
-              using fu::uniform_metadata< format_t, fub::matrix, type_t >::count;
-              typedef dimension_t dimension;
+            using fu::uniform_metadata< format_t, fub::matrix, type_t >::format;
+            using fu::uniform_metadata< format_t, fub::matrix, type_t >::base;
+            using fu::uniform_metadata< format_t, fub::matrix, type_t >::type;
+            using fu::uniform_metadata< format_t, fub::matrix, type_t >::count;
+            typedef dimension_t dimension;
           };
 
           template< typename format_t >

@@ -7,7 +7,6 @@
 #ifndef GTULU_INTERNAL_FORMATS_PROGRAM_STATIC_HPP_
 #define GTULU_INTERNAL_FORMATS_PROGRAM_STATIC_HPP_
 
-#include "gtulu/opengl.hpp"
 #include "gtulu/internal/objects/program/base.hpp"
 
 namespace gtulu {

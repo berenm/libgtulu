@@ -8,6 +8,9 @@
 #define GTULU_INTERNAL_OBJECTS_FRAMEBUFFER_ATTACHER_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/objects/texture.hpp"
 #include "gtulu/internal/objects/renderbuffer.hpp"
 #include "gtulu/internal/objects/framebuffer.hpp"
@@ -33,9 +36,7 @@ namespace gtulu {
           template< typename framebuffer_slot_type_t > \
           inline static void attach(const ::boost::uint32_t color, const gio::texture_base& texture, \
                                     const ::boost::uint32_t mipmap_level, const ::boost::uint32_t layer) { \
-            __gl_debug(attach_function_m, (framebuffer_slot_type_t())(color)(*texture)(mipmap_level)); \
-            attach_function_m(gif::slots::from_type< framebuffer_slot_type_t >::value, color, *texture, mipmap_level); \
-            __gl_check_error; \
+            fnc:: attach_function_m ::call(framebuffer_slot_type_t::value, color, *texture, mipmap_level); \
           } \
       }; \
 
@@ -45,9 +46,7 @@ namespace gtulu {
           template< typename framebuffer_slot_type_t > \
           inline static void attach(const ::boost::uint32_t color, const gio::texture_base& texture, \
                                     const ::boost::uint32_t mipmap_level, const ::boost::uint32_t layer) { \
-            __gl_debug(attach_function_m, (framebuffer_slot_type_t())(color)(typename ftf::target_format_m())(*texture)(mipmap_level)); \
-            attach_function_m(gif::slots::from_type< framebuffer_slot_type_t >::value, color, ftf::from_type< typename ftf::target_format_m >::value, *texture, mipmap_level); \
-            __gl_check_error; \
+            fnc:: attach_function_m ::call(framebuffer_slot_type_t::value, color, ftf::target_format_m::value, *texture, mipmap_level); \
           } \
       }; \
 
@@ -57,22 +56,20 @@ namespace gtulu {
           template< typename framebuffer_slot_type_t > \
           inline static void attach(const ::boost::uint32_t color, const gio::texture_base& texture, \
                                     const ::boost::uint32_t mipmap_level, const ::boost::uint32_t layer) { \
-            __gl_debug(glFramebufferTexture2D, (framebuffer_slot_type_t())(color)(typename ftf::target_format_m())(*texture)(mipmap_level)); \
-            glFramebufferTexture2D(gif::slots::from_type< framebuffer_slot_type_t >::value, color, ftf::from_type< typename ftf::target_format_m >::value, *texture, mipmap_level); \
-            __gl_check_error; \
+            fnc:: gl_framebuffer_texture_2d ::call(framebuffer_slot_type_t::value, color, ftf::target_format_m::value, *texture, mipmap_level); \
           } \
       }; \
 
-      DECLARE_ATTACHER(yes, gl_texture_3d, glFramebufferTexture)
-      DECLARE_ATTACHER(yes, gl_texture_cube_map, glFramebufferTexture)
-      DECLARE_ATTACHER(yes, gl_texture_1d_array, glFramebufferTexture)
-      DECLARE_ATTACHER(yes, gl_texture_2d_array, glFramebufferTexture)
-      DECLARE_ATTACHER(yes, gl_texture_2d_multisample_array, glFramebufferTexture)
+      DECLARE_ATTACHER(yes, gl_texture_3d, gl_framebuffer_texture)
+      DECLARE_ATTACHER(yes, gl_texture_cube_map, gl_framebuffer_texture)
+      DECLARE_ATTACHER(yes, gl_texture_1d_array, gl_framebuffer_texture)
+      DECLARE_ATTACHER(yes, gl_texture_2d_array, gl_framebuffer_texture)
+      DECLARE_ATTACHER(yes, gl_texture_2d_multisample_array, gl_framebuffer_texture)
 
-      DECLARE_ATTACHER_TARGET(no, gl_texture_1d, glFramebufferTexture1D)
-      DECLARE_ATTACHER_TARGET(no, gl_texture_2d, glFramebufferTexture2D)
-      DECLARE_ATTACHER_TARGET(no, gl_texture_2d_multisample, glFramebufferTexture2D)
-      DECLARE_ATTACHER_TARGET(no, gl_texture_rectangle, glFramebufferTexture2D)
+      DECLARE_ATTACHER_TARGET(no, gl_texture_1d, gl_framebuffer_texture_1d)
+      DECLARE_ATTACHER_TARGET(no, gl_texture_2d, gl_framebuffer_texture_2d)
+      DECLARE_ATTACHER_TARGET(no, gl_texture_2d_multisample, gl_framebuffer_texture_2d)
+      DECLARE_ATTACHER_TARGET(no, gl_texture_rectangle, gl_framebuffer_texture_2d)
 
       DECLARE_ATTACHER_CUBE(gl_texture_cube_map_positive_x)
       DECLARE_ATTACHER_CUBE(gl_texture_cube_map_positive_y)
@@ -86,10 +83,8 @@ namespace gtulu {
           template< typename framebuffer_slot_type_t >
           inline static void attach(const ::boost::uint32_t color, const gio::texture_base& texture,
                                     const ::boost::uint32_t mipmap_level, const ::boost::uint32_t layer) {
-            __gl_debug(glFramebufferTexture3D, (framebuffer_slot_type_t())(color)(typename ftf::gl_texture_3d())(*texture)(mipmap_level)(layer));
-            glFramebufferTexture3D(gif::slots::from_type< framebuffer_slot_type_t >::value, color, ftf::from_type<
-                typename ftf::gl_texture_3d >::value, *texture, mipmap_level, layer);
-            __gl_check_error;
+            fnc::gl_framebuffer_texture_3d::call(framebuffer_slot_type_t::value, color, ftf::gl_texture_3d::value,
+                *texture, mipmap_level, layer);
           }
       };
 
@@ -142,10 +137,8 @@ namespace gtulu {
 
           inline static void attach(const ::boost::uint32_t color, const gio::renderbuffer_base& renderbuffer,
                                     const ::boost::uint32_t mipmap_level, const ::boost::uint32_t layer) {
-            __gl_debug(glFramebufferRenderbuffer, (framebuffer_slot_type_t())(color)(typename ft::gl_renderbuffer::info::format())(*renderbuffer));
-            glFramebufferRenderbuffer(gif::slots::from_type< framebuffer_slot_type_t >::value, color, ftf::from_type<
-                ft::gl_renderbuffer::info::format >::value, *renderbuffer);
-            __gl_check_error;
+            fnc::gl_framebuffer_renderbuffer::call(framebuffer_slot_type_t::value, color,
+                ft::gl_renderbuffer::info::format::value, *renderbuffer);
           }
       };
     } // namespace framebuffer

@@ -6,15 +6,11 @@
 
 #ifndef IN_GTULU_INTERNAL_FORMAT_UNIFORM_HPP_
 #error "gtulu/internal/formats/uniform/uniform_sampler.hpp should not be included directly, please include gtulu/internal/formats/uniform.hpp instead."
-#endif
+#endif /* IN_GTULU_INTERNAL_FORMAT_UNIFORM_HPP_ */
 
 #ifndef GTULU_INTERNAL_FORMAT_UNIFORM_SAMPLER_HPP_
 #define GTULU_INTERNAL_FORMAT_UNIFORM_SAMPLER_HPP_
 
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/common.hpp"
-
-#include "gtulu/internal/formats/uniform/uniform.hpp"
 #include "gtulu/internal/formats/target.hpp"
 
 namespace gtulu {

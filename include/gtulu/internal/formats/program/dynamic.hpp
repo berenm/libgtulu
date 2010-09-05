@@ -8,6 +8,8 @@
 #define GTULU_INTERNAL_FORMATS_PROGRAM_DYNAMIC_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
 
 #include "gtulu/internal/formats/attribute.hpp"
 #include "gtulu/internal/formats/uniform.hpp"
@@ -17,6 +19,7 @@
 
 #include <string>
 #include <vector>
+#include <boost/shared_ptr.hpp>
 
 namespace gtulu {
   namespace internal {
@@ -26,27 +29,78 @@ namespace gtulu {
     namespace formats {
       namespace program {
         struct attribute_info {
+            attribute_info(::boost::uint32_t id_in, ::std::string name_in, const cst::gl_constant_base& type_in,
+                           ::boost::uint32_t size_in, location_t location_in) :
+              id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
+            }
+            attribute_info(const attribute_info& copy) :
+              id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
+            }
+
+            attribute_info& operator=(attribute_info const& copy) {
+              id = copy.id;
+              name = copy.name;
+              type = copy.type;
+              size = copy.size;
+              location = copy.location;
+              return *this;
+            }
+
             ::boost::uint32_t id;
             ::std::string name;
-            faf::gl_constant type;
+            cst::gl_constant_base type;
             ::boost::uint32_t size;
             location_t location;
         };
         typedef ::std::vector< attribute_info > attribute_vector_t;
 
         struct uniform_info {
+            uniform_info(::boost::uint32_t id_in, ::std::string name_in, const cst::gl_constant_base& type_in,
+                         ::boost::uint32_t size_in, location_t location_in) :
+              id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
+            }
+            uniform_info(const attribute_info& copy) :
+              id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
+            }
+
+            uniform_info& operator=(uniform_info const& copy) {
+              id = copy.id;
+              name = copy.name;
+              type = copy.type;
+              size = copy.size;
+              location = copy.location;
+              return *this;
+            }
+
             ::boost::uint32_t id;
             ::std::string name;
-            fuf::gl_constant type;
+            cst::gl_constant_base type;
             ::boost::uint32_t size;
             location_t location;
         };
         typedef ::std::vector< uniform_info > uniform_vector_t;
 
         struct uniform_block_info {
+            uniform_block_info(::boost::uint32_t id_in, ::std::string name_in, const cst::gl_constant_base& type_in,
+                               ::boost::uint32_t size_in, location_t location_in) :
+              id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
+            }
+            uniform_block_info(const attribute_info& copy) :
+              id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
+            }
+
+            uniform_block_info& operator=(uniform_block_info const& copy) {
+              id = copy.id;
+              name = copy.name;
+              type = copy.type;
+              size = copy.size;
+              location = copy.location;
+              return *this;
+            }
+
             ::boost::uint32_t id;
             ::std::string name;
-            faf::gl_constant type;
+            cst::gl_constant_base type;
             ::boost::uint32_t size;
             location_t location;
         };
@@ -69,15 +123,15 @@ namespace gtulu {
           protected:
             ::boost::uint32_t get_attribute_count();
             ::boost::uint32_t get_attribute_max_length();
-            attribute_info get_attribute_info(::boost::uint32_t index);
+            const attribute_info get_attribute_info(::boost::uint32_t id);
 
             ::boost::uint32_t get_uniform_count();
             ::boost::uint32_t get_uniform_max_length();
-            uniform_info get_uniform_info(::boost::uint32_t index);
+            const uniform_info get_uniform_info(::boost::uint32_t index);
 
             ::boost::uint32_t get_uniform_block_count();
             ::boost::uint32_t get_uniform_block_max_length();
-            uniform_block_info get_uniform_block_info(::boost::uint32_t index);
+            const uniform_block_info get_uniform_block_info(::boost::uint32_t index);
 
             ::boost::uint32_t get_outputs_count();
             ::boost::uint32_t get_output_location(::std::string name);

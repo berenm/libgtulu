@@ -6,6 +6,8 @@
 
 #include "gtulu/internal/objects/object.hpp"
 
+#include "gtulu/internal/functions.hpp"
+
 namespace gtulu {
   namespace internal {
 
@@ -24,93 +26,66 @@ namespace gtulu {
 
       template< >
       object< texture_base >::object() {
-        __gl_debug(glGenTextures, (1)(&handle_));
-        glGenTextures(1, &handle_);
-        __gl_check_error
+        fnc::gl_gen_textures::call(1, &handle_);
       }
       template< >
       object< texture_base >::~object() {
-        __gl_debug(glDeleteTextures, (1)(&handle_));
-        glDeleteTextures(1, &handle_);
-        __gl_check_error
+        fnc::gl_delete_textures::call(1, &handle_);
       }
 
       template< >
       object< buffer_base >::object() {
-        __gl_debug(glGenBuffers, (1)(&handle_));
-        glGenBuffers(1, &handle_);
-        __gl_check_error
+        fnc::gl_gen_buffers::call(1, &handle_);
       }
       template< >
       object< buffer_base >::~object() {
-        __gl_debug(glDeleteBuffers, (1)(&handle_));
-        glDeleteBuffers(1, &handle_);
-        __gl_check_error
+        fnc::gl_delete_buffers::call(1, &handle_);
       }
 
       template< >
       object< renderbuffer_base >::object() {
-        __gl_debug(glGenRenderbuffers, (1)(&handle_));
-        glGenRenderbuffers(1, &handle_);
-        __gl_check_error
+        fnc::gl_gen_renderbuffers::call(1, &handle_);
       }
       template< >
       object< renderbuffer_base >::~object() {
-        __gl_debug(glDeleteRenderbuffers, (1)(&handle_));
-        glDeleteRenderbuffers(1, &handle_);
-        __gl_check_error
+        fnc::gl_delete_renderbuffers::call(1, &handle_);
       }
 
       template< >
       object< framebuffer_base >::object() {
-        __gl_debug(glGenFramebuffers, (1)(&handle_));
-        glGenFramebuffers(1, &handle_);
-        __gl_check_error
+        fnc::gl_gen_framebuffers::call(1, &handle_);
       }
       template< >
       object< framebuffer_base >::~object() {
-        __gl_debug(glDeleteFramebuffers, (1)(&handle_));
-        glDeleteFramebuffers(1, &handle_);
-        __gl_check_error
+        fnc::gl_delete_framebuffers::call(1, &handle_);
       }
 
       template< >
       object< vertexarray_base >::object() {
-        __gl_debug(glGenVertexArrays, (1)(&handle_));
-        glGenVertexArrays(1, &handle_);
-        __gl_check_error
+        fnc::gl_gen_vertex_arrays::call(1, &handle_);
       }
       template< >
       object< vertexarray_base >::~object() {
-        __gl_debug(glDeleteVertexArrays, (1)(&handle_));
-        glDeleteVertexArrays(1, &handle_);
-        __gl_check_error
+        fnc::gl_delete_vertex_arrays::call(1, &handle_);
       }
 
       template< >
       object< query_base >::object() {
-        __gl_debug(glGenQueries, (1)(&handle_));
-        glGenQueries(1, &handle_);
-        __gl_check_error
+        fnc::gl_gen_queries::call(1, &handle_);
       }
       template< >
       object< query_base >::~object() {
-        __gl_debug(glDeleteQueries, (1)(&handle_));
-        glDeleteQueries(1, &handle_);
-        __gl_check_error
+        fnc::gl_delete_queries::call(1, &handle_);
       }
 
       template< >
       object< program_base >::object() {
-        __gl_debug(glCreateProgram, (""));
-        handle_ = glCreateProgram();
-        __gl_check_error
+        handle_ = fnc::gl_create_program::call();
+
       }
       template< >
       object< program_base >::~object() {
-        __gl_debug(glDeleteProgram, (handle_));
-        glDeleteProgram(handle_);
-        __gl_check_error
+        fnc::gl_delete_program::call(handle_);
       }
 
       template< >
@@ -118,9 +93,7 @@ namespace gtulu {
       }
       template< >
       object< shader_base >::~object() {
-        __gl_debug(glDeleteShader, (handle_));
-        glDeleteShader(handle_);
-        __gl_check_error
+        fnc::gl_delete_shader::call(handle_);
       }
     } // namespace objects
 

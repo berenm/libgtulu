@@ -8,6 +8,9 @@
 #define GTULU_INTERNAL_OBJECTS_SHADER_BASE_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/objects/object.hpp"
 #include "gtulu/internal/formats/shader.hpp"
 
@@ -22,8 +25,7 @@ namespace gtulu {
           template< typename shader_attribute_t >
           inline ::boost::uint32_t get() const {
             ::boost::int32_t data;
-            __gl_debug(glGetShaderiv, (handle_)(fsa::from_type< shader_attribute_t >())(&data));
-            glGetShaderiv(handle_, fsa::from_type< shader_attribute_t >::value, &data);
+            fnc::gl_get_shaderiv::call< shader_attribute_t >(handle_, &data);
             return data;
           }
           void set();
@@ -34,9 +36,7 @@ namespace gtulu {
           template< typename shader_type_t >
           void create_shader() {
             if (handle_ == 0) {
-              __gl_debug(glCreateShader, (fst::from_type< shader_type_t >()));
-              handle_ = glCreateShader(fst::from_type< shader_type_t >::value);
-              __gl_check_error
+              handle_ = fnc::gl_create_shader::call< shader_type_t >();
             }
           }
       };

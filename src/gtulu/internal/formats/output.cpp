@@ -1,6 +1,6 @@
 /**
  * @file
- * @date 21 nov. 2009
+ * @date 3 sept. 2010
  * @todo comment
  */
 
@@ -11,11 +11,13 @@ namespace gtulu {
 
     namespace formats {
       namespace output {
+
         namespace format {
-#define CONSTANT_LIST OUTPUT_FORMATS
-#include "meta/define_constants.hpp"
-#undef CONSTANT_LIST
+          const cst::gl_constant_base get(::std::string type_name) {
+            return cst::invalid_constant();
+          }
         } // namespace format
+
       } // namespace output
     } // namespace formats
 

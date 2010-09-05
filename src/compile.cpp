@@ -62,6 +62,8 @@ namespace fs = ::gtulu::internal::formats::shader;
 namespace fp = ::gtulu::internal::formats::program;
 namespace fst = ::gtulu::internal::formats::shader::type;
 
+namespace cst = ::gtulu::internal::constant;
+
 struct program_compiler {
     gu::file_template header_template;
     gu::file_template source_template;
@@ -204,22 +206,21 @@ const ::std::string get_shader_name(const ::bfs::path& shader_file) {
   return filename;
 }
 
-const fst::gl_constant get_shader_type(const ::bfs::path& shader_file) {
+const cst::gl_constant_base get_shader_type(const ::bfs::path& shader_file) {
   ::std::string extension = shader_file.extension();
 
-  fst::gl_constant shader_type;
   if (extension.compare(".fs") == 0 || extension.compare(".frag") == 0) {
-    shader_type = fst::from_type< fst::gl_fragment >();
+    return fst::gl_fragment_shader();
   } else if (extension.compare(".vs") == 0 || extension.compare(".vert") == 0) {
-    shader_type = fst::from_type< fst::gl_vertex >();
+    return fst::gl_vertex_shader();
   } else if (extension.compare(".gs") == 0 || extension.compare(".geom") == 0) {
-    shader_type = fst::from_type< fst::gl_geometry >();
+    return fst::gl_geometry_shader();
   } else {
     __error
       << "Unknown shader extension " << extension << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
   }
 
-  return shader_type;
+  return cst::invalid_constant();
 }
 
 struct uniform_type_info {
@@ -242,16 +243,16 @@ struct is_sampler< fub::sampler > : ::boost::true_type {
 };
 
 #define COMPLETE_UNIFORM_INFO(type_m) \
-	case fuf::from_type< fuf::gl_ ##type_m >::value:\
+	case fuf::gl_ ##type_m::value:\
   	info.count = fc::to_literal< fu::gl_##type_m::info::count >::type::value; \
   	info.name = #type_m; \
   	info.is_sampler = is_sampler< fu::gl_##type_m::info::base >::value; \
   	break; \
 
-const uniform_type_info get_uniform_info(const fuf::gl_constant& type) {
+const uniform_type_info get_uniform_info(const cst::gl_constant_base& type) {
   uniform_type_info info;
 
-  switch (type.value) {
+  switch (::boost::uint32_t(type)) {
     COMPLETE_UNIFORM_INFO(float)
     COMPLETE_UNIFORM_INFO(float_vec2)
     COMPLETE_UNIFORM_INFO(float_vec3)
@@ -320,15 +321,15 @@ const uniform_type_info get_uniform_info(const fuf::gl_constant& type) {
 #undef COMPLETE_UNIFORM_INFO
 
 #define COMPLETE_ATTRIBUTE_INFO(type_m) \
-        case faf::from_type< faf::gl_ ##type_m >::value:\
+        case faf::gl_ ##type_m::value:\
         info.count = fc::to_literal< fa::gl_##type_m::info::count >::type::value; \
         info.name = #type_m; \
         break; \
 
-const attribute_type_info get_attribute_info(const faf::gl_constant& type) {
+const attribute_type_info get_attribute_info(const cst::gl_constant_base& type) {
   attribute_type_info info;
 
-  switch (type.value) {
+  switch (::boost::uint32_t(type)) {
     COMPLETE_ATTRIBUTE_INFO(float)
     COMPLETE_ATTRIBUTE_INFO(float_vec2)
     COMPLETE_ATTRIBUTE_INFO(float_vec3)
@@ -459,7 +460,7 @@ int main(int argc, char *argv[]) {
   const fp::uniform_vector_t& uniforms = prog.get_uniforms();
   fp::uniform_vector_t::const_iterator uniform_it = uniforms.begin();
   for (; uniform_it != uniforms.end(); ++uniform_it) {
-    fp::uniform_info info = *uniform_it;
+    const fp::uniform_info& info = *uniform_it;
     uniform_type_info type_info = get_uniform_info(info.type);
 
     ::std::string prefix;
@@ -478,7 +479,7 @@ int main(int argc, char *argv[]) {
   const fp::attribute_vector_t& attributes = prog.get_attributes();
   fp::attribute_vector_t::const_iterator attribute_it = attributes.begin();
   for (; attribute_it != attributes.end(); ++attribute_it) {
-    fp::attribute_info info = *attribute_it;
+    const fp::attribute_info& info = *attribute_it;
     attribute_type_info type_info = get_attribute_info(info.type);
 
     ::std::string name = info.name;
@@ -497,7 +498,7 @@ int main(int argc, char *argv[]) {
   const fp::output_vector_t& outputs = prog.get_outputs();
   fp::output_vector_t::const_iterator output_it = outputs.begin();
   for (; output_it != outputs.end(); ++output_it) {
-    fp::output_info info = *output_it;
+    const fp::output_info& info = *output_it;
 
     if (info.location >= 0) {
       ::std::string name = info.name;

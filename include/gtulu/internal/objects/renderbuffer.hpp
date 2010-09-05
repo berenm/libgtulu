@@ -8,6 +8,9 @@
 #define GTULU_INTERNAL_OBJECTS_RENDERBUFFER_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/objects/object.hpp"
 #include "gtulu/internal/objects/drawable.hpp"
 
@@ -20,9 +23,7 @@ namespace gtulu {
       template< >
       template< typename target_type_t >
       void slot_binder< renderbuffer_base >::bind(::boost::uint32_t handle_) {
-        __gl_debug(glBindRenderbuffer, (ftf::from_type< typename target_type_t::info::format >())(handle_))
-        glBindRenderbuffer(ftf::from_type< typename target_type_t::info::format >::value, handle_);
-        __gl_check_error
+        fnc::gl_bind_renderbuffer::call< typename target_type_t::info::format >(handle_);
       }
     } // namespace objects
 
@@ -31,12 +32,10 @@ namespace gtulu {
       template< typename target_type_t >
       struct renderbuffer_slot: private ft::is_of_target_base< target_type_t, ft::base::renderbuffer > {
           static inline void bind(const gio::plug< gio::renderbuffer_base >& buffer) {
-            gio::slot_binder< gio::renderbuffer_base >::bind(ft::format::from_type<
-                typename target_type_t::info::format >::value, buffer);
+            gio::slot_binder< gio::renderbuffer_base >::bind(target_type_t::info::format::value, buffer);
           }
           static inline void unbind(const gio::plug< gio::renderbuffer_base >& buffer) {
-            gio::slot_binder< gio::renderbuffer_base >::clear(ft::format::from_type<
-                typename target_type_t::info::format >::value);
+            gio::slot_binder< gio::renderbuffer_base >::clear(target_type_t::info::format::value);
           }
       };
 

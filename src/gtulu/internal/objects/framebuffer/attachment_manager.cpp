@@ -8,13 +8,13 @@
 
 #include "gtulu/internal/objects/framebuffer/attachment_manager.hpp"
 
+#include "gtulu/internal/context.hpp"
+
 namespace gtulu {
   namespace internal {
 
     attachment_manager::attachment_manager() {
-      __gl_debug(glGetIntegerv, (GL_MAX_COLOR_ATTACHMENTS)(&max_attachment));
-      glGetIntegerv(GL_MAX_COLOR_ATTACHMENTS, reinterpret_cast< ::boost::int32_t* > (&max_attachment));
-      __gl_check_error
+      max_attachment = gic::parameter_gettor< gicp::gl_max_color_attachments >::get();
 
       __info
         << "Max color attachments " << max_attachment;

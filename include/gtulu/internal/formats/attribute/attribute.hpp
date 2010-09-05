@@ -6,13 +6,10 @@
 
 #ifndef IN_GTULU_INTERNAL_FORMAT_ATTRIBUTE_HPP_
 #error "gtulu/internal/formats/attribute/attribute.hpp should not be included directly, please include gtulu/internal/formats/attribute.hpp instead."
-#endif
+#endif /* IN_GTULU_INTERNAL_FORMAT_ATTRIBUTE_HPP_ */
 
 #ifndef GTULU_INTERNAL_FORMAT_ATTRIBUTE_ATTRIBUTE_HPP_
 #define GTULU_INTERNAL_FORMAT_ATTRIBUTE_ATTRIBUTE_HPP_
-
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/common.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -20,32 +17,30 @@ namespace gtulu {
     namespace formats {
       namespace attribute {
 
-#define ATTRIBUTE_FORMATS   ((float, GL_FLOAT)) \
-                            ((float_vec2, GL_FLOAT_VEC2)) \
-                            ((float_vec3, GL_FLOAT_VEC3)) \
-                            ((float_vec4, GL_FLOAT_VEC4)) \
-                            ((int, GL_INT)) \
-                            ((int_vec2, GL_INT_VEC2)) \
-                            ((int_vec3, GL_INT_VEC3)) \
-                            ((int_vec4, GL_INT_VEC4)) \
-                            ((unsigned_int, GL_UNSIGNED_INT)) \
-                            ((unsigned_int_vec2, GL_UNSIGNED_INT_VEC2)) \
-                            ((unsigned_int_vec3, GL_UNSIGNED_INT_VEC3)) \
-                            ((unsigned_int_vec4, GL_UNSIGNED_INT_VEC4)) \
-                            ((float_mat2, GL_FLOAT_MAT2)) \
-                            ((float_mat3, GL_FLOAT_MAT3)) \
-                            ((float_mat4, GL_FLOAT_MAT4)) \
-                            ((float_mat2x3, GL_FLOAT_MAT2x3)) \
-                            ((float_mat2x4, GL_FLOAT_MAT2x4)) \
-                            ((float_mat3x2, GL_FLOAT_MAT3x2)) \
-                            ((float_mat3x4, GL_FLOAT_MAT3x4)) \
-                            ((float_mat4x2, GL_FLOAT_MAT4x2)) \
-                            ((float_mat4x3, GL_FLOAT_MAT4x3))
-
         namespace format {
-#define CONSTANT_LIST ATTRIBUTE_FORMATS
-#include "meta/declare_constants.hpp"
-#undef CONSTANT_LIST
+          typedef cst::gl_float gl_float;
+          typedef cst::gl_float_vec2 gl_float_vec2;
+          typedef cst::gl_float_vec3 gl_float_vec3;
+          typedef cst::gl_float_vec4 gl_float_vec4;
+          typedef cst::gl_int gl_int;
+          typedef cst::gl_int_vec2 gl_int_vec2;
+          typedef cst::gl_int_vec3 gl_int_vec3;
+          typedef cst::gl_int_vec4 gl_int_vec4;
+          typedef cst::gl_unsigned_int gl_unsigned_int;
+          typedef cst::gl_unsigned_int_vec2 gl_unsigned_int_vec2;
+          typedef cst::gl_unsigned_int_vec3 gl_unsigned_int_vec3;
+          typedef cst::gl_unsigned_int_vec4 gl_unsigned_int_vec4;
+          typedef cst::gl_float_mat2 gl_float_mat2;
+          typedef cst::gl_float_mat3 gl_float_mat3;
+          typedef cst::gl_float_mat4 gl_float_mat4;
+          typedef cst::gl_float_mat2x3 gl_float_mat2x3;
+          typedef cst::gl_float_mat2x4 gl_float_mat2x4;
+          typedef cst::gl_float_mat3x2 gl_float_mat3x2;
+          typedef cst::gl_float_mat3x4 gl_float_mat3x4;
+          typedef cst::gl_float_mat4x2 gl_float_mat4x2;
+          typedef cst::gl_float_mat4x3 gl_float_mat4x3;
+
+          const cst::gl_constant_base get(::boost::uint32_t value);
         } // namespace format
 
         DECLARE_TRAIT_ASPECT(base, struct,
@@ -61,10 +56,10 @@ namespace gtulu {
 
         template< typename format_t, typename base_t, typename type_t >
         struct attribute_metadata {
-            typedef format_t format;
-            typedef base_t base;
-            typedef type_t type;
-            typedef fcd::one count;
+          typedef format_t format;
+          typedef base_t base;
+          typedef type_t type;
+          typedef fcd::one count;
         };
 
         template< typename format_t >

@@ -1,6 +1,7 @@
 // #template#<format>_program_tpl,_author_tpl,_date_tpl
 /**
  * @file
+ * @date _date_tpl
  */
 
 #ifndef GTULU_PROGRAM_FORMAT_program_upper_tpl_HPP_

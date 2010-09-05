@@ -11,10 +11,8 @@
 #include "common.hpp"
 
 #include <logging/logging.hpp>
-#include "gtulu/internal/error.hpp"
 
 static void reshape(::boost::int32_t w, ::boost::int32_t h) {
-  __gl_debug(glViewport, (0)(0)(w)(h));
   glViewport(0, 0, w, h);
 }
 
@@ -42,7 +40,6 @@ void init_gl(::boost::int32_t argc, char** argv) {
     << "Version: " << glGetString(GL_VERSION);
   __info
     << "GLSL: " << glGetString(GL_SHADING_LANGUAGE_VERSION);
-  __gl_check_error
 }
 
 void close_gl() {

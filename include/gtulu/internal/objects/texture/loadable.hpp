@@ -8,6 +8,9 @@
 #define GTULU_INTERNAL_OBJECTS_TEXTURE_LOADABLE_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/objects/texture/base.hpp"
 #include "gtulu/internal/formats/texture.hpp"
 

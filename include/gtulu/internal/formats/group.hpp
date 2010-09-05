@@ -8,6 +8,8 @@
 #define GTULU_INTERNAL_FORMAT_GROUP_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+
 #include "gtulu/internal/formats/common.hpp"
 
 namespace gtulu {
@@ -16,30 +18,26 @@ namespace gtulu {
     namespace formats {
       namespace group {
 
-#define GROUP_FORMATS ((depth, GL_DEPTH)) \
-                      ((stencil, GL_STENCIL)) \
-                      ((depth_stencil, GL_DEPTH_STENCIL)) \
-                      ((r, GL_RED)) \
-                      ((g, GL_GREEN)) \
-                      ((b, GL_BLUE)) \
-                      ((rg, GL_RG)) \
-                      ((rgb, GL_RGB)) \
-                      ((rgba, GL_RGBA)) \
-                      ((bgr, GL_BGR)) \
-                      ((bgra, GL_BGRA)) \
-                      ((r_integer, GL_RED_INTEGER)) \
-                      ((g_integer, GL_GREEN_INTEGER)) \
-                      ((b_integer, GL_BLUE_INTEGER)) \
-                      ((rg_integer, GL_RG_INTEGER)) \
-                      ((rgb_integer, GL_RGB_INTEGER)) \
-                      ((rgba_integer, GL_RGBA_INTEGER)) \
-                      ((bgr_integer, GL_BGR_INTEGER)) \
-                      ((bgra_integer, GL_BGRA_INTEGER)) \
-
         namespace format {
-#define CONSTANT_LIST GROUP_FORMATS
-#include "meta/declare_constants.hpp"
-#undef CONSTANT_LIST
+          typedef cst::gl_depth gl_depth;
+          typedef cst::gl_stencil gl_stencil;
+          typedef cst::gl_depth_stencil gl_depth_stencil;
+          typedef cst::gl_red gl_r;
+          typedef cst::gl_green gl_g;
+          typedef cst::gl_blue gl_b;
+          typedef cst::gl_rg gl_rg;
+          typedef cst::gl_rgb gl_rgb;
+          typedef cst::gl_rgba gl_rgba;
+          typedef cst::gl_bgr gl_bgr;
+          typedef cst::gl_bgra gl_bgra;
+          typedef cst::gl_red_integer gl_r_integer;
+          typedef cst::gl_green_integer gl_g_integer;
+          typedef cst::gl_blue_integer gl_b_integer;
+          typedef cst::gl_rg_integer gl_rg_integer;
+          typedef cst::gl_rgb_integer gl_rgb_integer;
+          typedef cst::gl_rgba_integer gl_rgba_integer;
+          typedef cst::gl_bgr_integer gl_bgr_integer;
+          typedef cst::gl_bgra_integer gl_bgra_integer;
         } // namespace format
 
         DECLARE_TRAIT_ASPECT(base, struct,

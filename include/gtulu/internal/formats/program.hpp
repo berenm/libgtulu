@@ -8,28 +8,26 @@
 #define GTULU_INTERNAL_FORMATS_PROGRAM_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
 
 namespace gtulu {
   namespace internal {
 
     namespace formats {
       namespace program {
-#define PROGRAM_ATTRIBUTES  ((delete_status, GL_DELETE_STATUS)) \
-                            ((link_status, GL_LINK_STATUS)) \
-                            ((validate_status, GL_VALIDATE_STATUS)) \
-                            ((info_log_length, GL_INFO_LOG_LENGTH)) \
-                            ((attached_shaders, GL_ATTACHED_SHADERS)) \
-                            ((active_attributes, GL_ACTIVE_ATTRIBUTES)) \
-                            ((active_attribute_max_length, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH)) \
-                            ((active_uniforms, GL_ACTIVE_UNIFORMS)) \
-                            ((active_uniform_max_length, GL_ACTIVE_UNIFORM_MAX_LENGTH)) \
-                            ((active_uniform_blocks, GL_ACTIVE_UNIFORM_BLOCKS)) \
-                            ((active_uniform_block_max_length, GL_ACTIVE_UNIFORM_BLOCK_MAX_NAME_LENGTH)) \
 
         namespace attribute {
-#define CONSTANT_LIST PROGRAM_ATTRIBUTES
-#include "meta/declare_constants.hpp"
-#undef CONSTANT_LIST
+          typedef cst::gl_delete_status gl_delete_status;
+          typedef cst::gl_link_status gl_link_status;
+          typedef cst::gl_validate_status gl_validate_status;
+          typedef cst::gl_info_log_length gl_info_log_length;
+          typedef cst::gl_attached_shaders gl_attached_shaders;
+          typedef cst::gl_active_attributes gl_active_attributes;
+          typedef cst::gl_active_attribute_max_length gl_active_attribute_max_length;
+          typedef cst::gl_active_uniforms gl_active_uniforms;
+          typedef cst::gl_active_uniform_max_length gl_active_uniform_max_length;
+          typedef cst::gl_active_uniform_blocks gl_active_uniform_blocks;
+          typedef cst::gl_active_uniform_block_max_name_length gl_active_uniform_block_max_name_length;
         } // namespace attribute
       } // namespace program
     } // namespace formats

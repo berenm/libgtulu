@@ -63,8 +63,8 @@ namespace gtulu {
                 }
 
                 real_info.size = 1;
-                __gl_debug(glGetFragDataLocation, (program_base::handle_)(real_info.name.c_str()));
-                real_info.location = glGetFragDataLocation(program_base::handle_, real_info.name.c_str());
+                real_info.location
+                    = fnc::gl_get_frag_data_location::call(program_base::handle_, real_info.name.c_str());
                 //                __gl_debug(glGetFragDataIndex);
                 //        info.index = glGetFragDataIndex(handle_, info.name.c_str());
                 __gl_check_error
@@ -102,32 +102,20 @@ namespace gtulu {
           return program_base::get< fpa::gl_active_attribute_max_length >();
         }
 
-        fp::attribute_info dynamic_program_format::get_attribute_info(::boost::uint32_t id) {
-          fp::attribute_info info;
-
+        const fp::attribute_info dynamic_program_format::get_attribute_info(::boost::uint32_t id) {
           ::boost::uint32_t max_len = get_attribute_max_length();
           char* buffer = new char[max_len];
 
           GLsizei length;
           GLint size;
           GLenum type;
-          __gl_debug(glGetActiveAttrib, (**this)(id)(max_len)(&length)(&size)(&type)(&buffer));
-          glGetActiveAttrib(**this, id, max_len, &length, &size, &type, buffer);
-          __gl_check_error
+          fnc::gl_get_active_attrib::call(**this, id, max_len, &length, &size, &type, buffer);
+          GLint location = fnc::gl_get_attrib_location::call(**this, buffer);
 
-          __gl_debug(glGetAttribLocation, (**this)(buffer));
-          GLint location = glGetAttribLocation(**this, buffer);
-          __gl_check_error
-
-          info.id = id;
-          info.location = location;
-          info.name = ::std::string(buffer);
-          info.size = size;
-          info.type = faf::gl_constant::get(type);
-
+          ::std::string name = ::std::string(buffer);
           delete[] buffer;
 
-          return info;
+          return fp::attribute_info(id, name, faf::get(type), size, location);
         }
 
         ::boost::uint32_t dynamic_program_format::get_uniform_count() {
@@ -138,32 +126,20 @@ namespace gtulu {
           return program_base::get< fpa::gl_active_uniform_max_length >();
         }
 
-        fp::uniform_info dynamic_program_format::get_uniform_info(::boost::uint32_t id) {
-          fp::uniform_info info;
-
+        const fp::uniform_info dynamic_program_format::get_uniform_info(::boost::uint32_t id) {
           ::boost::uint32_t max_len = get_uniform_max_length();
           char* buffer = new char[max_len];
 
           GLsizei length;
           GLint size;
           GLenum type;
-          __gl_debug(glGetActiveUniform, (**this)(id)(max_len)(&length)(&size)(&type)(&buffer));
-          glGetActiveUniform(**this, id, max_len, &length, &size, &type, buffer);
-          __gl_check_error
+          fnc::gl_get_active_uniform::call(**this, id, max_len, &length, &size, &type, buffer);
+          GLint location = fnc::gl_get_uniform_location::call(**this, buffer);
 
-          __gl_debug(glGetUniformLocation, (**this)(buffer));;
-          GLint location = glGetUniformLocation(**this, buffer);
-          __gl_check_error
-
-          info.id = id;
-          info.location = location;
-          info.name = ::std::string(buffer);
-          info.size = size;
-          info.type = fuf::gl_constant::get(type);
-
+          ::std::string name = ::std::string(buffer);
           delete[] buffer;
 
-          return info;
+          return fp::uniform_info(id, name, fuf::get(type), size, location);
         }
 
         ::boost::uint32_t dynamic_program_format::get_uniform_block_count() {
@@ -171,11 +147,11 @@ namespace gtulu {
         }
 
         ::boost::uint32_t dynamic_program_format::get_uniform_block_max_length() {
-          return program_base::get< fpa::gl_active_uniform_block_max_length >();
+          return program_base::get< fpa::gl_active_uniform_block_max_name_length >();
         }
 
-        fp::uniform_block_info dynamic_program_format::get_uniform_block_info(::boost::uint32_t index) {
-          return fp::uniform_block_info();
+        const fp::uniform_block_info dynamic_program_format::get_uniform_block_info(::boost::uint32_t index) {
+          return fp::uniform_block_info(0, "", cst::invalid_constant(), 0, 0);
         }
 
         dynamic_program_format::dynamic_program_format() :
@@ -221,9 +197,8 @@ namespace gtulu {
             link_log_ = "";
           } else {
             char* buffer = new char[length];
-            __gl_debug(glGetProgramInfoLog, (program_base::handle_)(length)(&length)(buffer));
-            glGetProgramInfoLog(program_base::handle_, length, reinterpret_cast< ::boost::int32_t* > (&length), buffer);
-            __gl_check_error
+            fnc::gl_get_program_info_log::call(program_base::handle_, length,
+                reinterpret_cast< ::boost::int32_t* > (&length), buffer);
 
             link_log_ = ::std::string(buffer);
 
@@ -261,9 +236,8 @@ namespace gtulu {
             validation_log_ = "";
           } else {
             char* buffer = new char[length];
-            __gl_debug(glGetProgramInfoLog, (program_base::handle_)(length)(&length)(buffer));
-            glGetProgramInfoLog(program_base::handle_, length, reinterpret_cast< ::boost::int32_t* > (&length), buffer);
-            __gl_check_error
+            fnc::gl_get_program_info_log::call(program_base::handle_, length,
+                reinterpret_cast< ::boost::int32_t* > (&length), buffer);
 
             validation_log_ = ::std::string(buffer);
 

@@ -8,6 +8,8 @@
 #define GTULU_INTERNAL_TEXTURE_UNIT_MANAGER_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
 
 #include "gtulu/internal/objects/texture.hpp"
 
@@ -25,9 +27,7 @@ namespace gtulu {
         }
 
         void activate() {
-          __gl_debug(glActiveTexture, ("gl_texture" << handle_));
-          glActiveTexture(GL_TEXTURE0 + handle_);
-          __gl_check_error
+          fnc::gl_active_texture::call(GL_TEXTURE0 + handle_);
         }
 
         template< typename texture_format_t >

@@ -4,6 +4,10 @@
  * @todo comment
  */
 
+#include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/objects/shader/base.hpp"
 
 namespace gtulu {
@@ -11,15 +15,11 @@ namespace gtulu {
 
     namespace objects {
       void shader_base::compile() {
-        __gl_debug(glCompileShader, (handle_));
-        glCompileShader(handle_);
-        __gl_check_error
+        fnc::gl_compile_shader::call(handle_);
       }
 
       void shader_base::set_source(const char* code) {
-        __gl_debug(glShaderSource, (handle_)(1)(static_cast< const GLchar** > (&code))(NULL));
-        glShaderSource(handle_, 1, static_cast< const GLchar** > (&code), NULL);
-        __gl_check_error
+        fnc::gl_shader_source::call(handle_, 1, static_cast< const GLchar** > (&code), NULL);
       }
     } // namespace objects
 

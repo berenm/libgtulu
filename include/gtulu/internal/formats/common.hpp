@@ -7,8 +7,8 @@
 #ifndef GTULU_INTERNAL_FORMAT_COMMON_HPP_
 #define GTULU_INTERNAL_FORMAT_COMMON_HPP_
 
-#include <boost/integer.hpp>
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
 
 #include "meta/type_traits.hpp"
 
@@ -45,18 +45,14 @@ namespace gtulu {
             (four_by_four)
         )
 
-#define COMMON_BASES  ((depth, GL_DEPTH)) \
-                      ((stencil, GL_STENCIL)) \
-                      ((depth_stencil, GL_DEPTH_STENCIL)) \
-                      ((r, GL_RED)) \
-                      ((rg, GL_RG)) \
-                      ((rgb, GL_RGB)) \
-                      ((rgba, GL_RGBA)) \
-
         namespace base {
-#define CONSTANT_LIST COMMON_BASES
-#include "meta/declare_constants.hpp"
-#undef CONSTANT_LIST
+          typedef cst::gl_depth gl_depth;
+          typedef cst::gl_stencil gl_stencil;
+          typedef cst::gl_depth_stencil gl_depth_stencil;
+          typedef cst::gl_red gl_r;
+          typedef cst::gl_rg gl_rg;
+          typedef cst::gl_rgb gl_rgb;
+          typedef cst::gl_rgba gl_rgba;
         } // namespace base
       } // namespace common
     } // namespace formats

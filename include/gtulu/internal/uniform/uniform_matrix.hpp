@@ -6,13 +6,10 @@
 
 #ifndef IN_GTULU_INTERNAL_UNIFORM_HPP_
 #error "gtulu/internal/uniform/uniform_matrix.hpp should not be included directly, please include gtulu/internal/uniform.hpp instead."
-#endif
+#endif /* IN_GTULU_INTERNAL_UNIFORM_HPP_ */
 
 #ifndef GTULU_INTERNAL_UNIFORM_MATRIX_HPP_
 #define GTULU_INTERNAL_UNIFORM_MATRIX_HPP_
-
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/uniform.hpp"
 
 #include "gtulu/internal/formats/conversions/dimension.hpp"
 
@@ -29,21 +26,19 @@ namespace gtulu {
     template< > \
       struct uniform_binder< fut::type_m, fc::to_typename< dimension1_m, dimension2_m >::type > { \
           inline static void bind(const location_t location, const ::boost::uint32_t number, const fu::to_typename< fut::type_m >::type* values, bool transpose = false) { \
-            __gl_debug(glUniformMatrix##suffix_m##fv, (location)(number)(transpose)(values)); \
-            glUniformMatrix##suffix_m##fv(location, number, transpose, values); \
-            __gl_check_error \
+            fnc::gl_uniform_matrix##suffix_m##_fv::call(location, number, transpose, values); \
           } \
       };
 
-        DECLARE_BINDER(floating, 2, 2, 2)
-        DECLARE_BINDER(floating, 2x3, 2, 3)
-        DECLARE_BINDER(floating, 2x4, 2, 4)
-        DECLARE_BINDER(floating, 3x2, 3, 2)
-        DECLARE_BINDER(floating, 3, 3, 3)
-        DECLARE_BINDER(floating, 3x4, 3, 4)
-        DECLARE_BINDER(floating, 4x2, 4, 2)
-        DECLARE_BINDER(floating, 4x3, 4, 3)
-        DECLARE_BINDER(floating, 4, 4, 4)
+        DECLARE_BINDER(floating, _2, 2, 2)
+        DECLARE_BINDER(floating, _2x3, 2, 3)
+        DECLARE_BINDER(floating, _2x4, 2, 4)
+        DECLARE_BINDER(floating, _3x2, 3, 2)
+        DECLARE_BINDER(floating, _3, 3, 3)
+        DECLARE_BINDER(floating, _3x4, 3, 4)
+        DECLARE_BINDER(floating, _4x2, 4, 2)
+        DECLARE_BINDER(floating, _4x3, 4, 3)
+        DECLARE_BINDER(floating, _4, 4, 4)
 
 #undef DECLARE_BINDER
 

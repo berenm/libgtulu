@@ -7,9 +7,6 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONSTRAINT_TARGET_HPP_
 #define GTULU_INTERNAL_FORMAT_CONSTRAINT_TARGET_HPP_
 
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/common.hpp"
-
 #include "gtulu/internal/formats/target.hpp"
 #include "gtulu/internal/formats/internal.hpp"
 

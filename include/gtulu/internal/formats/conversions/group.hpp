@@ -7,10 +7,8 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONVERTION_GROUP_HPP_
 #define GTULU_INTERNAL_FORMAT_CONVERTION_GROUP_HPP_
 
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/common.hpp"
-
 #include "gtulu/internal/formats/data.hpp"
+#include "gtulu/internal/formats/internal.hpp"
 
 namespace gtulu {
   namespace internal {

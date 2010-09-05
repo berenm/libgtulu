@@ -8,6 +8,8 @@
 #define GTULU_INTERNAL_FORMAT_DATA_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+
 #include "gtulu/internal/formats/common.hpp"
 
 namespace gtulu {
@@ -16,36 +18,32 @@ namespace gtulu {
     namespace formats {
       namespace data {
 
-#define DATA_FORMATS  ((unsigned_byte, GL_UNSIGNED_BYTE)) \
-                      ((byte, GL_BYTE)) \
-                      ((unsigned_short, GL_UNSIGNED_SHORT)) \
-                      ((short, GL_SHORT)) \
-                      ((unsigned_int, GL_UNSIGNED_INT)) \
-                      ((int, GL_INT)) \
-                      ((half_float, GL_HALF_FLOAT)) \
-                      ((float, GL_FLOAT)) \
-                      ((double, GL_DOUBLE)) \
-                      ((unsigned_byte_3_3_2, GL_UNSIGNED_BYTE_3_3_2)) \
-                      ((unsigned_byte_2_3_3_rev, GL_UNSIGNED_BYTE_2_3_3_REV)) \
-                      ((unsigned_short_5_6_5, GL_UNSIGNED_SHORT_5_6_5)) \
-                      ((unsigned_short_5_6_5_rev, GL_UNSIGNED_SHORT_5_6_5_REV)) \
-                      ((unsigned_short_4_4_4_4, GL_UNSIGNED_SHORT_4_4_4_4)) \
-                      ((unsigned_short_4_4_4_4_rev, GL_UNSIGNED_SHORT_4_4_4_4_REV)) \
-                      ((unsigned_short_5_5_5_1, GL_UNSIGNED_SHORT_5_5_5_1)) \
-                      ((unsigned_short_1_5_5_5_rev, GL_UNSIGNED_SHORT_1_5_5_5_REV)) \
-                      ((unsigned_int_8_8_8_8, GL_UNSIGNED_INT_8_8_8_8)) \
-                      ((unsigned_int_8_8_8_8_rev, GL_UNSIGNED_INT_8_8_8_8_REV)) \
-                      ((unsigned_int_10_10_10_2, GL_UNSIGNED_INT_10_10_10_2)) \
-                      ((unsigned_int_2_10_10_10_rev, GL_UNSIGNED_INT_2_10_10_10_REV)) \
-                      ((unsigned_int_24_8, GL_UNSIGNED_INT_24_8)) \
-                      ((unsigned_int_10f_11f_11f_rev, GL_UNSIGNED_INT_10F_11F_11F_REV)) \
-                      ((unsigned_int_5_9_9_9_rev, GL_UNSIGNED_INT_5_9_9_9_REV)) \
-                      ((float_32_unsigned_int_24_8_rev, GL_FLOAT_32_UNSIGNED_INT_24_8_REV)) \
-
         namespace format {
-#define CONSTANT_LIST DATA_FORMATS
-#include "meta/declare_constants.hpp"
-#undef CONSTANT_LIST
+          typedef cst::gl_unsigned_byte gl_unsigned_byte;
+          typedef cst::gl_byte gl_byte;
+          typedef cst::gl_unsigned_short gl_unsigned_short;
+          typedef cst::gl_short gl_short;
+          typedef cst::gl_unsigned_int gl_unsigned_int;
+          typedef cst::gl_int gl_int;
+          typedef cst::gl_half_float gl_half_float;
+          typedef cst::gl_float gl_float;
+          typedef cst::gl_double gl_double;
+          typedef cst::gl_unsigned_byte_3_3_2 gl_unsigned_byte_3_3_2;
+          typedef cst::gl_unsigned_byte_2_3_3_rev gl_unsigned_byte_2_3_3_rev;
+          typedef cst::gl_unsigned_short_5_6_5 gl_unsigned_short_5_6_5;
+          typedef cst::gl_unsigned_short_5_6_5_rev gl_unsigned_short_5_6_5_rev;
+          typedef cst::gl_unsigned_short_4_4_4_4 gl_unsigned_short_4_4_4_4;
+          typedef cst::gl_unsigned_short_4_4_4_4_rev gl_unsigned_short_4_4_4_4_rev;
+          typedef cst::gl_unsigned_short_5_5_5_1 gl_unsigned_short_5_5_5_1;
+          typedef cst::gl_unsigned_short_1_5_5_5_rev gl_unsigned_short_1_5_5_5_rev;
+          typedef cst::gl_unsigned_int_8_8_8_8 gl_unsigned_int_8_8_8_8;
+          typedef cst::gl_unsigned_int_8_8_8_8_rev gl_unsigned_int_8_8_8_8_rev;
+          typedef cst::gl_unsigned_int_10_10_10_2 gl_unsigned_int_10_10_10_2;
+          typedef cst::gl_unsigned_int_2_10_10_10_rev gl_unsigned_int_2_10_10_10_rev;
+          typedef cst::gl_unsigned_int_24_8 gl_unsigned_int_24_8;
+          typedef cst::gl_unsigned_int_10f_11f_11f_rev gl_unsigned_int_10f_11f_11f_rev;
+          typedef cst::gl_unsigned_int_5_9_9_9_rev gl_unsigned_int_5_9_9_9_rev;
+          typedef cst::gl_float_32_unsigned_int_24_8_rev gl_float_32_unsigned_int_24_8_rev;
         } // namespace format
 
         DECLARE_TRAIT_ASPECT(type, struct,

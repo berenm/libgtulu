@@ -6,15 +6,10 @@
 
 #ifndef IN_GTULU_INTERNAL_FORMAT_UNIFORM_HPP_
 #error "gtulu/internal/formats/uniform/uniform_vector.hpp should not be included directly, please include gtulu/internal/formats/uniform.hpp instead."
-#endif
+#endif /* IN_GTULU_INTERNAL_FORMAT_UNIFORM_HPP_ */
 
 #ifndef GTULU_INTERNAL_FORMAT_UNIFORM_VECTOR_HPP_
 #define GTULU_INTERNAL_FORMAT_UNIFORM_VECTOR_HPP_
-
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/formats/common.hpp"
-
-#include "gtulu/internal/formats/uniform/uniform.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -31,10 +26,10 @@ namespace gtulu {
 
           template< typename format_t, typename type_t, typename count_t >
           struct uniform_metadata: fu::uniform_metadata< format_t, fub::vector, type_t > {
-              using fu::uniform_metadata< format_t, fub::vector, type_t >::format;
-              using fu::uniform_metadata< format_t, fub::vector, type_t >::base;
-              using fu::uniform_metadata< format_t, fub::vector, type_t >::type;
-              typedef count_t count;
+            using fu::uniform_metadata< format_t, fub::vector, type_t >::format;
+            using fu::uniform_metadata< format_t, fub::vector, type_t >::base;
+            using fu::uniform_metadata< format_t, fub::vector, type_t >::type;
+            typedef count_t count;
           };
 
           template< typename format_t >

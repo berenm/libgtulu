@@ -8,6 +8,9 @@
 #define GTULU_INTERNAL_OBJECTS_VERTEXARRAY_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/objects/object.hpp"
 
 #include "gtulu/internal/drawing.hpp"
@@ -22,9 +25,7 @@ namespace gtulu {
         static ::boost::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
-          __gl_debug(glBindVertexArray, (handle_));
-          glBindVertexArray(handle_);
-          __gl_check_error
+          fnc::gl_bind_vertex_array::call(handle_);
           bound_handle_ = handle_;
         }
       }

@@ -7,7 +7,6 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONVERSION_DIMENSION_HPP_
 #define GTULU_INTERNAL_FORMAT_CONVERSION_DIMENSION_HPP_
 
-#include "gtulu/opengl.hpp"
 #include "gtulu/internal/formats/common.hpp"
 
 #include <boost/mpl/int.hpp>

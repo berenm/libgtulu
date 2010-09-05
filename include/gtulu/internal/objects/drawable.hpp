@@ -8,6 +8,9 @@
 #define GTULU_INTERNAL_OBJECTS_DRAWABLE_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/objects/object.hpp"
 
 namespace gtulu {

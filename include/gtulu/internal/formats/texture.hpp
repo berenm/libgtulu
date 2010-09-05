@@ -8,6 +8,9 @@
 #define GTULU_INTERNAL_FORMAT_TEXTURE_HPP_
 
 #include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
 #include "gtulu/internal/formats/common.hpp"
 
 #include "gtulu/internal/formats/constraints/data.hpp"
@@ -27,67 +30,64 @@ namespace gtulu {
 
         template< typename texture_format_t >
         struct texture_image_1d {
-            typedef ftf::from_type< typename texture_format_t::target::info::format > target_t;
-            typedef fif::from_type< typename texture_format_t::internal::info::format > internal_t;
-            typedef fg::format::from_type< typename texture_format_t::group::info::format > group_t;
-            typedef fdf::from_type< typename texture_format_t::data::info::format > data_t;
+            typedef typename texture_format_t::target::info::format target_t;
+            typedef typename texture_format_t::internal::info::format internal_t;
+            typedef typename texture_format_t::group::info::format group_t;
+            typedef typename texture_format_t::data::info::format data_t;
             typedef typename fd::to_typename< typename texture_format_t::data::info::value_type >::type value_t;
 
             // TODO(rout): static_assert with function requirements.
 
             void load(value_t* data, ::std::size_t width, ::boost::uint32_t level, ::boost::uint8_t border) {
-              glTexImage1D(target_t::value, level, internal_t::value, width, border, group_t::value, data_t::value,
-                  data);
+              fnc::gl_tex_image_1d::call< target_t, internal_t, group_t, data_t >(level, width, border, data);
             }
 
             void load(value_t* data, ::std::size_t xoffset, ::std::size_t width, ::boost::uint32_t level) {
-              glTexSubImage1D(target_t::value, level, xoffset, width, group_t::value, data_t::value, data);
+              fnc::gl_tex_sub_image_1d::call< target_t, group_t, data_t >(level, xoffset, width, data);
             }
         };
 
         template< typename texture_format_t >
         struct texture_image_2d {
-            typedef ftf::from_type< typename texture_format_t::target::info::format > target_t;
-            typedef fif::from_type< typename texture_format_t::internal::info::format > internal_t;
-            typedef fg::format::from_type< typename texture_format_t::group::info::format > group_t;
-            typedef fdf::from_type< typename texture_format_t::data::info::format > data_t;
+            typedef typename texture_format_t::target::info::format target_t;
+            typedef typename texture_format_t::internal::info::format internal_t;
+            typedef typename texture_format_t::group::info::format group_t;
+            typedef typename texture_format_t::data::info::format data_t;
             typedef typename fd::to_typename< typename texture_format_t::data::info::value_type >::type value_t;
 
             // TODO(rout): static_assert with function requirements.
 
             void load(value_t* data, ::std::size_t width, ::std::size_t height, ::boost::uint32_t level,
                       ::boost::uint8_t border) {
-              glTexImage2D(target_t::value, level, internal_t::value, width, height, border, group_t::value,
-                  data_t::value, data);
+              fnc::gl_tex_image_2d::call< target_t, internal_t, group_t, data_t >(level, width, height, border, data);
             }
 
             void load(value_t* data, ::std::size_t xoffset, ::std::size_t yoffset, ::std::size_t width,
                       ::std::size_t height, ::boost::uint32_t level) {
-              glTexSubImage2D(target_t::value, level, xoffset, yoffset, width, height, group_t::value, data_t::value,
-                  data);
+              fnc::gl_tex_sub_image_2d::call< target_t, group_t, data_t >(level, xoffset, yoffset, width, height, data);
             }
         };
 
         template< typename texture_format_t >
         struct texture_image_3d {
-            typedef ftf::from_type< typename texture_format_t::target::info::format > target_t;
-            typedef fif::from_type< typename texture_format_t::internal::info::format > internal_t;
-            typedef fg::format::from_type< typename texture_format_t::group::info::format > group_t;
-            typedef fdf::from_type< typename texture_format_t::data::info::format > data_t;
+            typedef typename texture_format_t::target::info::format target_t;
+            typedef typename texture_format_t::internal::info::format internal_t;
+            typedef typename texture_format_t::group::info::format group_t;
+            typedef typename texture_format_t::data::info::format data_t;
             typedef typename fd::to_typename< typename texture_format_t::data::info::value_type >::type value_t;
 
             // TODO(rout): static_assert with function requirements.
 
             void load(value_t* data, ::std::size_t width, ::std::size_t height, ::std::size_t depth,
                       ::boost::uint32_t level, ::boost::uint8_t border) {
-              glTexImage3D(target_t::value, level, internal_t::value, width, height, depth, border, group_t::value,
-                  data_t::value, data);
+              fnc::gl_tex_image_3d::call< target_t, internal_t, group_t, data_t >(level, width, height, depth, border,
+                  data);
             }
 
             void load(value_t* data, ::std::size_t xoffset, ::std::size_t yoffset, ::std::size_t zoffset,
                       ::std::size_t width, ::std::size_t height, ::std::size_t depth, ::boost::uint32_t level) {
-              glTexSubImage3D(target_t::value, level, xoffset, yoffset, zoffset, width, height, depth, group_t::value,
-                  data_t::value, data);
+              fnc::gl_tex_sub_image_3d::call< target_t, group_t, data_t >(level, xoffset, yoffset, zoffset, width,
+                  height, depth, data);
             }
         };
 
@@ -145,55 +145,42 @@ namespace gtulu {
         xoffset, yoffset, zoffset
 
 #define CALL_LOADER_METHOD(dimension_m, target_m) \
-        __gl_debug(glTexImage##dimension_m##D, (ftf::from_type< typename ft::target_m::info::format >())\
-                                               ("level:" << level)\
-                                               ("width:" << width)\
-                                               (fif::from_type< typename internal_format_t::info::format >())\
-                                               (fg::format::from_type< typename group_format_t::info::format >())\
-                                               (fdf::from_type< typename data_format_t::info::format >())\
-                                               ("data:" << data)); \
-        glTexImage##dimension_m##D(ftf::from_type< typename ft::target_m::info::format >::value, \
-                   level, \
-                   fif::from_type< typename internal_format_t::info::format >::value, \
-                   DEFINE_SIZES_##dimension_m##D, \
-                   border, \
-                   fg::format::from_type< typename group_format_t::info::format >::value, \
-                   fdf::from_type< typename data_format_t::info::format >::value, \
-                   data);
+        fnc::gl_tex_image_##dimension_m##d ::call< ft::target_m::info::format, \
+                                                   typename internal_format_t::info::format, \
+                                                   typename group_format_t::info::format, \
+                                                   typename data_format_t::info::format > (level, \
+                                                       DEFINE_SIZES_##dimension_m##D, \
+                                                       border, \
+                                                       data);
 #define CALL_LOADER_METHOD_SUB(dimension_m, target_m) \
-        glTexSubImage##dimension_m##D(ftf::from_type< typename ft::target_m::info::format >::value, \
-                   level, \
-                   DEFINE_OFFSETS_##dimension_m##D, \
-                   DEFINE_SIZES_##dimension_m##D, \
-                   fg::format::from_type< typename group_format_t::info::format >::value, \
-                   fdf::from_type< typename data_format_t::info::format >::value, \
-                   data);
+        fnc::gl_tex_sub_image_##dimension_m##d ::call< ft::target_m::info::format, \
+                                                       typename group_format_t::info::format, \
+                                                       typename data_format_t::info::format > (level, \
+                                                           DEFINE_OFFSETS_##dimension_m##D, \
+                                                           DEFINE_SIZES_##dimension_m##D, \
+                                                           data);
 #define CALL_LOADER_METHOD_COMPRESSED(dimension_m, target_m) \
-        glCompressedTexImage##dimension_m##D(ftf::from_type< typename ft::target_m::info::format >::value, \
-                   level, \
-                   fif::from_type< typename internal_format_t::info::format >::value, \
-                   DEFINE_SIZES_##dimension_m##D, \
-                   border, \
-                   data_size, \
-                   data);
+        fnc::gl_compressed_tex_image_##dimension_m##d ::call< ft::target_m::info::format, \
+                                                              typename internal_format_t::info::format > (level, \
+                                                                  DEFINE_SIZES_##dimension_m##D, \
+                                                                  border, \
+                                                                  data_size, \
+                                                                  data);
 #define CALL_LOADER_METHOD_COMPRESSED_SUB(dimension_m, target_m) \
-        glCompressedTexSubImage##dimension_m##D(ftf::from_type< typename ft::target_m::info::format >::value, \
-                   level, \
-                   DEFINE_OFFSETS_##dimension_m##D, \
-                   DEFINE_SIZES_##dimension_m##D, \
-                   fif::from_type< typename internal_format_t::info::format >::value, \
-                   data_size, \
-                   data);
+        fnc::gl_compressed_tex_sub_image_##dimension_m##d ::call< ft::target_m::info::format, \
+                                                                  typename internal_format_t::info::format > (level, \
+                                                                      DEFINE_OFFSETS_##dimension_m##D, \
+                                                                      DEFINE_SIZES_##dimension_m##D, \
+                                                                      data_size, \
+                                                                      data);
 #define CALL_LOADER_METHOD_MULTISAMPLE(dimension_m, target_m) \
-        glTexImage##dimension_m##DMultisample(ftf::from_type< typename ft::target_m::info::format >::value, \
-                   samples, \
-                   fif::from_type< typename internal_format_t::info::format >::value, \
-                   DEFINE_SIZES_##dimension_m##D, \
-                   fixedsamplelocations);
+        fnc::gl_tex_image_##dimension_m##d_multisample ::call< ft::target_m::info::format, \
+                                                                typename internal_format_t::info::format > (samples, \
+                                                              DEFINE_SIZES_##dimension_m##D, \
+                                                              fixedsamplelocations);
 #define CALL_LOADER_METHOD_BUFFER(target_m) \
-        glTexBuffer(ftf::from_type< typename ft::target_m::info::format >::value, \
-                    fif::from_type< typename internal_format_t::info::format >::value, \
-                    *buffer);
+        fnc::gl_tex_buffer::call< ft::target_m::info::format, \
+                                  typename internal_format_t::info::format > (*buffer);
 
 #define DECLARE_TEXTURE_LOADER_METHOD_BUFFER(target_m) \
         inline static void load(const gio::buffer_base& buffer)
@@ -350,18 +337,16 @@ namespace gtulu {
                 template< typename target_t >
                 inline static void load(const void* data, ::std::size_t data_size, ::std::size_t width,
                                         ::std::size_t height, ::boost::uint8_t border, ::boost::uint32_t level) {
-                  glTexImage2D(ftf::from_type< target_t >::value, level, fif::from_type<
-                      typename internal_format_t::info::format >::value, width, height, border, fg::format::from_type<
-                      typename group_format_t::info::format >::value, fdf::from_type<
-                      typename data_format_t::info::format >::value, data);
+                  fnc::gl_tex_image_2d::call< target_t, typename internal_format_t::info::format,
+                      typename group_format_t::info::format, typename data_format_t::info::format >(level, width,
+                      height, border, data);
                 }
                 template< typename target_t >
                 inline static void load(const void* data, ::std::size_t data_size, ::std::size_t xoffset,
                                         ::std::size_t yoffset, ::std::size_t width, ::std::size_t height,
                                         ::boost::uint32_t level) {
-                  glTexSubImage2D(ftf::from_type< target_t >::value, level, xoffset, yoffset, width, height,
-                      fg::format::from_type< typename group_format_t::info::format >::value, fdf::from_type<
-                          typename data_format_t::info::format >::value, data);
+                  fnc::gl_tex_sub_image_2d::call< target_t, typename group_format_t::info::format,
+                      typename data_format_t::info::format >(level, xoffset, yoffset, width, height, data);
                 }
             };
         };
@@ -373,15 +358,15 @@ namespace gtulu {
                 template< typename target_t >
                 inline static void load(const void* data, ::std::size_t data_size, ::std::size_t width,
                                         ::std::size_t height, ::boost::uint8_t border, ::boost::uint32_t level) {
-                  glCompressedTexImage2D(ftf::from_type< target_t >::value, level, fif::from_type<
-                      typename internal_format_t::info::format >::value, width, height, border, data_size, data);
+                  fnc::gl_compressed_tex_image_2d::call< target_t, typename internal_format_t::info::format >(level,
+                      width, height, border, data_size, data);
                 }
                 template< typename target_t >
                 inline static void load(const void* data, ::std::size_t data_size, ::std::size_t xoffset,
                                         ::std::size_t yoffset, ::std::size_t width, ::std::size_t height,
                                         ::boost::uint32_t level) {
-                  glCompressedTexSubImage2D(ftf::from_type< target_t >::value, level, xoffset, yoffset, width, height,
-                      fif::from_type< typename internal_format_t::info::format >::value, data_size, data);
+                  fnc::gl_compressed_tex_sub_image_2d::call< target_t, typename internal_format_t::info::format >(
+                      level, xoffset, yoffset, width, height, data_size, data);
                 }
             };
         };
@@ -498,22 +483,18 @@ namespace gtulu {
         //        void load(int width, void* data, int level = 0, int border = 0) {
         //        __gl_debug(glTexImage1D);
         //          glTexImage1D(ftf::from_type< ftf::gl_texture_1d >::value, level, fif::from_type<
-        //              internal_format_t >::value, width, border, fdf::from_type< group_format_t >::value,
-        //              fdf::from_type< data_format_t >::value, data);
-        //        }
-        //    };
+        //              internal_format_t >::value, width, border, group_format_t::value,
+        //              data_format_t::value, datgroup_format_t::value;
         //
-        //    template< >
-        //    struct texture_loader< ft::gl_texture_2d > {
+        //   data_format_t::valueure_loader< ft::gl_texture_2d > {
         //        template< typename internal_format_t, typename group_format_t, typename data_format_t >
         //        void load(int width, int height, void* data, int level = 0, int border = 0) {
         //        __gl_debug(glTexImage2D);
         //          glTexImage2D(ftf::from_type< ftf::gl_texture_2d >::value, level, fif::from_type<
-        //              internal_format_t >::value, width, height, border, fdf::from_type< group_format_t >::value,
-        //              fdf::from_type< data_format_t >::value, data);
+        //              internal_format_t >::value, width, height, border, group_format_t::value,
+        //              data_format_t::value, data);
         //
-        //        __gl_debug(glTexImage2D);
-        //          glTexImage2D(target, level, internal, width, height, border, format, type, pixels);
+        //        __ggroup_format_t::value    glTexImage2D(target, ldata_format_t::value format, type, pixels);
         //        __gl_debug(glTexImage3D);
         //          glTexImage3D(target, level, internalformat, width, height, depth, border, format, type, pixels);
         //
