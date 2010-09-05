@@ -27,7 +27,7 @@ namespace gtulu {
         }
 
         void activate() {
-          fnc::gl_active_texture::call(GL_TEXTURE0 + handle_);
+          fnc::gl_active_texture::call( cst::runtime_constant(cst::gl_texture0(), handle_));
         }
 
         template< typename texture_format_t >

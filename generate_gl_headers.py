@@ -9,16 +9,53 @@ class param:
     elements = string.split(" ")
     self.name = elements[len(elements) - 1].strip(" ")
     self.type = " ".join(elements[:len(elements) - 1]).strip(" ")
-    if self.name.startswith("*"):
-      self.type += "*"
-      self.name = self.name.strip("*")
+
+    self.pointer = ""
+    while self.name.startswith("*"):
+      self.pointer += "*"
+      self.name = self.name[1:]
+
+    while self.type.endswith("*"):
+      self.pointer += "*"
+      self.type = self.type[:len(self.type) - 1]
+
+    if self.type.startswith("const "):
+      self.const = "const "
+      self.type = self.type.replace("const ", "")
+    else:
+      self.const = ""
     
-    if self.type == "GLenum":
-      self.is_template = True
-    elif self.name == "internalformat" and self.type == "GLint":
-      self.is_template = True
+    if self.pointer == "":
+      if self.type == "GLenum":
+        self.is_template = True
+      elif self.name == "internalformat" and self.type == "GLint":
+        self.is_template = True
+      else:
+        self.is_template = False
     else:
       self.is_template = False
+
+    if self.type == "GLint":
+      self.std_type = "::boost::int32_t"
+    elif self.type == "GLuint":
+      self.std_type = "::boost::uint32_t"
+    elif self.type == "GLboolean" and self.pointer == "":
+      self.std_type = "bool"
+    elif self.type == "GLfloat":
+      self.std_type = "float"
+    elif self.type == "GLdouble":
+      self.std_type = "double"
+    elif self.type == "GLvoid":
+      self.std_type = "void"
+    elif self.type == "GLushort":
+      self.std_type = "::boost::uint16_t"
+    elif self.type == "GLubyte":
+      self.std_type = "::boost::uint8_t"
+    elif self.is_template:
+      self.std_type = "const ::gtulu::internal::constant::gl_constant_base&"
+    else:
+      print "UNKN: " + self.type
+      self.std_type = self.type
   
   def __repr__(self):
     return "{type: %(type)s, name: %(name)s}" % (self.__dict__)
@@ -72,8 +109,13 @@ class function:
     
     for p in self.params:
       if p.name != "":
-        std_args.append("%s %s" % (p.type, p.name))
-        std_call.append("%s" % (p.name))
+        std_args.append("%s%s%s %s" % (p.const, p.std_type, p.pointer, p.name))
+        if p.std_type == "bool":
+          std_call.append("(%s ? 1 : 0)" % (p.name))
+        elif p.is_template:
+          std_call.append("::boost::uint32_t(%s)" % (p.name))
+        else:
+          std_call.append("%s" % (p.name))
         std_debg.append("\"%s: '\" << %s << \"'\"" % (p.name, p.name))
         
         if p.is_template:
@@ -81,8 +123,11 @@ class function:
           tpl_call.append("%s_t::value" % (p.name))
           tpl_debg.append("\"%s: '\" << %s_t::name::value << \"'\"" % (p.name, p.name))
         else:
-          tpl_args.append("%s %s" % (p.type, p.name))
-          tpl_call.append("%s" % (p.name))
+          tpl_args.append("%s%s%s %s" % (p.const, p.std_type, p.pointer, p.name))
+          if p.std_type == "bool":
+            tpl_call.append("(%s ? 1 : 0)" % (p.name))
+          else:
+            tpl_call.append("%s" % (p.name))
           tpl_debg.append("\"%s: '\" << %s << \"'\"" % (p.name, p.name))
         
     if len(tpl_debg) == 0:
@@ -259,13 +304,10 @@ def print_forward_constants(file, parser, namespace):
   print >> file, "        } // namespace cst"
   print >> file, "      } // namespace %s" % (n.short_name)
 
-def print_functions(file, parser, namespace):
+def print_forward_functions_ref(file, parser, namespace):
   n = parser.namespaces[namespace]
   print >> file, "      namespace %s {" % (n.short_name)
   print >> file, "        namespace fnc {"
-  
-  for function in n.functions:
-    print >> file, parser.functions[function]
     
   n.namespace_ref.sort()
   for ref in n.namespace_ref:
@@ -273,9 +315,38 @@ def print_functions(file, parser, namespace):
       print >> file, "// ERROR: using unknown namespace %s;" % (ref)
     else:
       nn = parser.namespaces[ref]
+      nn.functions.sort()
       for function in nn.functions:
         f = parser.functions[function]
         print >> file, "using ::gtulu::internal::generated::%s::%s::fnc::%s;" % (nn.category, nn.short_name, f.lower_name)
+
+  print >> file, "        } // namespace fnc"
+  print >> file, "      } // namespace %s" % (n.short_name)
+
+def print_forward_constants_ref(file, parser, namespace):
+  n = parser.namespaces[namespace]
+  print >> file, "      namespace %s {" % (n.short_name)
+  print >> file, "        namespace cst {"
+    
+  n.constants_ref.sort()
+  for constant in n.constants_ref:
+    if constant not in parser.constants:
+      print >> file, "// ERROR: using unknown constant %s;" % (constant)
+    else:
+      c = parser.constants[constant]
+      nn = parser.namespaces[c.namespace]
+      print >> file, "using ::gtulu::internal::generated::%s::%s::cst::%s;" % (nn.category, nn.short_name, c.lower_name)
+
+  print >> file, "        } // namespace cst"
+  print >> file, "      } // namespace %s" % (n.short_name)
+
+def print_functions(file, parser, namespace):
+  n = parser.namespaces[namespace]
+  print >> file, "      namespace %s {" % (n.short_name)
+  print >> file, "        namespace fnc {"
+  
+  for function in n.functions:
+    print >> file, parser.functions[function]
         
   print >> file, "        } // namespace fnc"
   print >> file, "      } // namespace %s" % (n.short_name)
@@ -287,15 +358,6 @@ def print_constants(file, parser, namespace):
   
   for constant in n.constants:
     print >> file, parser.constants[constant]
-    
-  n.constants_ref.sort()
-  for constant in n.constants_ref:
-    if constant not in parser.constants:
-      print >> file, "// ERROR: using unknown constant %s;" % (constant)
-    else:
-      c = parser.constants[constant]
-      nn = parser.namespaces[c.namespace]
-      print >> file, "using ::gtulu::internal::generated::%s::%s::cst::%s;" % (nn.category, nn.short_name, c.lower_name)
       
   print >> file, "        } // namespace cst"
   print >> file, "      } // namespace %s" % (n.short_name)
@@ -318,6 +380,26 @@ def print_forward_constants_category(file, parser, category):
     n = parser.namespaces[namespace]
     if n.category == category:
       print_forward_constants(file, parser, namespace)
+  print >> file, "      } // namespace %s" % (category)
+  
+def print_forward_functions_category_ref(file, parser, category):
+  print >> file, "      namespace %s {" % (category)
+  namespaces = parser.namespaces.keys()
+  namespaces.sort()
+  for namespace in namespaces:
+    n = parser.namespaces[namespace]
+    if n.category == category:
+      print_forward_functions_ref(file, parser, namespace)
+  print >> file, "      } // namespace %s" % (category)
+  
+def print_forward_constants_category_ref(file, parser, category):
+  print >> file, "      namespace %s {" % (category)
+  namespaces = parser.namespaces.keys()
+  namespaces.sort()
+  for namespace in namespaces:
+    n = parser.namespaces[namespace]
+    if n.category == category:
+      print_forward_constants_ref(file, parser, namespace)
   print >> file, "      } // namespace %s" % (category)
   
 def print_functions_category(file, parser, category):
@@ -418,33 +500,47 @@ guard = """#ifndef GTULU_INTERNAL_GENERATED_CONSTANTS_FWD_HPP_
 #define GTULU_INTERNAL_GENERATED_CONSTANTS_FWD_HPP_"""
 print >> gen_cst_fwd, header % (guard)
 
-print_forward_functions_category(gen_fct_fwd, parser, "other")
-print_forward_functions_category(gen_fct_fwd, parser, "amd")
-print_forward_functions_category(gen_fct_fwd, parser, "nv")
-print_forward_functions_category(gen_fct_fwd, parser, "ext")
-print_forward_functions_category(gen_fct_fwd, parser, "arb")
 print_forward_functions_category(gen_fct_fwd, parser, "gl")
+print_forward_functions_category(gen_fct_fwd, parser, "arb")
+print_forward_functions_category(gen_fct_fwd, parser, "ext")
+print_forward_functions_category(gen_fct_fwd, parser, "nv")
+print_forward_functions_category(gen_fct_fwd, parser, "amd")
+print_forward_functions_category(gen_fct_fwd, parser, "other")
 
-print_forward_constants_category(gen_cst_fwd, parser, "other")
-print_forward_constants_category(gen_cst_fwd, parser, "amd")
-print_forward_constants_category(gen_cst_fwd, parser, "nv")
-print_forward_constants_category(gen_cst_fwd, parser, "ext")
-print_forward_constants_category(gen_cst_fwd, parser, "arb")
+print_forward_functions_category_ref(gen_fct_fwd, parser, "gl")
+print_forward_functions_category_ref(gen_fct_fwd, parser, "arb")
+print_forward_functions_category_ref(gen_fct_fwd, parser, "ext")
+print_forward_functions_category_ref(gen_fct_fwd, parser, "nv")
+print_forward_functions_category_ref(gen_fct_fwd, parser, "amd")
+print_forward_functions_category_ref(gen_fct_fwd, parser, "other")
+
 print_forward_constants_category(gen_cst_fwd, parser, "gl")
+print_forward_constants_category(gen_cst_fwd, parser, "arb")
+print_forward_constants_category(gen_cst_fwd, parser, "ext")
+print_forward_constants_category(gen_cst_fwd, parser, "nv")
+print_forward_constants_category(gen_cst_fwd, parser, "amd")
+print_forward_constants_category(gen_cst_fwd, parser, "other")
 
-print_functions_category(gen_fct, parser, "other")
-print_functions_category(gen_fct, parser, "amd")
-print_functions_category(gen_fct, parser, "nv")
-print_functions_category(gen_fct, parser, "ext")
-print_functions_category(gen_fct, parser, "arb")
+print_forward_constants_category_ref(gen_cst_fwd, parser, "gl")
+print_forward_constants_category_ref(gen_cst_fwd, parser, "arb")
+print_forward_constants_category_ref(gen_cst_fwd, parser, "ext")
+print_forward_constants_category_ref(gen_cst_fwd, parser, "nv")
+print_forward_constants_category_ref(gen_cst_fwd, parser, "amd")
+print_forward_constants_category_ref(gen_cst_fwd, parser, "other")
+
 print_functions_category(gen_fct, parser, "gl")
+print_functions_category(gen_fct, parser, "arb")
+print_functions_category(gen_fct, parser, "ext")
+print_functions_category(gen_fct, parser, "nv")
+print_functions_category(gen_fct, parser, "amd")
+print_functions_category(gen_fct, parser, "other")
 
-print_constants_category(gen_cst, parser, "other")
-print_constants_category(gen_cst, parser, "amd")
-print_constants_category(gen_cst, parser, "nv")
-print_constants_category(gen_cst, parser, "ext")
-print_constants_category(gen_cst, parser, "arb")
 print_constants_category(gen_cst, parser, "gl")
+print_constants_category(gen_cst, parser, "arb")
+print_constants_category(gen_cst, parser, "ext")
+print_constants_category(gen_cst, parser, "nv")
+print_constants_category(gen_cst, parser, "amd")
+print_constants_category(gen_cst, parser, "other")
 
 guard = """#endif /* GTULU_INTERNAL_GENERATED_FUNCTIONS_HPP_ */"""
 print >> gen_fct, footer % (guard)

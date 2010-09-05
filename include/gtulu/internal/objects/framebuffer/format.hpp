@@ -29,10 +29,10 @@ namespace gtulu {
       template< >
       struct framebuffer_format_base< const gio::drawable& > {
           attachment_manager manager;
-          ::std::vector< GLenum > colors;
+          ::std::vector< ::boost::uint32_t > colors;
 
           framebuffer_format_base() {
-            colors.resize(manager.max_attachment, GL_NONE);
+            colors.resize(manager.max_attachment, 0);
           }
 
           void bind_colors() const {
@@ -42,25 +42,25 @@ namespace gtulu {
           template< typename framebuffer_slot_type_t, typename texture_format_t >
           void set(const ::boost::uint32_t location, const gio::texture< texture_format_t >& drawable) {
             ::boost::shared_ptr< attachment > attachment = manager.get_current_or_new(drawable);
-            gif::attacher< framebuffer_slot_type_t >::template attach< gif::layered::no >(
-                attachment->get_color_number(), drawable, 0, 0);
-            colors[location] = attachment->get_color_number();
+            gif::attacher< framebuffer_slot_type_t >::template attach< gif::layered::no >(attachment->get_color(),
+                drawable, 0, 0);
+            colors[location] = ::boost::uint32_t(attachment->get_color());
           }
 
           template< typename framebuffer_slot_type_t >
           void set(const ::boost::uint32_t location, const gio::renderbuffer_base& drawable) {
             ::boost::shared_ptr< attachment > attachment = manager.get_current_or_new(drawable);
-            gif::attacher< framebuffer_slot_type_t >::attach(attachment->get_color_number(), drawable);
-            colors[location] = attachment->get_color_number();
+            gif::attacher< framebuffer_slot_type_t >::attach(attachment->get_color(), drawable);
+            colors[location] = ::boost::uint32_t(attachment->get_color());
           }
       };
 
       template< >
       struct framebuffer_format_base< const gio::default_drawable > {
-          ::std::vector< GLenum > colors;
+          ::std::vector< ::boost::uint32_t > colors;
 
           framebuffer_format_base() {
-            colors.resize(4, GL_NONE);
+            colors.resize(4, 0);
           }
 
           void bind_colors() const {

@@ -32,10 +32,10 @@ namespace gtulu {
       template< typename target_type_t >
       struct renderbuffer_slot: private ft::is_of_target_base< target_type_t, ft::base::renderbuffer > {
           static inline void bind(const gio::plug< gio::renderbuffer_base >& buffer) {
-            gio::slot_binder< gio::renderbuffer_base >::bind(target_type_t::info::format::value, buffer);
+            gio::slot_binder< gio::renderbuffer_base >::bind< typename target_type_t::info::format >(buffer);
           }
           static inline void unbind(const gio::plug< gio::renderbuffer_base >& buffer) {
-            gio::slot_binder< gio::renderbuffer_base >::clear(target_type_t::info::format::value);
+            gio::slot_binder< gio::renderbuffer_base >::clear< typename target_type_t::info::format >();
           }
       };
 

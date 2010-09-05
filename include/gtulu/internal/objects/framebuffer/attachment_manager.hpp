@@ -25,8 +25,8 @@ namespace gtulu {
           object_base(handle_in) {
         }
 
-        ::boost::uint32_t get_color_number() {
-          return GL_COLOR_ATTACHMENT0 + handle_;
+        cst::gl_constant_base get_color() {
+          return cst::runtime_constant(cst::gl_color_attachment0(), handle_);
         }
     };
 

@@ -11,6 +11,8 @@
 #ifndef GTULU_INTERNAL_FORMAT_OUTPUT_OUTPUT_HPP_
 #define GTULU_INTERNAL_FORMAT_OUTPUT_OUTPUT_HPP_
 
+#include <string>
+
 namespace gtulu {
   namespace internal {
 

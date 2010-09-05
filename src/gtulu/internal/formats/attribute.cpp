@@ -6,6 +6,8 @@
 
 #include "gtulu/internal/formats/attribute.hpp"
 
+#include "gtulu/internal/constants.hpp"
+
 namespace gtulu {
   namespace internal {
 

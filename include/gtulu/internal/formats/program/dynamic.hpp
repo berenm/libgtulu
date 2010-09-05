@@ -7,19 +7,13 @@
 #ifndef GTULU_INTERNAL_FORMATS_PROGRAM_DYNAMIC_HPP_
 #define GTULU_INTERNAL_FORMATS_PROGRAM_DYNAMIC_HPP_
 
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/constants.hpp"
-#include "gtulu/internal/functions.hpp"
-
-#include "gtulu/internal/formats/attribute.hpp"
-#include "gtulu/internal/formats/uniform.hpp"
+#include "gtulu/internal/constants_fwd.hpp"
 #include "gtulu/internal/formats/shader/dynamic.hpp"
 
 #include "gtulu/internal/objects/program/base.hpp"
 
 #include <string>
 #include <vector>
-#include <boost/shared_ptr.hpp>
 
 namespace gtulu {
   namespace internal {

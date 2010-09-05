@@ -7,8 +7,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_ATTRIBUTE_HPP_
 #define GTULU_INTERNAL_FORMAT_ATTRIBUTE_HPP_
 
-#include "gtulu/opengl.hpp"
-#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/constants_fwd.hpp"
 
 #include "gtulu/internal/formats/common.hpp"
 

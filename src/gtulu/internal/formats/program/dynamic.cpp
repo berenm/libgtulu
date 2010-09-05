@@ -5,6 +5,9 @@
  */
 
 #include "gtulu/internal/formats/program/dynamic.hpp"
+#include "gtulu/internal/formats/attribute.hpp"
+#include "gtulu/internal/formats/uniform.hpp"
+
 #include "gtulu/internal/formats/program.hpp"
 
 #include <string>

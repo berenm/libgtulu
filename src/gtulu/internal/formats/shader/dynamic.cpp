@@ -5,6 +5,8 @@
  */
 
 #include "gtulu/internal/formats/shader/dynamic.hpp"
+#include "gtulu/internal/formats/output.hpp"
+
 #include "gtulu/utils/file.hpp"
 
 #include <string>

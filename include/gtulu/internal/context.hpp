@@ -675,7 +675,7 @@ namespace gtulu {
       struct gettor< return_type_m > { \
           template< typename parameter_t > \
           static void get(return_type_m* data) { \
-            fnc:: function_m ::call(parameter_t::value, data); \
+            fnc:: function_m ::call< parameter_t >(data); \
           } \
       };
 
@@ -684,12 +684,12 @@ namespace gtulu {
       struct gettor< return_type_m > { \
           template< typename parameter_t > \
           static void get(return_type_m* data) { \
-            fnc:: function_m ::call(parameter_t::value, data); \
+            fnc:: function_m ::call< parameter_t >(data); \
           } \
           \
           template< typename parameter_t > \
           static void get(::boost::uint32_t index, return_type_m* data) { \
-            fnc:: indexed_function_m ::call(parameter_t::value, index, data); \
+            fnc:: indexed_function_m ::call< parameter_t >(index, data); \
           } \
       };
 
