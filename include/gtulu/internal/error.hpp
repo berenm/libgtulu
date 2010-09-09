@@ -12,7 +12,7 @@
 
 #if defined(NO_GTULU_DEBUG) || defined(NDEBUG)
 #define __gl_check_error ;
-#define __gl_debug(function_m, arguments_m) ;
+#define __gl_debug __debugM(gl)
 #else
 #define __gl_check_error \
     { \
