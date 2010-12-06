@@ -66,9 +66,8 @@ namespace gtulu {
                 }
 
                 real_info.size = 1;
-                //                real_info.location = fnc::gl_get_frag_data_location::call(program_base::handle_, real_info.name.c_str());
-                //                info.index = fnc::gl_get_frag_data_index::call(program_base::handle_, real_info.name.c_str());
-                __gl_check_error
+                real_info.location = fnc::gl_get_frag_data_location::call(program_base::handle_, real_info.name.c_str());
+                info.index = fnc::gl_get_frag_data_index::call(program_base::handle_, real_info.name.c_str());
 
                 if (real_info.location >= 0) {
                   outputs_.push_back(real_info);
@@ -160,28 +159,22 @@ namespace gtulu {
         }
 
         void dynamic_program_format::print() {
-          __info
-            << " ----- " << attributes_.size() << " attribute(s) ----- ";
+          __info << " ----- " << attributes_.size() << " attribute(s) ----- ";
           for (fp::attribute_vector_t::iterator it = attributes_.begin(); it != attributes_.end(); ++it) {
-            __info
-              << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: " << it->size
-                  << ", location: " << it->location;
+            __info << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: " << it->size
+                << ", location: " << it->location;
           }
 
-          __info
-            << " ----- " << uniforms_.size() << " uniform(s)   ----- ";
+          __info << " ----- " << uniforms_.size() << " uniform(s)   ----- ";
           for (fp::uniform_vector_t::iterator it = uniforms_.begin(); it != uniforms_.end(); ++it) {
-            __info
-              << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: " << it->size
-                  << ", location: " << it->location;
+            __info << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: " << it->size
+                << ", location: " << it->location;
           }
 
-          __info
-            << " ----- " << outputs_.size() << " output(s)    ----- ";
+          __info << " ----- " << outputs_.size() << " output(s)    ----- ";
           for (fp::output_vector_t::iterator it = outputs_.begin(); it != outputs_.end(); ++it) {
-            __info
-              << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: " << it->size
-                  << ", location: " << it->location << ", index: " << it->index;
+            __info << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: " << it->size
+                << ", location: " << it->location << ", index: " << it->index;
           }
         }
 
@@ -192,8 +185,7 @@ namespace gtulu {
           has_link_log_ = length > 1;
 
           if (length > ::std::numeric_limits< ::boost::uint32_t >::max()) {
-            __error
-              << "Log length too long.";
+            __error << "Log length too long.";
           } else if (!has_link_log_) {
             link_log_ = "";
           } else {
@@ -233,8 +225,7 @@ namespace gtulu {
           has_validation_log_ = length > 1;
 
           if (length > ::std::numeric_limits< ::boost::uint32_t >::max()) {
-            __error
-              << "Log length too long.";
+            __error << "Log length too long.";
           } else if (!has_validation_log_) {
             validation_log_ = "";
           } else {
@@ -262,8 +253,7 @@ namespace gtulu {
 
             for (::std::vector< ::std::string >::iterator it = lines.begin(); it != lines.end(); ++it) {
               if (it->length() > 0) {
-                __warnM(program)
-                  << *it;
+                __warnM(program) << *it;
               }
             }
           }
@@ -273,8 +263,7 @@ namespace gtulu {
 
             for (::std::vector< ::std::string >::iterator it = lines.begin(); it != lines.end(); ++it) {
               if (it->length() > 0) {
-                __warnM(program)
-                  << *it;
+                __warnM(program) << *it;
               }
             }
           }

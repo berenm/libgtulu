@@ -78,7 +78,7 @@ namespace gtulu {
             template< typename texture_format_t >
             void set__name_tpl(const gio::texture< texture_format_t >& value_in) {
               gio::program_base::bind();
-              _name_tpl_binder_t::bind(_location_tpl, value);
+              _name_tpl_binder_t::bind(_location_tpl, value_in);
             }
             // #template#</uniform_sampler>
 

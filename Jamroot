@@ -3,7 +3,7 @@ import doxygen : doxygen ;
 
 use-project /liblogging : ext/liblogging ;
 
-lib GL ;
+lib GL : : <name>:libGL.so.1 ;
 lib GLU ;
 lib glut ;
 lib boost_thread : : <search>/usr/local/lib ;
