@@ -36,9 +36,9 @@ class param:
       self.is_template = False
 
     if self.type == "GLint":
-      self.std_type = "::boost::int32_t"
+      self.std_type = "::std::int32_t"
     elif self.type == "GLuint":
-      self.std_type = "::boost::uint32_t"
+      self.std_type = "::std::uint32_t"
     elif self.type == "GLboolean" and self.pointer == "":
       self.std_type = "bool"
     elif self.type == "GLfloat":
@@ -48,9 +48,9 @@ class param:
     elif self.type == "GLvoid":
       self.std_type = "void"
     elif self.type == "GLushort":
-      self.std_type = "::boost::uint16_t"
+      self.std_type = "::std::uint16_t"
     elif self.type == "GLubyte":
-      self.std_type = "::boost::uint8_t"
+      self.std_type = "::std::uint8_t"
     elif self.is_template:
       self.std_type = "const ::gtulu::internal::constant::gl_constant_base&"
     else:
@@ -109,26 +109,26 @@ class function:
     
     for p in self.params:
       if p.name != "":
-        std_args.append("%s%s%s %s" % (p.const, p.std_type, p.pointer, p.name))
+        std_args.append("%s%s%s %s_in" % (p.const, p.std_type, p.pointer, p.name))
         if p.std_type == "bool":
-          std_call.append("(%s ? 1 : 0)" % (p.name))
+          std_call.append("(%s_in ? 1 : 0)" % (p.name))
         elif p.is_template:
-          std_call.append("::boost::uint32_t(%s)" % (p.name))
+          std_call.append("::std::uint32_t(%s_in)" % (p.name))
         else:
-          std_call.append("%s" % (p.name))
-        std_debg.append("\"%s: '\" << %s << \"'\"" % (p.name, p.name))
+          std_call.append("%s_in" % (p.name))
+        std_debg.append("\"%s: '\" << %s_in << \"'\"" % (p.name, p.name))
         
         if p.is_template:
           tpl_pars.append("typename %s_t" % (p.name))
           tpl_call.append("%s_t::value" % (p.name))
           tpl_debg.append("\"%s: '\" << %s_t::name::value << \"'\"" % (p.name, p.name))
         else:
-          tpl_args.append("%s%s%s %s" % (p.const, p.std_type, p.pointer, p.name))
+          tpl_args.append("%s%s%s %s_in" % (p.const, p.std_type, p.pointer, p.name))
           if p.std_type == "bool":
-            tpl_call.append("(%s ? 1 : 0)" % (p.name))
+            tpl_call.append("(%s_in ? 1 : 0)" % (p.name))
           else:
-            tpl_call.append("%s" % (p.name))
-          tpl_debg.append("\"%s: '\" << %s << \"'\"" % (p.name, p.name))
+            tpl_call.append("%s_in" % (p.name))
+          tpl_debg.append("\"%s: '\" << %s_in << \"'\"" % (p.name, p.name))
         
     if len(tpl_debg) == 0:
       tpl_debg.append("\"\"")
@@ -137,11 +137,11 @@ class function:
     
     self.std_args = ", ".join(std_args)
     self.std_call = ", ".join(std_call)
-    self.std_debg = " << \", \" << ".join(std_debg)
+    self.std_debg = " \", \" ".join(std_debg)
     self.tpl_pars = ", ".join(tpl_pars)
     self.tpl_args = ", ".join(tpl_args)
     self.tpl_call = ", ".join(tpl_call)
-    self.tpl_debg = " << \", \" << ".join(tpl_debg)
+    self.tpl_debg = " \", \" ".join(tpl_debg)
     
   def __repr__(self):
     return "{namespace: %(namespace)s, out: %(out)s, name: %(name)s, params: %(params)s" % (self.__dict__)
@@ -149,7 +149,7 @@ class function:
   def __str__(self):
     string = "          struct %(lower_name)s {\n" % (self.__dict__)
     string += "              inline static %(out)s call(%(std_args)s) {\n" % (self.__dict__)
-    string += "                __gl_debug << \"call %(name)s \" << %(std_debg)s << \"\";\n" % (self.__dict__)
+    string += "                __gl_debug << \"call %(name)s \" %(std_debg)s;\n" % (self.__dict__)
     string += "                %(var_stmt)s%(name)s(%(std_call)s);\n" % (self.__dict__)
     string += "                __gl_check_error;\n"
     string += "                %(ret_stmt)s\n" % (self.__dict__)
@@ -157,7 +157,7 @@ class function:
     if self.can_template:
       string += "              template< %(tpl_pars)s >\n" % (self.__dict__)
       string += "              inline static %(out)s call(%(tpl_args)s) {\n" % (self.__dict__)
-      string += "                __gl_debug << \"call %(name)s \" << %(tpl_debg)s << \"\";\n" % (self.__dict__)
+      string += "                __gl_debug << \"call %(name)s \" %(tpl_debg)s;\n" % (self.__dict__)
       string += "                %(var_stmt)s%(name)s(%(tpl_call)s);\n" % (self.__dict__)
       string += "                __gl_check_error;\n"
       string += "                %(ret_stmt)s\n" % (self.__dict__)
@@ -286,23 +286,23 @@ gen_cst_fwd = open('include/gtulu/internal/generated/constants_fwd.hpp', 'w')
 
 def print_forward_functions(file, parser, namespace):
   n = parser.namespaces[namespace]
-  print >> file, "      namespace %s {" % (n.short_name)
-  print >> file, "        namespace fnc {"
+  print >> file, "        namespace %s {" % (n.short_name)
+  print >> file, "          namespace fnc {"
   n.functions.sort()
   for function in n.functions:
-    print >> file, "struct %s;" % (parser.functions[function].lower_name)
-  print >> file, "        } // namespace fnc"
-  print >> file, "      } // namespace %s" % (n.short_name)
+    print >> file, "            struct %s;" % (parser.functions[function].lower_name.strip())
+  print >> file, "          } // namespace fnc"
+  print >> file, "        } // namespace %s" % (n.short_name)
 
 def print_forward_constants(file, parser, namespace):
   n = parser.namespaces[namespace]
-  print >> file, "      namespace %s {" % (n.short_name)
-  print >> file, "        namespace cst {"
+  print >> file, "        namespace %s {" % (n.short_name)
+  print >> file, "          namespace cst {"
   n.constants.sort()
   for constant in n.constants:
-    print >> file, "struct %s;" % (parser.constants[constant].lower_name)
-  print >> file, "        } // namespace cst"
-  print >> file, "      } // namespace %s" % (n.short_name)
+    print >> file, "            struct %s;" % (parser.constants[constant].lower_name)
+  print >> file, "          } // namespace cst"
+  print >> file, "        } // namespace %s" % (n.short_name)
 
 def print_forward_functions_ref(file, parser, namespace):
   n = parser.namespaces[namespace]
@@ -318,7 +318,7 @@ def print_forward_functions_ref(file, parser, namespace):
       nn.functions.sort()
       for function in nn.functions:
         f = parser.functions[function]
-        print >> file, "using ::gtulu::internal::generated::%s::%s::fnc::%s;" % (nn.category, nn.short_name, f.lower_name)
+        print >> file, "          using gig::%s::%s::fnc::%s;" % (nn.category, nn.short_name, f.lower_name.strip())
 
   print >> file, "        } // namespace fnc"
   print >> file, "      } // namespace %s" % (n.short_name)
@@ -335,7 +335,7 @@ def print_forward_constants_ref(file, parser, namespace):
     else:
       c = parser.constants[constant]
       nn = parser.namespaces[c.namespace]
-      print >> file, "using ::gtulu::internal::generated::%s::%s::cst::%s;" % (nn.category, nn.short_name, c.lower_name)
+      print >> file, "          using gig::%s::%s::cst::%s;" % (nn.category, nn.short_name, c.lower_name)
 
   print >> file, "        } // namespace cst"
   print >> file, "      } // namespace %s" % (n.short_name)
@@ -465,6 +465,11 @@ header = """/**
 namespace gtulu {
   namespace internal {
   
+    namespace generated {
+    } // namespace generated
+
+    namespace gig = ::gtulu::internal::generated;
+
     namespace generated {
 """
 

@@ -107,10 +107,10 @@ namespace gtulu {
                                is_normalize_order_compatible< normalize_t, data_order_t > , \
                                is_data_order_compatible< buffer_format_t, data_order_t >, \
                                is_order_count_compatible< data_order_t, count_m > { \
-            inline static void bind(const location_t location, const gio::buffer< buffer_format_t >& buffer, const ::boost::uint32_t offset, const ::boost::uint32_t stride) { \
-              gib::array_buffer_slot::bind(buffer); \
-              fnc::gl_vertex_attrib_pointer::call< typename buffer_format_t::info::format >(location, buffer_binder_order< count_m, data_order_t >::size_value, fdn::is_normalized< normalize_t >::value, stride, reinterpret_cast< const GLvoid* > (offset)); \
-              fnc::gl_enable_vertex_attrib_array::call(location); \
+            inline static void bind(const location_t location_in, const gio::buffer< buffer_format_t >& buffer_in, const ::boost::uint32_t offset_in, const ::boost::uint32_t stride_in) { \
+              gib::array_buffer_slot::bind(buffer_in); \
+              fnc::gl_vertex_attrib_pointer::call< typename buffer_format_t::info::format >(location_in, buffer_binder_order< count_m, data_order_t >::size_value, fdn::is_normalized< normalize_t >::value, stride_in, reinterpret_cast< const GLvoid* > (offset_in)); \
+              fnc::gl_enable_vertex_attrib_array::call(location_in); \
             } \
         }; \
     }; \
@@ -129,10 +129,10 @@ namespace gtulu {
         \
         template< typename buffer_format_t > \
         struct checked_binder: is_buffer_format_compatible< attribute_type_t, buffer_format_t > { \
-            inline static void bind(const location_t location, const gio::buffer< buffer_format_t >& buffer, const ::boost::uint32_t offset, const ::boost::uint32_t stride) { \
-              gib::array_buffer_slot::bind(buffer); \
-              fnc::gl_vertex_attrib_ipointer::call< typename buffer_format_t::info::format >(location, count_m, stride, reinterpret_cast< const GLvoid* > (offset)); \
-              fnc::gl_enable_vertex_attrib_array::call(location); \
+            inline static void bind(const location_t location_in, const gio::buffer< buffer_format_t >& buffer_in, const ::boost::uint32_t offset_in, const ::boost::uint32_t stride_in) { \
+              gib::array_buffer_slot::bind(buffer_in); \
+              fnc::gl_vertex_attrib_ipointer::call< typename buffer_format_t::info::format >(location_in, count_m, stride_in, reinterpret_cast< const GLvoid* > (offset_in)); \
+              fnc::gl_enable_vertex_attrib_array::call(location_in); \
             } \
         }; \
     }; \

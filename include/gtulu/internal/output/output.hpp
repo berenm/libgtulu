@@ -19,34 +19,30 @@ namespace gtulu {
       template< typename type_t >
       struct output_binder {
           template< typename texture_format_t >
-          void bind(const location_t location, const gio::texture< texture_format_t > & texture);
+          void bind(const location_t location_in, const gio::texture< texture_format_t > & texture_in);
 
           template< typename renderbuffer_format_t >
-          void bind(const location_t location, const gio::renderbuffer< renderbuffer_format_t > & renderbuffer);
+          void bind(const location_t location_in, const gio::renderbuffer< renderbuffer_format_t > & renderbuffer_in);
 
           template< typename renderbuffer_format_t >
-          void bind(const location_t location,
-                    const gio::default_framebuffer< renderbuffer_format_t >::front_left& renderbuffer);
+          void bind(const location_t location_in,
+                    const gio::default_framebuffer< renderbuffer_format_t >::front_left& renderbuffer_in);
       };
 
 #define DECLARE_BINDER(type_m, suffix_m) \
     template< > \
     struct output_binder< fo::type::type_m > { \
-        inline static void bind(const location_t location, const fo::to_typename< fo::type::type_m >::type value) { \
-          __gl_debug(glUniform1##suffix_m, (location)(value)); \
-          glUniform1##suffix_m(location, value); \
-          __gl_check_error \
+        inline static void bind(const location_t location_in, const fo::to_typename< fo::type::type_m >::type value_in) { \
+          fnc:: gl_uniform_1##suffix_m ::call(location_in, value_in); \
         } \
-        inline static void bind(const location_t location, const ::boost::uint32_t number, const fo::to_typename< fo::type::type_m >::type* values) { \
-          __gl_debug(glUniform1##suffix_m##v, (location)(number)(values)); \
-          glUniform1##suffix_m##v(location, number, values); \
-          __gl_check_error \
+        inline static void bind(const location_t location_in, const ::boost::uint32_t number_in, const fo::to_typename< fo::type::type_m >::type* values_in) { \
+          fnc:: gl_uniform_1##suffix_m##v ::call(location_in, number_in, value_in); \
         } \
     };
 
-      DECLARE_BINDER(floating, f)
-      DECLARE_BINDER(integer, i)
-      DECLARE_BINDER(unsigned_integer, ui)
+      DECLARE_BINDER(floating, _f)
+      DECLARE_BINDER(integer, _i)
+      DECLARE_BINDER(unsigned_integer, _ui)
 #undef DECLARE_BINDER
 
       template< typename format_t, typename binder_t = output_binder< typename format_t::info::type > ,

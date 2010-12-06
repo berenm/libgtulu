@@ -66,10 +66,8 @@ namespace gtulu {
                 }
 
                 real_info.size = 1;
-                real_info.location
-                    = fnc::gl_get_frag_data_location::call(program_base::handle_, real_info.name.c_str());
-                //                __gl_debug(glGetFragDataIndex);
-                //        info.index = glGetFragDataIndex(handle_, info.name.c_str());
+                //                real_info.location = fnc::gl_get_frag_data_location::call(program_base::handle_, real_info.name.c_str());
+                //                info.index = fnc::gl_get_frag_data_index::call(program_base::handle_, real_info.name.c_str());
                 __gl_check_error
 
                 if (real_info.location >= 0) {
@@ -200,8 +198,10 @@ namespace gtulu {
             link_log_ = "";
           } else {
             char* buffer = new char[length];
-            fnc::gl_get_program_info_log::call(program_base::handle_, length,
-                reinterpret_cast< ::boost::int32_t* > (&length), buffer);
+            fnc::gl_get_program_info_log::call(program_base::handle_,
+                                               length,
+                                               reinterpret_cast< ::boost::int32_t* > (&length),
+                                               buffer);
 
             link_log_ = ::std::string(buffer);
 
@@ -239,8 +239,10 @@ namespace gtulu {
             validation_log_ = "";
           } else {
             char* buffer = new char[length];
-            fnc::gl_get_program_info_log::call(program_base::handle_, length,
-                reinterpret_cast< ::boost::int32_t* > (&length), buffer);
+            fnc::gl_get_program_info_log::call(program_base::handle_,
+                                               length,
+                                               reinterpret_cast< ::boost::int32_t* > (&length),
+                                               buffer);
 
             validation_log_ = ::std::string(buffer);
 

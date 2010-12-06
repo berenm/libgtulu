@@ -25,15 +25,15 @@ namespace gtulu {
         struct attribute_binder;
 
 #define DECLARE_BINDER_METHOD_LITERAL(count_m, prefix_m, value_type_m, suffix_m, method_suffix_m) \
-    inline static void BOOST_PP_CAT(bind, method_suffix_m)(const location_t location, BOOST_PP_ENUM_PARAMS(count_m, const value_type_m value)) { \
-      fnc:: BOOST_PP_SEQ_CAT((gl_vertex_attrib)(prefix_m)(_)(count_m)(suffix_m)) ::call(location, BOOST_PP_ENUM_PARAMS(count_m, value)); \
-      fnc::gl_disable_vertex_attrib_array::call(location); \
+    inline static void BOOST_PP_CAT(bind, method_suffix_m)(const location_t location_in, BOOST_PP_ENUM_PARAMS(count_m, const value_type_m value_in)) { \
+      fnc:: BOOST_PP_SEQ_CAT((gl_vertex_attrib)(prefix_m)(_)(count_m)(suffix_m)) ::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in)); \
+      fnc::gl_disable_vertex_attrib_array::call(location_in); \
     } \
 
 #define DECLARE_BINDER_METHOD_ARRAY(count_m, prefix_m, value_type_m, suffix_m, method_suffix_m) \
-    inline static void BOOST_PP_CAT(bind, method_suffix_m)(const location_t location, const value_type_m* values) { \
-      fnc:: BOOST_PP_SEQ_CAT((gl_vertex_attrib)(prefix_m)(_)(count_m)(suffix_m)(v)) ::call(location, values); \
-      fnc::gl_disable_vertex_attrib_array::call(location); \
+    inline static void BOOST_PP_CAT(bind, method_suffix_m)(const location_t location_in, const value_type_m* values_in) { \
+      fnc:: BOOST_PP_SEQ_CAT((gl_vertex_attrib)(prefix_m)(_)(count_m)(suffix_m)(v)) ::call(location_in, values_in); \
+      fnc::gl_disable_vertex_attrib_array::call(location_in); \
     } \
 
 #define DECLARE_BINDER_METHOD(count_m, prefix_m, value_type_m, suffix_m) \

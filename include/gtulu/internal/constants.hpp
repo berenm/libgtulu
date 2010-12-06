@@ -39,9 +39,9 @@ namespace gtulu {
             string_value(copy.string_value), uint32_value(copy.uint32_value) {
           }
 
-          gl_constant_base& operator=(gl_constant_base const& copy) {
-            string_value = copy.string_value;
-            uint32_value = copy.uint32_value;
+          gl_constant_base& operator=(gl_constant_base const& copy_in) {
+            string_value = copy_in.string_value;
+            uint32_value = copy_in.uint32_value;
             return *this;
           }
 
@@ -52,7 +52,7 @@ namespace gtulu {
             return uint32_value;
           }
 
-          friend ::std::ostream& operator<<(::std::ostream& out, const gl_constant_base& constant);
+          friend ::std::ostream& operator<<(::std::ostream& stream_inout, const gl_constant_base& constant_in);
       };
 
       template< typename name_t, typename value_t >
@@ -80,11 +80,11 @@ namespace gtulu {
       const gl_constant< name_t, value_t > gl_constant< name_t, value_t >::instance;
 
       struct runtime_constant: public gl_constant_base {
-          runtime_constant(const gl_constant_base& base, ::boost::uint32_t offset) :
+          runtime_constant(const gl_constant_base& base, ::boost::uint32_t offset_in) :
             gl_constant_base(base) {
             string_value.erase(string_value.end() - 1);
-            string_value += ::boost::lexical_cast< ::std::string >(offset);
-            uint32_value += offset;
+            string_value += ::boost::lexical_cast< ::std::string >(offset_in);
+            uint32_value += offset_in;
           }
       };
 

@@ -20,13 +20,13 @@ namespace gtulu {
       struct attribute_binder;
 
 #define DECLARE_BINDER_METHOD(prefix_m, value_type_m, suffix_m) \
-    inline static void bind(const location_t location, const value_type_m value) { \
-      fnc:: BOOST_PP_SEQ_CAT((gl_vertex_attrib)(prefix_m)(_1)(suffix_m)) ::call(location, value); \
-      fnc::gl_disable_vertex_attrib_array::call(location); \
+    inline static void bind(const location_t location_in, const value_type_m value_in) { \
+      fnc:: BOOST_PP_SEQ_CAT((gl_vertex_attrib)(prefix_m)(_1)(suffix_m)) ::call(location_in, value_in); \
+      fnc::gl_disable_vertex_attrib_array::call(location_in); \
     } \
-    inline static void bind(const location_t location, const value_type_m* values) { \
-      fnc:: BOOST_PP_SEQ_CAT((gl_vertex_attrib)(prefix_m)(_1)(suffix_m)(v)) ::call(location, values); \
-      fnc::gl_disable_vertex_attrib_array::call(location); \
+    inline static void bind(const location_t location_in, const value_type_m* values_in) { \
+      fnc:: BOOST_PP_SEQ_CAT((gl_vertex_attrib)(prefix_m)(_1)(suffix_m)(v)) ::call(location_in, values_in); \
+      fnc::gl_disable_vertex_attrib_array::call(location_in); \
     } \
 
 #define DECLARE_BINDER_METHOD_TUPLE(n, prefix_m, tuple_m) BOOST_PP_EXPAND(DECLARE_BINDER_METHOD BOOST_PP_APPLY((BOOST_PP_SEQ_TO_TUPLE(BOOST_PP_SEQ_PUSH_FRONT(BOOST_PP_TUPLE_TO_SEQ(2, tuple_m), prefix_m)))))

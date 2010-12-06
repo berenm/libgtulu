@@ -6,13 +6,14 @@ use-project /liblogging : ext/liblogging ;
 lib GL ;
 lib GLU ;
 lib glut ;
-lib boost_thread ;
-lib boost_program_options ;
-lib boost_filesystem ;
-lib boost_regex ;
-lib boost_iostreams ;
-lib boost_date_time ;
-lib boost_system ;
+lib boost_thread : : <search>/usr/local/lib ;
+lib boost_program_options : : <search>/usr/local/lib ;
+lib boost_filesystem : : <search>/usr/local/lib ;
+lib boost_regex : : <search>/usr/local/lib ;
+lib boost_iostreams : : <search>/usr/local/lib ;
+lib boost_date_time : : <search>/usr/local/lib ;
+lib boost_system : : <search>/usr/local/lib ;
+lib boost_log : : <search>/usr/local/lib ;
 
 project gtulu : requirements
   <library>GL/<link>shared
@@ -25,6 +26,7 @@ project gtulu : requirements
   <library>boost_iostreams
   <library>boost_date_time
   <library>boost_system
+  <library>boost_log
   <library>/liblogging//logging
   <include>ext/liblogging/include/
   <include>include/
@@ -61,7 +63,7 @@ lib gtulu
 
 exe compiler
     : src/compile.cpp src/common.cpp gtulu  
-    : <link>static
+    : <link>shared
     ;
 
     
@@ -76,21 +78,21 @@ install lib64so_dist
     : <location>./dist/lib64/
       <link>shared ;
     
-install lib32so_dist 
-    : gtulu
-    : <location>./dist/lib32/
-      <link>shared 
-      <architecture>x86
-      <address-model>32 ;
+#install lib32so_dist 
+#    : gtulu
+#    : <location>./dist/lib32/
+#      <link>shared 
+#      <architecture>x86
+#      <address-model>32 ;
       
-install lib64a_dist 
-    : gtulu
-    : <location>./dist/lib64/
-      <link>static ;
-    
-install lib32a_dist 
-    : gtulu
-    : <location>./dist/lib32/
-      <link>static 
-      <architecture>x86
-      <address-model>32 ;
+#install lib64a_dist 
+#    : gtulu
+#    : <location>./dist/lib64/
+#      <link>static ;
+
+#install lib32a_dist 
+#    : gtulu
+#    : <location>./dist/lib32/
+#      <link>static 
+#      <architecture>x86
+#      <address-model>32 ;

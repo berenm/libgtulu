@@ -31,9 +31,9 @@ namespace gtulu {
         }
 
         template< typename texture_format_t >
-        void bind(const gio::texture< texture_format_t >& texture) {
+        void bind(const gio::texture< texture_format_t >& texture_in) {
           activate();
-          texture.bind();
+          texture_in.bind();
         }
     };
 
@@ -51,9 +51,9 @@ namespace gtulu {
         texture_unit_manager();
         ~texture_unit_manager();
 
-        ::boost::shared_ptr< texture_unit > get_current(const gio::texture_base& texture);
-        ::boost::shared_ptr< texture_unit > get_new(const gio::texture_base& texture);
-        ::boost::shared_ptr< texture_unit > get_current_or_new(const gio::texture_base& texture);
+        ::boost::shared_ptr< texture_unit > get_current(const gio::texture_base& texture_in);
+        ::boost::shared_ptr< texture_unit > get_new(const gio::texture_base& texture_in);
+        ::boost::shared_ptr< texture_unit > get_current_or_new(const gio::texture_base& texture_in);
 
         void clear();
     };

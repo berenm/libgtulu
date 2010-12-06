@@ -25,8 +25,8 @@ namespace gtulu {
 #define DECLARE_BINDER(type_m, suffix_m, dimension1_m, dimension2_m) \
     template< > \
       struct uniform_binder< fut::type_m, fc::to_typename< dimension1_m, dimension2_m >::type > { \
-          inline static void bind(const location_t location, const ::boost::uint32_t number, const fu::to_typename< fut::type_m >::type* values, bool transpose = false) { \
-            fnc::gl_uniform_matrix##suffix_m##_fv::call(location, number, transpose, values); \
+          inline static void bind(const location_t location_in, const ::boost::uint32_t number_in, const fu::to_typename< fut::type_m >::type* values_in, bool transpose_in = false) { \
+            fnc::gl_uniform_matrix##suffix_m##_fv::call(location_in, number_in, transpose_in, values_in); \
           } \
       };
 

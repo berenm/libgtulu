@@ -716,9 +716,9 @@ namespace gtulu {
               }
 
               template< typename parameter_t >
-              static gettor_return_type_t get(::boost::uint32_t index) {
+              static gettor_return_type_t get(::boost::uint32_t index_in) {
                 gettor_return_type_t data;
-                gettor< return_type_t >::template get< parameter_t >(index, data.c_array());
+                gettor< return_type_t >::template get< parameter_t >(index_in, data.c_array());
                 return data;
               }
           };
@@ -738,9 +738,9 @@ namespace gtulu {
               }
 
               template< typename parameter_t >
-              static gettor_return_type_t get(::boost::uint32_t index) {
+              static gettor_return_type_t get(::boost::uint32_t index_in) {
                 gettor_return_type_t data;
-                gettor< return_type_t >::template get< parameter_t >(index, &data);
+                gettor< return_type_t >::template get< parameter_t >(index_in, &data);
                 return data;
               }
           };
@@ -753,11 +753,11 @@ namespace gtulu {
               typedef ::std::vector< return_type_t > gettor_return_type_t;
 
               template< typename parameter_t >
-              static gettor_return_type_t get(::std::size_t size) {
-                return_type_t* array = new return_type_t[size];
+              static gettor_return_type_t get(::std::size_t size_in) {
+                return_type_t* array = new return_type_t[size_in];
                 gettor< return_type_t >::template get< parameter_t >(array);
 
-                gettor_return_type_t data(array, array + size);
+                gettor_return_type_t data(array, array + size_in);
                 delete[] array;
                 return data;
               }
@@ -784,8 +784,8 @@ namespace gtulu {
           typedef sized_gettor< size_m >::strong_gettor< return_type_m > gettor_type_t; \
           typedef gettor_type_t::gettor_return_type_t gettor_return_type_t; \
           \
-          static gettor_return_type_t get(::boost::uint32_t index) { \
-            return gettor_type_t::get< parameter::parameter_m >(index); \
+          static gettor_return_type_t get(::boost::uint32_t index_in) { \
+            return gettor_type_t::get< parameter::parameter_m >(index_in); \
           } \
       };
 

@@ -14,6 +14,11 @@ namespace gtulu {
   namespace internal {
   
     namespace generated {
+    } // namespace generated
+
+    namespace gig = ::gtulu::internal::generated;
+
+    namespace generated {
 
       namespace gl {
       namespace v1_0 {

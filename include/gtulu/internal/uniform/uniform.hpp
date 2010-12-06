@@ -22,11 +22,11 @@ namespace gtulu {
 #define DECLARE_BINDER(type_m, suffix_m) \
     template< > \
     struct uniform_binder< fut::type_m > { \
-        inline static void bind(const location_t location, const fu::to_typename< fut::type_m >::type value) { \
-          fnc:: gl_uniform_1##suffix_m ::call(location, value); \
+        inline static void bind(const location_t location_in, const fu::to_typename< fut::type_m >::type value_in) { \
+          fnc:: gl_uniform_1##suffix_m ::call(location_in, value_in); \
         } \
-        inline static void bind(const location_t location, const ::boost::uint32_t number, const fu::to_typename< fut::type_m >::type* values) { \
-          fnc:: gl_uniform_1##suffix_m##v ::call(location, number, values); \
+        inline static void bind(const location_t location_in, const ::boost::uint32_t number_in, const fu::to_typename< fut::type_m >::type* values_in) { \
+          fnc:: gl_uniform_1##suffix_m##v ::call(location_in, number_in, values_in); \
         } \
     };
 

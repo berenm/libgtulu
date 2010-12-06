@@ -11,8 +11,6 @@
 #include <vector>
 #include <map>
 
-#include <logging/logging.hpp>
-
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem/fstream.hpp>
 
@@ -67,8 +65,8 @@ namespace gtulu {
             raw_data.append(template_name);
             raw_data.append("/>");
 
-            sub_templates.insert(::std::make_pair< ::std::string, file_template >(template_name,
-                file_template(iterator)));
+            sub_templates.insert(::std::make_pair< ::std::string, file_template >(::std::string(template_name),
+                                                                                  file_template(iterator)));
           }
         }
       }

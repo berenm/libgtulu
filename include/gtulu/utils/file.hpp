@@ -7,6 +7,8 @@
 #ifndef GTULU_UTILS_FILE_HPP_
 #define GTULU_UTILS_FILE_HPP_
 
+#include <logging/logging.hpp>
+
 #include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
 
@@ -18,7 +20,7 @@ namespace gtulu {
   namespace utils {
 
     struct file {
-        static ::std::string get_contents(const ::boost::filesystem::path& path);
+        static ::std::string get_contents(const ::boost::filesystem::path& path_in);
     };
 
     struct file_template {
@@ -32,25 +34,25 @@ namespace gtulu {
 
         ::std::map< ::std::string, file_template > sub_templates;
 
-        void parse(::boost::sregex_iterator& iterator);
+        void parse(::boost::sregex_iterator& iterator_inout);
 
       public:
         file_template();
-        explicit file_template(::boost::sregex_iterator& iterator);
-        file_template(const file_template& copy);
-        file_template(const ::std::string& template_file, const ::boost::filesystem::path& template_path =
+        explicit file_template(::boost::sregex_iterator& iterator_inout);
+        file_template(const file_template& copy_in);
+        file_template(const ::std::string& template_file_in, const ::boost::filesystem::path& template_path_in =
             "include/gtulu/templates/");
 
         void reset();
 
-        file_template get(const ::std::string& sub_template);
+        file_template get(const ::std::string& sub_template_in);
 
         ::std::string get_content();
 
-        void populate(::std::map< ::std::string, ::std::string >& arguments_in,
-                      ::std::vector< file_template > sub_templates = ::std::vector< file_template >());
+        void populate(::std::map< ::std::string, ::std::string >& arguments_inout,
+                      ::std::vector< file_template > sub_templates_in = ::std::vector< file_template >());
 
-        void debug(::std::string prefix = "");
+        void debug(::std::string prefix_in = "");
     };
 
   } // namespace utils
