@@ -1,7 +1,7 @@
 import path ;
 import doxygen : doxygen ;
 
-use-project /liblogging : ext/liblogging ;
+use-project /liblogging : ../liblogging ;
 
 lib GL : : <name>:libGL.so.1 ;
 lib GLU ;
@@ -28,7 +28,7 @@ project gtulu : requirements
   <library>boost_system
   <library>boost_log
   <library>/liblogging//logging
-  <include>ext/liblogging/include/
+  <include>../liblogging/include/
   <include>include/
   <threading>multi
   <variant>debug:<define>GTULU_DEBUG
