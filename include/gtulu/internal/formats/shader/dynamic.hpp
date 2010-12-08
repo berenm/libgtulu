@@ -25,8 +25,8 @@ namespace gtulu {
       namespace shader {
 
         struct output_info {
-            output_info(::boost::uint32_t id_in, ::std::string name_in, const cst::gl_constant_base& type_in,
-                        ::boost::uint32_t size_in, location_t location_in, ::boost::uint32_t index_in) :
+            output_info(::std::uint32_t id_in, ::std::string name_in, const cst::gl_constant_base& type_in,
+                        ::std::uint32_t size_in, location_t location_in, ::std::uint32_t index_in) :
               id(id_in), name(name_in), type(type_in), size(size_in), location(location_in), index(index_in) {
             }
             output_info(const output_info& copy) :
@@ -44,12 +44,12 @@ namespace gtulu {
               return *this;
             }
 
-            ::boost::uint32_t id;
+            ::std::uint32_t id;
             ::std::string name;
             cst::gl_constant_base type;
-            ::boost::uint32_t size;
+            ::std::uint32_t size;
             location_t location;
-            ::boost::uint32_t index;
+            ::std::uint32_t index;
         };
         typedef ::std::vector< output_info > output_vector_t;
 

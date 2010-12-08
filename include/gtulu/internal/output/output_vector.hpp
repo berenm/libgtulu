@@ -30,7 +30,7 @@ namespace gtulu {
           inline static void bind(const location_t location_in, BOOST_PP_ENUM_PARAMS(count_m, const fo::to_typename< fo::type::type_m >::type value_in)) { \
             fnc:: gl_uniform_##count_m##suffix_m ::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in)); \
           } \
-          inline static void bind(const location_t location_in, const ::boost::uint32_t number_in, const fo::to_typename< fo::type::type_m >::type* values_in) { \
+          inline static void bind(const location_t location_in, const ::std::uint32_t number_in, const fo::to_typename< fo::type::type_m >::type* values_in) { \
             fnc:: gl_uniform_##count_m##suffix_m##v ::call(location_in, number_in, values_in); \
           } \
       };

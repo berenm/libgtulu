@@ -27,7 +27,7 @@ namespace gtulu {
     namespace objects {
       template< >
       template< typename target_type_t >
-      void slot_binder< texture_base >::bind(::boost::uint32_t handle_) {
+      void slot_binder< texture_base >::bind(::std::uint32_t handle_) {
         fnc::gl_bind_texture::call< typename target_type_t::info::format >(handle_);
       }
     } // namespace objects

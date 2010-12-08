@@ -15,7 +15,7 @@ namespace gtulu {
       namespace uniform {
 
         namespace format {
-          const cst::gl_constant_base get(::boost::uint32_t value) {
+          const cst::gl_constant_base get(::std::uint32_t value) {
             switch (value) {
               case gl_float::value:
                 return gl_float();

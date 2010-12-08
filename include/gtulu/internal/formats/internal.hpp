@@ -129,7 +129,7 @@ namespace gtulu {
             (renderbuffer)
         )
 
-        typedef ::boost::uint32_t size_type;
+        typedef ::std::uint32_t size_type;
 
         template< typename format_t, typename base_t, size_type size_t, typename type_t, typename compression_t,
             typename restriction_t >

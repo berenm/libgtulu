@@ -22,8 +22,8 @@ namespace gtulu {
     template< > struct to_typename< type::attribute_m > { typedef typename_m type; };
 
         DECLARE_CONVERT(floating, float)
-        DECLARE_CONVERT(integer, ::boost::int32_t)
-        DECLARE_CONVERT(unsigned_integer, ::boost::uint32_t)
+        DECLARE_CONVERT(integer, ::std::int32_t)
+        DECLARE_CONVERT(unsigned_integer, ::std::uint32_t)
 
 #undef DECLARE_CONVERT
       } // namespace attribute

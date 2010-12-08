@@ -12,11 +12,11 @@
 
 #include <logging/logging.hpp>
 
-static void reshape(::boost::int32_t w, ::boost::int32_t h) {
+static void reshape(::std::int32_t w, ::std::int32_t h) {
   glViewport(0, 0, w, h);
 }
 
-void init_gl(::boost::int32_t argc, char** argv) {
+void init_gl(::std::int32_t argc, char** argv) {
   glutInit(&argc, argv);
 
   glutInitContextVersion(3, 3);

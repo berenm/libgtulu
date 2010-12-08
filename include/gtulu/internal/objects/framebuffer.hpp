@@ -51,8 +51,8 @@ namespace gtulu {
     namespace objects {
       template< >
       template< typename target_type_t >
-      void slot_binder< framebuffer_base >::bind(::boost::uint32_t handle_) {
-        static ::boost::uint32_t bound_handle_ = 0;
+      void slot_binder< framebuffer_base >::bind(::std::uint32_t handle_) {
+        static ::std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
           fnc::gl_bind_framebuffer::call< target_type_t >(handle_);
@@ -94,8 +94,8 @@ namespace gtulu {
             slot_type_t::unbind(*this);
           }
 
-          void set_viewport(::boost::uint32_t width, ::boost::uint32_t height, ::boost::uint32_t depth = 1,
-                            ::boost::uint32_t origin_x = 0, ::boost::uint32_t origin_y = 0, ::boost::uint32_t origin_z =
+          void set_viewport(::std::uint32_t width, ::std::uint32_t height, ::std::uint32_t depth = 1,
+                            ::std::uint32_t origin_x = 0, ::std::uint32_t origin_y = 0, ::std::uint32_t origin_z =
                                 0) {
             fnc::gl_viewport::call(origin_x, origin_y, width, height);
             fnc::gl_depth_range::call(origin_z, depth);
@@ -110,7 +110,7 @@ namespace gtulu {
       struct default_framebuffer: virtual public object_base, public framebuffer_format_t {
           //          void set_default_viewport() {
           //            framebuffer_format_t::bind();
-          //            ::boost::int32_t data[4];
+          //            ::std::int32_t data[4];
           //
           //            __gl_debug(glGetIntegerv, (GL_VIEWPORT)(data))
           //            glGetIntegerv(GL_VIEWPORT, data);

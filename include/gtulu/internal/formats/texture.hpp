@@ -38,11 +38,11 @@ namespace gtulu {
 
             // TODO(rout): static_assert with function requirements.
 
-            void load(value_t* data, ::std::size_t width, ::boost::uint32_t level, ::boost::uint8_t border) {
+            void load(value_t* data, ::std::size_t width, ::std::uint32_t level, ::std::uint8_t border) {
               fnc::gl_tex_image_1d::call< target_t, internal_t, group_t, data_t >(level, width, border, data);
             }
 
-            void load(value_t* data, ::std::size_t xoffset, ::std::size_t width, ::boost::uint32_t level) {
+            void load(value_t* data, ::std::size_t xoffset, ::std::size_t width, ::std::uint32_t level) {
               fnc::gl_tex_sub_image_1d::call< target_t, group_t, data_t >(level, xoffset, width, data);
             }
         };
@@ -57,13 +57,13 @@ namespace gtulu {
 
             // TODO(rout): static_assert with function requirements.
 
-            void load(value_t* data, ::std::size_t width, ::std::size_t height, ::boost::uint32_t level,
-                      ::boost::uint8_t border) {
+            void load(value_t* data, ::std::size_t width, ::std::size_t height, ::std::uint32_t level,
+                      ::std::uint8_t border) {
               fnc::gl_tex_image_2d::call< target_t, internal_t, group_t, data_t >(level, width, height, border, data);
             }
 
             void load(value_t* data, ::std::size_t xoffset, ::std::size_t yoffset, ::std::size_t width,
-                      ::std::size_t height, ::boost::uint32_t level) {
+                      ::std::size_t height, ::std::uint32_t level) {
               fnc::gl_tex_sub_image_2d::call< target_t, group_t, data_t >(level, xoffset, yoffset, width, height, data);
             }
         };
@@ -79,13 +79,13 @@ namespace gtulu {
             // TODO(rout): static_assert with function requirements.
 
             void load(value_t* data, ::std::size_t width, ::std::size_t height, ::std::size_t depth,
-                      ::boost::uint32_t level, ::boost::uint8_t border) {
+                      ::std::uint32_t level, ::std::uint8_t border) {
               fnc::gl_tex_image_3d::call< target_t, internal_t, group_t, data_t >(level, width, height, depth, border,
                   data);
             }
 
             void load(value_t* data, ::std::size_t xoffset, ::std::size_t yoffset, ::std::size_t zoffset,
-                      ::std::size_t width, ::std::size_t height, ::std::size_t depth, ::boost::uint32_t level) {
+                      ::std::size_t width, ::std::size_t height, ::std::size_t depth, ::std::uint32_t level) {
               fnc::gl_tex_sub_image_3d::call< target_t, group_t, data_t >(level, xoffset, yoffset, zoffset, width,
                   height, depth, data);
             }
@@ -197,14 +197,14 @@ namespace gtulu {
         }
 
 #define DECLARE_TEXTURE_LOADER_METHOD(dimension_m, target_m) \
-        inline static void load(const void* data, ::std::size_t data_size, DECLARE_SIZES_##dimension_m##D, ::boost::uint8_t border, ::boost::uint32_t level)
+        inline static void load(const void* data, ::std::size_t data_size, DECLARE_SIZES_##dimension_m##D, ::std::uint8_t border, ::std::uint32_t level)
 #define DEFINE_TEXTURE_LOADER_METHOD(dimension_m, target_m) \
         DECLARE_TEXTURE_LOADER_METHOD(dimension_m, target_m) { \
           CALL_LOADER_METHOD(dimension_m, target_m) \
         }
 
 #define DECLARE_TEXTURE_LOADER_METHOD_SUB(dimension_m, target_m) \
-        inline static void load(const void* data, ::std::size_t data_size, DECLARE_OFFSETS_##dimension_m##D, DECLARE_SIZES_##dimension_m##D, ::boost::uint32_t level)
+        inline static void load(const void* data, ::std::size_t data_size, DECLARE_OFFSETS_##dimension_m##D, DECLARE_SIZES_##dimension_m##D, ::std::uint32_t level)
 #define DEFINE_TEXTURE_LOADER_METHOD_SUB(dimension_m, target_m) \
         DECLARE_TEXTURE_LOADER_METHOD_SUB(dimension_m, target_m) { \
           CALL_LOADER_METHOD_SUB(dimension_m, target_m) \
@@ -336,7 +336,7 @@ namespace gtulu {
             struct internal_checker {
                 template< typename target_t >
                 inline static void load(const void* data, ::std::size_t data_size, ::std::size_t width,
-                                        ::std::size_t height, ::boost::uint8_t border, ::boost::uint32_t level) {
+                                        ::std::size_t height, ::std::uint8_t border, ::std::uint32_t level) {
                   fnc::gl_tex_image_2d::call< target_t, typename internal_format_t::info::format,
                       typename group_format_t::info::format, typename data_format_t::info::format >(level, width,
                       height, border, data);
@@ -344,7 +344,7 @@ namespace gtulu {
                 template< typename target_t >
                 inline static void load(const void* data, ::std::size_t data_size, ::std::size_t xoffset,
                                         ::std::size_t yoffset, ::std::size_t width, ::std::size_t height,
-                                        ::boost::uint32_t level) {
+                                        ::std::uint32_t level) {
                   fnc::gl_tex_sub_image_2d::call< target_t, typename group_format_t::info::format,
                       typename data_format_t::info::format >(level, xoffset, yoffset, width, height, data);
                 }
@@ -357,14 +357,14 @@ namespace gtulu {
             struct internal_checker {
                 template< typename target_t >
                 inline static void load(const void* data, ::std::size_t data_size, ::std::size_t width,
-                                        ::std::size_t height, ::boost::uint8_t border, ::boost::uint32_t level) {
+                                        ::std::size_t height, ::std::uint8_t border, ::std::uint32_t level) {
                   fnc::gl_compressed_tex_image_2d::call< target_t, typename internal_format_t::info::format >(level,
                       width, height, border, data_size, data);
                 }
                 template< typename target_t >
                 inline static void load(const void* data, ::std::size_t data_size, ::std::size_t xoffset,
                                         ::std::size_t yoffset, ::std::size_t width, ::std::size_t height,
-                                        ::boost::uint32_t level) {
+                                        ::std::uint32_t level) {
                   fnc::gl_compressed_tex_sub_image_2d::call< target_t, typename internal_format_t::info::format >(
                       level, xoffset, yoffset, width, height, data_size, data);
                 }

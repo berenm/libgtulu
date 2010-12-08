@@ -224,13 +224,13 @@ const cst::gl_constant_base get_shader_type(const ::bfs::path& shader_file) {
 }
 
 struct uniform_type_info {
-    ::boost::uint32_t count;
+    ::std::uint32_t count;
     bool is_sampler;
     ::std::string name;
 };
 
 struct attribute_type_info {
-    ::boost::uint32_t count;
+    ::std::uint32_t count;
     ::std::string name;
 };
 
@@ -252,7 +252,7 @@ struct is_sampler< fub::sampler > : ::boost::true_type {
 const uniform_type_info get_uniform_info(const cst::gl_constant_base& type) {
   uniform_type_info info;
 
-  switch (::boost::uint32_t(type)) {
+  switch (::std::uint32_t(type)) {
     COMPLETE_UNIFORM_INFO(float)
     COMPLETE_UNIFORM_INFO(float_vec2)
     COMPLETE_UNIFORM_INFO(float_vec3)
@@ -329,7 +329,7 @@ const uniform_type_info get_uniform_info(const cst::gl_constant_base& type) {
 const attribute_type_info get_attribute_info(const cst::gl_constant_base& type) {
   attribute_type_info info;
 
-  switch (::boost::uint32_t(type)) {
+  switch (::std::uint32_t(type)) {
     COMPLETE_ATTRIBUTE_INFO(float)
     COMPLETE_ATTRIBUTE_INFO(float_vec2)
     COMPLETE_ATTRIBUTE_INFO(float_vec3)
@@ -376,7 +376,7 @@ void add_shader(gio::dynamic_program_t& program, ::bfs::path shader_file) {
 int main(int argc, char *argv[]) {
   ::std::ostringstream cmdline;
 
-  for (::boost::int32_t i = 0; i < argc; ++i) {
+  for (::std::int32_t i = 0; i < argc; ++i) {
     cmdline << argv[i] << " ";
   }
   __info

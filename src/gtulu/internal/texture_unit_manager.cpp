@@ -20,7 +20,7 @@ namespace gtulu {
       __info
         << "Max combined texture units " << max_texture_unit;
 
-      for (::boost::uint32_t unit_nb = 0; unit_nb < max_texture_unit; ++unit_nb) {
+      for (::std::uint32_t unit_nb = 0; unit_nb < max_texture_unit; ++unit_nb) {
         texture_units[unit_nb].reset();
       }
     }
@@ -56,7 +56,7 @@ namespace gtulu {
       }
 
       if (unit_it != texture_units.end()) {
-        ::boost::uint32_t unit_nb = unit_it->first;
+        ::std::uint32_t unit_nb = unit_it->first;
 
         unit_ptr.reset(new texture_unit(unit_nb));
         texture_units[unit_nb] = unit_ptr;

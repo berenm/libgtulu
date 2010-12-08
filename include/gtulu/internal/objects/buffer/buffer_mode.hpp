@@ -45,41 +45,41 @@ namespace buffer {
 
   template< >
   struct mode_selector< side::client, use::once, side::gl, use::few > {
-      ::boost::uint32_t value = GL_STREAM_DRAW;
+      ::std::uint32_t value = GL_STREAM_DRAW;
   };
   template< >
   struct mode_selector< side::gl, use::once, side::client, use::few > {
-      ::boost::uint32_t value = GL_STREAM_READ;
+      ::std::uint32_t value = GL_STREAM_READ;
   };
   template< >
   struct mode_selector< side::gl, use::once, side::gl, use::few > {
-      ::boost::uint32_t value = GL_STREAM_COPY;
+      ::std::uint32_t value = GL_STREAM_COPY;
   };
 
   template< >
   struct mode_selector< side::client, use::once, side::gl, use::many > {
-      ::boost::uint32_t value = GL_STATIC_DRAW;
+      ::std::uint32_t value = GL_STATIC_DRAW;
   };
   template< >
   struct mode_selector< side::gl, use::once, side::client, use::many > {
-      ::boost::uint32_t value = GL_STATIC_READ;
+      ::std::uint32_t value = GL_STATIC_READ;
   };
   template< >
   struct mode_selector< side::gl, use::once, side::gl, use::many > {
-      ::boost::uint32_t value = GL_STATIC_COPY;
+      ::std::uint32_t value = GL_STATIC_COPY;
   };
 
   template< >
   struct mode_selector< side::client, use::many, side::gl, use::many > {
-      ::boost::uint32_t value = GL_DYNAMIC_DRAW;
+      ::std::uint32_t value = GL_DYNAMIC_DRAW;
   };
   template< >
   struct mode_selector< side::gl, use::many, side::client, use::many > {
-      ::boost::uint32_t value = GL_DYNAMIC_READ;
+      ::std::uint32_t value = GL_DYNAMIC_READ;
   };
   template< >
   struct mode_selector< side::gl, use::many, side::gl, use::many > {
-      ::boost::uint32_t value = GL_DYNAMIC_COPY;
+      ::std::uint32_t value = GL_DYNAMIC_COPY;
   };
 
 }

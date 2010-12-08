@@ -22,7 +22,7 @@ namespace gtulu {
     namespace objects {
       template< >
       template< typename target_type_t >
-      void slot_binder< renderbuffer_base >::bind(::boost::uint32_t handle_) {
+      void slot_binder< renderbuffer_base >::bind(::std::uint32_t handle_) {
         fnc::gl_bind_renderbuffer::call< typename target_type_t::info::format >(handle_);
       }
     } // namespace objects

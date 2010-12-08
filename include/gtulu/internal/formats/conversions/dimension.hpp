@@ -16,7 +16,7 @@ namespace gtulu {
 
     namespace formats {
       namespace common {
-        template< ::boost::uint8_t dim1_t, ::boost::uint8_t dim2_t = 1 >
+        template< ::std::uint8_t dim1_t, ::std::uint8_t dim2_t = 1 >
         struct to_typename;
 
         template< >

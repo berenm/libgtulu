@@ -19,12 +19,12 @@ namespace gtulu {
     namespace objects {
       struct object_base {
         protected:
-          ::boost::uint32_t handle_;
+          ::std::uint32_t handle_;
           object_base();
-          explicit object_base(const ::boost::uint32_t handle_in);
+          explicit object_base(const ::std::uint32_t handle_in);
 
         public:
-          ::boost::uint32_t operator*() const;
+          ::std::uint32_t operator*() const;
       };
 
       template< typename object_type_t >
@@ -51,7 +51,7 @@ namespace gtulu {
 
         protected:
           template< typename target_type_t = void >
-          static void bind(::boost::uint32_t handle_);
+          static void bind(::std::uint32_t handle_);
       };
     } // namespace objects
 

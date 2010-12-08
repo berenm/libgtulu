@@ -46,7 +46,7 @@ namespace gtulu {
                   sampler_format_t > > are_both_unsigned_integer;
 
               typedef bm::or_< are_both_floating, are_both_integer, are_both_unsigned_integer > type;
-              static_assert(type::value, "internal_type_t is not compatible with uniform sampler_type_t, floating sampler require floating, fixed or unsigned_fixed internal type, integer sampler require integer internal type and ::boost::uint32_teger sampler require ::boost::uint32_teger internal type.");
+              static_assert(type::value, "internal_type_t is not compatible with uniform sampler_type_t, floating sampler require floating, fixed or unsigned_fixed internal type, integer sampler require integer internal type and ::std::uint32_teger sampler require ::std::uint32_teger internal type.");
           };
 
           template< typename sampler_target_format_t, typename texture_target_format_t >

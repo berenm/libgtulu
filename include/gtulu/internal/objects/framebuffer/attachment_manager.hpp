@@ -21,7 +21,7 @@ namespace gtulu {
   namespace internal {
 
     struct attachment: gio::object_base {
-        explicit attachment(const ::boost::uint32_t handle_in) :
+        explicit attachment(const ::std::uint32_t handle_in) :
           object_base(handle_in) {
         }
 
@@ -31,10 +31,10 @@ namespace gtulu {
     };
 
     struct attachment_manager: ::boost::noncopyable {
-        typedef ::std::map< ::boost::uint32_t, ::boost::weak_ptr< attachment > > attachment_map;
-        typedef ::std::map< ::boost::uint32_t, ::boost::shared_ptr< attachment > > attachment_mappings_map;
+        typedef ::std::map< ::std::uint32_t, ::boost::weak_ptr< attachment > > attachment_map;
+        typedef ::std::map< ::std::uint32_t, ::boost::shared_ptr< attachment > > attachment_mappings_map;
 
-        ::boost::uint32_t max_attachment;
+        ::std::uint32_t max_attachment;
         attachment_mappings_map attachment_mappings;
         attachment_map attachments;
 
@@ -52,9 +52,9 @@ namespace gtulu {
         void clear();
 
       protected:
-        ::boost::shared_ptr< attachment > get_current(const ::boost::uint32_t handle);
-        ::boost::shared_ptr< attachment > get_new(const ::boost::uint32_t handle);
-        ::boost::shared_ptr< attachment > get_current_or_new(const ::boost::uint32_t handle);
+        ::boost::shared_ptr< attachment > get_current(const ::std::uint32_t handle);
+        ::boost::shared_ptr< attachment > get_new(const ::std::uint32_t handle);
+        ::boost::shared_ptr< attachment > get_current_or_new(const ::std::uint32_t handle);
     };
 
   } // namespace internal

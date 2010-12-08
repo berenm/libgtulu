@@ -21,8 +21,8 @@ namespace gtulu {
     namespace objects {
       template< >
       template< typename target_type_t >
-      void slot_binder< vertexarray_base >::bind(::boost::uint32_t handle_) {
-        static ::boost::uint32_t bound_handle_ = 0;
+      void slot_binder< vertexarray_base >::bind(::std::uint32_t handle_) {
+        static ::std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
           fnc::gl_bind_vertex_array::call(handle_);

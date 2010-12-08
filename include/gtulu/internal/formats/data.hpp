@@ -76,7 +76,7 @@ namespace gtulu {
             (depth_stencil)
         )
 
-        typedef ::boost::uint32_t size_type;
+        typedef ::std::uint32_t size_type;
 
         template< typename format_t, typename value_type_t, typename type_t, typename packing_t, typename order_t,
             size_type size_t >

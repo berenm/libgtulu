@@ -16,7 +16,7 @@
 #else
 #define __gl_check_error \
     { \
-      ::boost::int32_t __gl_error; \
+      ::std::int32_t __gl_error; \
       while ((__gl_error = glGetError()) \
                         != ::gtulu::internal::error::no_error::value) { \
         switch (__gl_error) { \

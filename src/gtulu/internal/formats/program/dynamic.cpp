@@ -23,11 +23,11 @@ namespace gtulu {
     namespace formats {
       namespace program {
 
-        ::boost::uint32_t dynamic_program_format::get_outputs_count() {
+        ::std::uint32_t dynamic_program_format::get_outputs_count() {
           return get_outputs().size();
         }
 
-        ::boost::uint32_t dynamic_program_format::get_output_location(::std::string name) {
+        ::std::uint32_t dynamic_program_format::get_output_location(::std::string name) {
           fp::output_vector_t::iterator it = outputs_.begin();
 
           for (; it != outputs_.end(); ++it) {
@@ -55,8 +55,8 @@ namespace gtulu {
               fp::output_info info = *output_it;
 
               // TODO(rout): find a better way to handle dynamic sized arrays.
-              ::boost::uint32_t max_array_size = 1024;
-              for (::boost::uint32_t i = 0; i != info.size && i < max_array_size; ++i) {
+              ::std::uint32_t max_array_size = 1024;
+              for (::std::uint32_t i = 0; i != info.size && i < max_array_size; ++i) {
                 fp::output_info real_info = info;
 
                 if (real_info.size != 1) {
@@ -94,16 +94,16 @@ namespace gtulu {
           }
         }
 
-        ::boost::uint32_t dynamic_program_format::get_attribute_count() {
+        ::std::uint32_t dynamic_program_format::get_attribute_count() {
           return program_base::get< fpa::gl_active_attributes >();
         }
 
-        ::boost::uint32_t dynamic_program_format::get_attribute_max_length() {
+        ::std::uint32_t dynamic_program_format::get_attribute_max_length() {
           return program_base::get< fpa::gl_active_attribute_max_length >();
         }
 
-        const fp::attribute_info dynamic_program_format::get_attribute_info(::boost::uint32_t id) {
-          ::boost::uint32_t max_len = get_attribute_max_length();
+        const fp::attribute_info dynamic_program_format::get_attribute_info(::std::uint32_t id) {
+          ::std::uint32_t max_len = get_attribute_max_length();
           char* buffer = new char[max_len];
 
           GLsizei length;
@@ -118,16 +118,16 @@ namespace gtulu {
           return fp::attribute_info(id, name, faf::get(type), size, location);
         }
 
-        ::boost::uint32_t dynamic_program_format::get_uniform_count() {
+        ::std::uint32_t dynamic_program_format::get_uniform_count() {
           return program_base::get< fpa::gl_active_uniforms >();
         }
 
-        ::boost::uint32_t dynamic_program_format::get_uniform_max_length() {
+        ::std::uint32_t dynamic_program_format::get_uniform_max_length() {
           return program_base::get< fpa::gl_active_uniform_max_length >();
         }
 
-        const fp::uniform_info dynamic_program_format::get_uniform_info(::boost::uint32_t id) {
-          ::boost::uint32_t max_len = get_uniform_max_length();
+        const fp::uniform_info dynamic_program_format::get_uniform_info(::std::uint32_t id) {
+          ::std::uint32_t max_len = get_uniform_max_length();
           char* buffer = new char[max_len];
 
           GLsizei length;
@@ -142,15 +142,15 @@ namespace gtulu {
           return fp::uniform_info(id, name, fuf::get(type), size, location);
         }
 
-        ::boost::uint32_t dynamic_program_format::get_uniform_block_count() {
+        ::std::uint32_t dynamic_program_format::get_uniform_block_count() {
           return program_base::get< fpa::gl_active_uniform_blocks >();
         }
 
-        ::boost::uint32_t dynamic_program_format::get_uniform_block_max_length() {
+        ::std::uint32_t dynamic_program_format::get_uniform_block_max_length() {
           return program_base::get< fpa::gl_active_uniform_block_max_name_length >();
         }
 
-        const fp::uniform_block_info dynamic_program_format::get_uniform_block_info(::boost::uint32_t index) {
+        const fp::uniform_block_info dynamic_program_format::get_uniform_block_info(::std::uint32_t index) {
           return fp::uniform_block_info(0, "", cst::invalid_constant(), 0, 0);
         }
 
@@ -181,10 +181,10 @@ namespace gtulu {
         void dynamic_program_format::link() {
           program_base::link();
 
-          ::boost::uint32_t length = program_base::get< fpa::gl_info_log_length >();
+          ::std::uint32_t length = program_base::get< fpa::gl_info_log_length >();
           has_link_log_ = length > 1;
 
-          if (length > ::std::numeric_limits< ::boost::uint32_t >::max()) {
+          if (length > ::std::numeric_limits< ::std::uint32_t >::max()) {
             __error << "Log length too long.";
           } else if (!has_link_log_) {
             link_log_ = "";
@@ -192,7 +192,7 @@ namespace gtulu {
             char* buffer = new char[length];
             fnc::gl_get_program_info_log::call(program_base::handle_,
                                                length,
-                                               reinterpret_cast< ::boost::int32_t* > (&length),
+                                               reinterpret_cast< ::std::int32_t* > (&length),
                                                buffer);
 
             link_log_ = ::std::string(buffer);
@@ -200,18 +200,18 @@ namespace gtulu {
             delete[] buffer;
           }
 
-          ::boost::uint32_t attribute_count = get_attribute_count();
-          for (::boost::uint32_t i = 0; i < attribute_count; ++i) {
+          ::std::uint32_t attribute_count = get_attribute_count();
+          for (::std::uint32_t i = 0; i < attribute_count; ++i) {
             attributes_.push_back(get_attribute_info(i));
           }
 
-          ::boost::uint32_t uniform_count = get_uniform_count();
-          for (::boost::uint32_t i = 0; i < uniform_count; ++i) {
+          ::std::uint32_t uniform_count = get_uniform_count();
+          for (::std::uint32_t i = 0; i < uniform_count; ++i) {
             uniforms_.push_back(get_uniform_info(i));
           }
 
-          ::boost::uint32_t uniform_block_count = get_uniform_block_count();
-          for (::boost::uint32_t i = 0; i < uniform_block_count; ++i) {
+          ::std::uint32_t uniform_block_count = get_uniform_block_count();
+          for (::std::uint32_t i = 0; i < uniform_block_count; ++i) {
             uniform_blocks_.push_back(get_uniform_block_info(i));
           }
 
@@ -221,10 +221,10 @@ namespace gtulu {
         void dynamic_program_format::validate() {
           program_base::validate();
 
-          ::boost::uint32_t length = program_base::get< fpa::gl_info_log_length >();
+          ::std::uint32_t length = program_base::get< fpa::gl_info_log_length >();
           has_validation_log_ = length > 1;
 
-          if (length > ::std::numeric_limits< ::boost::uint32_t >::max()) {
+          if (length > ::std::numeric_limits< ::std::uint32_t >::max()) {
             __error << "Log length too long.";
           } else if (!has_validation_log_) {
             validation_log_ = "";
@@ -232,7 +232,7 @@ namespace gtulu {
             char* buffer = new char[length];
             fnc::gl_get_program_info_log::call(program_base::handle_,
                                                length,
-                                               reinterpret_cast< ::boost::int32_t* > (&length),
+                                               reinterpret_cast< ::std::int32_t* > (&length),
                                                buffer);
 
             validation_log_ = ::std::string(buffer);

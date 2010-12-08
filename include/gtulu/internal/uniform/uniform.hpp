@@ -25,7 +25,7 @@ namespace gtulu {
         inline static void bind(const location_t location_in, const fu::to_typename< fut::type_m >::type value_in) { \
           fnc:: gl_uniform_1##suffix_m ::call(location_in, value_in); \
         } \
-        inline static void bind(const location_t location_in, const ::boost::uint32_t number_in, const fu::to_typename< fut::type_m >::type* values_in) { \
+        inline static void bind(const location_t location_in, const ::std::uint32_t number_in, const fu::to_typename< fut::type_m >::type* values_in) { \
           fnc:: gl_uniform_1##suffix_m##v ::call(location_in, number_in, values_in); \
         } \
     };

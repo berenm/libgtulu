@@ -23,8 +23,8 @@ namespace gtulu {
           virtual void compile();
 
           template< typename shader_attribute_t >
-          inline ::boost::uint32_t get() const {
-            ::boost::int32_t data;
+          inline ::std::uint32_t get() const {
+            ::std::int32_t data;
             fnc::gl_get_shaderiv::call< shader_attribute_t >(handle_, &data);
             return data;
           }

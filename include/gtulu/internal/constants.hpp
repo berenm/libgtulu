@@ -25,9 +25,9 @@ namespace gtulu {
       struct gl_constant_base {
         protected:
           ::std::string string_value;
-          ::boost::uint32_t uint32_value;
+          ::std::uint32_t uint32_value;
 
-          gl_constant_base(const char* string_value_in, ::boost::uint32_t uint32_value_in) :
+          gl_constant_base(const char* string_value_in, ::std::uint32_t uint32_value_in) :
             string_value(string_value_in), uint32_value(uint32_value_in) {
           }
 
@@ -48,7 +48,7 @@ namespace gtulu {
           operator const ::std::string&() const {
             return string_value;
           }
-          operator const ::boost::uint32_t&() const {
+          operator const ::std::uint32_t&() const {
             return uint32_value;
           }
 
@@ -80,7 +80,7 @@ namespace gtulu {
       const gl_constant< name_t, value_t > gl_constant< name_t, value_t >::instance;
 
       struct runtime_constant: public gl_constant_base {
-          runtime_constant(const gl_constant_base& base, ::boost::uint32_t offset_in) :
+          runtime_constant(const gl_constant_base& base, ::std::uint32_t offset_in) :
             gl_constant_base(base) {
             string_value.erase(string_value.end() - 1);
             string_value += ::boost::lexical_cast< ::std::string >(offset_in);

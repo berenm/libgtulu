@@ -54,8 +54,8 @@ namespace gtulu {
     namespace objects {
       template< >
       template< typename target_type_t >
-      void slot_binder< buffer_base >::bind(::boost::uint32_t handle_) {
-        static ::boost::uint32_t bound_handle_ = 0;
+      void slot_binder< buffer_base >::bind(::std::uint32_t handle_) {
+        static ::std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
           fnc::gl_bind_buffer::call< target_type_t >(handle_);
@@ -84,12 +84,12 @@ namespace gtulu {
           using buffer_slot< slot_type_t >::bind;
           using buffer_slot< slot_type_t >::unbind;
 
-          static inline void bind(const gio::plug< gio::buffer_base >& buffer, const ::boost::uint32_t index,
-                                  const ::boost::uint32_t offset, const ::boost::uint32_t size) {
+          static inline void bind(const gio::plug< gio::buffer_base >& buffer, const ::std::uint32_t index,
+                                  const ::std::uint32_t offset, const ::std::uint32_t size) {
             fnc::gl_bind_buffer_range::call< slot_type_t >(index, *buffer, offset, size);
           }
 
-          static inline void bind(const gio::plug< gio::buffer_base >& buffer, const ::boost::uint32_t index) {
+          static inline void bind(const gio::plug< gio::buffer_base >& buffer, const ::std::uint32_t index) {
             fnc::gl_bind_buffer_base::call< slot_type_t >(index, *buffer);
           }
       };
@@ -123,12 +123,12 @@ namespace gtulu {
           }
 
           template< typename slot_type_t >
-          inline void bind(const ::boost::uint32_t index) const {
+          inline void bind(const ::std::uint32_t index) const {
             slot_type_t::bind(*this, index);
           }
 
           template< typename slot_type_t >
-          inline void bind(const ::boost::uint32_t index, const ::std::size_t offset, const ::std::size_t size) const {
+          inline void bind(const ::std::uint32_t index, const ::std::size_t offset, const ::std::size_t size) const {
             slot_type_t::bind(*this, index, offset, size);
           }
 

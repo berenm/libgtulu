@@ -63,12 +63,12 @@ namespace gtulu {
             ::boost::sregex_iterator it(source.begin(), source.end(), expression);
             ::boost::sregex_iterator end;
 
-            ::boost::uint32_t id = 0;
+            ::std::uint32_t id = 0;
             while (it != end) {
               ::std::string type_name = it->str(1);
               ::std::string name = it->str(2);
 
-              ::boost::uint32_t size = 1;
+              ::std::uint32_t size = 1;
 
               ::boost::sregex_iterator name_it(name.begin(), name.end(), array_expression);
               ::boost::sregex_iterator type_it(type_name.begin(), type_name.end(), array_expression);
@@ -76,7 +76,7 @@ namespace gtulu {
               // We've found a static sized output vector, that's really nice...
               if (name_it != end) {
                 name = name_it->str(1);
-                size = ::boost::lexical_cast< ::boost::uint32_t >(name_it->str(2));
+                size = ::boost::lexical_cast< ::std::uint32_t >(name_it->str(2));
 
                 // We've just found a dynamic sized output vector, what a wonderful idea...
               } else if (type_it != end) {
@@ -93,11 +93,11 @@ namespace gtulu {
         void dynamic_shader_format::compile() {
           gio::shader_base::compile();
 
-          ::boost::uint32_t length = gio::shader_base::get< fsa::gl_info_log_length >();
+          ::std::uint32_t length = gio::shader_base::get< fsa::gl_info_log_length >();
 
           has_log_ = length > 1;
 
-          if (length > ::std::numeric_limits< ::boost::uint32_t >::max()) {
+          if (length > ::std::numeric_limits< ::std::uint32_t >::max()) {
             __error
               << "Log length too long.";
           } else if (!has_log_) {
@@ -105,7 +105,7 @@ namespace gtulu {
           } else {
             char* buffer = new char[length];
             fnc::gl_get_shader_info_log::call(gio::shader_base::handle_, length,
-                reinterpret_cast< ::boost::int32_t* > (&length), buffer);
+                reinterpret_cast< ::std::int32_t* > (&length), buffer);
 
             log_ = ::std::string(buffer);
 

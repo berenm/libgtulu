@@ -17,8 +17,8 @@
 #include <boost/preprocessor.hpp>
 
 namespace gtulu {
-  typedef ::boost::uint32_t location_t;
-  typedef ::boost::uint32_t handle_t;
+  typedef ::std::uint32_t location_t;
+  typedef ::std::uint32_t handle_t;
 } // namespace gtulu
 
 #undef IN_OPENGL_HPP_

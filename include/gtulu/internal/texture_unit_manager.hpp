@@ -22,7 +22,7 @@ namespace gtulu {
   namespace internal {
 
     struct texture_unit: gio::object_base {
-        explicit texture_unit(const ::boost::uint32_t handle_in) :
+        explicit texture_unit(const ::std::uint32_t handle_in) :
           object_base(handle_in) {
         }
 
@@ -38,13 +38,13 @@ namespace gtulu {
     };
 
     struct texture_unit_manager {
-        typedef ::std::map< ::boost::uint32_t, ::boost::weak_ptr< texture_unit > > texture_unit_map;
-        typedef ::std::map< ::boost::uint32_t, ::boost::shared_ptr< texture_unit > > texture_unit_mappings_map;
+        typedef ::std::map< ::std::uint32_t, ::boost::weak_ptr< texture_unit > > texture_unit_map;
+        typedef ::std::map< ::std::uint32_t, ::boost::shared_ptr< texture_unit > > texture_unit_mappings_map;
 
         static ::boost::thread_specific_ptr< texture_unit_manager > instance_ptr;
         static texture_unit_manager& instance();
 
-        ::boost::uint32_t max_texture_unit;
+        ::std::uint32_t max_texture_unit;
         texture_unit_mappings_map texture_unit_mappings;
         texture_unit_map texture_units;
 

@@ -122,9 +122,9 @@ namespace gtulu {
             struct vertex_array_format: public gio::vertexarray_base, public gid::drawable {
                 template< typename drawing_mode_t = gidm::gl_triangles >
                 inline void draw(const gio::program< _program_tpl_program_format >& program_in,
-                                 const ::boost::uint32_t start_in,
-                                 const ::boost::uint32_t count_in,
-                                 const ::boost::uint32_t instance_count_in = 1) {
+                                 const ::std::uint32_t start_in,
+                                 const ::std::uint32_t count_in,
+                                 const ::std::uint32_t instance_count_in = 1) {
                   draw< drawing_mode_t > (program_in,
                                           *program_in.get_default_framebuffer(),
                                           start_in,
@@ -134,8 +134,8 @@ namespace gtulu {
 
                 template< typename drawing_mode_t = gidm::gl_triangles >
                 inline void draw_multiple(const gio::program< _program_tpl_program_format >& program_in,
-                                          const ::boost::uint32_t starts_in[],
-                                          const ::boost::uint32_t counts_in[],
+                                          const ::std::uint32_t starts_in[],
+                                          const ::std::uint32_t counts_in[],
                                           const ::std::size_t count_in) {
                   draw_multiple< drawing_mode_t > (program_in,
                                                    *program_in.get_default_framebuffer(),
@@ -148,10 +148,10 @@ namespace gtulu {
                     typename buffer_usage_t >
                 inline void draw(const gio::program< _program_tpl_program_format >& program_in,
                                  const gio::buffer< buffer_format_t, buffer_usage_t >& buffer_in,
-                                 const ::boost::uint32_t count_in,
-                                 const ::boost::uint32_t offset_in = 0,
-                                 const ::boost::uint32_t instance_count_in = 1,
-                                 const ::boost::uint32_t base_vertex_in = 0) {
+                                 const ::std::uint32_t count_in,
+                                 const ::std::uint32_t offset_in = 0,
+                                 const ::std::uint32_t instance_count_in = 1,
+                                 const ::std::uint32_t base_vertex_in = 0) {
                   draw< drawing_mode_t > (program_in,
                                           *program_in.get_default_framebuffer(),
                                           buffer_in,
@@ -165,11 +165,11 @@ namespace gtulu {
                     typename buffer_usage_t >
                 inline void draw_range(const gio::program< _program_tpl_program_format >& program_in,
                                        const gio::buffer< buffer_format_t, buffer_usage_t >& buffer_in,
-                                       const ::boost::uint32_t count_in,
-                                       const ::boost::uint32_t min_index_in,
-                                       const ::boost::uint32_t max_index_in,
-                                       const ::boost::uint32_t offset_in = 0,
-                                       const ::boost::uint32_t base_vertex_in = 0) {
+                                       const ::std::uint32_t count_in,
+                                       const ::std::uint32_t min_index_in,
+                                       const ::std::uint32_t max_index_in,
+                                       const ::std::uint32_t offset_in = 0,
+                                       const ::std::uint32_t base_vertex_in = 0) {
                   draw_range< drawing_mode_t > (program_in,
                                                 *program_in.get_default_framebuffer(),
                                                 buffer_in,
@@ -184,8 +184,8 @@ namespace gtulu {
                     typename buffer_usage_t >
                 inline void draw_multiple(const gio::program< _program_tpl_program_format >& program_in,
                                           const gio::buffer< buffer_format_t, buffer_usage_t >& buffer_in,
-                                          const ::boost::uint32_t counts_in[],
-                                          const ::boost::uint32_t offsets_in[],
+                                          const ::std::uint32_t counts_in[],
+                                          const ::std::uint32_t offsets_in[],
                                           const ::std::size_t count_in) {
                   draw_multiple< drawing_mode_t > (program_in,
                                                    *program_in.get_default_framebuffer(),
@@ -198,9 +198,9 @@ namespace gtulu {
                 template< typename drawing_mode_t = gidm::gl_triangles >
                 inline void draw(const gio::program< _program_tpl_program_format >& program_in,
                                  const gio::framebuffer_base& framebuffer_in,
-                                 const ::boost::uint32_t start_in,
-                                 const ::boost::uint32_t count_in,
-                                 const ::boost::uint32_t instance_count_in = 1) {
+                                 const ::std::uint32_t start_in,
+                                 const ::std::uint32_t count_in,
+                                 const ::std::uint32_t instance_count_in = 1) {
                   program_in.bind();
                   framebuffer_in.bind< gif::draw_framebuffer_slot > ();
                   gio::vertexarray_base::bind();
@@ -210,8 +210,8 @@ namespace gtulu {
                 template< typename drawing_mode_t = gidm::gl_triangles >
                 inline void draw_multiple(const gio::program< _program_tpl_program_format >& program_in,
                                           const gio::framebuffer_base& framebuffer_in,
-                                          const ::boost::uint32_t starts_in[],
-                                          const ::boost::uint32_t counts_in[],
+                                          const ::std::uint32_t starts_in[],
+                                          const ::std::uint32_t counts_in[],
                                           const ::std::size_t count_in) {
                   program_in.bind();
                   framebuffer_in.bind< gif::draw_framebuffer_slot > ();
@@ -224,10 +224,10 @@ namespace gtulu {
                 inline void draw(const gio::program< _program_tpl_program_format >& program_in,
                                  const gio::framebuffer_base& framebuffer_in,
                                  const gio::buffer< buffer_format_t, buffer_usage_t >& buffer_in,
-                                 const ::boost::uint32_t count_in,
-                                 const ::boost::uint32_t offset_in = 0,
-                                 const ::boost::uint32_t instance_count_in = 1,
-                                 const ::boost::uint32_t base_vertex_in = 0) {
+                                 const ::std::uint32_t count_in,
+                                 const ::std::uint32_t offset_in = 0,
+                                 const ::std::uint32_t instance_count_in = 1,
+                                 const ::std::uint32_t base_vertex_in = 0) {
                   program_in.bind();
                   framebuffer_in.bind< gif::draw_framebuffer_slot > ();
                   gio::vertexarray_base::bind();
@@ -243,11 +243,11 @@ namespace gtulu {
                 inline void draw_range(const gio::program< _program_tpl_program_format >& program_in,
                                        const gio::framebuffer_base& framebuffer_in,
                                        const gio::buffer< buffer_format_t, buffer_usage_t >& buffer_in,
-                                       const ::boost::uint32_t count_in,
-                                       const ::boost::uint32_t min_index_in,
-                                       const ::boost::uint32_t max_index_in,
-                                       const ::boost::uint32_t offset_in = 0,
-                                       const ::boost::uint32_t base_vertex_in = 0) {
+                                       const ::std::uint32_t count_in,
+                                       const ::std::uint32_t min_index_in,
+                                       const ::std::uint32_t max_index_in,
+                                       const ::std::uint32_t offset_in = 0,
+                                       const ::std::uint32_t base_vertex_in = 0) {
                   program_in.bind();
                   framebuffer_in.bind< gif::draw_framebuffer_slot > ();
                   gio::vertexarray_base::bind();
@@ -264,8 +264,8 @@ namespace gtulu {
                 inline void draw_multiple(const gio::program< _program_tpl_program_format >& program_in,
                                           const gio::framebuffer_base& framebuffer_in,
                                           const gio::buffer< buffer_format_t, buffer_usage_t >& buffer_in,
-                                          const ::boost::uint32_t counts_in[],
-                                          const ::boost::uint32_t offsets_in[],
+                                          const ::std::uint32_t counts_in[],
+                                          const ::std::uint32_t offsets_in[],
                                           const ::std::size_t count_in) {
                   program_in.bind();
                   framebuffer_in.bind< gif::draw_framebuffer_slot > ();
@@ -284,8 +284,8 @@ namespace gtulu {
                 }
                 template< typename buffer_format_t, typename buffer_usage_t >
                 void set__name_tpl(const gio::buffer< buffer_format_t, buffer_usage_t >& buffer_in,
-                                   const ::boost::uint32_t offset_in = 0,
-                                   const ::boost::uint32_t stride_in = 0) {
+                                   const ::std::uint32_t offset_in = 0,
+                                   const ::std::uint32_t stride_in = 0) {
                   gio::vertexarray_base::bind();
                   _name_tpl_buffer_binder_t::checked_binder< buffer_format_t >::bind(_location_tpl,
                                                                                      buffer_in,
@@ -294,8 +294,8 @@ namespace gtulu {
                 }
                 template< typename buffer_format_t, typename buffer_usage_t >
                 void set__name_tpl_normalized(const gio::buffer< buffer_format_t, buffer_usage_t >& buffer_in,
-                                              const ::boost::uint32_t offset_in = 0,
-                                              const ::boost::uint32_t stride_in = 0) {
+                                              const ::std::uint32_t offset_in = 0,
+                                              const ::std::uint32_t stride_in = 0) {
                   gio::vertexarray_base::bind();
                   _name_tpl_buffer_binder_t::checked_binder< buffer_format_t, fdn::normalized >::bind(_location_tpl,
                                                                                                       buffer_in,
@@ -304,8 +304,8 @@ namespace gtulu {
                 }
                 template< typename buffer_format_t, typename buffer_usage_t >
                 void set__name_tpl_gbra(const gio::buffer< buffer_format_t, buffer_usage_t >& buffer_in,
-                                        const ::boost::uint32_t offset_in = 0,
-                                        const ::boost::uint32_t stride_in = 0) {
+                                        const ::std::uint32_t offset_in = 0,
+                                        const ::std::uint32_t stride_in = 0) {
                   gio::vertexarray_base::bind();
                   _name_tpl_buffer_binder_t::checked_binder< buffer_format_t, fdn::normal, fdo::reverse >::bind(_location_tpl,
                                                                                                                 buffer_in,
@@ -325,8 +325,8 @@ namespace gtulu {
                 }
                 template< typename buffer_format_t, typename buffer_usage_t >
                 void set__name_tpl(const gio::buffer< buffer_format_t, buffer_usage_t >& buffer_in,
-                                   const ::boost::uint32_t offset_in = 0,
-                                   const ::boost::uint32_t stride_in = 0) {
+                                   const ::std::uint32_t offset_in = 0,
+                                   const ::std::uint32_t stride_in = 0) {
                   gio::vertexarray_base::bind();
                   _name_tpl_buffer_binder_t::checked_binder< buffer_format_t >::bind(_location_tpl,
                                                                                      buffer_in,
@@ -335,8 +335,8 @@ namespace gtulu {
                 }
                 template< typename buffer_format_t, typename buffer_usage_t >
                 void set__name_tpl_normalized(const gio::buffer< buffer_format_t, buffer_usage_t >& buffer_in,
-                                              const ::boost::uint32_t offset_in = 0,
-                                              const ::boost::uint32_t stride_in = 0) {
+                                              const ::std::uint32_t offset_in = 0,
+                                              const ::std::uint32_t stride_in = 0) {
                   gio::vertexarray_base::bind();
                   _name_tpl_buffer_binder_t::checked_binder< buffer_format_t, fdn::normalized >::bind(_location_tpl,
                                                                                                       buffer_in,
@@ -345,8 +345,8 @@ namespace gtulu {
                 }
                 template< typename buffer_format_t, typename buffer_usage_t >
                 void set__name_tpl_gbra(const gio::buffer< buffer_format_t, buffer_usage_t >& buffer_in,
-                                        const ::boost::uint32_t offset_in = 0,
-                                        const ::boost::uint32_t stride_in = 0) {
+                                        const ::std::uint32_t offset_in = 0,
+                                        const ::std::uint32_t stride_in = 0) {
                   gio::vertexarray_base::bind();
                   _name_tpl_buffer_binder_t::checked_binder< buffer_format_t, fdn::normal, fdo::reverse >::bind(_location_tpl,
                                                                                                                 buffer_in,

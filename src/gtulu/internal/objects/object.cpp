@@ -16,11 +16,11 @@ namespace gtulu {
         handle_(0) {
       }
 
-      object_base::object_base(const ::boost::uint32_t handle_in) :
+      object_base::object_base(const ::std::uint32_t handle_in) :
         handle_(handle_in) {
       }
 
-      ::boost::uint32_t object_base::operator *() const {
+      ::std::uint32_t object_base::operator *() const {
         return handle_;
       }
 

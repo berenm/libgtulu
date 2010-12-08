@@ -51,35 +51,35 @@ namespace gtulu {
         DECLARE_BINDER_METHODS(value_types_count_m, value_types_m, prefix_m, count_m) \
     }; \
 
-        DECLARE_BINDER(integer, 1, ((::boost::int32_t, _i)), _i, 2)
-        DECLARE_BINDER(integer, 1, ((::boost::int32_t, _i)), _i, 3)
-        DECLARE_BINDER(integer, 1, ((::boost::int32_t, _i)), _i, 4)
+        DECLARE_BINDER(integer, 1, ((::std::int32_t, _i)), _i, 2)
+        DECLARE_BINDER(integer, 1, ((::std::int32_t, _i)), _i, 3)
+        DECLARE_BINDER(integer, 1, ((::std::int32_t, _i)), _i, 4)
 
-        DECLARE_BINDER(unsigned_integer, 1, ((::boost::uint32_t, _ui)), _i, 2)
-        DECLARE_BINDER(unsigned_integer, 1, ((::boost::uint32_t, _ui)), _i, 3)
-        DECLARE_BINDER(unsigned_integer, 1, ((::boost::uint32_t, _ui)), _i, 4)
+        DECLARE_BINDER(unsigned_integer, 1, ((::std::uint32_t, _ui)), _i, 2)
+        DECLARE_BINDER(unsigned_integer, 1, ((::std::uint32_t, _ui)), _i, 3)
+        DECLARE_BINDER(unsigned_integer, 1, ((::std::uint32_t, _ui)), _i, 4)
 
-        DECLARE_BINDER(floating, 3, ((double, _d), (float, _f), (::boost::int16_t, _s)), BOOST_PP_EMPTY(), 2)
-        DECLARE_BINDER(floating, 3, ((double, _d), (float, _f), (::boost::int16_t, _s)), BOOST_PP_EMPTY(), 3)
+        DECLARE_BINDER(floating, 3, ((double, _d), (float, _f), (::std::int16_t, _s)), BOOST_PP_EMPTY(), 2)
+        DECLARE_BINDER(floating, 3, ((double, _d), (float, _f), (::std::int16_t, _s)), BOOST_PP_EMPTY(), 3)
 
         template< >
         struct attribute_binder< fat::floating, favc::four > {
-            DECLARE_BINDER_METHODS(3, ((double, _d), (float, _f), (::boost::int16_t, _s)), BOOST_PP_EMPTY(), 4)
+            DECLARE_BINDER_METHODS(3, ((double, _d), (float, _f), (::std::int16_t, _s)), BOOST_PP_EMPTY(), 4)
 
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int32_t, _i, BOOST_PP_EMPTY())
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int8_t, _b, BOOST_PP_EMPTY())
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint32_t, _ui, BOOST_PP_EMPTY())
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint16_t, _us, BOOST_PP_EMPTY())
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint8_t, _ub, BOOST_PP_EMPTY())
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::std::int32_t, _i, BOOST_PP_EMPTY())
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::std::int8_t, _b, BOOST_PP_EMPTY())
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::std::uint32_t, _ui, BOOST_PP_EMPTY())
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::std::uint16_t, _us, BOOST_PP_EMPTY())
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::std::uint8_t, _ub, BOOST_PP_EMPTY())
 
-            DECLARE_BINDER_METHOD_LITERAL(4, BOOST_PP_EMPTY(), ::boost::uint8_t, _nub, _normalized)
+            DECLARE_BINDER_METHOD_LITERAL(4, BOOST_PP_EMPTY(), ::std::uint8_t, _nub, _normalized)
 
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int32_t, _ni, _normalized)
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int16_t, _ns, _normalized)
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::int8_t, _nb, _normalized)
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint32_t, _nui, _normalized)
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint16_t, _nus, _normalized)
-            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::boost::uint8_t, _nub, _normalized)
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::std::int32_t, _ni, _normalized)
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::std::int16_t, _ns, _normalized)
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::std::int8_t, _nb, _normalized)
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::std::uint32_t, _nui, _normalized)
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::std::uint16_t, _nus, _normalized)
+            DECLARE_BINDER_METHOD_ARRAY(4, BOOST_PP_EMPTY(), ::std::uint8_t, _nub, _normalized)
         };
 
 #undef DECLARE_BINDER

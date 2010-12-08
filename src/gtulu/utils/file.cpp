@@ -22,7 +22,7 @@ namespace gtulu {
         ::boost::filesystem::ifstream stream(path);
 
         stream.seekg(0, std::ios::end);
-        ::boost::uint32_t size = stream.tellg();
+        ::std::uint32_t size = stream.tellg();
 
         ::boost::scoped_array< char > buffer(new char[size]);
 

@@ -37,9 +37,9 @@ namespace gtulu {
         BOOST_PP_LIST_FOR_EACH(DECLARE_BINDER_METHOD_TUPLE, prefix_m, BOOST_PP_TUPLE_TO_LIST(value_types_count_m, value_types_m)) \
   }; \
 
-      DECLARE_BINDER(floating, 3, ((double, _d), (float, _f), (::boost::int16_t, _s)), BOOST_PP_EMPTY())
-      DECLARE_BINDER(integer, 1, ((::boost::int32_t, _i)), _i)
-      DECLARE_BINDER(unsigned_integer, 1, ((::boost::uint32_t, _ui)), _i)
+      DECLARE_BINDER(floating, 3, ((double, _d), (float, _f), (::std::int16_t, _s)), BOOST_PP_EMPTY())
+      DECLARE_BINDER(integer, 1, ((::std::int32_t, _i)), _i)
+      DECLARE_BINDER(unsigned_integer, 1, ((::std::uint32_t, _ui)), _i)
 
 #undef DECLARE_BINDER
 #undef DECLARE_BINDER_METHOD_TUPLE

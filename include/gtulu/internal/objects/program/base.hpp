@@ -21,8 +21,8 @@ namespace gtulu {
     namespace objects {
       template< >
       template< typename target_type_t >
-      void slot_binder< program_base >::bind(::boost::uint32_t handle_) {
-        static ::boost::uint32_t bound_handle_ = 0;
+      void slot_binder< program_base >::bind(::std::uint32_t handle_) {
+        static ::std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
           fnc::gl_use_program::call(handle_);
@@ -63,8 +63,8 @@ namespace gtulu {
           }
 
           template< typename program_attribute_t >
-          inline ::boost::uint32_t get() const {
-            ::boost::int32_t data;
+          inline ::std::uint32_t get() const {
+            ::std::int32_t data;
             fnc::gl_get_programiv::call< program_attribute_t >(handle_, &data);
             return data;
           }

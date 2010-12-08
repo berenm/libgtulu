@@ -28,7 +28,7 @@ namespace gtulu {
             typedef bm::and_< is_internal_integer, fgt::is_integer< group_format_t > > are_both_integer;
 
             typedef bm::or_< are_both_floating, are_both_integer > type;
-            static_assert(type::value, "internal_type_t is not compatible with group_format_t, floating group require floating, fixed or unsigned_fixed internal type, integer group require integer internal type and ::boost::uint32_teger group require ::boost::uint32_teger internal type.");
+            static_assert(type::value, "internal_type_t is not compatible with group_format_t, floating group require floating, fixed or unsigned_fixed internal type, integer group require integer internal type and ::std::uint32_teger group require ::std::uint32_teger internal type.");
         };
 
         template< typename group_format_t, typename internal_format_t >
