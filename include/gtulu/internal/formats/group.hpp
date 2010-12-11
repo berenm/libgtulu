@@ -105,7 +105,9 @@ namespace gtulu {
         DECLARE_GROUP_FORMAT(gl_rgba_integer, rgba, integer, normal)
         DECLARE_GROUP_FORMAT(gl_bgr_integer, rgb, integer, reverse)
         DECLARE_GROUP_FORMAT(gl_bgra_integer, rgba, integer, reverse)
+
 #undef DECLARE_GROUP_FORMAT
+
       } // namespace group
     } // namespace formats
 

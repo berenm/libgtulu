@@ -36,23 +36,20 @@ namespace gtulu {
             struct gl_finish;
             struct gl_flush;
             struct gl_front_face;
-            struct gl_get_booleanv;
-            struct gl_get_doublev;
+            struct gl_get_boolean;
+            struct gl_get_double;
             struct gl_get_error;
-            struct gl_get_floatv;
-            struct gl_get_integerv;
+            struct gl_get_float;
+            struct gl_get_integer;
             struct gl_get_string;
             struct gl_get_tex_image;
-            struct gl_get_tex_level_parameterfv;
-            struct gl_get_tex_level_parameteriv;
-            struct gl_get_tex_parameterfv;
-            struct gl_get_tex_parameteriv;
+            struct gl_get_tex_level_parameter;
+            struct gl_get_tex_parameter;
             struct gl_hint;
             struct gl_is_enabled;
             struct gl_line_width;
             struct gl_logic_op;
-            struct gl_pixel_storef;
-            struct gl_pixel_storei;
+            struct gl_pixel_store;
             struct gl_point_size;
             struct gl_polygon_mode;
             struct gl_read_buffer;
@@ -63,10 +60,7 @@ namespace gtulu {
             struct gl_stencil_op;
             struct gl_tex_image_1d;
             struct gl_tex_image_2d;
-            struct gl_tex_parameterf;
-            struct gl_tex_parameterfv;
-            struct gl_tex_parameteri;
-            struct gl_tex_parameteriv;
+            struct gl_tex_parameter;
             struct gl_viewport;
           } // namespace fnc
         } // namespace v1_0
@@ -81,7 +75,7 @@ namespace gtulu {
             struct gl_draw_arrays;
             struct gl_draw_elements;
             struct gl_gen_textures;
-            struct gl_get_pointerv;
+            struct gl_get_pointer;
             struct gl_is_texture;
             struct gl_polygon_offset;
             struct gl_tex_sub_image_1d;
@@ -116,10 +110,7 @@ namespace gtulu {
             struct gl_blend_func_separate;
             struct gl_multi_draw_arrays;
             struct gl_multi_draw_elements;
-            struct gl_point_parameterf;
-            struct gl_point_parameterfv;
-            struct gl_point_parameteri;
-            struct gl_point_parameteriv;
+            struct gl_point_parameter;
           } // namespace fnc
         } // namespace v1_4
         namespace v1_5 {
@@ -133,12 +124,11 @@ namespace gtulu {
             struct gl_end_query;
             struct gl_gen_buffers;
             struct gl_gen_queries;
-            struct gl_get_buffer_parameteriv;
-            struct gl_get_buffer_pointerv;
+            struct gl_get_buffer_parameter;
+            struct gl_get_buffer_pointer;
             struct gl_get_buffer_sub_data;
-            struct gl_get_query_objectiv;
-            struct gl_get_query_objectuiv;
-            struct gl_get_queryiv;
+            struct gl_get_query;
+            struct gl_get_query_object;
             struct gl_is_buffer;
             struct gl_is_query;
             struct gl_map_buffer;
@@ -163,18 +153,15 @@ namespace gtulu {
             struct gl_get_active_uniform;
             struct gl_get_attached_shaders;
             struct gl_get_attrib_location;
+            struct gl_get_program;
             struct gl_get_program_info_log;
-            struct gl_get_programiv;
+            struct gl_get_shader;
             struct gl_get_shader_info_log;
             struct gl_get_shader_source;
-            struct gl_get_shaderiv;
+            struct gl_get_uniform;
             struct gl_get_uniform_location;
-            struct gl_get_uniformfv;
-            struct gl_get_uniformiv;
-            struct gl_get_vertex_attrib_pointerv;
-            struct gl_get_vertex_attribdv;
-            struct gl_get_vertex_attribfv;
-            struct gl_get_vertex_attribiv;
+            struct gl_get_vertex_attrib;
+            struct gl_get_vertex_attrib_pointer;
             struct gl_is_program;
             struct gl_is_shader;
             struct gl_link_program;
@@ -182,74 +169,31 @@ namespace gtulu {
             struct gl_stencil_func_separate;
             struct gl_stencil_mask_separate;
             struct gl_stencil_op_separate;
-            struct gl_uniform_1_f;
-            struct gl_uniform_1_fv;
-            struct gl_uniform_1_i;
-            struct gl_uniform_1_iv;
-            struct gl_uniform_2_f;
-            struct gl_uniform_2_fv;
-            struct gl_uniform_2_i;
-            struct gl_uniform_2_iv;
-            struct gl_uniform_3_f;
-            struct gl_uniform_3_fv;
-            struct gl_uniform_3_i;
-            struct gl_uniform_3_iv;
-            struct gl_uniform_4_f;
-            struct gl_uniform_4_fv;
-            struct gl_uniform_4_i;
-            struct gl_uniform_4_iv;
-            struct gl_uniform_matrix_2_fv;
-            struct gl_uniform_matrix_3_fv;
-            struct gl_uniform_matrix_4_fv;
+            struct gl_uniform_1;
+            struct gl_uniform_2;
+            struct gl_uniform_3;
+            struct gl_uniform_4;
+            struct gl_uniform_matrix_2;
+            struct gl_uniform_matrix_3;
+            struct gl_uniform_matrix_4;
             struct gl_use_program;
             struct gl_validate_program;
-            struct gl_vertex_attrib_1_d;
-            struct gl_vertex_attrib_1_dv;
-            struct gl_vertex_attrib_1_f;
-            struct gl_vertex_attrib_1_fv;
-            struct gl_vertex_attrib_1_s;
-            struct gl_vertex_attrib_1_sv;
-            struct gl_vertex_attrib_2_d;
-            struct gl_vertex_attrib_2_dv;
-            struct gl_vertex_attrib_2_f;
-            struct gl_vertex_attrib_2_fv;
-            struct gl_vertex_attrib_2_s;
-            struct gl_vertex_attrib_2_sv;
-            struct gl_vertex_attrib_3_d;
-            struct gl_vertex_attrib_3_dv;
-            struct gl_vertex_attrib_3_f;
-            struct gl_vertex_attrib_3_fv;
-            struct gl_vertex_attrib_3_s;
-            struct gl_vertex_attrib_3_sv;
-            struct gl_vertex_attrib_4_nbv;
-            struct gl_vertex_attrib_4_niv;
-            struct gl_vertex_attrib_4_nsv;
-            struct gl_vertex_attrib_4_nub;
-            struct gl_vertex_attrib_4_nubv;
-            struct gl_vertex_attrib_4_nuiv;
-            struct gl_vertex_attrib_4_nusv;
-            struct gl_vertex_attrib_4_bv;
-            struct gl_vertex_attrib_4_d;
-            struct gl_vertex_attrib_4_dv;
-            struct gl_vertex_attrib_4_f;
-            struct gl_vertex_attrib_4_fv;
-            struct gl_vertex_attrib_4_iv;
-            struct gl_vertex_attrib_4_s;
-            struct gl_vertex_attrib_4_sv;
-            struct gl_vertex_attrib_4_ubv;
-            struct gl_vertex_attrib_4_uiv;
-            struct gl_vertex_attrib_4_usv;
+            struct gl_vertex_attrib_1;
+            struct gl_vertex_attrib_2;
+            struct gl_vertex_attrib_3;
+            struct gl_vertex_attrib_4;
+            struct gl_vertex_attrib_4_normalized;
             struct gl_vertex_attrib_pointer;
           } // namespace fnc
         } // namespace v2_0
         namespace v2_1 {
           namespace fnc {
-            struct gl_uniform_matrix_2x3_fv;
-            struct gl_uniform_matrix_2x4_fv;
-            struct gl_uniform_matrix_3x2_fv;
-            struct gl_uniform_matrix_3x4_fv;
-            struct gl_uniform_matrix_4x2_fv;
-            struct gl_uniform_matrix_4x3_fv;
+            struct gl_uniform_matrix_2x3;
+            struct gl_uniform_matrix_2x4;
+            struct gl_uniform_matrix_3x2;
+            struct gl_uniform_matrix_3x4;
+            struct gl_uniform_matrix_4x2;
+            struct gl_uniform_matrix_4x3;
           } // namespace fnc
         } // namespace v2_1
         namespace v3_0 {
@@ -260,58 +204,33 @@ namespace gtulu {
             struct gl_bind_buffer_range;
             struct gl_bind_frag_data_location;
             struct gl_clamp_color;
-            struct gl_clear_bufferfi;
-            struct gl_clear_bufferfv;
-            struct gl_clear_bufferiv;
-            struct gl_clear_bufferuiv;
-            struct gl_color_maski;
-            struct gl_disablei;
-            struct gl_enablei;
+            struct gl_clear_buffer;
+            struct gl_clear_buffer_float;
+            struct gl_color_mask;
+            struct gl_disable;
+            struct gl_enable;
             struct gl_end_conditional_render;
             struct gl_end_transform_feedback;
-            struct gl_get_booleani_v;
+            struct gl_get_boolean_indexed;
             struct gl_get_frag_data_location;
-            struct gl_get_integeri_v;
-            struct gl_get_stringi;
-            struct gl_get_tex_parameter_iiv;
-            struct gl_get_tex_parameter_iuiv;
+            struct gl_get_integer_indexed;
+            struct gl_get_string;
+            struct gl_get_tex_parameter_integer;
             struct gl_get_transform_feedback_varying;
-            struct gl_get_uniformuiv;
-            struct gl_get_vertex_attrib_iiv;
-            struct gl_get_vertex_attrib_iuiv;
-            struct gl_is_enabledi;
-            struct gl_tex_parameter_iiv;
-            struct gl_tex_parameter_iuiv;
+            struct gl_get_uniform;
+            struct gl_get_vertex_attrib_integer;
+            struct gl_is_enabled;
+            struct gl_tex_parameter_integer;
             struct gl_transform_feedback_varyings;
-            struct gl_uniform_1_ui;
-            struct gl_uniform_1_uiv;
-            struct gl_uniform_2_ui;
-            struct gl_uniform_2_uiv;
-            struct gl_uniform_3_ui;
-            struct gl_uniform_3_uiv;
-            struct gl_uniform_4_ui;
-            struct gl_uniform_4_uiv;
-            struct gl_vertex_attrib_i_1_i;
-            struct gl_vertex_attrib_i_1_iv;
-            struct gl_vertex_attrib_i_1_ui;
-            struct gl_vertex_attrib_i_1_uiv;
-            struct gl_vertex_attrib_i_2_i;
-            struct gl_vertex_attrib_i_2_iv;
-            struct gl_vertex_attrib_i_2_ui;
-            struct gl_vertex_attrib_i_2_uiv;
-            struct gl_vertex_attrib_i_3_i;
-            struct gl_vertex_attrib_i_3_iv;
-            struct gl_vertex_attrib_i_3_ui;
-            struct gl_vertex_attrib_i_3_uiv;
-            struct gl_vertex_attrib_i_4_bv;
-            struct gl_vertex_attrib_i_4_i;
-            struct gl_vertex_attrib_i_4_iv;
-            struct gl_vertex_attrib_i_4_sv;
-            struct gl_vertex_attrib_i_4_ubv;
-            struct gl_vertex_attrib_i_4_ui;
-            struct gl_vertex_attrib_i_4_uiv;
-            struct gl_vertex_attrib_i_4_usv;
-            struct gl_vertex_attrib_ipointer;
+            struct gl_uniform_1;
+            struct gl_uniform_2;
+            struct gl_uniform_3;
+            struct gl_uniform_4;
+            struct gl_vertex_attrib_1_integer;
+            struct gl_vertex_attrib_2_integer;
+            struct gl_vertex_attrib_3_integer;
+            struct gl_vertex_attrib_4_integer;
+            struct gl_vertex_attrib_pointer_integer;
           } // namespace fnc
         } // namespace v3_0
         namespace v3_1 {
@@ -325,8 +244,8 @@ namespace gtulu {
         namespace v3_2 {
           namespace fnc {
             struct gl_framebuffer_texture;
-            struct gl_get_buffer_parameteri_64_v;
-            struct gl_get_integer_64_i_v;
+            struct gl_get_buffer_parameter;
+            struct gl_get_integer_indexed;
           } // namespace fnc
         } // namespace v3_2
         namespace v3_3 {
@@ -336,10 +255,10 @@ namespace gtulu {
         } // namespace v3_3
         namespace v4_0 {
           namespace fnc {
-            struct gl_blend_equation_separatei;
-            struct gl_blend_equationi;
-            struct gl_blend_func_separatei;
-            struct gl_blend_funci;
+            struct gl_blend_equation;
+            struct gl_blend_equation_separate;
+            struct gl_blend_func;
+            struct gl_blend_func_separate;
             struct gl_min_sample_shading;
           } // namespace fnc
         } // namespace v4_0
@@ -351,8 +270,8 @@ namespace gtulu {
       namespace arb {
         namespace es2_compatibility {
           namespace fnc {
-            struct gl_clear_depthf;
-            struct gl_depth_rangef;
+            struct gl_clear_depth;
+            struct gl_depth_range;
             struct gl_get_shader_precision_format;
             struct gl_release_shader_compiler;
             struct gl_shader_binary;
@@ -366,7 +285,7 @@ namespace gtulu {
         } // namespace blend_func_extended
         namespace cl_event {
           namespace fnc {
-            struct gl_create_sync_from_clevent_arb;
+            struct gl_create_sync_from_cl_event;
           } // namespace fnc
         } // namespace cl_event
         namespace copy_buffer {
@@ -376,10 +295,10 @@ namespace gtulu {
         } // namespace copy_buffer
         namespace debug_output {
           namespace fnc {
-            struct gl_debug_message_callback_arb;
-            struct gl_debug_message_control_arb;
-            struct gl_debug_message_insert_arb;
-            struct gl_get_debug_message_log_arb;
+            struct gl_debug_message_callback;
+            struct gl_debug_message_control;
+            struct gl_debug_message_insert;
+            struct gl_get_debug_message_log;
           } // namespace fnc
         } // namespace debug_output
         namespace depth_buffer_float {
@@ -392,10 +311,10 @@ namespace gtulu {
         } // namespace depth_clamp
         namespace draw_buffers_blend {
           namespace fnc {
-            struct gl_blend_equation_separatei_arb;
-            struct gl_blend_equationi_arb;
-            struct gl_blend_func_separatei_arb;
-            struct gl_blend_funci_arb;
+            struct gl_blend_equation;
+            struct gl_blend_equation_separate;
+            struct gl_blend_func;
+            struct gl_blend_func_separate;
           } // namespace fnc
         } // namespace draw_buffers_blend
         namespace draw_elements_base_vertex {
@@ -436,8 +355,8 @@ namespace gtulu {
             struct gl_gen_framebuffers;
             struct gl_gen_renderbuffers;
             struct gl_generate_mipmap;
-            struct gl_get_framebuffer_attachment_parameteriv;
-            struct gl_get_renderbuffer_parameteriv;
+            struct gl_get_framebuffer_attachment_parameter;
+            struct gl_get_renderbuffer_parameter;
             struct gl_is_framebuffer;
             struct gl_is_renderbuffer;
             struct gl_renderbuffer_storage;
@@ -452,7 +371,7 @@ namespace gtulu {
           namespace fnc {
             struct gl_get_program_binary;
             struct gl_program_binary;
-            struct gl_program_parameteri;
+            struct gl_program_parameter;
           } // namespace fnc
         } // namespace get_program_binary
         namespace gpu_shader5 {
@@ -461,24 +380,20 @@ namespace gtulu {
         } // namespace gpu_shader5
         namespace gpu_shader_fp64 {
           namespace fnc {
-            struct gl_get_uniformdv;
-            struct gl_uniform_1_d;
-            struct gl_uniform_1_dv;
-            struct gl_uniform_2_d;
-            struct gl_uniform_2_dv;
-            struct gl_uniform_3_d;
-            struct gl_uniform_3_dv;
-            struct gl_uniform_4_d;
-            struct gl_uniform_4_dv;
-            struct gl_uniform_matrix_2_dv;
-            struct gl_uniform_matrix_2x3_dv;
-            struct gl_uniform_matrix_2x4_dv;
-            struct gl_uniform_matrix_3_dv;
-            struct gl_uniform_matrix_3x2_dv;
-            struct gl_uniform_matrix_3x4_dv;
-            struct gl_uniform_matrix_4_dv;
-            struct gl_uniform_matrix_4x2_dv;
-            struct gl_uniform_matrix_4x3_dv;
+            struct gl_get_uniform;
+            struct gl_uniform_1;
+            struct gl_uniform_2;
+            struct gl_uniform_3;
+            struct gl_uniform_4;
+            struct gl_uniform_matrix_2;
+            struct gl_uniform_matrix_2x3;
+            struct gl_uniform_matrix_2x4;
+            struct gl_uniform_matrix_3;
+            struct gl_uniform_matrix_3x2;
+            struct gl_uniform_matrix_3x4;
+            struct gl_uniform_matrix_4;
+            struct gl_uniform_matrix_4x2;
+            struct gl_uniform_matrix_4x3;
           } // namespace fnc
         } // namespace gpu_shader_fp64
         namespace half_float_pixel {
@@ -510,31 +425,24 @@ namespace gtulu {
         } // namespace provoking_vertex
         namespace robustness {
           namespace fnc {
-            struct gl_get_graphics_reset_status_arb;
-            struct gl_getn_color_table_arb;
-            struct gl_getn_compressed_tex_image_arb;
-            struct gl_getn_convolution_filter_arb;
-            struct gl_getn_histogram_arb;
-            struct gl_getn_mapdv_arb;
-            struct gl_getn_mapfv_arb;
-            struct gl_getn_mapiv_arb;
-            struct gl_getn_minmax_arb;
-            struct gl_getn_pixel_mapfv_arb;
-            struct gl_getn_pixel_mapuiv_arb;
-            struct gl_getn_pixel_mapusv_arb;
-            struct gl_getn_polygon_stipple_arb;
-            struct gl_getn_separable_filter_arb;
-            struct gl_getn_tex_image_arb;
-            struct gl_getn_uniformdv_arb;
-            struct gl_getn_uniformfv_arb;
-            struct gl_getn_uniformiv_arb;
-            struct gl_getn_uniformuiv_arb;
-            struct gl_readn_pixels_arb;
+            struct gl_get_graphics_reset_status;
+            struct gl_get_n_color_table;
+            struct gl_get_n_compressed_tex_image;
+            struct gl_get_n_convolution_filter;
+            struct gl_get_n_histogram;
+            struct gl_get_n_map;
+            struct gl_get_n_minmax;
+            struct gl_get_n_pixel_map;
+            struct gl_get_n_polygon_stipple;
+            struct gl_get_n_separable_filter;
+            struct gl_get_n_tex_image;
+            struct gl_get_n_uniform;
+            struct gl_read_n_pixels;
           } // namespace fnc
         } // namespace robustness
         namespace sample_shading {
           namespace fnc {
-            struct gl_min_sample_shading_arb;
+            struct gl_min_sample_shading;
           } // namespace fnc
         } // namespace sample_shading
         namespace sampler_objects {
@@ -542,17 +450,11 @@ namespace gtulu {
             struct gl_bind_sampler;
             struct gl_delete_samplers;
             struct gl_gen_samplers;
-            struct gl_get_sampler_parameter_iiv;
-            struct gl_get_sampler_parameter_iuiv;
-            struct gl_get_sampler_parameterfv;
-            struct gl_get_sampler_parameteriv;
+            struct gl_get_sampler_parameter;
+            struct gl_get_sampler_parameter_integer;
             struct gl_is_sampler;
-            struct gl_sampler_parameter_iiv;
-            struct gl_sampler_parameter_iuiv;
-            struct gl_sampler_parameterf;
-            struct gl_sampler_parameterfv;
-            struct gl_sampler_parameteri;
-            struct gl_sampler_parameteriv;
+            struct gl_sampler_parameter;
+            struct gl_sampler_parameter_integer;
           } // namespace fnc
         } // namespace sampler_objects
         namespace seamless_cube_map {
@@ -563,62 +465,25 @@ namespace gtulu {
           namespace fnc {
             struct gl_active_shader_program;
             struct gl_bind_program_pipeline;
-            struct gl_create_shader_programv;
+            struct gl_create_shader_program;
             struct gl_delete_program_pipelines;
             struct gl_gen_program_pipelines;
+            struct gl_get_program_pipeline;
             struct gl_get_program_pipeline_info_log;
-            struct gl_get_program_pipelineiv;
             struct gl_is_program_pipeline;
-            struct gl_program_uniform_1_d;
-            struct gl_program_uniform_1_dv;
-            struct gl_program_uniform_1_f;
-            struct gl_program_uniform_1_fv;
-            struct gl_program_uniform_1_i;
-            struct gl_program_uniform_1_iv;
-            struct gl_program_uniform_1_ui;
-            struct gl_program_uniform_1_uiv;
-            struct gl_program_uniform_2_d;
-            struct gl_program_uniform_2_dv;
-            struct gl_program_uniform_2_f;
-            struct gl_program_uniform_2_fv;
-            struct gl_program_uniform_2_i;
-            struct gl_program_uniform_2_iv;
-            struct gl_program_uniform_2_ui;
-            struct gl_program_uniform_2_uiv;
-            struct gl_program_uniform_3_d;
-            struct gl_program_uniform_3_dv;
-            struct gl_program_uniform_3_f;
-            struct gl_program_uniform_3_fv;
-            struct gl_program_uniform_3_i;
-            struct gl_program_uniform_3_iv;
-            struct gl_program_uniform_3_ui;
-            struct gl_program_uniform_3_uiv;
-            struct gl_program_uniform_4_d;
-            struct gl_program_uniform_4_dv;
-            struct gl_program_uniform_4_f;
-            struct gl_program_uniform_4_fv;
-            struct gl_program_uniform_4_i;
-            struct gl_program_uniform_4_iv;
-            struct gl_program_uniform_4_ui;
-            struct gl_program_uniform_4_uiv;
-            struct gl_program_uniform_matrix_2_dv;
-            struct gl_program_uniform_matrix_2_fv;
-            struct gl_program_uniform_matrix_2x3_dv;
-            struct gl_program_uniform_matrix_2x3_fv;
-            struct gl_program_uniform_matrix_2x4_dv;
-            struct gl_program_uniform_matrix_2x4_fv;
-            struct gl_program_uniform_matrix_3_dv;
-            struct gl_program_uniform_matrix_3_fv;
-            struct gl_program_uniform_matrix_3x2_dv;
-            struct gl_program_uniform_matrix_3x2_fv;
-            struct gl_program_uniform_matrix_3x4_dv;
-            struct gl_program_uniform_matrix_3x4_fv;
-            struct gl_program_uniform_matrix_4_dv;
-            struct gl_program_uniform_matrix_4_fv;
-            struct gl_program_uniform_matrix_4x2_dv;
-            struct gl_program_uniform_matrix_4x2_fv;
-            struct gl_program_uniform_matrix_4x3_dv;
-            struct gl_program_uniform_matrix_4x3_fv;
+            struct gl_program_uniform_1;
+            struct gl_program_uniform_2;
+            struct gl_program_uniform_3;
+            struct gl_program_uniform_4;
+            struct gl_program_uniform_matrix_2;
+            struct gl_program_uniform_matrix_2x3;
+            struct gl_program_uniform_matrix_2x4;
+            struct gl_program_uniform_matrix_3;
+            struct gl_program_uniform_matrix_3x2;
+            struct gl_program_uniform_matrix_3x4;
+            struct gl_program_uniform_matrix_4;
+            struct gl_program_uniform_matrix_4x2;
+            struct gl_program_uniform_matrix_4x3;
             struct gl_use_program_stages;
             struct gl_validate_program_pipeline;
           } // namespace fnc
@@ -642,23 +507,22 @@ namespace gtulu {
         namespace shader_subroutine {
           namespace fnc {
             struct gl_get_active_subroutine_name;
+            struct gl_get_active_subroutine_uniform;
             struct gl_get_active_subroutine_uniform_name;
-            struct gl_get_active_subroutine_uniformiv;
-            struct gl_get_program_stageiv;
+            struct gl_get_program_stage;
             struct gl_get_subroutine_index;
             struct gl_get_subroutine_uniform_location;
-            struct gl_get_uniform_subroutineuiv;
-            struct gl_uniform_subroutinesuiv;
+            struct gl_get_uniform_subroutine;
+            struct gl_uniform_subroutines;
           } // namespace fnc
         } // namespace shader_subroutine
         namespace shading_language_include {
           namespace fnc {
-            struct gl_compile_shader_include_arb;
-            struct gl_delete_named_string_arb;
-            struct gl_get_named_string_arb;
-            struct gl_get_named_stringiv_arb;
-            struct gl_is_named_string_arb;
-            struct gl_named_string_arb;
+            struct gl_compile_shader_include;
+            struct gl_delete_named_string;
+            struct gl_get_named_string;
+            struct gl_is_named_string;
+            struct gl_named_string;
           } // namespace fnc
         } // namespace shading_language_include
         namespace sync {
@@ -666,16 +530,15 @@ namespace gtulu {
             struct gl_client_wait_sync;
             struct gl_delete_sync;
             struct gl_fence_sync;
-            struct gl_get_integer_64_v;
-            struct gl_get_synciv;
+            struct gl_get_integer;
+            struct gl_get_sync;
             struct gl_is_sync;
             struct gl_wait_sync;
           } // namespace fnc
         } // namespace sync
         namespace tessellation_shader {
           namespace fnc {
-            struct gl_patch_parameterfv;
-            struct gl_patch_parameteri;
+            struct gl_patch_parameter;
           } // namespace fnc
         } // namespace tessellation_shader
         namespace texture_buffer_object_rgb32 {
@@ -700,8 +563,8 @@ namespace gtulu {
         } // namespace texture_gather
         namespace texture_multisample {
           namespace fnc {
-            struct gl_get_multisamplefv;
-            struct gl_sample_maski;
+            struct gl_get_multisample;
+            struct gl_sample_mask;
             struct gl_tex_image_2d_multisample;
             struct gl_tex_image_3d_multisample;
           } // namespace fnc
@@ -724,8 +587,7 @@ namespace gtulu {
         } // namespace texture_swizzle
         namespace timer_query {
           namespace fnc {
-            struct gl_get_query_objecti_64_v;
-            struct gl_get_query_objectui_64_v;
+            struct gl_get_query_object;
             struct gl_query_counter;
           } // namespace fnc
         } // namespace timer_query
@@ -745,15 +607,15 @@ namespace gtulu {
             struct gl_begin_query_indexed;
             struct gl_draw_transform_feedback_stream;
             struct gl_end_query_indexed;
-            struct gl_get_query_indexediv;
+            struct gl_get_query_indexed;
           } // namespace fnc
         } // namespace transform_feedback3
         namespace uniform_buffer_object {
           namespace fnc {
+            struct gl_get_active_uniform_block;
             struct gl_get_active_uniform_block_name;
-            struct gl_get_active_uniform_blockiv;
             struct gl_get_active_uniform_name;
-            struct gl_get_active_uniformsiv;
+            struct gl_get_active_uniforms;
             struct gl_get_uniform_block_index;
             struct gl_get_uniform_indices;
             struct gl_uniform_block_binding;
@@ -773,16 +635,12 @@ namespace gtulu {
         } // namespace vertex_array_object
         namespace vertex_attrib_64bit {
           namespace fnc {
-            struct gl_get_vertex_attrib_ldv;
-            struct gl_vertex_attrib_l_1_d;
-            struct gl_vertex_attrib_l_1_dv;
-            struct gl_vertex_attrib_l_2_d;
-            struct gl_vertex_attrib_l_2_dv;
-            struct gl_vertex_attrib_l_3_d;
-            struct gl_vertex_attrib_l_3_dv;
-            struct gl_vertex_attrib_l_4_d;
-            struct gl_vertex_attrib_l_4_dv;
-            struct gl_vertex_attrib_lpointer;
+            struct gl_get_vertex_attrib_large;
+            struct gl_vertex_attrib_1_large;
+            struct gl_vertex_attrib_2_large;
+            struct gl_vertex_attrib_3_large;
+            struct gl_vertex_attrib_4_large;
+            struct gl_vertex_attrib_large_pointer_integer;
           } // namespace fnc
         } // namespace vertex_attrib_64bit
         namespace vertex_buffer_object {
@@ -791,58 +649,37 @@ namespace gtulu {
         } // namespace vertex_buffer_object
         namespace vertex_type_2_10_10_10_rev {
           namespace fnc {
-            struct gl_color_p_3_ui;
-            struct gl_color_p_3_uiv;
-            struct gl_color_p_4_ui;
-            struct gl_color_p_4_uiv;
-            struct gl_multi_tex_coord_p_1_ui;
-            struct gl_multi_tex_coord_p_1_uiv;
-            struct gl_multi_tex_coord_p_2_ui;
-            struct gl_multi_tex_coord_p_2_uiv;
-            struct gl_multi_tex_coord_p_3_ui;
-            struct gl_multi_tex_coord_p_3_uiv;
-            struct gl_multi_tex_coord_p_4_ui;
-            struct gl_multi_tex_coord_p_4_uiv;
-            struct gl_normal_p_3_ui;
-            struct gl_normal_p_3_uiv;
-            struct gl_secondary_color_p_3_ui;
-            struct gl_secondary_color_p_3_uiv;
-            struct gl_tex_coord_p_1_ui;
-            struct gl_tex_coord_p_1_uiv;
-            struct gl_tex_coord_p_2_ui;
-            struct gl_tex_coord_p_2_uiv;
-            struct gl_tex_coord_p_3_ui;
-            struct gl_tex_coord_p_3_uiv;
-            struct gl_tex_coord_p_4_ui;
-            struct gl_tex_coord_p_4_uiv;
-            struct gl_vertex_attrib_p_1_ui;
-            struct gl_vertex_attrib_p_1_uiv;
-            struct gl_vertex_attrib_p_2_ui;
-            struct gl_vertex_attrib_p_2_uiv;
-            struct gl_vertex_attrib_p_3_ui;
-            struct gl_vertex_attrib_p_3_uiv;
-            struct gl_vertex_attrib_p_4_ui;
-            struct gl_vertex_attrib_p_4_uiv;
-            struct gl_vertex_p_2_ui;
-            struct gl_vertex_p_2_uiv;
-            struct gl_vertex_p_3_ui;
-            struct gl_vertex_p_3_uiv;
-            struct gl_vertex_p_4_ui;
-            struct gl_vertex_p_4_uiv;
+            struct gl_color_3_packed;
+            struct gl_color_4_packed;
+            struct gl_multi_tex_coord_1_packed;
+            struct gl_multi_tex_coord_2_packed;
+            struct gl_multi_tex_coord_3_packed;
+            struct gl_multi_tex_coord_4_packed;
+            struct gl_normal_3_packed;
+            struct gl_secondary_color_3_packed;
+            struct gl_tex_coord_1_packed;
+            struct gl_tex_coord_2_packed;
+            struct gl_tex_coord_3_packed;
+            struct gl_tex_coord_4_packed;
+            struct gl_vertex_2_packed;
+            struct gl_vertex_3_packed;
+            struct gl_vertex_4_packed;
+            struct gl_vertex_attrib_1_packed;
+            struct gl_vertex_attrib_2_packed;
+            struct gl_vertex_attrib_3_packed;
+            struct gl_vertex_attrib_4_packed;
           } // namespace fnc
         } // namespace vertex_type_2_10_10_10_rev
         namespace viewport_array {
           namespace fnc {
-            struct gl_depth_range_arrayv;
+            struct gl_depth_range_array;
             struct gl_depth_range_indexed;
-            struct gl_get_doublei_v;
-            struct gl_get_floati_v;
-            struct gl_scissor_arrayv;
+            struct gl_get_double_indexed;
+            struct gl_get_float_indexed;
+            struct gl_scissor_array;
             struct gl_scissor_indexed;
-            struct gl_scissor_indexedv;
-            struct gl_viewport_arrayv;
-            struct gl_viewport_indexedf;
-            struct gl_viewport_indexedfv;
+            struct gl_viewport_array;
+            struct gl_viewport_indexed;
           } // namespace fnc
         } // namespace viewport_array
       } // namespace arb
@@ -919,8 +756,8 @@ namespace gtulu {
           using gig::arb::framebuffer_object::fnc::gl_gen_framebuffers;
           using gig::arb::framebuffer_object::fnc::gl_gen_renderbuffers;
           using gig::arb::framebuffer_object::fnc::gl_generate_mipmap;
-          using gig::arb::framebuffer_object::fnc::gl_get_framebuffer_attachment_parameteriv;
-          using gig::arb::framebuffer_object::fnc::gl_get_renderbuffer_parameteriv;
+          using gig::arb::framebuffer_object::fnc::gl_get_framebuffer_attachment_parameter;
+          using gig::arb::framebuffer_object::fnc::gl_get_renderbuffer_parameter;
           using gig::arb::framebuffer_object::fnc::gl_is_framebuffer;
           using gig::arb::framebuffer_object::fnc::gl_is_renderbuffer;
           using gig::arb::framebuffer_object::fnc::gl_renderbuffer_storage;
@@ -936,10 +773,10 @@ namespace gtulu {
       namespace v3_1 {
         namespace fnc {
           using gig::arb::copy_buffer::fnc::gl_copy_buffer_sub_data;
+          using gig::arb::uniform_buffer_object::fnc::gl_get_active_uniform_block;
           using gig::arb::uniform_buffer_object::fnc::gl_get_active_uniform_block_name;
-          using gig::arb::uniform_buffer_object::fnc::gl_get_active_uniform_blockiv;
           using gig::arb::uniform_buffer_object::fnc::gl_get_active_uniform_name;
-          using gig::arb::uniform_buffer_object::fnc::gl_get_active_uniformsiv;
+          using gig::arb::uniform_buffer_object::fnc::gl_get_active_uniforms;
           using gig::arb::uniform_buffer_object::fnc::gl_get_uniform_block_index;
           using gig::arb::uniform_buffer_object::fnc::gl_get_uniform_indices;
           using gig::arb::uniform_buffer_object::fnc::gl_uniform_block_binding;
@@ -955,12 +792,12 @@ namespace gtulu {
           using gig::arb::sync::fnc::gl_client_wait_sync;
           using gig::arb::sync::fnc::gl_delete_sync;
           using gig::arb::sync::fnc::gl_fence_sync;
-          using gig::arb::sync::fnc::gl_get_integer_64_v;
-          using gig::arb::sync::fnc::gl_get_synciv;
+          using gig::arb::sync::fnc::gl_get_integer;
+          using gig::arb::sync::fnc::gl_get_sync;
           using gig::arb::sync::fnc::gl_is_sync;
           using gig::arb::sync::fnc::gl_wait_sync;
-          using gig::arb::texture_multisample::fnc::gl_get_multisamplefv;
-          using gig::arb::texture_multisample::fnc::gl_sample_maski;
+          using gig::arb::texture_multisample::fnc::gl_get_multisample;
+          using gig::arb::texture_multisample::fnc::gl_sample_mask;
           using gig::arb::texture_multisample::fnc::gl_tex_image_2d_multisample;
           using gig::arb::texture_multisample::fnc::gl_tex_image_3d_multisample;
         } // namespace fnc
@@ -972,92 +809,61 @@ namespace gtulu {
           using gig::arb::sampler_objects::fnc::gl_bind_sampler;
           using gig::arb::sampler_objects::fnc::gl_delete_samplers;
           using gig::arb::sampler_objects::fnc::gl_gen_samplers;
-          using gig::arb::sampler_objects::fnc::gl_get_sampler_parameter_iiv;
-          using gig::arb::sampler_objects::fnc::gl_get_sampler_parameter_iuiv;
-          using gig::arb::sampler_objects::fnc::gl_get_sampler_parameterfv;
-          using gig::arb::sampler_objects::fnc::gl_get_sampler_parameteriv;
+          using gig::arb::sampler_objects::fnc::gl_get_sampler_parameter;
+          using gig::arb::sampler_objects::fnc::gl_get_sampler_parameter_integer;
           using gig::arb::sampler_objects::fnc::gl_is_sampler;
-          using gig::arb::sampler_objects::fnc::gl_sampler_parameter_iiv;
-          using gig::arb::sampler_objects::fnc::gl_sampler_parameter_iuiv;
-          using gig::arb::sampler_objects::fnc::gl_sampler_parameterf;
-          using gig::arb::sampler_objects::fnc::gl_sampler_parameterfv;
-          using gig::arb::sampler_objects::fnc::gl_sampler_parameteri;
-          using gig::arb::sampler_objects::fnc::gl_sampler_parameteriv;
-          using gig::arb::timer_query::fnc::gl_get_query_objecti_64_v;
-          using gig::arb::timer_query::fnc::gl_get_query_objectui_64_v;
+          using gig::arb::sampler_objects::fnc::gl_sampler_parameter;
+          using gig::arb::sampler_objects::fnc::gl_sampler_parameter_integer;
+          using gig::arb::timer_query::fnc::gl_get_query_object;
           using gig::arb::timer_query::fnc::gl_query_counter;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_color_p_3_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_color_p_3_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_color_p_4_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_color_p_4_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_multi_tex_coord_p_1_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_multi_tex_coord_p_1_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_multi_tex_coord_p_2_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_multi_tex_coord_p_2_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_multi_tex_coord_p_3_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_multi_tex_coord_p_3_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_multi_tex_coord_p_4_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_multi_tex_coord_p_4_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_normal_p_3_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_normal_p_3_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_secondary_color_p_3_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_secondary_color_p_3_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_tex_coord_p_1_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_tex_coord_p_1_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_tex_coord_p_2_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_tex_coord_p_2_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_tex_coord_p_3_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_tex_coord_p_3_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_tex_coord_p_4_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_tex_coord_p_4_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_attrib_p_1_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_attrib_p_1_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_attrib_p_2_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_attrib_p_2_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_attrib_p_3_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_attrib_p_3_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_attrib_p_4_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_attrib_p_4_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_p_2_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_p_2_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_p_3_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_p_3_uiv;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_p_4_ui;
-          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_p_4_uiv;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_color_3_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_color_4_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_multi_tex_coord_1_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_multi_tex_coord_2_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_multi_tex_coord_3_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_multi_tex_coord_4_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_normal_3_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_secondary_color_3_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_tex_coord_1_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_tex_coord_2_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_tex_coord_3_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_tex_coord_4_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_2_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_3_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_4_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_attrib_1_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_attrib_2_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_attrib_3_packed;
+          using gig::arb::vertex_type_2_10_10_10_rev::fnc::gl_vertex_attrib_4_packed;
         } // namespace fnc
       } // namespace v3_3
       namespace v4_0 {
         namespace fnc {
           using gig::arb::draw_indirect::fnc::gl_draw_arrays_indirect;
           using gig::arb::draw_indirect::fnc::gl_draw_elements_indirect;
-          using gig::arb::gpu_shader_fp64::fnc::gl_get_uniformdv;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_1_d;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_1_dv;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_2_d;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_2_dv;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_3_d;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_3_dv;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_4_d;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_4_dv;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_2_dv;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_2x3_dv;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_2x4_dv;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_3_dv;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_3x2_dv;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_3x4_dv;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_4_dv;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_4x2_dv;
-          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_4x3_dv;
+          using gig::arb::gpu_shader_fp64::fnc::gl_get_uniform;
+          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_1;
+          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_2;
+          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_3;
+          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_4;
+          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_2;
+          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_2x3;
+          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_2x4;
+          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_3;
+          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_3x2;
+          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_3x4;
+          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_4;
+          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_4x2;
+          using gig::arb::gpu_shader_fp64::fnc::gl_uniform_matrix_4x3;
           using gig::arb::shader_subroutine::fnc::gl_get_active_subroutine_name;
+          using gig::arb::shader_subroutine::fnc::gl_get_active_subroutine_uniform;
           using gig::arb::shader_subroutine::fnc::gl_get_active_subroutine_uniform_name;
-          using gig::arb::shader_subroutine::fnc::gl_get_active_subroutine_uniformiv;
-          using gig::arb::shader_subroutine::fnc::gl_get_program_stageiv;
+          using gig::arb::shader_subroutine::fnc::gl_get_program_stage;
           using gig::arb::shader_subroutine::fnc::gl_get_subroutine_index;
           using gig::arb::shader_subroutine::fnc::gl_get_subroutine_uniform_location;
-          using gig::arb::shader_subroutine::fnc::gl_get_uniform_subroutineuiv;
-          using gig::arb::shader_subroutine::fnc::gl_uniform_subroutinesuiv;
-          using gig::arb::tessellation_shader::fnc::gl_patch_parameterfv;
-          using gig::arb::tessellation_shader::fnc::gl_patch_parameteri;
+          using gig::arb::shader_subroutine::fnc::gl_get_uniform_subroutine;
+          using gig::arb::shader_subroutine::fnc::gl_uniform_subroutines;
+          using gig::arb::tessellation_shader::fnc::gl_patch_parameter;
           using gig::arb::transform_feedback2::fnc::gl_bind_transform_feedback;
           using gig::arb::transform_feedback2::fnc::gl_delete_transform_feedbacks;
           using gig::arb::transform_feedback2::fnc::gl_draw_transform_feedback;
@@ -1068,99 +874,56 @@ namespace gtulu {
           using gig::arb::transform_feedback3::fnc::gl_begin_query_indexed;
           using gig::arb::transform_feedback3::fnc::gl_draw_transform_feedback_stream;
           using gig::arb::transform_feedback3::fnc::gl_end_query_indexed;
-          using gig::arb::transform_feedback3::fnc::gl_get_query_indexediv;
+          using gig::arb::transform_feedback3::fnc::gl_get_query_indexed;
         } // namespace fnc
       } // namespace v4_0
       namespace v4_1 {
         namespace fnc {
-          using gig::arb::es2_compatibility::fnc::gl_clear_depthf;
-          using gig::arb::es2_compatibility::fnc::gl_depth_rangef;
+          using gig::arb::es2_compatibility::fnc::gl_clear_depth;
+          using gig::arb::es2_compatibility::fnc::gl_depth_range;
           using gig::arb::es2_compatibility::fnc::gl_get_shader_precision_format;
           using gig::arb::es2_compatibility::fnc::gl_release_shader_compiler;
           using gig::arb::es2_compatibility::fnc::gl_shader_binary;
           using gig::arb::get_program_binary::fnc::gl_get_program_binary;
           using gig::arb::get_program_binary::fnc::gl_program_binary;
-          using gig::arb::get_program_binary::fnc::gl_program_parameteri;
+          using gig::arb::get_program_binary::fnc::gl_program_parameter;
           using gig::arb::separate_shader_objects::fnc::gl_active_shader_program;
           using gig::arb::separate_shader_objects::fnc::gl_bind_program_pipeline;
-          using gig::arb::separate_shader_objects::fnc::gl_create_shader_programv;
+          using gig::arb::separate_shader_objects::fnc::gl_create_shader_program;
           using gig::arb::separate_shader_objects::fnc::gl_delete_program_pipelines;
           using gig::arb::separate_shader_objects::fnc::gl_gen_program_pipelines;
+          using gig::arb::separate_shader_objects::fnc::gl_get_program_pipeline;
           using gig::arb::separate_shader_objects::fnc::gl_get_program_pipeline_info_log;
-          using gig::arb::separate_shader_objects::fnc::gl_get_program_pipelineiv;
           using gig::arb::separate_shader_objects::fnc::gl_is_program_pipeline;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_1_d;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_1_dv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_1_f;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_1_fv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_1_i;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_1_iv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_1_ui;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_1_uiv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_2_d;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_2_dv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_2_f;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_2_fv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_2_i;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_2_iv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_2_ui;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_2_uiv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_3_d;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_3_dv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_3_f;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_3_fv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_3_i;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_3_iv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_3_ui;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_3_uiv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_4_d;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_4_dv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_4_f;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_4_fv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_4_i;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_4_iv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_4_ui;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_4_uiv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_2_dv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_2_fv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_2x3_dv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_2x3_fv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_2x4_dv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_2x4_fv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_3_dv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_3_fv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_3x2_dv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_3x2_fv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_3x4_dv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_3x4_fv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_4_dv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_4_fv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_4x2_dv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_4x2_fv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_4x3_dv;
-          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_4x3_fv;
+          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_1;
+          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_2;
+          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_3;
+          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_4;
+          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_2;
+          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_2x3;
+          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_2x4;
+          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_3;
+          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_3x2;
+          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_3x4;
+          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_4;
+          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_4x2;
+          using gig::arb::separate_shader_objects::fnc::gl_program_uniform_matrix_4x3;
           using gig::arb::separate_shader_objects::fnc::gl_use_program_stages;
           using gig::arb::separate_shader_objects::fnc::gl_validate_program_pipeline;
-          using gig::arb::vertex_attrib_64bit::fnc::gl_get_vertex_attrib_ldv;
-          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_l_1_d;
-          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_l_1_dv;
-          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_l_2_d;
-          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_l_2_dv;
-          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_l_3_d;
-          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_l_3_dv;
-          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_l_4_d;
-          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_l_4_dv;
-          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_lpointer;
-          using gig::arb::viewport_array::fnc::gl_depth_range_arrayv;
+          using gig::arb::vertex_attrib_64bit::fnc::gl_get_vertex_attrib_large;
+          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_1_large;
+          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_2_large;
+          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_3_large;
+          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_4_large;
+          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_large_pointer_integer;
+          using gig::arb::viewport_array::fnc::gl_depth_range_array;
           using gig::arb::viewport_array::fnc::gl_depth_range_indexed;
-          using gig::arb::viewport_array::fnc::gl_get_doublei_v;
-          using gig::arb::viewport_array::fnc::gl_get_floati_v;
-          using gig::arb::viewport_array::fnc::gl_scissor_arrayv;
+          using gig::arb::viewport_array::fnc::gl_get_double_indexed;
+          using gig::arb::viewport_array::fnc::gl_get_float_indexed;
+          using gig::arb::viewport_array::fnc::gl_scissor_array;
           using gig::arb::viewport_array::fnc::gl_scissor_indexed;
-          using gig::arb::viewport_array::fnc::gl_scissor_indexedv;
-          using gig::arb::viewport_array::fnc::gl_viewport_arrayv;
-          using gig::arb::viewport_array::fnc::gl_viewport_indexedf;
-          using gig::arb::viewport_array::fnc::gl_viewport_indexedfv;
+          using gig::arb::viewport_array::fnc::gl_viewport_array;
+          using gig::arb::viewport_array::fnc::gl_viewport_indexed;
         } // namespace fnc
       } // namespace v4_1
       } // namespace gl

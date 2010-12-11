@@ -13,7 +13,7 @@
 
 #include <logging/logging.hpp>
 
-#include <boost/integer.hpp>
+#include <boost/cstdint.hpp>
 #include <boost/preprocessor.hpp>
 
 namespace gtulu {

@@ -65,7 +65,9 @@ namespace gtulu {
         DECLARE_ATTRIBUTE_FORMAT(gl_float_mat4x2, floating, four_by_two)
         DECLARE_ATTRIBUTE_FORMAT(gl_float_mat4x3, floating, four_by_three)
         DECLARE_ATTRIBUTE_FORMAT(gl_float_mat4, floating, four_by_four)
+
 #undef DECLARE_ATTRIBUTE_FORMAT
+
       } // namespace attribute
     } // namespace formats
 

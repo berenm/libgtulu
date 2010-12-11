@@ -23,8 +23,11 @@ namespace gtulu {
     namespace formats {
       namespace program {
         struct attribute_info {
-            attribute_info(::std::uint32_t id_in, ::std::string name_in, const cst::gl_constant_base& type_in,
-                           ::std::uint32_t size_in, location_t location_in) :
+            attribute_info(::std::uint32_t id_in,
+                           ::std::string name_in,
+                           const cst::gl_constant_base& type_in,
+                           ::std::uint32_t size_in,
+                           location_t location_in) :
               id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
             }
             attribute_info(const attribute_info& copy) :
@@ -49,8 +52,11 @@ namespace gtulu {
         typedef ::std::vector< attribute_info > attribute_vector_t;
 
         struct uniform_info {
-            uniform_info(::std::uint32_t id_in, ::std::string name_in, const cst::gl_constant_base& type_in,
-                         ::std::uint32_t size_in, location_t location_in) :
+            uniform_info(::std::uint32_t id_in,
+                         ::std::string name_in,
+                         const cst::gl_constant_base& type_in,
+                         ::std::uint32_t size_in,
+                         location_t location_in) :
               id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
             }
             uniform_info(const attribute_info& copy) :
@@ -75,8 +81,11 @@ namespace gtulu {
         typedef ::std::vector< uniform_info > uniform_vector_t;
 
         struct uniform_block_info {
-            uniform_block_info(::std::uint32_t id_in, ::std::string name_in, const cst::gl_constant_base& type_in,
-                               ::std::uint32_t size_in, location_t location_in) :
+            uniform_block_info(::std::uint32_t id_in,
+                               ::std::string name_in,
+                               const cst::gl_constant_base& type_in,
+                               ::std::uint32_t size_in,
+                               location_t location_in) :
               id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
             }
             uniform_block_info(const attribute_info& copy) :
@@ -154,6 +163,7 @@ namespace gtulu {
             const uniform_block_vector_t& get_uniform_blocks();
             const output_vector_t& get_outputs();
         };
+
       } // namespace program
     } // namespace formats
 

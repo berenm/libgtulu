@@ -33,6 +33,7 @@ namespace gtulu {
         DECLARE_CONVERT(double_, double)
 
 #undef DECLARE_CONVERT
+
       } // namespace data
     } // namespace formats
 

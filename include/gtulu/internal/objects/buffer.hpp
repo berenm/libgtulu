@@ -84,8 +84,10 @@ namespace gtulu {
           using buffer_slot< slot_type_t >::bind;
           using buffer_slot< slot_type_t >::unbind;
 
-          static inline void bind(const gio::plug< gio::buffer_base >& buffer, const ::std::uint32_t index,
-                                  const ::std::uint32_t offset, const ::std::uint32_t size) {
+          static inline void bind(const gio::plug< gio::buffer_base >& buffer,
+                                  const ::std::uint32_t index,
+                                  const ::std::uint32_t offset,
+                                  const ::std::uint32_t size) {
             fnc::gl_bind_buffer_range::call< slot_type_t >(index, *buffer, offset, size);
           }
 
@@ -169,7 +171,8 @@ namespace gtulu {
             bind< temporary_slot_type_t > ();
 
             fnc::gl_buffer_data::call< typename temporary_slot_type_t::type, buffer_usage_t >(size
-                * sizeof(data_type_t), data);
+                                                                                                  * sizeof(data_type_t),
+                                                                                              data);
 
             set_size(size);
           }

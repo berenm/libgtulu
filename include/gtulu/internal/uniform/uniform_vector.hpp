@@ -24,29 +24,28 @@ namespace gtulu {
         template< typename type_t, typename count_t >
         struct uniform_binder;
 
-#define DECLARE_BINDER(type_m, suffix_m, count_m) \
+#define DECLARE_BINDER(type_m, count_m) \
       template< > \
       struct uniform_binder< fut::type_m, fc::to_typename< count_m >::type > { \
           inline static void bind(const location_t location_in, BOOST_PP_ENUM_PARAMS(count_m, const fu::to_typename< fut::type_m >::type value_in)) { \
-            fnc:: gl_uniform_##count_m##suffix_m ::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in)); \
+            fnc:: gl_uniform_##count_m ::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in)); \
           } \
           inline static void bind(const location_t location_in, const ::std::uint32_t number_in, const fu::to_typename< fut::type_m >::type* values_in) { \
-            fnc:: gl_uniform_##count_m##suffix_m##v ::call(location_in, number_in, values_in); \
+            fnc:: gl_uniform_##count_m ::call(location_in, number_in, values_in); \
           } \
       };
 
-        DECLARE_BINDER(floating, _f, 2)
-        DECLARE_BINDER(floating, _f, 3)
-        DECLARE_BINDER(floating, _f, 4)
-        DECLARE_BINDER(integer, _i, 2)
-        DECLARE_BINDER(integer, _i, 3)
-        DECLARE_BINDER(integer, _i, 4)
-        DECLARE_BINDER(unsigned_integer, _ui, 2)
-        DECLARE_BINDER(unsigned_integer, _ui, 3)
-        DECLARE_BINDER(unsigned_integer, _ui, 4)
-        DECLARE_BINDER(boolean, _i, 2)
-        DECLARE_BINDER(boolean, _i, 3)
-        DECLARE_BINDER(boolean, _i, 4)
+#define DECLARE_VECTOR_BINDER(type_m) \
+        DECLARE_BINDER(type_m, 2) \
+        DECLARE_BINDER(type_m, 3) \
+        DECLARE_BINDER(type_m, 4)
+
+        DECLARE_VECTOR_BINDER(floating)
+        DECLARE_VECTOR_BINDER(integer)
+        DECLARE_VECTOR_BINDER(unsigned_integer)
+        DECLARE_VECTOR_BINDER(boolean)
+
+#undef DECLARE_VECTOR_BINDER
 #undef DECLARE_BINDER
 
         template< typename format_t, typename binder_t = uniform_binder< typename format_t::info::type,
@@ -58,22 +57,19 @@ namespace gtulu {
             typedef binder_t binder;
         };
       } // namespace vector
-#define DECLARE_UNIFORM(format_m) \
-  typedef vector::uniform< fu::format_m > format_m;
-      DECLARE_UNIFORM(gl_float_vec2)
-      DECLARE_UNIFORM(gl_float_vec3)
-      DECLARE_UNIFORM(gl_float_vec4)
-      DECLARE_UNIFORM(gl_int_vec2)
-      DECLARE_UNIFORM(gl_int_vec3)
-      DECLARE_UNIFORM(gl_int_vec4)
-      DECLARE_UNIFORM(gl_unsigned_int_vec2)
-      DECLARE_UNIFORM(gl_unsigned_int_vec3)
-      DECLARE_UNIFORM(gl_unsigned_int_vec4)
-      DECLARE_UNIFORM(gl_bool_vec2)
-      DECLARE_UNIFORM(gl_bool_vec3)
-      DECLARE_UNIFORM(gl_bool_vec4)
 
-#undef DECLARE_UNIFORM
+      typedef vector::uniform< fu::gl_float_vec2 > gl_float_vec2;
+      typedef vector::uniform< fu::gl_float_vec3 > gl_float_vec3;
+      typedef vector::uniform< fu::gl_float_vec4 > gl_float_vec4;
+      typedef vector::uniform< fu::gl_int_vec2 > gl_int_vec2;
+      typedef vector::uniform< fu::gl_int_vec3 > gl_int_vec3;
+      typedef vector::uniform< fu::gl_int_vec4 > gl_int_vec4;
+      typedef vector::uniform< fu::gl_unsigned_int_vec2 > gl_unsigned_int_vec2;
+      typedef vector::uniform< fu::gl_unsigned_int_vec3 > gl_unsigned_int_vec3;
+      typedef vector::uniform< fu::gl_unsigned_int_vec4 > gl_unsigned_int_vec4;
+      typedef vector::uniform< fu::gl_bool_vec2 > gl_bool_vec2;
+      typedef vector::uniform< fu::gl_bool_vec3 > gl_bool_vec3;
+      typedef vector::uniform< fu::gl_bool_vec4 > gl_bool_vec4;
 
     } // namespace uniform
 

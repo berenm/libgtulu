@@ -26,6 +26,7 @@ namespace gtulu {
         DECLARE_CONVERT(unsigned_integer, ::std::uint32_t)
 
 #undef DECLARE_CONVERT
+
       } // namespace attribute
     } // namespace formats
 

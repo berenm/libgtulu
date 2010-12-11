@@ -49,8 +49,8 @@ namespace gtulu {
           } else if (extension.compare(".gs") == 0 || extension.compare(".geom") == 0) {
             gio::shader_base::create_shader< fst::gl_geometry_shader >();
           } else {
-            __error
-              << "Unknown shader extension " << extension << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
+            __error << "Unknown shader extension " << extension
+                << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
           }
 
           ::std::string source = gu::file::get_contents(filename);
@@ -98,14 +98,15 @@ namespace gtulu {
           has_log_ = length > 1;
 
           if (length > ::std::numeric_limits< ::std::uint32_t >::max()) {
-            __error
-              << "Log length too long.";
+            __error << "Log length too long.";
           } else if (!has_log_) {
             log_ = "";
           } else {
             char* buffer = new char[length];
-            fnc::gl_get_shader_info_log::call(gio::shader_base::handle_, length,
-                reinterpret_cast< ::std::int32_t* > (&length), buffer);
+            fnc::gl_get_shader_info_log::call(gio::shader_base::handle_,
+                                              length,
+                                              reinterpret_cast< ::std::int32_t* > (&length),
+                                              buffer);
 
             log_ = ::std::string(buffer);
 
@@ -124,8 +125,7 @@ namespace gtulu {
 
             for (::std::vector< ::std::string >::iterator it = lines.begin(); it != lines.end(); ++it) {
               if (it->length() > 0) {
-                __warnM(shader)
-                  << *it;
+                __warnM(shader) << *it;
               }
             }
           }

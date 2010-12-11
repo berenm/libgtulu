@@ -693,11 +693,11 @@ namespace gtulu {
           } \
       };
 
-      DECLARE_GETTOR(float, gl_get_floatv)
-      DECLARE_GETTOR(double, gl_get_doublev)
-      DECLARE_GETTOR_INDEXED(::std::uint8_t, gl_get_booleanv, gl_get_booleani_v)
-      DECLARE_GETTOR_INDEXED(::std::int32_t, gl_get_integerv, gl_get_integeri_v)
-      DECLARE_GETTOR_INDEXED(::std::int64_t, gl_get_integer_64_v, gl_get_integer_64_i_v)
+      DECLARE_GETTOR(float, gl_get_float)
+      DECLARE_GETTOR(double, gl_get_double)
+      DECLARE_GETTOR_INDEXED(::std::uint8_t, gl_get_boolean, gl_get_boolean_indexed)
+      DECLARE_GETTOR_INDEXED(::std::int32_t, gl_get_integer, gl_get_integer_indexed)
+      DECLARE_GETTOR_INDEXED(::std::int64_t, gl_get_integer, gl_get_integer_indexed)
 
 #undef DECLARE_GETTOR_INDEXED
 #undef DECLARE_GETTOR

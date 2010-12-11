@@ -32,14 +32,10 @@ void init_gl(::std::int32_t argc, char** argv) {
   glutDisplayFunc(do_frame); // Register The Display Function
   glutReshapeFunc(reshape);
 
-  __info
-    << "Vendor: " << glGetString(GL_VENDOR);
-  __info
-    << "Renderer: " << glGetString(GL_RENDERER);
-  __info
-    << "Version: " << glGetString(GL_VERSION);
-  __info
-    << "GLSL: " << glGetString(GL_SHADING_LANGUAGE_VERSION);
+  __info << "Vendor: " << glGetString(GL_VENDOR);
+  __info << "Renderer: " << glGetString(GL_RENDERER);
+  __info << "Version: " << glGetString(GL_VERSION);
+  __info << "GLSL: " << glGetString(GL_SHADING_LANGUAGE_VERSION);
 }
 
 void close_gl() {

@@ -26,7 +26,7 @@ namespace gtulu {
     template< > \
       struct uniform_binder< fut::type_m, fc::to_typename< dimension1_m, dimension2_m >::type > { \
           inline static void bind(const location_t location_in, const ::std::uint32_t number_in, const fu::to_typename< fut::type_m >::type* values_in, bool transpose_in = false) { \
-            fnc::gl_uniform_matrix##suffix_m##_fv::call(location_in, number_in, transpose_in, values_in); \
+            fnc::gl_uniform_matrix##suffix_m ::call(location_in, number_in, transpose_in, values_in); \
           } \
       };
 
@@ -51,19 +51,17 @@ namespace gtulu {
             typedef binder_t binder;
         };
       } // namespace matrix
-#define DECLARE_UNIFORM(format_m) \
-    typedef matrix::uniform< fu::format_m > format_m;
-      DECLARE_UNIFORM(gl_float_mat2)
-      DECLARE_UNIFORM(gl_float_mat2x3)
-      DECLARE_UNIFORM(gl_float_mat2x4)
-      DECLARE_UNIFORM(gl_float_mat3x2)
-      DECLARE_UNIFORM(gl_float_mat3)
-      DECLARE_UNIFORM(gl_float_mat3x4)
-      DECLARE_UNIFORM(gl_float_mat4x2)
-      DECLARE_UNIFORM(gl_float_mat4x3)
-      DECLARE_UNIFORM(gl_float_mat4)
 
-#undef DECLARE_UNIFORM
+      typedef vector::uniform< fu::gl_float_mat2 > gl_float_mat2;
+      typedef vector::uniform< fu::gl_float_mat2x3 > gl_float_mat2x3;
+      typedef vector::uniform< fu::gl_float_mat2x4 > gl_float_mat2x4;
+      typedef vector::uniform< fu::gl_float_mat3x2 > gl_float_mat3x2;
+      typedef vector::uniform< fu::gl_float_mat3 > gl_float_mat3;
+      typedef vector::uniform< fu::gl_float_mat3x4 > gl_float_mat3x4;
+      typedef vector::uniform< fu::gl_float_mat4x2 > gl_float_mat4x2;
+      typedef vector::uniform< fu::gl_float_mat4x3 > gl_float_mat4x3;
+      typedef vector::uniform< fu::gl_float_mat4 > gl_float_mat4;
+
     } // namespace uniform
 
     namespace gium = ::gtulu::internal::uniform::matrix;

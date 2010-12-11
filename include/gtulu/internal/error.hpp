@@ -21,21 +21,30 @@
                         != ::gtulu::internal::error::no_error::value) { \
         switch (__gl_error) { \
           case ::gtulu::internal::error::invalid_enum::value: \
+            __errorM(gl) \
+              << ::gtulu::internal::error::invalid_enum::name::value; \
+            break; \
           case ::gtulu::internal::error::invalid_value::value: \
+            __errorM(gl) \
+              << ::gtulu::internal::error::invalid_value::name::value; \
+            break; \
           case ::gtulu::internal::error::invalid_operation::value: \
+            __errorM(gl) \
+              << ::gtulu::internal::error::invalid_operation::name::value; \
+            break; \
           case ::gtulu::internal::error::invalid_framebuffer_operation::value: \
             __errorM(gl) \
-              << __gl_error; \
+              << ::gtulu::internal::error::invalid_framebuffer_operation::name::value; \
             break; \
           case ::gtulu::internal::error::out_of_memory::value: \
             __fatalM(gl) \
-              << __gl_error; \
+              << ::gtulu::internal::error::out_of_memory::name::value; \
             break; \
           case ::gtulu::internal::error::no_error::value: \
             break; \
           default: \
             __errorM(gl) \
-              << "unknown error code" << __gl_error; \
+              << "unknown error code: " << __gl_error; \
             break; \
         } \
       }; \

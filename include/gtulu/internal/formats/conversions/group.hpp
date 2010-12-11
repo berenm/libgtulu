@@ -33,6 +33,7 @@ namespace gtulu {
         DECLARE_CONVERT(rgba, rgba)
 
 #undef DECLARE_CONVERT
+
       } // namespace group
     } // namespace formats
 

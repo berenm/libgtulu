@@ -88,7 +88,9 @@ namespace gtulu {
         DECLARE_UNIFORM_FORMAT(gl_unsigned_int_sampler_2d_multisample_array, unsigned_integer, gl_texture_2d_multisample_array, normal)
         DECLARE_UNIFORM_FORMAT(gl_unsigned_int_sampler_buffer, unsigned_integer, gl_texture_buffer, normal)
         DECLARE_UNIFORM_FORMAT(gl_unsigned_int_sampler_2d_rect, unsigned_integer, gl_texture_rectangle, normal)
+
 #undef DECLARE_UNIFORM_FORMAT
+
       } // namespace uniform
     } // namespace formats
 

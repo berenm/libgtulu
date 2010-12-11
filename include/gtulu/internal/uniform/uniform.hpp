@@ -17,24 +17,16 @@ namespace gtulu {
     namespace uniform {
 
       template< typename type_t >
-      struct uniform_binder;
-
-#define DECLARE_BINDER(type_m, suffix_m) \
-    template< > \
-    struct uniform_binder< fut::type_m > { \
-        inline static void bind(const location_t location_in, const fu::to_typename< fut::type_m >::type value_in) { \
-          fnc:: gl_uniform_1##suffix_m ::call(location_in, value_in); \
-        } \
-        inline static void bind(const location_t location_in, const ::std::uint32_t number_in, const fu::to_typename< fut::type_m >::type* values_in) { \
-          fnc:: gl_uniform_1##suffix_m##v ::call(location_in, number_in, values_in); \
-        } \
-    };
-
-      DECLARE_BINDER(floating, _f)
-      DECLARE_BINDER(integer, _i)
-      DECLARE_BINDER(unsigned_integer, _ui)
-      DECLARE_BINDER(boolean, _i)
-#undef DECLARE_BINDER
+      struct uniform_binder {
+          inline static void bind(const location_t location_in, const typename fu::to_typename< type_t >::type value_in) {
+            fnc::gl_uniform_1::call(location_in, value_in);
+          }
+          inline static void bind(const location_t location_in,
+                                  const ::std::uint32_t number_in,
+                                  const typename fu::to_typename< type_t >::type* values_in) {
+            fnc::gl_uniform_1::call(location_in, number_in, values_in);
+          }
+      };
 
       template< typename format_t, typename binder_t = uniform_binder< typename format_t::info::type > ,
           typename value_t = typename fu::to_typename< typename format_t::info::type >::type >
@@ -43,14 +35,12 @@ namespace gtulu {
           typedef value_t value_type;
           typedef binder_t binder;
       };
-#define DECLARE_UNIFORM(format_m) \
-    typedef uniform< fu::format_m > format_m;
-      DECLARE_UNIFORM(gl_float)
-      DECLARE_UNIFORM(gl_int)
-      DECLARE_UNIFORM(gl_unsigned_int)
-      DECLARE_UNIFORM(gl_bool)
 
-#undef DECLARE_UNIFORM
+      typedef uniform< fu::gl_float > gl_float;
+      typedef uniform< fu::gl_int > gl_int;
+      typedef uniform< fu::gl_unsigned_int > gl_unsigned_int;
+      typedef uniform< fu::gl_bool > gl_bool;
+
     } // namespace uniform
 
     namespace giu = ::gtulu::internal::uniform;

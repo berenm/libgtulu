@@ -76,7 +76,9 @@ namespace gtulu {
         DECLARE_ATTRIBUTE_FORMAT(gl_float, literal, floating)
         DECLARE_ATTRIBUTE_FORMAT(gl_int, literal, integer)
         DECLARE_ATTRIBUTE_FORMAT(gl_unsigned_int, literal, unsigned_integer)
+
 #undef DECLARE_ATTRIBUTE_FORMAT
+
       } // namespace attribute
     } // namespace formats
 

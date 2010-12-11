@@ -40,8 +40,8 @@ namespace gtulu {
         file_template();
         explicit file_template(::boost::sregex_iterator& iterator_inout);
         file_template(const file_template& copy_in);
-        file_template(const ::std::string& template_file_in, const ::boost::filesystem::path& template_path_in =
-            "include/gtulu/templates/");
+        file_template(const ::std::string& template_file_in,
+                      const ::boost::filesystem::path& template_path_in = "include/gtulu/templates/");
 
         void reset();
 

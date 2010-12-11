@@ -58,7 +58,9 @@ namespace gtulu {
         DECLARE_ATTRIBUTE_FORMAT(gl_unsigned_int_vec2, unsigned_integer, two)
         DECLARE_ATTRIBUTE_FORMAT(gl_unsigned_int_vec3, unsigned_integer, three)
         DECLARE_ATTRIBUTE_FORMAT(gl_unsigned_int_vec4, unsigned_integer, four)
+
 #undef DECLARE_ATTRIBUTE_FORMAT
+
       } // namespace attribute
     } // namespace formats
 

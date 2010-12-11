@@ -65,7 +65,9 @@ namespace gtulu {
         DECLARE_UNIFORM_FORMAT(gl_float_mat4x2, floating, four_by_two)
         DECLARE_UNIFORM_FORMAT(gl_float_mat4x3, floating, four_by_three)
         DECLARE_UNIFORM_FORMAT(gl_float_mat4, floating, four_by_four)
+
 #undef DECLARE_UNIFORM_FORMAT
+
       } // namespace uniform
     } // namespace formats
 

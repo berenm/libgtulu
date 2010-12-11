@@ -271,6 +271,7 @@ namespace gtulu {
         DECLARE_BASE_INTERNAL_FORMAT(stencil, 8, unsigned_fixed, normal)
 
 #undef DECLARE_BASE_INTERNAL_FORMAT
+
       } // namespace internal
     } // namespace formats
 

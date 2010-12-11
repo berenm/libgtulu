@@ -17,10 +17,9 @@ namespace gtulu {
     texture_unit_manager::texture_unit_manager() {
       max_texture_unit = gic::parameter_gettor< gicp::gl_max_combined_texture_image_units >::get();
 
-      __info
-        << "Max combined texture units " << max_texture_unit;
+      __info << "Max combined texture units " << max_texture_unit;
 
-      for (::std::uint32_t unit_nb = 0; unit_nb < max_texture_unit; ++unit_nb) {
+      for (::std::int32_t unit_nb = 0; unit_nb < max_texture_unit; ++unit_nb) {
         texture_units[unit_nb].reset();
       }
     }
@@ -63,8 +62,8 @@ namespace gtulu {
         texture_unit_mappings[*texture] = unit_ptr;
       } else {
         __error
-          << "unable to find a free texture unit - maybe some texture unit pointers are still active, or maybe the "
-              << max_texture_unit << " texture unit limit has been reached.";
+            << "unable to find a free texture unit - maybe some texture unit pointers are still active, or maybe the "
+            << max_texture_unit << " texture unit limit has been reached.";
       }
 
       return unit_ptr;

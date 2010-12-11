@@ -93,6 +93,7 @@ namespace gtulu {
         DECLARE_TARGET_FORMAT(gl_renderbuffer, renderbuffer, twod, single, simple)
 
 #undef DECLARE_TARGET_FORMAT
+
       } // namespace target
     } // namespace formats
 

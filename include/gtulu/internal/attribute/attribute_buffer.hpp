@@ -131,7 +131,7 @@ namespace gtulu {
         struct checked_binder: is_buffer_format_compatible< attribute_type_t, buffer_format_t > { \
             inline static void bind(const location_t location_in, const gio::buffer< buffer_format_t >& buffer_in, const ::std::uint32_t offset_in, const ::std::uint32_t stride_in) { \
               gib::array_buffer_slot::bind(buffer_in); \
-              fnc::gl_vertex_attrib_ipointer::call< typename buffer_format_t::info::format >(location_in, count_m, stride_in, reinterpret_cast< const GLvoid* > (offset_in)); \
+              fnc::gl_vertex_attrib_pointer_integer::call< typename buffer_format_t::info::format >(location_in, count_m, stride_in, reinterpret_cast< const GLvoid* > (offset_in)); \
               fnc::gl_enable_vertex_attrib_array::call(location_in); \
             } \
         }; \

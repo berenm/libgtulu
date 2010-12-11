@@ -25,8 +25,12 @@ namespace gtulu {
       namespace shader {
 
         struct output_info {
-            output_info(::std::uint32_t id_in, ::std::string name_in, const cst::gl_constant_base& type_in,
-                        ::std::uint32_t size_in, location_t location_in, ::std::uint32_t index_in) :
+            output_info(::std::uint32_t id_in,
+                        ::std::string name_in,
+                        const cst::gl_constant_base& type_in,
+                        ::std::uint32_t size_in,
+                        location_t location_in,
+                        ::std::uint32_t index_in) :
               id(id_in), name(name_in), type(type_in), size(size_in), location(location_in), index(index_in) {
             }
             output_info(const output_info& copy) :
@@ -73,10 +77,11 @@ namespace gtulu {
 
             virtual void compile();
         };
-      }
-    }
 
-  }
-}
+      } // namespace shader
+    } // namespace formats
+
+  } // namespace internal
+} // namespace gtulu
 
 #endif /* GTULU_INTERNAL_FORMATS_SHADER_DYNAMIC_HPP_ */

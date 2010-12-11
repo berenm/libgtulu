@@ -149,6 +149,7 @@ namespace gtulu {
 
 #undef DECLARE_DATA_FORMAT_DEFAULT
 #undef DECLARE_DATA_FORMAT
+
       } // namespace data
     } // namespace formats
 

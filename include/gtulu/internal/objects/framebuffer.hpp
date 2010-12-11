@@ -94,11 +94,14 @@ namespace gtulu {
             slot_type_t::unbind(*this);
           }
 
-          void set_viewport(::std::uint32_t width, ::std::uint32_t height, ::std::uint32_t depth = 1,
-                            ::std::uint32_t origin_x = 0, ::std::uint32_t origin_y = 0, ::std::uint32_t origin_z =
-                                0) {
+          void set_viewport(::std::uint32_t width,
+                            ::std::uint32_t height,
+                            ::std::uint32_t depth = 1,
+                            ::std::uint32_t origin_x = 0,
+                            ::std::uint32_t origin_y = 0,
+                            ::std::uint32_t origin_z = 0) {
             fnc::gl_viewport::call(origin_x, origin_y, width, height);
-            fnc::gl_depth_range::call(origin_z, depth);
+            fnc::gl_depth_range::call(static_cast< float > (origin_z), static_cast< float > (depth));
           }
       };
 

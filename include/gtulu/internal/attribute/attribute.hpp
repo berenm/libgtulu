@@ -37,13 +37,57 @@ namespace gtulu {
         BOOST_PP_LIST_FOR_EACH(DECLARE_BINDER_METHOD_TUPLE, prefix_m, BOOST_PP_TUPLE_TO_LIST(value_types_count_m, value_types_m)) \
   }; \
 
-      DECLARE_BINDER(floating, 3, ((double, _d), (float, _f), (::std::int16_t, _s)), BOOST_PP_EMPTY())
-      DECLARE_BINDER(integer, 1, ((::std::int32_t, _i)), _i)
-      DECLARE_BINDER(unsigned_integer, 1, ((::std::uint32_t, _ui)), _i)
+      template< >
+      struct attribute_binder< fat::floating > {
+          inline static void bind(const location_t location_in, const double value_in) {
+            fnc::gl_vertex_attrib_1::call(location_in, value_in);
+            fnc::gl_disable_vertex_attrib_array::call(location_in);
+          }
+          inline static void bind(const location_t location_in, const double* values_in) {
+            fnc::gl_vertex_attrib_1::call(location_in, values_in);
+            fnc::gl_disable_vertex_attrib_array::call(location_in);
+          }
+          inline static void bind(const location_t location_in, const float value_in) {
+            fnc::gl_vertex_attrib_1::call(location_in, value_in);
+            fnc::gl_disable_vertex_attrib_array::call(location_in);
+          }
+          inline static void bind(const location_t location_in, const float* values_in) {
+            fnc::gl_vertex_attrib_1::call(location_in, values_in);
+            fnc::gl_disable_vertex_attrib_array::call(location_in);
+          }
+          inline static void bind(const location_t location_in, const ::std::int16_t value_in) {
+            fnc::gl_vertex_attrib_1::call(location_in, value_in);
+            fnc::gl_disable_vertex_attrib_array::call(location_in);
+          }
+          inline static void bind(const location_t location_in, const ::std::int16_t* values_in) {
+            fnc::gl_vertex_attrib_1::call(location_in, values_in);
+            fnc::gl_disable_vertex_attrib_array::call(location_in);
+          }
+      };
 
-#undef DECLARE_BINDER
-#undef DECLARE_BINDER_METHOD_TUPLE
-#undef DECLARE_BINDER_METHOD
+      template< >
+      struct attribute_binder< fat::integer > {
+          inline static void bind(const location_t location_in, const ::std::int32_t value_in) {
+            fnc::gl_vertex_attrib_1_integer::call(location_in, value_in);
+            fnc::gl_disable_vertex_attrib_array::call(location_in);
+          }
+          inline static void bind(const location_t location_in, const ::std::int32_t* values_in) {
+            fnc::gl_vertex_attrib_1_integer::call(location_in, values_in);
+            fnc::gl_disable_vertex_attrib_array::call(location_in);
+          }
+      };
+
+      template< >
+      struct attribute_binder< fat::unsigned_integer > {
+          inline static void bind(const location_t location_in, const ::std::uint32_t value_in) {
+            fnc::gl_vertex_attrib_1_integer::call(location_in, value_in);
+            fnc::gl_disable_vertex_attrib_array::call(location_in);
+          }
+          inline static void bind(const location_t location_in, const ::std::uint32_t* values_in) {
+            fnc::gl_vertex_attrib_1_integer::call(location_in, values_in);
+            fnc::gl_disable_vertex_attrib_array::call(location_in);
+          }
+      };
 
       template< typename format_t, typename binder_t = attribute_binder< typename format_t::info::type > ,
           typename buffer_binder_t = attribute_buffer_binder< typename format_t::info::type, fcd::one > ,
@@ -54,13 +98,11 @@ namespace gtulu {
           typedef binder_t binder;
           typedef buffer_binder_t buffer_binder;
       };
-#define DECLARE_ATTRIBUTE(format_m) \
-    typedef attribute< fa::format_m > format_m;
-      DECLARE_ATTRIBUTE(gl_float)
-      DECLARE_ATTRIBUTE(gl_int)
-      DECLARE_ATTRIBUTE(gl_unsigned_int)
 
-#undef DECLARE_ATTRIBUTE
+      typedef attribute< fa::gl_float > gl_float;
+      typedef attribute< fa::gl_int > gl_int;
+      typedef attribute< fa::gl_unsigned_int > gl_unsigned_int;
+
     } // namespace attribute
 
     namespace gia = ::gtulu::internal::attribute;

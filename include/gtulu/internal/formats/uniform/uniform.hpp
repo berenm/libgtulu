@@ -119,7 +119,9 @@ namespace gtulu {
         DECLARE_UNIFORM_FORMAT(gl_int, literal, integer)
         DECLARE_UNIFORM_FORMAT(gl_unsigned_int, literal, unsigned_integer)
         DECLARE_UNIFORM_FORMAT(gl_bool, literal, boolean)
+
 #undef DECLARE_UNIFORM_FORMAT
+
       } // namespace uniform
     } // namespace formats
 

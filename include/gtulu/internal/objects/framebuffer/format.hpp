@@ -43,7 +43,9 @@ namespace gtulu {
           void set(const ::std::uint32_t location, const gio::texture< texture_format_t >& drawable) {
             ::boost::shared_ptr< attachment > attachment = manager.get_current_or_new(drawable);
             gif::attacher< framebuffer_slot_type_t >::template attach< gif::layered::no >(attachment->get_color(),
-                drawable, 0, 0);
+                                                                                          drawable,
+                                                                                          0,
+                                                                                          0);
             colors[location] = ::std::uint32_t(attachment->get_color());
           }
 

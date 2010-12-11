@@ -71,8 +71,8 @@ struct program_compiler {
     ::std::string name;
 
     program_compiler(::std::string name_in, ::boost::filesystem::path template_path = "include/gtulu/templates/") :
-      header_template("static_program_format.hpp", template_path), source_template("static_program_format.cpp",
-          template_path), name(name_in) {
+      header_template("static_program_format.hpp", template_path),
+          source_template("static_program_format.cpp", template_path), name(name_in) {
     }
 
     void add_shader(::std::string name, ::std::string type, ::std::string source) {
@@ -101,8 +101,12 @@ struct program_compiler {
       source_template.populate(arguments, subtemplates);
     }
 
-    void add_uniform(::std::string suffix, ::std::string name, ::std::string type, ::std::string location,
-                     ::std::string size = "", ::std::string count = "") {
+    void add_uniform(::std::string suffix,
+                     ::std::string name,
+                     ::std::string type,
+                     ::std::string location,
+                     ::std::string size = "",
+                     ::std::string count = "") {
       ::std::string template_name = "uniform";
       template_name.append(suffix);
 
@@ -123,8 +127,12 @@ struct program_compiler {
       header_template.populate(arguments, subtemplates);
     }
 
-    void add_attribute(::std::string suffix, ::std::string name, ::std::string type, ::std::string location,
-                       ::std::string size = "", ::std::string count = "") {
+    void add_attribute(::std::string suffix,
+                       ::std::string name,
+                       ::std::string type,
+                       ::std::string location,
+                       ::std::string size = "",
+                       ::std::string count = "") {
       ::std::string template_name = "attribute";
       template_name.append(suffix);
 
@@ -145,7 +153,10 @@ struct program_compiler {
       header_template.populate(arguments, subtemplates);
     }
 
-    void add_output(::std::string suffix, ::std::string name, ::std::string type, ::std::string location,
+    void add_output(::std::string suffix,
+                    ::std::string name,
+                    ::std::string type,
+                    ::std::string location,
                     ::std::string size = "") {
       ::std::string template_name = "output";
       template_name.append(suffix);
@@ -216,8 +227,7 @@ const cst::gl_constant_base get_shader_type(const ::bfs::path& shader_file) {
   } else if (extension.compare(".gs") == 0 || extension.compare(".geom") == 0) {
     return fst::gl_geometry_shader();
   } else {
-    __error
-      << "Unknown shader extension " << extension << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
+    __error << "Unknown shader extension " << extension << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
   }
 
   return cst::invalid_constant();
@@ -379,10 +389,8 @@ int main(int argc, char *argv[]) {
   for (::std::int32_t i = 0; i < argc; ++i) {
     cmdline << argv[i] << " ";
   }
-  __info
-    << cmdline.str();
+  __info << cmdline.str();
 
-  ::logging::init();
   init_gl(argc, argv);
 
   ::std::string program;
@@ -392,10 +400,16 @@ int main(int argc, char *argv[]) {
 
   po::options_description desc("Allowed options");
   desc.add_options()("help,h", "produce help message")("program-name,p",
-      po::value< ::std::string >(&program)->default_value("default"), "program name")("destination,d", po::value<
-      ::std::string >(&destination)->default_value("generated/"), "destination folder")("templates,t", po::value<
-      ::std::string >(&templates)->default_value("include/gtulu/templates/"), "templates folder")("input-file",
-      po::value< ::std::vector< ::std::string > >(&inputs), "input files");
+                                                       po::value< ::std::string >(&program)->default_value("default"),
+                                                       "program name")("destination,d",
+                                                                       po::value< ::std::string >(&destination)->default_value("generated/"),
+                                                                       "destination folder")("templates,t",
+                                                                                             po::value< ::std::string >(&templates)->default_value("include/gtulu/templates/"),
+                                                                                             "templates folder")("input-file",
+                                                                                                                 po::value<
+                                                                                                                     ::std::vector<
+                                                                                                                         ::std::string > >(&inputs),
+                                                                                                                 "input files");
 
   po::positional_options_description p;
   p.add("input-file", -1);
@@ -472,8 +486,12 @@ int main(int argc, char *argv[]) {
       prefix = "_array";
     }
 
-    compiler.add_uniform(prefix, info.name, type_info.name, ::boost::lexical_cast< ::std::string >(info.location),
-        ::boost::lexical_cast< ::std::string >(type_info.count), ::boost::lexical_cast< ::std::string >(info.size));
+    compiler.add_uniform(prefix,
+                         info.name,
+                         type_info.name,
+                         ::boost::lexical_cast< ::std::string >(info.location),
+                         ::boost::lexical_cast< ::std::string >(type_info.count),
+                         ::boost::lexical_cast< ::std::string >(info.size));
   }
 
   const fp::attribute_vector_t& attributes = prog.get_attributes();
@@ -491,8 +509,12 @@ int main(int argc, char *argv[]) {
       prefix = "_array";
     }
 
-    compiler.add_attribute(prefix, name, type_info.name, ::boost::lexical_cast< ::std::string >(info.location),
-        ::boost::lexical_cast< ::std::string >(type_info.count), ::boost::lexical_cast< ::std::string >(info.size));
+    compiler.add_attribute(prefix,
+                           name,
+                           type_info.name,
+                           ::boost::lexical_cast< ::std::string >(info.location),
+                           ::boost::lexical_cast< ::std::string >(type_info.count),
+                           ::boost::lexical_cast< ::std::string >(info.size));
   }
 
   const fp::output_vector_t& outputs = prog.get_outputs();
@@ -514,11 +536,13 @@ int main(int argc, char *argv[]) {
       ::std::stringstream type;
       type << info.type;
 
-      compiler.add_output(prefix, name, type.str(), ::boost::lexical_cast< ::std::string >(info.location),
-          ::boost::lexical_cast< ::std::string >(info.size));
+      compiler.add_output(prefix,
+                          name,
+                          type.str(),
+                          ::boost::lexical_cast< ::std::string >(info.location),
+                          ::boost::lexical_cast< ::std::string >(info.size));
     } else {
-      __warnM(shader)
-        << "Output data '" << info.type << "' " << info.name << " not bound. Maybe only used internally.";
+      __warnM(shader) << "Output data '" << info.type << "' " << info.name << " not bound. Maybe only used internally.";
     }
   }
 

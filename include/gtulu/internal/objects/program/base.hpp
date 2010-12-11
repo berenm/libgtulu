@@ -65,7 +65,7 @@ namespace gtulu {
           template< typename program_attribute_t >
           inline ::std::uint32_t get() const {
             ::std::int32_t data;
-            fnc::gl_get_programiv::call< program_attribute_t >(handle_, &data);
+            fnc::gl_get_program::call< program_attribute_t >(handle_, &data);
             return data;
           }
 

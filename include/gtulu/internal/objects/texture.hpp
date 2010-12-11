@@ -66,7 +66,10 @@ namespace gtulu {
 
           typedef typename fd::to_typename< typename texture_format_t::data::info::value_type >::type data_type;
 
-          inline void load(const data_type* data, ::std::size_t size, ::std::size_t width, ::std::size_t height,
+          inline void load(const data_type* data,
+                           ::std::size_t size,
+                           ::std::size_t width,
+                           ::std::size_t height,
                            ::std::size_t level) {
             bind();
             texture_format_t::loader::load(data, size, width, height, 0, level);

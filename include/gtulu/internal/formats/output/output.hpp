@@ -68,7 +68,9 @@ namespace gtulu {
         DECLARE_OUTPUT_FORMAT(gl_float, literal, floating)
         DECLARE_OUTPUT_FORMAT(gl_int, literal, integer)
         DECLARE_OUTPUT_FORMAT(gl_unsigned_int, literal, unsigned_integer)
+
 #undef DECLARE_OUTPUT_FORMAT
+
       } // namespace output
     } // namespace formats
 

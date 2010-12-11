@@ -26,8 +26,10 @@ namespace gtulu {
       template< typename layered_t, typename target_format_t >
       struct texture_attacher_detail {
           template< typename framebuffer_slot_type_t >
-          inline static void attach(const cst::gl_constant_base& color, const gio::texture_base& texture,
-                                    const ::std::uint32_t mipmap_level, const ::std::uint32_t layer);
+          inline static void attach(const cst::gl_constant_base& color,
+                                    const gio::texture_base& texture,
+                                    const ::std::uint32_t mipmap_level,
+                                    const ::std::uint32_t layer);
       };
 
 #define DECLARE_ATTACHER(layered_m, target_format_m, attach_function_m) \
@@ -81,10 +83,16 @@ namespace gtulu {
       template< >
       struct texture_attacher_detail< gif::layered::no, ftf::gl_texture_3d > {
           template< typename framebuffer_slot_type_t >
-          inline static void attach(const cst::gl_constant_base& color, const gio::texture_base& texture,
-                                    const ::std::uint32_t mipmap_level, const ::std::uint32_t layer) {
-            fnc::gl_framebuffer_texture_3d::call(framebuffer_slot_type_t::value, color, ftf::gl_texture_3d::value,
-                *texture, mipmap_level, layer);
+          inline static void attach(const cst::gl_constant_base& color,
+                                    const gio::texture_base& texture,
+                                    const ::std::uint32_t mipmap_level,
+                                    const ::std::uint32_t layer) {
+            fnc::gl_framebuffer_texture_3d::call(framebuffer_slot_type_t::value,
+                                                 color,
+                                                 ftf::gl_texture_3d::value,
+                                                 *texture,
+                                                 mipmap_level,
+                                                 layer);
           }
       };
 
@@ -120,9 +128,12 @@ namespace gtulu {
           template< typename framebuffer_slot_type_t >
           inline static void attach(const cst::gl_constant_base& color,
                                     const gio::texture< texture_format_t >& texture,
-                                    const ::std::uint32_t mipmap_level, const ::std::uint32_t layer) {
+                                    const ::std::uint32_t mipmap_level,
+                                    const ::std::uint32_t layer) {
             texture_attacher_detail< layered_t, target_format_t >::template attach< framebuffer_slot_type_t >(color,
-                texture, mipmap_level, layer);
+                                                                                                              texture,
+                                                                                                              mipmap_level,
+                                                                                                              layer);
           }
       };
 
@@ -132,15 +143,22 @@ namespace gtulu {
               typename target_format_t = typename texture_format_t::target::info::format >
           inline static void attach(const cst::gl_constant_base& color,
                                     const gio::texture< texture_format_t >& texture,
-                                    const ::std::uint32_t mipmap_level, const ::std::uint32_t layer) {
-            texture_attacher< layered_t, texture_format_t, target_format_t >::template attach< framebuffer_slot_type_t >(
-                color, texture, mipmap_level, layer);
+                                    const ::std::uint32_t mipmap_level,
+                                    const ::std::uint32_t layer) {
+            texture_attacher< layered_t, texture_format_t, target_format_t >::template attach< framebuffer_slot_type_t >(color,
+                                                                                                                         texture,
+                                                                                                                         mipmap_level,
+                                                                                                                         layer);
           }
 
-          inline static void attach(const cst::gl_constant_base& color, const gio::renderbuffer_base& renderbuffer,
-                                    const ::std::uint32_t mipmap_level, const ::std::uint32_t layer) {
-            fnc::gl_framebuffer_renderbuffer::call(framebuffer_slot_type_t::get(), color,
-                ft::gl_renderbuffer::info::format(), *renderbuffer);
+          inline static void attach(const cst::gl_constant_base& color,
+                                    const gio::renderbuffer_base& renderbuffer,
+                                    const ::std::uint32_t mipmap_level,
+                                    const ::std::uint32_t layer) {
+            fnc::gl_framebuffer_renderbuffer::call(framebuffer_slot_type_t::get(),
+                                                   color,
+                                                   ft::gl_renderbuffer::info::format(),
+                                                   *renderbuffer);
           }
       };
     } // namespace framebuffer

@@ -27,6 +27,7 @@ namespace gtulu {
         DECLARE_CONVERT(boolean, ::std::int32_t)
 
 #undef DECLARE_CONVERT
+
       } // namespace uniform
     } // namespace formats
 

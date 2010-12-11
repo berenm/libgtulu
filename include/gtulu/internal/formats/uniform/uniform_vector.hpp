@@ -61,7 +61,9 @@ namespace gtulu {
         DECLARE_UNIFORM_FORMAT(gl_bool_vec2, integer, two)
         DECLARE_UNIFORM_FORMAT(gl_bool_vec3, integer, three)
         DECLARE_UNIFORM_FORMAT(gl_bool_vec4, integer, four)
+
 #undef DECLARE_UNIFORM_FORMAT
+
       } // namespace uniform
     } // namespace formats
 

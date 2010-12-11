@@ -16,8 +16,7 @@ namespace gtulu {
     attachment_manager::attachment_manager() {
       max_attachment = gic::parameter_gettor< gicp::gl_max_color_attachments >::get();
 
-      __info
-        << "Max color attachments " << max_attachment;
+      __info << "Max color attachments " << max_attachment;
 
       for (::std::uint32_t unit_nb = 0; unit_nb < max_attachment; ++unit_nb) {
         attachments[unit_nb].reset();
@@ -52,9 +51,9 @@ namespace gtulu {
         attachments[unit_nb] = unit_ptr;
         attachment_mappings[handle] = unit_ptr;
       } else {
-        __error
-              << "unable to find a free color attachment slot - maybe some attachment pointers are still active, or maybe the "
-              << max_attachment << " color attachment limit has been reached.";
+                    __error
+                    << "unable to find a free color attachment slot - maybe some attachment pointers are still active, or maybe the "
+                << max_attachment << " color attachment limit has been reached.";
       }
 
       return unit_ptr;
