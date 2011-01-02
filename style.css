@@ -8,6 +8,13 @@ html {
   width: 80em;
 }
 
+.logo {
+  background: url(gtulu-logo-small.png) center center no-repeat;
+  float: right;
+  height: 100px;
+  width: 187px;
+}
+
 .title {
   font-size: 8em;
   font-weight: bold;
@@ -26,6 +33,19 @@ html {
 
 .lib {
   color: black;
+}
+
+.features {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 2em;
+}
+
+.features li {
+  background: url(bullet-small.png) left center no-repeat;
+  padding-top: 0.45em;
+  height: 1.5em;
+  padding-left: 1.5em;
 }
 
 .menu {
