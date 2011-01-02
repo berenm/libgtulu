@@ -1,0 +1,59 @@
+html {
+  font-size: 12px;
+  font-family: sans;
+}
+
+.content {
+  margin: auto;
+  width: 80em;
+}
+
+.title {
+  font-size: 8em;
+  font-weight: bold;
+  color: #0E5910;
+  margin-bottom: 1%;
+  text-shadow: 1px 1px 3px #165944;
+}
+
+.subtitle {
+  font-size: 1.5em;
+  font-weight: bold;
+  border-bottom: 1px solid ;
+  padding-bottom: 0.5%;
+  margin-bottom: 3%;
+}
+
+.lib {
+  color: black;
+}
+
+.menu {
+  list-style: none;
+  display: block;
+  font-size: 2em;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #7FA16B;
+}
+
+.menu a:hover {
+  font-weight: bold;
+  border-bottom: 5px solid;
+  color: #165944;
+  border-bottom: 5px solid #165944;
+}
+
+.menu li {
+  float: left;
+  width: 25%;
+}
+
+.footer {
+  float: right;
+  margin-top: 3%;
+  font-style: italic;
+  text-align: right;
+}
