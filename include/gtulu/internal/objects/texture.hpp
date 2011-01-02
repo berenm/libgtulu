@@ -36,10 +36,10 @@ namespace gtulu {
 
       template< typename target_type_t >
       struct texture_slot: private ft::is_of_target_base< target_type_t, ftb::texture > {
-          static inline void bind(const gio::plug< gio::texture_base >& buffer) {
+          static inline void bind(gio::plug< gio::texture_base > const& buffer) {
             gio::slot_binder< gio::texture_base >::bind< target_type_t >(buffer);
           }
-          static inline void unbind(const gio::plug< gio::texture_base >& buffer) {
+          static inline void unbind(gio::plug< gio::texture_base > const& buffer) {
             gio::slot_binder< gio::texture_base >::clear< target_type_t >();
           }
       };
@@ -66,7 +66,7 @@ namespace gtulu {
 
           typedef typename fd::to_typename< typename texture_format_t::data::info::value_type >::type data_type;
 
-          inline void load(const data_type* data,
+          inline void load(data_type const* data,
                            ::std::size_t size,
                            ::std::size_t width,
                            ::std::size_t height,
@@ -75,7 +75,7 @@ namespace gtulu {
             texture_format_t::loader::load(data, size, width, height, 0, level);
           }
 
-          inline void load(const data_type* data, ::std::size_t width, ::std::size_t height) {
+          inline void load(data_type const* data, ::std::size_t width, ::std::size_t height) {
             bind();
             load(data, 0, width, height, 0);
             compute_mipmaps();

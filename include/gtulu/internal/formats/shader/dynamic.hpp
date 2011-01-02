@@ -27,13 +27,13 @@ namespace gtulu {
         struct output_info {
             output_info(::std::uint32_t id_in,
                         ::std::string name_in,
-                        const cst::gl_constant_base& type_in,
+                        cst::gl_constant_base const& type_in,
                         ::std::uint32_t size_in,
                         location_t location_in,
                         ::std::uint32_t index_in) :
               id(id_in), name(name_in), type(type_in), size(size_in), location(location_in), index(index_in) {
             }
-            output_info(const output_info& copy) :
+            output_info(output_info const& copy) :
               id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location),
                   index(copy.index) {
             }
@@ -64,8 +64,8 @@ namespace gtulu {
           public:
             dynamic_shader_format();
 
-            const output_vector_t& get_outputs();
-            void load_shader(const ::boost::filesystem::path& filename);
+            output_vector_t const& get_outputs();
+            void load_shader(::boost::filesystem::path const& filename);
 
             void print();
 

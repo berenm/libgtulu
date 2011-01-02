@@ -80,7 +80,7 @@ namespace gtulu {
           typedef cst::gl_unsigned_int_sampler_buffer gl_unsigned_int_sampler_buffer;
           typedef cst::gl_unsigned_int_sampler_2d_rect gl_unsigned_int_sampler_2d_rect;
 
-          const cst::gl_constant_base get(::std::uint32_t value);
+          cst::gl_constant_base const get(::std::uint32_t value);
         } // namespace format
 
         DECLARE_TRAIT_ASPECT(base, struct,

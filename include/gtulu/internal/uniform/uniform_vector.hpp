@@ -27,10 +27,10 @@ namespace gtulu {
 #define DECLARE_BINDER(type_m, count_m) \
       template< > \
       struct uniform_binder< fut::type_m, fc::to_typename< count_m >::type > { \
-          inline static void bind(const location_t location_in, BOOST_PP_ENUM_PARAMS(count_m, const fu::to_typename< fut::type_m >::type value_in)) { \
+          inline static void bind(location_t const location_in, BOOST_PP_ENUM_PARAMS(count_m, fu::to_typename< fut::type_m >::type const value_in)) { \
             fnc:: gl_uniform_##count_m ::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in)); \
           } \
-          inline static void bind(const location_t location_in, const ::std::uint32_t number_in, const fu::to_typename< fut::type_m >::type* values_in) { \
+          inline static void bind(location_t const location_in, ::std::uint32_t const number_in, fu::to_typename< fut::type_m >::type const* values_in) { \
             fnc:: gl_uniform_##count_m ::call(location_in, number_in, values_in); \
           } \
       };

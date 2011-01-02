@@ -139,7 +139,7 @@ namespace gtulu {
             typedef type_t type;
             typedef compression_t compression;
             typedef restriction_t restriction;
-            static const size_type size_ = size_t;
+            static size_type const size_ = size_t;
         };
 
         template< typename format_t >

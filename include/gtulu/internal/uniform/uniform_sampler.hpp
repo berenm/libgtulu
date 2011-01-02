@@ -32,7 +32,7 @@ namespace gtulu {
 
         template< typename sampler_format_t, typename texture_format_t >
         struct uniform_texture_binder: fus::is_texture_compatible< sampler_format_t, texture_format_t > {
-            inline static void bind(const location_t location_in, const gio::texture< texture_format_t >& texture_in) {
+            inline static void bind(location_t const location_in, gio::texture< texture_format_t > const& texture_in) {
               ::boost::shared_ptr< texture_unit >
                   unit_ptr = texture_unit_manager::instance().get_current_or_new(texture_in);
               unit_ptr->bind(texture_in);
@@ -43,7 +43,7 @@ namespace gtulu {
         template< typename sampler_format_t >
         struct uniform_binder {
             template< typename texture_format_t >
-            inline static void bind(const location_t location_in, const gio::texture< texture_format_t >& texture_in) {
+            inline static void bind(location_t const location_in, gio::texture< texture_format_t > const& texture_in) {
               uniform_texture_binder< sampler_format_t, texture_format_t >::bind(location_in, texture_in);
             }
         };

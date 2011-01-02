@@ -40,7 +40,7 @@ namespace gtulu {
           }
 
           template< typename framebuffer_slot_type_t, typename texture_format_t >
-          void set(const ::std::uint32_t location, const gio::texture< texture_format_t >& drawable) {
+          void set(::std::uint32_t const location, const gio::texture< texture_format_t >& drawable) {
             ::boost::shared_ptr< attachment > attachment = manager.get_current_or_new(drawable);
             gif::attacher< framebuffer_slot_type_t >::template attach< gif::layered::no >(attachment->get_color(),
                                                                                           drawable,
@@ -50,7 +50,7 @@ namespace gtulu {
           }
 
           template< typename framebuffer_slot_type_t >
-          void set(const ::std::uint32_t location, const gio::renderbuffer_base& drawable) {
+          void set(::std::uint32_t const location, gio::renderbuffer_base const& drawable) {
             ::boost::shared_ptr< attachment > attachment = manager.get_current_or_new(drawable);
             gif::attacher< framebuffer_slot_type_t >::attach(attachment->get_color(), drawable);
             colors[location] = ::std::uint32_t(attachment->get_color());
@@ -70,7 +70,7 @@ namespace gtulu {
           }
 
           template< typename framebuffer_slot_type_t >
-          void set(const ::std::uint32_t location, const gio::default_drawable drawable) {
+          void set(::std::uint32_t const location, gio::default_drawable const drawable) {
             colors[location] = static_cast< ::std::uint32_t > (drawable);
           }
       };

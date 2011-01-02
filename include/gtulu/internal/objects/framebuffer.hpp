@@ -66,10 +66,10 @@ namespace gtulu {
       struct framebuffer_slot {
           typedef slot_type_t slot_type;
 
-          static inline void bind(const gio::plug< gio::framebuffer_base >& framebuffer) {
+          static inline void bind(gio::plug< gio::framebuffer_base > const& framebuffer) {
             gio::slot_binder< gio::framebuffer_base >::bind< slot_type_t >(framebuffer);
           }
-          static inline void unbind(const gio::plug< gio::framebuffer_base >& framebuffer) {
+          static inline void unbind(gio::plug< gio::framebuffer_base > const& framebuffer) {
             gio::slot_binder< gio::framebuffer_base >::clear< slot_type_t >();
           }
       };

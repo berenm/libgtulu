@@ -28,7 +28,7 @@ namespace gtulu {
               gio::shader_base::create_shader< shader_type_t >();
             }
 
-            virtual const char* get_source() const = 0;
+            virtual char const* get_source() const = 0;
         };
 
       } // namespace shader

@@ -21,7 +21,7 @@ namespace gtulu {
   namespace internal {
 
     struct attachment: gio::object_base {
-        explicit attachment(const ::std::uint32_t handle_in) :
+        explicit attachment(::std::uint32_t const handle_in) :
           object_base(handle_in) {
         }
 
@@ -41,20 +41,20 @@ namespace gtulu {
         attachment_manager();
         ~attachment_manager();
 
-        ::boost::shared_ptr< attachment > get_current(const gio::texture_base& texture);
-        ::boost::shared_ptr< attachment > get_new(const gio::texture_base& texture);
-        ::boost::shared_ptr< attachment > get_current_or_new(const gio::texture_base& texture);
+        ::boost::shared_ptr< attachment > get_current(gio::texture_base const& texture);
+        ::boost::shared_ptr< attachment > get_new(gio::texture_base const& texture);
+        ::boost::shared_ptr< attachment > get_current_or_new(gio::texture_base const& texture);
 
-        ::boost::shared_ptr< attachment > get_current(const gio::renderbuffer_base& renderbuffer);
-        ::boost::shared_ptr< attachment > get_new(const gio::renderbuffer_base& renderbuffer);
-        ::boost::shared_ptr< attachment > get_current_or_new(const gio::renderbuffer_base& renderbuffer);
+        ::boost::shared_ptr< attachment > get_current(gio::renderbuffer_base const& renderbuffer);
+        ::boost::shared_ptr< attachment > get_new(gio::renderbuffer_base const& renderbuffer);
+        ::boost::shared_ptr< attachment > get_current_or_new(gio::renderbuffer_base const& renderbuffer);
 
         void clear();
 
       protected:
-        ::boost::shared_ptr< attachment > get_current(const ::std::uint32_t handle);
-        ::boost::shared_ptr< attachment > get_new(const ::std::uint32_t handle);
-        ::boost::shared_ptr< attachment > get_current_or_new(const ::std::uint32_t handle);
+        ::boost::shared_ptr< attachment > get_current(::std::uint32_t const handle);
+        ::boost::shared_ptr< attachment > get_new(::std::uint32_t const handle);
+        ::boost::shared_ptr< attachment > get_current_or_new(::std::uint32_t const handle);
     };
 
   } // namespace internal

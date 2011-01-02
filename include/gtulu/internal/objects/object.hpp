@@ -21,7 +21,7 @@ namespace gtulu {
         protected:
           ::std::uint32_t handle_;
           object_base();
-          explicit object_base(const ::std::uint32_t handle_in);
+          explicit object_base(::std::uint32_t const handle_in);
 
         public:
           ::std::uint32_t operator*() const;
@@ -40,7 +40,7 @@ namespace gtulu {
       template< typename object_type_t >
       struct slot_binder {
           template< typename target_type_t = void >
-          static void bind(const plug< object_type_t >& pluggable_object) {
+          static void bind(plug< object_type_t > const& pluggable_object) {
             bind< target_type_t > (*pluggable_object);
           }
 

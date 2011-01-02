@@ -27,7 +27,7 @@ namespace gtulu {
           ::std::string string_value;
           ::std::uint32_t uint32_value;
 
-          gl_constant_base(const char* string_value_in, ::std::uint32_t uint32_value_in) :
+          gl_constant_base(char const* string_value_in, ::std::uint32_t uint32_value_in) :
             string_value(string_value_in), uint32_value(uint32_value_in) {
           }
 
@@ -35,7 +35,7 @@ namespace gtulu {
           gl_constant_base() :
             string_value("<invalid-value>"), uint32_value(0xFFFFFFFF) {
           }
-          gl_constant_base(const gl_constant_base& copy) :
+          gl_constant_base(gl_constant_base const& copy) :
             string_value(copy.string_value), uint32_value(copy.uint32_value) {
           }
 
@@ -52,7 +52,7 @@ namespace gtulu {
             return uint32_value;
           }
 
-          friend ::std::ostream& operator<<(::std::ostream& stream_inout, const gl_constant_base& constant_in);
+          friend ::std::ostream& operator<<(::std::ostream& stream_inout, gl_constant_base const& constant_in);
       };
 
       template< typename name_t, typename value_t >
@@ -65,8 +65,8 @@ namespace gtulu {
               using ::boost::mpl::c_str< name_type >::value;
           };
 
-          static const gl_constant< name_t, value_t > instance;
-          static const gl_constant_base& get() {
+          static gl_constant< name_t, value_t > const instance;
+          static gl_constant_base const& get() {
             return instance;
           }
 
@@ -77,10 +77,10 @@ namespace gtulu {
       };
 
       template< typename name_t, typename value_t >
-      const gl_constant< name_t, value_t > gl_constant< name_t, value_t >::instance;
+      gl_constant< name_t, value_t > const gl_constant< name_t, value_t >::instance;
 
       struct runtime_constant: public gl_constant_base {
-          runtime_constant(const gl_constant_base& base, ::std::uint32_t offset_in) :
+          runtime_constant(gl_constant_base const& base, ::std::uint32_t offset_in) :
             gl_constant_base(base) {
             string_value.erase(string_value.end() - 1);
             string_value += ::boost::lexical_cast< ::std::string >(offset_in);

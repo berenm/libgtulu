@@ -30,7 +30,7 @@ namespace gtulu {
           }
           void set();
 
-          void set_source(const char* code);
+          void set_source(char const* code);
 
         protected:
           template< typename shader_type_t >

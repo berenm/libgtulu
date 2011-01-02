@@ -18,12 +18,12 @@ namespace gtulu {
 
       template< typename type_t >
       struct uniform_binder {
-          inline static void bind(const location_t location_in, const typename fu::to_typename< type_t >::type value_in) {
+          inline static void bind(location_t const location_in, typename fu::to_typename< type_t >::type const value_in) {
             fnc::gl_uniform_1::call(location_in, value_in);
           }
-          inline static void bind(const location_t location_in,
-                                  const ::std::uint32_t number_in,
-                                  const typename fu::to_typename< type_t >::type* values_in) {
+          inline static void bind(location_t const location_in,
+                                  ::std::uint32_t const number_in,
+                                  typename fu::to_typename< type_t >::type const* values_in) {
             fnc::gl_uniform_1::call(location_in, number_in, values_in);
           }
       };

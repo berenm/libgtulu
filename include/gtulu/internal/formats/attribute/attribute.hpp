@@ -40,7 +40,7 @@ namespace gtulu {
           typedef cst::gl_float_mat4x2 gl_float_mat4x2;
           typedef cst::gl_float_mat4x3 gl_float_mat4x3;
 
-          const cst::gl_constant_base get(::std::uint32_t value);
+          cst::gl_constant_base const get(::std::uint32_t value);
         } // namespace format
 
         DECLARE_TRAIT_ASPECT(base, struct,

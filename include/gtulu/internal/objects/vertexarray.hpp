@@ -33,10 +33,10 @@ namespace gtulu {
 
     namespace vertexarray {
       struct vertexarray_slot {
-          static inline void bind(const gio::plug< gio::vertexarray_base >& vertexarray) {
+          static inline void bind(gio::plug< gio::vertexarray_base > const& vertexarray) {
             gio::slot_binder< gio::vertexarray_base >::bind(vertexarray);
           }
-          static inline void unbind(const gio::plug< gio::vertexarray_base >& vertexarray) {
+          static inline void unbind(gio::plug< gio::vertexarray_base > const& vertexarray) {
             gio::slot_binder< gio::vertexarray_base >::clear();
           }
       };

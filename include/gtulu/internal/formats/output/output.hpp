@@ -33,7 +33,7 @@ namespace gtulu {
           typedef cst::gl_unsigned_int_vec3 gl_unsigned_int_vec3;
           typedef cst::gl_unsigned_int_vec4 gl_unsigned_int_vec4;
 
-          const cst::gl_constant_base get(::std::string type_name);
+          cst::gl_constant_base const get(::std::string type_name);
         } // namespace format
 
         DECLARE_TRAIT_ASPECT(base, struct,

@@ -69,10 +69,10 @@ namespace gtulu {
       struct buffer_slot {
           typedef slot_type_t type;
 
-          static inline void bind(const gio::plug< gio::buffer_base >& buffer) {
+          static inline void bind(gio::plug< gio::buffer_base > const& buffer) {
             gio::slot_binder< gio::buffer_base >::bind< slot_type_t >(buffer);
           }
-          static inline void unbind(const gio::plug< gio::buffer_base >& buffer) {
+          static inline void unbind(gio::plug< gio::buffer_base > const& buffer) {
             gio::slot_binder< gio::buffer_base >::clear< slot_type_t >();
           }
       };
@@ -84,14 +84,14 @@ namespace gtulu {
           using buffer_slot< slot_type_t >::bind;
           using buffer_slot< slot_type_t >::unbind;
 
-          static inline void bind(const gio::plug< gio::buffer_base >& buffer,
-                                  const ::std::uint32_t index,
-                                  const ::std::uint32_t offset,
-                                  const ::std::uint32_t size) {
+          static inline void bind(gio::plug< gio::buffer_base > const& buffer,
+                                  ::std::uint32_t const index,
+                                  ::std::uint32_t const offset,
+                                  ::std::uint32_t const size) {
             fnc::gl_bind_buffer_range::call< slot_type_t >(index, *buffer, offset, size);
           }
 
-          static inline void bind(const gio::plug< gio::buffer_base >& buffer, const ::std::uint32_t index) {
+          static inline void bind(gio::plug< gio::buffer_base > const& buffer, ::std::uint32_t const index) {
             fnc::gl_bind_buffer_base::call< slot_type_t >(index, *buffer);
           }
       };
@@ -125,12 +125,12 @@ namespace gtulu {
           }
 
           template< typename slot_type_t >
-          inline void bind(const ::std::uint32_t index) const {
+          inline void bind(::std::uint32_t const index) const {
             slot_type_t::bind(*this, index);
           }
 
           template< typename slot_type_t >
-          inline void bind(const ::std::uint32_t index, const ::std::size_t offset, const ::std::size_t size) const {
+          inline void bind(::std::uint32_t const index, ::std::size_t const offset, ::std::size_t const size) const {
             slot_type_t::bind(*this, index, offset, size);
           }
 
@@ -142,7 +142,7 @@ namespace gtulu {
         protected:
           ::std::size_t size;
 
-          void set_size(const ::std::size_t size_in) {
+          void set_size(::std::size_t const size_in) {
             size = size_in;
           }
 
@@ -161,13 +161,13 @@ namespace gtulu {
             object< buffer_base > () {
           }
 
-          buffer(const ::std::size_t size, const data_type_t* data = 0) :
+          buffer(::std::size_t const size, data_type_t const* data = 0) :
             object< buffer_base > () {
             fill(size, data);
           }
 
           template< typename temporary_slot_type_t = gib::array_buffer_slot >
-          inline void fill(const ::std::size_t size, const data_type_t* data = 0) {
+          inline void fill(::std::size_t const size, data_type_t const* data = 0) {
             bind< temporary_slot_type_t > ();
 
             fnc::gl_buffer_data::call< typename temporary_slot_type_t::type, buffer_usage_t >(size
@@ -178,8 +178,8 @@ namespace gtulu {
           }
 
           template< typename new_buffer_format_t, typename new_buffer_usage_t >
-          operator const buffer< new_buffer_format_t, new_buffer_usage_t >&() const {
-            return *reinterpret_cast< const buffer< new_buffer_format_t, new_buffer_usage_t >* > (this);
+          operator buffer< new_buffer_format_t, new_buffer_usage_t > const&() const {
+            return *reinterpret_cast< buffer< new_buffer_format_t, new_buffer_usage_t > const* > (this);
           }
       };
 

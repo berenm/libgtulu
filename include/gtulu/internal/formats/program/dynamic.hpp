@@ -25,12 +25,12 @@ namespace gtulu {
         struct attribute_info {
             attribute_info(::std::uint32_t id_in,
                            ::std::string name_in,
-                           const cst::gl_constant_base& type_in,
+                           cst::gl_constant_base const& type_in,
                            ::std::uint32_t size_in,
                            location_t location_in) :
               id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
             }
-            attribute_info(const attribute_info& copy) :
+            attribute_info(attribute_info const& copy) :
               id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
             }
 
@@ -54,12 +54,12 @@ namespace gtulu {
         struct uniform_info {
             uniform_info(::std::uint32_t id_in,
                          ::std::string name_in,
-                         const cst::gl_constant_base& type_in,
+                         cst::gl_constant_base const& type_in,
                          ::std::uint32_t size_in,
                          location_t location_in) :
               id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
             }
-            uniform_info(const attribute_info& copy) :
+            uniform_info(attribute_info const& copy) :
               id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
             }
 
@@ -83,12 +83,12 @@ namespace gtulu {
         struct uniform_block_info {
             uniform_block_info(::std::uint32_t id_in,
                                ::std::string name_in,
-                               const cst::gl_constant_base& type_in,
+                               cst::gl_constant_base const& type_in,
                                ::std::uint32_t size_in,
                                location_t location_in) :
               id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
             }
-            uniform_block_info(const attribute_info& copy) :
+            uniform_block_info(attribute_info const& copy) :
               id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
             }
 
@@ -126,15 +126,15 @@ namespace gtulu {
           protected:
             ::std::uint32_t get_attribute_count();
             ::std::uint32_t get_attribute_max_length();
-            const attribute_info get_attribute_info(::std::uint32_t id);
+            attribute_info const get_attribute_info(::std::uint32_t id);
 
             ::std::uint32_t get_uniform_count();
             ::std::uint32_t get_uniform_max_length();
-            const uniform_info get_uniform_info(::std::uint32_t index);
+            uniform_info const get_uniform_info(::std::uint32_t index);
 
             ::std::uint32_t get_uniform_block_count();
             ::std::uint32_t get_uniform_block_max_length();
-            const uniform_block_info get_uniform_block_info(::std::uint32_t index);
+            uniform_block_info const get_uniform_block_info(::std::uint32_t index);
 
             ::std::uint32_t get_outputs_count();
             ::std::uint32_t get_output_location(::std::string name);
@@ -144,8 +144,8 @@ namespace gtulu {
             dynamic_program_format();
             void print();
 
-            void attach(const shader_t& shader);
-            void detach(const shader_t& shader);
+            void attach(shader_t const& shader);
+            void detach(shader_t const& shader);
 
             bool has_link_log_;
             bool has_validation_log_;
@@ -158,10 +158,10 @@ namespace gtulu {
             virtual void link();
             virtual void validate();
 
-            const attribute_vector_t& get_attributes();
-            const uniform_vector_t& get_uniforms();
-            const uniform_block_vector_t& get_uniform_blocks();
-            const output_vector_t& get_outputs();
+            attribute_vector_t const& get_attributes();
+            uniform_vector_t const& get_uniforms();
+            uniform_block_vector_t const& get_uniform_blocks();
+            output_vector_t const& get_outputs();
         };
 
       } // namespace program

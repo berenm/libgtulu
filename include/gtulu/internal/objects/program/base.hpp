@@ -33,10 +33,10 @@ namespace gtulu {
 
     namespace program {
       struct program_slot {
-          static inline void bind(const gio::plug< gio::program_base >& program) {
+          static inline void bind(gio::plug< gio::program_base > const& program) {
             gio::slot_binder< gio::program_base >::bind(program);
           }
-          static inline void unbind(const gio::plug< gio::program_base >& program) {
+          static inline void unbind(gio::plug< gio::program_base > const& program) {
             gio::slot_binder< gio::program_base >::clear();
           }
       };
@@ -48,8 +48,8 @@ namespace gtulu {
 
       class program_base: public plug< program_base > {
         public:
-          void attach(const gio::shader_base& shader);
-          void detach(const gio::shader_base& shader);
+          void attach(gio::shader_base const& shader);
+          void detach(gio::shader_base const& shader);
 
           virtual void link();
           virtual void validate();
