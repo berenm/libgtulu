@@ -12,6 +12,8 @@
 #include <boost/mpl/and.hpp>
 #include <boost/mpl/or.hpp>
 #include <boost/mpl/not.hpp>
+#include <boost/mpl/equal_to.hpp>
+#include <boost/mpl/same_as.hpp>
 #include <type_traits>
 
 #include <boost/preprocessor.hpp>

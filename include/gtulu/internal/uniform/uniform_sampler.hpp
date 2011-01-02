@@ -55,45 +55,50 @@ namespace gtulu {
             typedef value_t value_type;
             typedef binder_t binder;
         };
+
       } // namespace sampler
 
-      typedef vector::uniform< fu::gl_sampler_1d > gl_sampler_1d;
-      typedef vector::uniform< fu::gl_sampler_2d > gl_sampler_2d;
-      typedef vector::uniform< fu::gl_sampler_3d > gl_sampler_3d;
-      typedef vector::uniform< fu::gl_sampler_cube > gl_sampler_cube;
-      typedef vector::uniform< fu::gl_sampler_1d_shadow > gl_sampler_1d_shadow;
-      typedef vector::uniform< fu::gl_sampler_2d_shadow > gl_sampler_2d_shadow;
-      typedef vector::uniform< fu::gl_sampler_1d_array > gl_sampler_1d_array;
-      typedef vector::uniform< fu::gl_sampler_2d_array > gl_sampler_2d_array;
-      typedef vector::uniform< fu::gl_sampler_1d_array_shadow > gl_sampler_1d_array_shadow;
-      typedef vector::uniform< fu::gl_sampler_2d_array_shadow > gl_sampler_2d_array_shadow;
-      typedef vector::uniform< fu::gl_sampler_2d_multisample > gl_sampler_2d_multisample;
-      typedef vector::uniform< fu::gl_sampler_2d_multisample_array > gl_sampler_2d_multisample_array;
-      typedef vector::uniform< fu::gl_sampler_cube_shadow > gl_sampler_cube_shadow;
-      typedef vector::uniform< fu::gl_sampler_buffer > gl_sampler_buffer;
-      typedef vector::uniform< fu::gl_sampler_2d_rect > gl_sampler_2d_rect;
-      typedef vector::uniform< fu::gl_sampler_2d_rect_shadow > gl_sampler_2d_rect_shadow;
-      typedef vector::uniform< fu::gl_int_sampler_1d > gl_int_sampler_1d;
-      typedef vector::uniform< fu::gl_int_sampler_2d > gl_int_sampler_2d;
-      typedef vector::uniform< fu::gl_int_sampler_3d > gl_int_sampler_3d;
-      typedef vector::uniform< fu::gl_int_sampler_cube > gl_int_sampler_cube;
-      typedef vector::uniform< fu::gl_int_sampler_1d_array > gl_int_sampler_1d_array;
-      typedef vector::uniform< fu::gl_int_sampler_2d_array > gl_int_sampler_2d_array;
-      typedef vector::uniform< fu::gl_int_sampler_2d_multisample > gl_int_sampler_2d_multisample;
-      typedef vector::uniform< fu::gl_int_sampler_2d_multisample_array > gl_int_sampler_2d_multisample_array;
-      typedef vector::uniform< fu::gl_int_sampler_buffer > gl_int_sampler_buffer;
-      typedef vector::uniform< fu::gl_int_sampler_2d_rect > gl_int_sampler_2d_rect;
-      typedef vector::uniform< fu::gl_unsigned_int_sampler_1d > gl_unsigned_int_sampler_1d;
-      typedef vector::uniform< fu::gl_unsigned_int_sampler_2d > gl_unsigned_int_sampler_2d;
-      typedef vector::uniform< fu::gl_unsigned_int_sampler_3d > gl_unsigned_int_sampler_3d;
-      typedef vector::uniform< fu::gl_unsigned_int_sampler_cube > gl_unsigned_int_sampler_cube;
-      typedef vector::uniform< fu::gl_unsigned_int_sampler_1d_array > gl_unsigned_int_sampler_1d_array;
-      typedef vector::uniform< fu::gl_unsigned_int_sampler_2d_array > gl_unsigned_int_sampler_2d_array;
-      typedef vector::uniform< fu::gl_unsigned_int_sampler_2d_multisample > gl_unsigned_int_sampler_2d_multisample;
-      typedef vector::uniform< fu::gl_unsigned_int_sampler_2d_multisample_array >
-          gl_unsigned_int_sampler_2d_multisample_array;
-      typedef vector::uniform< fu::gl_unsigned_int_sampler_buffer > gl_unsigned_int_sampler_buffer;
-      typedef vector::uniform< fu::gl_unsigned_int_sampler_2d_rect > gl_unsigned_int_sampler_2d_rect;
+#define DECLARE_UNIFORM_SAMPLER(uniform_m) \
+      typedef sampler::uniform< fu::uniform_m > uniform_m;
+
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_1d)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_2d)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_3d)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_cube)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_1d_shadow)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_2d_shadow)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_1d_array)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_2d_array)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_1d_array_shadow)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_2d_array_shadow)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_2d_multisample)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_2d_multisample_array)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_cube_shadow)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_buffer)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_2d_rect)
+      DECLARE_UNIFORM_SAMPLER(gl_sampler_2d_rect_shadow)
+      DECLARE_UNIFORM_SAMPLER(gl_int_sampler_1d)
+      DECLARE_UNIFORM_SAMPLER(gl_int_sampler_2d)
+      DECLARE_UNIFORM_SAMPLER(gl_int_sampler_3d)
+      DECLARE_UNIFORM_SAMPLER(gl_int_sampler_cube)
+      DECLARE_UNIFORM_SAMPLER(gl_int_sampler_1d_array)
+      DECLARE_UNIFORM_SAMPLER(gl_int_sampler_2d_array)
+      DECLARE_UNIFORM_SAMPLER(gl_int_sampler_2d_multisample)
+      DECLARE_UNIFORM_SAMPLER(gl_int_sampler_2d_multisample_array)
+      DECLARE_UNIFORM_SAMPLER(gl_int_sampler_buffer)
+      DECLARE_UNIFORM_SAMPLER(gl_int_sampler_2d_rect)
+      DECLARE_UNIFORM_SAMPLER(gl_unsigned_int_sampler_1d)
+      DECLARE_UNIFORM_SAMPLER(gl_unsigned_int_sampler_2d)
+      DECLARE_UNIFORM_SAMPLER(gl_unsigned_int_sampler_3d)
+      DECLARE_UNIFORM_SAMPLER(gl_unsigned_int_sampler_cube)
+      DECLARE_UNIFORM_SAMPLER(gl_unsigned_int_sampler_1d_array)
+      DECLARE_UNIFORM_SAMPLER(gl_unsigned_int_sampler_2d_array)
+      DECLARE_UNIFORM_SAMPLER(gl_unsigned_int_sampler_2d_multisample)
+      DECLARE_UNIFORM_SAMPLER(gl_unsigned_int_sampler_2d_multisample_array)
+      DECLARE_UNIFORM_SAMPLER(gl_unsigned_int_sampler_buffer)
+      DECLARE_UNIFORM_SAMPLER(gl_unsigned_int_sampler_2d_rect)
+
+#undef DECLARE_UNIFORM_SAMPLER
 
     } // namespace uniform
 

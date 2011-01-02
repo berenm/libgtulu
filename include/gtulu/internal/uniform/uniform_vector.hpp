@@ -58,18 +58,23 @@ namespace gtulu {
         };
       } // namespace vector
 
-      typedef vector::uniform< fu::gl_float_vec2 > gl_float_vec2;
-      typedef vector::uniform< fu::gl_float_vec3 > gl_float_vec3;
-      typedef vector::uniform< fu::gl_float_vec4 > gl_float_vec4;
-      typedef vector::uniform< fu::gl_int_vec2 > gl_int_vec2;
-      typedef vector::uniform< fu::gl_int_vec3 > gl_int_vec3;
-      typedef vector::uniform< fu::gl_int_vec4 > gl_int_vec4;
-      typedef vector::uniform< fu::gl_unsigned_int_vec2 > gl_unsigned_int_vec2;
-      typedef vector::uniform< fu::gl_unsigned_int_vec3 > gl_unsigned_int_vec3;
-      typedef vector::uniform< fu::gl_unsigned_int_vec4 > gl_unsigned_int_vec4;
-      typedef vector::uniform< fu::gl_bool_vec2 > gl_bool_vec2;
-      typedef vector::uniform< fu::gl_bool_vec3 > gl_bool_vec3;
-      typedef vector::uniform< fu::gl_bool_vec4 > gl_bool_vec4;
+#define DECLARE_UNIFORM_VECTOR(format_m) \
+    typedef vector::uniform< fu::format_m > format_m;
+
+      DECLARE_UNIFORM_VECTOR(gl_float_vec2)
+      DECLARE_UNIFORM_VECTOR(gl_float_vec3)
+      DECLARE_UNIFORM_VECTOR(gl_float_vec4)
+      DECLARE_UNIFORM_VECTOR(gl_int_vec2)
+      DECLARE_UNIFORM_VECTOR(gl_int_vec3)
+      DECLARE_UNIFORM_VECTOR(gl_int_vec4)
+      DECLARE_UNIFORM_VECTOR(gl_unsigned_int_vec2)
+      DECLARE_UNIFORM_VECTOR(gl_unsigned_int_vec3)
+      DECLARE_UNIFORM_VECTOR(gl_unsigned_int_vec4)
+      DECLARE_UNIFORM_VECTOR(gl_bool_vec2)
+      DECLARE_UNIFORM_VECTOR(gl_bool_vec3)
+      DECLARE_UNIFORM_VECTOR(gl_bool_vec4)
+
+#undef DECLARE_UNIFORM_VECTOR
 
     } // namespace uniform
 

@@ -52,15 +52,20 @@ namespace gtulu {
         };
       } // namespace matrix
 
-      typedef vector::uniform< fu::gl_float_mat2 > gl_float_mat2;
-      typedef vector::uniform< fu::gl_float_mat2x3 > gl_float_mat2x3;
-      typedef vector::uniform< fu::gl_float_mat2x4 > gl_float_mat2x4;
-      typedef vector::uniform< fu::gl_float_mat3x2 > gl_float_mat3x2;
-      typedef vector::uniform< fu::gl_float_mat3 > gl_float_mat3;
-      typedef vector::uniform< fu::gl_float_mat3x4 > gl_float_mat3x4;
-      typedef vector::uniform< fu::gl_float_mat4x2 > gl_float_mat4x2;
-      typedef vector::uniform< fu::gl_float_mat4x3 > gl_float_mat4x3;
-      typedef vector::uniform< fu::gl_float_mat4 > gl_float_mat4;
+#define DECLARE_UNIFORM_MATRIX(format_m) \
+    typedef matrix::uniform< fu::format_m > format_m;
+
+      DECLARE_UNIFORM_MATRIX(gl_float_mat2)
+      DECLARE_UNIFORM_MATRIX(gl_float_mat2x3)
+      DECLARE_UNIFORM_MATRIX(gl_float_mat2x4)
+      DECLARE_UNIFORM_MATRIX(gl_float_mat3x2)
+      DECLARE_UNIFORM_MATRIX(gl_float_mat3)
+      DECLARE_UNIFORM_MATRIX(gl_float_mat3x4)
+      DECLARE_UNIFORM_MATRIX(gl_float_mat4x2)
+      DECLARE_UNIFORM_MATRIX(gl_float_mat4x3)
+      DECLARE_UNIFORM_MATRIX(gl_float_mat4)
+
+#undef DECLARE_UNIFORM_MATRIX
 
     } // namespace uniform
 

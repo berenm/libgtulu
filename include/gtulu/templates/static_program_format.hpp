@@ -287,30 +287,24 @@ namespace gtulu {
                                    ::std::uint32_t const offset_in = 0,
                                    ::std::uint32_t const stride_in = 0) {
                   gio::vertexarray_base::bind();
-                  _name_tpl_buffer_binder_t::checked_binder< buffer_format_t >::bind(_location_tpl,
-                                                                                     buffer_in,
-                                                                                     offset_in,
-                                                                                     stride_in);
+                  _name_tpl_buffer_binder_t::bind(_location_tpl, buffer_in, offset_in, stride_in);
                 }
                 template< typename buffer_format_t, typename buffer_usage_t >
                 void set__name_tpl_normalized(gio::buffer< buffer_format_t, buffer_usage_t > const & buffer_in,
                                               ::std::uint32_t const offset_in = 0,
                                               ::std::uint32_t const stride_in = 0) {
                   gio::vertexarray_base::bind();
-                  _name_tpl_buffer_binder_t::checked_binder< buffer_format_t, fdn::normalized >::bind(_location_tpl,
-                                                                                                      buffer_in,
-                                                                                                      offset_in,
-                                                                                                      stride_in);
+                  _name_tpl_buffer_binder_t::bind< fdn::normalized >(_location_tpl, buffer_in, offset_in, stride_in);
                 }
                 template< typename buffer_format_t, typename buffer_usage_t >
                 void set__name_tpl_gbra(gio::buffer< buffer_format_t, buffer_usage_t > const & buffer_in,
                                         ::std::uint32_t const offset_in = 0,
                                         ::std::uint32_t const stride_in = 0) {
                   gio::vertexarray_base::bind();
-                  _name_tpl_buffer_binder_t::checked_binder< buffer_format_t, fdn::normal, fdo::reverse >::bind(_location_tpl,
-                                                                                                                buffer_in,
-                                                                                                                offset_in,
-                                                                                                                stride_in);
+                  _name_tpl_buffer_binder_t::bind< fdn::normal, fdo::reverse >(_location_tpl,
+                                                                               buffer_in,
+                                                                               offset_in,
+                                                                               stride_in);
                 }
                 // #template#</attribute>
 
@@ -328,30 +322,24 @@ namespace gtulu {
                                    ::std::uint32_t const offset_in = 0,
                                    ::std::uint32_t const stride_in = 0) {
                   gio::vertexarray_base::bind();
-                  _name_tpl_buffer_binder_t::checked_binder< buffer_format_t >::bind(_location_tpl,
-                                                                                     buffer_in,
-                                                                                     offset_in,
-                                                                                     stride_in);
+                  _name_tpl_buffer_binder_t::bind(_location_tpl, buffer_in, offset_in, stride_in);
                 }
                 template< typename buffer_format_t, typename buffer_usage_t >
                 void set__name_tpl_normalized(gio::buffer< buffer_format_t, buffer_usage_t > const& buffer_in,
                                               ::std::uint32_t const offset_in = 0,
                                               ::std::uint32_t const stride_in = 0) {
                   gio::vertexarray_base::bind();
-                  _name_tpl_buffer_binder_t::checked_binder< buffer_format_t, fdn::normalized >::bind(_location_tpl,
-                                                                                                      buffer_in,
-                                                                                                      offset_in,
-                                                                                                      stride_in);
+                  _name_tpl_buffer_binder_t::bind< fdn::normalized >(_location_tpl, buffer_in, offset_in, stride_in);
                 }
                 template< typename buffer_format_t, typename buffer_usage_t >
                 void set__name_tpl_gbra(const gio::buffer< buffer_format_t, buffer_usage_t >& buffer_in,
                                         const ::std::uint32_t offset_in = 0,
                                         const ::std::uint32_t stride_in = 0) {
                   gio::vertexarray_base::bind();
-                  _name_tpl_buffer_binder_t::checked_binder< buffer_format_t, fdn::normal, fdo::reverse >::bind(_location_tpl,
-                                                                                                                buffer_in,
-                                                                                                                offset_in,
-                                                                                                                stride_in);
+                  _name_tpl_buffer_binder_t::bind< fdn::normal, fdo::reverse >(_location_tpl,
+                                                                               buffer_in,
+                                                                               offset_in,
+                                                                               stride_in);
                 }
                 // #template#</attribute_array>
             };

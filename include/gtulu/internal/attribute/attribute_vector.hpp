@@ -24,255 +24,69 @@ namespace gtulu {
         template< typename type_t, typename count_t >
         struct attribute_binder;
 
-        template< >
-        struct attribute_binder< fat::integer, fc::to_typename< 2 >::type > {
-            inline static void bind(const location_t location_in,
-                                    const ::std::int32_t value_in0,
-                                    const ::std::int32_t value_in1) {
-              fnc::gl_vertex_attrib_2_integer::call(location_in, value_in0, value_in1);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const ::std::int32_t* values_in) {
-              fnc::gl_vertex_attrib_2_integer::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-        };
-        template< >
-        struct attribute_binder< fat::integer, fc::to_typename< 3 >::type > {
-            inline static void bind(const location_t location_in,
-                                    const ::std::int32_t value_in0,
-                                    const ::std::int32_t value_in1,
-                                    const ::std::int32_t value_in2) {
-              fnc::gl_vertex_attrib_3_integer::call(location_in, value_in0, value_in1, value_in2);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const ::std::int32_t* values_in) {
-              fnc::gl_vertex_attrib_3_integer::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-        };
-        template< >
-        struct attribute_binder< fat::integer, fc::to_typename< 4 >::type > {
-            inline static void bind(const location_t location_in,
-                                    const ::std::int32_t value_in0,
-                                    const ::std::int32_t value_in1,
-                                    const ::std::int32_t value_in2,
-                                    const ::std::int32_t value_in3) {
-              fnc::gl_vertex_attrib_4_integer::call(location_in, value_in0, value_in1, value_in2, value_in3);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const ::std::int32_t* values_in) {
-              fnc::gl_vertex_attrib_4_integer::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
+#define DECLARE_BIND_METHOD_PTR(prefix_m, value_type_m, count_m, suffix_m) \
+    inline static void BOOST_PP_CAT(bind, prefix_m)(location_t const location_in, value_type_m const* values_in) { \
+      BOOST_PP_SEQ_CAT((fnc::gl_vertex_attrib_)(count_m)(suffix_m))::call(location_in, values_in); \
+      fnc::gl_disable_vertex_attrib_array::call(location_in); \
+    }
+
+#define DECLARE_BIND_METHODS(prefix_m, value_type_m, count_m, suffix_m) \
+    inline static void BOOST_PP_CAT(bind, prefix_m)(location_t const location_in, BOOST_PP_ENUM_PARAMS(count_m, value_type_m const value_in)) { \
+      BOOST_PP_SEQ_CAT((fnc::gl_vertex_attrib_)(count_m)(suffix_m))::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in)); \
+      fnc::gl_disable_vertex_attrib_array::call(location_in); \
+    } \
+    DECLARE_BIND_METHOD_PTR(prefix_m, value_type_m, count_m, suffix_m)
+
+#define DECLARE_INTEGER_BINDER(type_m, value_type_m, count_m) \
+        template< > \
+        struct attribute_binder< fat::type_m, fc::to_typename< count_m >::type > { \
+            DECLARE_BIND_METHODS(BOOST_PP_EMPTY(), value_type_m, count_m, _integer) \
         };
 
-        template< >
-        struct attribute_binder< fat::unsigned_integer, fc::to_typename< 2 >::type > {
-            inline static void bind(const location_t location_in,
-                                    const ::std::uint32_t value_in0,
-                                    const ::std::uint32_t value_in1) {
-              fnc::gl_vertex_attrib_2_integer::call(location_in, value_in0, value_in1);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const ::std::uint32_t* values_in) {
-              fnc::gl_vertex_attrib_2_integer::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-        };
-        template< >
-        struct attribute_binder< fat::unsigned_integer, fc::to_typename< 3 >::type > {
-            inline static void bind(const location_t location_in,
-                                    const ::std::uint32_t value_in0,
-                                    const ::std::uint32_t value_in1,
-                                    const ::std::uint32_t value_in2) {
-              fnc::gl_vertex_attrib_3_integer::call(location_in, value_in0, value_in1, value_in2);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const ::std::uint32_t* values_in) {
-              fnc::gl_vertex_attrib_3_integer::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-        };
-        template< >
-        struct attribute_binder< fat::unsigned_integer, fc::to_typename< 4 >::type > {
-            inline static void bind(const location_t location_in,
-                                    const ::std::uint32_t value_in0,
-                                    const ::std::uint32_t value_in1,
-                                    const ::std::uint32_t value_in2,
-                                    const ::std::uint32_t value_in3) {
-              fnc::gl_vertex_attrib_4_integer::call(location_in, value_in0, value_in1, value_in2, value_in3);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const ::std::uint32_t* values_in) {
-              fnc::gl_vertex_attrib_4_integer::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-        };
+#define DECLARE_FLOATING_BINDER(count_m) \
+    template< > \
+    struct attribute_binder< fat::floating, fc::to_typename< count_m >::type > { \
+        DECLARE_BIND_METHODS(BOOST_PP_EMPTY(), double, count_m, BOOST_PP_EMPTY()) \
+        DECLARE_BIND_METHODS(BOOST_PP_EMPTY(), float, count_m, BOOST_PP_EMPTY()) \
+        DECLARE_BIND_METHODS(BOOST_PP_EMPTY(), ::std::int16_t, count_m, BOOST_PP_EMPTY()) \
+    };
 
-        template< >
-        struct attribute_binder< fat::floating, fc::to_typename< 2 >::type > {
-            inline static void bind(const location_t location_in, const double value_in0, const double value_in1) {
-              fnc::gl_vertex_attrib_2::call(location_in, value_in0, value_in1);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const double* values_in) {
-              fnc::gl_vertex_attrib_2::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const float value_in0, const float value_in1) {
-              fnc::gl_vertex_attrib_2::call(location_in, value_in0, value_in1);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const float* values_in) {
-              fnc::gl_vertex_attrib_2::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in,
-                                    const ::std::int16_t value_in0,
-                                    const ::std::int16_t value_in1) {
-              fnc::gl_vertex_attrib_2::call(location_in, value_in0, value_in1);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const ::std::int16_t* values_in) {
-              fnc::gl_vertex_attrib_2::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-        };
-        template< >
-        struct attribute_binder< fat::floating, fc::to_typename< 3 >::type > {
-            inline static void bind(const location_t location_in,
-                                    const double value_in0,
-                                    const double value_in1,
-                                    const double value_in2) {
-              fnc::gl_vertex_attrib_3::call(location_in, value_in0, value_in1, value_in2);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const double* values_in) {
-              fnc::gl_vertex_attrib_3::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in,
-                                    const float value_in0,
-                                    const float value_in1,
-                                    const float value_in2) {
-              fnc::gl_vertex_attrib_3::call(location_in, value_in0, value_in1, value_in2);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const float* values_in) {
-              fnc::gl_vertex_attrib_3::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in,
-                                    const ::std::int16_t value_in0,
-                                    const ::std::int16_t value_in1,
-                                    const ::std::int16_t value_in2) {
-              fnc::gl_vertex_attrib_3::call(location_in, value_in0, value_in1, value_in2);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const ::std::int16_t* values_in) {
-              fnc::gl_vertex_attrib_3::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-        };
+        DECLARE_INTEGER_BINDER(integer, ::std::int32_t, 2)
+        DECLARE_INTEGER_BINDER(integer, ::std::int32_t, 3)
+        DECLARE_INTEGER_BINDER(integer, ::std::int32_t, 4)
+        DECLARE_INTEGER_BINDER(unsigned_integer, ::std::uint32_t, 2)
+        DECLARE_INTEGER_BINDER(unsigned_integer, ::std::uint32_t, 3)
+        DECLARE_INTEGER_BINDER(unsigned_integer, ::std::uint32_t, 4)
+
+        DECLARE_FLOATING_BINDER(2)
+        DECLARE_FLOATING_BINDER(3)
 
         template< >
         struct attribute_binder< fat::floating, favc::four > {
-            inline static void bind(const location_t location_in,
-                                    const double value_in0,
-                                    const double value_in1,
-                                    const double value_in2,
-                                    const double value_in3) {
-              fnc::gl_vertex_attrib_4::call(location_in, value_in0, value_in1, value_in2, value_in3);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const double* values_in) {
-              fnc::gl_vertex_attrib_4::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in,
-                                    const float value_in0,
-                                    const float value_in1,
-                                    const float value_in2,
-                                    const float value_in3) {
-              fnc::gl_vertex_attrib_4::call(location_in, value_in0, value_in1, value_in2, value_in3);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const float* values_in) {
-              fnc::gl_vertex_attrib_4::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in,
-                                    const ::std::int16_t value_in0,
-                                    const ::std::int16_t value_in1,
-                                    const ::std::int16_t value_in2,
-                                    const ::std::int16_t value_in3) {
-              fnc::gl_vertex_attrib_4::call(location_in, value_in0, value_in1, value_in2, value_in3);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const ::std::int16_t* values_in) {
-              fnc::gl_vertex_attrib_4::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
+            DECLARE_BIND_METHODS(BOOST_PP_EMPTY(), double, 4, BOOST_PP_EMPTY())
+            DECLARE_BIND_METHODS(BOOST_PP_EMPTY(), float, 4, BOOST_PP_EMPTY())
+            DECLARE_BIND_METHODS(BOOST_PP_EMPTY(), ::std::int16_t, 4, BOOST_PP_EMPTY())
+            DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::int32_t, 4, BOOST_PP_EMPTY())
+            DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::int8_t, 4, BOOST_PP_EMPTY())
+            DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::uint32_t, 4, BOOST_PP_EMPTY())
+            DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::uint16_t, 4, BOOST_PP_EMPTY())
+            DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::uint8_t, 4, BOOST_PP_EMPTY())
 
-            inline static void bind(const location_t location_in, const ::std::int32_t* values_in) {
-              fnc::gl_vertex_attrib_4::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const ::std::int8_t* values_in) {
-              fnc::gl_vertex_attrib_4::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const ::std::uint32_t* values_in) {
-              fnc::gl_vertex_attrib_4::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const ::std::uint16_t* values_in) {
-              fnc::gl_vertex_attrib_4::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind(const location_t location_in, const ::std::uint8_t* values_in) {
-              fnc::gl_vertex_attrib_4::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-
-            inline static void bind_normalized(const location_t location_in,
-                                               const ::std::uint8_t value_in0,
-                                               const ::std::uint8_t value_in1,
-                                               const ::std::uint8_t value_in2,
-                                               const ::std::uint8_t value_in3) {
-              fnc::gl_vertex_attrib_4_normalized::call(location_in, value_in0, value_in1, value_in2, value_in3);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind_normalized(const location_t location_in, const ::std::int32_t* values_in) {
-              fnc::gl_vertex_attrib_4_normalized::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind_normalized(const location_t location_in, const ::std::int16_t* values_in) {
-              fnc::gl_vertex_attrib_4_normalized::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind_normalized(const location_t location_in, const ::std::int8_t* values_in) {
-              fnc::gl_vertex_attrib_4_normalized::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind_normalized(const location_t location_in, const ::std::uint32_t* values_in) {
-              fnc::gl_vertex_attrib_4_normalized::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind_normalized(const location_t location_in, const ::std::uint16_t* values_in) {
-              fnc::gl_vertex_attrib_4_normalized::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
-            inline static void bind_normalized(const location_t location_in, const ::std::uint8_t* values_in) {
-              fnc::gl_vertex_attrib_4_normalized::call(location_in, values_in);
-              fnc::gl_disable_vertex_attrib_array::call(location_in);
-            }
+            DECLARE_BIND_METHODS(_normalized, ::std::uint8_t, 4, _normalized)
+            DECLARE_BIND_METHOD_PTR(_normalized, ::std::int32_t, 4, _normalized)
+            DECLARE_BIND_METHOD_PTR(_normalized, ::std::int16_t, 4, _normalized)
+            DECLARE_BIND_METHOD_PTR(_normalized, ::std::int8_t, 4, _normalized)
+            DECLARE_BIND_METHOD_PTR(_normalized, ::std::uint32_t, 4, _normalized)
+            DECLARE_BIND_METHOD_PTR(_normalized, ::std::uint16_t, 4, _normalized)
         };
 
+#undef DECLARE_FLOATING_BINDER
+#undef DECLARE_INTEGER_BINDER
+#undef DECLARE_BIND_METHODS
+#undef DECLARE_BIND_METHODS_PTR
+
         template< typename format_t, typename binder_t = attribute_binder< typename format_t::info::type,
-            typename format_t::info::count > , typename buffer_binder_t = attribute_buffer_binder<
-            typename format_t::info::type, typename format_t::info::count > ,
+            typename format_t::info::count > , typename buffer_binder_t = attribute_buffer_binder< format_t > ,
             typename value_t = typename fa::to_typename< typename format_t::info::type >::type >
         struct attribute {
             typedef format_t format;

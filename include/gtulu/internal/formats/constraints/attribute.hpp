@@ -12,55 +12,32 @@
 
 namespace gtulu {
   namespace internal {
+    namespace bm = ::boost::mpl;
 
     namespace formats {
       namespace attribute {
 
-        template< typename attribute_type_t, typename data_packing_t >
-        struct is_data_packing_compatible;
+        template< typename attribute_format_t, typename data_format_t >
+        struct data_packing_check {
+            typedef fdp::is_none< data_format_t > type;
+            static_assert(type::value, "attribute_format_t is not compatible with data_format_t, vertex attributes require non packed buffer data and data_format_t packing is not fdp::none.");
+        };
 
-#define DECLARE_COMPATIBLE(attribute_m, packing_m) \
-    template< > struct is_data_packing_compatible< type::attribute_m, fdp::packing_m > {};
+        template< typename attribute_format_t, typename data_format_t >
+        struct data_type_check {
+            typedef fat::is_floating< attribute_format_t > floating_check;
+            typedef bm::and_< fdt::is_integer< data_format_t >, type::is_integer< attribute_format_t > > integer_check;
 
-        DECLARE_COMPATIBLE(floating, none)
-        DECLARE_COMPATIBLE(integer, none)
-        DECLARE_COMPATIBLE(unsigned_integer, none)
+            typedef bm::or_< floating_check, integer_check > type;
+            static_assert(type::value, "attribute_format_t is not compatible with data_format_t, integer attribute formats require integer data, only floating attribute formats can be used with any data format types.");
+        };
 
-#undef DECLARE_COMPATIBLE
+        template< typename attribute_format_t, typename data_format_t >
+        struct is_data_compatible {
+            typedef typename data_type_check< attribute_format_t, data_format_t >::type data_type_c;
+            typedef typename data_packing_check< attribute_format_t, data_format_t >::type data_packing_c;
 
-        template< typename attribute_type_t, typename data_value_type_t >
-        struct is_data_value_type_compatible;
-
-#define DECLARE_COMPATIBLE(attribute_m, value_type_m) \
-    template< > struct is_data_value_type_compatible< type::attribute_m, fdv::value_type_m > {};
-
-        DECLARE_COMPATIBLE(floating, byte_)
-        DECLARE_COMPATIBLE(floating, unsigned_byte)
-        DECLARE_COMPATIBLE(floating, short_)
-        DECLARE_COMPATIBLE(floating, unsigned_short)
-        DECLARE_COMPATIBLE(floating, int_)
-        DECLARE_COMPATIBLE(floating, unsigned_int)
-        DECLARE_COMPATIBLE(floating, float_)
-        DECLARE_COMPATIBLE(floating, half_float)
-        DECLARE_COMPATIBLE(floating, double_)
-        DECLARE_COMPATIBLE(integer, byte_)
-        DECLARE_COMPATIBLE(integer, unsigned_byte)
-        DECLARE_COMPATIBLE(integer, short_)
-        DECLARE_COMPATIBLE(integer, unsigned_short)
-        DECLARE_COMPATIBLE(integer, int_)
-        DECLARE_COMPATIBLE(integer, unsigned_int)
-        DECLARE_COMPATIBLE(unsigned_integer, byte_)
-        DECLARE_COMPATIBLE(unsigned_integer, unsigned_byte)
-        DECLARE_COMPATIBLE(unsigned_integer, short_)
-        DECLARE_COMPATIBLE(unsigned_integer, unsigned_short)
-        DECLARE_COMPATIBLE(unsigned_integer, int_)
-        DECLARE_COMPATIBLE(unsigned_integer, unsigned_int)
-
-#undef DECLARE_COMPATIBLE
-
-        template< typename attribute_type_t, typename data_format_t >
-        struct is_compatible: is_data_packing_compatible< attribute_type_t, typename data_format_t::info::packing > ,
-                              is_data_value_type_compatible< attribute_type_t, typename data_format_t::info::value_type > {
+            typedef bm::and_< data_type_c, data_packing_c > type;
         };
 
       } // namespace attribute

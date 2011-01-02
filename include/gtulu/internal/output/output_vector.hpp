@@ -24,26 +24,27 @@ namespace gtulu {
         template< typename type_t, typename count_t >
         struct output_binder;
 
-#define DECLARE_BINDER(type_m, suffix_m, count_m) \
+#define DECLARE_BINDER(type_m, count_m) \
       template< > \
       struct output_binder< fo::type::type_m, fc::to_typename< count_m >::type > { \
-          inline static void bind(const location_t location_in, BOOST_PP_ENUM_PARAMS(count_m, const fo::to_typename< fo::type::type_m >::type value_in)) { \
-            fnc:: gl_uniform_##count_m##suffix_m ::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in)); \
+          inline static void bind(location_t const location_in, BOOST_PP_ENUM_PARAMS(count_m, fo::to_typename< fo::type::type_m >::type const value_in)) { \
+            fnc::gl_uniform_##count_m::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in)); \
           } \
-          inline static void bind(const location_t location_in, const ::std::uint32_t number_in, const fo::to_typename< fo::type::type_m >::type* values_in) { \
-            fnc:: gl_uniform_##count_m##suffix_m##v ::call(location_in, number_in, values_in); \
+          inline static void bind(location_t const location_in, ::std::uint32_t const number_in, fo::to_typename< fo::type::type_m >::type const* values_in) { \
+            fnc::gl_uniform_##count_m::call(location_in, number_in, values_in); \
           } \
       };
 
-        DECLARE_BINDER(floating, f, 2)
-        DECLARE_BINDER(floating, f, 3)
-        DECLARE_BINDER(floating, f, 4)
-        DECLARE_BINDER(integer, i, 2)
-        DECLARE_BINDER(integer, i, 3)
-        DECLARE_BINDER(integer, i, 4)
-        DECLARE_BINDER(unsigned_integer, ui, 2)
-        DECLARE_BINDER(unsigned_integer, ui, 3)
-        DECLARE_BINDER(unsigned_integer, ui, 4)
+        DECLARE_BINDER(floating, 2)
+        DECLARE_BINDER(floating, 3)
+        DECLARE_BINDER(floating, 4)
+        DECLARE_BINDER(integer, 2)
+        DECLARE_BINDER(integer, 3)
+        DECLARE_BINDER(integer, 4)
+        DECLARE_BINDER(unsigned_integer, 2)
+        DECLARE_BINDER(unsigned_integer, 3)
+        DECLARE_BINDER(unsigned_integer, 4)
+
 #undef DECLARE_BINDER
 
         template< typename format_t, typename binder_t = output_binder< typename format_t::info::type,
@@ -54,7 +55,9 @@ namespace gtulu {
             typedef value_t value_type;
             typedef binder_t binder;
         };
+
       } // namespace vector
+
 #define DECLARE_OUTPUT(format_m) \
   typedef vector::output< fo::format_m > format_m;
       DECLARE_OUTPUT(gl_float_vec2)

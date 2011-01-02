@@ -36,10 +36,15 @@ namespace gtulu {
           typedef binder_t binder;
       };
 
-      typedef uniform< fu::gl_float > gl_float;
-      typedef uniform< fu::gl_int > gl_int;
-      typedef uniform< fu::gl_unsigned_int > gl_unsigned_int;
-      typedef uniform< fu::gl_bool > gl_bool;
+#define DECLARE_UNIFORM(format_m) \
+    typedef uniform< fu::format_m > format_m;
+
+      DECLARE_UNIFORM(gl_float)
+      DECLARE_UNIFORM(gl_int)
+      DECLARE_UNIFORM(gl_unsigned_int)
+      DECLARE_UNIFORM(gl_bool)
+
+#undef DECLARE_UNIFORM
 
     } // namespace uniform
 
