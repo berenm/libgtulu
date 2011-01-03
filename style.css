@@ -17,10 +17,14 @@ html {
 
 .title {
   font-size: 8em;
+  margin-bottom: 1%;
+}
+
+.title a {
   font-weight: bold;
   color: #0E5910;
-  margin-bottom: 1%;
   text-shadow: 1px 1px 3px #165944;
+  text-decoration: none;
 }
 
 .subtitle {
