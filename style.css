@@ -35,17 +35,46 @@ html {
   color: black;
 }
 
-.features {
+.features,
+.coverage {
   list-style: none;
   padding-left: 0;
   margin-left: 2em;
+  font-size: 0.9em;
 }
 
-.features li {
+.features li,
+.coverage li.covered {
   background: url(bullet-small.png) left center no-repeat;
+  color: #000000;
   padding-top: 0.45em;
   height: 1.5em;
   padding-left: 1.5em;
+}
+
+.coverage li {
+  float: left;
+  width: 30%;
+}
+.coverage li.category {
+  clear: left;
+  width: 100%;
+}
+
+.features li.error,
+.coverage li {
+  background: url(bullet-small-error.png) left center no-repeat;
+  color: #BBBBBB;
+  padding-top: 0.45em;
+  height: 1.5em;
+  padding-left: 1.5em;
+}
+
+.features li.category,
+.coverage li.category {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 1em;
 }
 
 .menu {
