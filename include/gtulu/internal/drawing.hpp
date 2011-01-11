@@ -49,7 +49,7 @@ namespace gtulu {
 
       template< typename drawing_mode_t, typename buffer_format_t, typename buffer_usage_t >
       struct checked_drawer: is_buffer_unsigned_integer< buffer_format_t > {
-          inline static void draw(gio::buffer< const buffer_format_t, buffer_usage_t >& buffer_in,
+          inline static void draw(gio::buffer< buffer_format_t, buffer_usage_t > const& buffer_in,
                                   ::std::uint32_t const count_in,
                                   ::std::uint32_t const offset_in,
                                   ::std::uint32_t const base_vertex_in) {
@@ -64,7 +64,7 @@ namespace gtulu {
             }
           }
 
-          inline static void draw(gio::buffer< const buffer_format_t, buffer_usage_t >& buffer_in,
+          inline static void draw(gio::buffer< buffer_format_t, buffer_usage_t > const& buffer_in,
                                   ::std::uint32_t const count_in,
                                   ::std::uint32_t const offset_in,
                                   ::std::uint32_t const instance_count_in,
@@ -82,7 +82,7 @@ namespace gtulu {
             }
           }
 
-          inline static void draw(gio::buffer< const buffer_format_t, buffer_usage_t >& buffer_in,
+          inline static void draw(gio::buffer< buffer_format_t, buffer_usage_t > const& buffer_in,
                                   ::std::uint32_t const count_in,
                                   ::std::uint32_t const min_index_in,
                                   ::std::uint32_t const max_index_in,
@@ -103,7 +103,7 @@ namespace gtulu {
             }
           }
 
-          inline static void draw(gio::buffer< const buffer_format_t, buffer_usage_t >& buffer_in,
+          inline static void draw(gio::buffer< buffer_format_t, buffer_usage_t > const& buffer_in,
                                   ::std::uint32_t const counts_in[],
                                   ::std::uint32_t const offsets_in[],
                                   ::std::size_t const count_in) {
@@ -135,7 +135,7 @@ namespace gtulu {
           }
 
           template< typename drawing_mode_t, typename buffer_format_t, typename buffer_usage_t >
-          inline void draw(gio::buffer< const buffer_format_t, buffer_usage_t >& buffer_in,
+          inline void draw(gio::buffer< buffer_format_t, buffer_usage_t > const& buffer_in,
                            ::std::uint32_t const count_in,
                            ::std::uint32_t const offset_in,
                            ::std::uint32_t const instance_count_in,
@@ -156,7 +156,7 @@ namespace gtulu {
 
           template< typename drawing_mode_t, typename buffer_format_t, typename buffer_usage_t >
           inline void draw(draw_mode_t const mode_in,
-                           gio::buffer< const buffer_format_t, buffer_usage_t >& buffer_in,
+                           gio::buffer< buffer_format_t, buffer_usage_t > const& buffer_in,
                            ::std::uint32_t const count_in,
                            ::std::uint32_t const min_index_in,
                            ::std::uint32_t const max_index_in,
@@ -172,7 +172,7 @@ namespace gtulu {
 
           template< typename drawing_mode_t, typename buffer_format_t, typename buffer_usage_t >
           inline static void draw(draw_mode_t const mode_in,
-                                  gio::buffer< const buffer_format_t, buffer_usage_t >& buffer_in,
+                                  gio::buffer< buffer_format_t, buffer_usage_t > const& buffer_in,
                                   ::std::uint32_t const counts_in[],
                                   ::std::uint32_t const offsets_in[],
                                   ::std::size_t const count_in) {

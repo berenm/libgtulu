@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
   ::boost::shared_ptr< gifp::test1_program_format::vertexarray_t > vertexarray = program.new_vertexarray();
   vertexarray->set_position(buffer);
   vertexarray->set_texture_position(0, 0);
-  vertexarray->draw(program, 0, 10);
+  vertexarray->draw(program, *program.get_default_framebuffer(), buffer, 10);
 
   close_gl();
   return 0;
