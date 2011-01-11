@@ -207,9 +207,9 @@ struct program_compiler {
 };
 
 const ::std::string get_shader_name(const ::bfs::path& shader_file) {
-  ::std::string filename = shader_file.filename();
+  ::std::string filename = shader_file.filename().string();
 
-  filename = filename.substr(0, filename.length() - shader_file.extension().length());
+  filename = filename.substr(0, filename.length() - shader_file.extension().string().length());
   ::std::replace_if(filename.begin(), filename.end(), ::boost::is_punct(), '_');
   ::std::replace_if(filename.begin(), filename.end(), ::boost::is_space(), '_');
   ::std::remove_if(filename.begin(), filename.end(), ::boost::is_cntrl());
@@ -218,7 +218,7 @@ const ::std::string get_shader_name(const ::bfs::path& shader_file) {
 }
 
 const cst::gl_constant_base get_shader_type(const ::bfs::path& shader_file) {
-  ::std::string extension = shader_file.extension();
+  ::std::string extension = shader_file.extension().string();
 
   if (extension.compare(".fs") == 0 || extension.compare(".frag") == 0) {
     return fst::gl_fragment_shader();

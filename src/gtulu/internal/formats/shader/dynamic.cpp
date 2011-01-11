@@ -38,7 +38,7 @@ namespace gtulu {
         }
 
         void dynamic_shader_format::load_shader(const ::boost::filesystem::path& filename) {
-          ::std::string extension = filename.extension();
+          ::std::string extension = filename.extension().string();
           bool parse_outputs = false;
 
           if (extension.compare(".fs") == 0 || extension.compare(".frag") == 0) {
