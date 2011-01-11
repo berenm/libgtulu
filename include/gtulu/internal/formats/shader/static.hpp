@@ -34,6 +34,8 @@ namespace gtulu {
       } // namespace shader
     } // namespace formats
 
+    namespace gifsh = ::gtulu::internal::formats::shader;
+
   } // namespace internal
 } // namespace gtulu
 

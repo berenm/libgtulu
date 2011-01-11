@@ -45,10 +45,15 @@ module shader {
   }
 
   rule program ( name : sources + : properties * ) {
-    cpp $(name) : $(sources) ext/libgtulu/include/gtulu/templates/static_program_format.hpp
+    local location = [ property.select <location> : $(properties) ] ;
+    
+    if ! $(location) {
+      properties = $(properties) <location>generated/ ;
+    }
+    
+    cpp $(name) : $(sources) $(TEMPLATES)/static_program_format.hpp
                 : <shader-compiler>compiler
                   <shader-name>$(name) 
-                  <location>generated/ 
                   <link>static 
                   $(properties) ;
   }

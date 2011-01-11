@@ -4,47 +4,51 @@
  * @todo comment
  */
 
-#include <GL/freeglut.h>
-
-#include <iostream>
-
-#include "common.hpp"
-
+#include "gtulu/internal/context.hpp"
 #include <logging/logging.hpp>
 
-static void reshape(::std::int32_t w, ::std::int32_t h) {
-  glViewport(0, 0, w, h);
-}
+#include <GL/glfw.h>
+
+#include <iostream>
+#include "common.hpp"
 
 void init_gl(::std::int32_t argc, char** argv) {
-  glutInit(&argc, argv);
 
-  glutInitContextVersion(3, 3);
-  glutInitContextFlags(GLUT_DEBUG); // GLUT_FORWARD_COMPATIBLE
-  glutInitContextProfile(GLUT_CORE_PROFILE); // GLUT_COMPATIBILITY_PROFILE
-  glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
-  glutInitWindowSize(500, 500);
-  glutInitWindowPosition(100, 100);
+  glfwInit();
+  GLFWvidmode mode;
+  glfwGetDesktopMode(&mode);
 
-  glutCreateWindow(argv[0]);
+  glfwOpenWindowHint(GLFW_WINDOW_NO_RESIZE, GL_TRUE);
+  glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);
+  glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 3);
+  glfwOpenWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+  glfwOpenWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_FALSE);
+  glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-  glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
-  glutDisplayFunc(do_frame); // Register The Display Function
-  glutReshapeFunc(reshape);
+  glfwOpenWindow(1, 1, mode.RedBits, mode.GreenBits, mode.BlueBits, 8, 8, 8, GLFW_WINDOW);
 
-  __info << "Vendor: " << glGetString(GL_VENDOR);
-  __info << "Renderer: " << glGetString(GL_RENDERER);
-  __info << "Version: " << glGetString(GL_VERSION);
-  __info << "GLSL: " << glGetString(GL_SHADING_LANGUAGE_VERSION);
+  namespace gic = ::gtulu::internal::gic;
+  namespace gicp = ::gtulu::internal::gicp;
+
+  ::std::string gl_vendor = gic::gl_vendor::get();
+  ::std::string gl_renderer = gic::gl_renderer::get();
+  ::std::string gl_version = gic::gl_version::get();
+  ::std::string gl_shading_language_version = gic::gl_shading_language_version::get();
+
+  __info << gicp::gl_vendor() << ": " << gl_vendor;
+  __info << gicp::gl_renderer() << ": " << gl_renderer;
+  __info << gicp::gl_version() << ": " << gl_version;
+  __info << gicp::gl_shading_language_version() << ": " << gl_shading_language_version;
 }
 
 void close_gl() {
+  glfwCloseWindow();
+  glfwTerminate();
 }
 
 void main_loop() {
-  glutMainLoop();
 }
 
 void swap_buffers() {
-  glutSwapBuffers();
+  glfwSwapBuffers();
 }

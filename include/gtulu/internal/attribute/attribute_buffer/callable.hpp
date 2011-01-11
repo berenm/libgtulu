@@ -18,11 +18,12 @@ namespace gtulu {
 
     namespace attribute {
 
-      template< typename is_floating_t >
-      struct attribute_buffer_binder_callable;
+      template< bool const is_floating_t >
+      struct attribute_buffer_binder_callable {
+      };
 
       template< >
-      struct attribute_buffer_binder_callable< bm::true_ > {
+      struct attribute_buffer_binder_callable< true > {
           template< typename data_format_t >
           inline static void call(location_t const location_in,
                                   ::std::uint32_t const offset_in,
@@ -38,7 +39,7 @@ namespace gtulu {
       };
 
       template< >
-      struct attribute_buffer_binder_callable< bm::false_ > {
+      struct attribute_buffer_binder_callable< false > {
           template< typename data_format_t >
           inline static void call(location_t const location_in,
                                   ::std::uint32_t const offset_in,

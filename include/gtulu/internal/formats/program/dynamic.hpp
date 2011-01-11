@@ -167,6 +167,8 @@ namespace gtulu {
       } // namespace program
     } // namespace formats
 
+    namespace gifp = ::gtulu::internal::formats::program;
+
   } // namespace internal
 } // namespace gtulu
 

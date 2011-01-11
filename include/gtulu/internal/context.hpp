@@ -659,6 +659,11 @@ namespace gtulu {
         typedef cst::gl_max_geometry_uniform_components gl_max_geometry_uniform_components;
         typedef cst::gl_timestamp gl_timestamp;
         typedef cst::gl_vertex_program_point_size gl_vertex_program_point_size;
+
+        typedef cst::gl_vendor gl_vendor;
+        typedef cst::gl_renderer gl_renderer;
+        typedef cst::gl_version gl_version;
+        typedef cst::gl_shading_language_version gl_shading_language_version;
       } // namespace parameter
 
       template< typename return_type_t >
@@ -667,7 +672,7 @@ namespace gtulu {
           static void get(return_type_t* data);
 
           template< typename parameter_t >
-          static void get(::std::uint32_t index, return_type_t* data);
+          static void get(::std::uint32_t const index_in, return_type_t* data);
       };
 
 #define DECLARE_GETTOR(return_type_m, function_m) \
@@ -688,9 +693,21 @@ namespace gtulu {
           } \
           \
           template< typename parameter_t > \
-          static void get(::std::uint32_t index, return_type_m* data) { \
-            fnc:: indexed_function_m ::call< parameter_t >(index, data); \
+          static void get(::std::uint32_t const index_in, return_type_m* data) { \
+            fnc:: indexed_function_m ::call< parameter_t >(index_in, data); \
           } \
+      };
+
+      template< >
+      struct gettor< ::std::string > {
+          template< typename parameter_t >
+          static void get(::std::string* data) {
+            data->assign(reinterpret_cast< char const* > (fnc::gl_get_string::call< parameter_t >()));
+          }
+          template< typename parameter_t >
+          static void get(::std::uint32_t const index_in, ::std::string* data) {
+            data->assign(reinterpret_cast< char const* > (fnc::gl_get_string::call< parameter_t >(index_in)));
+          }
       };
 
       DECLARE_GETTOR(float, gl_get_float)
@@ -776,7 +793,8 @@ namespace gtulu {
             typedef typename sized_gettor< size_m >::strong_gettor< return_type_t > gettor_type_t; \
             return gettor_type_t::template get< parameter::parameter_m >(); \
           } \
-      };
+      }; \
+      typedef parameter_gettor< parameter::parameter_m > parameter_m;
 
 #define DECLARE_GETTOR_INDEXED(parameter_m, size_m, return_type_m) \
       template< > \
@@ -787,7 +805,8 @@ namespace gtulu {
           static gettor_return_type_t get(::std::uint32_t index_in) { \
             return gettor_type_t::get< parameter::parameter_m >(index_in); \
           } \
-      };
+      }; \
+      typedef parameter_gettor< parameter::parameter_m > parameter_m;
 
 #define DECLARE_GETTOR_TYPED(parameter_m, size_m, return_type_m) \
       template< > \
@@ -798,7 +817,8 @@ namespace gtulu {
           static gettor_return_type_t get() { \
             return gettor_type_t::get< parameter::parameter_m >(); \
           } \
-      };
+      }; \
+      typedef parameter_gettor< parameter::parameter_m > parameter_m;
 
 #define DECLARE_GETTOR_DYNAMIC(parameter_m, size_parameter_m, return_type_m) \
       template< > \
@@ -810,7 +830,8 @@ namespace gtulu {
             ::std::size_t size = parameter_gettor< parameter::size_parameter_m >::get(); \
             return gettor_type_t::get< parameter::parameter_m >(size); \
           } \
-      };
+      }; \
+      typedef parameter_gettor< parameter::parameter_m > parameter_m;
 
       DECLARE_GETTOR_TYPED(gl_active_texture, 1, ::std::uint32_t)
       DECLARE_GETTOR_TYPED(gl_aliased_line_width_range, 2, float)
@@ -983,6 +1004,11 @@ namespace gtulu {
       DECLARE_GETTOR_TYPED(gl_viewport, 4, ::std::int32_t)
 
       DECLARE_GETTOR_TYPED(gl_max_color_attachments, 1, ::std::int32_t)
+
+      DECLARE_GETTOR_TYPED(gl_vendor, 1, ::std::string)
+      DECLARE_GETTOR_TYPED(gl_renderer, 1, ::std::string)
+      DECLARE_GETTOR_TYPED(gl_version, 1, ::std::string)
+      DECLARE_GETTOR_TYPED(gl_shading_language_version, 1, ::std::string)
 
 #undef DECLARE_GETTOR_TYPED
 #undef DECLARE_GETTOR_INDEXED

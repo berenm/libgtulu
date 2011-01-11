@@ -14,7 +14,7 @@ namespace gtulu {
   namespace internal {
 
     attachment_manager::attachment_manager() {
-      max_attachment = gic::parameter_gettor< gicp::gl_max_color_attachments >::get();
+      max_attachment = gic::gl_max_color_attachments::get();
 
       __info << "Max color attachments " << max_attachment;
 

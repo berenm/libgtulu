@@ -1,11 +1,13 @@
 import path ;
 import doxygen : doxygen ;
 
+import shader : program ;
+
 use-project /liblogging : ../liblogging ;
 
 lib GL : : <name>:libGL.so.1 ;
 lib GLU ;
-lib glut ;
+lib glfw ;
 lib boost_thread : : <search>/usr/local/lib ;
 lib boost_program_options : : <search>/usr/local/lib ;
 lib boost_filesystem : : <search>/usr/local/lib ;
@@ -18,7 +20,7 @@ lib boost_log : : <search>/usr/local/lib ;
 project gtulu : requirements
   <library>GL/<link>shared
   <library>GLU/<link>shared
-  <library>glut/<link>shared
+  <library>glfw/<link>shared
   <library>boost_thread
   <library>boost_program_options
   <library>boost_filesystem
@@ -60,9 +62,10 @@ alias gtulu_objs : [ objs $(gtulu_src) ] ;
 lib gtulu
     : gtulu_objs ;
 
+obj common : src/common.cpp ;
 
 exe compiler
-    : src/compile.cpp src/common.cpp gtulu  
+    : src/compile.cpp common gtulu  
     : <link>shared
     ;
 
@@ -77,6 +80,17 @@ install lib64so_dist
     : gtulu
     : <location>./dist/lib64/
       <link>shared ;
+    
+    
+    
+program test1 : test/shaders/test1.vs test/shaders/test1.fs : <location>test/generated/ ;
+program test2 : test/shaders/test2.vs test/shaders/test2.fs : <location>test/generated/ ;
+program test3 : test/shaders/test3.vs test/shaders/test3.fs : <location>test/generated/ ;
+
+exe test1exe : test/test1.cpp test1 common gtulu : <link>shared ;
+exe test2exe : test/test2.cpp test2 common gtulu : <link>shared ;
+exe test3exe : test/test3.cpp test3 common gtulu : <link>shared ;
+    
     
 #install lib32so_dist 
 #    : gtulu

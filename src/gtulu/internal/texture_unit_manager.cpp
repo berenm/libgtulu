@@ -15,7 +15,7 @@ namespace gtulu {
     ::boost::thread_specific_ptr< texture_unit_manager > texture_unit_manager::instance_ptr;
 
     texture_unit_manager::texture_unit_manager() {
-      max_texture_unit = gic::parameter_gettor< gicp::gl_max_combined_texture_image_units >::get();
+      max_texture_unit = gic::gl_max_combined_texture_image_units::get();
 
       __info << "Max combined texture units " << max_texture_unit;
 
