@@ -35,10 +35,10 @@ namespace gtulu {
 
             gib::array_buffer_slot::bind(buffer_in);
             fnc_vertex_attrib_pointer_t::template call< data_format_t >(location_in,
-                                                                        check_t::count,
-                                                                        check_t::normalized,
+                                                                        offset_in,
                                                                         stride_in,
-                                                                        reinterpret_cast< void const* > (offset_in));
+                                                                        check_t::count,
+                                                                        check_t::normalized);
 
             fnc::gl_enable_vertex_attrib_array::call(location_in);
           }

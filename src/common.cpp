@@ -30,10 +30,10 @@ void init_gl(::std::int32_t argc, char** argv) {
   namespace gic = ::gtulu::internal::gic;
   namespace gicp = ::gtulu::internal::gicp;
 
-  ::std::string gl_vendor = gic::gl_vendor::get();
-  ::std::string gl_renderer = gic::gl_renderer::get();
-  ::std::string gl_version = gic::gl_version::get();
-  ::std::string gl_shading_language_version = gic::gl_shading_language_version::get();
+  ::std::string const gl_vendor = gic::gl_vendor::get();
+  ::std::string const gl_renderer = gic::gl_renderer::get();
+  ::std::string const gl_version = gic::gl_version::get();
+  ::std::string const gl_shading_language_version = gic::gl_shading_language_version::get();
 
   __info << gicp::gl_vendor() << ": " << gl_vendor;
   __info << gicp::gl_renderer() << ": " << gl_renderer;
