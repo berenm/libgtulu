@@ -2,6 +2,7 @@
  * @file
  * @date 3 sept. 2010
  * @todo comment
+ * @copyright 2008-2011. All rights reserved.
  */
 
 #ifndef GTULU_INTERNAL_FUNCTION_FWD_HPP_

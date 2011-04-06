@@ -2,6 +2,7 @@
  * @file
  * @date 19 déc. 2009
  * @todo comment
+ * @copyright 2008-2011. All rights reserved.
  */
 
 #ifndef IN_GTULU_INTERNAL_FORMAT_ATTRIBUTE_HPP_

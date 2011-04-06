@@ -2,6 +2,7 @@
  * @file
  * @date 9 janv. 2011
  * @todo comment
+ * @copyright 2008-2011. All rights reserved.
  */
 
 #include "common.hpp"

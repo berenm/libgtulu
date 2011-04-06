@@ -2,6 +2,7 @@
  * @file
  * @date 3 sept. 2010
  * @todo comment
+ * @copyright 2008-2011. All rights reserved.
  */
 
 #include "gtulu/internal/formats/output.hpp"

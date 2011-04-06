@@ -2,6 +2,7 @@
  * @file
  * @date 30 mai 2010
  * @todo comment
+ * @copyright 2008-2011. All rights reserved.
  */
 
 #include <logging/logging.hpp>

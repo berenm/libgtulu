@@ -2,6 +2,7 @@
  * @file
  * @date 21 nov. 2009
  * @todo comment
+ * @copyright 2008-2011. All rights reserved.
  */
 
 #include "gtulu/internal/objects/object.hpp"

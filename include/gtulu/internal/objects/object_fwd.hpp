@@ -2,6 +2,7 @@
  * @file
  * @date 13 août 2010
  * @todo comment
+ * @copyright 2008-2011. All rights reserved.
  */
 
 #ifndef GTULU_INTERNAL_OBJECTS_BASES_FWD_HPP_

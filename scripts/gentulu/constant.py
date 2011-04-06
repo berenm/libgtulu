@@ -22,4 +22,4 @@ class constant:
     return "{namespace: %(namespace)s, name: %(name)s, value: %(value)s}" % (self.__dict__)
     
   def __str__(self):
-    return "          struct %(new_name)s: public ::gtulu::internal::constant::gl_constant< ::boost::mpl::string< %(splitted_name)s >, ::boost::mpl::int_< %(name)s > > {};" % (self.__dict__)
+    return "          struct %(new_name)s: public ::gtulu::internal::constant::gl_constant< ::boost::mpl::string< %(splitted_name)s >, ::boost::mpl::uint64_< %(name)s > > {};" % (self.__dict__)
