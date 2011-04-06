@@ -1,53 +1,21 @@
 import shader : program ;
-import path ;
-import os ;
-import common ;
-import modules ;
+import fhs ;
 
-constant VERSION : 0.0.1 ;
-rule tag ( name : type ? : property-set ) {
-  if $(type) in STATIC_LIB SHARED_LIB IMPORT_LIB {
-    local result = [ common.format-name <base> : $(name) : $(type) : $(property-set) ] ;
-
-    if $(type) = SHARED_LIB && (
-       ! ( [ $(property-set).get <target-os> ] in windows cygwin darwin aix ) &&
-       ! ( [ $(property-set).get <toolset> ] in pgi ) ) {
-      result = $(result).$(VERSION)  ;
-    }
-
-    return $(result) ;
-  }    
-}
-
-local default_address_model = 32 ;
-if [ os.platform ] = X86_64 {
-  default_address_model = 64 ;
-}
-modules.poke default_address_model : $(default_address_model) ;
-
-path-constant HOME : ../.. ;
-path-constant DESTDIR : $(HOME) ;
-path-constant TOP : . ;
-constant SEARCH : <address-model>64:<search>$(HOME)/lib
-                  <address-model>64:<search>/usr/local/lib
-                  <address-model>32:<search>$(HOME)/lib32
-                  <address-model>32:<search>/usr/local/lib32 ;
-
-lib GL : : $(SEARCH) <name>:libGL.so.1 ;
-lib GLU : : $(SEARCH) ;
-lib glfw : : $(SEARCH) ;
-lib boost_thread : : $(SEARCH) ;
-lib boost_program_options : : $(SEARCH) ;
-lib boost_filesystem : : $(SEARCH) ;
-lib boost_regex : : $(SEARCH) ;
-lib boost_iostreams : : $(SEARCH) ;
-lib boost_date_time : : $(SEARCH) ;
-lib boost_system : : $(SEARCH) ;
-lib boost_log : : $(SEARCH) ;
-lib logging : : $(SEARCH) ;
-lib glut : : $(SEARCH) ;
-lib X11 : : $(SEARCH) ;
-lib Xrandr : : $(SEARCH) ;
+lib GL : : $(LIB_SEARCH) <name>:libGL.so.1 ;
+lib GLU : : $(LIB_SEARCH) ;
+lib glfw : : $(LIB_SEARCH) ;
+lib boost_thread : : $(LIB_SEARCH) ;
+lib boost_program_options : : $(LIB_SEARCH) ;
+lib boost_filesystem : : $(LIB_SEARCH) ;
+lib boost_regex : : $(LIB_SEARCH) ;
+lib boost_iostreams : : $(LIB_SEARCH) ;
+lib boost_date_time : : $(LIB_SEARCH) ;
+lib boost_system : : $(LIB_SEARCH) ;
+lib boost_log : : $(LIB_SEARCH) ;
+lib logging : : $(LIB_SEARCH) ;
+lib glut : : $(LIB_SEARCH) ;
+lib X11 : : $(LIB_SEARCH) ;
+lib Xrandr : : $(LIB_SEARCH) ;
 
 project gtulu : requirements
   <library>GL/<link>shared
@@ -63,14 +31,9 @@ project gtulu : requirements
   <library>boost_log
   <library>logging
   <include>include/
-  <include>$(HOME)/include/
-  <include>/usr/local/include/
   
-  <tag>@$(__name__).tag
-  
-  <address-model>64:<architecture>x86
-  <address-model>64:<instruction-set>athlon64
-  <address-model>32:<architecture>x86
+  $(INCLUDES)
+  <tag>@fhs.tag
   <address-model>32:<instruction-set>i686
   
   <threading>multi
@@ -83,9 +46,9 @@ project gtulu : requirements
 
 rule for-each ( rule : suffix ? : sources * : dependencies * : properties * ) {
   for local name in $(sources) {
-    name_o = [ MATCH "^$(TOP)/(.+).cpp$" : $(name) ] ;
+    name_o = [ MATCH "^$(BUILD_ROOT)/(.+).cpp$" : $(name) ] ;
     if ! $(name_o) {
-      name_o = [ MATCH "^$(TOP)/(.+)$" : $(name) ] ;
+      name_o = [ MATCH "^$(BUILD_ROOT)/(.+)$" : $(name) ] ;
       name_o = $(name_o)$(suffix) ;
     }
     if ! $(name_o) {
@@ -101,29 +64,8 @@ rule for-each ( rule : suffix ? : sources * : dependencies * : properties * ) {
 
 obj common : src/common.cpp ;
 
-lib gtulu : [ for-each obj : : [ path.glob-tree $(TOP)/src/gtulu : *.cpp ] : : ]
-    : <address-model>$(default_address_model) ;
-exe compiler : src/compile.cpp common gtulu
-    : <address-model>$(default_address_model) ;
-
-install install_include
-    : [ path.glob-tree include/ : *.* : ]
-    : <location>$(DESTDIR)/include/
-      <install-source-root>./include/ ;
-
-install install_lib64
-    : gtulu
-    : <location>$(DESTDIR)/lib/
-      <address-model>64 ;
-
-install install_lib32
-    : gtulu
-    : <location>$(DESTDIR)/lib32/
-      <address-model>32 ;
-
-install install_bin 
-    : compiler
-    : <location>$(DESTDIR)/bin/ ;
+lib gtulu : [ for-each obj : : [ path.glob-tree $(BUILD_ROOT)/src/gtulu : *.cpp ] : : ] ;
+exe compiler : src/compile.cpp common gtulu ;
 
 program test1 : test/shaders/test1.vs test/shaders/test1.fs : <location>test/generated/ ;
 program test2 : test/shaders/test2.vs test/shaders/test2.fs : <location>test/generated/ ;
@@ -136,16 +78,21 @@ exe test2exe : test/test2.cpp test2 common gtulu
 exe test3exe : test/test3.cpp test3 common gtulu
     : <address-model>$(default_address_model) ;
 
-alias build : gtulu compiler ;
 alias test : test1exe/<link>shared
              test2exe/<link>shared
              test3exe/<link>shared
              test1exe/<link>static
              test2exe/<link>static
              test3exe/<link>static ;
-alias install : install_lib64/<link>shared
-                install_lib64/<link>static
-                install_lib32/<link>shared
-                install_lib32/<link>static
-                install_include
-                install_bin ;
+
+
+fhs.build build libgtulu
+                : compiler
+                : gtulu
+                : ;
+
+fhs.install install libgtulu 
+                    : compiler
+                    : gtulu
+                    : [ path.glob-tree include/ : *.* : ]
+                    : <install-source-root>./include/ ;
