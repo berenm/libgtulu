@@ -1,8 +1,11 @@
 /**
  * @file
+ *
+ * Distributed under the Boost Software License, Version 1.0.
+ * See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt
+ *
  * @date 19 déc. 2009
  * @todo comment
- * @copyright 2008-2011. All rights reserved.
  */
 
 #ifndef GTULU_INTERNAL_attachment_manager_HPP_

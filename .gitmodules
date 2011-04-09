@@ -1,3 +1,0 @@
-[submodule "../liblogging"]
-	path = ../liblogging
-	url = https://github.com/rout/liblogging.git

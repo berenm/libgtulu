@@ -1,6 +1,10 @@
 // #template#<format>_program_tpl,_author_tpl,_date_tpl
 /**
  * @file
+ *
+ * Distributed under the Boost Software License, Version 1.0.
+ * See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt
+ *
  * @date _date_tpl
  */
 
