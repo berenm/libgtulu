@@ -16,7 +16,7 @@
 
 #if defined(NO_GTULU_DEBUG) || defined(NDEBUG)
 #define __gl_check_error ;
-#define __gl_debug __debugM(gl)
+#define __gl_debug if(0) ::std::cout
 #else
 #define __gl_check_error \
     { \

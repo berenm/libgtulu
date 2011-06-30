@@ -8,15 +8,75 @@
  * @todo comment
  */
 
+#include "gtulu/platform.hpp"
 #include "gtulu/internal/context.hpp"
 #include <logging/logging.hpp>
 
-#include <GL/glfw.h>
+#ifdef GTULU_PLATFORM_LINUX
+#define GLX_GLXEXT_PROTOTYPES
+#include <GL/glx.h>
+#include <GL/glxext.h>
+
+#else
+#include <GL/glfw3.h>
+
+#endif
 
 #include <iostream>
 #include "common.hpp"
 
+static int _x_error(Display *display, XErrorEvent *error) {
+  return 0;
+}
+
 void init_gl(::std::int32_t argc, char** argv) {
+  XSetErrorHandler(_x_error);
+
+#ifdef GTULU_PLATFORM_LINUX
+
+  Display* display = NULL;
+  display = XOpenDisplay(NULL);
+  if (display == NULL) {
+    __fatalM(gl)
+      << "unable to open X display.";
+
+  } else {
+    int framebuffer_config_count = 0;
+    GLXFBConfig* framebuffer_configs = NULL;
+    framebuffer_configs = glXChooseFBConfig(display, DefaultScreen(display), NULL, &framebuffer_config_count);
+    if (framebuffer_configs == NULL) {
+      __fatalM(gl)
+        << "unable to retrieve framebuffer configuration.";
+
+    } else {
+      int context_attribs[] = { GLX_CONTEXT_MAJOR_VERSION_ARB, 3, GLX_CONTEXT_MINOR_VERSION_ARB, 3,
+      // GLX_CONTEXT_FLAGS_ARB, GLX_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB | GLX_CONTEXT_DEBUG_BIT_ARB,
+                                GLX_CONTEXT_PROFILE_MASK_ARB, GLX_CONTEXT_CORE_PROFILE_BIT_ARB, None };
+      GLXContext context = NULL;
+      context = glXCreateContextAttribsARB(display, framebuffer_configs[0], NULL, true, context_attribs);
+      XFree(framebuffer_configs);
+
+      if (context == NULL) {
+        __fatalM(gl)
+          << "unable to create OpenGL context.";
+
+      } else {
+        XSync(display, false);
+
+        if (!glXMakeContextCurrent(display, None, None, context)) {
+          __errorM(gl)
+            << "unable to create detached context.";
+
+          if (!glXMakeContextCurrent(display, DefaultRootWindow(display), DefaultRootWindow(display), context)) {
+            __fatalM(gl)
+              << "unable to attach context to default drawable.";
+          }
+        }
+      }
+    }
+  }
+
+#else
 
   glfwInit();
   GLFWvidmode mode;
@@ -29,7 +89,10 @@ void init_gl(::std::int32_t argc, char** argv) {
   glfwOpenWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_FALSE);
   glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-  glfwOpenWindow(1, 1, mode.RedBits, mode.GreenBits, mode.BlueBits, 8, 8, 8, GLFW_WINDOW);
+  GLFWwindow window = glfwOpenWindow(1, 1, GLFW_WINDOWED, "framebuffer", NULL);
+  glfwIconifyWindow(window);
+
+#endif
 
   namespace gic = ::gtulu::internal::gic;
   namespace gicp = ::gtulu::internal::gicp;
@@ -39,20 +102,38 @@ void init_gl(::std::int32_t argc, char** argv) {
   ::std::string const gl_version = gic::gl_version::get();
   ::std::string const gl_shading_language_version = gic::gl_shading_language_version::get();
 
-  __info << gicp::gl_vendor() << ": " << gl_vendor;
-  __info << gicp::gl_renderer() << ": " << gl_renderer;
-  __info << gicp::gl_version() << ": " << gl_version;
-  __info << gicp::gl_shading_language_version() << ": " << gl_shading_language_version;
+  __info
+    << gicp::gl_vendor() << ": " << gl_vendor;
+  __info
+    << gicp::gl_renderer() << ": " << gl_renderer;
+  __info
+    << gicp::gl_version() << ": " << gl_version;
+  __info
+    << gicp::gl_shading_language_version() << ": " << gl_shading_language_version;
 }
 
 void close_gl() {
-  glfwCloseWindow();
+#ifdef GTULU_PLATFORM_LINUX
+  Display* display = glXGetCurrentDisplay();
+  glXMakeCurrent(display, None, NULL);
+  XCloseDisplay(display);
+
+#else
+  glfwCloseWindow(glfwGetCurrentWindow());
   glfwTerminate();
+
+#endif
 }
 
 void main_loop() {
 }
 
 void swap_buffers() {
+#ifdef GTULU_PLATFORM_LINUX
+  glXSwapBuffers(glXGetCurrentDisplay(), glXGetCurrentDrawable());
+
+#else
   glfwSwapBuffers();
+
+#endif
 }

@@ -231,7 +231,8 @@ const cst::gl_constant_base get_shader_type(const ::bfs::path& shader_file) {
   } else if (extension.compare(".gs") == 0 || extension.compare(".geom") == 0) {
     return fst::gl_geometry_shader();
   } else {
-    __error << "Unknown shader extension " << extension << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
+    __error
+      << "Unknown shader extension " << extension << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
   }
 
   return cst::invalid_constant();
@@ -393,7 +394,8 @@ int main(int argc, char *argv[]) {
   for (::std::int32_t i = 0; i < argc; ++i) {
     cmdline << argv[i] << " ";
   }
-  __info << cmdline.str();
+  __info
+    << cmdline.str();
 
   init_gl(argc, argv);
 
@@ -403,17 +405,16 @@ int main(int argc, char *argv[]) {
   ::std::vector< ::std::string > inputs;
 
   po::options_description desc("Allowed options");
-  desc.add_options()("help,h", "produce help message")("program-name,p",
-                                                       po::value< ::std::string >(&program)->default_value("default"),
-                                                       "program name")("destination,d",
-                                                                       po::value< ::std::string >(&destination)->default_value("generated/"),
-                                                                       "destination folder")("templates,t",
-                                                                                             po::value< ::std::string >(&templates)->default_value("include/gtulu/templates/"),
-                                                                                             "templates folder")("input-file",
-                                                                                                                 po::value<
-                                                                                                                     ::std::vector<
-                                                                                                                         ::std::string > >(&inputs),
-                                                                                                                 "input files");
+  po::options_description_easy_init add_options = desc.add_options();
+  add_options("help,h", "produce help message");
+  add_options("program-name,p", po::value< ::std::string >(&program)->default_value("default"), "program name");
+  add_options("destination,d",
+              po::value< ::std::string >(&destination)->default_value("generated/"),
+              "destination folder");
+  add_options("templates,t",
+              po::value< ::std::string >(&templates)->default_value("include/gtulu/templates/"),
+              "templates folder");
+  add_options("input-file", po::value< ::std::vector< ::std::string > >(&inputs), "input files");
 
   po::positional_options_description p;
   p.add("input-file", -1);
@@ -546,7 +547,8 @@ int main(int argc, char *argv[]) {
                           ::boost::lexical_cast< ::std::string >(info.location),
                           ::boost::lexical_cast< ::std::string >(info.size));
     } else {
-      __warnM(shader) << "Output data '" << info.type << "' " << info.name << " not bound. Maybe only used internally.";
+      __warnM(shader)
+        << "Output data '" << info.type << "' " << info.name << " not bound. Maybe only used internally.";
     }
   }
 

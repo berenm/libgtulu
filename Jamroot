@@ -20,7 +20,7 @@ lib glut : : $(LIB_SEARCH) ;
 lib X11 : : $(LIB_SEARCH) ;
 lib Xrandr : : $(LIB_SEARCH) ;
 
-project gtulu : requirements
+project libgtulu : requirements
   <library>GL/<link>shared
   <library>GLU
   <library>glfw

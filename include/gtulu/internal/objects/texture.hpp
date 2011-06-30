@@ -79,6 +79,11 @@ namespace gtulu {
             texture_format_t::loader::load(data, size, width, height, 0, level);
           }
 
+          template< typename min_filter_t >
+          inline void set_minification() {
+            fnc::gl_tex_parameter::call< typename texture_format_t::target, cst::gl_texture_min_filter >(min_filter_t::value);
+          }
+
           inline void load(data_type const* data, ::std::size_t width, ::std::size_t height) {
             bind();
             load(data, 0, width, height, 0);
