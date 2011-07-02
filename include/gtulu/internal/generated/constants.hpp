@@ -3,16 +3,21 @@
  *
  * Distributed under the Boost Software License, Version 1.0.
  * See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt
- *
- * @date 2 sept. 2010
- * @todo comment
  */
  
+/******************************************************************************
+ * THIS FILE IS AUTO GENERATED FROM scripts/generate_gl_headers.py,           *
+ * ANY CHANGE WILL BE OVERWRITTEN                                             *
+ ******************************************************************************/
+ 
+#ifndef IN_GTULU_INTERNAL_CONSTANTS_HPP_
+# error "gtulu/internal/generated/constants.hpp should not be included directly, please include gtulu/internal/constants.hpp instead."
+#endif /* IN_GTULU_INTERNAL_CONSTANTS_HPP_ */
+
 #ifndef GTULU_INTERNAL_GENERATED_CONSTANTS_HPP_
 #define GTULU_INTERNAL_GENERATED_CONSTANTS_HPP_
 
 #include "gtulu/internal/generated/constants_fwd.hpp"
-
 
 namespace gtulu {
   namespace internal {

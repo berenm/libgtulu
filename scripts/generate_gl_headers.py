@@ -199,13 +199,14 @@ header = """/**
  *
  * Distributed under the Boost Software License, Version 1.0.
  * See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt
- *
- * @date 2 sept. 2010
- * @todo comment
  */
  
+/******************************************************************************
+ * THIS FILE IS AUTO GENERATED FROM scripts/generate_gl_headers.py,           *
+ * ANY CHANGE WILL BE OVERWRITTEN                                             *
+ ******************************************************************************/
+ 
 %s
-
 namespace gtulu {
   namespace internal {
   
@@ -227,26 +228,48 @@ footer = """
 
 """
 
-guard = """#ifndef GTULU_INTERNAL_GENERATED_FUNCTIONS_HPP_
+guard = """#ifndef IN_GTULU_INTERNAL_FUNCTIONS_HPP_
+# error "gtulu/internal/generated/functions.hpp should not be included directly, please include gtulu/internal/functions.hpp instead."
+#endif /* IN_GTULU_INTERNAL_FUNCTIONS_HPP_ */
+
+#ifndef GTULU_INTERNAL_GENERATED_FUNCTIONS_HPP_
 #define GTULU_INTERNAL_GENERATED_FUNCTIONS_HPP_
 
 #include "gtulu/internal/generated/functions_fwd.hpp"
 """
 print >> gen_fct, header % (guard)
 
-guard = """#ifndef GTULU_INTERNAL_GENERATED_FUNCTIONS_FWD_HPP_
-#define GTULU_INTERNAL_GENERATED_FUNCTIONS_FWD_HPP_"""
+guard = """#ifndef IN_GTULU_INTERNAL_FUNCTIONS_FWD_HPP_
+# ifndef IN_GTULU_INTERNAL_FUNCTIONS_HPP_
+#  error "gtulu/internal/generated/functions_fwd.hpp should not be included directly, please include gtulu/internal/functions_fwd.hpp instead."
+# endif /* IN_GTULU_INTERNAL_FUNCTIONS_HPP_ */
+#endif /* IN_GTULU_INTERNAL_FUNCTIONS_FWD_HPP_ */
+
+#ifndef GTULU_INTERNAL_GENERATED_FUNCTIONS_FWD_HPP_
+#define GTULU_INTERNAL_GENERATED_FUNCTIONS_FWD_HPP_
+"""
 print >> gen_fct_fwd, header % (guard)
 
-guard = """#ifndef GTULU_INTERNAL_GENERATED_CONSTANTS_HPP_
+guard = """#ifndef IN_GTULU_INTERNAL_CONSTANTS_HPP_
+# error "gtulu/internal/generated/constants.hpp should not be included directly, please include gtulu/internal/constants.hpp instead."
+#endif /* IN_GTULU_INTERNAL_CONSTANTS_HPP_ */
+
+#ifndef GTULU_INTERNAL_GENERATED_CONSTANTS_HPP_
 #define GTULU_INTERNAL_GENERATED_CONSTANTS_HPP_
 
 #include "gtulu/internal/generated/constants_fwd.hpp"
 """
 print >> gen_cst, header % (guard)
 
-guard = """#ifndef GTULU_INTERNAL_GENERATED_CONSTANTS_FWD_HPP_
-#define GTULU_INTERNAL_GENERATED_CONSTANTS_FWD_HPP_"""
+guard = """#ifndef IN_GTULU_INTERNAL_CONSTANTS_FWD_HPP_
+# ifndef IN_GTULU_INTERNAL_CONSTANTS_HPP_
+#  error "gtulu/internal/generated/constants_fwd.hpp should not be included directly, please include gtulu/internal/constants_fwd.hpp instead."
+# endif /* IN_GTULU_INTERNAL_CONSTANTS_HPP_ */
+#endif /* IN_GTULU_INTERNAL_CONSTANTS_FWD_HPP_ */
+
+#ifndef GTULU_INTERNAL_GENERATED_CONSTANTS_FWD_HPP_
+#define GTULU_INTERNAL_GENERATED_CONSTANTS_FWD_HPP_
+"""
 print >> gen_cst_fwd, header % (guard)
 
 print_forward_functions_category(gen_fct_fwd, parser, "gl")

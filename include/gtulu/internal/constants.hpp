@@ -112,6 +112,8 @@ namespace gtulu {
   } // namespace internal
 } // namespace gtulu
 
+#define IN_GTULU_INTERNAL_CONSTANTS_HPP_
 #include "gtulu/internal/generated/constants.hpp"
+#undef IN_GTULU_INTERNAL_CONSTANTS_HPP_
 
 #endif /* GTULU_INTERNAL_CONSTANTS_HPP_ */

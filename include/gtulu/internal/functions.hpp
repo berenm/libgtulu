@@ -18,6 +18,8 @@
 
 #include "gtulu/internal/error.hpp"
 
+#define IN_GTULU_INTERNAL_FUNCTIONS_HPP_
 #include "gtulu/internal/generated/functions.hpp"
+#undef IN_GTULU_INTERNAL_FUNCTIONS_HPP_
 
 #endif /* GTULU_INTERNAL_FUNCTION_HPP_ */

@@ -14,7 +14,9 @@
 #include <string>
 #include <boost/integer.hpp>
 
+#define IN_GTULU_INTERNAL_CONSTANTS_FWD_HPP_
 #include "gtulu/internal/generated/constants_fwd.hpp"
+#undef IN_GTULU_INTERNAL_CONSTANTS_FWD_HPP_
 
 namespace gtulu {
   namespace internal {
