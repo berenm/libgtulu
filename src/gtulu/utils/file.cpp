@@ -21,7 +21,7 @@
 namespace gtulu {
   namespace utils {
 
-    ::std::string file::get_contents(const ::boost::filesystem::path& path) {
+    ::std::string file::get_contents(::boost::filesystem::path const& path) {
       if (::boost::filesystem::exists(path) && ::boost::filesystem::is_regular_file(path)) {
         ::boost::filesystem::ifstream stream(path);
 
@@ -88,7 +88,7 @@ namespace gtulu {
       parse(iterator);
     }
 
-    file_template::file_template(const file_template& copy) {
+    file_template::file_template(file_template const& copy) {
       arguments = copy.arguments;
       content = copy.content;
       end_name = copy.end_name;
@@ -97,7 +97,7 @@ namespace gtulu {
       sub_templates = copy.sub_templates;
     }
 
-    file_template::file_template(const ::std::string& template_file, const ::boost::filesystem::path& template_path) {
+    file_template::file_template(::std::string const& template_file, ::boost::filesystem::path const& template_path) {
       ::boost::filesystem::path file_path = template_path;
       file_path /= template_file;
 
@@ -117,7 +117,7 @@ namespace gtulu {
       content = raw_data;
     }
 
-    file_template file_template::get(const ::std::string& sub_template) {
+    file_template file_template::get(::std::string const& sub_template) {
       return sub_templates[sub_template];
     }
 

@@ -58,10 +58,10 @@ namespace gtulu {
             return *this;
           }
 
-          operator const ::std::string&() const {
+          operator ::std::string const&() const {
             return string_value;
           }
-          operator const ::std::uint64_t&() const {
+          operator ::std::uint64_t const&() const {
             return integer_value;
           }
 

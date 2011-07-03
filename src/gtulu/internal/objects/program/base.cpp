@@ -26,11 +26,11 @@ namespace gtulu {
         fnc::gl_validate_program::call(handle_);
       }
 
-      void program_base::attach(const gio::shader_base& shader) {
+      void program_base::attach(gio::shader_base const& shader) {
         fnc::gl_attach_shader::call(handle_, *shader);
       }
 
-      void program_base::detach(const gio::shader_base& shader) {
+      void program_base::detach(gio::shader_base const& shader) {
         fnc::gl_detach_shader::call(handle_, *shader);
       }
     } // namespace objects

@@ -31,7 +31,7 @@ namespace gtulu {
       struct framebuffer_format_base;
 
       template< >
-      struct framebuffer_format_base< const gio::drawable& > {
+      struct framebuffer_format_base< gio::drawable const& > {
           attachment_manager manager;
           ::std::vector< ::std::uint32_t > colors;
 
@@ -44,7 +44,7 @@ namespace gtulu {
           }
 
           template< typename framebuffer_slot_type_t, typename texture_format_t >
-          void set(::std::uint32_t const location, const gio::texture< texture_format_t >& drawable) {
+          void set(::std::uint32_t const location, gio::texture< texture_format_t > const& drawable) {
             ::boost::shared_ptr< attachment > attachment = manager.get_current_or_new(drawable);
             gif::attacher< framebuffer_slot_type_t >::template attach< gif::layered::no >(attachment->get_color(),
                                                                                           drawable,

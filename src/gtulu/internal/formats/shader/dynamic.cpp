@@ -30,7 +30,7 @@ namespace gtulu {
     namespace formats {
       namespace shader {
 
-        const fs::output_vector_t& dynamic_shader_format::get_outputs() {
+        fs::output_vector_t const& dynamic_shader_format::get_outputs() {
           return outputs_;
         }
 
@@ -41,7 +41,7 @@ namespace gtulu {
         void dynamic_shader_format::print() {
         }
 
-        void dynamic_shader_format::load_shader(const ::boost::filesystem::path& filename) {
+        void dynamic_shader_format::load_shader(::boost::filesystem::path const& filename) {
           ::std::string extension = filename.extension().string();
           bool parse_outputs = false;
 

@@ -52,7 +52,7 @@ namespace gtulu {
 
           shader_vector_t::iterator shader_it = shaders_.begin();
           for (; shader_it != shaders_.end(); shader_it++) {
-            const fp::output_vector_t& outputs = shader_it->get_outputs();
+            fp::output_vector_t const& outputs = shader_it->get_outputs();
             fp::output_vector_t::const_iterator output_it = outputs.begin();
 
             for (; output_it != outputs.end(); ++output_it) {
@@ -81,13 +81,13 @@ namespace gtulu {
           }
         }
 
-        void dynamic_program_format::attach(const shader_t& shader) {
+        void dynamic_program_format::attach(shader_t const& shader) {
           program_base::attach(shader);
 
           shaders_.push_back(const_cast< shader_t& > (shader));
         }
 
-        void dynamic_program_format::detach(const shader_t& shader) {
+        void dynamic_program_format::detach(shader_t const& shader) {
           program_base::detach(shader);
 
           shader_vector_t::iterator it = shaders_.begin();
@@ -289,19 +289,19 @@ namespace gtulu {
           }
         }
 
-        const fp::attribute_vector_t& dynamic_program_format::get_attributes() {
+        fp::attribute_vector_t const& dynamic_program_format::get_attributes() {
           return attributes_;
         }
 
-        const fp::uniform_vector_t& dynamic_program_format::get_uniforms() {
+        fp::uniform_vector_t const& dynamic_program_format::get_uniforms() {
           return uniforms_;
         }
 
-        const fp::uniform_block_vector_t& dynamic_program_format::get_uniform_blocks() {
+        fp::uniform_block_vector_t const& dynamic_program_format::get_uniform_blocks() {
           return uniform_blocks_;
         }
 
-        const fp::output_vector_t& dynamic_program_format::get_outputs() {
+        fp::output_vector_t const& dynamic_program_format::get_outputs() {
           return outputs_;
         }
 

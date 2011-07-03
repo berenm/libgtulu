@@ -131,7 +131,7 @@ namespace gtulu {
       struct texture_attacher: public is_target_attachable< typename texture_format_t::target, target_format_t > {
           template< typename framebuffer_slot_type_t >
           inline static void attach(cst::gl_constant_base const& color,
-                                    const gio::texture< texture_format_t >& texture,
+                                    gio::texture< texture_format_t > const& texture,
                                     ::std::uint32_t const mipmap_level,
                                     ::std::uint32_t const layer) {
             texture_attacher_detail< layered_t, target_format_t >::template attach< framebuffer_slot_type_t >(color,
@@ -146,7 +146,7 @@ namespace gtulu {
           template< typename layered_t, typename texture_format_t,
               typename target_format_t = typename texture_format_t::target::info::format >
           inline static void attach(cst::gl_constant_base const& color,
-                                    const gio::texture< texture_format_t >& texture,
+                                    gio::texture< texture_format_t > const& texture,
                                     ::std::uint32_t const mipmap_level,
                                     ::std::uint32_t const layer) {
             texture_attacher< layered_t, texture_format_t, target_format_t >::template attach< framebuffer_slot_type_t >(color,

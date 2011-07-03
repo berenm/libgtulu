@@ -16,7 +16,7 @@ namespace gtulu {
   namespace internal {
 
     namespace constant {
-      ::std::ostream& operator<<(::std::ostream& out, const gl_constant_base& constant) {
+      ::std::ostream& operator<<(::std::ostream& out, gl_constant_base const& constant) {
         return out << ::std::string(constant);
       }
     } // namespace constant

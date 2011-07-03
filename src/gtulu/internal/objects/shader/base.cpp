@@ -22,8 +22,8 @@ namespace gtulu {
         fnc::gl_compile_shader::call(handle_);
       }
 
-      void shader_base::set_source(const char* code) {
-        fnc::gl_shader_source::call(handle_, 1, static_cast< const GLchar** > (&code), NULL);
+      void shader_base::set_source(char const* code) {
+        fnc::gl_shader_source::call(handle_, 1, static_cast< GLchar const** > (&code), NULL);
       }
     } // namespace objects
 

@@ -186,7 +186,7 @@ struct program_compiler {
       header_template.populate(arguments, subtemplates);
     }
 
-    void save(const ::boost::filesystem::path& destination) {
+    void save(::boost::filesystem::path const& destination) {
       ::std::map< ::std::string, ::std::string > arguments;
       arguments["program"] = name;
 
@@ -210,7 +210,7 @@ struct program_compiler {
     }
 };
 
-const ::std::string get_shader_name(const ::bfs::path& shader_file) {
+const ::std::string get_shader_name(::bfs::path const& shader_file) {
   ::std::string filename = shader_file.filename().string();
 
   filename = filename.substr(0, filename.length() - shader_file.extension().string().length());
@@ -221,7 +221,7 @@ const ::std::string get_shader_name(const ::bfs::path& shader_file) {
   return filename;
 }
 
-const cst::gl_constant_base get_shader_type(const ::bfs::path& shader_file) {
+const cst::gl_constant_base get_shader_type(::bfs::path const& shader_file) {
   ::std::string extension = shader_file.extension().string();
 
   if (extension.compare(".fs") == 0 || extension.compare(".frag") == 0) {
@@ -264,7 +264,7 @@ struct is_sampler< fub::sampler > : ::boost::true_type {
   	info.is_sampler = is_sampler< fu::gl_##type_m::info::base >::value; \
   	break; \
 
-const uniform_type_info get_uniform_info(const cst::gl_constant_base& type) {
+const uniform_type_info get_uniform_info(cst::gl_constant_base const& type) {
   uniform_type_info info;
 
   switch (::std::uint32_t(type)) {
@@ -341,7 +341,7 @@ const uniform_type_info get_uniform_info(const cst::gl_constant_base& type) {
         info.name = #type_m; \
         break; \
 
-const attribute_type_info get_attribute_info(const cst::gl_constant_base& type) {
+const attribute_type_info get_attribute_info(cst::gl_constant_base const& type) {
   attribute_type_info info;
 
   switch (::std::uint32_t(type)) {
@@ -476,10 +476,10 @@ int main(int argc, char *argv[]) {
     compiler.add_shader(shader_name, shader_type.str(), shader_source.str());
   }
 
-  const fp::uniform_vector_t& uniforms = prog.get_uniforms();
+  fp::uniform_vector_t const& uniforms = prog.get_uniforms();
   fp::uniform_vector_t::const_iterator uniform_it = uniforms.begin();
   for (; uniform_it != uniforms.end(); ++uniform_it) {
-    const fp::uniform_info& info = *uniform_it;
+    fp::uniform_info const& info = *uniform_it;
     uniform_type_info type_info = get_uniform_info(info.type);
 
     ::std::string prefix;
@@ -499,10 +499,10 @@ int main(int argc, char *argv[]) {
                          ::boost::lexical_cast< ::std::string >(info.size));
   }
 
-  const fp::attribute_vector_t& attributes = prog.get_attributes();
+  fp::attribute_vector_t const& attributes = prog.get_attributes();
   fp::attribute_vector_t::const_iterator attribute_it = attributes.begin();
   for (; attribute_it != attributes.end(); ++attribute_it) {
-    const fp::attribute_info& info = *attribute_it;
+    fp::attribute_info const& info = *attribute_it;
     attribute_type_info type_info = get_attribute_info(info.type);
 
     ::std::string name = info.name;
@@ -522,10 +522,10 @@ int main(int argc, char *argv[]) {
                            ::boost::lexical_cast< ::std::string >(info.size));
   }
 
-  const fp::output_vector_t& outputs = prog.get_outputs();
+  fp::output_vector_t const& outputs = prog.get_outputs();
   fp::output_vector_t::const_iterator output_it = outputs.begin();
   for (; output_it != outputs.end(); ++output_it) {
-    const fp::output_info& info = *output_it;
+    fp::output_info const& info = *output_it;
 
     if (info.location >= 0) {
       ::std::string name = info.name;

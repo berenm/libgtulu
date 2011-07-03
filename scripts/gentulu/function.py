@@ -30,6 +30,9 @@ class function:
 
     self.namespace = namespace
     
+    if self.output == "const GLubyte *":
+      self.output = "GLubyte const*"
+
     if self.output != "void":
       self.var_stmt = "%s out = " % (self.output)
       self.ret_stmt = "return out;"

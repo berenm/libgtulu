@@ -24,7 +24,7 @@ namespace gtulu {
   namespace utils {
 
     struct file {
-        static ::std::string get_contents(const ::boost::filesystem::path& path_in);
+        static ::std::string get_contents(::boost::filesystem::path const& path_in);
     };
 
     struct file_template {
@@ -43,13 +43,13 @@ namespace gtulu {
       public:
         file_template();
         explicit file_template(::boost::sregex_iterator& iterator_inout);
-        file_template(const file_template& copy_in);
-        file_template(const ::std::string& template_file_in,
-                      const ::boost::filesystem::path& template_path_in = "include/gtulu/templates/");
+        file_template(file_template const& copy_in);
+        file_template(::std::string const& template_file_in,
+                      ::boost::filesystem::path const& template_path_in = "include/gtulu/templates/");
 
         void reset();
 
-        file_template get(const ::std::string& sub_template_in);
+        file_template get(::std::string const& sub_template_in);
 
         ::std::string get_content();
 

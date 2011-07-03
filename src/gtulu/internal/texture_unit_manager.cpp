@@ -41,13 +41,13 @@ namespace gtulu {
       return *instance_ptr;
     }
 
-    ::boost::shared_ptr< texture_unit > texture_unit_manager::get_current(const gio::texture_base& texture) {
+    ::boost::shared_ptr< texture_unit > texture_unit_manager::get_current(gio::texture_base const& texture) {
       // Check if there is already a texture unit associated with this texture.
       // TODO(rout): maybe the already bound texture unit has another sampler object bound to it and we do not want the same sampler object...
       return texture_unit_mappings[*texture];
     }
 
-    ::boost::shared_ptr< texture_unit > texture_unit_manager::get_new(const gio::texture_base& texture) {
+    ::boost::shared_ptr< texture_unit > texture_unit_manager::get_new(gio::texture_base const& texture) {
       ::boost::shared_ptr< texture_unit > unit_ptr;
 
       // Look for a free texture unit.
@@ -73,7 +73,7 @@ namespace gtulu {
       return unit_ptr;
     }
 
-    ::boost::shared_ptr< texture_unit > texture_unit_manager::get_current_or_new(const gio::texture_base& texture) {
+    ::boost::shared_ptr< texture_unit > texture_unit_manager::get_current_or_new(gio::texture_base const& texture) {
       ::boost::shared_ptr< texture_unit > unit_ptr = get_current(texture);
 
       if (!unit_ptr) {

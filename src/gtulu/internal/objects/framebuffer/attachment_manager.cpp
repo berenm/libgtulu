@@ -77,23 +77,23 @@ namespace gtulu {
       attachment_mappings.clear();
     }
 
-    ::boost::shared_ptr< attachment > attachment_manager::get_current(const gio::texture_base& texture) {
+    ::boost::shared_ptr< attachment > attachment_manager::get_current(gio::texture_base const& texture) {
       return get_current(*texture);
     }
-    ::boost::shared_ptr< attachment > attachment_manager::get_new(const gio::texture_base& texture) {
+    ::boost::shared_ptr< attachment > attachment_manager::get_new(gio::texture_base const& texture) {
       return get_new(*texture);
     }
-    ::boost::shared_ptr< attachment > attachment_manager::get_current_or_new(const gio::texture_base& texture) {
+    ::boost::shared_ptr< attachment > attachment_manager::get_current_or_new(gio::texture_base const& texture) {
       return get_current_or_new(*texture);
     }
 
-    ::boost::shared_ptr< attachment > attachment_manager::get_current(const gio::renderbuffer_base& renderbuffer) {
+    ::boost::shared_ptr< attachment > attachment_manager::get_current(gio::renderbuffer_base const& renderbuffer) {
       return get_current(*renderbuffer);
     }
-    ::boost::shared_ptr< attachment > attachment_manager::get_new(const gio::renderbuffer_base& renderbuffer) {
+    ::boost::shared_ptr< attachment > attachment_manager::get_new(gio::renderbuffer_base const& renderbuffer) {
       return get_new(*renderbuffer);
     }
-    ::boost::shared_ptr< attachment > attachment_manager::get_current_or_new(const gio::renderbuffer_base& renderbuffer) {
+    ::boost::shared_ptr< attachment > attachment_manager::get_current_or_new(gio::renderbuffer_base const& renderbuffer) {
       return get_current_or_new(*renderbuffer);
     }
 

@@ -59,7 +59,7 @@ class parameter:
     elif self.old_type == "GLclampf":
       self.new_type = "float"
     elif self.is_template:
-      self.new_type = "const ::gtulu::internal::constant::gl_constant_base&"
+      self.new_type = "::gtulu::internal::constant::gl_constant_base const&"
     else:
       print "UNKN: " + self.old_type
       self.new_type = self.old_type

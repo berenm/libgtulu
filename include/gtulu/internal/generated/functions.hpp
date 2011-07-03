@@ -34,7 +34,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_blend_func {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& sfactor_in, const ::gtulu::internal::constant::gl_constant_base& dfactor_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& sfactor_in, ::gtulu::internal::constant::gl_constant_base const& dfactor_in) {
                 __gl_debug << "call glBlendFunc " "sfactor: '" << sfactor_in << "'" ", " "dfactor: '" << dfactor_in << "'";
                 glBlendFunc(::std::uint32_t(sfactor_in), ::std::uint32_t(dfactor_in));
                 __gl_check_error;
@@ -48,7 +48,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t buf_in, const ::gtulu::internal::constant::gl_constant_base& src_in, const ::gtulu::internal::constant::gl_constant_base& dst_in) {
+              inline static void call(::std::uint32_t buf_in, ::gtulu::internal::constant::gl_constant_base const& src_in, ::gtulu::internal::constant::gl_constant_base const& dst_in) {
                 __gl_debug << "call glBlendFunci " "buf: '" << buf_in << "'" ", " "src: '" << src_in << "'" ", " "dst: '" << dst_in << "'";
                 glBlendFunci(buf_in, ::std::uint32_t(src_in), ::std::uint32_t(dst_in));
                 __gl_check_error;
@@ -135,7 +135,7 @@ namespace gtulu {
 
           struct gl_cull_face {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in) {
                 __gl_debug << "call glCullFace " "mode: '" << mode_in << "'";
                 glCullFace(::std::uint32_t(mode_in));
                 __gl_check_error;
@@ -153,7 +153,7 @@ namespace gtulu {
 
           struct gl_depth_func {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& func_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& func_in) {
                 __gl_debug << "call glDepthFunc " "func: '" << func_in << "'";
                 glDepthFunc(::std::uint32_t(func_in));
                 __gl_check_error;
@@ -200,7 +200,7 @@ namespace gtulu {
 
           struct gl_disable {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& cap_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& cap_in) {
                 __gl_debug << "call glDisable " "cap: '" << cap_in << "'";
                 glDisable(::std::uint32_t(cap_in));
                 __gl_check_error;
@@ -214,7 +214,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in) {
                 __gl_debug << "call glDisablei " "target: '" << target_in << "'" ", " "index: '" << index_in << "'";
                 glDisablei(::std::uint32_t(target_in), index_in);
                 __gl_check_error;
@@ -232,7 +232,7 @@ namespace gtulu {
 
           struct gl_draw_buffer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in) {
                 __gl_debug << "call glDrawBuffer " "mode: '" << mode_in << "'";
                 glDrawBuffer(::std::uint32_t(mode_in));
                 __gl_check_error;
@@ -250,7 +250,7 @@ namespace gtulu {
 
           struct gl_enable {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& cap_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& cap_in) {
                 __gl_debug << "call glEnable " "cap: '" << cap_in << "'";
                 glEnable(::std::uint32_t(cap_in));
                 __gl_check_error;
@@ -264,7 +264,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in) {
                 __gl_debug << "call glEnablei " "target: '" << target_in << "'" ", " "index: '" << index_in << "'";
                 glEnablei(::std::uint32_t(target_in), index_in);
                 __gl_check_error;
@@ -304,7 +304,7 @@ namespace gtulu {
 
           struct gl_front_face {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in) {
                 __gl_debug << "call glFrontFace " "mode: '" << mode_in << "'";
                 glFrontFace(::std::uint32_t(mode_in));
                 __gl_check_error;
@@ -322,7 +322,7 @@ namespace gtulu {
 
           struct gl_get_boolean {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, GLboolean* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, GLboolean* params_in) {
                 __gl_debug << "call glGetBooleanv " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetBooleanv(::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -340,7 +340,7 @@ namespace gtulu {
 
           struct gl_get_double {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, double* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, double* params_in) {
                 __gl_debug << "call glGetDoublev " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetDoublev(::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -369,7 +369,7 @@ namespace gtulu {
 
           struct gl_get_float {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, float* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, float* params_in) {
                 __gl_debug << "call glGetFloatv " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetFloatv(::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -387,7 +387,7 @@ namespace gtulu {
 
           struct gl_get_integer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetIntegerv " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetIntegerv(::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -401,7 +401,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, GLint64* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, GLint64* params_in) {
                 __gl_debug << "call glGetInteger64v " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetInteger64v(::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -419,30 +419,30 @@ namespace gtulu {
 
           struct gl_get_string {
 
-              inline static const GLubyte * call(const ::gtulu::internal::constant::gl_constant_base& name_in) {
+              inline static GLubyte const* call(::gtulu::internal::constant::gl_constant_base const& name_in) {
                 __gl_debug << "call glGetString " "name: '" << name_in << "'";
-                const GLubyte * out = glGetString(::std::uint32_t(name_in));
+                GLubyte const* out = glGetString(::std::uint32_t(name_in));
                 __gl_check_error;
                 return out;
               }
               template< typename name_t >
-              inline static const GLubyte * call() {
+              inline static GLubyte const* call() {
                 __gl_debug << "call glGetString " "name: '" << name_t::name::value << "'";
-                const GLubyte * out = glGetString(name_t::value);
+                GLubyte const* out = glGetString(name_t::value);
                 __gl_check_error;
                 return out;
               }
 
-              inline static const GLubyte * call(const ::gtulu::internal::constant::gl_constant_base& name_in, ::std::uint32_t index_in) {
+              inline static GLubyte const* call(::gtulu::internal::constant::gl_constant_base const& name_in, ::std::uint32_t index_in) {
                 __gl_debug << "call glGetStringi " "name: '" << name_in << "'" ", " "index: '" << index_in << "'";
-                const GLubyte * out = glGetStringi(::std::uint32_t(name_in), index_in);
+                GLubyte const* out = glGetStringi(::std::uint32_t(name_in), index_in);
                 __gl_check_error;
                 return out;
               }
               template< typename name_t >
-              inline static const GLubyte * call(::std::uint32_t index_in) {
+              inline static GLubyte const* call(::std::uint32_t index_in) {
                 __gl_debug << "call glGetStringi " "name: '" << name_t::name::value << "'" ", " "index: '" << index_in << "'";
-                const GLubyte * out = glGetStringi(name_t::value, index_in);
+                GLubyte const* out = glGetStringi(name_t::value, index_in);
                 __gl_check_error;
                 return out;
               }
@@ -451,7 +451,7 @@ namespace gtulu {
 
           struct gl_get_tex_image {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void* pixels_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void* pixels_in) {
                 __gl_debug << "call glGetTexImage " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "pixels: '" << pixels_in << "'";
                 glGetTexImage(::std::uint32_t(target_in), level_in, ::std::uint32_t(format_in), ::std::uint32_t(type_in), pixels_in);
                 __gl_check_error;
@@ -469,7 +469,7 @@ namespace gtulu {
 
           struct gl_get_tex_level_parameter {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, float* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, float* params_in) {
                 __gl_debug << "call glGetTexLevelParameterfv " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetTexLevelParameterfv(::std::uint32_t(target_in), level_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -483,7 +483,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetTexLevelParameteriv " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetTexLevelParameteriv(::std::uint32_t(target_in), level_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -501,7 +501,7 @@ namespace gtulu {
 
           struct gl_get_tex_parameter {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, float* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, float* params_in) {
                 __gl_debug << "call glGetTexParameterfv " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetTexParameterfv(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -515,7 +515,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetTexParameteriv " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetTexParameteriv(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -533,7 +533,7 @@ namespace gtulu {
 
           struct gl_hint {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& mode_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& mode_in) {
                 __gl_debug << "call glHint " "target: '" << target_in << "'" ", " "mode: '" << mode_in << "'";
                 glHint(::std::uint32_t(target_in), ::std::uint32_t(mode_in));
                 __gl_check_error;
@@ -551,7 +551,7 @@ namespace gtulu {
 
           struct gl_is_enabled {
 
-              inline static GLboolean call(const ::gtulu::internal::constant::gl_constant_base& cap_in) {
+              inline static GLboolean call(::gtulu::internal::constant::gl_constant_base const& cap_in) {
                 __gl_debug << "call glIsEnabled " "cap: '" << cap_in << "'";
                 GLboolean out = glIsEnabled(::std::uint32_t(cap_in));
                 __gl_check_error;
@@ -565,7 +565,7 @@ namespace gtulu {
                 return out;
               }
 
-              inline static GLboolean call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in) {
+              inline static GLboolean call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in) {
                 __gl_debug << "call glIsEnabledi " "target: '" << target_in << "'" ", " "index: '" << index_in << "'";
                 GLboolean out = glIsEnabledi(::std::uint32_t(target_in), index_in);
                 __gl_check_error;
@@ -594,7 +594,7 @@ namespace gtulu {
 
           struct gl_logic_op {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& opcode_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& opcode_in) {
                 __gl_debug << "call glLogicOp " "opcode: '" << opcode_in << "'";
                 glLogicOp(::std::uint32_t(opcode_in));
                 __gl_check_error;
@@ -612,7 +612,7 @@ namespace gtulu {
 
           struct gl_pixel_store {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, float param_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, float param_in) {
                 __gl_debug << "call glPixelStoref " "pname: '" << pname_in << "'" ", " "param: '" << param_in << "'";
                 glPixelStoref(::std::uint32_t(pname_in), param_in);
                 __gl_check_error;
@@ -626,7 +626,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t param_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t param_in) {
                 __gl_debug << "call glPixelStorei " "pname: '" << pname_in << "'" ", " "param: '" << param_in << "'";
                 glPixelStorei(::std::uint32_t(pname_in), param_in);
                 __gl_check_error;
@@ -655,7 +655,7 @@ namespace gtulu {
 
           struct gl_polygon_mode {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& face_in, const ::gtulu::internal::constant::gl_constant_base& mode_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& face_in, ::gtulu::internal::constant::gl_constant_base const& mode_in) {
                 __gl_debug << "call glPolygonMode " "face: '" << face_in << "'" ", " "mode: '" << mode_in << "'";
                 glPolygonMode(::std::uint32_t(face_in), ::std::uint32_t(mode_in));
                 __gl_check_error;
@@ -673,7 +673,7 @@ namespace gtulu {
 
           struct gl_read_buffer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in) {
                 __gl_debug << "call glReadBuffer " "mode: '" << mode_in << "'";
                 glReadBuffer(::std::uint32_t(mode_in));
                 __gl_check_error;
@@ -691,7 +691,7 @@ namespace gtulu {
 
           struct gl_read_pixels {
 
-              inline static void call(::std::int32_t x_in, ::std::int32_t y_in, GLsizei width_in, GLsizei height_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void* pixels_in) {
+              inline static void call(::std::int32_t x_in, ::std::int32_t y_in, GLsizei width_in, GLsizei height_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void* pixels_in) {
                 __gl_debug << "call glReadPixels " "x: '" << x_in << "'" ", " "y: '" << y_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "pixels: '" << pixels_in << "'";
                 glReadPixels(x_in, y_in, width_in, height_in, ::std::uint32_t(format_in), ::std::uint32_t(type_in), pixels_in);
                 __gl_check_error;
@@ -720,7 +720,7 @@ namespace gtulu {
 
           struct gl_stencil_func {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& func_in, ::std::int32_t ref_in, ::std::uint32_t mask_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& func_in, ::std::int32_t ref_in, ::std::uint32_t mask_in) {
                 __gl_debug << "call glStencilFunc " "func: '" << func_in << "'" ", " "ref: '" << ref_in << "'" ", " "mask: '" << mask_in << "'";
                 glStencilFunc(::std::uint32_t(func_in), ref_in, mask_in);
                 __gl_check_error;
@@ -749,7 +749,7 @@ namespace gtulu {
 
           struct gl_stencil_op {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& fail_in, const ::gtulu::internal::constant::gl_constant_base& zfail_in, const ::gtulu::internal::constant::gl_constant_base& zpass_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& fail_in, ::gtulu::internal::constant::gl_constant_base const& zfail_in, ::gtulu::internal::constant::gl_constant_base const& zpass_in) {
                 __gl_debug << "call glStencilOp " "fail: '" << fail_in << "'" ", " "zfail: '" << zfail_in << "'" ", " "zpass: '" << zpass_in << "'";
                 glStencilOp(::std::uint32_t(fail_in), ::std::uint32_t(zfail_in), ::std::uint32_t(zpass_in));
                 __gl_check_error;
@@ -767,7 +767,7 @@ namespace gtulu {
 
           struct gl_tex_image_1d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, ::std::int32_t internalformat_in, GLsizei width_in, ::std::int32_t border_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const* pixels_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::std::int32_t internalformat_in, GLsizei width_in, ::std::int32_t border_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const* pixels_in) {
                 __gl_debug << "call glTexImage1D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "internalformat: '" << internalformat_in << "'" ", " "width: '" << width_in << "'" ", " "border: '" << border_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "pixels: '" << pixels_in << "'";
                 glTexImage1D(::std::uint32_t(target_in), level_in, ::std::uint32_t(internalformat_in), width_in, border_in, ::std::uint32_t(format_in), ::std::uint32_t(type_in), pixels_in);
                 __gl_check_error;
@@ -785,7 +785,7 @@ namespace gtulu {
 
           struct gl_tex_image_2d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, ::std::int32_t internalformat_in, GLsizei width_in, GLsizei height_in, ::std::int32_t border_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const* pixels_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::std::int32_t internalformat_in, GLsizei width_in, GLsizei height_in, ::std::int32_t border_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const* pixels_in) {
                 __gl_debug << "call glTexImage2D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "internalformat: '" << internalformat_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'" ", " "border: '" << border_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "pixels: '" << pixels_in << "'";
                 glTexImage2D(::std::uint32_t(target_in), level_in, ::std::uint32_t(internalformat_in), width_in, height_in, border_in, ::std::uint32_t(format_in), ::std::uint32_t(type_in), pixels_in);
                 __gl_check_error;
@@ -803,7 +803,7 @@ namespace gtulu {
 
           struct gl_tex_parameter {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, float param_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, float param_in) {
                 __gl_debug << "call glTexParameterf " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "param: '" << param_in << "'";
                 glTexParameterf(::std::uint32_t(target_in), ::std::uint32_t(pname_in), param_in);
                 __gl_check_error;
@@ -817,7 +817,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, float const* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, float const* params_in) {
                 __gl_debug << "call glTexParameterfv " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glTexParameterfv(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -831,7 +831,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t param_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t param_in) {
                 __gl_debug << "call glTexParameteri " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "param: '" << param_in << "'";
                 glTexParameteri(::std::uint32_t(target_in), ::std::uint32_t(pname_in), param_in);
                 __gl_check_error;
@@ -845,7 +845,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t const* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t const* params_in) {
                 __gl_debug << "call glTexParameteriv " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glTexParameteriv(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -878,7 +878,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_bind_texture {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t texture_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t texture_in) {
                 __gl_debug << "call glBindTexture " "target: '" << target_in << "'" ", " "texture: '" << texture_in << "'";
                 glBindTexture(::std::uint32_t(target_in), texture_in);
                 __gl_check_error;
@@ -896,7 +896,7 @@ namespace gtulu {
 
           struct gl_copy_tex_image_1d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, const ::gtulu::internal::constant::gl_constant_base& internalformat_in, ::std::int32_t x_in, ::std::int32_t y_in, GLsizei width_in, ::std::int32_t border_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::gtulu::internal::constant::gl_constant_base const& internalformat_in, ::std::int32_t x_in, ::std::int32_t y_in, GLsizei width_in, ::std::int32_t border_in) {
                 __gl_debug << "call glCopyTexImage1D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "internalformat: '" << internalformat_in << "'" ", " "x: '" << x_in << "'" ", " "y: '" << y_in << "'" ", " "width: '" << width_in << "'" ", " "border: '" << border_in << "'";
                 glCopyTexImage1D(::std::uint32_t(target_in), level_in, ::std::uint32_t(internalformat_in), x_in, y_in, width_in, border_in);
                 __gl_check_error;
@@ -914,7 +914,7 @@ namespace gtulu {
 
           struct gl_copy_tex_image_2d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, const ::gtulu::internal::constant::gl_constant_base& internalformat_in, ::std::int32_t x_in, ::std::int32_t y_in, GLsizei width_in, GLsizei height_in, ::std::int32_t border_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::gtulu::internal::constant::gl_constant_base const& internalformat_in, ::std::int32_t x_in, ::std::int32_t y_in, GLsizei width_in, GLsizei height_in, ::std::int32_t border_in) {
                 __gl_debug << "call glCopyTexImage2D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "internalformat: '" << internalformat_in << "'" ", " "x: '" << x_in << "'" ", " "y: '" << y_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'" ", " "border: '" << border_in << "'";
                 glCopyTexImage2D(::std::uint32_t(target_in), level_in, ::std::uint32_t(internalformat_in), x_in, y_in, width_in, height_in, border_in);
                 __gl_check_error;
@@ -932,7 +932,7 @@ namespace gtulu {
 
           struct gl_copy_tex_sub_image_1d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, ::std::int32_t x_in, ::std::int32_t y_in, GLsizei width_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, ::std::int32_t x_in, ::std::int32_t y_in, GLsizei width_in) {
                 __gl_debug << "call glCopyTexSubImage1D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "xoffset: '" << xoffset_in << "'" ", " "x: '" << x_in << "'" ", " "y: '" << y_in << "'" ", " "width: '" << width_in << "'";
                 glCopyTexSubImage1D(::std::uint32_t(target_in), level_in, xoffset_in, x_in, y_in, width_in);
                 __gl_check_error;
@@ -950,7 +950,7 @@ namespace gtulu {
 
           struct gl_copy_tex_sub_image_2d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, ::std::int32_t yoffset_in, ::std::int32_t x_in, ::std::int32_t y_in, GLsizei width_in, GLsizei height_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, ::std::int32_t yoffset_in, ::std::int32_t x_in, ::std::int32_t y_in, GLsizei width_in, GLsizei height_in) {
                 __gl_debug << "call glCopyTexSubImage2D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "xoffset: '" << xoffset_in << "'" ", " "yoffset: '" << yoffset_in << "'" ", " "x: '" << x_in << "'" ", " "y: '" << y_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'";
                 glCopyTexSubImage2D(::std::uint32_t(target_in), level_in, xoffset_in, yoffset_in, x_in, y_in, width_in, height_in);
                 __gl_check_error;
@@ -979,7 +979,7 @@ namespace gtulu {
 
           struct gl_draw_arrays {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, ::std::int32_t first_in, GLsizei count_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, ::std::int32_t first_in, GLsizei count_in) {
                 __gl_debug << "call glDrawArrays " "mode: '" << mode_in << "'" ", " "first: '" << first_in << "'" ", " "count: '" << count_in << "'";
                 glDrawArrays(::std::uint32_t(mode_in), first_in, count_in);
                 __gl_check_error;
@@ -997,7 +997,7 @@ namespace gtulu {
 
           struct gl_draw_elements {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, GLsizei count_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const* indices_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, GLsizei count_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const* indices_in) {
                 __gl_debug << "call glDrawElements " "mode: '" << mode_in << "'" ", " "count: '" << count_in << "'" ", " "type: '" << type_in << "'" ", " "indices: '" << indices_in << "'";
                 glDrawElements(::std::uint32_t(mode_in), count_in, ::std::uint32_t(type_in), indices_in);
                 __gl_check_error;
@@ -1026,7 +1026,7 @@ namespace gtulu {
 
           struct gl_get_pointer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, void** params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, void** params_in) {
                 __gl_debug << "call glGetPointerv " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetPointerv(::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -1066,7 +1066,7 @@ namespace gtulu {
 
           struct gl_tex_sub_image_1d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, GLsizei width_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const* pixels_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, GLsizei width_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const* pixels_in) {
                 __gl_debug << "call glTexSubImage1D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "xoffset: '" << xoffset_in << "'" ", " "width: '" << width_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "pixels: '" << pixels_in << "'";
                 glTexSubImage1D(::std::uint32_t(target_in), level_in, xoffset_in, width_in, ::std::uint32_t(format_in), ::std::uint32_t(type_in), pixels_in);
                 __gl_check_error;
@@ -1084,7 +1084,7 @@ namespace gtulu {
 
           struct gl_tex_sub_image_2d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, ::std::int32_t yoffset_in, GLsizei width_in, GLsizei height_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const* pixels_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, ::std::int32_t yoffset_in, GLsizei width_in, GLsizei height_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const* pixels_in) {
                 __gl_debug << "call glTexSubImage2D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "xoffset: '" << xoffset_in << "'" ", " "yoffset: '" << yoffset_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "pixels: '" << pixels_in << "'";
                 glTexSubImage2D(::std::uint32_t(target_in), level_in, xoffset_in, yoffset_in, width_in, height_in, ::std::uint32_t(format_in), ::std::uint32_t(type_in), pixels_in);
                 __gl_check_error;
@@ -1117,7 +1117,7 @@ namespace gtulu {
 
           struct gl_blend_equation {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in) {
                 __gl_debug << "call glBlendEquation " "mode: '" << mode_in << "'";
                 glBlendEquation(::std::uint32_t(mode_in));
                 __gl_check_error;
@@ -1131,7 +1131,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t buf_in, const ::gtulu::internal::constant::gl_constant_base& mode_in) {
+              inline static void call(::std::uint32_t buf_in, ::gtulu::internal::constant::gl_constant_base const& mode_in) {
                 __gl_debug << "call glBlendEquationi " "buf: '" << buf_in << "'" ", " "mode: '" << mode_in << "'";
                 glBlendEquationi(buf_in, ::std::uint32_t(mode_in));
                 __gl_check_error;
@@ -1149,7 +1149,7 @@ namespace gtulu {
 
           struct gl_copy_tex_sub_image_3d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, ::std::int32_t yoffset_in, ::std::int32_t zoffset_in, ::std::int32_t x_in, ::std::int32_t y_in, GLsizei width_in, GLsizei height_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, ::std::int32_t yoffset_in, ::std::int32_t zoffset_in, ::std::int32_t x_in, ::std::int32_t y_in, GLsizei width_in, GLsizei height_in) {
                 __gl_debug << "call glCopyTexSubImage3D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "xoffset: '" << xoffset_in << "'" ", " "yoffset: '" << yoffset_in << "'" ", " "zoffset: '" << zoffset_in << "'" ", " "x: '" << x_in << "'" ", " "y: '" << y_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'";
                 glCopyTexSubImage3D(::std::uint32_t(target_in), level_in, xoffset_in, yoffset_in, zoffset_in, x_in, y_in, width_in, height_in);
                 __gl_check_error;
@@ -1167,7 +1167,7 @@ namespace gtulu {
 
           struct gl_draw_range_elements {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, ::std::uint32_t start_in, ::std::uint32_t end_in, GLsizei count_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const* indices_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, ::std::uint32_t start_in, ::std::uint32_t end_in, GLsizei count_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const* indices_in) {
                 __gl_debug << "call glDrawRangeElements " "mode: '" << mode_in << "'" ", " "start: '" << start_in << "'" ", " "end: '" << end_in << "'" ", " "count: '" << count_in << "'" ", " "type: '" << type_in << "'" ", " "indices: '" << indices_in << "'";
                 glDrawRangeElements(::std::uint32_t(mode_in), start_in, end_in, count_in, ::std::uint32_t(type_in), indices_in);
                 __gl_check_error;
@@ -1185,7 +1185,7 @@ namespace gtulu {
 
           struct gl_tex_image_3d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, ::std::int32_t internalformat_in, GLsizei width_in, GLsizei height_in, GLsizei depth_in, ::std::int32_t border_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const* pixels_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::std::int32_t internalformat_in, GLsizei width_in, GLsizei height_in, GLsizei depth_in, ::std::int32_t border_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const* pixels_in) {
                 __gl_debug << "call glTexImage3D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "internalformat: '" << internalformat_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'" ", " "depth: '" << depth_in << "'" ", " "border: '" << border_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "pixels: '" << pixels_in << "'";
                 glTexImage3D(::std::uint32_t(target_in), level_in, ::std::uint32_t(internalformat_in), width_in, height_in, depth_in, border_in, ::std::uint32_t(format_in), ::std::uint32_t(type_in), pixels_in);
                 __gl_check_error;
@@ -1203,7 +1203,7 @@ namespace gtulu {
 
           struct gl_tex_sub_image_3d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, ::std::int32_t yoffset_in, ::std::int32_t zoffset_in, GLsizei width_in, GLsizei height_in, GLsizei depth_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const* pixels_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, ::std::int32_t yoffset_in, ::std::int32_t zoffset_in, GLsizei width_in, GLsizei height_in, GLsizei depth_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const* pixels_in) {
                 __gl_debug << "call glTexSubImage3D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "xoffset: '" << xoffset_in << "'" ", " "yoffset: '" << yoffset_in << "'" ", " "zoffset: '" << zoffset_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'" ", " "depth: '" << depth_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "pixels: '" << pixels_in << "'";
                 glTexSubImage3D(::std::uint32_t(target_in), level_in, xoffset_in, yoffset_in, zoffset_in, width_in, height_in, depth_in, ::std::uint32_t(format_in), ::std::uint32_t(type_in), pixels_in);
                 __gl_check_error;
@@ -1225,7 +1225,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_active_texture {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& texture_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& texture_in) {
                 __gl_debug << "call glActiveTexture " "texture: '" << texture_in << "'";
                 glActiveTexture(::std::uint32_t(texture_in));
                 __gl_check_error;
@@ -1243,7 +1243,7 @@ namespace gtulu {
 
           struct gl_compressed_tex_image_1d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, const ::gtulu::internal::constant::gl_constant_base& internalformat_in, GLsizei width_in, ::std::int32_t border_in, GLsizei imageSize_in, void const* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::gtulu::internal::constant::gl_constant_base const& internalformat_in, GLsizei width_in, ::std::int32_t border_in, GLsizei imageSize_in, void const* data_in) {
                 __gl_debug << "call glCompressedTexImage1D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "internalformat: '" << internalformat_in << "'" ", " "width: '" << width_in << "'" ", " "border: '" << border_in << "'" ", " "imageSize: '" << imageSize_in << "'" ", " "data: '" << data_in << "'";
                 glCompressedTexImage1D(::std::uint32_t(target_in), level_in, ::std::uint32_t(internalformat_in), width_in, border_in, imageSize_in, data_in);
                 __gl_check_error;
@@ -1261,7 +1261,7 @@ namespace gtulu {
 
           struct gl_compressed_tex_image_2d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, const ::gtulu::internal::constant::gl_constant_base& internalformat_in, GLsizei width_in, GLsizei height_in, ::std::int32_t border_in, GLsizei imageSize_in, void const* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::gtulu::internal::constant::gl_constant_base const& internalformat_in, GLsizei width_in, GLsizei height_in, ::std::int32_t border_in, GLsizei imageSize_in, void const* data_in) {
                 __gl_debug << "call glCompressedTexImage2D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "internalformat: '" << internalformat_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'" ", " "border: '" << border_in << "'" ", " "imageSize: '" << imageSize_in << "'" ", " "data: '" << data_in << "'";
                 glCompressedTexImage2D(::std::uint32_t(target_in), level_in, ::std::uint32_t(internalformat_in), width_in, height_in, border_in, imageSize_in, data_in);
                 __gl_check_error;
@@ -1279,7 +1279,7 @@ namespace gtulu {
 
           struct gl_compressed_tex_image_3d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, const ::gtulu::internal::constant::gl_constant_base& internalformat_in, GLsizei width_in, GLsizei height_in, GLsizei depth_in, ::std::int32_t border_in, GLsizei imageSize_in, void const* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::gtulu::internal::constant::gl_constant_base const& internalformat_in, GLsizei width_in, GLsizei height_in, GLsizei depth_in, ::std::int32_t border_in, GLsizei imageSize_in, void const* data_in) {
                 __gl_debug << "call glCompressedTexImage3D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "internalformat: '" << internalformat_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'" ", " "depth: '" << depth_in << "'" ", " "border: '" << border_in << "'" ", " "imageSize: '" << imageSize_in << "'" ", " "data: '" << data_in << "'";
                 glCompressedTexImage3D(::std::uint32_t(target_in), level_in, ::std::uint32_t(internalformat_in), width_in, height_in, depth_in, border_in, imageSize_in, data_in);
                 __gl_check_error;
@@ -1297,7 +1297,7 @@ namespace gtulu {
 
           struct gl_compressed_tex_sub_image_1d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, GLsizei width_in, const ::gtulu::internal::constant::gl_constant_base& format_in, GLsizei imageSize_in, void const* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, GLsizei width_in, ::gtulu::internal::constant::gl_constant_base const& format_in, GLsizei imageSize_in, void const* data_in) {
                 __gl_debug << "call glCompressedTexSubImage1D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "xoffset: '" << xoffset_in << "'" ", " "width: '" << width_in << "'" ", " "format: '" << format_in << "'" ", " "imageSize: '" << imageSize_in << "'" ", " "data: '" << data_in << "'";
                 glCompressedTexSubImage1D(::std::uint32_t(target_in), level_in, xoffset_in, width_in, ::std::uint32_t(format_in), imageSize_in, data_in);
                 __gl_check_error;
@@ -1315,7 +1315,7 @@ namespace gtulu {
 
           struct gl_compressed_tex_sub_image_2d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, ::std::int32_t yoffset_in, GLsizei width_in, GLsizei height_in, const ::gtulu::internal::constant::gl_constant_base& format_in, GLsizei imageSize_in, void const* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, ::std::int32_t yoffset_in, GLsizei width_in, GLsizei height_in, ::gtulu::internal::constant::gl_constant_base const& format_in, GLsizei imageSize_in, void const* data_in) {
                 __gl_debug << "call glCompressedTexSubImage2D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "xoffset: '" << xoffset_in << "'" ", " "yoffset: '" << yoffset_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'" ", " "format: '" << format_in << "'" ", " "imageSize: '" << imageSize_in << "'" ", " "data: '" << data_in << "'";
                 glCompressedTexSubImage2D(::std::uint32_t(target_in), level_in, xoffset_in, yoffset_in, width_in, height_in, ::std::uint32_t(format_in), imageSize_in, data_in);
                 __gl_check_error;
@@ -1333,7 +1333,7 @@ namespace gtulu {
 
           struct gl_compressed_tex_sub_image_3d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, ::std::int32_t yoffset_in, ::std::int32_t zoffset_in, GLsizei width_in, GLsizei height_in, GLsizei depth_in, const ::gtulu::internal::constant::gl_constant_base& format_in, GLsizei imageSize_in, void const* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::std::int32_t xoffset_in, ::std::int32_t yoffset_in, ::std::int32_t zoffset_in, GLsizei width_in, GLsizei height_in, GLsizei depth_in, ::gtulu::internal::constant::gl_constant_base const& format_in, GLsizei imageSize_in, void const* data_in) {
                 __gl_debug << "call glCompressedTexSubImage3D " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "xoffset: '" << xoffset_in << "'" ", " "yoffset: '" << yoffset_in << "'" ", " "zoffset: '" << zoffset_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'" ", " "depth: '" << depth_in << "'" ", " "format: '" << format_in << "'" ", " "imageSize: '" << imageSize_in << "'" ", " "data: '" << data_in << "'";
                 glCompressedTexSubImage3D(::std::uint32_t(target_in), level_in, xoffset_in, yoffset_in, zoffset_in, width_in, height_in, depth_in, ::std::uint32_t(format_in), imageSize_in, data_in);
                 __gl_check_error;
@@ -1351,7 +1351,7 @@ namespace gtulu {
 
           struct gl_get_compressed_tex_image {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, void* img_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, void* img_in) {
                 __gl_debug << "call glGetCompressedTexImage " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "img: '" << img_in << "'";
                 glGetCompressedTexImage(::std::uint32_t(target_in), level_in, img_in);
                 __gl_check_error;
@@ -1384,7 +1384,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_blend_func_separate {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& sfactorRGB_in, const ::gtulu::internal::constant::gl_constant_base& dfactorRGB_in, const ::gtulu::internal::constant::gl_constant_base& sfactorAlpha_in, const ::gtulu::internal::constant::gl_constant_base& dfactorAlpha_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& sfactorRGB_in, ::gtulu::internal::constant::gl_constant_base const& dfactorRGB_in, ::gtulu::internal::constant::gl_constant_base const& sfactorAlpha_in, ::gtulu::internal::constant::gl_constant_base const& dfactorAlpha_in) {
                 __gl_debug << "call glBlendFuncSeparate " "sfactorRGB: '" << sfactorRGB_in << "'" ", " "dfactorRGB: '" << dfactorRGB_in << "'" ", " "sfactorAlpha: '" << sfactorAlpha_in << "'" ", " "dfactorAlpha: '" << dfactorAlpha_in << "'";
                 glBlendFuncSeparate(::std::uint32_t(sfactorRGB_in), ::std::uint32_t(dfactorRGB_in), ::std::uint32_t(sfactorAlpha_in), ::std::uint32_t(dfactorAlpha_in));
                 __gl_check_error;
@@ -1398,7 +1398,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t buf_in, const ::gtulu::internal::constant::gl_constant_base& srcRGB_in, const ::gtulu::internal::constant::gl_constant_base& dstRGB_in, const ::gtulu::internal::constant::gl_constant_base& srcAlpha_in, const ::gtulu::internal::constant::gl_constant_base& dstAlpha_in) {
+              inline static void call(::std::uint32_t buf_in, ::gtulu::internal::constant::gl_constant_base const& srcRGB_in, ::gtulu::internal::constant::gl_constant_base const& dstRGB_in, ::gtulu::internal::constant::gl_constant_base const& srcAlpha_in, ::gtulu::internal::constant::gl_constant_base const& dstAlpha_in) {
                 __gl_debug << "call glBlendFuncSeparatei " "buf: '" << buf_in << "'" ", " "srcRGB: '" << srcRGB_in << "'" ", " "dstRGB: '" << dstRGB_in << "'" ", " "srcAlpha: '" << srcAlpha_in << "'" ", " "dstAlpha: '" << dstAlpha_in << "'";
                 glBlendFuncSeparatei(buf_in, ::std::uint32_t(srcRGB_in), ::std::uint32_t(dstRGB_in), ::std::uint32_t(srcAlpha_in), ::std::uint32_t(dstAlpha_in));
                 __gl_check_error;
@@ -1416,7 +1416,7 @@ namespace gtulu {
 
           struct gl_multi_draw_arrays {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, ::std::int32_t const* first_in, GLsizei const* count_in, GLsizei primcount_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, ::std::int32_t const* first_in, GLsizei const* count_in, GLsizei primcount_in) {
                 __gl_debug << "call glMultiDrawArrays " "mode: '" << mode_in << "'" ", " "first: '" << first_in << "'" ", " "count: '" << count_in << "'" ", " "primcount: '" << primcount_in << "'";
                 glMultiDrawArrays(::std::uint32_t(mode_in), first_in, count_in, primcount_in);
                 __gl_check_error;
@@ -1434,7 +1434,7 @@ namespace gtulu {
 
           struct gl_multi_draw_elements {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, GLsizei const* count_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const** indices_in, GLsizei primcount_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, GLsizei const* count_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const** indices_in, GLsizei primcount_in) {
                 __gl_debug << "call glMultiDrawElements " "mode: '" << mode_in << "'" ", " "count: '" << count_in << "'" ", " "type: '" << type_in << "'" ", " "indices: '" << indices_in << "'" ", " "primcount: '" << primcount_in << "'";
                 glMultiDrawElements(::std::uint32_t(mode_in), count_in, ::std::uint32_t(type_in), indices_in, primcount_in);
                 __gl_check_error;
@@ -1452,7 +1452,7 @@ namespace gtulu {
 
           struct gl_point_parameter {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, float param_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, float param_in) {
                 __gl_debug << "call glPointParameterf " "pname: '" << pname_in << "'" ", " "param: '" << param_in << "'";
                 glPointParameterf(::std::uint32_t(pname_in), param_in);
                 __gl_check_error;
@@ -1466,7 +1466,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, float const* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, float const* params_in) {
                 __gl_debug << "call glPointParameterfv " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glPointParameterfv(::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -1480,7 +1480,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t param_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t param_in) {
                 __gl_debug << "call glPointParameteri " "pname: '" << pname_in << "'" ", " "param: '" << param_in << "'";
                 glPointParameteri(::std::uint32_t(pname_in), param_in);
                 __gl_check_error;
@@ -1494,7 +1494,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t const* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t const* params_in) {
                 __gl_debug << "call glPointParameteriv " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glPointParameteriv(::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -1516,7 +1516,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_begin_query {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t id_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t id_in) {
                 __gl_debug << "call glBeginQuery " "target: '" << target_in << "'" ", " "id: '" << id_in << "'";
                 glBeginQuery(::std::uint32_t(target_in), id_in);
                 __gl_check_error;
@@ -1534,7 +1534,7 @@ namespace gtulu {
 
           struct gl_bind_buffer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t buffer_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t buffer_in) {
                 __gl_debug << "call glBindBuffer " "target: '" << target_in << "'" ", " "buffer: '" << buffer_in << "'";
                 glBindBuffer(::std::uint32_t(target_in), buffer_in);
                 __gl_check_error;
@@ -1552,7 +1552,7 @@ namespace gtulu {
 
           struct gl_buffer_data {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, GLsizeiptr size_in, void const* data_in, const ::gtulu::internal::constant::gl_constant_base& usage_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, GLsizeiptr size_in, void const* data_in, ::gtulu::internal::constant::gl_constant_base const& usage_in) {
                 __gl_debug << "call glBufferData " "target: '" << target_in << "'" ", " "size: '" << size_in << "'" ", " "data: '" << data_in << "'" ", " "usage: '" << usage_in << "'";
                 glBufferData(::std::uint32_t(target_in), size_in, data_in, ::std::uint32_t(usage_in));
                 __gl_check_error;
@@ -1570,7 +1570,7 @@ namespace gtulu {
 
           struct gl_buffer_sub_data {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, GLintptr offset_in, GLsizeiptr size_in, void const* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, GLintptr offset_in, GLsizeiptr size_in, void const* data_in) {
                 __gl_debug << "call glBufferSubData " "target: '" << target_in << "'" ", " "offset: '" << offset_in << "'" ", " "size: '" << size_in << "'" ", " "data: '" << data_in << "'";
                 glBufferSubData(::std::uint32_t(target_in), offset_in, size_in, data_in);
                 __gl_check_error;
@@ -1610,7 +1610,7 @@ namespace gtulu {
 
           struct gl_end_query {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in) {
                 __gl_debug << "call glEndQuery " "target: '" << target_in << "'";
                 glEndQuery(::std::uint32_t(target_in));
                 __gl_check_error;
@@ -1650,7 +1650,7 @@ namespace gtulu {
 
           struct gl_get_buffer_parameter {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetBufferParameteriv " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetBufferParameteriv(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -1664,7 +1664,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, GLint64* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, GLint64* params_in) {
                 __gl_debug << "call glGetBufferParameteri64v " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetBufferParameteri64v(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -1682,7 +1682,7 @@ namespace gtulu {
 
           struct gl_get_buffer_pointer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, void** params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, void** params_in) {
                 __gl_debug << "call glGetBufferPointerv " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetBufferPointerv(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -1700,7 +1700,7 @@ namespace gtulu {
 
           struct gl_get_buffer_sub_data {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, GLintptr offset_in, GLsizeiptr size_in, void* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, GLintptr offset_in, GLsizeiptr size_in, void* data_in) {
                 __gl_debug << "call glGetBufferSubData " "target: '" << target_in << "'" ", " "offset: '" << offset_in << "'" ", " "size: '" << size_in << "'" ", " "data: '" << data_in << "'";
                 glGetBufferSubData(::std::uint32_t(target_in), offset_in, size_in, data_in);
                 __gl_check_error;
@@ -1718,7 +1718,7 @@ namespace gtulu {
 
           struct gl_get_query {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetQueryiv " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetQueryiv(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -1736,7 +1736,7 @@ namespace gtulu {
 
           struct gl_get_query_object {
 
-              inline static void call(::std::uint32_t id_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::std::uint32_t id_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetQueryObjectiv " "id: '" << id_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetQueryObjectiv(id_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -1750,7 +1750,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t id_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::uint32_t* params_in) {
+              inline static void call(::std::uint32_t id_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::uint32_t* params_in) {
                 __gl_debug << "call glGetQueryObjectuiv " "id: '" << id_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetQueryObjectuiv(id_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -1764,7 +1764,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t id_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, GLint64* params_in) {
+              inline static void call(::std::uint32_t id_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, GLint64* params_in) {
                 __gl_debug << "call glGetQueryObjecti64v " "id: '" << id_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetQueryObjecti64v(id_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -1778,7 +1778,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t id_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, GLuint64* params_in) {
+              inline static void call(::std::uint32_t id_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, GLuint64* params_in) {
                 __gl_debug << "call glGetQueryObjectui64v " "id: '" << id_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetQueryObjectui64v(id_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -1818,7 +1818,7 @@ namespace gtulu {
 
           struct gl_map_buffer {
 
-              inline static GLvoid* call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& access_in) {
+              inline static GLvoid* call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& access_in) {
                 __gl_debug << "call glMapBuffer " "target: '" << target_in << "'" ", " "access: '" << access_in << "'";
                 GLvoid* out = glMapBuffer(::std::uint32_t(target_in), ::std::uint32_t(access_in));
                 __gl_check_error;
@@ -1836,7 +1836,7 @@ namespace gtulu {
 
           struct gl_unmap_buffer {
 
-              inline static GLboolean call(const ::gtulu::internal::constant::gl_constant_base& target_in) {
+              inline static GLboolean call(::gtulu::internal::constant::gl_constant_base const& target_in) {
                 __gl_debug << "call glUnmapBuffer " "target: '" << target_in << "'";
                 GLboolean out = glUnmapBuffer(::std::uint32_t(target_in));
                 __gl_check_error;
@@ -1880,7 +1880,7 @@ namespace gtulu {
 
           struct gl_blend_equation_separate {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& modeRGB_in, const ::gtulu::internal::constant::gl_constant_base& modeAlpha_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& modeRGB_in, ::gtulu::internal::constant::gl_constant_base const& modeAlpha_in) {
                 __gl_debug << "call glBlendEquationSeparate " "modeRGB: '" << modeRGB_in << "'" ", " "modeAlpha: '" << modeAlpha_in << "'";
                 glBlendEquationSeparate(::std::uint32_t(modeRGB_in), ::std::uint32_t(modeAlpha_in));
                 __gl_check_error;
@@ -1894,7 +1894,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t buf_in, const ::gtulu::internal::constant::gl_constant_base& modeRGB_in, const ::gtulu::internal::constant::gl_constant_base& modeAlpha_in) {
+              inline static void call(::std::uint32_t buf_in, ::gtulu::internal::constant::gl_constant_base const& modeRGB_in, ::gtulu::internal::constant::gl_constant_base const& modeAlpha_in) {
                 __gl_debug << "call glBlendEquationSeparatei " "buf: '" << buf_in << "'" ", " "modeRGB: '" << modeRGB_in << "'" ", " "modeAlpha: '" << modeAlpha_in << "'";
                 glBlendEquationSeparatei(buf_in, ::std::uint32_t(modeRGB_in), ::std::uint32_t(modeAlpha_in));
                 __gl_check_error;
@@ -1934,7 +1934,7 @@ namespace gtulu {
 
           struct gl_create_shader {
 
-              inline static GLuint call(const ::gtulu::internal::constant::gl_constant_base& type_in) {
+              inline static GLuint call(::gtulu::internal::constant::gl_constant_base const& type_in) {
                 __gl_debug << "call glCreateShader " "type: '" << type_in << "'";
                 GLuint out = glCreateShader(::std::uint32_t(type_in));
                 __gl_check_error;
@@ -2062,7 +2062,7 @@ namespace gtulu {
 
           struct gl_get_program {
 
-              inline static void call(::std::uint32_t program_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::std::uint32_t program_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetProgramiv " "program: '" << program_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetProgramiv(program_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -2091,7 +2091,7 @@ namespace gtulu {
 
           struct gl_get_shader {
 
-              inline static void call(::std::uint32_t shader_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::std::uint32_t shader_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetShaderiv " "shader: '" << shader_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetShaderiv(shader_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -2174,7 +2174,7 @@ namespace gtulu {
 
           struct gl_get_vertex_attrib {
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, double* params_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, double* params_in) {
                 __gl_debug << "call glGetVertexAttribdv " "index: '" << index_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetVertexAttribdv(index_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -2188,7 +2188,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, float* params_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, float* params_in) {
                 __gl_debug << "call glGetVertexAttribfv " "index: '" << index_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetVertexAttribfv(index_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -2202,7 +2202,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetVertexAttribiv " "index: '" << index_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetVertexAttribiv(index_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -2220,7 +2220,7 @@ namespace gtulu {
 
           struct gl_get_vertex_attrib_pointer {
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, void** pointer_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, void** pointer_in) {
                 __gl_debug << "call glGetVertexAttribPointerv " "index: '" << index_in << "'" ", " "pname: '" << pname_in << "'" ", " "pointer: '" << pointer_in << "'";
                 glGetVertexAttribPointerv(index_in, ::std::uint32_t(pname_in), pointer_in);
                 __gl_check_error;
@@ -2282,7 +2282,7 @@ namespace gtulu {
 
           struct gl_stencil_func_separate {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& face_in, const ::gtulu::internal::constant::gl_constant_base& func_in, ::std::int32_t ref_in, ::std::uint32_t mask_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& face_in, ::gtulu::internal::constant::gl_constant_base const& func_in, ::std::int32_t ref_in, ::std::uint32_t mask_in) {
                 __gl_debug << "call glStencilFuncSeparate " "face: '" << face_in << "'" ", " "func: '" << func_in << "'" ", " "ref: '" << ref_in << "'" ", " "mask: '" << mask_in << "'";
                 glStencilFuncSeparate(::std::uint32_t(face_in), ::std::uint32_t(func_in), ref_in, mask_in);
                 __gl_check_error;
@@ -2300,7 +2300,7 @@ namespace gtulu {
 
           struct gl_stencil_mask_separate {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& face_in, ::std::uint32_t mask_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& face_in, ::std::uint32_t mask_in) {
                 __gl_debug << "call glStencilMaskSeparate " "face: '" << face_in << "'" ", " "mask: '" << mask_in << "'";
                 glStencilMaskSeparate(::std::uint32_t(face_in), mask_in);
                 __gl_check_error;
@@ -2318,7 +2318,7 @@ namespace gtulu {
 
           struct gl_stencil_op_separate {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& face_in, const ::gtulu::internal::constant::gl_constant_base& sfail_in, const ::gtulu::internal::constant::gl_constant_base& dpfail_in, const ::gtulu::internal::constant::gl_constant_base& dppass_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& face_in, ::gtulu::internal::constant::gl_constant_base const& sfail_in, ::gtulu::internal::constant::gl_constant_base const& dpfail_in, ::gtulu::internal::constant::gl_constant_base const& dppass_in) {
                 __gl_debug << "call glStencilOpSeparate " "face: '" << face_in << "'" ", " "sfail: '" << sfail_in << "'" ", " "dpfail: '" << dpfail_in << "'" ", " "dppass: '" << dppass_in << "'";
                 glStencilOpSeparate(::std::uint32_t(face_in), ::std::uint32_t(sfail_in), ::std::uint32_t(dpfail_in), ::std::uint32_t(dppass_in));
                 __gl_check_error;
@@ -2924,7 +2924,7 @@ namespace gtulu {
 
           struct gl_vertex_attrib_pointer {
 
-              inline static void call(::std::uint32_t index_in, ::std::int32_t size_in, const ::gtulu::internal::constant::gl_constant_base& type_in, bool normalized_in, GLsizei stride_in, void const* pointer_in) {
+              inline static void call(::std::uint32_t index_in, ::std::int32_t size_in, ::gtulu::internal::constant::gl_constant_base const& type_in, bool normalized_in, GLsizei stride_in, void const* pointer_in) {
                 __gl_debug << "call glVertexAttribPointer " "index: '" << index_in << "'" ", " "size: '" << size_in << "'" ", " "type: '" << type_in << "'" ", " "normalized: '" << normalized_in << "'" ", " "stride: '" << stride_in << "'" ", " "pointer: '" << pointer_in << "'";
                 glVertexAttribPointer(index_in, size_in, ::std::uint32_t(type_in), (normalized_in ? 1 : 0), stride_in, pointer_in);
                 __gl_check_error;
@@ -3058,7 +3058,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_begin_conditional_render {
 
-              inline static void call(::std::uint32_t id_in, const ::gtulu::internal::constant::gl_constant_base& mode_in) {
+              inline static void call(::std::uint32_t id_in, ::gtulu::internal::constant::gl_constant_base const& mode_in) {
                 __gl_debug << "call glBeginConditionalRender " "id: '" << id_in << "'" ", " "mode: '" << mode_in << "'";
                 glBeginConditionalRender(id_in, ::std::uint32_t(mode_in));
                 __gl_check_error;
@@ -3076,7 +3076,7 @@ namespace gtulu {
 
           struct gl_begin_transform_feedback {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& primitiveMode_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& primitiveMode_in) {
                 __gl_debug << "call glBeginTransformFeedback " "primitiveMode: '" << primitiveMode_in << "'";
                 glBeginTransformFeedback(::std::uint32_t(primitiveMode_in));
                 __gl_check_error;
@@ -3094,7 +3094,7 @@ namespace gtulu {
 
           struct gl_bind_buffer_base {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in, ::std::uint32_t buffer_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in, ::std::uint32_t buffer_in) {
                 __gl_debug << "call glBindBufferBase " "target: '" << target_in << "'" ", " "index: '" << index_in << "'" ", " "buffer: '" << buffer_in << "'";
                 glBindBufferBase(::std::uint32_t(target_in), index_in, buffer_in);
                 __gl_check_error;
@@ -3112,7 +3112,7 @@ namespace gtulu {
 
           struct gl_bind_buffer_range {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in, ::std::uint32_t buffer_in, GLintptr offset_in, GLsizeiptr size_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in, ::std::uint32_t buffer_in, GLintptr offset_in, GLsizeiptr size_in) {
                 __gl_debug << "call glBindBufferRange " "target: '" << target_in << "'" ", " "index: '" << index_in << "'" ", " "buffer: '" << buffer_in << "'" ", " "offset: '" << offset_in << "'" ", " "size: '" << size_in << "'";
                 glBindBufferRange(::std::uint32_t(target_in), index_in, buffer_in, offset_in, size_in);
                 __gl_check_error;
@@ -3141,7 +3141,7 @@ namespace gtulu {
 
           struct gl_clamp_color {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& clamp_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& clamp_in) {
                 __gl_debug << "call glClampColor " "target: '" << target_in << "'" ", " "clamp: '" << clamp_in << "'";
                 glClampColor(::std::uint32_t(target_in), ::std::uint32_t(clamp_in));
                 __gl_check_error;
@@ -3159,7 +3159,7 @@ namespace gtulu {
 
           struct gl_clear_buffer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& buffer_in, ::std::int32_t drawbuffer_in, ::std::int32_t const* value_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& buffer_in, ::std::int32_t drawbuffer_in, ::std::int32_t const* value_in) {
                 __gl_debug << "call glClearBufferiv " "buffer: '" << buffer_in << "'" ", " "drawbuffer: '" << drawbuffer_in << "'" ", " "value: '" << value_in << "'";
                 glClearBufferiv(::std::uint32_t(buffer_in), drawbuffer_in, value_in);
                 __gl_check_error;
@@ -3173,7 +3173,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& buffer_in, ::std::int32_t drawbuffer_in, ::std::uint32_t const* value_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& buffer_in, ::std::int32_t drawbuffer_in, ::std::uint32_t const* value_in) {
                 __gl_debug << "call glClearBufferuiv " "buffer: '" << buffer_in << "'" ", " "drawbuffer: '" << drawbuffer_in << "'" ", " "value: '" << value_in << "'";
                 glClearBufferuiv(::std::uint32_t(buffer_in), drawbuffer_in, value_in);
                 __gl_check_error;
@@ -3187,7 +3187,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& buffer_in, ::std::int32_t drawbuffer_in, float const* value_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& buffer_in, ::std::int32_t drawbuffer_in, float const* value_in) {
                 __gl_debug << "call glClearBufferfv " "buffer: '" << buffer_in << "'" ", " "drawbuffer: '" << drawbuffer_in << "'" ", " "value: '" << value_in << "'";
                 glClearBufferfv(::std::uint32_t(buffer_in), drawbuffer_in, value_in);
                 __gl_check_error;
@@ -3205,7 +3205,7 @@ namespace gtulu {
 
           struct gl_clear_buffer_float {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& buffer_in, ::std::int32_t drawbuffer_in, float depth_in, ::std::int32_t stencil_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& buffer_in, ::std::int32_t drawbuffer_in, float depth_in, ::std::int32_t stencil_in) {
                 __gl_debug << "call glClearBufferfi " "buffer: '" << buffer_in << "'" ", " "drawbuffer: '" << drawbuffer_in << "'" ", " "depth: '" << depth_in << "'" ", " "stencil: '" << stencil_in << "'";
                 glClearBufferfi(::std::uint32_t(buffer_in), drawbuffer_in, depth_in, stencil_in);
                 __gl_check_error;
@@ -3241,7 +3241,7 @@ namespace gtulu {
 
           struct gl_disable {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& cap_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& cap_in) {
                 __gl_debug << "call glDisable " "cap: '" << cap_in << "'";
                 glDisable(::std::uint32_t(cap_in));
                 __gl_check_error;
@@ -3255,7 +3255,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in) {
                 __gl_debug << "call glDisablei " "target: '" << target_in << "'" ", " "index: '" << index_in << "'";
                 glDisablei(::std::uint32_t(target_in), index_in);
                 __gl_check_error;
@@ -3273,7 +3273,7 @@ namespace gtulu {
 
           struct gl_enable {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& cap_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& cap_in) {
                 __gl_debug << "call glEnable " "cap: '" << cap_in << "'";
                 glEnable(::std::uint32_t(cap_in));
                 __gl_check_error;
@@ -3287,7 +3287,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in) {
                 __gl_debug << "call glEnablei " "target: '" << target_in << "'" ", " "index: '" << index_in << "'";
                 glEnablei(::std::uint32_t(target_in), index_in);
                 __gl_check_error;
@@ -3327,7 +3327,7 @@ namespace gtulu {
 
           struct gl_get_boolean_indexed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in, GLboolean* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in, GLboolean* data_in) {
                 __gl_debug << "call glGetBooleani_v " "target: '" << target_in << "'" ", " "index: '" << index_in << "'" ", " "data: '" << data_in << "'";
                 glGetBooleani_v(::std::uint32_t(target_in), index_in, data_in);
                 __gl_check_error;
@@ -3356,7 +3356,7 @@ namespace gtulu {
 
           struct gl_get_integer_indexed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in, ::std::int32_t* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in, ::std::int32_t* data_in) {
                 __gl_debug << "call glGetIntegeri_v " "target: '" << target_in << "'" ", " "index: '" << index_in << "'" ", " "data: '" << data_in << "'";
                 glGetIntegeri_v(::std::uint32_t(target_in), index_in, data_in);
                 __gl_check_error;
@@ -3370,7 +3370,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in, GLint64* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in, GLint64* data_in) {
                 __gl_debug << "call glGetInteger64i_v " "target: '" << target_in << "'" ", " "index: '" << index_in << "'" ", " "data: '" << data_in << "'";
                 glGetInteger64i_v(::std::uint32_t(target_in), index_in, data_in);
                 __gl_check_error;
@@ -3388,30 +3388,30 @@ namespace gtulu {
 
           struct gl_get_string {
 
-              inline static const GLubyte * call(const ::gtulu::internal::constant::gl_constant_base& name_in) {
+              inline static GLubyte const* call(::gtulu::internal::constant::gl_constant_base const& name_in) {
                 __gl_debug << "call glGetString " "name: '" << name_in << "'";
-                const GLubyte * out = glGetString(::std::uint32_t(name_in));
+                GLubyte const* out = glGetString(::std::uint32_t(name_in));
                 __gl_check_error;
                 return out;
               }
               template< typename name_t >
-              inline static const GLubyte * call() {
+              inline static GLubyte const* call() {
                 __gl_debug << "call glGetString " "name: '" << name_t::name::value << "'";
-                const GLubyte * out = glGetString(name_t::value);
+                GLubyte const* out = glGetString(name_t::value);
                 __gl_check_error;
                 return out;
               }
 
-              inline static const GLubyte * call(const ::gtulu::internal::constant::gl_constant_base& name_in, ::std::uint32_t index_in) {
+              inline static GLubyte const* call(::gtulu::internal::constant::gl_constant_base const& name_in, ::std::uint32_t index_in) {
                 __gl_debug << "call glGetStringi " "name: '" << name_in << "'" ", " "index: '" << index_in << "'";
-                const GLubyte * out = glGetStringi(::std::uint32_t(name_in), index_in);
+                GLubyte const* out = glGetStringi(::std::uint32_t(name_in), index_in);
                 __gl_check_error;
                 return out;
               }
               template< typename name_t >
-              inline static const GLubyte * call(::std::uint32_t index_in) {
+              inline static GLubyte const* call(::std::uint32_t index_in) {
                 __gl_debug << "call glGetStringi " "name: '" << name_t::name::value << "'" ", " "index: '" << index_in << "'";
-                const GLubyte * out = glGetStringi(name_t::value, index_in);
+                GLubyte const* out = glGetStringi(name_t::value, index_in);
                 __gl_check_error;
                 return out;
               }
@@ -3420,7 +3420,7 @@ namespace gtulu {
 
           struct gl_get_tex_parameter_integer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetTexParameterIiv " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetTexParameterIiv(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -3434,7 +3434,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::uint32_t* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::uint32_t* params_in) {
                 __gl_debug << "call glGetTexParameterIuiv " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetTexParameterIuiv(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -3495,7 +3495,7 @@ namespace gtulu {
 
           struct gl_get_vertex_attrib_integer {
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetVertexAttribIiv " "index: '" << index_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetVertexAttribIiv(index_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -3509,7 +3509,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::uint32_t* params_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::uint32_t* params_in) {
                 __gl_debug << "call glGetVertexAttribIuiv " "index: '" << index_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetVertexAttribIuiv(index_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -3527,7 +3527,7 @@ namespace gtulu {
 
           struct gl_is_enabled {
 
-              inline static GLboolean call(const ::gtulu::internal::constant::gl_constant_base& cap_in) {
+              inline static GLboolean call(::gtulu::internal::constant::gl_constant_base const& cap_in) {
                 __gl_debug << "call glIsEnabled " "cap: '" << cap_in << "'";
                 GLboolean out = glIsEnabled(::std::uint32_t(cap_in));
                 __gl_check_error;
@@ -3541,7 +3541,7 @@ namespace gtulu {
                 return out;
               }
 
-              inline static GLboolean call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in) {
+              inline static GLboolean call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in) {
                 __gl_debug << "call glIsEnabledi " "target: '" << target_in << "'" ", " "index: '" << index_in << "'";
                 GLboolean out = glIsEnabledi(::std::uint32_t(target_in), index_in);
                 __gl_check_error;
@@ -3559,7 +3559,7 @@ namespace gtulu {
 
           struct gl_tex_parameter_integer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t const* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t const* params_in) {
                 __gl_debug << "call glTexParameterIiv " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glTexParameterIiv(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -3573,7 +3573,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::uint32_t const* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::uint32_t const* params_in) {
                 __gl_debug << "call glTexParameterIuiv " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glTexParameterIuiv(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -3591,7 +3591,7 @@ namespace gtulu {
 
           struct gl_transform_feedback_varyings {
 
-              inline static void call(::std::uint32_t program_in, GLsizei count_in, GLchar const** varyings_in, const ::gtulu::internal::constant::gl_constant_base& bufferMode_in) {
+              inline static void call(::std::uint32_t program_in, GLsizei count_in, GLchar const** varyings_in, ::gtulu::internal::constant::gl_constant_base const& bufferMode_in) {
                 __gl_debug << "call glTransformFeedbackVaryings " "program: '" << program_in << "'" ", " "count: '" << count_in << "'" ", " "varyings: '" << varyings_in << "'" ", " "bufferMode: '" << bufferMode_in << "'";
                 glTransformFeedbackVaryings(program_in, count_in, varyings_in, ::std::uint32_t(bufferMode_in));
                 __gl_check_error;
@@ -4005,7 +4005,7 @@ namespace gtulu {
 
           struct gl_vertex_attrib_pointer_integer {
 
-              inline static void call(::std::uint32_t index_in, ::std::int32_t size_in, const ::gtulu::internal::constant::gl_constant_base& type_in, GLsizei stride_in, void const* pointer_in) {
+              inline static void call(::std::uint32_t index_in, ::std::int32_t size_in, ::gtulu::internal::constant::gl_constant_base const& type_in, GLsizei stride_in, void const* pointer_in) {
                 __gl_debug << "call glVertexAttribIPointer " "index: '" << index_in << "'" ", " "size: '" << size_in << "'" ", " "type: '" << type_in << "'" ", " "stride: '" << stride_in << "'" ", " "pointer: '" << pointer_in << "'";
                 glVertexAttribIPointer(index_in, size_in, ::std::uint32_t(type_in), stride_in, pointer_in);
                 __gl_check_error;
@@ -4027,7 +4027,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_draw_arrays_instanced {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, ::std::int32_t first_in, GLsizei count_in, GLsizei primcount_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, ::std::int32_t first_in, GLsizei count_in, GLsizei primcount_in) {
                 __gl_debug << "call glDrawArraysInstanced " "mode: '" << mode_in << "'" ", " "first: '" << first_in << "'" ", " "count: '" << count_in << "'" ", " "primcount: '" << primcount_in << "'";
                 glDrawArraysInstanced(::std::uint32_t(mode_in), first_in, count_in, primcount_in);
                 __gl_check_error;
@@ -4045,7 +4045,7 @@ namespace gtulu {
 
           struct gl_draw_elements_instanced {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, GLsizei count_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const* indices_in, GLsizei primcount_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, GLsizei count_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const* indices_in, GLsizei primcount_in) {
                 __gl_debug << "call glDrawElementsInstanced " "mode: '" << mode_in << "'" ", " "count: '" << count_in << "'" ", " "type: '" << type_in << "'" ", " "indices: '" << indices_in << "'" ", " "primcount: '" << primcount_in << "'";
                 glDrawElementsInstanced(::std::uint32_t(mode_in), count_in, ::std::uint32_t(type_in), indices_in, primcount_in);
                 __gl_check_error;
@@ -4074,7 +4074,7 @@ namespace gtulu {
 
           struct gl_tex_buffer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& internalformat_in, ::std::uint32_t buffer_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& internalformat_in, ::std::uint32_t buffer_in) {
                 __gl_debug << "call glTexBuffer " "target: '" << target_in << "'" ", " "internalformat: '" << internalformat_in << "'" ", " "buffer: '" << buffer_in << "'";
                 glTexBuffer(::std::uint32_t(target_in), ::std::uint32_t(internalformat_in), buffer_in);
                 __gl_check_error;
@@ -4096,7 +4096,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_framebuffer_texture {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& attachment_in, ::std::uint32_t texture_in, ::std::int32_t level_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& attachment_in, ::std::uint32_t texture_in, ::std::int32_t level_in) {
                 __gl_debug << "call glFramebufferTexture " "target: '" << target_in << "'" ", " "attachment: '" << attachment_in << "'" ", " "texture: '" << texture_in << "'" ", " "level: '" << level_in << "'";
                 glFramebufferTexture(::std::uint32_t(target_in), ::std::uint32_t(attachment_in), texture_in, level_in);
                 __gl_check_error;
@@ -4114,7 +4114,7 @@ namespace gtulu {
 
           struct gl_get_buffer_parameter {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetBufferParameteriv " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetBufferParameteriv(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -4128,7 +4128,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, GLint64* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, GLint64* params_in) {
                 __gl_debug << "call glGetBufferParameteri64v " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetBufferParameteri64v(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -4146,7 +4146,7 @@ namespace gtulu {
 
           struct gl_get_integer_indexed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in, ::std::int32_t* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in, ::std::int32_t* data_in) {
                 __gl_debug << "call glGetIntegeri_v " "target: '" << target_in << "'" ", " "index: '" << index_in << "'" ", " "data: '" << data_in << "'";
                 glGetIntegeri_v(::std::uint32_t(target_in), index_in, data_in);
                 __gl_check_error;
@@ -4160,7 +4160,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in, GLint64* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in, GLint64* data_in) {
                 __gl_debug << "call glGetInteger64i_v " "target: '" << target_in << "'" ", " "index: '" << index_in << "'" ", " "data: '" << data_in << "'";
                 glGetInteger64i_v(::std::uint32_t(target_in), index_in, data_in);
                 __gl_check_error;
@@ -4197,7 +4197,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_blend_equation {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in) {
                 __gl_debug << "call glBlendEquation " "mode: '" << mode_in << "'";
                 glBlendEquation(::std::uint32_t(mode_in));
                 __gl_check_error;
@@ -4211,7 +4211,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t buf_in, const ::gtulu::internal::constant::gl_constant_base& mode_in) {
+              inline static void call(::std::uint32_t buf_in, ::gtulu::internal::constant::gl_constant_base const& mode_in) {
                 __gl_debug << "call glBlendEquationi " "buf: '" << buf_in << "'" ", " "mode: '" << mode_in << "'";
                 glBlendEquationi(buf_in, ::std::uint32_t(mode_in));
                 __gl_check_error;
@@ -4229,7 +4229,7 @@ namespace gtulu {
 
           struct gl_blend_equation_separate {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& modeRGB_in, const ::gtulu::internal::constant::gl_constant_base& modeAlpha_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& modeRGB_in, ::gtulu::internal::constant::gl_constant_base const& modeAlpha_in) {
                 __gl_debug << "call glBlendEquationSeparate " "modeRGB: '" << modeRGB_in << "'" ", " "modeAlpha: '" << modeAlpha_in << "'";
                 glBlendEquationSeparate(::std::uint32_t(modeRGB_in), ::std::uint32_t(modeAlpha_in));
                 __gl_check_error;
@@ -4243,7 +4243,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t buf_in, const ::gtulu::internal::constant::gl_constant_base& modeRGB_in, const ::gtulu::internal::constant::gl_constant_base& modeAlpha_in) {
+              inline static void call(::std::uint32_t buf_in, ::gtulu::internal::constant::gl_constant_base const& modeRGB_in, ::gtulu::internal::constant::gl_constant_base const& modeAlpha_in) {
                 __gl_debug << "call glBlendEquationSeparatei " "buf: '" << buf_in << "'" ", " "modeRGB: '" << modeRGB_in << "'" ", " "modeAlpha: '" << modeAlpha_in << "'";
                 glBlendEquationSeparatei(buf_in, ::std::uint32_t(modeRGB_in), ::std::uint32_t(modeAlpha_in));
                 __gl_check_error;
@@ -4261,7 +4261,7 @@ namespace gtulu {
 
           struct gl_blend_func {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& sfactor_in, const ::gtulu::internal::constant::gl_constant_base& dfactor_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& sfactor_in, ::gtulu::internal::constant::gl_constant_base const& dfactor_in) {
                 __gl_debug << "call glBlendFunc " "sfactor: '" << sfactor_in << "'" ", " "dfactor: '" << dfactor_in << "'";
                 glBlendFunc(::std::uint32_t(sfactor_in), ::std::uint32_t(dfactor_in));
                 __gl_check_error;
@@ -4275,7 +4275,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t buf_in, const ::gtulu::internal::constant::gl_constant_base& src_in, const ::gtulu::internal::constant::gl_constant_base& dst_in) {
+              inline static void call(::std::uint32_t buf_in, ::gtulu::internal::constant::gl_constant_base const& src_in, ::gtulu::internal::constant::gl_constant_base const& dst_in) {
                 __gl_debug << "call glBlendFunci " "buf: '" << buf_in << "'" ", " "src: '" << src_in << "'" ", " "dst: '" << dst_in << "'";
                 glBlendFunci(buf_in, ::std::uint32_t(src_in), ::std::uint32_t(dst_in));
                 __gl_check_error;
@@ -4293,7 +4293,7 @@ namespace gtulu {
 
           struct gl_blend_func_separate {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& sfactorRGB_in, const ::gtulu::internal::constant::gl_constant_base& dfactorRGB_in, const ::gtulu::internal::constant::gl_constant_base& sfactorAlpha_in, const ::gtulu::internal::constant::gl_constant_base& dfactorAlpha_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& sfactorRGB_in, ::gtulu::internal::constant::gl_constant_base const& dfactorRGB_in, ::gtulu::internal::constant::gl_constant_base const& sfactorAlpha_in, ::gtulu::internal::constant::gl_constant_base const& dfactorAlpha_in) {
                 __gl_debug << "call glBlendFuncSeparate " "sfactorRGB: '" << sfactorRGB_in << "'" ", " "dfactorRGB: '" << dfactorRGB_in << "'" ", " "sfactorAlpha: '" << sfactorAlpha_in << "'" ", " "dfactorAlpha: '" << dfactorAlpha_in << "'";
                 glBlendFuncSeparate(::std::uint32_t(sfactorRGB_in), ::std::uint32_t(dfactorRGB_in), ::std::uint32_t(sfactorAlpha_in), ::std::uint32_t(dfactorAlpha_in));
                 __gl_check_error;
@@ -4307,7 +4307,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t buf_in, const ::gtulu::internal::constant::gl_constant_base& srcRGB_in, const ::gtulu::internal::constant::gl_constant_base& dstRGB_in, const ::gtulu::internal::constant::gl_constant_base& srcAlpha_in, const ::gtulu::internal::constant::gl_constant_base& dstAlpha_in) {
+              inline static void call(::std::uint32_t buf_in, ::gtulu::internal::constant::gl_constant_base const& srcRGB_in, ::gtulu::internal::constant::gl_constant_base const& dstRGB_in, ::gtulu::internal::constant::gl_constant_base const& srcAlpha_in, ::gtulu::internal::constant::gl_constant_base const& dstAlpha_in) {
                 __gl_debug << "call glBlendFuncSeparatei " "buf: '" << buf_in << "'" ", " "srcRGB: '" << srcRGB_in << "'" ", " "dstRGB: '" << dstRGB_in << "'" ", " "srcAlpha: '" << srcAlpha_in << "'" ", " "dstAlpha: '" << dstAlpha_in << "'";
                 glBlendFuncSeparatei(buf_in, ::std::uint32_t(srcRGB_in), ::std::uint32_t(dstRGB_in), ::std::uint32_t(srcAlpha_in), ::std::uint32_t(dstAlpha_in));
                 __gl_check_error;
@@ -4382,7 +4382,7 @@ namespace gtulu {
 
           struct gl_get_shader_precision_format {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& shadertype_in, const ::gtulu::internal::constant::gl_constant_base& precisiontype_in, ::std::int32_t* range_in, ::std::int32_t* precision_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& shadertype_in, ::gtulu::internal::constant::gl_constant_base const& precisiontype_in, ::std::int32_t* range_in, ::std::int32_t* precision_in) {
                 __gl_debug << "call glGetShaderPrecisionFormat " "shadertype: '" << shadertype_in << "'" ", " "precisiontype: '" << precisiontype_in << "'" ", " "range: '" << range_in << "'" ", " "precision: '" << precision_in << "'";
                 glGetShaderPrecisionFormat(::std::uint32_t(shadertype_in), ::std::uint32_t(precisiontype_in), range_in, precision_in);
                 __gl_check_error;
@@ -4411,7 +4411,7 @@ namespace gtulu {
 
           struct gl_shader_binary {
 
-              inline static void call(GLsizei count_in, ::std::uint32_t const* shaders_in, const ::gtulu::internal::constant::gl_constant_base& binaryformat_in, void const* binary_in, GLsizei length_in) {
+              inline static void call(GLsizei count_in, ::std::uint32_t const* shaders_in, ::gtulu::internal::constant::gl_constant_base const& binaryformat_in, void const* binary_in, GLsizei length_in) {
                 __gl_debug << "call glShaderBinary " "count: '" << count_in << "'" ", " "shaders: '" << shaders_in << "'" ", " "binaryformat: '" << binaryformat_in << "'" ", " "binary: '" << binary_in << "'" ", " "length: '" << length_in << "'";
                 glShaderBinary(count_in, shaders_in, ::std::uint32_t(binaryformat_in), binary_in, length_in);
                 __gl_check_error;
@@ -4459,7 +4459,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_copy_buffer_sub_data {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& readTarget_in, const ::gtulu::internal::constant::gl_constant_base& writeTarget_in, GLintptr readOffset_in, GLintptr writeOffset_in, GLsizeiptr size_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& readTarget_in, ::gtulu::internal::constant::gl_constant_base const& writeTarget_in, GLintptr readOffset_in, GLintptr writeOffset_in, GLsizeiptr size_in) {
                 __gl_debug << "call glCopyBufferSubData " "readTarget: '" << readTarget_in << "'" ", " "writeTarget: '" << writeTarget_in << "'" ", " "readOffset: '" << readOffset_in << "'" ", " "writeOffset: '" << writeOffset_in << "'" ", " "size: '" << size_in << "'";
                 glCopyBufferSubData(::std::uint32_t(readTarget_in), ::std::uint32_t(writeTarget_in), readOffset_in, writeOffset_in, size_in);
                 __gl_check_error;
@@ -4492,7 +4492,7 @@ namespace gtulu {
 
           struct gl_debug_message_control {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& source_in, const ::gtulu::internal::constant::gl_constant_base& type_in, const ::gtulu::internal::constant::gl_constant_base& severity_in, GLsizei count_in, ::std::uint32_t const* ids_in, bool enabled_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& source_in, ::gtulu::internal::constant::gl_constant_base const& type_in, ::gtulu::internal::constant::gl_constant_base const& severity_in, GLsizei count_in, ::std::uint32_t const* ids_in, bool enabled_in) {
                 __gl_debug << "call glDebugMessageControlARB " "source: '" << source_in << "'" ", " "type: '" << type_in << "'" ", " "severity: '" << severity_in << "'" ", " "count: '" << count_in << "'" ", " "ids: '" << ids_in << "'" ", " "enabled: '" << enabled_in << "'";
                 glDebugMessageControlARB(::std::uint32_t(source_in), ::std::uint32_t(type_in), ::std::uint32_t(severity_in), count_in, ids_in, (enabled_in ? 1 : 0));
                 __gl_check_error;
@@ -4510,7 +4510,7 @@ namespace gtulu {
 
           struct gl_debug_message_insert {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& source_in, const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t id_in, const ::gtulu::internal::constant::gl_constant_base& severity_in, GLsizei length_in, GLchar const* buf_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& source_in, ::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t id_in, ::gtulu::internal::constant::gl_constant_base const& severity_in, GLsizei length_in, GLchar const* buf_in) {
                 __gl_debug << "call glDebugMessageInsertARB " "source: '" << source_in << "'" ", " "type: '" << type_in << "'" ", " "id: '" << id_in << "'" ", " "severity: '" << severity_in << "'" ", " "length: '" << length_in << "'" ", " "buf: '" << buf_in << "'";
                 glDebugMessageInsertARB(::std::uint32_t(source_in), ::std::uint32_t(type_in), id_in, ::std::uint32_t(severity_in), length_in, buf_in);
                 __gl_check_error;
@@ -4551,7 +4551,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_blend_equation {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in) {
                 __gl_debug << "call glBlendEquation " "mode: '" << mode_in << "'";
                 glBlendEquation(::std::uint32_t(mode_in));
                 __gl_check_error;
@@ -4565,7 +4565,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t buf_in, const ::gtulu::internal::constant::gl_constant_base& mode_in) {
+              inline static void call(::std::uint32_t buf_in, ::gtulu::internal::constant::gl_constant_base const& mode_in) {
                 __gl_debug << "call glBlendEquationi " "buf: '" << buf_in << "'" ", " "mode: '" << mode_in << "'";
                 glBlendEquationi(buf_in, ::std::uint32_t(mode_in));
                 __gl_check_error;
@@ -4583,7 +4583,7 @@ namespace gtulu {
 
           struct gl_blend_equation_separate {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& modeRGB_in, const ::gtulu::internal::constant::gl_constant_base& modeAlpha_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& modeRGB_in, ::gtulu::internal::constant::gl_constant_base const& modeAlpha_in) {
                 __gl_debug << "call glBlendEquationSeparate " "modeRGB: '" << modeRGB_in << "'" ", " "modeAlpha: '" << modeAlpha_in << "'";
                 glBlendEquationSeparate(::std::uint32_t(modeRGB_in), ::std::uint32_t(modeAlpha_in));
                 __gl_check_error;
@@ -4597,7 +4597,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t buf_in, const ::gtulu::internal::constant::gl_constant_base& modeRGB_in, const ::gtulu::internal::constant::gl_constant_base& modeAlpha_in) {
+              inline static void call(::std::uint32_t buf_in, ::gtulu::internal::constant::gl_constant_base const& modeRGB_in, ::gtulu::internal::constant::gl_constant_base const& modeAlpha_in) {
                 __gl_debug << "call glBlendEquationSeparatei " "buf: '" << buf_in << "'" ", " "modeRGB: '" << modeRGB_in << "'" ", " "modeAlpha: '" << modeAlpha_in << "'";
                 glBlendEquationSeparatei(buf_in, ::std::uint32_t(modeRGB_in), ::std::uint32_t(modeAlpha_in));
                 __gl_check_error;
@@ -4615,7 +4615,7 @@ namespace gtulu {
 
           struct gl_blend_func {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& sfactor_in, const ::gtulu::internal::constant::gl_constant_base& dfactor_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& sfactor_in, ::gtulu::internal::constant::gl_constant_base const& dfactor_in) {
                 __gl_debug << "call glBlendFunc " "sfactor: '" << sfactor_in << "'" ", " "dfactor: '" << dfactor_in << "'";
                 glBlendFunc(::std::uint32_t(sfactor_in), ::std::uint32_t(dfactor_in));
                 __gl_check_error;
@@ -4629,7 +4629,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t buf_in, const ::gtulu::internal::constant::gl_constant_base& src_in, const ::gtulu::internal::constant::gl_constant_base& dst_in) {
+              inline static void call(::std::uint32_t buf_in, ::gtulu::internal::constant::gl_constant_base const& src_in, ::gtulu::internal::constant::gl_constant_base const& dst_in) {
                 __gl_debug << "call glBlendFunci " "buf: '" << buf_in << "'" ", " "src: '" << src_in << "'" ", " "dst: '" << dst_in << "'";
                 glBlendFunci(buf_in, ::std::uint32_t(src_in), ::std::uint32_t(dst_in));
                 __gl_check_error;
@@ -4647,7 +4647,7 @@ namespace gtulu {
 
           struct gl_blend_func_separate {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& sfactorRGB_in, const ::gtulu::internal::constant::gl_constant_base& dfactorRGB_in, const ::gtulu::internal::constant::gl_constant_base& sfactorAlpha_in, const ::gtulu::internal::constant::gl_constant_base& dfactorAlpha_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& sfactorRGB_in, ::gtulu::internal::constant::gl_constant_base const& dfactorRGB_in, ::gtulu::internal::constant::gl_constant_base const& sfactorAlpha_in, ::gtulu::internal::constant::gl_constant_base const& dfactorAlpha_in) {
                 __gl_debug << "call glBlendFuncSeparate " "sfactorRGB: '" << sfactorRGB_in << "'" ", " "dfactorRGB: '" << dfactorRGB_in << "'" ", " "sfactorAlpha: '" << sfactorAlpha_in << "'" ", " "dfactorAlpha: '" << dfactorAlpha_in << "'";
                 glBlendFuncSeparate(::std::uint32_t(sfactorRGB_in), ::std::uint32_t(dfactorRGB_in), ::std::uint32_t(sfactorAlpha_in), ::std::uint32_t(dfactorAlpha_in));
                 __gl_check_error;
@@ -4661,7 +4661,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t buf_in, const ::gtulu::internal::constant::gl_constant_base& srcRGB_in, const ::gtulu::internal::constant::gl_constant_base& dstRGB_in, const ::gtulu::internal::constant::gl_constant_base& srcAlpha_in, const ::gtulu::internal::constant::gl_constant_base& dstAlpha_in) {
+              inline static void call(::std::uint32_t buf_in, ::gtulu::internal::constant::gl_constant_base const& srcRGB_in, ::gtulu::internal::constant::gl_constant_base const& dstRGB_in, ::gtulu::internal::constant::gl_constant_base const& srcAlpha_in, ::gtulu::internal::constant::gl_constant_base const& dstAlpha_in) {
                 __gl_debug << "call glBlendFuncSeparatei " "buf: '" << buf_in << "'" ", " "srcRGB: '" << srcRGB_in << "'" ", " "dstRGB: '" << dstRGB_in << "'" ", " "srcAlpha: '" << srcAlpha_in << "'" ", " "dstAlpha: '" << dstAlpha_in << "'";
                 glBlendFuncSeparatei(buf_in, ::std::uint32_t(srcRGB_in), ::std::uint32_t(dstRGB_in), ::std::uint32_t(srcAlpha_in), ::std::uint32_t(dstAlpha_in));
                 __gl_check_error;
@@ -4683,7 +4683,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_draw_elements_base_vertex {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, GLsizei count_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const* indices_in, ::std::int32_t basevertex_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, GLsizei count_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const* indices_in, ::std::int32_t basevertex_in) {
                 __gl_debug << "call glDrawElementsBaseVertex " "mode: '" << mode_in << "'" ", " "count: '" << count_in << "'" ", " "type: '" << type_in << "'" ", " "indices: '" << indices_in << "'" ", " "basevertex: '" << basevertex_in << "'";
                 glDrawElementsBaseVertex(::std::uint32_t(mode_in), count_in, ::std::uint32_t(type_in), indices_in, basevertex_in);
                 __gl_check_error;
@@ -4701,7 +4701,7 @@ namespace gtulu {
 
           struct gl_draw_elements_instanced_base_vertex {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, GLsizei count_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const* indices_in, GLsizei primcount_in, ::std::int32_t basevertex_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, GLsizei count_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const* indices_in, GLsizei primcount_in, ::std::int32_t basevertex_in) {
                 __gl_debug << "call glDrawElementsInstancedBaseVertex " "mode: '" << mode_in << "'" ", " "count: '" << count_in << "'" ", " "type: '" << type_in << "'" ", " "indices: '" << indices_in << "'" ", " "primcount: '" << primcount_in << "'" ", " "basevertex: '" << basevertex_in << "'";
                 glDrawElementsInstancedBaseVertex(::std::uint32_t(mode_in), count_in, ::std::uint32_t(type_in), indices_in, primcount_in, basevertex_in);
                 __gl_check_error;
@@ -4719,7 +4719,7 @@ namespace gtulu {
 
           struct gl_draw_range_elements_base_vertex {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, ::std::uint32_t start_in, ::std::uint32_t end_in, GLsizei count_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const* indices_in, ::std::int32_t basevertex_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, ::std::uint32_t start_in, ::std::uint32_t end_in, GLsizei count_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const* indices_in, ::std::int32_t basevertex_in) {
                 __gl_debug << "call glDrawRangeElementsBaseVertex " "mode: '" << mode_in << "'" ", " "start: '" << start_in << "'" ", " "end: '" << end_in << "'" ", " "count: '" << count_in << "'" ", " "type: '" << type_in << "'" ", " "indices: '" << indices_in << "'" ", " "basevertex: '" << basevertex_in << "'";
                 glDrawRangeElementsBaseVertex(::std::uint32_t(mode_in), start_in, end_in, count_in, ::std::uint32_t(type_in), indices_in, basevertex_in);
                 __gl_check_error;
@@ -4737,7 +4737,7 @@ namespace gtulu {
 
           struct gl_multi_draw_elements_base_vertex {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, GLsizei const* count_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const** indices_in, GLsizei primcount_in, ::std::int32_t const* basevertex_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, GLsizei const* count_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const** indices_in, GLsizei primcount_in, ::std::int32_t const* basevertex_in) {
                 __gl_debug << "call glMultiDrawElementsBaseVertex " "mode: '" << mode_in << "'" ", " "count: '" << count_in << "'" ", " "type: '" << type_in << "'" ", " "indices: '" << indices_in << "'" ", " "primcount: '" << primcount_in << "'" ", " "basevertex: '" << basevertex_in << "'";
                 glMultiDrawElementsBaseVertex(::std::uint32_t(mode_in), count_in, ::std::uint32_t(type_in), indices_in, primcount_in, basevertex_in);
                 __gl_check_error;
@@ -4759,7 +4759,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_draw_arrays_indirect {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, void const* indirect_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, void const* indirect_in) {
                 __gl_debug << "call glDrawArraysIndirect " "mode: '" << mode_in << "'" ", " "indirect: '" << indirect_in << "'";
                 glDrawArraysIndirect(::std::uint32_t(mode_in), indirect_in);
                 __gl_check_error;
@@ -4777,7 +4777,7 @@ namespace gtulu {
 
           struct gl_draw_elements_indirect {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, const ::gtulu::internal::constant::gl_constant_base& type_in, void const* indirect_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, ::gtulu::internal::constant::gl_constant_base const& type_in, void const* indirect_in) {
                 __gl_debug << "call glDrawElementsIndirect " "mode: '" << mode_in << "'" ", " "type: '" << type_in << "'" ", " "indirect: '" << indirect_in << "'";
                 glDrawElementsIndirect(::std::uint32_t(mode_in), ::std::uint32_t(type_in), indirect_in);
                 __gl_check_error;
@@ -4807,7 +4807,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_bind_framebuffer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t framebuffer_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t framebuffer_in) {
                 __gl_debug << "call glBindFramebuffer " "target: '" << target_in << "'" ", " "framebuffer: '" << framebuffer_in << "'";
                 glBindFramebuffer(::std::uint32_t(target_in), framebuffer_in);
                 __gl_check_error;
@@ -4825,7 +4825,7 @@ namespace gtulu {
 
           struct gl_bind_renderbuffer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t renderbuffer_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t renderbuffer_in) {
                 __gl_debug << "call glBindRenderbuffer " "target: '" << target_in << "'" ", " "renderbuffer: '" << renderbuffer_in << "'";
                 glBindRenderbuffer(::std::uint32_t(target_in), renderbuffer_in);
                 __gl_check_error;
@@ -4843,7 +4843,7 @@ namespace gtulu {
 
           struct gl_blit_framebuffer {
 
-              inline static void call(::std::int32_t srcX0_in, ::std::int32_t srcY0_in, ::std::int32_t srcX1_in, ::std::int32_t srcY1_in, ::std::int32_t dstX0_in, ::std::int32_t dstY0_in, ::std::int32_t dstX1_in, ::std::int32_t dstY1_in, GLbitfield mask_in, const ::gtulu::internal::constant::gl_constant_base& filter_in) {
+              inline static void call(::std::int32_t srcX0_in, ::std::int32_t srcY0_in, ::std::int32_t srcX1_in, ::std::int32_t srcY1_in, ::std::int32_t dstX0_in, ::std::int32_t dstY0_in, ::std::int32_t dstX1_in, ::std::int32_t dstY1_in, GLbitfield mask_in, ::gtulu::internal::constant::gl_constant_base const& filter_in) {
                 __gl_debug << "call glBlitFramebuffer " "srcX0: '" << srcX0_in << "'" ", " "srcY0: '" << srcY0_in << "'" ", " "srcX1: '" << srcX1_in << "'" ", " "srcY1: '" << srcY1_in << "'" ", " "dstX0: '" << dstX0_in << "'" ", " "dstY0: '" << dstY0_in << "'" ", " "dstX1: '" << dstX1_in << "'" ", " "dstY1: '" << dstY1_in << "'" ", " "mask: '" << mask_in << "'" ", " "filter: '" << filter_in << "'";
                 glBlitFramebuffer(srcX0_in, srcY0_in, srcX1_in, srcY1_in, dstX0_in, dstY0_in, dstX1_in, dstY1_in, mask_in, ::std::uint32_t(filter_in));
                 __gl_check_error;
@@ -4861,7 +4861,7 @@ namespace gtulu {
 
           struct gl_check_framebuffer_status {
 
-              inline static GLenum call(const ::gtulu::internal::constant::gl_constant_base& target_in) {
+              inline static GLenum call(::gtulu::internal::constant::gl_constant_base const& target_in) {
                 __gl_debug << "call glCheckFramebufferStatus " "target: '" << target_in << "'";
                 GLenum out = glCheckFramebufferStatus(::std::uint32_t(target_in));
                 __gl_check_error;
@@ -4901,7 +4901,7 @@ namespace gtulu {
 
           struct gl_framebuffer_renderbuffer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& attachment_in, const ::gtulu::internal::constant::gl_constant_base& renderbuffertarget_in, ::std::uint32_t renderbuffer_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& attachment_in, ::gtulu::internal::constant::gl_constant_base const& renderbuffertarget_in, ::std::uint32_t renderbuffer_in) {
                 __gl_debug << "call glFramebufferRenderbuffer " "target: '" << target_in << "'" ", " "attachment: '" << attachment_in << "'" ", " "renderbuffertarget: '" << renderbuffertarget_in << "'" ", " "renderbuffer: '" << renderbuffer_in << "'";
                 glFramebufferRenderbuffer(::std::uint32_t(target_in), ::std::uint32_t(attachment_in), ::std::uint32_t(renderbuffertarget_in), renderbuffer_in);
                 __gl_check_error;
@@ -4919,7 +4919,7 @@ namespace gtulu {
 
           struct gl_framebuffer_texture_1d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& attachment_in, const ::gtulu::internal::constant::gl_constant_base& textarget_in, ::std::uint32_t texture_in, ::std::int32_t level_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& attachment_in, ::gtulu::internal::constant::gl_constant_base const& textarget_in, ::std::uint32_t texture_in, ::std::int32_t level_in) {
                 __gl_debug << "call glFramebufferTexture1D " "target: '" << target_in << "'" ", " "attachment: '" << attachment_in << "'" ", " "textarget: '" << textarget_in << "'" ", " "texture: '" << texture_in << "'" ", " "level: '" << level_in << "'";
                 glFramebufferTexture1D(::std::uint32_t(target_in), ::std::uint32_t(attachment_in), ::std::uint32_t(textarget_in), texture_in, level_in);
                 __gl_check_error;
@@ -4937,7 +4937,7 @@ namespace gtulu {
 
           struct gl_framebuffer_texture_2d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& attachment_in, const ::gtulu::internal::constant::gl_constant_base& textarget_in, ::std::uint32_t texture_in, ::std::int32_t level_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& attachment_in, ::gtulu::internal::constant::gl_constant_base const& textarget_in, ::std::uint32_t texture_in, ::std::int32_t level_in) {
                 __gl_debug << "call glFramebufferTexture2D " "target: '" << target_in << "'" ", " "attachment: '" << attachment_in << "'" ", " "textarget: '" << textarget_in << "'" ", " "texture: '" << texture_in << "'" ", " "level: '" << level_in << "'";
                 glFramebufferTexture2D(::std::uint32_t(target_in), ::std::uint32_t(attachment_in), ::std::uint32_t(textarget_in), texture_in, level_in);
                 __gl_check_error;
@@ -4955,7 +4955,7 @@ namespace gtulu {
 
           struct gl_framebuffer_texture_3d {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& attachment_in, const ::gtulu::internal::constant::gl_constant_base& textarget_in, ::std::uint32_t texture_in, ::std::int32_t level_in, ::std::int32_t zoffset_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& attachment_in, ::gtulu::internal::constant::gl_constant_base const& textarget_in, ::std::uint32_t texture_in, ::std::int32_t level_in, ::std::int32_t zoffset_in) {
                 __gl_debug << "call glFramebufferTexture3D " "target: '" << target_in << "'" ", " "attachment: '" << attachment_in << "'" ", " "textarget: '" << textarget_in << "'" ", " "texture: '" << texture_in << "'" ", " "level: '" << level_in << "'" ", " "zoffset: '" << zoffset_in << "'";
                 glFramebufferTexture3D(::std::uint32_t(target_in), ::std::uint32_t(attachment_in), ::std::uint32_t(textarget_in), texture_in, level_in, zoffset_in);
                 __gl_check_error;
@@ -4973,7 +4973,7 @@ namespace gtulu {
 
           struct gl_framebuffer_texture_layer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& attachment_in, ::std::uint32_t texture_in, ::std::int32_t level_in, ::std::int32_t layer_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& attachment_in, ::std::uint32_t texture_in, ::std::int32_t level_in, ::std::int32_t layer_in) {
                 __gl_debug << "call glFramebufferTextureLayer " "target: '" << target_in << "'" ", " "attachment: '" << attachment_in << "'" ", " "texture: '" << texture_in << "'" ", " "level: '" << level_in << "'" ", " "layer: '" << layer_in << "'";
                 glFramebufferTextureLayer(::std::uint32_t(target_in), ::std::uint32_t(attachment_in), texture_in, level_in, layer_in);
                 __gl_check_error;
@@ -5013,7 +5013,7 @@ namespace gtulu {
 
           struct gl_generate_mipmap {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in) {
                 __gl_debug << "call glGenerateMipmap " "target: '" << target_in << "'";
                 glGenerateMipmap(::std::uint32_t(target_in));
                 __gl_check_error;
@@ -5031,7 +5031,7 @@ namespace gtulu {
 
           struct gl_get_framebuffer_attachment_parameter {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& attachment_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& attachment_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetFramebufferAttachmentParameteriv " "target: '" << target_in << "'" ", " "attachment: '" << attachment_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetFramebufferAttachmentParameteriv(::std::uint32_t(target_in), ::std::uint32_t(attachment_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -5049,7 +5049,7 @@ namespace gtulu {
 
           struct gl_get_renderbuffer_parameter {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetRenderbufferParameteriv " "target: '" << target_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetRenderbufferParameteriv(::std::uint32_t(target_in), ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -5089,7 +5089,7 @@ namespace gtulu {
 
           struct gl_renderbuffer_storage {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& internalformat_in, GLsizei width_in, GLsizei height_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& internalformat_in, GLsizei width_in, GLsizei height_in) {
                 __gl_debug << "call glRenderbufferStorage " "target: '" << target_in << "'" ", " "internalformat: '" << internalformat_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'";
                 glRenderbufferStorage(::std::uint32_t(target_in), ::std::uint32_t(internalformat_in), width_in, height_in);
                 __gl_check_error;
@@ -5107,7 +5107,7 @@ namespace gtulu {
 
           struct gl_renderbuffer_storage_multisample {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, GLsizei samples_in, const ::gtulu::internal::constant::gl_constant_base& internalformat_in, GLsizei width_in, GLsizei height_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, GLsizei samples_in, ::gtulu::internal::constant::gl_constant_base const& internalformat_in, GLsizei width_in, GLsizei height_in) {
                 __gl_debug << "call glRenderbufferStorageMultisample " "target: '" << target_in << "'" ", " "samples: '" << samples_in << "'" ", " "internalformat: '" << internalformat_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'";
                 glRenderbufferStorageMultisample(::std::uint32_t(target_in), samples_in, ::std::uint32_t(internalformat_in), width_in, height_in);
                 __gl_check_error;
@@ -5144,7 +5144,7 @@ namespace gtulu {
 
           struct gl_program_binary {
 
-              inline static void call(::std::uint32_t program_in, const ::gtulu::internal::constant::gl_constant_base& binaryFormat_in, void const* binary_in, GLsizei length_in) {
+              inline static void call(::std::uint32_t program_in, ::gtulu::internal::constant::gl_constant_base const& binaryFormat_in, void const* binary_in, GLsizei length_in) {
                 __gl_debug << "call glProgramBinary " "program: '" << program_in << "'" ", " "binaryFormat: '" << binaryFormat_in << "'" ", " "binary: '" << binary_in << "'" ", " "length: '" << length_in << "'";
                 glProgramBinary(program_in, ::std::uint32_t(binaryFormat_in), binary_in, length_in);
                 __gl_check_error;
@@ -5162,7 +5162,7 @@ namespace gtulu {
 
           struct gl_program_parameter {
 
-              inline static void call(::std::uint32_t program_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t value_in) {
+              inline static void call(::std::uint32_t program_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t value_in) {
                 __gl_debug << "call glProgramParameteri " "program: '" << program_in << "'" ", " "pname: '" << pname_in << "'" ", " "value: '" << value_in << "'";
                 glProgramParameteri(program_in, ::std::uint32_t(pname_in), value_in);
                 __gl_check_error;
@@ -5638,7 +5638,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_flush_mapped_buffer_range {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, GLintptr offset_in, GLsizeiptr length_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, GLintptr offset_in, GLsizeiptr length_in) {
                 __gl_debug << "call glFlushMappedBufferRange " "target: '" << target_in << "'" ", " "offset: '" << offset_in << "'" ", " "length: '" << length_in << "'";
                 glFlushMappedBufferRange(::std::uint32_t(target_in), offset_in, length_in);
                 __gl_check_error;
@@ -5656,7 +5656,7 @@ namespace gtulu {
 
           struct gl_map_buffer_range {
 
-              inline static GLvoid* call(const ::gtulu::internal::constant::gl_constant_base& target_in, GLintptr offset_in, GLsizeiptr length_in, GLbitfield access_in) {
+              inline static GLvoid* call(::gtulu::internal::constant::gl_constant_base const& target_in, GLintptr offset_in, GLsizeiptr length_in, GLbitfield access_in) {
                 __gl_debug << "call glMapBufferRange " "target: '" << target_in << "'" ", " "offset: '" << offset_in << "'" ", " "length: '" << length_in << "'" ", " "access: '" << access_in << "'";
                 GLvoid* out = glMapBufferRange(::std::uint32_t(target_in), offset_in, length_in, access_in);
                 __gl_check_error;
@@ -5682,7 +5682,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_provoking_vertex {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in) {
                 __gl_debug << "call glProvokingVertex " "mode: '" << mode_in << "'";
                 glProvokingVertex(::std::uint32_t(mode_in));
                 __gl_check_error;
@@ -5715,7 +5715,7 @@ namespace gtulu {
 
           struct gl_get_n_color_table {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, GLsizei bufSize_in, void* table_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, GLsizei bufSize_in, void* table_in) {
                 __gl_debug << "call glGetnColorTableARB " "target: '" << target_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "bufSize: '" << bufSize_in << "'" ", " "table: '" << table_in << "'";
                 glGetnColorTableARB(::std::uint32_t(target_in), ::std::uint32_t(format_in), ::std::uint32_t(type_in), bufSize_in, table_in);
                 __gl_check_error;
@@ -5733,7 +5733,7 @@ namespace gtulu {
 
           struct gl_get_n_compressed_tex_image {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t lod_in, GLsizei bufSize_in, void* img_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t lod_in, GLsizei bufSize_in, void* img_in) {
                 __gl_debug << "call glGetnCompressedTexImageARB " "target: '" << target_in << "'" ", " "lod: '" << lod_in << "'" ", " "bufSize: '" << bufSize_in << "'" ", " "img: '" << img_in << "'";
                 glGetnCompressedTexImageARB(::std::uint32_t(target_in), lod_in, bufSize_in, img_in);
                 __gl_check_error;
@@ -5751,7 +5751,7 @@ namespace gtulu {
 
           struct gl_get_n_convolution_filter {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, GLsizei bufSize_in, void* image_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, GLsizei bufSize_in, void* image_in) {
                 __gl_debug << "call glGetnConvolutionFilterARB " "target: '" << target_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "bufSize: '" << bufSize_in << "'" ", " "image: '" << image_in << "'";
                 glGetnConvolutionFilterARB(::std::uint32_t(target_in), ::std::uint32_t(format_in), ::std::uint32_t(type_in), bufSize_in, image_in);
                 __gl_check_error;
@@ -5769,7 +5769,7 @@ namespace gtulu {
 
           struct gl_get_n_histogram {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, bool reset_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, GLsizei bufSize_in, void* values_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, bool reset_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, GLsizei bufSize_in, void* values_in) {
                 __gl_debug << "call glGetnHistogramARB " "target: '" << target_in << "'" ", " "reset: '" << reset_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "bufSize: '" << bufSize_in << "'" ", " "values: '" << values_in << "'";
                 glGetnHistogramARB(::std::uint32_t(target_in), (reset_in ? 1 : 0), ::std::uint32_t(format_in), ::std::uint32_t(type_in), bufSize_in, values_in);
                 __gl_check_error;
@@ -5787,7 +5787,7 @@ namespace gtulu {
 
           struct gl_get_n_map {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& query_in, GLsizei bufSize_in, double* v_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& query_in, GLsizei bufSize_in, double* v_in) {
                 __gl_debug << "call glGetnMapdvARB " "target: '" << target_in << "'" ", " "query: '" << query_in << "'" ", " "bufSize: '" << bufSize_in << "'" ", " "v: '" << v_in << "'";
                 glGetnMapdvARB(::std::uint32_t(target_in), ::std::uint32_t(query_in), bufSize_in, v_in);
                 __gl_check_error;
@@ -5801,7 +5801,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& query_in, GLsizei bufSize_in, float* v_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& query_in, GLsizei bufSize_in, float* v_in) {
                 __gl_debug << "call glGetnMapfvARB " "target: '" << target_in << "'" ", " "query: '" << query_in << "'" ", " "bufSize: '" << bufSize_in << "'" ", " "v: '" << v_in << "'";
                 glGetnMapfvARB(::std::uint32_t(target_in), ::std::uint32_t(query_in), bufSize_in, v_in);
                 __gl_check_error;
@@ -5815,7 +5815,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& query_in, GLsizei bufSize_in, ::std::int32_t* v_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& query_in, GLsizei bufSize_in, ::std::int32_t* v_in) {
                 __gl_debug << "call glGetnMapivARB " "target: '" << target_in << "'" ", " "query: '" << query_in << "'" ", " "bufSize: '" << bufSize_in << "'" ", " "v: '" << v_in << "'";
                 glGetnMapivARB(::std::uint32_t(target_in), ::std::uint32_t(query_in), bufSize_in, v_in);
                 __gl_check_error;
@@ -5833,7 +5833,7 @@ namespace gtulu {
 
           struct gl_get_n_minmax {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, bool reset_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, GLsizei bufSize_in, void* values_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, bool reset_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, GLsizei bufSize_in, void* values_in) {
                 __gl_debug << "call glGetnMinmaxARB " "target: '" << target_in << "'" ", " "reset: '" << reset_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "bufSize: '" << bufSize_in << "'" ", " "values: '" << values_in << "'";
                 glGetnMinmaxARB(::std::uint32_t(target_in), (reset_in ? 1 : 0), ::std::uint32_t(format_in), ::std::uint32_t(type_in), bufSize_in, values_in);
                 __gl_check_error;
@@ -5851,7 +5851,7 @@ namespace gtulu {
 
           struct gl_get_n_pixel_map {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& map_in, GLsizei bufSize_in, float* values_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& map_in, GLsizei bufSize_in, float* values_in) {
                 __gl_debug << "call glGetnPixelMapfvARB " "map: '" << map_in << "'" ", " "bufSize: '" << bufSize_in << "'" ", " "values: '" << values_in << "'";
                 glGetnPixelMapfvARB(::std::uint32_t(map_in), bufSize_in, values_in);
                 __gl_check_error;
@@ -5865,7 +5865,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& map_in, GLsizei bufSize_in, ::std::uint32_t* values_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& map_in, GLsizei bufSize_in, ::std::uint32_t* values_in) {
                 __gl_debug << "call glGetnPixelMapuivARB " "map: '" << map_in << "'" ", " "bufSize: '" << bufSize_in << "'" ", " "values: '" << values_in << "'";
                 glGetnPixelMapuivARB(::std::uint32_t(map_in), bufSize_in, values_in);
                 __gl_check_error;
@@ -5879,7 +5879,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& map_in, GLsizei bufSize_in, ::std::uint16_t* values_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& map_in, GLsizei bufSize_in, ::std::uint16_t* values_in) {
                 __gl_debug << "call glGetnPixelMapusvARB " "map: '" << map_in << "'" ", " "bufSize: '" << bufSize_in << "'" ", " "values: '" << values_in << "'";
                 glGetnPixelMapusvARB(::std::uint32_t(map_in), bufSize_in, values_in);
                 __gl_check_error;
@@ -5908,7 +5908,7 @@ namespace gtulu {
 
           struct gl_get_n_separable_filter {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, GLsizei rowBufSize_in, void* row_in, GLsizei columnBufSize_in, void* column_in, void* span_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, GLsizei rowBufSize_in, void* row_in, GLsizei columnBufSize_in, void* column_in, void* span_in) {
                 __gl_debug << "call glGetnSeparableFilterARB " "target: '" << target_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "rowBufSize: '" << rowBufSize_in << "'" ", " "row: '" << row_in << "'" ", " "columnBufSize: '" << columnBufSize_in << "'" ", " "column: '" << column_in << "'" ", " "span: '" << span_in << "'";
                 glGetnSeparableFilterARB(::std::uint32_t(target_in), ::std::uint32_t(format_in), ::std::uint32_t(type_in), rowBufSize_in, row_in, columnBufSize_in, column_in, span_in);
                 __gl_check_error;
@@ -5926,7 +5926,7 @@ namespace gtulu {
 
           struct gl_get_n_tex_image {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::int32_t level_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, GLsizei bufSize_in, void* img_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::int32_t level_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, GLsizei bufSize_in, void* img_in) {
                 __gl_debug << "call glGetnTexImageARB " "target: '" << target_in << "'" ", " "level: '" << level_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "bufSize: '" << bufSize_in << "'" ", " "img: '" << img_in << "'";
                 glGetnTexImageARB(::std::uint32_t(target_in), level_in, ::std::uint32_t(format_in), ::std::uint32_t(type_in), bufSize_in, img_in);
                 __gl_check_error;
@@ -5976,7 +5976,7 @@ namespace gtulu {
 
           struct gl_read_n_pixels {
 
-              inline static void call(::std::int32_t x_in, ::std::int32_t y_in, GLsizei width_in, GLsizei height_in, const ::gtulu::internal::constant::gl_constant_base& format_in, const ::gtulu::internal::constant::gl_constant_base& type_in, GLsizei bufSize_in, void* data_in) {
+              inline static void call(::std::int32_t x_in, ::std::int32_t y_in, GLsizei width_in, GLsizei height_in, ::gtulu::internal::constant::gl_constant_base const& format_in, ::gtulu::internal::constant::gl_constant_base const& type_in, GLsizei bufSize_in, void* data_in) {
                 __gl_debug << "call glReadnPixelsARB " "x: '" << x_in << "'" ", " "y: '" << y_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'" ", " "format: '" << format_in << "'" ", " "type: '" << type_in << "'" ", " "bufSize: '" << bufSize_in << "'" ", " "data: '" << data_in << "'";
                 glReadnPixelsARB(x_in, y_in, width_in, height_in, ::std::uint32_t(format_in), ::std::uint32_t(type_in), bufSize_in, data_in);
                 __gl_check_error;
@@ -6046,7 +6046,7 @@ namespace gtulu {
 
           struct gl_get_sampler_parameter {
 
-              inline static void call(::std::uint32_t sampler_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::std::uint32_t sampler_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetSamplerParameteriv " "sampler: '" << sampler_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetSamplerParameteriv(sampler_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -6060,7 +6060,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t sampler_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, float* params_in) {
+              inline static void call(::std::uint32_t sampler_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, float* params_in) {
                 __gl_debug << "call glGetSamplerParameterfv " "sampler: '" << sampler_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetSamplerParameterfv(sampler_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -6078,7 +6078,7 @@ namespace gtulu {
 
           struct gl_get_sampler_parameter_integer {
 
-              inline static void call(::std::uint32_t sampler_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::std::uint32_t sampler_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetSamplerParameterIiv " "sampler: '" << sampler_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetSamplerParameterIiv(sampler_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -6092,7 +6092,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t sampler_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::uint32_t* params_in) {
+              inline static void call(::std::uint32_t sampler_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::uint32_t* params_in) {
                 __gl_debug << "call glGetSamplerParameterIuiv " "sampler: '" << sampler_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetSamplerParameterIuiv(sampler_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -6121,7 +6121,7 @@ namespace gtulu {
 
           struct gl_sampler_parameter {
 
-              inline static void call(::std::uint32_t sampler_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t param_in) {
+              inline static void call(::std::uint32_t sampler_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t param_in) {
                 __gl_debug << "call glSamplerParameteri " "sampler: '" << sampler_in << "'" ", " "pname: '" << pname_in << "'" ", " "param: '" << param_in << "'";
                 glSamplerParameteri(sampler_in, ::std::uint32_t(pname_in), param_in);
                 __gl_check_error;
@@ -6135,7 +6135,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t sampler_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t const* param_in) {
+              inline static void call(::std::uint32_t sampler_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t const* param_in) {
                 __gl_debug << "call glSamplerParameteriv " "sampler: '" << sampler_in << "'" ", " "pname: '" << pname_in << "'" ", " "param: '" << param_in << "'";
                 glSamplerParameteriv(sampler_in, ::std::uint32_t(pname_in), param_in);
                 __gl_check_error;
@@ -6149,7 +6149,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t sampler_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, float param_in) {
+              inline static void call(::std::uint32_t sampler_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, float param_in) {
                 __gl_debug << "call glSamplerParameterf " "sampler: '" << sampler_in << "'" ", " "pname: '" << pname_in << "'" ", " "param: '" << param_in << "'";
                 glSamplerParameterf(sampler_in, ::std::uint32_t(pname_in), param_in);
                 __gl_check_error;
@@ -6163,7 +6163,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t sampler_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, float const* param_in) {
+              inline static void call(::std::uint32_t sampler_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, float const* param_in) {
                 __gl_debug << "call glSamplerParameterfv " "sampler: '" << sampler_in << "'" ", " "pname: '" << pname_in << "'" ", " "param: '" << param_in << "'";
                 glSamplerParameterfv(sampler_in, ::std::uint32_t(pname_in), param_in);
                 __gl_check_error;
@@ -6181,7 +6181,7 @@ namespace gtulu {
 
           struct gl_sampler_parameter_integer {
 
-              inline static void call(::std::uint32_t sampler_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t const* param_in) {
+              inline static void call(::std::uint32_t sampler_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t const* param_in) {
                 __gl_debug << "call glSamplerParameterIiv " "sampler: '" << sampler_in << "'" ", " "pname: '" << pname_in << "'" ", " "param: '" << param_in << "'";
                 glSamplerParameterIiv(sampler_in, ::std::uint32_t(pname_in), param_in);
                 __gl_check_error;
@@ -6195,7 +6195,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t sampler_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::uint32_t const* param_in) {
+              inline static void call(::std::uint32_t sampler_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::uint32_t const* param_in) {
                 __gl_debug << "call glSamplerParameterIuiv " "sampler: '" << sampler_in << "'" ", " "pname: '" << pname_in << "'" ", " "param: '" << param_in << "'";
                 glSamplerParameterIuiv(sampler_in, ::std::uint32_t(pname_in), param_in);
                 __gl_check_error;
@@ -6243,7 +6243,7 @@ namespace gtulu {
 
           struct gl_create_shader_program {
 
-              inline static GLuint call(const ::gtulu::internal::constant::gl_constant_base& type_in, GLsizei count_in, GLchar const** strings_in) {
+              inline static GLuint call(::gtulu::internal::constant::gl_constant_base const& type_in, GLsizei count_in, GLchar const** strings_in) {
                 __gl_debug << "call glCreateShaderProgramv " "type: '" << type_in << "'" ", " "count: '" << count_in << "'" ", " "strings: '" << strings_in << "'";
                 GLuint out = glCreateShaderProgramv(::std::uint32_t(type_in), count_in, strings_in);
                 __gl_check_error;
@@ -6283,7 +6283,7 @@ namespace gtulu {
 
           struct gl_get_program_pipeline {
 
-              inline static void call(::std::uint32_t pipeline_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::std::uint32_t pipeline_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetProgramPipelineiv " "pipeline: '" << pipeline_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetProgramPipelineiv(pipeline_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -6767,7 +6767,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_get_active_subroutine_name {
 
-              inline static void call(::std::uint32_t program_in, const ::gtulu::internal::constant::gl_constant_base& shadertype_in, ::std::uint32_t index_in, GLsizei bufsize_in, GLsizei* length_in, GLchar* name_in) {
+              inline static void call(::std::uint32_t program_in, ::gtulu::internal::constant::gl_constant_base const& shadertype_in, ::std::uint32_t index_in, GLsizei bufsize_in, GLsizei* length_in, GLchar* name_in) {
                 __gl_debug << "call glGetActiveSubroutineName " "program: '" << program_in << "'" ", " "shadertype: '" << shadertype_in << "'" ", " "index: '" << index_in << "'" ", " "bufsize: '" << bufsize_in << "'" ", " "length: '" << length_in << "'" ", " "name: '" << name_in << "'";
                 glGetActiveSubroutineName(program_in, ::std::uint32_t(shadertype_in), index_in, bufsize_in, length_in, name_in);
                 __gl_check_error;
@@ -6785,7 +6785,7 @@ namespace gtulu {
 
           struct gl_get_active_subroutine_uniform {
 
-              inline static void call(::std::uint32_t program_in, const ::gtulu::internal::constant::gl_constant_base& shadertype_in, ::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* values_in) {
+              inline static void call(::std::uint32_t program_in, ::gtulu::internal::constant::gl_constant_base const& shadertype_in, ::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* values_in) {
                 __gl_debug << "call glGetActiveSubroutineUniformiv " "program: '" << program_in << "'" ", " "shadertype: '" << shadertype_in << "'" ", " "index: '" << index_in << "'" ", " "pname: '" << pname_in << "'" ", " "values: '" << values_in << "'";
                 glGetActiveSubroutineUniformiv(program_in, ::std::uint32_t(shadertype_in), index_in, ::std::uint32_t(pname_in), values_in);
                 __gl_check_error;
@@ -6803,7 +6803,7 @@ namespace gtulu {
 
           struct gl_get_active_subroutine_uniform_name {
 
-              inline static void call(::std::uint32_t program_in, const ::gtulu::internal::constant::gl_constant_base& shadertype_in, ::std::uint32_t index_in, GLsizei bufsize_in, GLsizei* length_in, GLchar* name_in) {
+              inline static void call(::std::uint32_t program_in, ::gtulu::internal::constant::gl_constant_base const& shadertype_in, ::std::uint32_t index_in, GLsizei bufsize_in, GLsizei* length_in, GLchar* name_in) {
                 __gl_debug << "call glGetActiveSubroutineUniformName " "program: '" << program_in << "'" ", " "shadertype: '" << shadertype_in << "'" ", " "index: '" << index_in << "'" ", " "bufsize: '" << bufsize_in << "'" ", " "length: '" << length_in << "'" ", " "name: '" << name_in << "'";
                 glGetActiveSubroutineUniformName(program_in, ::std::uint32_t(shadertype_in), index_in, bufsize_in, length_in, name_in);
                 __gl_check_error;
@@ -6821,7 +6821,7 @@ namespace gtulu {
 
           struct gl_get_program_stage {
 
-              inline static void call(::std::uint32_t program_in, const ::gtulu::internal::constant::gl_constant_base& shadertype_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* values_in) {
+              inline static void call(::std::uint32_t program_in, ::gtulu::internal::constant::gl_constant_base const& shadertype_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* values_in) {
                 __gl_debug << "call glGetProgramStageiv " "program: '" << program_in << "'" ", " "shadertype: '" << shadertype_in << "'" ", " "pname: '" << pname_in << "'" ", " "values: '" << values_in << "'";
                 glGetProgramStageiv(program_in, ::std::uint32_t(shadertype_in), ::std::uint32_t(pname_in), values_in);
                 __gl_check_error;
@@ -6839,7 +6839,7 @@ namespace gtulu {
 
           struct gl_get_subroutine_index {
 
-              inline static GLuint call(::std::uint32_t program_in, const ::gtulu::internal::constant::gl_constant_base& shadertype_in, GLchar const* name_in) {
+              inline static GLuint call(::std::uint32_t program_in, ::gtulu::internal::constant::gl_constant_base const& shadertype_in, GLchar const* name_in) {
                 __gl_debug << "call glGetSubroutineIndex " "program: '" << program_in << "'" ", " "shadertype: '" << shadertype_in << "'" ", " "name: '" << name_in << "'";
                 GLuint out = glGetSubroutineIndex(program_in, ::std::uint32_t(shadertype_in), name_in);
                 __gl_check_error;
@@ -6857,7 +6857,7 @@ namespace gtulu {
 
           struct gl_get_subroutine_uniform_location {
 
-              inline static GLint call(::std::uint32_t program_in, const ::gtulu::internal::constant::gl_constant_base& shadertype_in, GLchar const* name_in) {
+              inline static GLint call(::std::uint32_t program_in, ::gtulu::internal::constant::gl_constant_base const& shadertype_in, GLchar const* name_in) {
                 __gl_debug << "call glGetSubroutineUniformLocation " "program: '" << program_in << "'" ", " "shadertype: '" << shadertype_in << "'" ", " "name: '" << name_in << "'";
                 GLint out = glGetSubroutineUniformLocation(program_in, ::std::uint32_t(shadertype_in), name_in);
                 __gl_check_error;
@@ -6875,7 +6875,7 @@ namespace gtulu {
 
           struct gl_get_uniform_subroutine {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& shadertype_in, ::std::int32_t location_in, ::std::uint32_t* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& shadertype_in, ::std::int32_t location_in, ::std::uint32_t* params_in) {
                 __gl_debug << "call glGetUniformSubroutineuiv " "shadertype: '" << shadertype_in << "'" ", " "location: '" << location_in << "'" ", " "params: '" << params_in << "'";
                 glGetUniformSubroutineuiv(::std::uint32_t(shadertype_in), location_in, params_in);
                 __gl_check_error;
@@ -6893,7 +6893,7 @@ namespace gtulu {
 
           struct gl_uniform_subroutines {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& shadertype_in, GLsizei count_in, ::std::uint32_t const* indices_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& shadertype_in, GLsizei count_in, ::std::uint32_t const* indices_in) {
                 __gl_debug << "call glUniformSubroutinesuiv " "shadertype: '" << shadertype_in << "'" ", " "count: '" << count_in << "'" ", " "indices: '" << indices_in << "'";
                 glUniformSubroutinesuiv(::std::uint32_t(shadertype_in), count_in, indices_in);
                 __gl_check_error;
@@ -6944,7 +6944,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::int32_t namelen_in, GLchar const* name_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::std::int32_t namelen_in, GLchar const* name_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetNamedStringivARB " "namelen: '" << namelen_in << "'" ", " "name: '" << name_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetNamedStringivARB(namelen_in, name_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -6973,7 +6973,7 @@ namespace gtulu {
 
           struct gl_named_string {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::int32_t namelen_in, GLchar const* name_in, ::std::int32_t stringlen_in, GLchar const* string_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::int32_t namelen_in, GLchar const* name_in, ::std::int32_t stringlen_in, GLchar const* string_in) {
                 __gl_debug << "call glNamedStringARB " "type: '" << type_in << "'" ", " "namelen: '" << namelen_in << "'" ", " "name: '" << name_in << "'" ", " "stringlen: '" << stringlen_in << "'" ", " "string: '" << string_in << "'";
                 glNamedStringARB(::std::uint32_t(type_in), namelen_in, name_in, stringlen_in, string_in);
                 __gl_check_error;
@@ -7017,7 +7017,7 @@ namespace gtulu {
 
           struct gl_fence_sync {
 
-              inline static GLsync call(const ::gtulu::internal::constant::gl_constant_base& condition_in, GLbitfield flags_in) {
+              inline static GLsync call(::gtulu::internal::constant::gl_constant_base const& condition_in, GLbitfield flags_in) {
                 __gl_debug << "call glFenceSync " "condition: '" << condition_in << "'" ", " "flags: '" << flags_in << "'";
                 GLsync out = glFenceSync(::std::uint32_t(condition_in), flags_in);
                 __gl_check_error;
@@ -7035,7 +7035,7 @@ namespace gtulu {
 
           struct gl_get_integer {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetIntegerv " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetIntegerv(::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -7049,7 +7049,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, GLint64* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, GLint64* params_in) {
                 __gl_debug << "call glGetInteger64v " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetInteger64v(::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -7067,7 +7067,7 @@ namespace gtulu {
 
           struct gl_get_sync {
 
-              inline static void call(GLsync sync_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, GLsizei bufSize_in, GLsizei* length_in, ::std::int32_t* values_in) {
+              inline static void call(GLsync sync_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, GLsizei bufSize_in, GLsizei* length_in, ::std::int32_t* values_in) {
                 __gl_debug << "call glGetSynciv " "sync: '" << sync_in << "'" ", " "pname: '" << pname_in << "'" ", " "bufSize: '" << bufSize_in << "'" ", " "length: '" << length_in << "'" ", " "values: '" << values_in << "'";
                 glGetSynciv(sync_in, ::std::uint32_t(pname_in), bufSize_in, length_in, values_in);
                 __gl_check_error;
@@ -7111,7 +7111,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_patch_parameter {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t value_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t value_in) {
                 __gl_debug << "call glPatchParameteri " "pname: '" << pname_in << "'" ", " "value: '" << value_in << "'";
                 glPatchParameteri(::std::uint32_t(pname_in), value_in);
                 __gl_check_error;
@@ -7125,7 +7125,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, float const* values_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, float const* values_in) {
                 __gl_debug << "call glPatchParameterfv " "pname: '" << pname_in << "'" ", " "values: '" << values_in << "'";
                 glPatchParameterfv(::std::uint32_t(pname_in), values_in);
                 __gl_check_error;
@@ -7167,7 +7167,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_get_multisample {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::uint32_t index_in, float* val_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::uint32_t index_in, float* val_in) {
                 __gl_debug << "call glGetMultisamplefv " "pname: '" << pname_in << "'" ", " "index: '" << index_in << "'" ", " "val: '" << val_in << "'";
                 glGetMultisamplefv(::std::uint32_t(pname_in), index_in, val_in);
                 __gl_check_error;
@@ -7196,7 +7196,7 @@ namespace gtulu {
 
           struct gl_tex_image_2d_multisample {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, GLsizei samples_in, ::std::int32_t internalformat_in, GLsizei width_in, GLsizei height_in, bool fixedsamplelocations_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, GLsizei samples_in, ::std::int32_t internalformat_in, GLsizei width_in, GLsizei height_in, bool fixedsamplelocations_in) {
                 __gl_debug << "call glTexImage2DMultisample " "target: '" << target_in << "'" ", " "samples: '" << samples_in << "'" ", " "internalformat: '" << internalformat_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'" ", " "fixedsamplelocations: '" << fixedsamplelocations_in << "'";
                 glTexImage2DMultisample(::std::uint32_t(target_in), samples_in, ::std::uint32_t(internalformat_in), width_in, height_in, (fixedsamplelocations_in ? 1 : 0));
                 __gl_check_error;
@@ -7214,7 +7214,7 @@ namespace gtulu {
 
           struct gl_tex_image_3d_multisample {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, GLsizei samples_in, ::std::int32_t internalformat_in, GLsizei width_in, GLsizei height_in, GLsizei depth_in, bool fixedsamplelocations_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, GLsizei samples_in, ::std::int32_t internalformat_in, GLsizei width_in, GLsizei height_in, GLsizei depth_in, bool fixedsamplelocations_in) {
                 __gl_debug << "call glTexImage3DMultisample " "target: '" << target_in << "'" ", " "samples: '" << samples_in << "'" ", " "internalformat: '" << internalformat_in << "'" ", " "width: '" << width_in << "'" ", " "height: '" << height_in << "'" ", " "depth: '" << depth_in << "'" ", " "fixedsamplelocations: '" << fixedsamplelocations_in << "'";
                 glTexImage3DMultisample(::std::uint32_t(target_in), samples_in, ::std::uint32_t(internalformat_in), width_in, height_in, depth_in, (fixedsamplelocations_in ? 1 : 0));
                 __gl_check_error;
@@ -7252,7 +7252,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_get_query_object {
 
-              inline static void call(::std::uint32_t id_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::std::uint32_t id_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetQueryObjectiv " "id: '" << id_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetQueryObjectiv(id_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -7266,7 +7266,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t id_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::uint32_t* params_in) {
+              inline static void call(::std::uint32_t id_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::uint32_t* params_in) {
                 __gl_debug << "call glGetQueryObjectuiv " "id: '" << id_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetQueryObjectuiv(id_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -7280,7 +7280,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t id_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, GLint64* params_in) {
+              inline static void call(::std::uint32_t id_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, GLint64* params_in) {
                 __gl_debug << "call glGetQueryObjecti64v " "id: '" << id_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetQueryObjecti64v(id_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -7294,7 +7294,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t id_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, GLuint64* params_in) {
+              inline static void call(::std::uint32_t id_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, GLuint64* params_in) {
                 __gl_debug << "call glGetQueryObjectui64v " "id: '" << id_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetQueryObjectui64v(id_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -7312,7 +7312,7 @@ namespace gtulu {
 
           struct gl_query_counter {
 
-              inline static void call(::std::uint32_t id_in, const ::gtulu::internal::constant::gl_constant_base& target_in) {
+              inline static void call(::std::uint32_t id_in, ::gtulu::internal::constant::gl_constant_base const& target_in) {
                 __gl_debug << "call glQueryCounter " "id: '" << id_in << "'" ", " "target: '" << target_in << "'";
                 glQueryCounter(id_in, ::std::uint32_t(target_in));
                 __gl_check_error;
@@ -7334,7 +7334,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_bind_transform_feedback {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t id_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t id_in) {
                 __gl_debug << "call glBindTransformFeedback " "target: '" << target_in << "'" ", " "id: '" << id_in << "'";
                 glBindTransformFeedback(::std::uint32_t(target_in), id_in);
                 __gl_check_error;
@@ -7363,7 +7363,7 @@ namespace gtulu {
 
           struct gl_draw_transform_feedback {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, ::std::uint32_t id_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, ::std::uint32_t id_in) {
                 __gl_debug << "call glDrawTransformFeedback " "mode: '" << mode_in << "'" ", " "id: '" << id_in << "'";
                 glDrawTransformFeedback(::std::uint32_t(mode_in), id_in);
                 __gl_check_error;
@@ -7429,7 +7429,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_begin_query_indexed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in, ::std::uint32_t id_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in, ::std::uint32_t id_in) {
                 __gl_debug << "call glBeginQueryIndexed " "target: '" << target_in << "'" ", " "index: '" << index_in << "'" ", " "id: '" << id_in << "'";
                 glBeginQueryIndexed(::std::uint32_t(target_in), index_in, id_in);
                 __gl_check_error;
@@ -7447,7 +7447,7 @@ namespace gtulu {
 
           struct gl_draw_transform_feedback_stream {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& mode_in, ::std::uint32_t id_in, ::std::uint32_t stream_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& mode_in, ::std::uint32_t id_in, ::std::uint32_t stream_in) {
                 __gl_debug << "call glDrawTransformFeedbackStream " "mode: '" << mode_in << "'" ", " "id: '" << id_in << "'" ", " "stream: '" << stream_in << "'";
                 glDrawTransformFeedbackStream(::std::uint32_t(mode_in), id_in, stream_in);
                 __gl_check_error;
@@ -7465,7 +7465,7 @@ namespace gtulu {
 
           struct gl_end_query_indexed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in) {
                 __gl_debug << "call glEndQueryIndexed " "target: '" << target_in << "'" ", " "index: '" << index_in << "'";
                 glEndQueryIndexed(::std::uint32_t(target_in), index_in);
                 __gl_check_error;
@@ -7483,7 +7483,7 @@ namespace gtulu {
 
           struct gl_get_query_indexed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetQueryIndexediv " "target: '" << target_in << "'" ", " "index: '" << index_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetQueryIndexediv(::std::uint32_t(target_in), index_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -7505,7 +7505,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_get_active_uniform_block {
 
-              inline static void call(::std::uint32_t program_in, ::std::uint32_t uniformBlockIndex_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::std::uint32_t program_in, ::std::uint32_t uniformBlockIndex_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetActiveUniformBlockiv " "program: '" << program_in << "'" ", " "uniformBlockIndex: '" << uniformBlockIndex_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetActiveUniformBlockiv(program_in, uniformBlockIndex_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -7545,7 +7545,7 @@ namespace gtulu {
 
           struct gl_get_active_uniforms {
 
-              inline static void call(::std::uint32_t program_in, GLsizei uniformCount_in, ::std::uint32_t const* uniformIndices_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, ::std::int32_t* params_in) {
+              inline static void call(::std::uint32_t program_in, GLsizei uniformCount_in, ::std::uint32_t const* uniformIndices_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, ::std::int32_t* params_in) {
                 __gl_debug << "call glGetActiveUniformsiv " "program: '" << program_in << "'" ", " "uniformCount: '" << uniformCount_in << "'" ", " "uniformIndices: '" << uniformIndices_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetActiveUniformsiv(program_in, uniformCount_in, uniformIndices_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -7652,7 +7652,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_get_vertex_attrib_large {
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& pname_in, double* params_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& pname_in, double* params_in) {
                 __gl_debug << "call glGetVertexAttribLdv " "index: '" << index_in << "'" ", " "pname: '" << pname_in << "'" ", " "params: '" << params_in << "'";
                 glGetVertexAttribLdv(index_in, ::std::uint32_t(pname_in), params_in);
                 __gl_check_error;
@@ -7742,7 +7742,7 @@ namespace gtulu {
 
           struct gl_vertex_attrib_large_pointer_integer {
 
-              inline static void call(::std::uint32_t index_in, ::std::int32_t size_in, const ::gtulu::internal::constant::gl_constant_base& type_in, GLsizei stride_in, void const* pointer_in) {
+              inline static void call(::std::uint32_t index_in, ::std::int32_t size_in, ::gtulu::internal::constant::gl_constant_base const& type_in, GLsizei stride_in, void const* pointer_in) {
                 __gl_debug << "call glVertexAttribLPointer " "index: '" << index_in << "'" ", " "size: '" << size_in << "'" ", " "type: '" << type_in << "'" ", " "stride: '" << stride_in << "'" ", " "pointer: '" << pointer_in << "'";
                 glVertexAttribLPointer(index_in, size_in, ::std::uint32_t(type_in), stride_in, pointer_in);
                 __gl_check_error;
@@ -7768,7 +7768,7 @@ namespace gtulu {
         namespace fnc {
           struct gl_color_3_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t color_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t color_in) {
                 __gl_debug << "call glColorP3ui " "type: '" << type_in << "'" ", " "color: '" << color_in << "'";
                 glColorP3ui(::std::uint32_t(type_in), color_in);
                 __gl_check_error;
@@ -7782,7 +7782,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* color_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* color_in) {
                 __gl_debug << "call glColorP3uiv " "type: '" << type_in << "'" ", " "color: '" << color_in << "'";
                 glColorP3uiv(::std::uint32_t(type_in), color_in);
                 __gl_check_error;
@@ -7800,7 +7800,7 @@ namespace gtulu {
 
           struct gl_color_4_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t color_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t color_in) {
                 __gl_debug << "call glColorP4ui " "type: '" << type_in << "'" ", " "color: '" << color_in << "'";
                 glColorP4ui(::std::uint32_t(type_in), color_in);
                 __gl_check_error;
@@ -7814,7 +7814,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* color_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* color_in) {
                 __gl_debug << "call glColorP4uiv " "type: '" << type_in << "'" ", " "color: '" << color_in << "'";
                 glColorP4uiv(::std::uint32_t(type_in), color_in);
                 __gl_check_error;
@@ -7832,7 +7832,7 @@ namespace gtulu {
 
           struct gl_multi_tex_coord_1_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& texture_in, const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& texture_in, ::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t coords_in) {
                 __gl_debug << "call glMultiTexCoordP1ui " "texture: '" << texture_in << "'" ", " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glMultiTexCoordP1ui(::std::uint32_t(texture_in), ::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -7846,7 +7846,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& texture_in, const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& texture_in, ::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* coords_in) {
                 __gl_debug << "call glMultiTexCoordP1uiv " "texture: '" << texture_in << "'" ", " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glMultiTexCoordP1uiv(::std::uint32_t(texture_in), ::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -7864,7 +7864,7 @@ namespace gtulu {
 
           struct gl_multi_tex_coord_2_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& texture_in, const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& texture_in, ::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t coords_in) {
                 __gl_debug << "call glMultiTexCoordP2ui " "texture: '" << texture_in << "'" ", " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glMultiTexCoordP2ui(::std::uint32_t(texture_in), ::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -7878,7 +7878,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& texture_in, const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& texture_in, ::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* coords_in) {
                 __gl_debug << "call glMultiTexCoordP2uiv " "texture: '" << texture_in << "'" ", " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glMultiTexCoordP2uiv(::std::uint32_t(texture_in), ::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -7896,7 +7896,7 @@ namespace gtulu {
 
           struct gl_multi_tex_coord_3_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& texture_in, const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& texture_in, ::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t coords_in) {
                 __gl_debug << "call glMultiTexCoordP3ui " "texture: '" << texture_in << "'" ", " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glMultiTexCoordP3ui(::std::uint32_t(texture_in), ::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -7910,7 +7910,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& texture_in, const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& texture_in, ::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* coords_in) {
                 __gl_debug << "call glMultiTexCoordP3uiv " "texture: '" << texture_in << "'" ", " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glMultiTexCoordP3uiv(::std::uint32_t(texture_in), ::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -7928,7 +7928,7 @@ namespace gtulu {
 
           struct gl_multi_tex_coord_4_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& texture_in, const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& texture_in, ::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t coords_in) {
                 __gl_debug << "call glMultiTexCoordP4ui " "texture: '" << texture_in << "'" ", " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glMultiTexCoordP4ui(::std::uint32_t(texture_in), ::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -7942,7 +7942,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& texture_in, const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& texture_in, ::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* coords_in) {
                 __gl_debug << "call glMultiTexCoordP4uiv " "texture: '" << texture_in << "'" ", " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glMultiTexCoordP4uiv(::std::uint32_t(texture_in), ::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -7960,7 +7960,7 @@ namespace gtulu {
 
           struct gl_normal_3_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t coords_in) {
                 __gl_debug << "call glNormalP3ui " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glNormalP3ui(::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -7974,7 +7974,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* coords_in) {
                 __gl_debug << "call glNormalP3uiv " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glNormalP3uiv(::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -7992,7 +7992,7 @@ namespace gtulu {
 
           struct gl_secondary_color_3_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t color_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t color_in) {
                 __gl_debug << "call glSecondaryColorP3ui " "type: '" << type_in << "'" ", " "color: '" << color_in << "'";
                 glSecondaryColorP3ui(::std::uint32_t(type_in), color_in);
                 __gl_check_error;
@@ -8006,7 +8006,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* color_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* color_in) {
                 __gl_debug << "call glSecondaryColorP3uiv " "type: '" << type_in << "'" ", " "color: '" << color_in << "'";
                 glSecondaryColorP3uiv(::std::uint32_t(type_in), color_in);
                 __gl_check_error;
@@ -8024,7 +8024,7 @@ namespace gtulu {
 
           struct gl_tex_coord_1_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t coords_in) {
                 __gl_debug << "call glTexCoordP1ui " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glTexCoordP1ui(::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -8038,7 +8038,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* coords_in) {
                 __gl_debug << "call glTexCoordP1uiv " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glTexCoordP1uiv(::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -8056,7 +8056,7 @@ namespace gtulu {
 
           struct gl_tex_coord_2_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t coords_in) {
                 __gl_debug << "call glTexCoordP2ui " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glTexCoordP2ui(::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -8070,7 +8070,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* coords_in) {
                 __gl_debug << "call glTexCoordP2uiv " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glTexCoordP2uiv(::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -8088,7 +8088,7 @@ namespace gtulu {
 
           struct gl_tex_coord_3_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t coords_in) {
                 __gl_debug << "call glTexCoordP3ui " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glTexCoordP3ui(::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -8102,7 +8102,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* coords_in) {
                 __gl_debug << "call glTexCoordP3uiv " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glTexCoordP3uiv(::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -8120,7 +8120,7 @@ namespace gtulu {
 
           struct gl_tex_coord_4_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t coords_in) {
                 __gl_debug << "call glTexCoordP4ui " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glTexCoordP4ui(::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -8134,7 +8134,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* coords_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* coords_in) {
                 __gl_debug << "call glTexCoordP4uiv " "type: '" << type_in << "'" ", " "coords: '" << coords_in << "'";
                 glTexCoordP4uiv(::std::uint32_t(type_in), coords_in);
                 __gl_check_error;
@@ -8152,7 +8152,7 @@ namespace gtulu {
 
           struct gl_vertex_2_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t value_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t value_in) {
                 __gl_debug << "call glVertexP2ui " "type: '" << type_in << "'" ", " "value: '" << value_in << "'";
                 glVertexP2ui(::std::uint32_t(type_in), value_in);
                 __gl_check_error;
@@ -8166,7 +8166,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* value_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* value_in) {
                 __gl_debug << "call glVertexP2uiv " "type: '" << type_in << "'" ", " "value: '" << value_in << "'";
                 glVertexP2uiv(::std::uint32_t(type_in), value_in);
                 __gl_check_error;
@@ -8184,7 +8184,7 @@ namespace gtulu {
 
           struct gl_vertex_3_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t value_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t value_in) {
                 __gl_debug << "call glVertexP3ui " "type: '" << type_in << "'" ", " "value: '" << value_in << "'";
                 glVertexP3ui(::std::uint32_t(type_in), value_in);
                 __gl_check_error;
@@ -8198,7 +8198,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* value_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* value_in) {
                 __gl_debug << "call glVertexP3uiv " "type: '" << type_in << "'" ", " "value: '" << value_in << "'";
                 glVertexP3uiv(::std::uint32_t(type_in), value_in);
                 __gl_check_error;
@@ -8216,7 +8216,7 @@ namespace gtulu {
 
           struct gl_vertex_4_packed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t value_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t value_in) {
                 __gl_debug << "call glVertexP4ui " "type: '" << type_in << "'" ", " "value: '" << value_in << "'";
                 glVertexP4ui(::std::uint32_t(type_in), value_in);
                 __gl_check_error;
@@ -8230,7 +8230,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& type_in, ::std::uint32_t const* value_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& type_in, ::std::uint32_t const* value_in) {
                 __gl_debug << "call glVertexP4uiv " "type: '" << type_in << "'" ", " "value: '" << value_in << "'";
                 glVertexP4uiv(::std::uint32_t(type_in), value_in);
                 __gl_check_error;
@@ -8248,7 +8248,7 @@ namespace gtulu {
 
           struct gl_vertex_attrib_1_packed {
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& type_in, bool normalized_in, ::std::uint32_t value_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& type_in, bool normalized_in, ::std::uint32_t value_in) {
                 __gl_debug << "call glVertexAttribP1ui " "index: '" << index_in << "'" ", " "type: '" << type_in << "'" ", " "normalized: '" << normalized_in << "'" ", " "value: '" << value_in << "'";
                 glVertexAttribP1ui(index_in, ::std::uint32_t(type_in), (normalized_in ? 1 : 0), value_in);
                 __gl_check_error;
@@ -8262,7 +8262,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& type_in, bool normalized_in, ::std::uint32_t const* value_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& type_in, bool normalized_in, ::std::uint32_t const* value_in) {
                 __gl_debug << "call glVertexAttribP1uiv " "index: '" << index_in << "'" ", " "type: '" << type_in << "'" ", " "normalized: '" << normalized_in << "'" ", " "value: '" << value_in << "'";
                 glVertexAttribP1uiv(index_in, ::std::uint32_t(type_in), (normalized_in ? 1 : 0), value_in);
                 __gl_check_error;
@@ -8280,7 +8280,7 @@ namespace gtulu {
 
           struct gl_vertex_attrib_2_packed {
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& type_in, bool normalized_in, ::std::uint32_t value_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& type_in, bool normalized_in, ::std::uint32_t value_in) {
                 __gl_debug << "call glVertexAttribP2ui " "index: '" << index_in << "'" ", " "type: '" << type_in << "'" ", " "normalized: '" << normalized_in << "'" ", " "value: '" << value_in << "'";
                 glVertexAttribP2ui(index_in, ::std::uint32_t(type_in), (normalized_in ? 1 : 0), value_in);
                 __gl_check_error;
@@ -8294,7 +8294,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& type_in, bool normalized_in, ::std::uint32_t const* value_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& type_in, bool normalized_in, ::std::uint32_t const* value_in) {
                 __gl_debug << "call glVertexAttribP2uiv " "index: '" << index_in << "'" ", " "type: '" << type_in << "'" ", " "normalized: '" << normalized_in << "'" ", " "value: '" << value_in << "'";
                 glVertexAttribP2uiv(index_in, ::std::uint32_t(type_in), (normalized_in ? 1 : 0), value_in);
                 __gl_check_error;
@@ -8312,7 +8312,7 @@ namespace gtulu {
 
           struct gl_vertex_attrib_3_packed {
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& type_in, bool normalized_in, ::std::uint32_t value_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& type_in, bool normalized_in, ::std::uint32_t value_in) {
                 __gl_debug << "call glVertexAttribP3ui " "index: '" << index_in << "'" ", " "type: '" << type_in << "'" ", " "normalized: '" << normalized_in << "'" ", " "value: '" << value_in << "'";
                 glVertexAttribP3ui(index_in, ::std::uint32_t(type_in), (normalized_in ? 1 : 0), value_in);
                 __gl_check_error;
@@ -8326,7 +8326,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& type_in, bool normalized_in, ::std::uint32_t const* value_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& type_in, bool normalized_in, ::std::uint32_t const* value_in) {
                 __gl_debug << "call glVertexAttribP3uiv " "index: '" << index_in << "'" ", " "type: '" << type_in << "'" ", " "normalized: '" << normalized_in << "'" ", " "value: '" << value_in << "'";
                 glVertexAttribP3uiv(index_in, ::std::uint32_t(type_in), (normalized_in ? 1 : 0), value_in);
                 __gl_check_error;
@@ -8344,7 +8344,7 @@ namespace gtulu {
 
           struct gl_vertex_attrib_4_packed {
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& type_in, bool normalized_in, ::std::uint32_t value_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& type_in, bool normalized_in, ::std::uint32_t value_in) {
                 __gl_debug << "call glVertexAttribP4ui " "index: '" << index_in << "'" ", " "type: '" << type_in << "'" ", " "normalized: '" << normalized_in << "'" ", " "value: '" << value_in << "'";
                 glVertexAttribP4ui(index_in, ::std::uint32_t(type_in), (normalized_in ? 1 : 0), value_in);
                 __gl_check_error;
@@ -8358,7 +8358,7 @@ namespace gtulu {
                 
               }
 
-              inline static void call(::std::uint32_t index_in, const ::gtulu::internal::constant::gl_constant_base& type_in, bool normalized_in, ::std::uint32_t const* value_in) {
+              inline static void call(::std::uint32_t index_in, ::gtulu::internal::constant::gl_constant_base const& type_in, bool normalized_in, ::std::uint32_t const* value_in) {
                 __gl_debug << "call glVertexAttribP4uiv " "index: '" << index_in << "'" ", " "type: '" << type_in << "'" ", " "normalized: '" << normalized_in << "'" ", " "value: '" << value_in << "'";
                 glVertexAttribP4uiv(index_in, ::std::uint32_t(type_in), (normalized_in ? 1 : 0), value_in);
                 __gl_check_error;
@@ -8402,7 +8402,7 @@ namespace gtulu {
 
           struct gl_get_double_indexed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in, double* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in, double* data_in) {
                 __gl_debug << "call glGetDoublei_v " "target: '" << target_in << "'" ", " "index: '" << index_in << "'" ", " "data: '" << data_in << "'";
                 glGetDoublei_v(::std::uint32_t(target_in), index_in, data_in);
                 __gl_check_error;
@@ -8420,7 +8420,7 @@ namespace gtulu {
 
           struct gl_get_float_indexed {
 
-              inline static void call(const ::gtulu::internal::constant::gl_constant_base& target_in, ::std::uint32_t index_in, float* data_in) {
+              inline static void call(::gtulu::internal::constant::gl_constant_base const& target_in, ::std::uint32_t index_in, float* data_in) {
                 __gl_debug << "call glGetFloati_v " "target: '" << target_in << "'" ", " "index: '" << index_in << "'" ", " "data: '" << data_in << "'";
                 glGetFloati_v(::std::uint32_t(target_in), index_in, data_in);
                 __gl_check_error;

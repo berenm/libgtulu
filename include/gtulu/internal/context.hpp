@@ -706,14 +706,14 @@ namespace gtulu {
       struct gettor< ::std::string > {
           template< typename parameter_t >
           static void get(::std::string* data) {
-            const GLubyte* bytes = fnc::gl_get_string::call< parameter_t >();
+            GLubyte const* bytes = fnc::gl_get_string::call< parameter_t >();
             if (bytes != 0) {
               data->assign(reinterpret_cast< char const* > (bytes));
             }
           }
           template< typename parameter_t >
           static void get(::std::uint32_t const index_in, ::std::string* data) {
-            const GLubyte* bytes = fnc::gl_get_string::call< parameter_t >(index_in);
+            GLubyte const* bytes = fnc::gl_get_string::call< parameter_t >(index_in);
             if (bytes != 0) {
               data->assign(reinterpret_cast< char const* > (bytes));
             }
