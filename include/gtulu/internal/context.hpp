@@ -1032,6 +1032,5 @@ namespace gtulu {
   } // namespace internal
 } // namespace gtulu
 
-
 #endif /* GTULU_INTERNAL_CONTEXT_HPP_ */
 

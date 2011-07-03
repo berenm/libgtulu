@@ -10,12 +10,10 @@
 
 #include "gtulu/platform.hpp"
 #include "gtulu/internal/context.hpp"
+#include "gtulu/internal/context_info.hpp"
 #include <logging/logging.hpp>
 
 #ifdef GTULU_PLATFORM_LINUX
-#define GLX_GLXEXT_PROTOTYPES
-#include <GL/glx.h>
-#include <GL/glxext.h>
 
 #else
 #include <GL/glfw3.h>
@@ -63,11 +61,15 @@ void init_gl(::std::int32_t argc, char** argv) {
       } else {
         XSync(display, false);
 
-        if (!glXMakeContextCurrent(display, None, None, context)) {
+        gtulu::internal::context::context_info context_info(display, context);
+        if (!context_info.try_acquire()) {
           __errorM(gl)
             << "unable to create detached context.";
 
-          if (!glXMakeContextCurrent(display, DefaultRootWindow(display), DefaultRootWindow(display), context)) {
+          context_info.drawable = DefaultRootWindow(display);
+          context_info.readable = DefaultRootWindow(display);
+
+          if (!context_info.try_acquire()) {
             __fatalM(gl)
               << "unable to attach context to default drawable.";
           }
@@ -114,9 +116,10 @@ void init_gl(::std::int32_t argc, char** argv) {
 
 void close_gl() {
 #ifdef GTULU_PLATFORM_LINUX
-  Display* display = glXGetCurrentDisplay();
-  glXMakeCurrent(display, None, NULL);
-  XCloseDisplay(display);
+
+  ::gtulu::internal::context::current_context_info context_info;
+  context_info.release();
+  XCloseDisplay(context_info.display);
 
 #else
   glfwCloseWindow(glfwGetCurrentWindow());
