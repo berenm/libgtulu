@@ -27,6 +27,8 @@ namespace gtulu {
 
       template< typename shader_format_t >
       struct shader: virtual public shader_base, public object< shader_base > , public shader_format_t {
+          virtual ~shader() {
+          }
       };
 
       typedef shader< fs::dynamic_shader_format > dynamic_shader_t;

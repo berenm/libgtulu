@@ -27,6 +27,8 @@ namespace gtulu {
     namespace objects {
       template< typename program_format_t >
       struct program: virtual public program_base, public object< program_base > , public program_format_t {
+          virtual ~program() {
+          }
       };
 
       typedef program< fp::dynamic_program_format > dynamic_program_t;
