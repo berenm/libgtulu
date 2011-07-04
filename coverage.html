@@ -27,7 +27,13 @@
     <div class='content'>
       <div class='logo'></div>
       <div class='title'><a href='index.html'><span class='lib'>lib</span>gtulu</a></div>
-      <div class='subtitle'>OpenGL 4.1 coverage</div>
+      <div class='subtitle'>OpenGL coverage</div>
+      <ul class='coverage legend'>
+        <li class='legend'>Legend:</li>
+            <li class='covered'>Covered (OpenGL3.3)</li>
+            <li>Not covered (OpenGL3.3)</li>
+            <li class='gl41'>Not covered, requires OpenGL4.x</li>
+      </ul>
       <ul class='coverage'>
         <li class='category covered'>OpenGL Errors</li>
             <li class='covered'>glGetError</li>
@@ -42,13 +48,13 @@
             <li class='covered'>glDrawArrays</li>
             <li class='covered'>glDrawArraysInstanced</li>
             <li class='covered'>glMultiDrawArrays</li>
-            <li>glDrawArraysIndirect</li>
+            <li class='gl41'>glDrawArraysIndirect</li>
 
             <li class='covered'>glDrawElements</li>
             <li class='covered'>glDrawElementsInstanced</li>
             <li class='covered'>glMultiDrawElements</li>
             <li>glDrawRangeElements</li>
-            <li>glDrawElementsIndirect</li>
+            <li class='gl41'>glDrawElementsIndirect</li>
 
             <li class='covered'>glDrawElementsBaseVertex</li>
             <li class='covered'>glDrawElementsInstancedBaseVertex</li>
@@ -92,45 +98,45 @@
 
             <li>glBeginQuery</li>
             <li>glEndQuery</li>
-            <li>glBeginQueryIndexed</li>
-            <li>glEndQueryIndexed</li>
+            <li class='gl41'>glBeginQueryIndexed</li>
+            <li class='gl41'>glEndQueryIndexed</li>
 
             <li>glGetQueryiv</li>
             <li>glGetQueryObject</li>
-            <li>glGetQueryIndexed</li>
+            <li class='gl41'>glGetQueryIndexed</li>
 
             <li>glBeginConditionalRender</li>
             <li>glEndConditionalRender</li>
 
-            <li>glGenTransformFeedbacks</li>
-            <li>glDeleteTransformFeedbacks</li>
-            <li>glBindTransformFeedback</li>
+            <li class='gl41'>glGenTransformFeedbacks</li>
+            <li class='gl41'>glDeleteTransformFeedbacks</li>
+            <li class='gl41'>glBindTransformFeedback</li>
 
             <li>glBeginTransformFeedback</li>
             <li>glEndTransformFeedback</li>
-            <li>glPauseTransformFeedback</li>
-            <li>glResumeTransformFeedback</li>
+            <li class='gl41'>glPauseTransformFeedback</li>
+            <li class='gl41'>glResumeTransformFeedback</li>
 
-            <li>glDrawTransformFeedback</li>
-            <li>glDrawTransformFeedbackStream</li>
+            <li class='gl41'>glDrawTransformFeedback</li>
+            <li class='gl41'>glDrawTransformFeedbackStream</li>
 
             <li>glIsQuery</li>
-            <li>glIsTransformFeedback</li>
+            <li class='gl41'>glIsTransformFeedback</li>
         <li class='category'>Viewport and Cliping</li>
             <li class='covered'>glDepthRange</li>
-            <li>glDepthRangeArray</li>
-            <li>glDepthRangeIndexed</li>
+            <li class='gl41'>glDepthRangeArray</li>
+            <li class='gl41'>glDepthRangeIndexed</li>
 
             <li class='covered'>glViewport</li>
-            <li>glViewportArray</li>
-            <li>glViewportIndexed</li>
+            <li class='gl41'>glViewportArray</li>
+            <li class='gl41'>glViewportIndexed</li>
         <li class='category'>Shaders and Programs</li>
             <li class='covered'>glCreateShader</li>
             <li class='covered'>glDeleteShader</li>
             <li class='covered'>glShaderSource</li>
             <li class='covered'>glCompileShader</li>
-            <li>glShaderBinary</li>
-            <li>glReleaseShaderCompiler</li>
+            <li class='gl41'>glShaderBinary</li>
+            <li class='gl41'>glReleaseShaderCompiler</li>
 
             <li class='covered'>glCreateProgram</li>
             <li class='covered'>glDeleteProgram</li>
@@ -139,17 +145,17 @@
             <li class='covered'>glLinkProgram</li>
             <li class='covered'>glUseProgram</li>
 
-            <li>glCreateShaderProgram</li>
-            <li>glProgramParameter</li>
+            <li class='gl41'>glCreateShaderProgram</li>
+            <li class='gl41'>glProgramParameter</li>
 
-            <li>glGenProgramPipelines</li>
-            <li>glDeleteProgramPipelines</li>
-            <li>glBindProgramPipeline</li>
-            <li>glUseProgramStages</li>
-            <li>glActiveShaderProgram</li>
+            <li class='gl41'>glGenProgramPipelines</li>
+            <li class='gl41'>glDeleteProgramPipelines</li>
+            <li class='gl41'>glBindProgramPipeline</li>
+            <li class='gl41'>glUseProgramStages</li>
+            <li class='gl41'>glActiveShaderProgram</li>
 
-            <li>glGetProgramBinary</li>
-            <li>glProgramBinary</li>
+            <li class='gl41'>glGetProgramBinary</li>
+            <li class='gl41'>glProgramBinary</li>
 
             <li class='covered'>glGetActiveAttrib</li>
             <li class='covered'>glGetAttribLocation</li>
@@ -164,24 +170,24 @@
             <li class='covered'>glGetActiveUniform</li>
 
             <li class='covered'>glUniform</li>
-            <li>glProgramUniform</li>
+            <li class='gl41'>glProgramUniform</li>
 
             <li>glUniformBlockBinding</li>
 
-            <li>glGetSubroutineIndex</li>
-            <li>glGetSubroutineUniformLocation</li>
-            <li>glGetActiveSubroutineUniformName</li>
-            <li>glGetActiveSubroutineUniform</li>
-            <li>glGetActiveSubroutineName</li>
-            <li>glUniformSubroutines</li>
+            <li class='gl41'>glGetSubroutineIndex</li>
+            <li class='gl41'>glGetSubroutineUniformLocation</li>
+            <li class='gl41'>glGetActiveSubroutineUniformName</li>
+            <li class='gl41'>glGetActiveSubroutineUniform</li>
+            <li class='gl41'>glGetActiveSubroutineName</li>
+            <li class='gl41'>glUniformSubroutines</li>
 
             <li>glTransformFeedbackVaryings</li>
             <li>glGetTransformFeedbackVarying</li>
 
             <li class='covered'>glValidateProgram</li>
-            <li>glValidateProgramPipeline</li>
+            <li class='gl41'>glValidateProgramPipeline</li>
 
-            <li>glPatchParameter</li>
+            <li class='gl41'>glPatchParameter</li>
 
             <li class='covered'>glBindFragDataLocation</li>
             <li>glBindFragDataLocationIndexed</li>
@@ -191,22 +197,22 @@
             <li>glGetShader</li>
             <li class='covered'>glGetShaderInfoLog</li>
             <li class='covered'>glGetShaderSource</li>
-            <li>glGetShaderPrecisionFormat</li>
-            <li>glGetProgramStage</li>
+            <li class='gl41'>glGetShaderPrecisionFormat</li>
+            <li class='gl41'>glGetProgramStage</li>
 
             <li>glGetAttachedShaders</li>
             <li>glGetVertexAttrib</li>
             <li>glGetVertexAttribPointerv</li>
             <li>glGetUniform</li>
-            <li>glGetUniformSubroutine</li>
+            <li class='gl41'>glGetUniformSubroutine</li>
 
             <li>glGetProgram</li>
             <li class='covered'>glGetProgramInfoLog</li>
-            <li>glGetProgramPipeline</li>
-            <li>glGetProgramPipelineInfoLog</li>
+            <li class='gl41'>glGetProgramPipeline</li>
+            <li class='gl41'>glGetProgramPipelineInfoLog</li>
 
             <li>glIsProgram</li>
-            <li>glIsProgramPipeline</li>
+            <li class='gl41'>glIsProgramPipeline</li>
             <li>glIsShader</li>
         <li class='category'>Rasterization</li>
             <li>glGetMultisample</li>
@@ -291,8 +297,8 @@
             <li>glIsTexture</li>
         <li class='category'>Per-Fragment Operations</li>
             <li>glScissor</li>
-            <li>glScissorArray</li>
-            <li>glScissorIndexed</li>
+            <li class='gl41'>glScissorArray</li>
+            <li class='gl41'>glScissorIndexed</li>
 
             <li>glSampleCoverage</li>
             <li>glSampleMaski</li>
