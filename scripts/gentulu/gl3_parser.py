@@ -4,20 +4,17 @@
 # Distributed under the Boost Software License, Version 1.0.
 # See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt
 
-import re
-
 from constant import constant
-from function import function
+from declaration import declaration
 from namespace import namespace
-from parameter import parameter
 
 class gl3_parser:
   def __init__(self):
     self.namespaces = {}
     self.constants = {}
-    self.functions = {}
+    self.declarations = {}
     self.current_namespace = None
-    
+
   def read_namespace(self, line):
     if line == "#endif /* GL3_PROTOTYPES */":
       print "ERROR: ", line
@@ -44,21 +41,21 @@ class gl3_parser:
       self.current_namespace = ns
     elif line.startswith("#endif"):
       self.current_namespace = None
-  
+
   def read_function(self, line):
-    fct = function(self.current_namespace, line)
-    if fct.new_name not in self.functions.keys():
-      self.functions[fct.new_name] = [] 
-    
-    if fct not in self.functions[fct.new_name]:
-      self.functions[fct.new_name].append(fct)
+    fct = declaration.parse_string(self.current_namespace, line)
+    if fct.new_name not in self.declarations.keys():
+      self.declarations[fct.new_name] = []
+
+    if fct not in self.declarations[fct.new_name]:
+      self.declarations[fct.new_name].append(fct)
     else:
       print "skipping: " + fct.__repr__()
 
     if self.current_namespace is not None:
       if fct.new_name not in self.namespaces[self.current_namespace].functions:
         self.namespaces[self.current_namespace].functions.append(fct.new_name)
-  
+
   def read_constant(self, line):
     if len(line.split(" ")) != 3:
       print "ERROR: ", line
@@ -71,14 +68,14 @@ class gl3_parser:
     if self.current_namespace is not None:
       self.namespaces[self.current_namespace].constants.append(cst.name)
     pass
-  
+
   def read_const_ref(self, line):
     strings = line.split(" ")
     if len(strings) != 4:
       print "ERROR: ", line
       return
     self.namespaces[self.current_namespace].constants_ref.append(strings[2])
-  
+
   def read_namespace_ref(self, line):
     strings = line.split(" ")
     if len(strings) < 3:

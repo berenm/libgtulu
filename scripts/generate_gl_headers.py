@@ -7,6 +7,7 @@
 import re
 
 from gentulu import gl3_parser
+from gentulu.function import function
 
 gen_fct = open('../include/gtulu/internal/generated/functions.hpp', 'w')
 gen_cst = open('../include/gtulu/internal/generated/constants.hpp', 'w')
@@ -19,8 +20,8 @@ def print_forward_functions(file, parser, namespace):
   print >> file, "          namespace fnc {"
 
   n.functions.sort()
-  for function in n.functions:
-    print >> file, "            struct %s;" % (function)
+  for declaration in n.functions:
+    print >> file, "            struct %s;" % (declaration)
 
   print >> file, "          } // namespace fnc"
   print >> file, "        } // namespace %s" % (n.short_name)
@@ -29,11 +30,11 @@ def print_forward_constants(file, parser, namespace):
   n = parser.namespaces[namespace]
   print >> file, "        namespace %s {" % (n.short_name)
   print >> file, "          namespace cst {"
-  
+
   n.constants.sort()
   for constant in n.constants:
     print >> file, "            struct %s;" % (parser.constants[constant].new_name)
-  
+
   print >> file, "          } // namespace cst"
   print >> file, "        } // namespace %s" % (n.short_name)
 
@@ -41,7 +42,7 @@ def print_forward_functions_ref(file, parser, namespace):
   n = parser.namespaces[namespace]
   print >> file, "      namespace %s {" % (n.short_name)
   print >> file, "        namespace fnc {"
-    
+
   n.namespace_ref.sort()
   for ref in n.namespace_ref:
     if ref not in parser.namespaces:
@@ -49,8 +50,8 @@ def print_forward_functions_ref(file, parser, namespace):
     else:
       nn = parser.namespaces[ref]
       nn.functions.sort()
-      for function in nn.functions:
-        print >> file, "          using gig::%s::%s::fnc::%s;" % (nn.category, nn.short_name, function)
+      for declaration in nn.functions:
+        print >> file, "          using gig::%s::%s::fnc::%s;" % (nn.category, nn.short_name, declaration)
 
   print >> file, "        } // namespace fnc"
   print >> file, "      } // namespace %s" % (n.short_name)
@@ -59,7 +60,7 @@ def print_forward_constants_ref(file, parser, namespace):
   n = parser.namespaces[namespace]
   print >> file, "      namespace %s {" % (n.short_name)
   print >> file, "        namespace cst {"
-    
+
   n.constants_ref.sort()
   for constant in n.constants_ref:
     if constant not in parser.constants:
@@ -74,20 +75,17 @@ def print_forward_constants_ref(file, parser, namespace):
 
 def print_functions(file, parser, namespace):
   n = parser.namespaces[namespace]
-  
+
   if n.short_name == 'cl_event':
     return
-  
+
   print >> file, "      namespace %s {" % (n.short_name)
   print >> file, "        namespace fnc {"
-  
-  for function in n.functions:
-    fcts = parser.functions[function]
-    print >> file, "          struct %s {\n" % (function)
-    for f in fcts:
-      print >> file, f
-    print >> file, "          };\n"
-        
+
+  for declaration in n.functions:
+    f = parser.functions[declaration]
+    print >> file, '          ' + '\n          '.join(f.str_define())
+
   print >> file, "        } // namespace fnc"
   print >> file, "      } // namespace %s" % (n.short_name)
 
@@ -95,13 +93,13 @@ def print_constants(file, parser, namespace):
   n = parser.namespaces[namespace]
   print >> file, "      namespace %s {" % (n.short_name)
   print >> file, "        namespace cst {"
-  
+
   for constant in n.constants:
     print >> file, parser.constants[constant]
-      
+
   print >> file, "        } // namespace cst"
   print >> file, "      } // namespace %s" % (n.short_name)
-  
+
 def print_forward_functions_category(file, parser, category):
   print >> file, "      namespace %s {" % (category)
   namespaces = parser.namespaces.keys()
@@ -111,7 +109,7 @@ def print_forward_functions_category(file, parser, category):
     if n.category == category:
       print_forward_functions(file, parser, namespace)
   print >> file, "      } // namespace %s" % (category)
-  
+
 def print_forward_constants_category(file, parser, category):
   print >> file, "      namespace %s {" % (category)
   namespaces = parser.namespaces.keys()
@@ -121,7 +119,7 @@ def print_forward_constants_category(file, parser, category):
     if n.category == category:
       print_forward_constants(file, parser, namespace)
   print >> file, "      } // namespace %s" % (category)
-  
+
 def print_forward_functions_category_ref(file, parser, category):
   print >> file, "      namespace %s {" % (category)
   namespaces = parser.namespaces.keys()
@@ -131,7 +129,7 @@ def print_forward_functions_category_ref(file, parser, category):
     if n.category == category:
       print_forward_functions_ref(file, parser, namespace)
   print >> file, "      } // namespace %s" % (category)
-  
+
 def print_forward_constants_category_ref(file, parser, category):
   print >> file, "      namespace %s {" % (category)
   namespaces = parser.namespaces.keys()
@@ -141,7 +139,7 @@ def print_forward_constants_category_ref(file, parser, category):
     if n.category == category:
       print_forward_constants_ref(file, parser, namespace)
   print >> file, "      } // namespace %s" % (category)
-  
+
 def print_functions_category(file, parser, category):
   print >> file, "      namespace %s {" % (category)
   namespaces = parser.namespaces.keys()
@@ -151,7 +149,7 @@ def print_functions_category(file, parser, category):
     if n.category == category:
       print_functions(file, parser, namespace)
   print >> file, "      } // namespace %s" % (category)
-  
+
 def print_constants_category(file, parser, category):
   print >> file, "      namespace %s {" % (category)
   namespaces = parser.namespaces.keys()
@@ -170,7 +168,7 @@ for line in gl3:
   line = line.replace('\n', '')
   line = re.sub(" +", " ", line)
   line = line.strip(" ")
-    
+
   if line.startswith('GLAPI'):
     parser.read_function(line)
     reading_namespace_ref = False
@@ -193,6 +191,10 @@ for line in gl3:
   else:
     print "WARN: ", line
     reading_namespace_ref = False
+
+parser.functions = dict([ (n, function.parse_string(n, d)) for (n, d) in parser.declarations.items() ])
+
+
 
 header = """/**
  * @file
@@ -337,4 +339,4 @@ print >> gen_cst_fwd, footer % (guard)
 #for namespace in parser.namespaces.keys():
 #  if not namespace.startswith("GL_ARB"):
 #    print_namespace(parser, namespace)
-  
+

@@ -6,7 +6,7 @@
 
 import re
 
-import function
+import declaration
 import constant
 
 class namespace:

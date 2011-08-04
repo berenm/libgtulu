@@ -5,69 +5,100 @@
 # See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt
 
 import re
+from gentulu.utils import serialize
 
 class parameter:
-  def __init__(self, string):
-    string = string.strip("();, ")
-    string = string.replace("const", " const ")
-    string = string.replace("struct", " struct ")
-    string = string.replace("*", " * ")
-    string = string.replace("&", " & ")
-    string = re.sub(" +", " ", string)
-    string = string.strip(" ")
+  def __init__(self, name, type, descriptions={}, constants={}):
+    self.name = name.strip()
+    self.type = type.replace('const', '').replace('struct', '').replace('&', '').replace('*', '').strip()
+    self.description = descriptions.get(self.name, '')
+    self.constants = constants.get(self.name, [])
 
-    [full_type, self.name] = string.rsplit(" ", 1)
+    if self.name == 'void' and len(self.type) == 0:
+      self.type = 'void'
+    type_modifier = type.replace(self.type, '').replace(' ', '')
 
-    self.old_type = full_type.replace("const", "").replace("struct", "").replace("&", "").replace("*", "").strip(" ")
-    [prefix, suffix] = full_type.split(self.old_type)
-    self.type_modifier = (prefix + suffix).replace(" ", "")
+    if type_modifier.startswith('const'):
+      type_modifier = ' ' + type_modifier
 
-    if self.type_modifier.startswith("const"):
-        self.type_modifier = " " + self.type_modifier
+    self.is_struct = 'struct' in type_modifier
+    self.is_const = 'const' in type_modifier
+    self.is_pointer = '*' in type_modifier
+    self.is_reference = '&' in type_modifier
 
-    self.is_struct = "struct" in self.type_modifier
-    self.is_const = "const" in self.type_modifier
-    self.is_pointer = "*" in self.type_modifier
-    self.is_reference = "&" in self.type_modifier
-
-    if "*" not in self.type_modifier:
-      if self.old_type == "GLenum":
+    if not self.is_pointer:
+      if self.type == 'GLenum':
         self.is_template = True
-      elif self.name == "internalformat" and self.old_type == "GLint":
+      elif self.name == 'internalformat' and self.type == 'GLint':
         self.is_template = True
       else:
         self.is_template = False
     else:
       self.is_template = False
 
-    if self.old_type == "GLint":
-      self.new_type = "::std::int32_t"
-    elif self.old_type == "GLuint":
-      self.new_type = "::std::uint32_t"
-    elif self.old_type == "GLboolean" and "*" not in self.type_modifier:
-      self.new_type = "bool"
-    elif self.old_type == "GLfloat":
-      self.new_type = "float"
-    elif self.old_type == "GLdouble":
-      self.new_type = "double"
-    elif self.old_type == "GLvoid":
-      self.new_type = "void"
-    elif self.old_type == "GLushort":
-      self.new_type = "::std::uint16_t"
-    elif self.old_type == "GLubyte":
-      self.new_type = "::std::uint8_t"
-    elif self.old_type == "GLclampf":
-      self.new_type = "float"
+    if self.type == 'GLint':
+      self.type = '::std::int32_t'
+    elif self.type == 'GLuint':
+      self.type = '::std::uint32_t'
+    elif self.type == 'GLboolean' and not self.is_pointer:
+      self.type = 'bool'
+    elif self.type == 'GLfloat':
+      self.type = 'float'
+    elif self.type == 'GLdouble':
+      self.type = 'double'
+    elif self.type == 'GLvoid':
+      self.type = 'void'
+    elif self.type == 'GLushort':
+      self.type = '::std::uint16_t'
+    elif self.type == 'GLubyte':
+      self.type = '::std::uint8_t'
+    elif self.type == 'GLclampf':
+      self.type = 'float'
     elif self.is_template:
-      self.new_type = "::gtulu::internal::constant::gl_constant_base const&"
+      self.type = '::gtulu::internal::constant::gl_constant_base const&'
     else:
-      print "UNKN: " + self.old_type
-      self.new_type = self.old_type
-  
+      print 'UNKN: ' + self.type
+      self.type = self.type
+
+  def std_str(self):
+    string = ""
+    if self.is_struct:
+      string += "struct "
+    string += self.type
+    if self.is_const:
+      string += " const"
+    if self.is_pointer:
+      string += "*"
+    if self.is_reference:
+      string += "&"
+
+    string += " " + self.name
+    return string
+
+  def tpl_str(self):
+    string = "typename " + self.name + "_t"
+    return string
+
   def __repr__(self):
-    return """parameter {
-  name: %(name)s,
-  type_modifier: %(type_modifier)s,
-  old_type: %(old_type)s,
-  new_type: %(new_type)s
-}""" % (self.__dict__)
+    return serialize(self)
+
+  @staticmethod
+  def parse_string(string):
+    string = string.strip('();, ')
+    string = string.replace('const', ' const ')
+    string = string.replace('struct', ' struct ')
+    string = string.replace('*', ' * ')
+    string = string.replace('&', ' & ')
+    string = re.sub(' +', ' ', string)
+    string = string.strip(' ')
+
+    if ' ' in string:
+      (type, name) = string.strip().rsplit(' ', 1)
+    else:
+      type = string
+      name = ''
+    return parameter(name, type)
+
+  @staticmethod
+  def parse_node(node, descriptions, constants):
+    return parameter(str(node.parameter), str(node), descriptions, constants)
