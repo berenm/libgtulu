@@ -2,23 +2,24 @@
 # See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt
 
 import shader : program ;
-import fhs ;
+import multiarch ;
+import path ;
 
-lib GL : : $(LIB_SEARCH) <name>:libGL.so.1 ;
-lib GLU : : $(LIB_SEARCH) ;
-lib glfw : : $(LIB_SEARCH) ;
-lib boost_thread : : $(LIB_SEARCH) ;
-lib boost_program_options : : $(LIB_SEARCH) ;
-lib boost_filesystem : : $(LIB_SEARCH) ;
-lib boost_regex : : $(LIB_SEARCH) ;
-lib boost_iostreams : : $(LIB_SEARCH) ;
-lib boost_date_time : : $(LIB_SEARCH) ;
-lib boost_system : : $(LIB_SEARCH) ;
-lib boost_log : : $(LIB_SEARCH) ;
-lib logging : : $(LIB_SEARCH) ;
-lib glut : : $(LIB_SEARCH) ;
-lib X11 : : $(LIB_SEARCH) ;
-lib Xrandr : : $(LIB_SEARCH) ;
+lib GL : : [ multiarch.search-path ] <name>:libGL.so.1 ;
+lib GLU : : [ multiarch.search-path ] ;
+lib glfw : : [ multiarch.search-path ] ;
+lib boost_thread : : [ multiarch.search-path ] ;
+lib boost_program_options : : [ multiarch.search-path ] ;
+lib boost_filesystem : : [ multiarch.search-path ] ;
+lib boost_regex : : [ multiarch.search-path ] ;
+lib boost_iostreams : : [ multiarch.search-path ] ;
+lib boost_date_time : : [ multiarch.search-path ] ;
+lib boost_system : : [ multiarch.search-path ] ;
+lib boost_log : : [ multiarch.search-path ] ;
+lib logging : : [ multiarch.search-path ] ;
+lib glut : : [ multiarch.search-path ] ;
+lib X11 : : [ multiarch.search-path ] ;
+lib Xrandr : : [ multiarch.search-path ] ;
 
 project libgtulu : requirements
   <library>GL/<link>shared
@@ -37,7 +38,6 @@ project libgtulu : requirements
   
   $(INCLUDES)
   <tag>@$(__name__).tag
-  <address-model>32:<instruction-set>i686
   
   <threading>multi
   <variant>debug:<define>GTULU_DEBUG
@@ -102,12 +102,12 @@ alias test : test1exe/<link>shared
              test3exe/<link>static ;
 
 
-fhs.build build libgtulu
+multiarch.build build libgtulu
                 : compiler
                 : gtulu
                 : ;
 
-fhs.install install libgtulu 
+multiarch.install install libgtulu 
                     : compiler
                     : gtulu
                     : [ path.glob-tree include/ : *.* : ]

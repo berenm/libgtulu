@@ -1,0 +1,384 @@
+# Distributed under the Boost Software License, Version 1.0.
+# See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt
+
+# Provides mechanism for installing whole packages into a specific directory
+# structure. This is opposed to the 'install' rule, that installs a number of
+# targets to a single directory, and does not care about directory structure at
+# all.
+
+# Example usage:
+#
+#   multiarch.install boost : <binaries>
+#                           : <libraries>
+#                           : <headers>
+#                           : <properties> ;
+#
+# This will install binaries, libraries and headers to the 'proper' location,
+# given by command line options --prefix, --exec-prefix, --bindir, --libdir and
+# --includedir.
+#
+# The rule is just a convenient wrapper, avoiding the need to define several
+# 'install' targets.
+#
+# The only install-related feature is <install-source-root>. It will apply to
+# headers only and if present, paths of headers relatively to source root will
+# be retained after installing. If it is not specified, then "." is assumed, so
+# relative paths in headers are always preserved.
+
+import "class" : new ;
+import option ;
+import project ;
+import feature ;
+import property ;
+import stage ;
+import targets ;
+import modules ;
+import common ;
+import string ;
+import set ;
+import os ;
+import sequence ;
+
+.default-architecture = [ SHELL "dpkg-architecture -qDEB_BUILD_ARCH" ] ;
+.default-architecture = [ string.words "$(.default-architecture)" ] ;
+.architectures = [ SHELL "dpkg-architecture -L" ] ;
+.architectures = [ string.words "$(.architectures)" ] ;
+.architectures = [ set.difference $(.architectures) : $(.default-architecture) ] ;
+
+feature.feature target-architecture : $(.default-architecture) $(.architectures) : composite ;
+feature.feature kernel : : optional propagated ;
+feature.feature abi : : optional propagated ;
+feature.feature endian : little big : optional propagated ;
+feature.feature cpu : : free ;
+feature.feature multiarch : : free ;
+
+### BEGIN GENERATED CODE
+feature.compose <target-architecture>uclibc-linux-armel : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-linux-uclibceabi <kernel>linux <abi>uclibceabi <cpu>arm <endian>little ;
+feature.compose <target-architecture>uclibc-linux-i386 : <address-model>32 <architecture>x86 <instruction-set>i686 <multiarch>i386-linux-uclibc <kernel>linux <abi>uclibc <cpu>i386 <endian>little ;
+feature.compose <target-architecture>uclibc-linux-ia64 : <address-model>64 <architecture>ia64 <instruction-set>native <multiarch>ia64-linux-uclibc <kernel>linux <abi>uclibc <cpu>ia64 <endian>little ;
+feature.compose <target-architecture>uclibc-linux-amd64 : <address-model>64 <architecture>x86 <instruction-set>athlon64 <multiarch>x86_64-linux-uclibc <kernel>linux <abi>uclibc <cpu>amd64 <endian>little ;
+feature.compose <target-architecture>uclibc-linux-armeb : <address-model>32 <architecture>arm <instruction-set>native <multiarch>armeb-linux-uclibc <kernel>linux <abi>uclibc <cpu>armeb <endian>big ;
+feature.compose <target-architecture>uclibc-linux-arm : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-linux-uclibc <kernel>linux <abi>uclibc <cpu>arm <endian>little ;
+feature.compose <target-architecture>uclibc-linux-hppa : <address-model>32 <architecture>parisc <instruction-set>native <multiarch>hppa-linux-uclibc <kernel>linux <abi>uclibc <cpu>hppa <endian>big ;
+feature.compose <target-architecture>uclibc-linux-mips : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mips-linux-uclibc <kernel>linux <abi>uclibc <cpu>mips <endian>big ;
+feature.compose <target-architecture>uclibc-linux-mipsel : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mipsel-linux-uclibc <kernel>linux <abi>uclibc <cpu>mipsel <endian>little ;
+feature.compose <target-architecture>uclibc-linux-powerpc : <address-model>32 <architecture>power <instruction-set>native <multiarch>powerpc-linux-uclibc <kernel>linux <abi>uclibc <cpu>powerpc <endian>big ;
+feature.compose <target-architecture>uclibc-linux-ppc64 : <address-model>64 <architecture>power <instruction-set>native <multiarch>powerpc64-linux-uclibc <kernel>linux <abi>uclibc <cpu>ppc64 <endian>big ;
+feature.compose <target-architecture>uclibc-linux-sparc : <address-model>32 <architecture>sparc <instruction-set>native <multiarch>sparc-linux-uclibc <kernel>linux <abi>uclibc <cpu>sparc <endian>big ;
+feature.compose <target-architecture>uclibc-linux-sparc64 : <address-model>64 <architecture>sparc <instruction-set>native <multiarch>sparc64-linux-uclibc <kernel>linux <abi>uclibc <cpu>sparc64 <endian>big ;
+feature.compose <target-architecture>armhf : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-linux-gnueabihf <kernel>linux <abi>gnueabihf <cpu>arm <endian>little ;
+feature.compose <target-architecture>armel : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-linux-gnueabi <kernel>linux <abi>gnueabi <cpu>arm <endian>little ;
+feature.compose <target-architecture>powerpcspe : <address-model>32 <architecture>power <instruction-set>native <multiarch>powerpc-linux-gnuspe <kernel>linux <abi>gnuspe <cpu>powerpc <endian>big ;
+feature.compose <target-architecture>lpia : <address-model>32 <architecture>x86 <instruction-set>i686 <multiarch>i386-linux-gnulp <kernel>linux <abi>gnulp <cpu>i386 <endian>little ;
+feature.compose <target-architecture>i386 : <address-model>32 <architecture>x86 <instruction-set>i686 <multiarch>i386-linux-gnu <kernel>linux <abi>gnu <cpu>i386 <endian>little ;
+feature.compose <target-architecture>ia64 : <address-model>64 <architecture>ia64 <instruction-set>native <multiarch>ia64-linux-gnu <kernel>linux <abi>gnu <cpu>ia64 <endian>little ;
+feature.compose <target-architecture>amd64 : <address-model>64 <architecture>x86 <instruction-set>athlon64 <multiarch>x86_64-linux-gnu <kernel>linux <abi>gnu <cpu>amd64 <endian>little ;
+feature.compose <target-architecture>armeb : <address-model>32 <architecture>arm <instruction-set>native <multiarch>armeb-linux-gnu <kernel>linux <abi>gnu <cpu>armeb <endian>big ;
+feature.compose <target-architecture>arm : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-linux-gnu <kernel>linux <abi>gnu <cpu>arm <endian>little ;
+feature.compose <target-architecture>hppa : <address-model>32 <architecture>parisc <instruction-set>native <multiarch>hppa-linux-gnu <kernel>linux <abi>gnu <cpu>hppa <endian>big ;
+feature.compose <target-architecture>mips : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mips-linux-gnu <kernel>linux <abi>gnu <cpu>mips <endian>big ;
+feature.compose <target-architecture>mipsel : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mipsel-linux-gnu <kernel>linux <abi>gnu <cpu>mipsel <endian>little ;
+feature.compose <target-architecture>powerpc : <address-model>32 <architecture>power <instruction-set>native <multiarch>powerpc-linux-gnu <kernel>linux <abi>gnu <cpu>powerpc <endian>big ;
+feature.compose <target-architecture>ppc64 : <address-model>64 <architecture>power <instruction-set>native <multiarch>powerpc64-linux-gnu <kernel>linux <abi>gnu <cpu>ppc64 <endian>big ;
+feature.compose <target-architecture>sparc : <address-model>32 <architecture>sparc <instruction-set>native <multiarch>sparc-linux-gnu <kernel>linux <abi>gnu <cpu>sparc <endian>big ;
+feature.compose <target-architecture>sparc64 : <address-model>64 <architecture>sparc <instruction-set>native <multiarch>sparc64-linux-gnu <kernel>linux <abi>gnu <cpu>sparc64 <endian>big ;
+feature.compose <target-architecture>kfreebsd-i386 : <address-model>32 <architecture>x86 <instruction-set>i686 <multiarch>i386-kfreebsd-gnu <kernel>kfreebsd <abi>gnu <cpu>i386 <endian>little ;
+feature.compose <target-architecture>kfreebsd-ia64 : <address-model>64 <architecture>ia64 <instruction-set>native <multiarch>ia64-kfreebsd-gnu <kernel>kfreebsd <abi>gnu <cpu>ia64 <endian>little ;
+feature.compose <target-architecture>kfreebsd-amd64 : <address-model>64 <architecture>x86 <instruction-set>athlon64 <multiarch>x86_64-kfreebsd-gnu <kernel>kfreebsd <abi>gnu <cpu>amd64 <endian>little ;
+feature.compose <target-architecture>kfreebsd-armeb : <address-model>32 <architecture>arm <instruction-set>native <multiarch>armeb-kfreebsd-gnu <kernel>kfreebsd <abi>gnu <cpu>armeb <endian>big ;
+feature.compose <target-architecture>kfreebsd-arm : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-kfreebsd-gnu <kernel>kfreebsd <abi>gnu <cpu>arm <endian>little ;
+feature.compose <target-architecture>kfreebsd-hppa : <address-model>32 <architecture>parisc <instruction-set>native <multiarch>hppa-kfreebsd-gnu <kernel>kfreebsd <abi>gnu <cpu>hppa <endian>big ;
+feature.compose <target-architecture>kfreebsd-mips : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mips-kfreebsd-gnu <kernel>kfreebsd <abi>gnu <cpu>mips <endian>big ;
+feature.compose <target-architecture>kfreebsd-mipsel : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mipsel-kfreebsd-gnu <kernel>kfreebsd <abi>gnu <cpu>mipsel <endian>little ;
+feature.compose <target-architecture>kfreebsd-powerpc : <address-model>32 <architecture>power <instruction-set>native <multiarch>powerpc-kfreebsd-gnu <kernel>kfreebsd <abi>gnu <cpu>powerpc <endian>big ;
+feature.compose <target-architecture>kfreebsd-ppc64 : <address-model>64 <architecture>power <instruction-set>native <multiarch>powerpc64-kfreebsd-gnu <kernel>kfreebsd <abi>gnu <cpu>ppc64 <endian>big ;
+feature.compose <target-architecture>kfreebsd-sparc : <address-model>32 <architecture>sparc <instruction-set>native <multiarch>sparc-kfreebsd-gnu <kernel>kfreebsd <abi>gnu <cpu>sparc <endian>big ;
+feature.compose <target-architecture>kfreebsd-sparc64 : <address-model>64 <architecture>sparc <instruction-set>native <multiarch>sparc64-kfreebsd-gnu <kernel>kfreebsd <abi>gnu <cpu>sparc64 <endian>big ;
+feature.compose <target-architecture>knetbsd-i386 : <address-model>32 <architecture>x86 <instruction-set>i686 <multiarch>i386-knetbsd-gnu <kernel>knetbsd <abi>gnu <cpu>i386 <endian>little ;
+feature.compose <target-architecture>knetbsd-ia64 : <address-model>64 <architecture>ia64 <instruction-set>native <multiarch>ia64-knetbsd-gnu <kernel>knetbsd <abi>gnu <cpu>ia64 <endian>little ;
+feature.compose <target-architecture>knetbsd-amd64 : <address-model>64 <architecture>x86 <instruction-set>athlon64 <multiarch>x86_64-knetbsd-gnu <kernel>knetbsd <abi>gnu <cpu>amd64 <endian>little ;
+feature.compose <target-architecture>knetbsd-armeb : <address-model>32 <architecture>arm <instruction-set>native <multiarch>armeb-knetbsd-gnu <kernel>knetbsd <abi>gnu <cpu>armeb <endian>big ;
+feature.compose <target-architecture>knetbsd-arm : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-knetbsd-gnu <kernel>knetbsd <abi>gnu <cpu>arm <endian>little ;
+feature.compose <target-architecture>knetbsd-hppa : <address-model>32 <architecture>parisc <instruction-set>native <multiarch>hppa-knetbsd-gnu <kernel>knetbsd <abi>gnu <cpu>hppa <endian>big ;
+feature.compose <target-architecture>knetbsd-mips : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mips-knetbsd-gnu <kernel>knetbsd <abi>gnu <cpu>mips <endian>big ;
+feature.compose <target-architecture>knetbsd-mipsel : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mipsel-knetbsd-gnu <kernel>knetbsd <abi>gnu <cpu>mipsel <endian>little ;
+feature.compose <target-architecture>knetbsd-powerpc : <address-model>32 <architecture>power <instruction-set>native <multiarch>powerpc-knetbsd-gnu <kernel>knetbsd <abi>gnu <cpu>powerpc <endian>big ;
+feature.compose <target-architecture>knetbsd-ppc64 : <address-model>64 <architecture>power <instruction-set>native <multiarch>powerpc64-knetbsd-gnu <kernel>knetbsd <abi>gnu <cpu>ppc64 <endian>big ;
+feature.compose <target-architecture>knetbsd-sparc : <address-model>32 <architecture>sparc <instruction-set>native <multiarch>sparc-knetbsd-gnu <kernel>knetbsd <abi>gnu <cpu>sparc <endian>big ;
+feature.compose <target-architecture>knetbsd-sparc64 : <address-model>64 <architecture>sparc <instruction-set>native <multiarch>sparc64-knetbsd-gnu <kernel>knetbsd <abi>gnu <cpu>sparc64 <endian>big ;
+feature.compose <target-architecture>kopensolaris-i386 : <address-model>32 <architecture>x86 <instruction-set>i686 <multiarch>i386-kopensolaris-gnu <kernel>kopensolaris <abi>gnu <cpu>i386 <endian>little ;
+feature.compose <target-architecture>kopensolaris-ia64 : <address-model>64 <architecture>ia64 <instruction-set>native <multiarch>ia64-kopensolaris-gnu <kernel>kopensolaris <abi>gnu <cpu>ia64 <endian>little ;
+feature.compose <target-architecture>kopensolaris-amd64 : <address-model>64 <architecture>x86 <instruction-set>athlon64 <multiarch>x86_64-kopensolaris-gnu <kernel>kopensolaris <abi>gnu <cpu>amd64 <endian>little ;
+feature.compose <target-architecture>kopensolaris-armeb : <address-model>32 <architecture>arm <instruction-set>native <multiarch>armeb-kopensolaris-gnu <kernel>kopensolaris <abi>gnu <cpu>armeb <endian>big ;
+feature.compose <target-architecture>kopensolaris-arm : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-kopensolaris-gnu <kernel>kopensolaris <abi>gnu <cpu>arm <endian>little ;
+feature.compose <target-architecture>kopensolaris-hppa : <address-model>32 <architecture>parisc <instruction-set>native <multiarch>hppa-kopensolaris-gnu <kernel>kopensolaris <abi>gnu <cpu>hppa <endian>big ;
+feature.compose <target-architecture>kopensolaris-mips : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mips-kopensolaris-gnu <kernel>kopensolaris <abi>gnu <cpu>mips <endian>big ;
+feature.compose <target-architecture>kopensolaris-mipsel : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mipsel-kopensolaris-gnu <kernel>kopensolaris <abi>gnu <cpu>mipsel <endian>little ;
+feature.compose <target-architecture>kopensolaris-powerpc : <address-model>32 <architecture>power <instruction-set>native <multiarch>powerpc-kopensolaris-gnu <kernel>kopensolaris <abi>gnu <cpu>powerpc <endian>big ;
+feature.compose <target-architecture>kopensolaris-ppc64 : <address-model>64 <architecture>power <instruction-set>native <multiarch>powerpc64-kopensolaris-gnu <kernel>kopensolaris <abi>gnu <cpu>ppc64 <endian>big ;
+feature.compose <target-architecture>kopensolaris-sparc : <address-model>32 <architecture>sparc <instruction-set>native <multiarch>sparc-kopensolaris-gnu <kernel>kopensolaris <abi>gnu <cpu>sparc <endian>big ;
+feature.compose <target-architecture>kopensolaris-sparc64 : <address-model>64 <architecture>sparc <instruction-set>native <multiarch>sparc64-kopensolaris-gnu <kernel>kopensolaris <abi>gnu <cpu>sparc64 <endian>big ;
+feature.compose <target-architecture>hurd-i386 : <address-model>32 <architecture>x86 <instruction-set>i686 <multiarch>i386-gnu <kernel>hurd <abi>gnu <cpu>i386 <endian>little ;
+feature.compose <target-architecture>hurd-ia64 : <address-model>64 <architecture>ia64 <instruction-set>native <multiarch>ia64-gnu <kernel>hurd <abi>gnu <cpu>ia64 <endian>little ;
+feature.compose <target-architecture>hurd-amd64 : <address-model>64 <architecture>x86 <instruction-set>athlon64 <multiarch>x86_64-gnu <kernel>hurd <abi>gnu <cpu>amd64 <endian>little ;
+feature.compose <target-architecture>hurd-armeb : <address-model>32 <architecture>arm <instruction-set>native <multiarch>armeb-gnu <kernel>hurd <abi>gnu <cpu>armeb <endian>big ;
+feature.compose <target-architecture>hurd-arm : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-gnu <kernel>hurd <abi>gnu <cpu>arm <endian>little ;
+feature.compose <target-architecture>hurd-hppa : <address-model>32 <architecture>parisc <instruction-set>native <multiarch>hppa-gnu <kernel>hurd <abi>gnu <cpu>hppa <endian>big ;
+feature.compose <target-architecture>hurd-mips : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mips-gnu <kernel>hurd <abi>gnu <cpu>mips <endian>big ;
+feature.compose <target-architecture>hurd-mipsel : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mipsel-gnu <kernel>hurd <abi>gnu <cpu>mipsel <endian>little ;
+feature.compose <target-architecture>hurd-powerpc : <address-model>32 <architecture>power <instruction-set>native <multiarch>powerpc-gnu <kernel>hurd <abi>gnu <cpu>powerpc <endian>big ;
+feature.compose <target-architecture>hurd-ppc64 : <address-model>64 <architecture>power <instruction-set>native <multiarch>powerpc64-gnu <kernel>hurd <abi>gnu <cpu>ppc64 <endian>big ;
+feature.compose <target-architecture>hurd-sparc : <address-model>32 <architecture>sparc <instruction-set>native <multiarch>sparc-gnu <kernel>hurd <abi>gnu <cpu>sparc <endian>big ;
+feature.compose <target-architecture>hurd-sparc64 : <address-model>64 <architecture>sparc <instruction-set>native <multiarch>sparc64-gnu <kernel>hurd <abi>gnu <cpu>sparc64 <endian>big ;
+feature.compose <target-architecture>darwin-i386 : <address-model>32 <architecture>x86 <instruction-set>i686 <multiarch>i386-darwin <kernel>darwin <abi> <cpu>i386 <endian>little ;
+feature.compose <target-architecture>darwin-ia64 : <address-model>64 <architecture>ia64 <instruction-set>native <multiarch>ia64-darwin <kernel>darwin <abi> <cpu>ia64 <endian>little ;
+feature.compose <target-architecture>darwin-amd64 : <address-model>64 <architecture>x86 <instruction-set>athlon64 <multiarch>x86_64-darwin <kernel>darwin <abi> <cpu>amd64 <endian>little ;
+feature.compose <target-architecture>darwin-armeb : <address-model>32 <architecture>arm <instruction-set>native <multiarch>armeb-darwin <kernel>darwin <abi> <cpu>armeb <endian>big ;
+feature.compose <target-architecture>darwin-arm : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-darwin <kernel>darwin <abi> <cpu>arm <endian>little ;
+feature.compose <target-architecture>darwin-hppa : <address-model>32 <architecture>parisc <instruction-set>native <multiarch>hppa-darwin <kernel>darwin <abi> <cpu>hppa <endian>big ;
+feature.compose <target-architecture>darwin-mips : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mips-darwin <kernel>darwin <abi> <cpu>mips <endian>big ;
+feature.compose <target-architecture>darwin-mipsel : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mipsel-darwin <kernel>darwin <abi> <cpu>mipsel <endian>little ;
+feature.compose <target-architecture>darwin-powerpc : <address-model>32 <architecture>power <instruction-set>native <multiarch>powerpc-darwin <kernel>darwin <abi> <cpu>powerpc <endian>big ;
+feature.compose <target-architecture>darwin-ppc64 : <address-model>64 <architecture>power <instruction-set>native <multiarch>powerpc64-darwin <kernel>darwin <abi> <cpu>ppc64 <endian>big ;
+feature.compose <target-architecture>darwin-sparc : <address-model>32 <architecture>sparc <instruction-set>native <multiarch>sparc-darwin <kernel>darwin <abi> <cpu>sparc <endian>big ;
+feature.compose <target-architecture>darwin-sparc64 : <address-model>64 <architecture>sparc <instruction-set>native <multiarch>sparc64-darwin <kernel>darwin <abi> <cpu>sparc64 <endian>big ;
+feature.compose <target-architecture>freebsd-i386 : <address-model>32 <architecture>x86 <instruction-set>i686 <multiarch>i386-freebsd <kernel>freebsd <abi> <cpu>i386 <endian>little ;
+feature.compose <target-architecture>freebsd-ia64 : <address-model>64 <architecture>ia64 <instruction-set>native <multiarch>ia64-freebsd <kernel>freebsd <abi> <cpu>ia64 <endian>little ;
+feature.compose <target-architecture>freebsd-amd64 : <address-model>64 <architecture>x86 <instruction-set>athlon64 <multiarch>x86_64-freebsd <kernel>freebsd <abi> <cpu>amd64 <endian>little ;
+feature.compose <target-architecture>freebsd-armeb : <address-model>32 <architecture>arm <instruction-set>native <multiarch>armeb-freebsd <kernel>freebsd <abi> <cpu>armeb <endian>big ;
+feature.compose <target-architecture>freebsd-arm : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-freebsd <kernel>freebsd <abi> <cpu>arm <endian>little ;
+feature.compose <target-architecture>freebsd-hppa : <address-model>32 <architecture>parisc <instruction-set>native <multiarch>hppa-freebsd <kernel>freebsd <abi> <cpu>hppa <endian>big ;
+feature.compose <target-architecture>freebsd-mips : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mips-freebsd <kernel>freebsd <abi> <cpu>mips <endian>big ;
+feature.compose <target-architecture>freebsd-mipsel : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mipsel-freebsd <kernel>freebsd <abi> <cpu>mipsel <endian>little ;
+feature.compose <target-architecture>freebsd-powerpc : <address-model>32 <architecture>power <instruction-set>native <multiarch>powerpc-freebsd <kernel>freebsd <abi> <cpu>powerpc <endian>big ;
+feature.compose <target-architecture>freebsd-ppc64 : <address-model>64 <architecture>power <instruction-set>native <multiarch>powerpc64-freebsd <kernel>freebsd <abi> <cpu>ppc64 <endian>big ;
+feature.compose <target-architecture>freebsd-sparc : <address-model>32 <architecture>sparc <instruction-set>native <multiarch>sparc-freebsd <kernel>freebsd <abi> <cpu>sparc <endian>big ;
+feature.compose <target-architecture>freebsd-sparc64 : <address-model>64 <architecture>sparc <instruction-set>native <multiarch>sparc64-freebsd <kernel>freebsd <abi> <cpu>sparc64 <endian>big ;
+feature.compose <target-architecture>netbsd-i386 : <address-model>32 <architecture>x86 <instruction-set>i686 <multiarch>i386-netbsd <kernel>netbsd <abi> <cpu>i386 <endian>little ;
+feature.compose <target-architecture>netbsd-ia64 : <address-model>64 <architecture>ia64 <instruction-set>native <multiarch>ia64-netbsd <kernel>netbsd <abi> <cpu>ia64 <endian>little ;
+feature.compose <target-architecture>netbsd-amd64 : <address-model>64 <architecture>x86 <instruction-set>athlon64 <multiarch>x86_64-netbsd <kernel>netbsd <abi> <cpu>amd64 <endian>little ;
+feature.compose <target-architecture>netbsd-armeb : <address-model>32 <architecture>arm <instruction-set>native <multiarch>armeb-netbsd <kernel>netbsd <abi> <cpu>armeb <endian>big ;
+feature.compose <target-architecture>netbsd-arm : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-netbsd <kernel>netbsd <abi> <cpu>arm <endian>little ;
+feature.compose <target-architecture>netbsd-hppa : <address-model>32 <architecture>parisc <instruction-set>native <multiarch>hppa-netbsd <kernel>netbsd <abi> <cpu>hppa <endian>big ;
+feature.compose <target-architecture>netbsd-mips : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mips-netbsd <kernel>netbsd <abi> <cpu>mips <endian>big ;
+feature.compose <target-architecture>netbsd-mipsel : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mipsel-netbsd <kernel>netbsd <abi> <cpu>mipsel <endian>little ;
+feature.compose <target-architecture>netbsd-powerpc : <address-model>32 <architecture>power <instruction-set>native <multiarch>powerpc-netbsd <kernel>netbsd <abi> <cpu>powerpc <endian>big ;
+feature.compose <target-architecture>netbsd-ppc64 : <address-model>64 <architecture>power <instruction-set>native <multiarch>powerpc64-netbsd <kernel>netbsd <abi> <cpu>ppc64 <endian>big ;
+feature.compose <target-architecture>netbsd-sparc : <address-model>32 <architecture>sparc <instruction-set>native <multiarch>sparc-netbsd <kernel>netbsd <abi> <cpu>sparc <endian>big ;
+feature.compose <target-architecture>netbsd-sparc64 : <address-model>64 <architecture>sparc <instruction-set>native <multiarch>sparc64-netbsd <kernel>netbsd <abi> <cpu>sparc64 <endian>big ;
+feature.compose <target-architecture>openbsd-i386 : <address-model>32 <architecture>x86 <instruction-set>i686 <multiarch>i386-openbsd <kernel>openbsd <abi> <cpu>i386 <endian>little ;
+feature.compose <target-architecture>openbsd-ia64 : <address-model>64 <architecture>ia64 <instruction-set>native <multiarch>ia64-openbsd <kernel>openbsd <abi> <cpu>ia64 <endian>little ;
+feature.compose <target-architecture>openbsd-amd64 : <address-model>64 <architecture>x86 <instruction-set>athlon64 <multiarch>x86_64-openbsd <kernel>openbsd <abi> <cpu>amd64 <endian>little ;
+feature.compose <target-architecture>openbsd-armeb : <address-model>32 <architecture>arm <instruction-set>native <multiarch>armeb-openbsd <kernel>openbsd <abi> <cpu>armeb <endian>big ;
+feature.compose <target-architecture>openbsd-arm : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-openbsd <kernel>openbsd <abi> <cpu>arm <endian>little ;
+feature.compose <target-architecture>openbsd-hppa : <address-model>32 <architecture>parisc <instruction-set>native <multiarch>hppa-openbsd <kernel>openbsd <abi> <cpu>hppa <endian>big ;
+feature.compose <target-architecture>openbsd-mips : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mips-openbsd <kernel>openbsd <abi> <cpu>mips <endian>big ;
+feature.compose <target-architecture>openbsd-mipsel : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mipsel-openbsd <kernel>openbsd <abi> <cpu>mipsel <endian>little ;
+feature.compose <target-architecture>openbsd-powerpc : <address-model>32 <architecture>power <instruction-set>native <multiarch>powerpc-openbsd <kernel>openbsd <abi> <cpu>powerpc <endian>big ;
+feature.compose <target-architecture>openbsd-ppc64 : <address-model>64 <architecture>power <instruction-set>native <multiarch>powerpc64-openbsd <kernel>openbsd <abi> <cpu>ppc64 <endian>big ;
+feature.compose <target-architecture>openbsd-sparc : <address-model>32 <architecture>sparc <instruction-set>native <multiarch>sparc-openbsd <kernel>openbsd <abi> <cpu>sparc <endian>big ;
+feature.compose <target-architecture>openbsd-sparc64 : <address-model>64 <architecture>sparc <instruction-set>native <multiarch>sparc64-openbsd <kernel>openbsd <abi> <cpu>sparc64 <endian>big ;
+feature.compose <target-architecture>solaris-i386 : <address-model>32 <architecture>x86 <instruction-set>i686 <multiarch>i386-solaris <kernel>solaris <abi> <cpu>i386 <endian>little ;
+feature.compose <target-architecture>solaris-ia64 : <address-model>64 <architecture>ia64 <instruction-set>native <multiarch>ia64-solaris <kernel>solaris <abi> <cpu>ia64 <endian>little ;
+feature.compose <target-architecture>solaris-amd64 : <address-model>64 <architecture>x86 <instruction-set>athlon64 <multiarch>x86_64-solaris <kernel>solaris <abi> <cpu>amd64 <endian>little ;
+feature.compose <target-architecture>solaris-armeb : <address-model>32 <architecture>arm <instruction-set>native <multiarch>armeb-solaris <kernel>solaris <abi> <cpu>armeb <endian>big ;
+feature.compose <target-architecture>solaris-arm : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-solaris <kernel>solaris <abi> <cpu>arm <endian>little ;
+feature.compose <target-architecture>solaris-hppa : <address-model>32 <architecture>parisc <instruction-set>native <multiarch>hppa-solaris <kernel>solaris <abi> <cpu>hppa <endian>big ;
+feature.compose <target-architecture>solaris-mips : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mips-solaris <kernel>solaris <abi> <cpu>mips <endian>big ;
+feature.compose <target-architecture>solaris-mipsel : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mipsel-solaris <kernel>solaris <abi> <cpu>mipsel <endian>little ;
+feature.compose <target-architecture>solaris-powerpc : <address-model>32 <architecture>power <instruction-set>native <multiarch>powerpc-solaris <kernel>solaris <abi> <cpu>powerpc <endian>big ;
+feature.compose <target-architecture>solaris-ppc64 : <address-model>64 <architecture>power <instruction-set>native <multiarch>powerpc64-solaris <kernel>solaris <abi> <cpu>ppc64 <endian>big ;
+feature.compose <target-architecture>solaris-sparc : <address-model>32 <architecture>sparc <instruction-set>native <multiarch>sparc-solaris <kernel>solaris <abi> <cpu>sparc <endian>big ;
+feature.compose <target-architecture>solaris-sparc64 : <address-model>64 <architecture>sparc <instruction-set>native <multiarch>sparc64-solaris <kernel>solaris <abi> <cpu>sparc64 <endian>big ;
+feature.compose <target-architecture>uclinux-armel : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-uclinux-uclibceabi <kernel>uclinux <abi>uclibceabi <cpu>arm <endian>little ;
+feature.compose <target-architecture>uclinux-i386 : <address-model>32 <architecture>x86 <instruction-set>i686 <multiarch>i386-uclinux-uclibc <kernel>uclinux <abi>uclibc <cpu>i386 <endian>little ;
+feature.compose <target-architecture>uclinux-ia64 : <address-model>64 <architecture>ia64 <instruction-set>native <multiarch>ia64-uclinux-uclibc <kernel>uclinux <abi>uclibc <cpu>ia64 <endian>little ;
+feature.compose <target-architecture>uclinux-amd64 : <address-model>64 <architecture>x86 <instruction-set>athlon64 <multiarch>x86_64-uclinux-uclibc <kernel>uclinux <abi>uclibc <cpu>amd64 <endian>little ;
+feature.compose <target-architecture>uclinux-armeb : <address-model>32 <architecture>arm <instruction-set>native <multiarch>armeb-uclinux-uclibc <kernel>uclinux <abi>uclibc <cpu>armeb <endian>big ;
+feature.compose <target-architecture>uclinux-arm : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-uclinux-uclibc <kernel>uclinux <abi>uclibc <cpu>arm <endian>little ;
+feature.compose <target-architecture>uclinux-hppa : <address-model>32 <architecture>parisc <instruction-set>native <multiarch>hppa-uclinux-uclibc <kernel>uclinux <abi>uclibc <cpu>hppa <endian>big ;
+feature.compose <target-architecture>uclinux-mips : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mips-uclinux-uclibc <kernel>uclinux <abi>uclibc <cpu>mips <endian>big ;
+feature.compose <target-architecture>uclinux-mipsel : <address-model>32 <architecture>mips32r2 <instruction-set>native <multiarch>mipsel-uclinux-uclibc <kernel>uclinux <abi>uclibc <cpu>mipsel <endian>little ;
+feature.compose <target-architecture>uclinux-powerpc : <address-model>32 <architecture>power <instruction-set>native <multiarch>powerpc-uclinux-uclibc <kernel>uclinux <abi>uclibc <cpu>powerpc <endian>big ;
+feature.compose <target-architecture>uclinux-ppc64 : <address-model>64 <architecture>power <instruction-set>native <multiarch>powerpc64-uclinux-uclibc <kernel>uclinux <abi>uclibc <cpu>ppc64 <endian>big ;
+feature.compose <target-architecture>uclinux-sparc : <address-model>32 <architecture>sparc <instruction-set>native <multiarch>sparc-uclinux-uclibc <kernel>uclinux <abi>uclibc <cpu>sparc <endian>big ;
+feature.compose <target-architecture>uclinux-sparc64 : <address-model>64 <architecture>sparc <instruction-set>native <multiarch>sparc64-uclinux-uclibc <kernel>uclinux <abi>uclibc <cpu>sparc64 <endian>big ;
+feature.extend kernel : darwin freebsd hurd kfreebsd knetbsd kopensolaris linux netbsd openbsd solaris uclinux ;
+feature.extend abi : gnu gnueabi gnueabihf gnulp gnuspe uclibc uclibceabi ;
+
+### END GENERATED CODE
+
+local rule search-library-property ( properties * ) {
+  local home = [ os.home-directories ] ;
+
+  local address-model = [ property.select <address-model> : $(properties) ] ;
+  local triplet = [ property.select <multiarch> : $(properties) ] ;
+  local search      = "$(home)/lib/$(triplet:G=)" ;
+  search = "$(search)&&$(home)/lib$(address-model:G=)" ;
+  search = "$(search)&&/usr/local/lib/$(triplet:G=)" ;
+  search = "$(search)&&/usr/local/lib$(address-model:G=)" ;
+  search = "$(search)&&/usr/lib/$(triplet:G=)" ;
+  search = "$(search)&&/usr/lib$(address-model:G=)" ;
+
+  return $(search) ;
+}
+
+rule search-path ( ) {
+  local properties = [ feature.expand-composites <target-architecture>$(.default-architecture) ] ;
+  local search = [ search-library-property $(properties) ] ;
+  out-properties = <search>$(search) ;
+
+  for arch in [ feature.values target-architecture ] {
+    properties = [ feature.expand-composites <target-architecture>$(arch) ] ;
+    search = [ search-library-property $(properties) ] ;
+    out-properties = $(out-properties) <target-architecture>$(arch):<search>$(search) ;
+  }
+
+  return $(out-properties) ;
+}
+
+rule build ( name package-name ? : binaries * : libraries * : requirements * ) {
+  local properties = [ feature.expand-composites [ feature.add-defaults $(requirements) ] ] ;
+  package-name ?= $(name) ;
+
+  alias $(name)-lib-shared
+      : $(libraries)
+      : $(requirements)
+        <link>shared ;
+  alias $(name)-lib-static
+      : $(libraries)
+      : $(requirements)
+        <link>static ;
+
+  alias $(name)
+      : $(binaries)
+        $(name)-lib-shared
+        $(name)-lib-static
+      : $(requirements) ;
+
+  local c = [ project.current ] ;
+  local project-module = [ $(c).project-module ] ;
+  module $(project-module) {
+    explicit $(name)
+             $(name)-lib-shared
+             $(name)-lib-static
+             $(binaries)
+             $(libraries) ;
+  }
+}
+
+rule install ( name package-name ? : binaries * : libraries * : headers * : requirements * ) {
+  local properties = [ feature.expand-composites [ feature.add-defaults $(requirements) ] ] ;
+  package-name ?= $(name) ;
+
+  if [ MATCH --prefix=(.*) : [ modules.peek : ARGV ] ] {
+    # If --prefix is explicitly specified on the command line,
+    # then we need wipe away any settings of libdir/includir that
+    # is specified via options in config files.
+    option.set bindir : ;
+    option.set libdir : ;
+    option.set includedir : ;
+  }
+
+  # If <install-source-root> is not specified, all headers are installed to prefix/include, no matter what their
+  # relative path is. Sometimes that is what is needed.
+  local install-source-root = [ property.select <install-source-root> : $(requirements) ] ;
+  install-source-root = $(install-source-root:G=) ;
+  requirements = [ property.change $(requirements) : <install-source-root> ] ;
+
+  local install-header-subdir = [ property.select <install-header-subdir> : $(requirements) ] ;
+  install-header-subdir = /$(install-header-subdir:G=) ;
+  install-header-subdir ?= "" ;
+  requirements = [ property.change $(requirements) : <install-header-subdir> ] ;
+
+  # First, figure out all locations. Use the default if no prefix option given.
+  local prefix = [ get-prefix $(name) : $(requirements) ] ;
+
+  # Binaries.
+  local bin-locate = [ option.get bindir : $(prefix)/bin ] ;
+
+  # Object code libraries.
+  local triplet = [ property.select <multiarch> : $(properties) ] ;
+  local lib-locate = [ option.get libdir : $(prefix)/lib/$(triplet:G=) ] ;
+
+  # Source header files.
+  local include-locate = [ option.get includedir : $(prefix)/include ] ;
+
+  stage.install $(name)-bin
+              : $(binaries)
+              : $(requirements)
+                <location>$(bin-locate) ;
+
+  stage.install $(name)-lib-shared
+              : $(libraries)
+              : $(requirements)
+                <location>$(lib-locate)
+                <install-type>SHARED_LIB
+                <link>shared ;
+  stage.install $(name)-lib-static
+              : $(libraries)
+              : $(requirements)
+                <location>$(lib-locate)
+                <install-type>STATIC_LIB
+                <link>static ;
+
+  stage.install $(name)-headers
+              : $(headers)
+              : $(requirements)
+                <location>$(include-locate)$(install-header-subdir)
+                <install-source-root>$(install-source-root) ;
+
+  alias $(name)
+      : $(name)-bin
+        $(name)-lib-shared
+        $(name)-lib-static
+        $(name)-headers ;
+
+  local c = [ project.current ] ;
+  local project-module = [ $(c).project-module ] ;
+  module $(project-module) {
+    explicit $(name)
+             $(name)-bin
+             $(name)-lib-shared
+             $(name)-lib-static
+             $(name)-headers ;
+  }
+}
+
+rule install-data ( name package-name ? : data * : requirements * ) {
+  package-name ?= $(name) ;
+
+  if [ MATCH --prefix=(.*) : [ modules.peek : ARGV ] ] {
+    # If --prefix is explicitly specified on the command line, then we need wipe away any settings of datarootdir
+    option.set datarootdir : ;
+  }
+
+  local prefix = [ get-prefix $(package-name) : $(requirements) ] ;
+  local datadir = [ option.get datarootdir : $(prefix)/share ] ;
+
+  stage.install $(target-name)
+              : $(data)
+              : $(requirements) <location>$(datadir)/$(package-name) ;
+
+  local c = [ project.current ] ;
+  local project-module = [ $(c).project-module ] ;
+  module $(project-module) {
+    explicit $(target-name) ;
+  }
+}
+
+local rule get-prefix ( package-name : requirements * ) {
+  local prefix = [ option.get prefix : [ property.select <install-default-prefix> : $(requirements) ] ] ;
+
+  # Remove ./ in prefix by
+  prefix = $(prefix:G=) ;
+  requirements = [ property.change $(requirements) : <install-default-prefix> ] ;
+
+  # Or some likely defaults if neither is given.
+  if ! $(prefix) {
+    if [ modules.peek : NT ] { prefix = C:\\$(package-name) ; }
+    else if [ modules.peek : UNIX ] { prefix = /usr/local ; }
+  }
+
+  return $(prefix) ;
+}
