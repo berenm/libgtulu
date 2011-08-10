@@ -19,11 +19,11 @@ lib boost_log : : [ multiarch.search-path ] ;
 lib logging : : [ multiarch.search-path ] ;
 lib glut : : [ multiarch.search-path ] ;
 lib X11 : : [ multiarch.search-path ] ;
-lib Xrandr : : [ multiarch.search-path ] ;
 
 project libgtulu : requirements
   <library>GL/<link>shared
   <library>GLU
+  <library>X11
   <library>glfw
   <library>boost_thread
   <library>boost_program_options
@@ -81,7 +81,7 @@ lib gtulu :
   src/gtulu/internal/objects/program/base.cpp
   src/gtulu/internal/objects/shader/base.cpp
   ;
-exe compiler : src/compile.cpp common gtulu ;
+exe gtulu-compiler : src/compile.cpp common gtulu ;
 
 program test1 : test/shaders/test1.vs test/shaders/test1.fs : <location>test/generated/ ;
 program test2 : test/shaders/test2.vs test/shaders/test2.fs : <location>test/generated/ ;
@@ -103,12 +103,12 @@ alias test : test1exe/<link>shared
 
 
 multiarch.build build libgtulu
-                : compiler
+                : gtulu-compiler
                 : gtulu
                 : ;
 
 multiarch.install install libgtulu 
-                    : compiler
+                    : gtulu-compiler
                     : gtulu
                     : [ path.glob-tree include/ : *.* : ]
                     : <install-source-root>./include/ ;
