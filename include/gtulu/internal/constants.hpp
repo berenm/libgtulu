@@ -64,7 +64,7 @@ namespace gtulu {
 
         protected:
           gl_constant() :
-              gl_constant_base(ConstantImpl::name, ConstantImpl::value) {
+              gl_constant_base(ConstantImpl::name(), ConstantImpl::value) {
           }
       };
 
@@ -81,8 +81,10 @@ namespace gtulu {
       };
 
       struct invalid_constant: public gl_constant< invalid_constant > {
-          static constexpr char name[] = "<invalid-constant>";
-          static constexpr::std::uint64_t value = 0xFFFFFFFFFFFFFFFF;
+          static inline char const* name() {
+            return "<invalid-constant>";
+          }
+          static ::std::uint64_t const value = 0xFFFFFFFFFFFFFFFF;
       };
 
     } // namespace constant

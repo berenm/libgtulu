@@ -24,6 +24,6 @@ class constant:
 
   def __str__(self):
     return """          struct %(new_name)s: public ::gtulu::internal::constant::gl_constant< %(new_name)s > {
-              static constexpr char name[] = "%(temp_name)s";
-              static constexpr ::std::uint64_t value = %(name)s;
+              static inline char const* name() { return "%(temp_name)s"; }
+              static ::std::uint64_t const value = %(name)s;
           };""" % (self.__dict__)

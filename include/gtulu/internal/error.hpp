@@ -26,23 +26,23 @@
         switch (__gl_error) { \
           case ::gtulu::internal::error::invalid_enum::value: \
             __errorM(gl) \
-              << ::gtulu::internal::error::invalid_enum::name; \
+              << ::gtulu::internal::error::invalid_enum::name(); \
             break; \
           case ::gtulu::internal::error::invalid_value::value: \
             __errorM(gl) \
-              << ::gtulu::internal::error::invalid_value::name; \
+              << ::gtulu::internal::error::invalid_value::name(); \
             break; \
           case ::gtulu::internal::error::invalid_operation::value: \
             __errorM(gl) \
-              << ::gtulu::internal::error::invalid_operation::name; \
+              << ::gtulu::internal::error::invalid_operation::name(); \
             break; \
           case ::gtulu::internal::error::invalid_framebuffer_operation::value: \
             __errorM(gl) \
-              << ::gtulu::internal::error::invalid_framebuffer_operation::name; \
+              << ::gtulu::internal::error::invalid_framebuffer_operation::name(); \
             break; \
           case ::gtulu::internal::error::out_of_memory::value: \
             __fatalM(gl) \
-              << ::gtulu::internal::error::out_of_memory::name; \
+              << ::gtulu::internal::error::out_of_memory::name(); \
             break; \
           case ::gtulu::internal::error::no_error::value: \
             break; \
@@ -72,7 +72,6 @@ namespace gtulu {
 
       template< typename ErrorCode >
       struct error: public ErrorCode {
-          using ErrorCode::name;
           using ErrorCode::value;
       };
 
