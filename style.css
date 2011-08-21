@@ -135,3 +135,15 @@ html {
 .gl41:after {
   content: " ⁽⁴⁺⁾"
 }
+
+.coverage a:link,
+.coverage a:hover,
+.coverage a:active,
+.coverage a:visited {
+  color: inherit;
+  text-decoration: inherit;
+}
+.coverage a:hover,
+.coverage a:active {
+  font-weight: bold;
+}
