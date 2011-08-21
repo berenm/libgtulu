@@ -7,25 +7,25 @@ import re
 
 # The words that are used in the declaration are isolated
 words = [ '1D', '2D', '3D',
-      'Accum', 'Active', 'Alpha', 'Are', 'Arrays', 'Array', 'Attachment', 'Attached', 'Attach', 'Attrib', 'At', 'Address',
-      'Base', 'Begin', 'Binary', 'Binding', 'Bind', 'Blend', 'Blit', 'Block', 'Boolean', 'Buffers', 'Buffer', 'Bitmap', 'Build',
+      'Accum', 'Active', 'Alpha', 'Are', 'Arrays', 'Array', 'Attachment', 'Attached', 'Attach', 'Attrib', 'Atomic', 'At', 'Address',
+      'Base', 'Begin', 'Binary', 'Binding', 'Bind', 'Blend', 'Blit', 'Block', 'Boolean', 'Buffers', 'Buffer', 'Bitmap', 'Build', 'Barrier',
       'Callback', 'Check', 'Choose', 'Clamp', 'Clear', 'CLevent', 'Client', 'Color', 'Compiler', 'Compile', 'Compressed', 'Conditional', 'Context',
       'Control', 'Config', 'Convolution', 'Coord', 'Copy', 'Counter', 'Coverage', 'Create', 'Cull', 'Current', 'Curve', 'Call', 'Contour', 'Clip', 'Cylinder',
       'Data', 'Debug', 'Delete', 'Depth', 'Detach', 'Divisor', 'Double', 'Disable', 'Drawable', 'Draw', 'Destroy', 'Disk', 'Direct', 'Display',
       'Elements', 'Element', 'Enabled', 'Enable', 'End', 'Equation', 'Error', 'Extensions', 'Env', 'Edge', 'Eval', 'Event', 'Extension',
       'Face', 'Feedbacks', 'Feedback', 'Fence', 'Filter', 'Finish', 'Float', 'Flush', 'Format', 'Frag', 'Framebuffers', 'Framebuffer', 'From', 'Front', 'Func', 'Fog',
       'Font', 'Free', 'Flag', 'Frustum', 'FB',
-      'Generate', 'Gen', 'Get', 'Graphics', 'GLX', 'GL',
+      'Generate', 'Gen', 'Getn', 'Get', 'Graphics', 'GLX', 'GL',
       'Hint', 'Histogram',
-      'Image', 'Include', 'Indexed', 'Index', 'Indices', 'Indirect', 'Info', 'Instanced', 'Insert', 'Integer', 'Interleaved', 'Is', 'Init', 'Import', 'Intro', 'Identity', 'ID',
+      'Image', 'Include', 'Indexed', 'Index', 'Indices', 'Indirect', 'Info', 'Instanced', 'Instance', 'Insert', 'Integer', 'Interleaved', 'Internalformat', 'Internal', 'Is', 'Init', 'Import', 'Intro', 'Identity', 'ID',
       'Layer', 'Level', 'Line', 'Link', 'List', 'Location', 'Logic', 'Log', 'Light', 'Load', 'Look',
-      'Mapped', 'Map', 'Mask', 'Matrix', 'Message', 'Minmax', 'Min', 'Mipmap', 'Model', 'Mode', 'Multisample', 'Multi', 'Material', 'Mult', 'Make', 'Matrice', 'Mesh',
+      'Mapped', 'Map', 'Mask', 'Matrix', 'Message', 'Minmax', 'Min', 'Mipmap', 'Model', 'Mode', 'Multisample', 'Multi', 'Material', 'Mult', 'Make', 'Matrice', 'Mesh', 'Memory',
       'Named', 'Name', 'Normal', 'New', 'Nurbs', 'Next',
       'Object', 'Offset', 'Op', 'Ortho', 'Orientation',
       'Parameter', 'Patch', 'Pause', 'Pipelines', 'Pipeline', 'Pixels', 'Pixel', 'Pointer', 'Point', 'Pos', 'Polygon', 'Precision', 'Primitive', 'Program', 'Project', 'Provoking', 'Push', 'Prioritize',
       'Property', 'Pwl', 'Pixmap', 'Partial', 'Pass', 'Pbuffer', 'Perspective', 'Pick', 'Plane', 'Proc',
       'Queries', 'Query', 'Quadric',
-      'Range', 'Read', 'Release', 'Renderbuffers', 'Renderbuffer', 'Renderer', 'Render', 'Reset', 'Restart', 'Resume', 'Rotate', 'Resident', 'Raster', 'Rect',
+      'Range', 'Readn', 'Read', 'Release', 'Renderbuffers', 'Renderbuffer', 'Renderer', 'Render', 'Reset', 'Restart', 'Resume', 'Rotate', 'Resident', 'Raster', 'Rect',
       'Samplers', 'Sampler', 'Sample', 'Scissor', 'Secondary', 'Separable', 'Separate', 'Shaders', 'Shader', 'Shading', 'Size', 'Source', 'Stages', 'Stage', 'Status', 'Stencil', 'Stipple', 'Storage',
       'Store', 'String', 'Stream', 'Subroutines', 'Subroutine', 'Sub', 'Sync', 'Surface', 'Server', 'Style', 'State', 'Swap', 'Sphere', 'Shade', 'Selected', 'Select', 'Scale', 'Sampling',
       'Table', 'Textures', 'Texture', 'Tex', 'Transform', 'Translate', 'Tess', 'Transfer', 'Trim', 'Transpose', 'Through',
@@ -38,6 +38,11 @@ words = [ '1D', '2D', '3D',
 class renamable(object):
   def __init__(self):
     new_name = self.name
+    if re.match(r'^[a-z_0-9]+$', new_name) is not None:
+      self.new_name = new_name
+      return
+    
+    print "RENM:", new_name
     if self.name.endswith('ARB'):
       self.is_arb = True
       self.is_ext = False
@@ -51,23 +56,24 @@ class renamable(object):
       self.is_gl = False
       self.is_glX = False
       self.is_glu = True
-      new_name = re.sub(r'^glu', r'#', new_name)
+      new_name = re.sub(r'^glu', r'', new_name)
     elif self.name.startswith('glX'):
       self.is_gl = False
       self.is_glX = True
       self.is_glu = False
-      new_name = re.sub(r'^glX', r'#', new_name)
+      new_name = re.sub(r'^glX', r'', new_name)
     elif self.name.startswith('gl'):
       self.is_gl = True
       self.is_glX = False
       self.is_glu = False
-      new_name = re.sub(r'^gl', r'#', new_name)
+      new_name = re.sub(r'^gl', r'', new_name)
 
-    new_name = re.sub(r'(' + '|'.join(words) + ')', r'#\1#', new_name)
-
+    name_words = re.findall(r'(' + '|'.join(words) + ')', new_name)
+    new_name = new_name.replace(''.join(name_words), '')
+      
     # Then, we handle special i values that stand for 'indexed'
-    new_name = re.sub(r'#([^#]*)i_v$', r'##Indexed#\1@vector@', new_name)
-
+    new_name = re.sub(r'(.*)i_v$', r'_indexed#\1@vector@', new_name)
+    
     # Then, we handle 'types' suffixes, as v/vector f/float d/double ubsi/integers
     new_name = re.sub(r'v$', r'@vector@', new_name)
     new_name = re.sub(r'f((?:@vector@)?)$', r'@float@\1', new_name)
@@ -84,22 +90,15 @@ class renamable(object):
     new_name = re.sub(r'L(\d?)@double', r'\1_large@double', new_name)
 
     # Fix a weird declaration with both f and i suffix
-    new_name = re.sub(r'#f@int', r'#_float@int', new_name)
-
-    new_name = re.sub(r'#([0-9])', r'#_\1', new_name)
+    new_name = re.sub(r'f@int', r'_float@int', new_name)
+    new_name = re.sub(r'([0-9](?:x[0-9])?)', r'_\1', new_name)
 
     # Replace isolation token with _ and lowecase first letter
-    new_name = re.sub(r'gl#', r'gl##', new_name)
     new_name = re.sub(r'#n#', r'_n##', new_name)
-    new_name = re.sub(r'##([A-Z]+)', lambda m: '_' + m.group(1).lower(), new_name)
-    new_name = re.sub(r'#_', r'_', new_name)
 
     # Handle remaning things
-    new_name = re.sub(r'D#Multisample', r'D_multisample', new_name)
-    new_name = re.sub(r'#I#Pointer', r'_pointer_integer', new_name)
-    new_name = re.sub(r'#L#Pointer', r'_large_pointer_integer', new_name)
-    new_name = re.sub(r'#_([1-4])D', r'_\1d', new_name)
-
+    new_name = re.sub(r'^.*IPointer', r'_integer', new_name)
+    new_name = re.sub(r'^.*LPointer', r'_large_integer', new_name)
     new_name = re.sub(r'cLevent', r'cl_event', new_name)
 
     self.is_vector = r'@vector@' in new_name
@@ -116,6 +115,12 @@ class renamable(object):
 
     new_name = re.sub(r'@[^@]+@', r'', new_name)
     new_name = re.sub(r'#$', r'', new_name)
-
+    
     # That's all, we are clean!
+    print "RENM:", new_name
+    new_name = '_'.join([ w.lower() for w in name_words]) + new_name
+    new_name = new_name.replace('getn_', 'get_n_')
+    new_name = new_name.replace('readn_', 'read_n_')
+    
+    print "RENM:", new_name
     self.new_name = new_name.strip('_')

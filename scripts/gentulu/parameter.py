@@ -24,6 +24,7 @@ class parameter:
     self.is_struct = 'struct' in type_modifier
     self.is_const = 'const' in type_modifier
     self.is_pointer = '*' in type_modifier
+    self.is_pointer_pointer = '**' in type_modifier
     self.is_reference = '&' in type_modifier
 
     if not self.is_pointer:
@@ -68,6 +69,8 @@ class parameter:
     if self.is_const:
       string += " const"
     if self.is_pointer:
+      string += "*"
+    if self.is_pointer_pointer:
       string += "*"
     if self.is_reference:
       string += "&"

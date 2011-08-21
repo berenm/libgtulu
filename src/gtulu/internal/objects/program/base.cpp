@@ -7,6 +7,7 @@
  * @date 27 juil. 2010
  * @todo comment
  */
+#include "gtulu_opengl_pch.hpp"
 
 #include "gtulu/opengl.hpp"
 #include "gtulu/internal/constants.hpp"

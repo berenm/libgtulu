@@ -7,6 +7,7 @@
  * @date 3 sept. 2010
  * @todo comment
  */
+#include "gtulu_opengl_pch.hpp"
 
 #include "gtulu/internal/formats/output.hpp"
 

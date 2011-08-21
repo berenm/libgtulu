@@ -7,6 +7,7 @@
  * @date 30 mai 2010
  * @todo comment
  */
+#include "gtulu_opengl_pch.hpp"
 
 #include <logging/logging.hpp>
 

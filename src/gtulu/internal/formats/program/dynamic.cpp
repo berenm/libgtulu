@@ -8,6 +8,8 @@
  * @todo comment
  */
 
+#include "gtulu_opengl_pch.hpp"
+
 #include "gtulu/internal/formats/program/dynamic.hpp"
 #include "gtulu/internal/formats/attribute.hpp"
 #include "gtulu/internal/formats/uniform.hpp"

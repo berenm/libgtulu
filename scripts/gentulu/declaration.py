@@ -9,11 +9,10 @@ from gentulu.utils import plain_text, smart_wrap
 from gentulu.renamable import renamable
 
 class declaration(renamable):
-  def __init__(self, name, output, parameters, namespace=''):
+  def __init__(self, name, output, parameters):
     self.name = name
     self.output = output
     self.parameters = parameters
-    self.namespace = namespace
 
     self.can_template = any([ p.is_template for p in self.parameters ])
 
@@ -56,7 +55,7 @@ class declaration(renamable):
         if p.is_template:
           tpl_pars.append(p.tpl_str())
           tpl_call.append('%s_t::value' % (p.name))
-          tpl_debg.append(''' "%s: '" << %s_t::name::value << "'" ''' % (p.name, p.name))
+          tpl_debg.append(''' "%s: '" << %s_t::name << "'" ''' % (p.name, p.name))
         else:
           tpl_args.append(p.std_str())
           if p.type == 'bool':
@@ -129,7 +128,7 @@ inline static %(output)s call(%(tpl_args)s) {
     return (string % (self.__dict__)).strip().splitlines()
 
   @staticmethod
-  def parse_string(namespace, string):
+  def parse_string(string):
     string = string.replace('GLAPI', '')
     string = string.strip('); ')
     [output, string] = string.split('APIENTRY')
@@ -140,7 +139,7 @@ inline static %(output)s call(%(tpl_args)s) {
     parameters_string = parameters_string.strip()
 
     parameters = [ parameter.parse_string(s.strip()) for s in parameters_string.split(',') ]
-    return declaration(name, output, parameters, namespace)
+    return declaration(name, output, parameters)
 
   @staticmethod
   def parse_xml(node, next):
@@ -190,28 +189,4 @@ inline static %(output)s call(%(tpl_args)s) {
     return self.__hash__() == other.__hash__()
 
   def __hash__(self):
-    hash = self.new_name.__hash__()
-    if self.is_vector:
-      hash = hash ^ (0x1 << 1)
-    if self.is_float:
-      hash = hash ^ (0x1 << 1)
-    if self.is_double:
-      hash = hash ^ (0x1 << 2)
-    if self.is_int8:
-      hash = hash ^ (0x1 << 3)
-    if self.is_int16:
-      hash = hash ^ (0x1 << 4)
-    if self.is_int32:
-      hash = hash ^ (0x1 << 5)
-    if self.is_int64:
-      hash = hash ^ (0x1 << 6)
-    if self.is_uint8:
-      hash = hash ^ (0x1 << 7)
-    if self.is_uint16:
-      hash = hash ^ (0x1 << 8)
-    if self.is_uint32:
-      hash = hash ^ (0x1 << 9)
-    if self.is_uint64:
-      hash = hash ^ (0x1 << 10)
-    return hash
-
+    return hash(''.join(self.str_forward()))

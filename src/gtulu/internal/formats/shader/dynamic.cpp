@@ -7,6 +7,7 @@
  * @date 26 juil. 2010
  * @todo comment
  */
+#include "gtulu_opengl_pch.hpp"
 
 #include "gtulu/internal/formats/shader/dynamic.hpp"
 #include "gtulu/internal/formats/output.hpp"

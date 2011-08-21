@@ -386,7 +386,7 @@ namespace gtulu {
       using gig::gl::v4_1::fnc::gl_vertex_attrib_2_large;
       using gig::gl::v4_1::fnc::gl_vertex_attrib_3_large;
       using gig::gl::v4_1::fnc::gl_vertex_attrib_4_large;
-      using gig::gl::v4_1::fnc::gl_vertex_attrib_large_pointer_integer;
+      using gig::gl::v4_1::fnc::gl_vertex_attrib_pointer_large_integer;
       using gig::gl::v4_1::fnc::gl_depth_range_array;
       using gig::gl::v4_1::fnc::gl_depth_range_indexed;
       using gig::gl::v4_1::fnc::gl_get_double_indexed;

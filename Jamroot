@@ -65,7 +65,9 @@ rule for-each ( rule : suffix ? : sources * : dependencies * : properties * ) {
   return $(objects) ;
 }
 
-obj common : src/common.cpp ;
+cpp-pch gtulu_opengl_pch.hpp : include/gtulu_opengl_pch.hpp ;
+
+obj common : src/common.cpp gtulu_opengl_pch.hpp ;
 
 lib gtulu : 
   src/gtulu/utils/file.cpp
@@ -80,18 +82,19 @@ lib gtulu :
   src/gtulu/internal/objects/framebuffer/attachment_manager.cpp
   src/gtulu/internal/objects/program/base.cpp
   src/gtulu/internal/objects/shader/base.cpp
+  gtulu_opengl_pch.hpp
   ;
-exe gtulu-compiler : src/compile.cpp common gtulu ;
+exe gtulu-compiler : src/compile.cpp common gtulu gtulu_opengl_pch.hpp ;
 
 program test1 : test/shaders/test1.vs test/shaders/test1.fs : <location>test/generated/ ;
 program test2 : test/shaders/test2.vs test/shaders/test2.fs : <location>test/generated/ ;
 program test3 : test/shaders/test3.vs test/shaders/test3.fs : <location>test/generated/ ;
 
-exe test1exe : test/test1.cpp test1 common gtulu
+exe test1exe : test/test1.cpp test1 common gtulu gtulu_opengl_pch.hpp
     : <address-model>$(default_address_model) ;
-exe test2exe : test/test2.cpp test2 common gtulu
+exe test2exe : test/test2.cpp test2 common gtulu gtulu_opengl_pch.hpp
     : <address-model>$(default_address_model) ;
-exe test3exe : test/test3.cpp test3 common gtulu
+exe test3exe : test/test3.cpp test3 common gtulu gtulu_opengl_pch.hpp
     : <address-model>$(default_address_model) ;
 
 alias test : test1exe/<link>shared

@@ -44,14 +44,14 @@ class function(renamable):
   def str_forward(self):
     string = '''
 %(comments)s
-struct %(new_name)s;
+struct gl_%(new_name)s;
 '''
     return (string % (self.__dict__)).strip().splitlines()
 
   def str_declare(self):
     string = '''
 %(comments)s
-struct %(new_name)s {
+struct gl_%(new_name)s {
 '''
     for d in self.declarations:
       string += '  ' + '\n  '.join(d.str_forward()) + '\n'
@@ -61,7 +61,7 @@ struct %(new_name)s {
   def str_define(self):
     string = '''
 %(comments)s
-struct %(new_name)s {
+struct gl_%(new_name)s {
 '''
     for d in self.declarations:
       string += '  ' + '\n  '.join(d.str_define()) + '\n\n'

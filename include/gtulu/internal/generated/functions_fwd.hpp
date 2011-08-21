@@ -278,6 +278,10 @@ namespace gtulu {
           namespace fnc {
           } // namespace fnc
         } // namespace v4_1
+        namespace v4_2 {
+          namespace fnc {
+          } // namespace fnc
+        } // namespace v4_2
       } // namespace gl
       namespace arb {
         namespace es2_compatibility {
@@ -289,6 +293,13 @@ namespace gtulu {
             struct gl_shader_binary;
           } // namespace fnc
         } // namespace es2_compatibility
+        namespace base_instance {
+          namespace fnc {
+            struct gl_draw_arrays_instanced_base_instance;
+            struct gl_draw_elements_instanced_base_instance;
+            struct gl_draw_elements_instanced_base_vertex_base_instance;
+          } // namespace fnc
+        } // namespace base_instance
         namespace blend_func_extended {
           namespace fnc {
             struct gl_bind_frag_data_location_indexed;
@@ -297,9 +308,17 @@ namespace gtulu {
         } // namespace blend_func_extended
         namespace cl_event {
           namespace fnc {
-            struct gl_create_sync_from_cl_event;
+            struct gl_create_sync_from_clevent;
           } // namespace fnc
         } // namespace cl_event
+        namespace compressed_texture_pixel_storage {
+          namespace fnc {
+          } // namespace fnc
+        } // namespace compressed_texture_pixel_storage
+        namespace conservative_depth {
+          namespace fnc {
+          } // namespace fnc
+        } // namespace conservative_depth
         namespace copy_buffer {
           namespace fnc {
             struct gl_copy_buffer_sub_data;
@@ -420,6 +439,15 @@ namespace gtulu {
           namespace fnc {
           } // namespace fnc
         } // namespace imaging
+        namespace internalformat_query {
+          namespace fnc {
+            struct gl_get_internalformat;
+          } // namespace fnc
+        } // namespace internalformat_query
+        namespace map_buffer_alignment {
+          namespace fnc {
+          } // namespace fnc
+        } // namespace map_buffer_alignment
         namespace map_buffer_range {
           namespace fnc {
             struct gl_flush_mapped_buffer_range;
@@ -500,10 +528,21 @@ namespace gtulu {
             struct gl_validate_program_pipeline;
           } // namespace fnc
         } // namespace separate_shader_objects
+        namespace shader_atomic_counters {
+          namespace fnc {
+            struct gl_get_active_atomic_counter_buffer;
+          } // namespace fnc
+        } // namespace shader_atomic_counters
         namespace shader_bit_encoding {
           namespace fnc {
           } // namespace fnc
         } // namespace shader_bit_encoding
+        namespace shader_image_load_store {
+          namespace fnc {
+            struct gl_bind_image_texture;
+            struct gl_memory_barrier;
+          } // namespace fnc
+        } // namespace shader_image_load_store
         namespace shader_objects {
           namespace fnc {
           } // namespace fnc
@@ -528,6 +567,10 @@ namespace gtulu {
             struct gl_uniform_subroutines;
           } // namespace fnc
         } // namespace shader_subroutine
+        namespace shading_language_420pack {
+          namespace fnc {
+          } // namespace fnc
+        } // namespace shading_language_420pack
         namespace shading_language_include {
           namespace fnc {
             struct gl_compile_shader_include;
@@ -537,6 +580,10 @@ namespace gtulu {
             struct gl_named_string;
           } // namespace fnc
         } // namespace shading_language_include
+        namespace shading_language_packing {
+          namespace fnc {
+          } // namespace fnc
+        } // namespace shading_language_packing
         namespace sync {
           namespace fnc {
             struct gl_client_wait_sync;
@@ -593,6 +640,16 @@ namespace gtulu {
           namespace fnc {
           } // namespace fnc
         } // namespace texture_rgb10_a2ui
+        namespace texture_storage {
+          namespace fnc {
+            struct gl_tex_storage_1d;
+            struct gl_tex_storage_2d;
+            struct gl_tex_storage_3d;
+            struct gl_texture_storage_1d;
+            struct gl_texture_storage_2d;
+            struct gl_texture_storage_3d;
+          } // namespace fnc
+        } // namespace texture_storage
         namespace texture_swizzle {
           namespace fnc {
           } // namespace fnc
@@ -622,6 +679,12 @@ namespace gtulu {
             struct gl_get_query_indexed;
           } // namespace fnc
         } // namespace transform_feedback3
+        namespace transform_feedback_instanced {
+          namespace fnc {
+            struct gl_draw_transform_feedback_instanced;
+            struct gl_draw_transform_feedback_stream_instanced;
+          } // namespace fnc
+        } // namespace transform_feedback_instanced
         namespace uniform_buffer_object {
           namespace fnc {
             struct gl_get_active_uniform_block;
@@ -652,7 +715,7 @@ namespace gtulu {
             struct gl_vertex_attrib_2_large;
             struct gl_vertex_attrib_3_large;
             struct gl_vertex_attrib_4_large;
-            struct gl_vertex_attrib_large_pointer_integer;
+            struct gl_vertex_attrib_pointer_large_integer;
           } // namespace fnc
         } // namespace vertex_attrib_64bit
         namespace vertex_buffer_object {
@@ -927,7 +990,7 @@ namespace gtulu {
           using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_2_large;
           using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_3_large;
           using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_4_large;
-          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_large_pointer_integer;
+          using gig::arb::vertex_attrib_64bit::fnc::gl_vertex_attrib_pointer_large_integer;
           using gig::arb::viewport_array::fnc::gl_depth_range_array;
           using gig::arb::viewport_array::fnc::gl_depth_range_indexed;
           using gig::arb::viewport_array::fnc::gl_get_double_indexed;
@@ -938,12 +1001,35 @@ namespace gtulu {
           using gig::arb::viewport_array::fnc::gl_viewport_indexed;
         } // namespace fnc
       } // namespace v4_1
+      namespace v4_2 {
+        namespace fnc {
+          using gig::arb::base_instance::fnc::gl_draw_arrays_instanced_base_instance;
+          using gig::arb::base_instance::fnc::gl_draw_elements_instanced_base_instance;
+          using gig::arb::base_instance::fnc::gl_draw_elements_instanced_base_vertex_base_instance;
+          using gig::arb::internalformat_query::fnc::gl_get_internalformat;
+          using gig::arb::shader_atomic_counters::fnc::gl_get_active_atomic_counter_buffer;
+          using gig::arb::shader_image_load_store::fnc::gl_bind_image_texture;
+          using gig::arb::shader_image_load_store::fnc::gl_memory_barrier;
+          using gig::arb::texture_storage::fnc::gl_tex_storage_1d;
+          using gig::arb::texture_storage::fnc::gl_tex_storage_2d;
+          using gig::arb::texture_storage::fnc::gl_tex_storage_3d;
+          using gig::arb::texture_storage::fnc::gl_texture_storage_1d;
+          using gig::arb::texture_storage::fnc::gl_texture_storage_2d;
+          using gig::arb::texture_storage::fnc::gl_texture_storage_3d;
+          using gig::arb::transform_feedback_instanced::fnc::gl_draw_transform_feedback_instanced;
+          using gig::arb::transform_feedback_instanced::fnc::gl_draw_transform_feedback_stream_instanced;
+        } // namespace fnc
+      } // namespace v4_2
       } // namespace gl
       namespace arb {
       namespace es2_compatibility {
         namespace fnc {
         } // namespace fnc
       } // namespace es2_compatibility
+      namespace base_instance {
+        namespace fnc {
+        } // namespace fnc
+      } // namespace base_instance
       namespace blend_func_extended {
         namespace fnc {
         } // namespace fnc
@@ -952,6 +1038,14 @@ namespace gtulu {
         namespace fnc {
         } // namespace fnc
       } // namespace cl_event
+      namespace compressed_texture_pixel_storage {
+        namespace fnc {
+        } // namespace fnc
+      } // namespace compressed_texture_pixel_storage
+      namespace conservative_depth {
+        namespace fnc {
+        } // namespace fnc
+      } // namespace conservative_depth
       namespace copy_buffer {
         namespace fnc {
         } // namespace fnc
@@ -1020,6 +1114,14 @@ namespace gtulu {
         namespace fnc {
         } // namespace fnc
       } // namespace imaging
+      namespace internalformat_query {
+        namespace fnc {
+        } // namespace fnc
+      } // namespace internalformat_query
+      namespace map_buffer_alignment {
+        namespace fnc {
+        } // namespace fnc
+      } // namespace map_buffer_alignment
       namespace map_buffer_range {
         namespace fnc {
         } // namespace fnc
@@ -1052,10 +1154,18 @@ namespace gtulu {
         namespace fnc {
         } // namespace fnc
       } // namespace separate_shader_objects
+      namespace shader_atomic_counters {
+        namespace fnc {
+        } // namespace fnc
+      } // namespace shader_atomic_counters
       namespace shader_bit_encoding {
         namespace fnc {
         } // namespace fnc
       } // namespace shader_bit_encoding
+      namespace shader_image_load_store {
+        namespace fnc {
+        } // namespace fnc
+      } // namespace shader_image_load_store
       namespace shader_objects {
         namespace fnc {
         } // namespace fnc
@@ -1072,10 +1182,18 @@ namespace gtulu {
         namespace fnc {
         } // namespace fnc
       } // namespace shader_subroutine
+      namespace shading_language_420pack {
+        namespace fnc {
+        } // namespace fnc
+      } // namespace shading_language_420pack
       namespace shading_language_include {
         namespace fnc {
         } // namespace fnc
       } // namespace shading_language_include
+      namespace shading_language_packing {
+        namespace fnc {
+        } // namespace fnc
+      } // namespace shading_language_packing
       namespace sync {
         namespace fnc {
         } // namespace fnc
@@ -1120,6 +1238,10 @@ namespace gtulu {
         namespace fnc {
         } // namespace fnc
       } // namespace texture_rgb10_a2ui
+      namespace texture_storage {
+        namespace fnc {
+        } // namespace fnc
+      } // namespace texture_storage
       namespace texture_swizzle {
         namespace fnc {
         } // namespace fnc
@@ -1136,6 +1258,10 @@ namespace gtulu {
         namespace fnc {
         } // namespace fnc
       } // namespace transform_feedback3
+      namespace transform_feedback_instanced {
+        namespace fnc {
+        } // namespace fnc
+      } // namespace transform_feedback_instanced
       namespace uniform_buffer_object {
         namespace fnc {
         } // namespace fnc

@@ -7,6 +7,7 @@
  * @date 19 déc. 2009
  * @todo comment
  */
+#include "gtulu_opengl_pch.hpp"
 
 #include <logging/logging.hpp>
 

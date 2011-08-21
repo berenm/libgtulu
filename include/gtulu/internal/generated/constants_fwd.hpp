@@ -700,6 +700,11 @@ namespace gtulu {
             struct gl_version_4_1;
           } // namespace cst
         } // namespace v4_1
+        namespace v4_2 {
+          namespace cst {
+            struct gl_version_4_2;
+          } // namespace cst
+        } // namespace v4_2
       } // namespace gl
       namespace arb {
         namespace es2_compatibility {
@@ -721,6 +726,11 @@ namespace gtulu {
             struct gl_shader_compiler;
           } // namespace cst
         } // namespace es2_compatibility
+        namespace base_instance {
+          namespace cst {
+            struct gl_arb_base_instance;
+          } // namespace cst
+        } // namespace base_instance
         namespace blend_func_extended {
           namespace cst {
             struct gl_arb_blend_func_extended;
@@ -737,6 +747,24 @@ namespace gtulu {
             struct gl_sync_cl_event_complete_arb;
           } // namespace cst
         } // namespace cl_event
+        namespace compressed_texture_pixel_storage {
+          namespace cst {
+            struct gl_arb_compressed_texture_pixel_storage;
+            struct gl_pack_compressed_block_depth;
+            struct gl_pack_compressed_block_height;
+            struct gl_pack_compressed_block_size;
+            struct gl_pack_compressed_block_width;
+            struct gl_unpack_compressed_block_depth;
+            struct gl_unpack_compressed_block_height;
+            struct gl_unpack_compressed_block_size;
+            struct gl_unpack_compressed_block_width;
+          } // namespace cst
+        } // namespace compressed_texture_pixel_storage
+        namespace conservative_depth {
+          namespace cst {
+            struct gl_arb_conservative_depth;
+          } // namespace cst
+        } // namespace conservative_depth
         namespace copy_buffer {
           namespace cst {
             struct gl_arb_copy_buffer;
@@ -961,6 +989,18 @@ namespace gtulu {
             struct gl_one_minus_constant_color;
           } // namespace cst
         } // namespace imaging
+        namespace internalformat_query {
+          namespace cst {
+            struct gl_arb_internalformat_query;
+            struct gl_num_sample_counts;
+          } // namespace cst
+        } // namespace internalformat_query
+        namespace map_buffer_alignment {
+          namespace cst {
+            struct gl_arb_map_buffer_alignment;
+            struct gl_min_map_buffer_alignment;
+          } // namespace cst
+        } // namespace map_buffer_alignment
         namespace map_buffer_range {
           namespace cst {
             struct gl_arb_map_buffer_range;
@@ -1032,10 +1072,114 @@ namespace gtulu {
             struct gl_vertex_shader_bit;
           } // namespace cst
         } // namespace separate_shader_objects
+        namespace shader_atomic_counters {
+          namespace cst {
+            struct gl_active_atomic_counter_buffers;
+            struct gl_arb_shader_atomic_counters;
+            struct gl_atomic_counter_buffer;
+            struct gl_atomic_counter_buffer_active_atomic_counters;
+            struct gl_atomic_counter_buffer_active_atomic_counter_indices;
+            struct gl_atomic_counter_buffer_binding;
+            struct gl_atomic_counter_buffer_data_size;
+            struct gl_atomic_counter_buffer_referenced_by_fragment_shader;
+            struct gl_atomic_counter_buffer_referenced_by_geometry_shader;
+            struct gl_atomic_counter_buffer_referenced_by_tess_control_shader;
+            struct gl_atomic_counter_buffer_referenced_by_tess_evaluation_shader;
+            struct gl_atomic_counter_buffer_referenced_by_vertex_shader;
+            struct gl_atomic_counter_buffer_size;
+            struct gl_atomic_counter_buffer_start;
+            struct gl_max_atomic_counter_buffer_bindings;
+            struct gl_max_atomic_counter_buffer_size;
+            struct gl_max_combined_atomic_counters;
+            struct gl_max_combined_atomic_counter_buffers;
+            struct gl_max_fragment_atomic_counters;
+            struct gl_max_fragment_atomic_counter_buffers;
+            struct gl_max_geometry_atomic_counters;
+            struct gl_max_geometry_atomic_counter_buffers;
+            struct gl_max_tess_control_atomic_counters;
+            struct gl_max_tess_control_atomic_counter_buffers;
+            struct gl_max_tess_evaluation_atomic_counters;
+            struct gl_max_tess_evaluation_atomic_counter_buffers;
+            struct gl_max_vertex_atomic_counters;
+            struct gl_max_vertex_atomic_counter_buffers;
+            struct gl_uniform_atomic_counter_buffer_index;
+            struct gl_unsigned_int_atomic_counter;
+          } // namespace cst
+        } // namespace shader_atomic_counters
         namespace shader_bit_encoding {
           namespace cst {
+            struct gl_arb_shader_bit_encoding;
           } // namespace cst
         } // namespace shader_bit_encoding
+        namespace shader_image_load_store {
+          namespace cst {
+            struct gl_all_barrier_bits;
+            struct gl_arb_shader_image_load_store;
+            struct gl_atomic_counter_barrier_bit;
+            struct gl_buffer_update_barrier_bit;
+            struct gl_command_barrier_bit;
+            struct gl_element_array_barrier_bit;
+            struct gl_framebuffer_barrier_bit;
+            struct gl_image_1d;
+            struct gl_image_1d_array;
+            struct gl_image_2d;
+            struct gl_image_2d_array;
+            struct gl_image_2d_multisample;
+            struct gl_image_2d_multisample_array;
+            struct gl_image_2d_rect;
+            struct gl_image_3d;
+            struct gl_image_binding_access;
+            struct gl_image_binding_format;
+            struct gl_image_binding_layer;
+            struct gl_image_binding_layered;
+            struct gl_image_binding_level;
+            struct gl_image_binding_name;
+            struct gl_image_buffer;
+            struct gl_image_cube;
+            struct gl_image_cube_map_array;
+            struct gl_image_format_compatibility_by_class;
+            struct gl_image_format_compatibility_by_size;
+            struct gl_image_format_compatibility_type;
+            struct gl_int_image_1d;
+            struct gl_int_image_1d_array;
+            struct gl_int_image_2d;
+            struct gl_int_image_2d_array;
+            struct gl_int_image_2d_multisample;
+            struct gl_int_image_2d_multisample_array;
+            struct gl_int_image_2d_rect;
+            struct gl_int_image_3d;
+            struct gl_int_image_buffer;
+            struct gl_int_image_cube;
+            struct gl_int_image_cube_map_array;
+            struct gl_max_combined_image_uniforms;
+            struct gl_max_combined_image_units_and_fragment_outputs;
+            struct gl_max_fragment_image_uniforms;
+            struct gl_max_geometry_image_uniforms;
+            struct gl_max_image_samples;
+            struct gl_max_image_units;
+            struct gl_max_tess_control_image_uniforms;
+            struct gl_max_tess_evaluation_image_uniforms;
+            struct gl_max_vertex_image_uniforms;
+            struct gl_pixel_buffer_barrier_bit;
+            struct gl_shader_image_access_barrier_bit;
+            struct gl_texture_fetch_barrier_bit;
+            struct gl_texture_update_barrier_bit;
+            struct gl_transform_feedback_barrier_bit;
+            struct gl_uniform_barrier_bit;
+            struct gl_unsigned_int_image_1d;
+            struct gl_unsigned_int_image_1d_array;
+            struct gl_unsigned_int_image_2d;
+            struct gl_unsigned_int_image_2d_array;
+            struct gl_unsigned_int_image_2d_multisample;
+            struct gl_unsigned_int_image_2d_multisample_array;
+            struct gl_unsigned_int_image_2d_rect;
+            struct gl_unsigned_int_image_3d;
+            struct gl_unsigned_int_image_buffer;
+            struct gl_unsigned_int_image_cube;
+            struct gl_unsigned_int_image_cube_map_array;
+            struct gl_vertex_attrib_array_barrier_bit;
+          } // namespace cst
+        } // namespace shader_image_load_store
         namespace shader_objects {
           namespace cst {
           } // namespace cst
@@ -1063,6 +1207,11 @@ namespace gtulu {
             struct gl_num_compatible_subroutines;
           } // namespace cst
         } // namespace shader_subroutine
+        namespace shading_language_420pack {
+          namespace cst {
+            struct gl_arb_shading_language_420pack;
+          } // namespace cst
+        } // namespace shading_language_420pack
         namespace shading_language_include {
           namespace cst {
             struct gl_arb_shading_language_include;
@@ -1071,6 +1220,11 @@ namespace gtulu {
             struct gl_shader_include_arb;
           } // namespace cst
         } // namespace shading_language_include
+        namespace shading_language_packing {
+          namespace cst {
+            struct gl_arb_shading_language_packing;
+          } // namespace cst
+        } // namespace shading_language_packing
         namespace sync {
           namespace cst {
             struct gl_already_signaled;
@@ -1234,6 +1388,12 @@ namespace gtulu {
             struct gl_rgb10_a2ui;
           } // namespace cst
         } // namespace texture_rgb10_a2ui
+        namespace texture_storage {
+          namespace cst {
+            struct gl_arb_texture_storage;
+            struct gl_texture_immutable_format;
+          } // namespace cst
+        } // namespace texture_storage
         namespace texture_swizzle {
           namespace cst {
             struct gl_arb_texture_swizzle;
@@ -1267,6 +1427,11 @@ namespace gtulu {
             struct gl_max_vertex_streams;
           } // namespace cst
         } // namespace transform_feedback3
+        namespace transform_feedback_instanced {
+          namespace cst {
+            struct gl_arb_transform_feedback_instanced;
+          } // namespace cst
+        } // namespace transform_feedback_instanced
         namespace uniform_buffer_object {
           namespace cst {
             struct gl_active_uniform_blocks;
@@ -1732,12 +1897,124 @@ namespace gtulu {
           using gig::arb::viewport_array::cst::gl_viewport_subpixel_bits;
         } // namespace cst
       } // namespace v4_1
+      namespace v4_2 {
+        namespace cst {
+          using gig::arb::shader_atomic_counters::cst::gl_active_atomic_counter_buffers;
+          using gig::arb::shader_image_load_store::cst::gl_all_barrier_bits;
+          using gig::arb::shader_image_load_store::cst::gl_atomic_counter_barrier_bit;
+          using gig::arb::shader_atomic_counters::cst::gl_atomic_counter_buffer;
+          using gig::arb::shader_atomic_counters::cst::gl_atomic_counter_buffer_active_atomic_counters;
+          using gig::arb::shader_atomic_counters::cst::gl_atomic_counter_buffer_active_atomic_counter_indices;
+          using gig::arb::shader_atomic_counters::cst::gl_atomic_counter_buffer_binding;
+          using gig::arb::shader_atomic_counters::cst::gl_atomic_counter_buffer_data_size;
+          using gig::arb::shader_atomic_counters::cst::gl_atomic_counter_buffer_referenced_by_fragment_shader;
+          using gig::arb::shader_atomic_counters::cst::gl_atomic_counter_buffer_referenced_by_geometry_shader;
+          using gig::arb::shader_atomic_counters::cst::gl_atomic_counter_buffer_referenced_by_tess_control_shader;
+          using gig::arb::shader_atomic_counters::cst::gl_atomic_counter_buffer_referenced_by_tess_evaluation_shader;
+          using gig::arb::shader_atomic_counters::cst::gl_atomic_counter_buffer_referenced_by_vertex_shader;
+          using gig::arb::shader_atomic_counters::cst::gl_atomic_counter_buffer_size;
+          using gig::arb::shader_atomic_counters::cst::gl_atomic_counter_buffer_start;
+          using gig::arb::shader_image_load_store::cst::gl_buffer_update_barrier_bit;
+          using gig::arb::shader_image_load_store::cst::gl_command_barrier_bit;
+          using gig::arb::shader_image_load_store::cst::gl_element_array_barrier_bit;
+          using gig::arb::shader_image_load_store::cst::gl_framebuffer_barrier_bit;
+          using gig::arb::shader_image_load_store::cst::gl_image_1d;
+          using gig::arb::shader_image_load_store::cst::gl_image_1d_array;
+          using gig::arb::shader_image_load_store::cst::gl_image_2d;
+          using gig::arb::shader_image_load_store::cst::gl_image_2d_array;
+          using gig::arb::shader_image_load_store::cst::gl_image_2d_multisample;
+          using gig::arb::shader_image_load_store::cst::gl_image_2d_multisample_array;
+          using gig::arb::shader_image_load_store::cst::gl_image_2d_rect;
+          using gig::arb::shader_image_load_store::cst::gl_image_3d;
+          using gig::arb::shader_image_load_store::cst::gl_image_binding_access;
+          using gig::arb::shader_image_load_store::cst::gl_image_binding_format;
+          using gig::arb::shader_image_load_store::cst::gl_image_binding_layer;
+          using gig::arb::shader_image_load_store::cst::gl_image_binding_layered;
+          using gig::arb::shader_image_load_store::cst::gl_image_binding_level;
+          using gig::arb::shader_image_load_store::cst::gl_image_binding_name;
+          using gig::arb::shader_image_load_store::cst::gl_image_buffer;
+          using gig::arb::shader_image_load_store::cst::gl_image_cube;
+          using gig::arb::shader_image_load_store::cst::gl_image_cube_map_array;
+          using gig::arb::shader_image_load_store::cst::gl_image_format_compatibility_by_class;
+          using gig::arb::shader_image_load_store::cst::gl_image_format_compatibility_by_size;
+          using gig::arb::shader_image_load_store::cst::gl_image_format_compatibility_type;
+          using gig::arb::shader_image_load_store::cst::gl_int_image_1d;
+          using gig::arb::shader_image_load_store::cst::gl_int_image_1d_array;
+          using gig::arb::shader_image_load_store::cst::gl_int_image_2d;
+          using gig::arb::shader_image_load_store::cst::gl_int_image_2d_array;
+          using gig::arb::shader_image_load_store::cst::gl_int_image_2d_multisample;
+          using gig::arb::shader_image_load_store::cst::gl_int_image_2d_multisample_array;
+          using gig::arb::shader_image_load_store::cst::gl_int_image_2d_rect;
+          using gig::arb::shader_image_load_store::cst::gl_int_image_3d;
+          using gig::arb::shader_image_load_store::cst::gl_int_image_buffer;
+          using gig::arb::shader_image_load_store::cst::gl_int_image_cube;
+          using gig::arb::shader_image_load_store::cst::gl_int_image_cube_map_array;
+          using gig::arb::shader_atomic_counters::cst::gl_max_atomic_counter_buffer_bindings;
+          using gig::arb::shader_atomic_counters::cst::gl_max_atomic_counter_buffer_size;
+          using gig::arb::shader_atomic_counters::cst::gl_max_combined_atomic_counters;
+          using gig::arb::shader_atomic_counters::cst::gl_max_combined_atomic_counter_buffers;
+          using gig::arb::shader_image_load_store::cst::gl_max_combined_image_uniforms;
+          using gig::arb::shader_image_load_store::cst::gl_max_combined_image_units_and_fragment_outputs;
+          using gig::arb::shader_atomic_counters::cst::gl_max_fragment_atomic_counters;
+          using gig::arb::shader_atomic_counters::cst::gl_max_fragment_atomic_counter_buffers;
+          using gig::arb::shader_image_load_store::cst::gl_max_fragment_image_uniforms;
+          using gig::arb::shader_atomic_counters::cst::gl_max_geometry_atomic_counters;
+          using gig::arb::shader_atomic_counters::cst::gl_max_geometry_atomic_counter_buffers;
+          using gig::arb::shader_image_load_store::cst::gl_max_geometry_image_uniforms;
+          using gig::arb::shader_image_load_store::cst::gl_max_image_samples;
+          using gig::arb::shader_image_load_store::cst::gl_max_image_units;
+          using gig::arb::shader_atomic_counters::cst::gl_max_tess_control_atomic_counters;
+          using gig::arb::shader_atomic_counters::cst::gl_max_tess_control_atomic_counter_buffers;
+          using gig::arb::shader_image_load_store::cst::gl_max_tess_control_image_uniforms;
+          using gig::arb::shader_atomic_counters::cst::gl_max_tess_evaluation_atomic_counters;
+          using gig::arb::shader_atomic_counters::cst::gl_max_tess_evaluation_atomic_counter_buffers;
+          using gig::arb::shader_image_load_store::cst::gl_max_tess_evaluation_image_uniforms;
+          using gig::arb::shader_atomic_counters::cst::gl_max_vertex_atomic_counters;
+          using gig::arb::shader_atomic_counters::cst::gl_max_vertex_atomic_counter_buffers;
+          using gig::arb::shader_image_load_store::cst::gl_max_vertex_image_uniforms;
+          using gig::arb::map_buffer_alignment::cst::gl_min_map_buffer_alignment;
+          using gig::arb::internalformat_query::cst::gl_num_sample_counts;
+          using gig::arb::compressed_texture_pixel_storage::cst::gl_pack_compressed_block_depth;
+          using gig::arb::compressed_texture_pixel_storage::cst::gl_pack_compressed_block_height;
+          using gig::arb::compressed_texture_pixel_storage::cst::gl_pack_compressed_block_size;
+          using gig::arb::compressed_texture_pixel_storage::cst::gl_pack_compressed_block_width;
+          using gig::arb::shader_image_load_store::cst::gl_pixel_buffer_barrier_bit;
+          using gig::arb::shader_image_load_store::cst::gl_shader_image_access_barrier_bit;
+          using gig::arb::shader_image_load_store::cst::gl_texture_fetch_barrier_bit;
+          using gig::arb::texture_storage::cst::gl_texture_immutable_format;
+          using gig::arb::shader_image_load_store::cst::gl_texture_update_barrier_bit;
+          using gig::arb::shader_image_load_store::cst::gl_transform_feedback_barrier_bit;
+          using gig::arb::shader_atomic_counters::cst::gl_uniform_atomic_counter_buffer_index;
+          using gig::arb::shader_image_load_store::cst::gl_uniform_barrier_bit;
+          using gig::arb::compressed_texture_pixel_storage::cst::gl_unpack_compressed_block_depth;
+          using gig::arb::compressed_texture_pixel_storage::cst::gl_unpack_compressed_block_height;
+          using gig::arb::compressed_texture_pixel_storage::cst::gl_unpack_compressed_block_size;
+          using gig::arb::compressed_texture_pixel_storage::cst::gl_unpack_compressed_block_width;
+          using gig::arb::shader_atomic_counters::cst::gl_unsigned_int_atomic_counter;
+          using gig::arb::shader_image_load_store::cst::gl_unsigned_int_image_1d;
+          using gig::arb::shader_image_load_store::cst::gl_unsigned_int_image_1d_array;
+          using gig::arb::shader_image_load_store::cst::gl_unsigned_int_image_2d;
+          using gig::arb::shader_image_load_store::cst::gl_unsigned_int_image_2d_array;
+          using gig::arb::shader_image_load_store::cst::gl_unsigned_int_image_2d_multisample;
+          using gig::arb::shader_image_load_store::cst::gl_unsigned_int_image_2d_multisample_array;
+          using gig::arb::shader_image_load_store::cst::gl_unsigned_int_image_2d_rect;
+          using gig::arb::shader_image_load_store::cst::gl_unsigned_int_image_3d;
+          using gig::arb::shader_image_load_store::cst::gl_unsigned_int_image_buffer;
+          using gig::arb::shader_image_load_store::cst::gl_unsigned_int_image_cube;
+          using gig::arb::shader_image_load_store::cst::gl_unsigned_int_image_cube_map_array;
+          using gig::arb::shader_image_load_store::cst::gl_vertex_attrib_array_barrier_bit;
+        } // namespace cst
+      } // namespace v4_2
       } // namespace gl
       namespace arb {
       namespace es2_compatibility {
         namespace cst {
         } // namespace cst
       } // namespace es2_compatibility
+      namespace base_instance {
+        namespace cst {
+        } // namespace cst
+      } // namespace base_instance
       namespace blend_func_extended {
         namespace cst {
 // ERROR: using unknown constant GL_SRC1_ALPHA;
@@ -1747,6 +2024,14 @@ namespace gtulu {
         namespace cst {
         } // namespace cst
       } // namespace cl_event
+      namespace compressed_texture_pixel_storage {
+        namespace cst {
+        } // namespace cst
+      } // namespace compressed_texture_pixel_storage
+      namespace conservative_depth {
+        namespace cst {
+        } // namespace cst
+      } // namespace conservative_depth
       namespace copy_buffer {
         namespace cst {
         } // namespace cst
@@ -1817,6 +2102,14 @@ namespace gtulu {
         namespace cst {
         } // namespace cst
       } // namespace imaging
+      namespace internalformat_query {
+        namespace cst {
+        } // namespace cst
+      } // namespace internalformat_query
+      namespace map_buffer_alignment {
+        namespace cst {
+        } // namespace cst
+      } // namespace map_buffer_alignment
       namespace map_buffer_range {
         namespace cst {
         } // namespace cst
@@ -1850,10 +2143,18 @@ namespace gtulu {
         namespace cst {
         } // namespace cst
       } // namespace separate_shader_objects
+      namespace shader_atomic_counters {
+        namespace cst {
+        } // namespace cst
+      } // namespace shader_atomic_counters
       namespace shader_bit_encoding {
         namespace cst {
         } // namespace cst
       } // namespace shader_bit_encoding
+      namespace shader_image_load_store {
+        namespace cst {
+        } // namespace cst
+      } // namespace shader_image_load_store
       namespace shader_objects {
         namespace cst {
         } // namespace cst
@@ -1872,10 +2173,18 @@ namespace gtulu {
           using gig::arb::uniform_buffer_object::cst::gl_uniform_size;
         } // namespace cst
       } // namespace shader_subroutine
+      namespace shading_language_420pack {
+        namespace cst {
+        } // namespace cst
+      } // namespace shading_language_420pack
       namespace shading_language_include {
         namespace cst {
         } // namespace cst
       } // namespace shading_language_include
+      namespace shading_language_packing {
+        namespace cst {
+        } // namespace cst
+      } // namespace shading_language_packing
       namespace sync {
         namespace cst {
         } // namespace cst
@@ -1928,6 +2237,10 @@ namespace gtulu {
         namespace cst {
         } // namespace cst
       } // namespace texture_rgb10_a2ui
+      namespace texture_storage {
+        namespace cst {
+        } // namespace cst
+      } // namespace texture_storage
       namespace texture_swizzle {
         namespace cst {
         } // namespace cst
@@ -1944,6 +2257,10 @@ namespace gtulu {
         namespace cst {
         } // namespace cst
       } // namespace transform_feedback3
+      namespace transform_feedback_instanced {
+        namespace cst {
+        } // namespace cst
+      } // namespace transform_feedback_instanced
       namespace uniform_buffer_object {
         namespace cst {
         } // namespace cst

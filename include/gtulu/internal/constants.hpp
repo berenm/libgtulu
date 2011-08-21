@@ -68,49 +68,42 @@ namespace gtulu {
           friend ::std::ostream& operator<<(::std::ostream& stream_inout, gl_constant_base const& constant_in);
       };
 
-      template< typename name_t, typename value_t >
-      struct gl_constant: public gl_constant_base, public value_t {
-          typedef name_t name_type;
-          typedef value_t value_type;
-
-          using value_type::value;
-          struct name: public ::boost::mpl::c_str< name_type > {
-              using ::boost::mpl::c_str< name_type >::value;
-          };
-
-          static gl_constant< name_t, value_t > const instance;
+      template< typename ConstantImpl >
+      struct gl_constant: public gl_constant_base {
+          static gl_constant< ConstantImpl > const instance;
           static gl_constant_base const& get() {
             return instance;
           }
 
         protected:
           gl_constant() :
-              gl_constant_base(name::value, value_type::value) {
+              gl_constant_base(ConstantImpl::name, ConstantImpl::value) {
           }
       };
 
-      template< typename name_t, typename value_t >
-      gl_constant< name_t, value_t > const gl_constant< name_t, value_t >::instance;
+      template< typename ConstantImpl >
+      gl_constant< ConstantImpl > const gl_constant< ConstantImpl >::instance;
 
       struct runtime_constant: public gl_constant_base {
           runtime_constant(gl_constant_base const& base, ::std::uint64_t offset_in) :
               gl_constant_base(base) {
             string_value.erase(string_value.end() - 1);
-            string_value += ::boost::lexical_cast< ::std::string >(offset_in);
+            string_value += ::boost::lexical_cast < ::std::string > (offset_in);
             integer_value += offset_in;
           }
       };
 
-      struct invalid_constant: public gl_constant<
-          ::boost::mpl::string< '<inv', 'alid', '-con', 'stan', 't>' >, ::boost::mpl::int_< 0xFFFFFF > > {
-          };
+      struct invalid_constant: public gl_constant< invalid_constant > {
+          static constexpr char name[] = "<invalid-constant>";
+          static constexpr ::std::uint64_t value = 0xFFFFFFFFFFFFFFFF;
+      };
 
-        } // namespace constant
+    } // namespace constant
 
-        namespace cst = ::gtulu::internal::constant;
+    namespace cst = ::gtulu::internal::constant;
 
-      } // namespace internal
-    } // namespace gtulu
+  } // namespace internal
+} // namespace gtulu
 
 #define IN_GTULU_INTERNAL_CONSTANTS_HPP_
 #include "gtulu/internal/generated/constants.hpp"

@@ -43,7 +43,7 @@ class gl3_parser:
       self.current_namespace = None
 
   def read_function(self, line):
-    fct = declaration.parse_string(self.current_namespace, line)
+    fct = declaration.parse_string(line)
     if fct.new_name not in self.declarations.keys():
       self.declarations[fct.new_name] = []
 

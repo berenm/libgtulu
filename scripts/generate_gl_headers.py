@@ -21,7 +21,7 @@ def print_forward_functions(file, parser, namespace):
 
   n.functions.sort()
   for declaration in n.functions:
-    print >> file, "            struct %s;" % (declaration)
+    print >> file, "            struct gl_%s;" % (declaration)
 
   print >> file, "          } // namespace fnc"
   print >> file, "        } // namespace %s" % (n.short_name)
@@ -51,7 +51,7 @@ def print_forward_functions_ref(file, parser, namespace):
       nn = parser.namespaces[ref]
       nn.functions.sort()
       for declaration in nn.functions:
-        print >> file, "          using gig::%s::%s::fnc::%s;" % (nn.category, nn.short_name, declaration)
+        print >> file, "          using gig::%s::%s::fnc::gl_%s;" % (nn.category, nn.short_name, declaration)
 
   print >> file, "        } // namespace fnc"
   print >> file, "      } // namespace %s" % (n.short_name)

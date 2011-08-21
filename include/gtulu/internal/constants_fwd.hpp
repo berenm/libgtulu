@@ -25,7 +25,7 @@ namespace gtulu {
 
       struct gl_constant_base;
 
-      template< typename name_t, typename value_t >
+      template< typename ConstantImpl >
       struct gl_constant;
 
       struct runtime_constant;

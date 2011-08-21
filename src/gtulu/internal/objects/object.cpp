@@ -7,6 +7,7 @@
  * @date 21 nov. 2009
  * @todo comment
  */
+#include "gtulu_opengl_pch.hpp"
 
 #include "gtulu/internal/objects/object.hpp"
 

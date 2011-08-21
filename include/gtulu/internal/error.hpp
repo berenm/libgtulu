@@ -15,10 +15,10 @@
 #include "gtulu/internal/constants.hpp"
 
 #if defined(NO_GTULU_DEBUG) || defined(NDEBUG)
-#define __gl_check_error ;
+#define __gl_check_error() ;
 #define __gl_debug if(0) ::std::cout
 #else
-#define __gl_check_error \
+#define __gl_check_error() \
     { \
       ::std::int32_t __gl_error; \
       while ((__gl_error = glGetError()) \
@@ -26,23 +26,23 @@
         switch (__gl_error) { \
           case ::gtulu::internal::error::invalid_enum::value: \
             __errorM(gl) \
-              << ::gtulu::internal::error::invalid_enum::name::value; \
+              << ::gtulu::internal::error::invalid_enum::name; \
             break; \
           case ::gtulu::internal::error::invalid_value::value: \
             __errorM(gl) \
-              << ::gtulu::internal::error::invalid_value::name::value; \
+              << ::gtulu::internal::error::invalid_value::name; \
             break; \
           case ::gtulu::internal::error::invalid_operation::value: \
             __errorM(gl) \
-              << ::gtulu::internal::error::invalid_operation::name::value; \
+              << ::gtulu::internal::error::invalid_operation::name; \
             break; \
           case ::gtulu::internal::error::invalid_framebuffer_operation::value: \
             __errorM(gl) \
-              << ::gtulu::internal::error::invalid_framebuffer_operation::name::value; \
+              << ::gtulu::internal::error::invalid_framebuffer_operation::name; \
             break; \
           case ::gtulu::internal::error::out_of_memory::value: \
             __fatalM(gl) \
-              << ::gtulu::internal::error::out_of_memory::name::value; \
+              << ::gtulu::internal::error::out_of_memory::name; \
             break; \
           case ::gtulu::internal::error::no_error::value: \
             break; \
@@ -72,6 +72,7 @@ namespace gtulu {
 
       template< typename error_code_t >
       struct error: public error_code_t {
+          using error_code_t::name;
           using error_code_t::value;
       };
 
