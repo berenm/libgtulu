@@ -22,25 +22,25 @@ namespace gtulu {
       namespace group {
 
         namespace format {
-          typedef cst::gl_depth gl_depth;
-          typedef cst::gl_stencil gl_stencil;
-          typedef cst::gl_depth_stencil gl_depth_stencil;
+          using cst::gl_depth;
+          using cst::gl_stencil;
+          using cst::gl_depth_stencil;
           typedef cst::gl_red gl_r;
           typedef cst::gl_green gl_g;
           typedef cst::gl_blue gl_b;
-          typedef cst::gl_rg gl_rg;
-          typedef cst::gl_rgb gl_rgb;
-          typedef cst::gl_rgba gl_rgba;
-          typedef cst::gl_bgr gl_bgr;
-          typedef cst::gl_bgra gl_bgra;
+          using cst::gl_rg;
+          using cst::gl_rgb;
+          using cst::gl_rgba;
+          using cst::gl_bgr;
+          using cst::gl_bgra;
           typedef cst::gl_red_integer gl_r_integer;
           typedef cst::gl_green_integer gl_g_integer;
           typedef cst::gl_blue_integer gl_b_integer;
-          typedef cst::gl_rg_integer gl_rg_integer;
-          typedef cst::gl_rgb_integer gl_rgb_integer;
-          typedef cst::gl_rgba_integer gl_rgba_integer;
-          typedef cst::gl_bgr_integer gl_bgr_integer;
-          typedef cst::gl_bgra_integer gl_bgra_integer;
+          using cst::gl_rg_integer;
+          using cst::gl_rgb_integer;
+          using cst::gl_rgba_integer;
+          using cst::gl_bgr_integer;
+          using cst::gl_bgra_integer;
         } // namespace format
 
         DECLARE_TRAIT_ASPECT(base, struct, (depth) (stencil) (depth_stencil) (r) (g) (b) (rg) (rgb) (rgba))

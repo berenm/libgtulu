@@ -26,8 +26,8 @@ namespace gtulu {
 
     namespace framebuffer {
       namespace slots {
-        typedef cst::gl_read_framebuffer gl_read_framebuffer;
-        typedef cst::gl_draw_framebuffer gl_draw_framebuffer;
+        using cst::gl_read_framebuffer;
+        using cst::gl_draw_framebuffer;
       } // namespace slots
 
       namespace builtin {

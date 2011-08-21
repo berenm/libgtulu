@@ -26,28 +26,28 @@ namespace gtulu {
     namespace buffer {
 
       namespace slots {
-        typedef cst::gl_array_buffer gl_array_buffer;
-        typedef cst::gl_copy_read_buffer gl_copy_read_buffer;
-        typedef cst::gl_copy_write_buffer gl_copy_write_buffer;
-        typedef cst::gl_element_array_buffer gl_element_array_buffer;
-        typedef cst::gl_pixel_pack_buffer gl_pixel_pack_buffer;
-        typedef cst::gl_pixel_unpack_buffer gl_pixel_unpack_buffer;
-        typedef cst::gl_texture_buffer gl_texture_buffer;
-        typedef cst::gl_transform_feedback_buffer gl_transform_feedback_buffer;
-        typedef cst::gl_uniform_buffer gl_uniform_buffer;
-        typedef cst::gl_draw_indirect_buffer gl_draw_indirect_buffer;
+        using cst::gl_array_buffer;
+        using cst::gl_copy_read_buffer;
+        using cst::gl_copy_write_buffer;
+        using cst::gl_element_array_buffer;
+        using cst::gl_pixel_pack_buffer;
+        using cst::gl_pixel_unpack_buffer;
+        using cst::gl_texture_buffer;
+        using cst::gl_transform_feedback_buffer;
+        using cst::gl_uniform_buffer;
+        using cst::gl_draw_indirect_buffer;
       } // namespace slots
 
       namespace usages {
-        typedef cst::gl_stream_draw gl_stream_draw;
-        typedef cst::gl_stream_read gl_stream_read;
-        typedef cst::gl_stream_copy gl_stream_copy;
-        typedef cst::gl_static_draw gl_static_draw;
-        typedef cst::gl_static_read gl_static_read;
-        typedef cst::gl_static_copy gl_static_copy;
-        typedef cst::gl_dynamic_draw gl_dynamic_draw;
-        typedef cst::gl_dynamic_read gl_dynamic_read;
-        typedef cst::gl_dynamic_copy gl_dynamic_copy;
+        using cst::gl_stream_draw;
+        using cst::gl_stream_read;
+        using cst::gl_stream_copy;
+        using cst::gl_static_draw;
+        using cst::gl_static_read;
+        using cst::gl_static_copy;
+        using cst::gl_dynamic_draw;
+        using cst::gl_dynamic_read;
+        using cst::gl_dynamic_copy;
       } // namespace usages
     } // namespace buffer
 

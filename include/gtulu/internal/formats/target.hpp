@@ -22,23 +22,23 @@ namespace gtulu {
       namespace target {
 
         namespace format {
-          typedef cst::gl_texture_1d gl_texture_1d;
-          typedef cst::gl_texture_1d_array gl_texture_1d_array;
-          typedef cst::gl_texture_2d gl_texture_2d;
-          typedef cst::gl_texture_2d_array gl_texture_2d_array;
-          typedef cst::gl_texture_2d_multisample gl_texture_2d_multisample;
-          typedef cst::gl_texture_2d_multisample_array gl_texture_2d_multisample_array;
-          typedef cst::gl_texture_3d gl_texture_3d;
-          typedef cst::gl_texture_rectangle gl_texture_rectangle;
-          typedef cst::gl_texture_buffer gl_texture_buffer;
-          typedef cst::gl_texture_cube_map gl_texture_cube_map;
-          typedef cst::gl_texture_cube_map_negative_x gl_texture_cube_map_negative_x;
-          typedef cst::gl_texture_cube_map_negative_y gl_texture_cube_map_negative_y;
-          typedef cst::gl_texture_cube_map_negative_z gl_texture_cube_map_negative_z;
-          typedef cst::gl_texture_cube_map_positive_x gl_texture_cube_map_positive_x;
-          typedef cst::gl_texture_cube_map_positive_y gl_texture_cube_map_positive_y;
-          typedef cst::gl_texture_cube_map_positive_z gl_texture_cube_map_positive_z;
-          typedef cst::gl_renderbuffer gl_renderbuffer;
+          using cst::gl_texture_1d;
+          using cst::gl_texture_1d_array;
+          using cst::gl_texture_2d;
+          using cst::gl_texture_2d_array;
+          using cst::gl_texture_2d_multisample;
+          using cst::gl_texture_2d_multisample_array;
+          using cst::gl_texture_3d;
+          using cst::gl_texture_rectangle;
+          using cst::gl_texture_buffer;
+          using cst::gl_texture_cube_map;
+          using cst::gl_texture_cube_map_negative_x;
+          using cst::gl_texture_cube_map_negative_y;
+          using cst::gl_texture_cube_map_negative_z;
+          using cst::gl_texture_cube_map_positive_x;
+          using cst::gl_texture_cube_map_positive_y;
+          using cst::gl_texture_cube_map_positive_z;
+          using cst::gl_renderbuffer;
         } // namespace format
 
         DECLARE_TRAIT_ASPECT(base, struct, (texture) (renderbuffer))

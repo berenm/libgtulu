@@ -24,17 +24,17 @@ namespace gtulu {
     namespace drawing {
 
       namespace mode {
-        typedef cst::gl_points gl_points;
-        typedef cst::gl_lines gl_lines;
-        typedef cst::gl_line_strip gl_line_strip;
-        typedef cst::gl_lines_adjacency gl_lines_adjacency;
-        typedef cst::gl_line_strip_adjacency gl_line_strip_adjacency;
-        typedef cst::gl_line_loop gl_line_loop;
-        typedef cst::gl_triangles gl_triangles;
-        typedef cst::gl_triangle_strip gl_triangle_strip;
-        typedef cst::gl_triangles_adjacency gl_triangles_adjacency;
-        typedef cst::gl_triangle_strip_adjacency gl_triangle_strip_adjacency;
-        typedef cst::gl_triangle_fan gl_triangle_fan;
+        using cst::gl_points;
+        using cst::gl_lines;
+        using cst::gl_line_strip;
+        using cst::gl_lines_adjacency;
+        using cst::gl_line_strip_adjacency;
+        using cst::gl_line_loop;
+        using cst::gl_triangles;
+        using cst::gl_triangle_strip;
+        using cst::gl_triangles_adjacency;
+        using cst::gl_triangle_strip_adjacency;
+        using cst::gl_triangle_fan;
       } // namespace mode
 
       typedef ::std::uint32_t draw_mode_t;

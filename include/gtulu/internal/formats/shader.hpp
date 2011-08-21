@@ -20,17 +20,17 @@ namespace gtulu {
       namespace shader {
 
         namespace attribute {
-          typedef cst::gl_shader_type gl_shader_type;
-          typedef cst::gl_delete_status gl_delete_status;
-          typedef cst::gl_compile_status gl_compile_status;
-          typedef cst::gl_info_log_length gl_info_log_length;
-          typedef cst::gl_shader_source_length gl_shader_source_length;
+          using cst::gl_shader_type;
+          using cst::gl_delete_status;
+          using cst::gl_compile_status;
+          using cst::gl_info_log_length;
+          using cst::gl_shader_source_length;
         } // namespace attribute
 
         namespace type {
-          typedef cst::gl_vertex_shader gl_vertex_shader;
-          typedef cst::gl_geometry_shader gl_geometry_shader;
-          typedef cst::gl_fragment_shader gl_fragment_shader;
+          using cst::gl_vertex_shader;
+          using cst::gl_geometry_shader;
+          using cst::gl_fragment_shader;
         } // namespace type
 
       } // namespace shader

@@ -24,18 +24,18 @@ namespace gtulu {
       namespace output {
 
         namespace format {
-          typedef cst::gl_float gl_float;
-          typedef cst::gl_float_vec2 gl_float_vec2;
-          typedef cst::gl_float_vec3 gl_float_vec3;
-          typedef cst::gl_float_vec4 gl_float_vec4;
-          typedef cst::gl_int gl_int;
-          typedef cst::gl_int_vec2 gl_int_vec2;
-          typedef cst::gl_int_vec3 gl_int_vec3;
-          typedef cst::gl_int_vec4 gl_int_vec4;
-          typedef cst::gl_unsigned_int gl_unsigned_int;
-          typedef cst::gl_unsigned_int_vec2 gl_unsigned_int_vec2;
-          typedef cst::gl_unsigned_int_vec3 gl_unsigned_int_vec3;
-          typedef cst::gl_unsigned_int_vec4 gl_unsigned_int_vec4;
+          using cst::gl_float;
+          using cst::gl_float_vec2;
+          using cst::gl_float_vec3;
+          using cst::gl_float_vec4;
+          using cst::gl_int;
+          using cst::gl_int_vec2;
+          using cst::gl_int_vec3;
+          using cst::gl_int_vec4;
+          using cst::gl_unsigned_int;
+          using cst::gl_unsigned_int_vec2;
+          using cst::gl_unsigned_int_vec3;
+          using cst::gl_unsigned_int_vec4;
 
           cst::gl_constant_base const get(::std::string type_name);
         } // namespace format
