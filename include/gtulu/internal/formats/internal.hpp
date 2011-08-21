@@ -106,32 +106,10 @@ namespace gtulu {
           typedef cst::gl_stencil_index16 gl_stencil16;
         } // namespace format
 
-        DECLARE_TRAIT_ASPECT(base, struct,
-            (depth)
-            (stencil)
-            (depth_stencil)
-            (r)
-            (rg)
-            (rgb)
-            (rgba)
-        )
-        DECLARE_TRAIT_ASPECT(type, struct,
-            (floating)
-            (fixed)
-            (unsigned_fixed)
-            (integer)
-            (unsigned_integer)
-        )
-        DECLARE_TRAIT_ASPECT(compression, struct,
-            (normal)
-            (compressed)
-        )
-        DECLARE_TRAIT_ASPECT(restriction, struct,
-            (unknown)
-            (any)
-            (texture)
-            (renderbuffer)
-        )
+        DECLARE_TRAIT_ASPECT(base, struct, (depth) (stencil) (depth_stencil) (r) (rg) (rgb) (rgba))
+        DECLARE_TRAIT_ASPECT(type, struct, (floating) (fixed) (unsigned_fixed) (integer) (unsigned_integer))
+        DECLARE_TRAIT_ASPECT(compression, struct, (normal) (compressed))
+        DECLARE_TRAIT_ASPECT(restriction, struct, (unknown) (any) (texture) (renderbuffer))
 
         typedef ::std::uint32_t size_type;
 

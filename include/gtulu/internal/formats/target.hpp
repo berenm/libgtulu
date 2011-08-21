@@ -41,26 +41,10 @@ namespace gtulu {
           typedef cst::gl_renderbuffer gl_renderbuffer;
         } // namespace format
 
-        DECLARE_TRAIT_ASPECT(base, struct,
-            (texture)
-            (renderbuffer)
-        )
-        DECLARE_TRAIT_ASPECT(type, struct,
-            (oned)
-            (twod)
-            (threed)
-            (rectangle)
-            (buffer)
-            (cube_map)
-        )
-        DECLARE_TRAIT_ASPECT(sample, struct,
-            (simple)
-            (multi)
-        )
-        DECLARE_TRAIT_ASPECT(cardinality, struct,
-            (single)
-            (array)
-        )
+        DECLARE_TRAIT_ASPECT(base, struct, (texture) (renderbuffer))
+        DECLARE_TRAIT_ASPECT(type, struct, (oned) (twod) (threed) (rectangle) (buffer) (cube_map))
+        DECLARE_TRAIT_ASPECT(sample, struct, (simple) (multi))
+        DECLARE_TRAIT_ASPECT(cardinality, struct, (single) (array))
 
         template< typename format_t, typename base_t, typename type_t, typename cardinality_t, typename sample_t >
         struct target_metadata {

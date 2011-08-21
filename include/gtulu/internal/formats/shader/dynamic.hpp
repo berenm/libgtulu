@@ -35,11 +35,10 @@ namespace gtulu {
                         ::std::uint32_t size_in,
                         location_t location_in,
                         ::std::uint32_t index_in) :
-              id(id_in), name(name_in), type(type_in), size(size_in), location(location_in), index(index_in) {
+                id(id_in), name(name_in), type(type_in), size(size_in), location(location_in), index(index_in) {
             }
             output_info(output_info const& copy) :
-              id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location),
-                  index(copy.index) {
+                id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location), index(copy.index) {
             }
 
             output_info& operator=(output_info const& copy) {

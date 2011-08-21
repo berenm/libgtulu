@@ -40,7 +40,7 @@ namespace gtulu {
 
 #undef DECLARE_BINDER
 
-      template< typename format_t, typename binder_t = output_binder< typename format_t::info::type > ,
+      template< typename format_t, typename binder_t = output_binder< typename format_t::info::type >,
           typename value_t = typename fo::to_typename< typename format_t::info::type >::type >
       struct output {
           typedef format_t format;

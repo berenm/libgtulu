@@ -32,10 +32,10 @@ namespace gtulu {
                            cst::gl_constant_base const& type_in,
                            ::std::uint32_t size_in,
                            location_t location_in) :
-              id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
+                id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
             }
             attribute_info(attribute_info const& copy) :
-              id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
+                id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
             }
 
             attribute_info& operator=(attribute_info const& copy) {
@@ -61,10 +61,10 @@ namespace gtulu {
                          cst::gl_constant_base const& type_in,
                          ::std::uint32_t size_in,
                          location_t location_in) :
-              id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
+                id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
             }
             uniform_info(attribute_info const& copy) :
-              id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
+                id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
             }
 
             uniform_info& operator=(uniform_info const& copy) {
@@ -90,10 +90,10 @@ namespace gtulu {
                                cst::gl_constant_base const& type_in,
                                ::std::uint32_t size_in,
                                location_t location_in) :
-              id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
+                id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
             }
             uniform_block_info(attribute_info const& copy) :
-              id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
+                id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
             }
 
             uniform_block_info& operator=(uniform_block_info const& copy) {

@@ -54,7 +54,7 @@ namespace gtulu {
         ::std::string get_content();
 
         void populate(::std::map< ::std::string, ::std::string >& arguments_inout,
-                      ::std::vector< file_template > sub_templates_in = ::std::vector< file_template >());
+        ::std::vector< file_template > sub_templates_in = ::std::vector< file_template >());
 
         void debug(::std::string prefix_in = "");
     };

@@ -36,7 +36,7 @@ void init_gl(::std::int32_t argc, char** argv) {
   display = XOpenDisplay(NULL);
   if (display == NULL) {
     __fatalM(gl)
-      << "unable to open X display.";
+    << "unable to open X display.";
 
   } else {
     int framebuffer_config_count = 0;
@@ -44,7 +44,7 @@ void init_gl(::std::int32_t argc, char** argv) {
     framebuffer_configs = glXChooseFBConfig(display, DefaultScreen(display), NULL, &framebuffer_config_count);
     if (framebuffer_configs == NULL) {
       __fatalM(gl)
-        << "unable to retrieve framebuffer configuration.";
+      << "unable to retrieve framebuffer configuration.";
 
     } else {
       int context_attribs[] = { GLX_CONTEXT_MAJOR_VERSION_ARB, 3, GLX_CONTEXT_MINOR_VERSION_ARB, 3,
@@ -56,7 +56,7 @@ void init_gl(::std::int32_t argc, char** argv) {
 
       if (context == NULL) {
         __fatalM(gl)
-          << "unable to create OpenGL context.";
+        << "unable to create OpenGL context.";
 
       } else {
         XSync(display, false);
@@ -64,14 +64,14 @@ void init_gl(::std::int32_t argc, char** argv) {
         gtulu::internal::context::context_info context_info(display, context);
         if (!context_info.try_acquire()) {
           __errorM(gl)
-            << "unable to create detached context.";
+          << "unable to create detached context.";
 
           context_info.drawable = DefaultRootWindow(display);
           context_info.readable = DefaultRootWindow(display);
 
           if (!context_info.try_acquire()) {
             __fatalM(gl)
-              << "unable to attach context to default drawable.";
+            << "unable to attach context to default drawable.";
           }
         }
       }
@@ -105,13 +105,13 @@ void init_gl(::std::int32_t argc, char** argv) {
   ::std::string const gl_shading_language_version = gic::gl_shading_language_version::get();
 
   __info
-    << gicp::gl_vendor() << ": " << gl_vendor;
+  << gicp::gl_vendor() << ": " << gl_vendor;
   __info
-    << gicp::gl_renderer() << ": " << gl_renderer;
+  << gicp::gl_renderer() << ": " << gl_renderer;
   __info
-    << gicp::gl_version() << ": " << gl_version;
+  << gicp::gl_version() << ": " << gl_version;
   __info
-    << gicp::gl_shading_language_version() << ": " << gl_shading_language_version;
+  << gicp::gl_shading_language_version() << ": " << gl_shading_language_version;
 }
 
 void close_gl() {

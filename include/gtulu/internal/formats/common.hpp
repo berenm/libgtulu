@@ -20,33 +20,11 @@ namespace gtulu {
 
     namespace formats {
       namespace common {
-        DECLARE_TRAIT_ASPECT(order, struct,
-            (normal)
-            (reverse)
-        )
-        DECLARE_TRAIT_ASPECT(type, struct,
-            (floating)
-            (fixed)
-            (unsigned_fixed)
-            (integer)
-            (unsigned_integer)
-            (boolean)
-        )
-        DECLARE_TRAIT_ASPECT(dimension, struct,
-            (one)
-            (two)
-            (two_by_two)
-            (two_by_three)
-            (two_by_four)
-            (three)
-            (three_by_two)
-            (three_by_three)
-            (three_by_four)
-            (four)
-            (four_by_two)
-            (four_by_three)
-            (four_by_four)
-        )
+        DECLARE_TRAIT_ASPECT(order, struct, (normal) (reverse))
+        DECLARE_TRAIT_ASPECT(type, struct, (floating) (fixed) (unsigned_fixed) (integer) (unsigned_integer) (boolean))
+        DECLARE_TRAIT_ASPECT(dimension,
+                             struct,
+                             (one) (two) (two_by_two) (two_by_three) (two_by_four) (three) (three_by_two) (three_by_three) (three_by_four) (four) (four_by_two) (four_by_three) (four_by_four))
 
         namespace base {
           typedef cst::gl_depth gl_depth;

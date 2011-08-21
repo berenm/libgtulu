@@ -70,7 +70,8 @@ namespace gtulu {
                 }
 
                 real_info.size = 1;
-                real_info.location = fnc::gl_get_frag_data_location::call(program_base::handle_, real_info.name.c_str());
+                real_info.location = fnc::gl_get_frag_data_location::call(program_base::handle_,
+                                                                          real_info.name.c_str());
                 real_info.index = fnc::gl_get_frag_data_index::call(program_base::handle_, real_info.name.c_str());
 
                 if (real_info.location >= 0) {
@@ -84,7 +85,7 @@ namespace gtulu {
         void dynamic_program_format::attach(shader_t const& shader) {
           program_base::attach(shader);
 
-          shaders_.push_back(const_cast< shader_t& > (shader));
+          shaders_.push_back(const_cast< shader_t& >(shader));
         }
 
         void dynamic_program_format::detach(shader_t const& shader) {
@@ -161,32 +162,32 @@ namespace gtulu {
         }
 
         dynamic_program_format::dynamic_program_format() :
-          has_link_log_(false), has_validation_log_(false), link_log_(""), validation_log_("") {
+            has_link_log_(false), has_validation_log_(false), link_log_(""), validation_log_("") {
         }
 
         void dynamic_program_format::print() {
           __info
-            << " ----- " << attributes_.size() << " attribute(s) ----- ";
+          << " ----- " << attributes_.size() << " attribute(s) ----- ";
           for (fp::attribute_vector_t::iterator it = attributes_.begin(); it != attributes_.end(); ++it) {
             __info
-              << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: " << it->size
-                  << ", location: " << it->location;
+            << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: " << it->size
+                << ", location: " << it->location;
           }
 
           __info
-            << " ----- " << uniforms_.size() << " uniform(s)   ----- ";
+          << " ----- " << uniforms_.size() << " uniform(s)   ----- ";
           for (fp::uniform_vector_t::iterator it = uniforms_.begin(); it != uniforms_.end(); ++it) {
             __info
-              << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: " << it->size
-                  << ", location: " << it->location;
+            << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: " << it->size
+                << ", location: " << it->location;
           }
 
           __info
-            << " ----- " << outputs_.size() << " output(s)    ----- ";
+          << " ----- " << outputs_.size() << " output(s)    ----- ";
           for (fp::output_vector_t::iterator it = outputs_.begin(); it != outputs_.end(); ++it) {
             __info
-              << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: " << it->size
-                  << ", location: " << it->location << ", index: " << it->index;
+            << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: " << it->size
+                << ", location: " << it->location << ", index: " << it->index;
           }
         }
 
@@ -198,7 +199,7 @@ namespace gtulu {
 
           if (length > ::std::numeric_limits< ::std::uint32_t >::max()) {
             __error
-              << "Log length too long.";
+            << "Log length too long.";
           } else if (!has_link_log_) {
             link_log_ = "";
           } else {
@@ -207,7 +208,7 @@ namespace gtulu {
 
             fnc::gl_get_program_info_log::call(program_base::handle_,
                                                length,
-                                               reinterpret_cast< ::std::int32_t* > (&length),
+                                               reinterpret_cast< ::std::int32_t* >(&length),
                                                buffer);
 
             link_log_ = ::std::string(buffer);
@@ -241,7 +242,7 @@ namespace gtulu {
 
           if (length > ::std::numeric_limits< ::std::uint32_t >::max()) {
             __error
-              << "Log length too long.";
+            << "Log length too long.";
           } else if (!has_validation_log_) {
             validation_log_ = "";
           } else {
@@ -250,7 +251,7 @@ namespace gtulu {
 
             fnc::gl_get_program_info_log::call(program_base::handle_,
                                                length,
-                                               reinterpret_cast< ::std::int32_t* > (&length),
+                                               reinterpret_cast< ::std::int32_t* >(&length),
                                                buffer);
 
             validation_log_ = ::std::string(buffer);
@@ -272,7 +273,7 @@ namespace gtulu {
             for (::std::vector< ::std::string >::iterator it = lines.begin(); it != lines.end(); ++it) {
               if (it->length() > 0) {
                 __warnM(program)
-                  << *it;
+                << *it;
               }
             }
           }
@@ -283,7 +284,7 @@ namespace gtulu {
             for (::std::vector< ::std::string >::iterator it = lines.begin(); it != lines.end(); ++it) {
               if (it->length() > 0) {
                 __warnM(program)
-                  << *it;
+                << *it;
               }
             }
           }

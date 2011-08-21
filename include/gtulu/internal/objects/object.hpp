@@ -45,12 +45,12 @@ namespace gtulu {
       struct slot_binder {
           template< typename target_type_t = void >
           static void bind(plug< object_type_t > const& pluggable_object) {
-            bind< target_type_t > (*pluggable_object);
+            bind< target_type_t >(*pluggable_object);
           }
 
           template< typename target_type_t = void >
           static void clear() {
-            bind< target_type_t > (0);
+            bind< target_type_t >(0);
           }
 
         protected:

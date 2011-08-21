@@ -59,7 +59,7 @@ namespace gtulu {
         static ::std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
-          fnc::gl_bind_framebuffer::call< target_type_t >(handle_);
+          fnc::gl_bind_framebuffer::call < target_type_t > (handle_);
           bound_handle_ = handle_;
         }
       }
@@ -105,7 +105,7 @@ namespace gtulu {
                             ::std::uint32_t origin_y = 0,
                             ::std::uint32_t origin_z = 0) {
             fnc::gl_viewport::call(origin_x, origin_y, width, height);
-            fnc::gl_depth_range::call(static_cast< float > (origin_z), static_cast< float > (depth));
+            fnc::gl_depth_range::call(static_cast< float >(origin_z), static_cast< float >(depth));
           }
       };
 
@@ -128,7 +128,7 @@ namespace gtulu {
       };
 
       template< typename framebuffer_format_t, typename layered_t = gif::layered::no >
-      struct framebuffer: public object< framebuffer_base > , public framebuffer_format_t {
+      struct framebuffer: public object< framebuffer_base >, public framebuffer_format_t {
       };
     } // namespace objects
 

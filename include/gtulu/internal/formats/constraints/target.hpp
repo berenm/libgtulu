@@ -31,11 +31,10 @@ namespace gtulu {
 
         template< typename target_format_t, typename internal_format_t >
         struct depth_stencil_check {
-            typedef bm::or_< fib::is_r< internal_format_t >, fib::is_rg< internal_format_t >, fib::is_rgba<
-                internal_format_t > > is_internal_rgba;
+            typedef bm::or_< fib::is_r< internal_format_t >, fib::is_rg< internal_format_t >,
+                fib::is_rgba< internal_format_t > > is_internal_rgba;
             typedef bm::and_< bm::not_< ftt::is_buffer< target_format_t > >,
-                bm::not_< ftt::is_threed< target_format_t > >, fts::is_simple< target_format_t > >
-                is_depth_stencil_capable;
+                bm::not_< ftt::is_threed< target_format_t > >, fts::is_simple< target_format_t > > is_depth_stencil_capable;
 
             typedef bm::or_< is_internal_rgba, is_depth_stencil_capable > type;
             static_assert(type::value, "internal_format_t is not rgba and target_format_t is not depth stencil capable.");
@@ -45,19 +44,17 @@ namespace gtulu {
 
         template< typename target_format_t, typename internal_format_t >
         struct compression_check {
-            typedef bm::not_< bm::and_< fic::is_compressed< internal_format_t >, ftt::is_rectangle< target_format_t > > >
-                type;
+            typedef bm::not_< bm::and_< fic::is_compressed< internal_format_t >, ftt::is_rectangle< target_format_t > > > type;
             static_assert(type::value, "compressed internal_format_t is not compatible with rectangle target_format_t.");
         };
 
         template< typename target_format_t, typename internal_format_t >
         struct restriction_check {
-            typedef bm::or_< bm::not_< fir::is_renderbuffer< internal_format_t > >, ftb::is_renderbuffer<
-                target_format_t > > renderbuffer_only_c;
+            typedef bm::or_< bm::not_< fir::is_renderbuffer< internal_format_t > >,
+                ftb::is_renderbuffer< target_format_t > > renderbuffer_only_c;
             static_assert(renderbuffer_only_c::value, "target_format_t is texture and internal_format_t is renderbuffer only.");
 
-            typedef bm::or_< bm::not_< fir::is_texture< internal_format_t > >, ftb::is_texture< target_format_t > >
-                texture_only_c;
+            typedef bm::or_< bm::not_< fir::is_texture< internal_format_t > >, ftb::is_texture< target_format_t > > texture_only_c;
             static_assert(texture_only_c::value, "target_format_t is renderbuffer and internal_format_t is texture only.");
 
             typedef bm::and_< renderbuffer_only_c, texture_only_c > type;

@@ -49,36 +49,13 @@ namespace gtulu {
           typedef cst::gl_float_32_unsigned_int_24_8_rev gl_float_32_unsigned_int_24_8_rev;
         } // namespace format
 
-        DECLARE_TRAIT_ASPECT(type, struct,
-            (floating)
-            (integer)
-        )
-        DECLARE_TRAIT_ASPECT(value_type, struct,
-            (unsigned_byte)
-            (byte_)
-            (unsigned_short)
-            (short_)
-            (unsigned_int)
-            (int_)
-            (half_float)
-            (float_)
-            (float_unsigned_int)
-            (double_)
-        )
-        DECLARE_TRAIT_ASPECT(order, struct,
-            (normal)
-            (reverse)
-        )
-        DECLARE_TRAIT_ASPECT(normalized, struct,
-            (normalized)
-            (normal)
-        )
-        DECLARE_TRAIT_ASPECT(packing, struct,
-            (none)
-            (rgb)
-            (rgba)
-            (depth_stencil)
-        )
+        DECLARE_TRAIT_ASPECT(type, struct, (floating) (integer))
+        DECLARE_TRAIT_ASPECT(value_type,
+                             struct,
+                             (unsigned_byte) (byte_) (unsigned_short) (short_) (unsigned_int) (int_) (half_float) (float_) (float_unsigned_int) (double_))
+        DECLARE_TRAIT_ASPECT(order, struct, (normal) (reverse))
+        DECLARE_TRAIT_ASPECT(normalized, struct, (normalized) (normal))
+        DECLARE_TRAIT_ASPECT(packing, struct, (none) (rgb) (rgba) (depth_stencil))
 
         typedef ::std::uint32_t size_type;
 
@@ -144,7 +121,12 @@ namespace gtulu {
         DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_int_24_8, unsigned_int, floating, depth_stencil, normal, 24)
         DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_int_10f_11f_11f_rev, unsigned_int, floating, rgb, reverse, 11)
         DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_int_5_9_9_9_rev, unsigned_int, floating, rgb, reverse, 9)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_float_32_unsigned_int_24_8_rev, float_unsigned_int, floating, depth_stencil, reverse, 32)
+        DECLARE_DATA_FORMAT_DEFAULT(gl_float_32_unsigned_int_24_8_rev,
+                                    float_unsigned_int,
+                                    floating,
+                                    depth_stencil,
+                                    reverse,
+                                    32)
 
         template< typename type_t, typename packing_t, size_type size_t, typename order_t >
         struct format_selector {

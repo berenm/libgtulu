@@ -69,9 +69,9 @@ namespace gtulu {
     DECLARE_HAS_TRAIT_FORMAT(base, base_m, format_m) \
     DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m)
 
-        DECLARE_OUTPUT_FORMAT(gl_float, literal, floating)
+DECLARE_OUTPUT_FORMAT(gl_float, literal, floating)
         DECLARE_OUTPUT_FORMAT(gl_int, literal, integer)
-        DECLARE_OUTPUT_FORMAT(gl_unsigned_int, literal, unsigned_integer)
+                DECLARE_OUTPUT_FORMAT(gl_unsigned_int, literal, unsigned_integer)
 
 #undef DECLARE_OUTPUT_FORMAT
 

@@ -22,7 +22,8 @@ namespace gtulu {
 
       template< typename type_t >
       struct uniform_binder {
-          inline static void bind(location_t const location_in, typename fu::to_typename< type_t >::type const value_in) {
+          inline static void bind(location_t const location_in,
+                                  typename fu::to_typename< type_t >::type const value_in) {
             fnc::gl_uniform_1::call(location_in, value_in);
           }
           inline static void bind(location_t const location_in,
@@ -32,7 +33,7 @@ namespace gtulu {
           }
       };
 
-      template< typename format_t, typename binder_t = uniform_binder< typename format_t::info::type > ,
+      template< typename format_t, typename binder_t = uniform_binder< typename format_t::info::type >,
           typename value_t = typename fu::to_typename< typename format_t::info::type >::type >
       struct uniform {
           typedef format_t format;

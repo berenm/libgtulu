@@ -38,7 +38,7 @@ namespace gtulu {
                                                                                         count_in,
                                                                                         normalized_in,
                                                                                         stride_in,
-                                                                                        reinterpret_cast< void const* > (offset_in));
+                                                                                        reinterpret_cast< void const* >(offset_in));
           }
       };
 
@@ -53,7 +53,7 @@ namespace gtulu {
             fnc::gl_vertex_attrib_pointer_integer::call< typename data_format_t::info::format >(location_in,
                                                                                                 count_in,
                                                                                                 stride_in,
-                                                                                                reinterpret_cast< void const* > (offset_in));
+                                                                                                reinterpret_cast< void const* >(offset_in));
           }
       };
 

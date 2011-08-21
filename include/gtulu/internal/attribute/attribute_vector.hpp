@@ -67,21 +67,9 @@ namespace gtulu {
 
         template< >
         struct attribute_binder< fat::floating, favc::four > {
-            DECLARE_BIND_METHODS(BOOST_PP_EMPTY(), double, 4, BOOST_PP_EMPTY())
-            DECLARE_BIND_METHODS(BOOST_PP_EMPTY(), float, 4, BOOST_PP_EMPTY())
-            DECLARE_BIND_METHODS(BOOST_PP_EMPTY(), ::std::int16_t, 4, BOOST_PP_EMPTY())
-            DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::int32_t, 4, BOOST_PP_EMPTY())
-            DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::int8_t, 4, BOOST_PP_EMPTY())
-            DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::uint32_t, 4, BOOST_PP_EMPTY())
-            DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::uint16_t, 4, BOOST_PP_EMPTY())
-            DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::uint8_t, 4, BOOST_PP_EMPTY())
+            DECLARE_BIND_METHODS(BOOST_PP_EMPTY(), double, 4, BOOST_PP_EMPTY())DECLARE_BIND_METHODS(BOOST_PP_EMPTY(), float, 4, BOOST_PP_EMPTY())DECLARE_BIND_METHODS(BOOST_PP_EMPTY(), ::std::int16_t, 4, BOOST_PP_EMPTY())DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::int32_t, 4, BOOST_PP_EMPTY())DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::int8_t, 4, BOOST_PP_EMPTY())DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::uint32_t, 4, BOOST_PP_EMPTY())DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::uint16_t, 4, BOOST_PP_EMPTY())DECLARE_BIND_METHOD_PTR(BOOST_PP_EMPTY(), ::std::uint8_t, 4, BOOST_PP_EMPTY())
 
-            DECLARE_BIND_METHODS(_normalized, ::std::uint8_t, 4, _normalized)
-            DECLARE_BIND_METHOD_PTR(_normalized, ::std::int32_t, 4, _normalized)
-            DECLARE_BIND_METHOD_PTR(_normalized, ::std::int16_t, 4, _normalized)
-            DECLARE_BIND_METHOD_PTR(_normalized, ::std::int8_t, 4, _normalized)
-            DECLARE_BIND_METHOD_PTR(_normalized, ::std::uint32_t, 4, _normalized)
-            DECLARE_BIND_METHOD_PTR(_normalized, ::std::uint16_t, 4, _normalized)
+            DECLARE_BIND_METHODS(_normalized, ::std::uint8_t, 4, _normalized)DECLARE_BIND_METHOD_PTR(_normalized, ::std::int32_t, 4, _normalized)DECLARE_BIND_METHOD_PTR(_normalized, ::std::int16_t, 4, _normalized)DECLARE_BIND_METHOD_PTR(_normalized, ::std::int8_t, 4, _normalized)DECLARE_BIND_METHOD_PTR(_normalized, ::std::uint32_t, 4, _normalized)DECLARE_BIND_METHOD_PTR(_normalized, ::std::uint16_t, 4, _normalized)
         };
 
 #undef DECLARE_FLOATING_BINDER
@@ -91,7 +79,7 @@ namespace gtulu {
 
         template< typename format_t, typename binder_t = attribute_binder< typename format_t::info::type,
             typename format_t::info::count > , typename buffer_binder_t = attribute_buffer_binder< format_t > ,
-            typename value_t = typename fa::to_typename< typename format_t::info::type >::type >
+        typename value_t = typename fa::to_typename< typename format_t::info::type >::type >
         struct attribute {
             typedef format_t format;
             typedef value_t value_type;

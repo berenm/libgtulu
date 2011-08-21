@@ -43,25 +43,9 @@ namespace gtulu {
           typedef cst::gl_bgra_integer gl_bgra_integer;
         } // namespace format
 
-        DECLARE_TRAIT_ASPECT(base, struct,
-            (depth)
-            (stencil)
-            (depth_stencil)
-            (r)
-            (g)
-            (b)
-            (rg)
-            (rgb)
-            (rgba)
-        )
-        DECLARE_TRAIT_ASPECT(order, struct,
-            (normal)
-            (reverse)
-        )
-        DECLARE_TRAIT_ASPECT(type, struct,
-            (floating)
-            (integer)
-        )
+        DECLARE_TRAIT_ASPECT(base, struct, (depth) (stencil) (depth_stencil) (r) (g) (b) (rg) (rgb) (rgba))
+        DECLARE_TRAIT_ASPECT(order, struct, (normal) (reverse))
+        DECLARE_TRAIT_ASPECT(type, struct, (floating) (integer))
 
         template< typename format_t, typename base_t, typename type_t, typename order_t >
         struct group_metadata {

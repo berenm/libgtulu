@@ -62,7 +62,7 @@ namespace gtulu {
         static ::std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
-          fnc::gl_bind_buffer::call< target_type_t >(handle_);
+          fnc::gl_bind_buffer::call < target_type_t > (handle_);
           bound_handle_ = handle_;
         }
       }
@@ -92,11 +92,11 @@ namespace gtulu {
                                   ::std::uint32_t const index,
                                   ::std::uint32_t const offset,
                                   ::std::uint32_t const size) {
-            fnc::gl_bind_buffer_range::call< slot_type_t >(index, *buffer, offset, size);
+            fnc::gl_bind_buffer_range::call < slot_type_t > (index, *buffer, offset, size);
           }
 
           static inline void bind(gio::plug< gio::buffer_base > const& buffer, ::std::uint32_t const index) {
-            fnc::gl_bind_buffer_base::call< slot_type_t >(index, *buffer);
+            fnc::gl_bind_buffer_base::call < slot_type_t > (index, *buffer);
           }
       };
 #define DECLARE_SLOT(slot_type_m) \
@@ -162,17 +162,17 @@ namespace gtulu {
           typedef typename fd::to_typename< typename buffer_format_t::info::value_type >::type data_type_t;
 
           buffer() :
-            object< buffer_base > () {
+              object< buffer_base >() {
           }
 
           buffer(::std::size_t const size, data_type_t const* data = 0) :
-            object< buffer_base > () {
+              object< buffer_base >() {
             fill(size, data);
           }
 
           template< typename temporary_slot_type_t = gib::array_buffer_slot >
           inline void fill(::std::size_t const size, data_type_t const* data = 0) {
-            bind< temporary_slot_type_t > ();
+            bind< temporary_slot_type_t >();
 
             fnc::gl_buffer_data::call< typename temporary_slot_type_t::type, buffer_usage_t >(size
                                                                                                   * sizeof(data_type_t),
@@ -183,7 +183,7 @@ namespace gtulu {
 
           template< typename new_buffer_format_t, typename new_buffer_usage_t >
           operator buffer< new_buffer_format_t, new_buffer_usage_t > const&() const {
-            return *reinterpret_cast< buffer< new_buffer_format_t, new_buffer_usage_t > const* > (this);
+            return *reinterpret_cast< buffer< new_buffer_format_t, new_buffer_usage_t > const* >(this);
           }
       };
 

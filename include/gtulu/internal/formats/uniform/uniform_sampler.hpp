@@ -24,10 +24,7 @@ namespace gtulu {
       namespace uniform {
         namespace sampler {
 
-          DECLARE_TRAIT_ASPECT(compare, struct,
-              (normal)
-              (shadow)
-          )
+          DECLARE_TRAIT_ASPECT(compare, struct, (normal) (shadow))
 
           template< typename format_t, typename type_t, typename target_format_t, typename compare_t >
           struct uniform_metadata: fu::uniform_metadata< format_t, fub::sampler, type_t > {
@@ -88,8 +85,14 @@ namespace gtulu {
         DECLARE_UNIFORM_FORMAT(gl_unsigned_int_sampler_cube, unsigned_integer, gl_texture_cube_map, normal)
         DECLARE_UNIFORM_FORMAT(gl_unsigned_int_sampler_1d_array, unsigned_integer, gl_texture_1d_array, normal)
         DECLARE_UNIFORM_FORMAT(gl_unsigned_int_sampler_2d_array, unsigned_integer, gl_texture_2d_array, normal)
-        DECLARE_UNIFORM_FORMAT(gl_unsigned_int_sampler_2d_multisample, unsigned_integer, gl_texture_2d_multisample, normal)
-        DECLARE_UNIFORM_FORMAT(gl_unsigned_int_sampler_2d_multisample_array, unsigned_integer, gl_texture_2d_multisample_array, normal)
+        DECLARE_UNIFORM_FORMAT(gl_unsigned_int_sampler_2d_multisample,
+                               unsigned_integer,
+                               gl_texture_2d_multisample,
+                               normal)
+        DECLARE_UNIFORM_FORMAT(gl_unsigned_int_sampler_2d_multisample_array,
+                               unsigned_integer,
+                               gl_texture_2d_multisample_array,
+                               normal)
         DECLARE_UNIFORM_FORMAT(gl_unsigned_int_sampler_buffer, unsigned_integer, gl_texture_buffer, normal)
         DECLARE_UNIFORM_FORMAT(gl_unsigned_int_sampler_2d_rect, unsigned_integer, gl_texture_rectangle, normal)
 

@@ -66,7 +66,7 @@ namespace gtulu {
         texture_unit_mappings[*texture] = unit_ptr;
       } else {
         __error
-            << "unable to find a free texture unit - maybe some texture unit pointers are still active, or maybe the "
+        << "unable to find a free texture unit - maybe some texture unit pointers are still active, or maybe the "
             << max_texture_unit << " texture unit limit has been reached.";
       }
 

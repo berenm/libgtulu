@@ -41,15 +41,15 @@ namespace gtulu {
           ::std::uint64_t integer_value;
 
           gl_constant_base(char const* string_value_in, ::std::uint64_t integer_value_in) :
-            string_value(string_value_in), integer_value(integer_value_in) {
+              string_value(string_value_in), integer_value(integer_value_in) {
           }
 
         public:
           gl_constant_base() :
-            string_value("<invalid-value>"), integer_value(0xFFFFFFFF) {
+              string_value("<invalid-value>"), integer_value(0xFFFFFFFF) {
           }
           gl_constant_base(gl_constant_base const& copy) :
-            string_value(copy.string_value), integer_value(copy.integer_value) {
+              string_value(copy.string_value), integer_value(copy.integer_value) {
           }
 
           gl_constant_base& operator=(gl_constant_base const& copy_in) {
@@ -85,7 +85,7 @@ namespace gtulu {
 
         protected:
           gl_constant() :
-            gl_constant_base(name::value, value_type::value) {
+              gl_constant_base(name::value, value_type::value) {
           }
       };
 
@@ -94,23 +94,23 @@ namespace gtulu {
 
       struct runtime_constant: public gl_constant_base {
           runtime_constant(gl_constant_base const& base, ::std::uint64_t offset_in) :
-            gl_constant_base(base) {
+              gl_constant_base(base) {
             string_value.erase(string_value.end() - 1);
             string_value += ::boost::lexical_cast< ::std::string >(offset_in);
             integer_value += offset_in;
           }
       };
 
-      struct invalid_constant: public gl_constant< ::boost::mpl::string< '<inv', 'alid', '-con', 'stan', 't>' >,
-          ::boost::mpl::int_< 0xFFFFFF > > {
-      };
+      struct invalid_constant: public gl_constant<
+          ::boost::mpl::string< '<inv', 'alid', '-con', 'stan', 't>' >, ::boost::mpl::int_< 0xFFFFFF > > {
+          };
 
-    } // namespace constant
+        } // namespace constant
 
-    namespace cst = ::gtulu::internal::constant;
+        namespace cst = ::gtulu::internal::constant;
 
-  } // namespace internal
-} // namespace gtulu
+      } // namespace internal
+    } // namespace gtulu
 
 #define IN_GTULU_INTERNAL_CONSTANTS_HPP_
 #include "gtulu/internal/generated/constants.hpp"

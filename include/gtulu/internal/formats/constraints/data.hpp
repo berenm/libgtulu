@@ -24,8 +24,7 @@ namespace gtulu {
 
         template< typename data_format_t, typename group_format_t >
         struct group_type_check {
-            typedef bm::or_< fdt::is_floating< data_format_t >, fdt::is_integer< data_format_t > >
-                is_floating_convertible;
+            typedef bm::or_< fdt::is_floating< data_format_t >, fdt::is_integer< data_format_t > > is_floating_convertible;
             typedef fdt::is_integer< data_format_t > is_integer_convertible;
 
             typedef bm::and_< is_floating_convertible, fgt::is_floating< group_format_t > > floating_check;
@@ -41,8 +40,7 @@ namespace gtulu {
 
             typedef bm::and_< fdp::is_rgb< data_format_t >, fib::is_rgb< internal_format_t > > rgb_packed_check;
             typedef bm::and_< fdp::is_rgba< data_format_t >, fib::is_rgba< internal_format_t > > rgba_packed_check;
-            typedef bm::and_< fdp::is_depth_stencil< data_format_t >, fib::is_depth_stencil< internal_format_t > >
-                depth_stencil_packed_check;
+            typedef bm::and_< fdp::is_depth_stencil< data_format_t >, fib::is_depth_stencil< internal_format_t > > depth_stencil_packed_check;
 
             typedef bm::or_< not_packed, rgb_packed_check, rgba_packed_check, depth_stencil_packed_check > type;
             static_assert(type::value, "data_format_t is not compatible with internal_format_t, rgb, rgba, depth_stencil packed data can only be used with, respectively, rgb, rgba, depth_stencil internal formats.");

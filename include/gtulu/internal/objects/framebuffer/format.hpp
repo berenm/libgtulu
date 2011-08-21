@@ -75,7 +75,7 @@ namespace gtulu {
 
           template< typename framebuffer_slot_type_t >
           void set(::std::uint32_t const location, gio::default_drawable const drawable) {
-            colors[location] = static_cast< ::std::uint32_t > (drawable);
+            colors[location] = static_cast< ::std::uint32_t >(drawable);
           }
       };
 

@@ -27,8 +27,7 @@ namespace gtulu {
 
       template< typename attribute_format_t >
       struct attribute_buffer_binder {
-          typedef attribute_buffer_binder_callable< fat::is_floating< attribute_format_t >::value >
-              fnc_vertex_attrib_pointer_t;
+          typedef attribute_buffer_binder_callable< fat::is_floating< attribute_format_t >::value > fnc_vertex_attrib_pointer_t;
 
           template< typename normalize_t = fdn::normal, typename order_t = fdo::normal, typename data_format_t >
           inline static void bind(location_t const location_in,

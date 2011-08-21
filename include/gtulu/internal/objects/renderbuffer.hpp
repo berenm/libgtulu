@@ -54,7 +54,7 @@ namespace gtulu {
 
       template< typename renderbuffer_format_t >
       struct renderbuffer: public renderbuffer_base,
-                           public object< renderbuffer_base > ,
+                           public object< renderbuffer_base >,
                            public drawable,
                            private renderbuffer_format_t {
           inline void bind() const {

@@ -75,8 +75,8 @@ struct program_compiler {
     ::std::string name;
 
     program_compiler(::std::string name_in, ::boost::filesystem::path template_path = "include/gtulu/templates/") :
-      header_template("static_program_format.hpp", template_path),
-          source_template("static_program_format.cpp", template_path), name(name_in) {
+        header_template("static_program_format.hpp", template_path), source_template("static_program_format.cpp",
+                                                                                     template_path), name(name_in) {
     }
 
     void add_shader(::std::string name, ::std::string type, ::std::string source) {
@@ -232,7 +232,7 @@ const cst::gl_constant_base get_shader_type(::bfs::path const& shader_file) {
     return fst::gl_geometry_shader();
   } else {
     __error
-      << "Unknown shader extension " << extension << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
+    << "Unknown shader extension " << extension << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
   }
 
   return cst::invalid_constant();
@@ -395,7 +395,7 @@ int main(int argc, char *argv[]) {
     cmdline << argv[i] << " ";
   }
   __info
-    << cmdline.str();
+  << cmdline.str();
 
   init_gl(argc, argv);
 
@@ -548,7 +548,7 @@ int main(int argc, char *argv[]) {
                           ::boost::lexical_cast< ::std::string >(info.size));
     } else {
       __warnM(shader)
-        << "Output data '" << info.type << "' " << info.name << " not bound. Maybe only used internally.";
+      << "Output data '" << info.type << "' " << info.name << " not bound. Maybe only used internally.";
     }
   }
 

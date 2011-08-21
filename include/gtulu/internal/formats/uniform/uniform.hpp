@@ -119,10 +119,10 @@ namespace gtulu {
     DECLARE_HAS_TRAIT_FORMAT(base, base_m, format_m) \
     DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m)
 
-        DECLARE_UNIFORM_FORMAT(gl_float, literal, floating)
+DECLARE_UNIFORM_FORMAT(gl_float, literal, floating)
         DECLARE_UNIFORM_FORMAT(gl_int, literal, integer)
         DECLARE_UNIFORM_FORMAT(gl_unsigned_int, literal, unsigned_integer)
-        DECLARE_UNIFORM_FORMAT(gl_bool, literal, boolean)
+                DECLARE_UNIFORM_FORMAT(gl_bool, literal, boolean)
 
 #undef DECLARE_UNIFORM_FORMAT
 

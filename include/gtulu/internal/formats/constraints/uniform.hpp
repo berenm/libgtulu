@@ -27,8 +27,7 @@ namespace gtulu {
 
           template< typename sampler_format_t, typename internal_format_t >
           struct shadow_stencil_check {
-              typedef bm::or_< fib::is_depth< internal_format_t >, fib::is_depth_stencil< internal_format_t > >
-                  shadow_capable_c;
+              typedef bm::or_< fib::is_depth< internal_format_t >, fib::is_depth_stencil< internal_format_t > > shadow_capable_c;
               typedef bm::not_< bm::and_< fusc::is_shadow< sampler_format_t >, shadow_capable_c > > shadow_c;
               static_assert(shadow_c::value, "shadow uniform sampler only supports depth or depth_stencil internal_format_t.");
 
@@ -44,10 +43,9 @@ namespace gtulu {
                   fit::is_unsigned_fixed< internal_format_t > > is_internal_floating;
 
               typedef bm::and_< is_internal_floating, fut::is_floating< sampler_format_t > > are_both_floating;
-              typedef bm::and_< fit::is_integer< internal_format_t >, fut::is_integer< sampler_format_t > >
-                  are_both_integer;
-              typedef bm::and_< fit::is_unsigned_integer< internal_format_t >, fut::is_unsigned_integer<
-                  sampler_format_t > > are_both_unsigned_integer;
+              typedef bm::and_< fit::is_integer< internal_format_t >, fut::is_integer< sampler_format_t > > are_both_integer;
+              typedef bm::and_< fit::is_unsigned_integer< internal_format_t >,
+                  fut::is_unsigned_integer< sampler_format_t > > are_both_unsigned_integer;
 
               typedef bm::or_< are_both_floating, are_both_integer, are_both_unsigned_integer > type;
               static_assert(type::value, "internal_type_t is not compatible with uniform sampler_type_t, floating sampler require floating, fixed or unsigned_fixed internal type, integer sampler require integer internal type and ::std::uint32_teger sampler require ::std::uint32_teger internal type.");
@@ -61,10 +59,8 @@ namespace gtulu {
 
           template< typename sampler_format_t, typename texture_format_t >
           struct is_texture_compatible {
-              typedef typename shadow_stencil_check< sampler_format_t, typename texture_format_t::internal >::type
-                  shadow_stencil_c;
-              typedef typename internal_type_check< sampler_format_t, typename texture_format_t::internal >::type
-                  internal_type_c;
+              typedef typename shadow_stencil_check< sampler_format_t, typename texture_format_t::internal >::type shadow_stencil_c;
+              typedef typename internal_type_check< sampler_format_t, typename texture_format_t::internal >::type internal_type_c;
               typedef typename is_target_same< typename sampler_format_t::info::target,
                   typename texture_format_t::target >::type target_same_c;
 

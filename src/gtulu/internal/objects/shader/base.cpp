@@ -23,7 +23,7 @@ namespace gtulu {
       }
 
       void shader_base::set_source(char const* code) {
-        fnc::gl_shader_source::call(handle_, 1, static_cast< GLchar const** > (&code), NULL);
+        fnc::gl_shader_source::call(handle_, 1, static_cast< GLchar const** >(&code), NULL);
       }
     } // namespace objects
 

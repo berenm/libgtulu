@@ -427,11 +427,9 @@ namespace gtulu {
         typedef cst::gl_uniform_block_referenced_by_vertex_shader gl_uniform_block_referenced_by_vertex_shader;
         //        typedef cst::gl_uniform_block_referenced_by_geometry_shader gl_uniform_block_referenced_by_geometry_shader;
         typedef cst::gl_uniform_block_referenced_by_fragment_shader gl_uniform_block_referenced_by_fragment_shader;
-        typedef cst::gl_uniform_block_referenced_by_tess_control_shader
-            gl_uniform_block_referenced_by_tess_control_shader;
+        typedef cst::gl_uniform_block_referenced_by_tess_control_shader gl_uniform_block_referenced_by_tess_control_shader;
 
-        typedef cst::gl_uniform_block_referenced_by_tess_evaluation_shader
-            gl_uniform_block_referenced_by_tess_evalution_shader;
+        typedef cst::gl_uniform_block_referenced_by_tess_evaluation_shader gl_uniform_block_referenced_by_tess_evalution_shader;
 
         // Table 6.34. Program Object State ((cont.)
         // ......................................................................
@@ -608,12 +606,10 @@ namespace gtulu {
         //        typedef cst::gl_max_combined_geometry_uniform_components gl_max_combined_geometry_uniform_components;
         typedef cst::gl_max_combined_fragment_uniform_components gl_max_combined_fragment_uniform_components;
         typedef cst::gl_max_combined_tess_control_uniform_components gl_max_combined_tess_control_uniform_components;
-        typedef cst::gl_max_combined_tess_evaluation_uniform_components
-            gl_max_combined_tess_evaluation_uniform_components;
+        typedef cst::gl_max_combined_tess_evaluation_uniform_components gl_max_combined_tess_evaluation_uniform_components;
 
         // † The minimum value for each stage is MAX_stage_UNIFORM_BLOCKS ×
         // MAX_UNIFORM_BLOCK_SIZE / 4 + MAX_stage_UNIFORM_COMPONENTS
-
 
         // Table 6.51. Implementation Dependent Values ((cont.)
         // ......................................................................
@@ -708,14 +704,14 @@ namespace gtulu {
           static void get(::std::string* data) {
             GLubyte const* bytes = fnc::gl_get_string::call< parameter_t >();
             if (bytes != 0) {
-              data->assign(reinterpret_cast< char const* > (bytes));
+              data->assign(reinterpret_cast< char const* >(bytes));
             }
           }
           template< typename parameter_t >
           static void get(::std::uint32_t const index_in, ::std::string* data) {
-            GLubyte const* bytes = fnc::gl_get_string::call< parameter_t >(index_in);
+            GLubyte const* bytes = fnc::gl_get_string::call < parameter_t > (index_in);
             if (bytes != 0) {
-              data->assign(reinterpret_cast< char const* > (bytes));
+              data->assign(reinterpret_cast< char const* >(bytes));
             }
           }
       };

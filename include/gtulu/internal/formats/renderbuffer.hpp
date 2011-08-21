@@ -28,7 +28,7 @@ namespace gtulu {
       namespace renderbuffer {
         template< typename target_format_t, typename internal_format_t >
         struct renderbuffer_format: ft::is_internal_compatible< target_format_t, internal_format_t >,
-                                    ft::is_of_target_base< target_format_t, ftb::renderbuffer > {
+        ft::is_of_target_base< target_format_t, ftb::renderbuffer > {
             typedef target_format_t target;
             typedef internal_format_t internal;
         };

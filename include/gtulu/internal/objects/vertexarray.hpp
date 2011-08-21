@@ -61,7 +61,7 @@ namespace gtulu {
       };
 
       template< typename vertexarray_format_t >
-      struct vertexarray: public object< vertexarray_base > , public vertexarray_format_t {
+      struct vertexarray: public object< vertexarray_base >, public vertexarray_format_t {
       };
 
     } // namespace objects

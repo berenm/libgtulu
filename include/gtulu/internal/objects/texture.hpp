@@ -56,7 +56,7 @@ namespace gtulu {
 
       template< typename texture_format_t >
       struct texture: public texture_base,
-                      public object< texture_base > ,
+                      public object< texture_base >,
                       public drawable,
                       private texture_format_t,
                       public texture_format_t::loader {

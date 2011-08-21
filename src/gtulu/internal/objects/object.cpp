@@ -17,11 +17,11 @@ namespace gtulu {
 
     namespace objects {
       object_base::object_base() :
-        handle_(0) {
+          handle_(0) {
       }
 
       object_base::object_base(const ::std::uint32_t handle_in) :
-        handle_(handle_in) {
+          handle_(handle_in) {
       }
 
       ::std::uint32_t object_base::operator *() const {

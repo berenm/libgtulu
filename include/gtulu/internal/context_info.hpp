@@ -82,10 +82,10 @@ namespace gtulu {
       };
       struct glx_current_context: public glx_context {
           glx_current_context() :
-                glx_context(glXGetCurrentDisplay(),
-                            glXGetCurrentContext(),
-                            glXGetCurrentDrawable(),
-                            glXGetCurrentReadDrawable()) {
+              glx_context(glXGetCurrentDisplay(),
+                          glXGetCurrentContext(),
+                          glXGetCurrentDrawable(),
+                          glXGetCurrentReadDrawable()) {
           }
       };
 

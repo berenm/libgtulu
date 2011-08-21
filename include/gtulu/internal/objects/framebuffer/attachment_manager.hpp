@@ -26,7 +26,7 @@ namespace gtulu {
 
     struct attachment: gio::object_base {
         explicit attachment(::std::uint32_t const handle_in) :
-          object_base(handle_in) {
+            object_base(handle_in) {
         }
 
         cst::gl_constant_base get_color() {

@@ -35,9 +35,7 @@ namespace gtulu {
 
       template< >
       struct attribute_binder< fat::floating > {
-          DECLARE_BINDER_METHODS(double, BOOST_PP_EMPTY())
-          DECLARE_BINDER_METHODS(float, BOOST_PP_EMPTY())
-          DECLARE_BINDER_METHODS(::std::int16_t, BOOST_PP_EMPTY())
+          DECLARE_BINDER_METHODS(double, BOOST_PP_EMPTY())DECLARE_BINDER_METHODS(float, BOOST_PP_EMPTY())DECLARE_BINDER_METHODS(::std::int16_t, BOOST_PP_EMPTY())
       };
 
       template< >
@@ -52,8 +50,8 @@ namespace gtulu {
 
 #undef DECLARE_BINDER_METHODS
 
-      template< typename format_t, typename binder_t = attribute_binder< typename format_t::info::type > ,
-          typename buffer_binder_t = attribute_buffer_binder< format_t > , typename value_t = typename fa::to_typename<
+      template< typename format_t, typename binder_t = attribute_binder< typename format_t::info::type >,
+          typename buffer_binder_t = attribute_buffer_binder< format_t >, typename value_t = typename fa::to_typename<
               typename format_t::info::type >::type >
       struct attribute {
           typedef format_t format;

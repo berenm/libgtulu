@@ -126,7 +126,7 @@ namespace gtulu {
     }
 
     void file_template::populate(::std::map< ::std::string, ::std::string >& arguments_in,
-                                 ::std::vector< file_template > sub_templates) {
+    ::std::vector< file_template > sub_templates) {
       typedef ::std::map< ::std::string, ::std::string >::iterator args_it_t;
       typedef ::std::vector< file_template >::iterator subs_in_it_t;
 
