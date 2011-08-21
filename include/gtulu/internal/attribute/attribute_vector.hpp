@@ -25,7 +25,7 @@ namespace gtulu {
     namespace attribute {
       namespace vector {
 
-        template< typename type_t, typename count_t >
+        template< typename DataType, typename Count >
         struct attribute_binder;
 
 #define DECLARE_BIND_METHOD_PTR(prefix_m, value_type_m, count_m, suffix_m) \
@@ -77,14 +77,14 @@ namespace gtulu {
 #undef DECLARE_BIND_METHODS
 #undef DECLARE_BIND_METHODS_PTR
 
-        template< typename format_t, typename binder_t = attribute_binder< typename format_t::info::type,
-            typename format_t::info::count > , typename buffer_binder_t = attribute_buffer_binder< format_t > ,
-        typename value_t = typename fa::to_typename< typename format_t::info::type >::type >
+        template< typename Format, typename BinderType = attribute_binder< typename Format::info::type,
+            typename Format::info::count > , typename BufferBinderType = attribute_buffer_binder< Format > ,
+        typename ValueType = typename fa::to_typename< typename Format::info::type >::type >
         struct attribute {
-            typedef format_t format;
-            typedef value_t value_type;
-            typedef binder_t binder;
-            typedef buffer_binder_t buffer_binder;
+            typedef Format format;
+            typedef ValueType value_type;
+            typedef BinderType binder;
+            typedef BufferBinderType buffer_binder;
         };
       } // namespace vector
 

@@ -26,21 +26,21 @@ namespace gtulu {
 
     namespace formats {
       namespace renderbuffer {
-        template< typename target_format_t, typename internal_format_t >
-        struct renderbuffer_format: ft::is_internal_compatible< target_format_t, internal_format_t >,
-        ft::is_of_target_base< target_format_t, ftb::renderbuffer > {
-            typedef target_format_t target;
-            typedef internal_format_t internal;
+        template< typename TargetFormat, typename InternalFormat >
+        struct renderbuffer_format: ft::is_internal_compatible< TargetFormat, InternalFormat >,
+        ft::is_of_target_base< TargetFormat, ftb::renderbuffer > {
+            typedef TargetFormat target;
+            typedef InternalFormat internal;
         };
 
-        template< typename base_t = fib::rgba, fi::size_type size_t = 8, typename type_t = fit::unsigned_fixed,
-            typename compression_t = fic::normal >
+        template< typename Base = fib::rgba, fi::size_type Size = 8, typename Type = fit::unsigned_fixed,
+            typename Compression = fic::normal >
         class renderbuffer_format_selector {
-            typedef typename fi::to_group_type< type_t >::type group_type;
-            typedef typename fi::to_data_type< type_t >::type data_type;
-            typedef typename fi::to_data_packing< base_t >::packing data_packing;
+            typedef typename fi::to_group_type< Type >::type group_type;
+            typedef typename fi::to_data_type< Type >::type data_type;
+            typedef typename fi::to_data_packing< Base >::packing data_packing;
 
-            typedef typename fi::format_selector< base_t, size_t, type_t, compression_t >::format internal_format;
+            typedef typename fi::format_selector< Base, Size, Type, Compression >::format internal_format;
 
           public:
             typedef renderbuffer_format< ft::gl_renderbuffer, internal_format > format;

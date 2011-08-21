@@ -20,7 +20,7 @@ namespace gtulu {
 
     namespace formats {
       namespace common {
-        template< ::std::uint8_t dim1_t, ::std::uint8_t dim2_t = 1 >
+        template< ::std::uint8_t Dimension1, ::std::uint8_t Dimension2 = 1 >
         struct to_typename;
 
         template< >
@@ -76,7 +76,7 @@ namespace gtulu {
             typedef fcd::four_by_four type;
         };
 
-        template< typename dimension_t >
+        template< typename Dimension >
         struct to_literal {
             typedef ::boost::mpl::int_< 1 > type;
         };

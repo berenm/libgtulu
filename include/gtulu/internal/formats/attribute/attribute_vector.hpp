@@ -28,15 +28,15 @@ namespace gtulu {
               (four)
           )
 
-          template< typename format_t, typename type_t, typename count_t >
-          struct attribute_metadata: fa::attribute_metadata< format_t, fab::vector, type_t > {
-            using fa::attribute_metadata< format_t, fab::vector, type_t >::format;
-            using fa::attribute_metadata< format_t, fab::vector, type_t >::base;
-            using fa::attribute_metadata< format_t, fab::vector, type_t >::type;
-            typedef count_t count;
+          template< typename Format, typename DataType, typename Count >
+          struct attribute_metadata: fa::attribute_metadata< Format, fab::vector, DataType > {
+            using fa::attribute_metadata< Format, fab::vector, DataType >::format;
+            using fa::attribute_metadata< Format, fab::vector, DataType >::base;
+            using fa::attribute_metadata< Format, fab::vector, DataType >::type;
+            typedef Count count;
           };
 
-          template< typename format_t >
+          template< typename Format >
           struct attribute_format;
         } // namespace vector
 
@@ -47,8 +47,8 @@ namespace gtulu {
       }; \
     } \
     typedef vector::attribute_format< format::format_m > format_m; \
-    DECLARE_HAS_TRAIT_FORMAT(base, vector, format_m) \
-    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m) \
+    DECLARE_HAS_TRAIT_FORMAT(base, vector, format_m); \
+    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m); \
     namespace vector { \
       DECLARE_HAS_TRAIT_FORMAT(count, count_m, format_m) \
     }

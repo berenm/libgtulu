@@ -24,7 +24,7 @@ namespace gtulu {
 
     namespace objects {
       template< >
-      template< typename target_type_t >
+      template< typename TargetType >
       void slot_binder< program_base >::bind(::std::uint32_t handle_) {
         static ::std::uint32_t bound_handle_ = 0;
 
@@ -66,10 +66,10 @@ namespace gtulu {
             gip::program_slot::unbind(*this);
           }
 
-          template< typename program_attribute_t >
+          template< typename ProgramAttribute >
           inline ::std::uint32_t get() const {
             ::std::int32_t data;
-            fnc::gl_get_program::call < program_attribute_t > (handle_, &data);
+            fnc::gl_get_program::call< ProgramAttribute >(handle_, &data);
             return data;
           }
 

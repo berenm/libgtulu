@@ -13,28 +13,22 @@
 #define IN_OPENGL_HPP_
 
 #include <string>
-#include <boost/integer.hpp>
+#include <cstdint>
 
 #define GL3_PROTOTYPES 1
 #include <GL3/gl3.h>
 
 #include <logging/logging.hpp>
 
-namespace std {
-  typedef ::boost::uint64_t uint64_t;
-  typedef ::boost::int64_t int64_t;
-  typedef ::boost::uint32_t uint32_t;
-  typedef ::boost::int32_t int32_t;
-  typedef ::boost::uint16_t uint16_t;
-  typedef ::boost::int16_t int16_t;
-  typedef ::boost::uint8_t uint8_t;
-  typedef ::boost::int8_t int8_t;
-}
-
 namespace gtulu {
   typedef ::std::uint32_t location_t;
   typedef ::std::uint32_t handle_t;
 } // namespace gtulu
+
+#include <boost/config.hpp>
+#ifdef BOOST_NO_CONSTEXPR
+#define constexpr const
+#endif
 
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"

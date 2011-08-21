@@ -20,7 +20,7 @@ namespace gtulu {
 
     namespace attribute {
 
-      template< typename type_t >
+      template< typename DataType >
       struct attribute_binder;
 
 #define DECLARE_BINDER_METHODS(value_type_m, suffix_m) \
@@ -50,14 +50,14 @@ namespace gtulu {
 
 #undef DECLARE_BINDER_METHODS
 
-      template< typename format_t, typename binder_t = attribute_binder< typename format_t::info::type >,
-          typename buffer_binder_t = attribute_buffer_binder< format_t >, typename value_t = typename fa::to_typename<
-              typename format_t::info::type >::type >
+      template< typename Format, typename BinderType = attribute_binder< typename Format::info::type >,
+          typename BufferBinderType = attribute_buffer_binder< Format >, typename ValueType = typename fa::to_typename<
+              typename Format::info::type >::type >
       struct attribute {
-          typedef format_t format;
-          typedef value_t value_type;
-          typedef binder_t binder;
-          typedef buffer_binder_t buffer_binder;
+          typedef Format format;
+          typedef ValueType value_type;
+          typedef BinderType binder;
+          typedef BufferBinderType buffer_binder;
       };
 
 #define DECLARE_ATTRIBUTE(format_m) \

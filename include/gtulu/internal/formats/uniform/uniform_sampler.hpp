@@ -26,17 +26,17 @@ namespace gtulu {
 
           DECLARE_TRAIT_ASPECT(compare, struct, (normal) (shadow))
 
-          template< typename format_t, typename type_t, typename target_format_t, typename compare_t >
-          struct uniform_metadata: fu::uniform_metadata< format_t, fub::sampler, type_t > {
-              using fu::uniform_metadata< format_t, fub::sampler, type_t >::format;
-              using fu::uniform_metadata< format_t, fub::sampler, type_t >::base;
-              using fu::uniform_metadata< format_t, fub::sampler, type_t >::type;
-              using fu::uniform_metadata< format_t, fub::sampler, type_t >::count;
-              typedef target_format_t target;
-              typedef compare_t compare;
+          template< typename Format, typename DataType, typename TargetFormat, typename Compare >
+          struct uniform_metadata: fu::uniform_metadata< Format, fub::sampler, DataType > {
+              using fu::uniform_metadata< Format, fub::sampler, DataType >::format;
+              using fu::uniform_metadata< Format, fub::sampler, DataType >::base;
+              using fu::uniform_metadata< Format, fub::sampler, DataType >::type;
+              using fu::uniform_metadata< Format, fub::sampler, DataType >::count;
+              typedef TargetFormat target;
+              typedef Compare compare;
           };
 
-          template< typename format_t >
+          template< typename Format >
           struct uniform_format;
         } // namespace sampler
 
@@ -47,10 +47,10 @@ namespace gtulu {
       }; \
     } \
     typedef sampler::uniform_format< format::format_m > format_m; \
-    DECLARE_HAS_TRAIT_FORMAT(base, sampler, format_m) \
-    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m) \
+    DECLARE_HAS_TRAIT_FORMAT(base, sampler, format_m); \
+    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m); \
     namespace sampler { \
-      DECLARE_HAS_TRAIT_FORMAT(compare, compare_m, format_m) \
+      DECLARE_HAS_TRAIT_FORMAT(compare, compare_m, format_m); \
     }
 
         DECLARE_UNIFORM_FORMAT(gl_sampler_1d, floating, gl_texture_1d, normal)

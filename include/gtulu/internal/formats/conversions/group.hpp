@@ -20,7 +20,7 @@ namespace gtulu {
     namespace formats {
       namespace group {
 
-        template< typename base_t >
+        template< typename GroupBase >
         struct to_internal_base;
 
 #define DECLARE_CONVERT(group_m, internal_m) \

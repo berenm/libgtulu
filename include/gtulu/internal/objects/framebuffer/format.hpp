@@ -27,7 +27,7 @@ namespace gtulu {
 
     namespace framebuffer {
 
-      template< typename drawable_type_t >
+      template< typename DrawableType >
       struct framebuffer_format_base;
 
       template< >
@@ -43,20 +43,20 @@ namespace gtulu {
             fnc::gl_draw_buffers::call(colors.size(), colors.data());
           }
 
-          template< typename framebuffer_slot_type_t, typename texture_format_t >
-          void set(::std::uint32_t const location, gio::texture< texture_format_t > const& drawable) {
+          template< typename FramebufferSlotType, typename TextureFormat >
+          void set(::std::uint32_t const location, gio::texture< TextureFormat > const& drawable) {
             ::boost::shared_ptr< attachment > attachment = manager.get_current_or_new(drawable);
-            gif::attacher< framebuffer_slot_type_t >::template attach< gif::layered::no >(attachment->get_color(),
-                                                                                          drawable,
-                                                                                          0,
-                                                                                          0);
+            gif::attacher< FramebufferSlotType >::template attach< gif::layered::no >(attachment->get_color(),
+                                                                                      drawable,
+                                                                                      0,
+                                                                                      0);
             colors[location] = ::std::uint32_t(attachment->get_color());
           }
 
-          template< typename framebuffer_slot_type_t >
+          template< typename FramebufferSlotType >
           void set(::std::uint32_t const location, gio::renderbuffer_base const& drawable) {
             ::boost::shared_ptr< attachment > attachment = manager.get_current_or_new(drawable);
-            gif::attacher< framebuffer_slot_type_t >::attach(attachment->get_color(), drawable);
+            gif::attacher< FramebufferSlotType >::attach(attachment->get_color(), drawable);
             colors[location] = ::std::uint32_t(attachment->get_color());
           }
       };
@@ -73,7 +73,7 @@ namespace gtulu {
             fnc::gl_draw_buffers::call(4, colors.data());
           }
 
-          template< typename framebuffer_slot_type_t >
+          template< typename FramebufferSlotType >
           void set(::std::uint32_t const location, gio::default_drawable const drawable) {
             colors[location] = static_cast< ::std::uint32_t >(drawable);
           }

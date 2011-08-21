@@ -54,8 +54,8 @@ class declaration(renamable):
 
         if p.is_template:
           tpl_pars.append(p.tpl_str())
-          tpl_call.append('%s_t::value' % (p.name))
-          tpl_debg.append(''' "%s: '" << %s_t::name << "'" ''' % (p.name, p.name))
+          tpl_call.append('%s::value' % (p.tpl_name))
+          tpl_debg.append(''' "%s: '" << %s::name << "'" ''' % (p.name, p.tpl_name))
         else:
           tpl_args.append(p.std_str())
           if p.type == 'bool':

@@ -22,38 +22,38 @@ namespace gtulu {
 
     namespace attribute {
 
-      template< bool const is_floating_t >
+      template< bool const IsFloating >
       struct attribute_buffer_binder_callable {
       };
 
       template< >
       struct attribute_buffer_binder_callable< true > {
-          template< typename data_format_t >
+          template< typename DataFormat >
           inline static void call(location_t const location_in,
                                   ::std::uint32_t const offset_in,
                                   ::std::uint32_t const stride_in,
                                   ::std::int32_t const count_in,
                                   bool const normalized_in) {
-            fnc::gl_vertex_attrib_pointer::call< typename data_format_t::info::format >(location_in,
-                                                                                        count_in,
-                                                                                        normalized_in,
-                                                                                        stride_in,
-                                                                                        reinterpret_cast< void const* >(offset_in));
+            fnc::gl_vertex_attrib_pointer::call< typename DataFormat::info::format >(location_in,
+                                                                                     count_in,
+                                                                                     normalized_in,
+                                                                                     stride_in,
+                                                                                     reinterpret_cast< void const* >(offset_in));
           }
       };
 
       template< >
       struct attribute_buffer_binder_callable< false > {
-          template< typename data_format_t >
+          template< typename DataFormat >
           inline static void call(location_t const location_in,
                                   ::std::uint32_t const offset_in,
                                   ::std::uint32_t const stride_in,
                                   ::std::int32_t const count_in,
                                   bool const normalized_in) {
-            fnc::gl_vertex_attrib_pointer_integer::call< typename data_format_t::info::format >(location_in,
-                                                                                                count_in,
-                                                                                                stride_in,
-                                                                                                reinterpret_cast< void const* >(offset_in));
+            fnc::gl_vertex_attrib_pointer_integer::call< typename DataFormat::info::format >(location_in,
+                                                                                             count_in,
+                                                                                             stride_in,
+                                                                                             reinterpret_cast< void const* >(offset_in));
           }
       };
 

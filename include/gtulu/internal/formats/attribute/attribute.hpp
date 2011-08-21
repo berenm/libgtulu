@@ -22,27 +22,27 @@ namespace gtulu {
       namespace attribute {
 
         namespace format {
-          typedef cst::gl_float gl_float;
-          typedef cst::gl_float_vec2 gl_float_vec2;
-          typedef cst::gl_float_vec3 gl_float_vec3;
-          typedef cst::gl_float_vec4 gl_float_vec4;
-          typedef cst::gl_int gl_int;
-          typedef cst::gl_int_vec2 gl_int_vec2;
-          typedef cst::gl_int_vec3 gl_int_vec3;
-          typedef cst::gl_int_vec4 gl_int_vec4;
-          typedef cst::gl_unsigned_int gl_unsigned_int;
-          typedef cst::gl_unsigned_int_vec2 gl_unsigned_int_vec2;
-          typedef cst::gl_unsigned_int_vec3 gl_unsigned_int_vec3;
-          typedef cst::gl_unsigned_int_vec4 gl_unsigned_int_vec4;
-          typedef cst::gl_float_mat2 gl_float_mat2;
-          typedef cst::gl_float_mat3 gl_float_mat3;
-          typedef cst::gl_float_mat4 gl_float_mat4;
-          typedef cst::gl_float_mat2x3 gl_float_mat2x3;
-          typedef cst::gl_float_mat2x4 gl_float_mat2x4;
-          typedef cst::gl_float_mat3x2 gl_float_mat3x2;
-          typedef cst::gl_float_mat3x4 gl_float_mat3x4;
-          typedef cst::gl_float_mat4x2 gl_float_mat4x2;
-          typedef cst::gl_float_mat4x3 gl_float_mat4x3;
+          using cst::gl_float;
+          using cst::gl_float_vec2;
+          using cst::gl_float_vec3;
+          using cst::gl_float_vec4;
+          using cst::gl_int;
+          using cst::gl_int_vec2;
+          using cst::gl_int_vec3;
+          using cst::gl_int_vec4;
+          using cst::gl_unsigned_int;
+          using cst::gl_unsigned_int_vec2;
+          using cst::gl_unsigned_int_vec3;
+          using cst::gl_unsigned_int_vec4;
+          using cst::gl_float_mat2;
+          using cst::gl_float_mat3;
+          using cst::gl_float_mat4;
+          using cst::gl_float_mat2x3;
+          using cst::gl_float_mat2x4;
+          using cst::gl_float_mat3x2;
+          using cst::gl_float_mat3x4;
+          using cst::gl_float_mat4x2;
+          using cst::gl_float_mat4x3;
 
           cst::gl_constant_base const get(::std::uint32_t value);
         } // namespace format
@@ -58,15 +58,15 @@ namespace gtulu {
             (unsigned_integer)
         )
 
-        template< typename format_t, typename base_t, typename type_t >
+        template< typename Format, typename Base, typename DataType >
         struct attribute_metadata {
-          typedef format_t format;
-          typedef base_t base;
-          typedef type_t type;
+          typedef Format format;
+          typedef Base base;
+          typedef DataType type;
           typedef fcd::one count;
         };
 
-        template< typename format_t >
+        template< typename Format >
         struct attribute_format;
 
 #define DECLARE_ATTRIBUTE_FORMAT(format_m, base_m, type_m) \
@@ -74,12 +74,12 @@ namespace gtulu {
         typedef attribute_metadata< format::format_m, base::base_m, type::type_m > info; \
     }; \
     typedef attribute_format< format::format_m > format_m; \
-    DECLARE_HAS_TRAIT_FORMAT(base, base_m, format_m) \
-    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m)
+    DECLARE_HAS_TRAIT_FORMAT(base, base_m, format_m); \
+    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m);
 
-DECLARE_ATTRIBUTE_FORMAT(gl_float, literal, floating)
+        DECLARE_ATTRIBUTE_FORMAT(gl_float, literal, floating)
         DECLARE_ATTRIBUTE_FORMAT(gl_int, literal, integer)
-                DECLARE_ATTRIBUTE_FORMAT(gl_unsigned_int, literal, unsigned_integer)
+        DECLARE_ATTRIBUTE_FORMAT(gl_unsigned_int, literal, unsigned_integer)
 
 #undef DECLARE_ATTRIBUTE_FORMAT
 

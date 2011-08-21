@@ -20,7 +20,7 @@ namespace gtulu {
 
     namespace output {
 
-      template< typename type_t >
+      template< typename DataType >
       struct output_binder;
 
 #define DECLARE_BINDER(type_m) \
@@ -40,12 +40,12 @@ namespace gtulu {
 
 #undef DECLARE_BINDER
 
-      template< typename format_t, typename binder_t = output_binder< typename format_t::info::type >,
-          typename value_t = typename fo::to_typename< typename format_t::info::type >::type >
+      template< typename Format, typename BinderType = output_binder< typename Format::info::type >,
+          typename ValueType = typename fo::to_typename< typename Format::info::type >::type >
       struct output {
-          typedef format_t format;
-          typedef value_t value_type;
-          typedef binder_t binder;
+          typedef Format format;
+          typedef ValueType value_type;
+          typedef BinderType binder;
       };
 
 #define DECLARE_OUTPUT(format_m) \

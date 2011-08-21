@@ -19,7 +19,7 @@ namespace gtulu {
     namespace formats {
       namespace attribute {
 
-        template< typename type_t >
+        template< typename DataType >
         struct to_typename;
 
 #define DECLARE_CONVERT(attribute_m, typename_m) \

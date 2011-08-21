@@ -30,21 +30,21 @@ namespace gtulu {
 
     namespace objects {
       template< >
-      template< typename target_type_t >
+      template< typename TargetType >
       void slot_binder< texture_base >::bind(::std::uint32_t handle_) {
-        fnc::gl_bind_texture::call< typename target_type_t::info::format >(handle_);
+        fnc::gl_bind_texture::call< typename TargetType::info::format >(handle_);
       }
     } // namespace objects
 
     namespace texture {
 
-      template< typename target_type_t >
-      struct texture_slot: private ft::is_of_target_base< target_type_t, ftb::texture > {
+      template< typename TargetType >
+      struct texture_slot: private ft::is_of_target_base< TargetType, ftb::texture > {
           static inline void bind(gio::plug< gio::texture_base > const& buffer) {
-            gio::slot_binder< gio::texture_base >::bind< target_type_t >(buffer);
+            gio::slot_binder< gio::texture_base >::bind< TargetType >(buffer);
           }
           static inline void unbind(gio::plug< gio::texture_base > const& buffer) {
-            gio::slot_binder< gio::texture_base >::clear< target_type_t >();
+            gio::slot_binder< gio::texture_base >::clear< TargetType >();
           }
       };
 
@@ -54,21 +54,21 @@ namespace gtulu {
 
     namespace objects {
 
-      template< typename texture_format_t >
+      template< typename TextureFormat >
       struct texture: public texture_base,
                       public object< texture_base >,
                       public drawable,
-                      private texture_format_t,
-                      public texture_format_t::loader {
+                      private TextureFormat,
+                      public TextureFormat::loader {
           inline void bind() const {
-            git::texture_slot< typename texture_format_t::target >::bind(*this);
+            git::texture_slot< typename TextureFormat::target >::bind(*this);
           }
 
           inline void unbind() const {
-            git::texture_slot< typename texture_format_t::target >::unbind(*this);
+            git::texture_slot< typename TextureFormat::target >::unbind(*this);
           }
 
-          typedef typename fd::to_typename< typename texture_format_t::data::info::value_type >::type data_type;
+          typedef typename fd::to_typename< typename TextureFormat::data::info::value_type >::type data_type;
 
           inline void load(data_type const* data,
                            ::std::size_t size,
@@ -76,12 +76,12 @@ namespace gtulu {
                            ::std::size_t height,
                            ::std::size_t level) {
             bind();
-            texture_format_t::loader::load(data, size, width, height, 0, level);
+            TextureFormat::loader::load(data, size, width, height, 0, level);
           }
 
-          template< typename min_filter_t >
+          template< typename MinFilter >
           inline void set_minification() {
-            fnc::gl_tex_parameter::call< typename texture_format_t::target, cst::gl_texture_min_filter >(min_filter_t::value);
+            fnc::gl_tex_parameter::call< typename TextureFormat::target, cst::gl_texture_min_filter >(MinFilter::value);
           }
 
           inline void load(data_type const* data, ::std::size_t width, ::std::size_t height) {
@@ -92,7 +92,7 @@ namespace gtulu {
 
           inline void compute_mipmaps() {
             bind();
-            fnc::gl_generate_mipmap::call< typename texture_format_t::target::info::format >();
+            fnc::gl_generate_mipmap::call< typename TextureFormat::target::info::format >();
           }
       };
 

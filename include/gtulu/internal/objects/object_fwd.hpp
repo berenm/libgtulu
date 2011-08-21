@@ -29,15 +29,15 @@ namespace gtulu {
       struct shader_base;
       struct program_base;
 
-      template< typename program_format_t >
+      template< typename ProgramFormat >
       struct program;
-      template< typename renderbuffer_format_t >
+      template< typename RenderbufferFormat >
       struct renderbuffer;
-      template< typename shader_format_t >
+      template< typename ShaderFormat >
       struct shader;
-      template< typename texture_format_t >
+      template< typename TextureFormat >
       struct texture;
-      template< typename vertexarray_format_t >
+      template< typename VertexarrayFormat >
       struct vertexarray;
     } // namespace objects
 

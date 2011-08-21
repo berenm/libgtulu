@@ -28,15 +28,15 @@ namespace gtulu {
               (four)
           )
 
-          template< typename format_t, typename type_t, typename count_t >
-          struct output_metadata: fo::output_metadata< format_t, fo::base::vector, type_t > {
-            using fo::output_metadata< format_t, fo::base::vector, type_t >::format;
-            using fo::output_metadata< format_t, fo::base::vector, type_t >::base;
-            using fo::output_metadata< format_t, fo::base::vector, type_t >::type;
-            typedef count_t count;
+          template< typename Format, typename DataType, typename Count >
+          struct output_metadata: fo::output_metadata< Format, fo::base::vector, DataType > {
+            using fo::output_metadata< Format, fo::base::vector, DataType >::format;
+            using fo::output_metadata< Format, fo::base::vector, DataType >::base;
+            using fo::output_metadata< Format, fo::base::vector, DataType >::type;
+            typedef Count count;
           };
 
-          template< typename format_t >
+          template< typename Format >
           struct output_format;
         } // namespace vector
 
@@ -47,10 +47,10 @@ namespace gtulu {
       }; \
     } \
     typedef vector::output_format< format::format_m > format_m; \
-    DECLARE_HAS_TRAIT_FORMAT(base, vector, format_m) \
-    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m) \
+    DECLARE_HAS_TRAIT_FORMAT(base, vector, format_m); \
+    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m); \
     namespace vector { \
-      DECLARE_HAS_TRAIT_FORMAT(count, count_m, format_m) \
+      DECLARE_HAS_TRAIT_FORMAT(count, count_m, format_m); \
     }
 
         DECLARE_OUTPUT_FORMAT(gl_float_vec2, floating, two)

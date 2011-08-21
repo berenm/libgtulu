@@ -21,25 +21,25 @@ namespace gtulu {
     namespace formats {
       namespace attribute {
 
-        template< typename attribute_format_t, typename data_format_t >
+        template< typename AttributeFormat, typename DataFormat >
         struct data_packing_check {
-            typedef fdp::is_none< data_format_t > type;
-            static_assert(type::value, "attribute_format_t is not compatible with data_format_t, vertex attributes require non packed buffer data and data_format_t packing is not fdp::none.");
+            typedef fdp::is_none< DataFormat > type;
+            static_assert(type::value, "AttributeFormat is not compatible with DataFormat, vertex attributes require non packed buffer data and DataFormat packing is not fdp::none.");
         };
 
-        template< typename attribute_format_t, typename data_format_t >
+        template< typename AttributeFormat, typename DataFormat >
         struct data_type_check {
-            typedef fat::is_floating< attribute_format_t > floating_check;
-            typedef bm::and_< fdt::is_integer< data_format_t >, type::is_integer< attribute_format_t > > integer_check;
+            typedef fat::is_floating< AttributeFormat > floating_check;
+            typedef bm::and_< fdt::is_integer< DataFormat >, type::is_integer< AttributeFormat > > integer_check;
 
             typedef bm::or_< floating_check, integer_check > type;
-            static_assert(type::value, "attribute_format_t is not compatible with data_format_t, integer attribute formats require integer data, only floating attribute formats can be used with any data format types.");
+            static_assert(type::value, "AttributeFormat is not compatible with DataFormat, integer attribute formats require integer data, only floating attribute formats can be used with any data format types.");
         };
 
-        template< typename attribute_format_t, typename data_format_t >
+        template< typename AttributeFormat, typename DataFormat >
         struct is_data_compatible {
-            typedef typename data_type_check< attribute_format_t, data_format_t >::type data_type_c;
-            typedef typename data_packing_check< attribute_format_t, data_format_t >::type data_packing_c;
+            typedef typename data_type_check< AttributeFormat, DataFormat >::type data_type_c;
+            typedef typename data_packing_check< AttributeFormat, DataFormat >::type data_packing_c;
 
             typedef bm::and_< data_type_c, data_packing_c > type;
         };

@@ -46,10 +46,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename sfactor_t, typename dfactor_t >
+            template< typename SfactorConstant, typename DfactorConstant >
             inline static void call() {
-              __gl_debug << "call glBlendFunc "  "sfactor: '" << sfactor_t::name << "'"  ", "  "dfactor: '" << dfactor_t::name << "'" ;
-              glBlendFunc(sfactor_t::value, dfactor_t::value);
+              __gl_debug << "call glBlendFunc "  "sfactor: '" << SfactorConstant::name << "'"  ", "  "dfactor: '" << DfactorConstant::name << "'" ;
+              glBlendFunc(SfactorConstant::value, DfactorConstant::value);
               __gl_check_error();
               
             }
@@ -65,10 +65,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename src_t, typename dst_t >
+            template< typename SrcConstant, typename DstConstant >
             inline static void call(::std::uint32_t buf) {
-              __gl_debug << "call glBlendFunci "  "buf: '" << buf << "'"  ", "  "src: '" << src_t::name << "'"  ", "  "dst: '" << dst_t::name << "'" ;
-              glBlendFunci(buf, src_t::value, dst_t::value);
+              __gl_debug << "call glBlendFunci "  "buf: '" << buf << "'"  ", "  "src: '" << SrcConstant::name << "'"  ", "  "dst: '" << DstConstant::name << "'" ;
+              glBlendFunci(buf, SrcConstant::value, DstConstant::value);
               __gl_check_error();
               
             }
@@ -171,10 +171,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call() {
-              __gl_debug << "call glCullFace "  "mode: '" << mode_t::name << "'" ;
-              glCullFace(mode_t::value);
+              __gl_debug << "call glCullFace "  "mode: '" << ModeConstant::name << "'" ;
+              glCullFace(ModeConstant::value);
               __gl_check_error();
               
             }
@@ -194,10 +194,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename func_t >
+            template< typename FuncConstant >
             inline static void call() {
-              __gl_debug << "call glDepthFunc "  "func: '" << func_t::name << "'" ;
-              glDepthFunc(func_t::value);
+              __gl_debug << "call glDepthFunc "  "func: '" << FuncConstant::name << "'" ;
+              glDepthFunc(FuncConstant::value);
               __gl_check_error();
               
             }
@@ -252,10 +252,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename cap_t >
+            template< typename CapConstant >
             inline static void call() {
-              __gl_debug << "call glDisable "  "cap: '" << cap_t::name << "'" ;
-              glDisable(cap_t::value);
+              __gl_debug << "call glDisable "  "cap: '" << CapConstant::name << "'" ;
+              glDisable(CapConstant::value);
               __gl_check_error();
               
             }
@@ -271,10 +271,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index) {
-              __gl_debug << "call glDisablei "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'" ;
-              glDisablei(target_t::value, index);
+              __gl_debug << "call glDisablei "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'" ;
+              glDisablei(TargetConstant::value, index);
               __gl_check_error();
               
             }
@@ -294,10 +294,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call() {
-              __gl_debug << "call glDrawBuffer "  "mode: '" << mode_t::name << "'" ;
-              glDrawBuffer(mode_t::value);
+              __gl_debug << "call glDrawBuffer "  "mode: '" << ModeConstant::name << "'" ;
+              glDrawBuffer(ModeConstant::value);
               __gl_check_error();
               
             }
@@ -317,10 +317,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename cap_t >
+            template< typename CapConstant >
             inline static void call() {
-              __gl_debug << "call glEnable "  "cap: '" << cap_t::name << "'" ;
-              glEnable(cap_t::value);
+              __gl_debug << "call glEnable "  "cap: '" << CapConstant::name << "'" ;
+              glEnable(CapConstant::value);
               __gl_check_error();
               
             }
@@ -336,10 +336,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index) {
-              __gl_debug << "call glEnablei "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'" ;
-              glEnablei(target_t::value, index);
+              __gl_debug << "call glEnablei "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'" ;
+              glEnablei(TargetConstant::value, index);
               __gl_check_error();
               
             }
@@ -385,10 +385,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call() {
-              __gl_debug << "call glFrontFace "  "mode: '" << mode_t::name << "'" ;
-              glFrontFace(mode_t::value);
+              __gl_debug << "call glFrontFace "  "mode: '" << ModeConstant::name << "'" ;
+              glFrontFace(ModeConstant::value);
               __gl_check_error();
               
             }
@@ -408,10 +408,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(GLboolean* params) {
-              __gl_debug << "call glGetBooleanv "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetBooleanv(pname_t::value, params);
+              __gl_debug << "call glGetBooleanv "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetBooleanv(PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -431,10 +431,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(double* params) {
-              __gl_debug << "call glGetDoublev "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetDoublev(pname_t::value, params);
+              __gl_debug << "call glGetDoublev "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetDoublev(PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -467,10 +467,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(float* params) {
-              __gl_debug << "call glGetFloatv "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetFloatv(pname_t::value, params);
+              __gl_debug << "call glGetFloatv "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetFloatv(PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -490,10 +490,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::int32_t* params) {
-              __gl_debug << "call glGetIntegerv "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetIntegerv(pname_t::value, params);
+              __gl_debug << "call glGetIntegerv "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetIntegerv(PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -509,10 +509,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(GLint64* params) {
-              __gl_debug << "call glGetInteger64v "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetInteger64v(pname_t::value, params);
+              __gl_debug << "call glGetInteger64v "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetInteger64v(PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -532,10 +532,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename name_t >
+            template< typename NameConstant >
             inline static GLubyte const* call() {
-              __gl_debug << "call glGetString "  "name: '" << name_t::name << "'" ;
-              GLubyte const* out = glGetString(name_t::value);
+              __gl_debug << "call glGetString "  "name: '" << NameConstant::name << "'" ;
+              GLubyte const* out = glGetString(NameConstant::value);
               __gl_check_error();
               return out;
             }
@@ -551,10 +551,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename name_t >
+            template< typename NameConstant >
             inline static GLubyte const* call(::std::uint32_t index) {
-              __gl_debug << "call glGetStringi "  "name: '" << name_t::name << "'"  ", "  "index: '" << index << "'" ;
-              GLubyte const* out = glGetStringi(name_t::value, index);
+              __gl_debug << "call glGetStringi "  "name: '" << NameConstant::name << "'"  ", "  "index: '" << index << "'" ;
+              GLubyte const* out = glGetStringi(NameConstant::value, index);
               __gl_check_error();
               return out;
             }
@@ -574,10 +574,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename format_t, typename type_t >
+            template< typename TargetConstant, typename FormatConstant, typename TypeConstant >
             inline static void call(::std::int32_t level, void* pixels) {
-              __gl_debug << "call glGetTexImage "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "pixels: '" << pixels << "'" ;
-              glGetTexImage(target_t::value, level, format_t::value, type_t::value, pixels);
+              __gl_debug << "call glGetTexImage "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "pixels: '" << pixels << "'" ;
+              glGetTexImage(TargetConstant::value, level, FormatConstant::value, TypeConstant::value, pixels);
               __gl_check_error();
               
             }
@@ -597,10 +597,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(::std::int32_t level, float* params) {
-              __gl_debug << "call glGetTexLevelParameterfv "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetTexLevelParameterfv(target_t::value, level, pname_t::value, params);
+              __gl_debug << "call glGetTexLevelParameterfv "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetTexLevelParameterfv(TargetConstant::value, level, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -616,10 +616,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(::std::int32_t level, ::std::int32_t* params) {
-              __gl_debug << "call glGetTexLevelParameteriv "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetTexLevelParameteriv(target_t::value, level, pname_t::value, params);
+              __gl_debug << "call glGetTexLevelParameteriv "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetTexLevelParameteriv(TargetConstant::value, level, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -639,10 +639,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(float* params) {
-              __gl_debug << "call glGetTexParameterfv "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetTexParameterfv(target_t::value, pname_t::value, params);
+              __gl_debug << "call glGetTexParameterfv "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetTexParameterfv(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -658,10 +658,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(::std::int32_t* params) {
-              __gl_debug << "call glGetTexParameteriv "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetTexParameteriv(target_t::value, pname_t::value, params);
+              __gl_debug << "call glGetTexParameteriv "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetTexParameteriv(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -681,10 +681,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename mode_t >
+            template< typename TargetConstant, typename ModeConstant >
             inline static void call() {
-              __gl_debug << "call glHint "  "target: '" << target_t::name << "'"  ", "  "mode: '" << mode_t::name << "'" ;
-              glHint(target_t::value, mode_t::value);
+              __gl_debug << "call glHint "  "target: '" << TargetConstant::name << "'"  ", "  "mode: '" << ModeConstant::name << "'" ;
+              glHint(TargetConstant::value, ModeConstant::value);
               __gl_check_error();
               
             }
@@ -704,10 +704,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename cap_t >
+            template< typename CapConstant >
             inline static GLboolean call() {
-              __gl_debug << "call glIsEnabled "  "cap: '" << cap_t::name << "'" ;
-              GLboolean out = glIsEnabled(cap_t::value);
+              __gl_debug << "call glIsEnabled "  "cap: '" << CapConstant::name << "'" ;
+              GLboolean out = glIsEnabled(CapConstant::value);
               __gl_check_error();
               return out;
             }
@@ -723,10 +723,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static GLboolean call(::std::uint32_t index) {
-              __gl_debug << "call glIsEnabledi "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'" ;
-              GLboolean out = glIsEnabledi(target_t::value, index);
+              __gl_debug << "call glIsEnabledi "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'" ;
+              GLboolean out = glIsEnabledi(TargetConstant::value, index);
               __gl_check_error();
               return out;
             }
@@ -759,10 +759,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename opcode_t >
+            template< typename OpcodeConstant >
             inline static void call() {
-              __gl_debug << "call glLogicOp "  "opcode: '" << opcode_t::name << "'" ;
-              glLogicOp(opcode_t::value);
+              __gl_debug << "call glLogicOp "  "opcode: '" << OpcodeConstant::name << "'" ;
+              glLogicOp(OpcodeConstant::value);
               __gl_check_error();
               
             }
@@ -782,10 +782,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(float param) {
-              __gl_debug << "call glPixelStoref "  "pname: '" << pname_t::name << "'"  ", "  "param: '" << param << "'" ;
-              glPixelStoref(pname_t::value, param);
+              __gl_debug << "call glPixelStoref "  "pname: '" << PnameConstant::name << "'"  ", "  "param: '" << param << "'" ;
+              glPixelStoref(PnameConstant::value, param);
               __gl_check_error();
               
             }
@@ -801,10 +801,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::int32_t param) {
-              __gl_debug << "call glPixelStorei "  "pname: '" << pname_t::name << "'"  ", "  "param: '" << param << "'" ;
-              glPixelStorei(pname_t::value, param);
+              __gl_debug << "call glPixelStorei "  "pname: '" << PnameConstant::name << "'"  ", "  "param: '" << param << "'" ;
+              glPixelStorei(PnameConstant::value, param);
               __gl_check_error();
               
             }
@@ -837,10 +837,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename face_t, typename mode_t >
+            template< typename FaceConstant, typename ModeConstant >
             inline static void call() {
-              __gl_debug << "call glPolygonMode "  "face: '" << face_t::name << "'"  ", "  "mode: '" << mode_t::name << "'" ;
-              glPolygonMode(face_t::value, mode_t::value);
+              __gl_debug << "call glPolygonMode "  "face: '" << FaceConstant::name << "'"  ", "  "mode: '" << ModeConstant::name << "'" ;
+              glPolygonMode(FaceConstant::value, ModeConstant::value);
               __gl_check_error();
               
             }
@@ -860,10 +860,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call() {
-              __gl_debug << "call glReadBuffer "  "mode: '" << mode_t::name << "'" ;
-              glReadBuffer(mode_t::value);
+              __gl_debug << "call glReadBuffer "  "mode: '" << ModeConstant::name << "'" ;
+              glReadBuffer(ModeConstant::value);
               __gl_check_error();
               
             }
@@ -883,10 +883,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename format_t, typename type_t >
+            template< typename FormatConstant, typename TypeConstant >
             inline static void call(::std::int32_t x, ::std::int32_t y, GLsizei width, GLsizei height, void* pixels) {
-              __gl_debug << "call glReadPixels "  "x: '" << x << "'"  ", "  "y: '" << y << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "pixels: '" << pixels << "'" ;
-              glReadPixels(x, y, width, height, format_t::value, type_t::value, pixels);
+              __gl_debug << "call glReadPixels "  "x: '" << x << "'"  ", "  "y: '" << y << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "pixels: '" << pixels << "'" ;
+              glReadPixels(x, y, width, height, FormatConstant::value, TypeConstant::value, pixels);
               __gl_check_error();
               
             }
@@ -919,10 +919,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename func_t >
+            template< typename FuncConstant >
             inline static void call(::std::int32_t ref, ::std::uint32_t mask) {
-              __gl_debug << "call glStencilFunc "  "func: '" << func_t::name << "'"  ", "  "ref: '" << ref << "'"  ", "  "mask: '" << mask << "'" ;
-              glStencilFunc(func_t::value, ref, mask);
+              __gl_debug << "call glStencilFunc "  "func: '" << FuncConstant::name << "'"  ", "  "ref: '" << ref << "'"  ", "  "mask: '" << mask << "'" ;
+              glStencilFunc(FuncConstant::value, ref, mask);
               __gl_check_error();
               
             }
@@ -955,10 +955,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename fail_t, typename zfail_t, typename zpass_t >
+            template< typename FailConstant, typename ZfailConstant, typename ZpassConstant >
             inline static void call() {
-              __gl_debug << "call glStencilOp "  "fail: '" << fail_t::name << "'"  ", "  "zfail: '" << zfail_t::name << "'"  ", "  "zpass: '" << zpass_t::name << "'" ;
-              glStencilOp(fail_t::value, zfail_t::value, zpass_t::value);
+              __gl_debug << "call glStencilOp "  "fail: '" << FailConstant::name << "'"  ", "  "zfail: '" << ZfailConstant::name << "'"  ", "  "zpass: '" << ZpassConstant::name << "'" ;
+              glStencilOp(FailConstant::value, ZfailConstant::value, ZpassConstant::value);
               __gl_check_error();
               
             }
@@ -978,10 +978,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t, typename format_t, typename type_t >
+            template< typename TargetConstant, typename InternalformatConstant, typename FormatConstant, typename TypeConstant >
             inline static void call(::std::int32_t level, GLsizei width, ::std::int32_t border, void const* pixels) {
-              __gl_debug << "call glTexImage1D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'"  ", "  "border: '" << border << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "pixels: '" << pixels << "'" ;
-              glTexImage1D(target_t::value, level, internalformat_t::value, width, border, format_t::value, type_t::value, pixels);
+              __gl_debug << "call glTexImage1D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'"  ", "  "border: '" << border << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "pixels: '" << pixels << "'" ;
+              glTexImage1D(TargetConstant::value, level, InternalformatConstant::value, width, border, FormatConstant::value, TypeConstant::value, pixels);
               __gl_check_error();
               
             }
@@ -1001,10 +1001,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t, typename format_t, typename type_t >
+            template< typename TargetConstant, typename InternalformatConstant, typename FormatConstant, typename TypeConstant >
             inline static void call(::std::int32_t level, GLsizei width, GLsizei height, ::std::int32_t border, void const* pixels) {
-              __gl_debug << "call glTexImage2D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "border: '" << border << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "pixels: '" << pixels << "'" ;
-              glTexImage2D(target_t::value, level, internalformat_t::value, width, height, border, format_t::value, type_t::value, pixels);
+              __gl_debug << "call glTexImage2D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "border: '" << border << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "pixels: '" << pixels << "'" ;
+              glTexImage2D(TargetConstant::value, level, InternalformatConstant::value, width, height, border, FormatConstant::value, TypeConstant::value, pixels);
               __gl_check_error();
               
             }
@@ -1024,10 +1024,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(float param) {
-              __gl_debug << "call glTexParameterf "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "param: '" << param << "'" ;
-              glTexParameterf(target_t::value, pname_t::value, param);
+              __gl_debug << "call glTexParameterf "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "param: '" << param << "'" ;
+              glTexParameterf(TargetConstant::value, PnameConstant::value, param);
               __gl_check_error();
               
             }
@@ -1043,10 +1043,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(float const* params) {
-              __gl_debug << "call glTexParameterfv "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glTexParameterfv(target_t::value, pname_t::value, params);
+              __gl_debug << "call glTexParameterfv "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glTexParameterfv(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -1062,10 +1062,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(::std::int32_t param) {
-              __gl_debug << "call glTexParameteri "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "param: '" << param << "'" ;
-              glTexParameteri(target_t::value, pname_t::value, param);
+              __gl_debug << "call glTexParameteri "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "param: '" << param << "'" ;
+              glTexParameteri(TargetConstant::value, PnameConstant::value, param);
               __gl_check_error();
               
             }
@@ -1081,10 +1081,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(::std::int32_t const* params) {
-              __gl_debug << "call glTexParameteriv "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glTexParameteriv(target_t::value, pname_t::value, params);
+              __gl_debug << "call glTexParameteriv "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glTexParameteriv(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -1121,10 +1121,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t texture) {
-              __gl_debug << "call glBindTexture "  "target: '" << target_t::name << "'"  ", "  "texture: '" << texture << "'" ;
-              glBindTexture(target_t::value, texture);
+              __gl_debug << "call glBindTexture "  "target: '" << TargetConstant::name << "'"  ", "  "texture: '" << texture << "'" ;
+              glBindTexture(TargetConstant::value, texture);
               __gl_check_error();
               
             }
@@ -1144,10 +1144,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(::std::int32_t level, ::std::int32_t x, ::std::int32_t y, GLsizei width, ::std::int32_t border) {
-              __gl_debug << "call glCopyTexImage1D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "x: '" << x << "'"  ", "  "y: '" << y << "'"  ", "  "width: '" << width << "'"  ", "  "border: '" << border << "'" ;
-              glCopyTexImage1D(target_t::value, level, internalformat_t::value, x, y, width, border);
+              __gl_debug << "call glCopyTexImage1D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "x: '" << x << "'"  ", "  "y: '" << y << "'"  ", "  "width: '" << width << "'"  ", "  "border: '" << border << "'" ;
+              glCopyTexImage1D(TargetConstant::value, level, InternalformatConstant::value, x, y, width, border);
               __gl_check_error();
               
             }
@@ -1167,10 +1167,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(::std::int32_t level, ::std::int32_t x, ::std::int32_t y, GLsizei width, GLsizei height, ::std::int32_t border) {
-              __gl_debug << "call glCopyTexImage2D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "x: '" << x << "'"  ", "  "y: '" << y << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "border: '" << border << "'" ;
-              glCopyTexImage2D(target_t::value, level, internalformat_t::value, x, y, width, height, border);
+              __gl_debug << "call glCopyTexImage2D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "x: '" << x << "'"  ", "  "y: '" << y << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "border: '" << border << "'" ;
+              glCopyTexImage2D(TargetConstant::value, level, InternalformatConstant::value, x, y, width, height, border);
               __gl_check_error();
               
             }
@@ -1190,10 +1190,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::int32_t level, ::std::int32_t xoffset, ::std::int32_t x, ::std::int32_t y, GLsizei width) {
-              __gl_debug << "call glCopyTexSubImage1D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "x: '" << x << "'"  ", "  "y: '" << y << "'"  ", "  "width: '" << width << "'" ;
-              glCopyTexSubImage1D(target_t::value, level, xoffset, x, y, width);
+              __gl_debug << "call glCopyTexSubImage1D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "x: '" << x << "'"  ", "  "y: '" << y << "'"  ", "  "width: '" << width << "'" ;
+              glCopyTexSubImage1D(TargetConstant::value, level, xoffset, x, y, width);
               __gl_check_error();
               
             }
@@ -1213,10 +1213,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::int32_t level, ::std::int32_t xoffset, ::std::int32_t yoffset, ::std::int32_t x, ::std::int32_t y, GLsizei width, GLsizei height) {
-              __gl_debug << "call glCopyTexSubImage2D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "yoffset: '" << yoffset << "'"  ", "  "x: '" << x << "'"  ", "  "y: '" << y << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'" ;
-              glCopyTexSubImage2D(target_t::value, level, xoffset, yoffset, x, y, width, height);
+              __gl_debug << "call glCopyTexSubImage2D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "yoffset: '" << yoffset << "'"  ", "  "x: '" << x << "'"  ", "  "y: '" << y << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'" ;
+              glCopyTexSubImage2D(TargetConstant::value, level, xoffset, yoffset, x, y, width, height);
               __gl_check_error();
               
             }
@@ -1249,10 +1249,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call(::std::int32_t first, GLsizei count) {
-              __gl_debug << "call glDrawArrays "  "mode: '" << mode_t::name << "'"  ", "  "first: '" << first << "'"  ", "  "count: '" << count << "'" ;
-              glDrawArrays(mode_t::value, first, count);
+              __gl_debug << "call glDrawArrays "  "mode: '" << ModeConstant::name << "'"  ", "  "first: '" << first << "'"  ", "  "count: '" << count << "'" ;
+              glDrawArrays(ModeConstant::value, first, count);
               __gl_check_error();
               
             }
@@ -1272,10 +1272,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t, typename type_t >
+            template< typename ModeConstant, typename TypeConstant >
             inline static void call(GLsizei count, void const* indices) {
-              __gl_debug << "call glDrawElements "  "mode: '" << mode_t::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "indices: '" << indices << "'" ;
-              glDrawElements(mode_t::value, count, type_t::value, indices);
+              __gl_debug << "call glDrawElements "  "mode: '" << ModeConstant::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "indices: '" << indices << "'" ;
+              glDrawElements(ModeConstant::value, count, TypeConstant::value, indices);
               __gl_check_error();
               
             }
@@ -1308,10 +1308,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(void** params) {
-              __gl_debug << "call glGetPointerv "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetPointerv(pname_t::value, params);
+              __gl_debug << "call glGetPointerv "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetPointerv(PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -1357,10 +1357,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename format_t, typename type_t >
+            template< typename TargetConstant, typename FormatConstant, typename TypeConstant >
             inline static void call(::std::int32_t level, ::std::int32_t xoffset, GLsizei width, void const* pixels) {
-              __gl_debug << "call glTexSubImage1D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "width: '" << width << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "pixels: '" << pixels << "'" ;
-              glTexSubImage1D(target_t::value, level, xoffset, width, format_t::value, type_t::value, pixels);
+              __gl_debug << "call glTexSubImage1D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "width: '" << width << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "pixels: '" << pixels << "'" ;
+              glTexSubImage1D(TargetConstant::value, level, xoffset, width, FormatConstant::value, TypeConstant::value, pixels);
               __gl_check_error();
               
             }
@@ -1380,10 +1380,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename format_t, typename type_t >
+            template< typename TargetConstant, typename FormatConstant, typename TypeConstant >
             inline static void call(::std::int32_t level, ::std::int32_t xoffset, ::std::int32_t yoffset, GLsizei width, GLsizei height, void const* pixels) {
-              __gl_debug << "call glTexSubImage2D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "yoffset: '" << yoffset << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "pixels: '" << pixels << "'" ;
-              glTexSubImage2D(target_t::value, level, xoffset, yoffset, width, height, format_t::value, type_t::value, pixels);
+              __gl_debug << "call glTexSubImage2D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "yoffset: '" << yoffset << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "pixels: '" << pixels << "'" ;
+              glTexSubImage2D(TargetConstant::value, level, xoffset, yoffset, width, height, FormatConstant::value, TypeConstant::value, pixels);
               __gl_check_error();
               
             }
@@ -1420,10 +1420,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call() {
-              __gl_debug << "call glBlendEquation "  "mode: '" << mode_t::name << "'" ;
-              glBlendEquation(mode_t::value);
+              __gl_debug << "call glBlendEquation "  "mode: '" << ModeConstant::name << "'" ;
+              glBlendEquation(ModeConstant::value);
               __gl_check_error();
               
             }
@@ -1439,10 +1439,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call(::std::uint32_t buf) {
-              __gl_debug << "call glBlendEquationi "  "buf: '" << buf << "'"  ", "  "mode: '" << mode_t::name << "'" ;
-              glBlendEquationi(buf, mode_t::value);
+              __gl_debug << "call glBlendEquationi "  "buf: '" << buf << "'"  ", "  "mode: '" << ModeConstant::name << "'" ;
+              glBlendEquationi(buf, ModeConstant::value);
               __gl_check_error();
               
             }
@@ -1462,10 +1462,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::int32_t level, ::std::int32_t xoffset, ::std::int32_t yoffset, ::std::int32_t zoffset, ::std::int32_t x, ::std::int32_t y, GLsizei width, GLsizei height) {
-              __gl_debug << "call glCopyTexSubImage3D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "yoffset: '" << yoffset << "'"  ", "  "zoffset: '" << zoffset << "'"  ", "  "x: '" << x << "'"  ", "  "y: '" << y << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'" ;
-              glCopyTexSubImage3D(target_t::value, level, xoffset, yoffset, zoffset, x, y, width, height);
+              __gl_debug << "call glCopyTexSubImage3D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "yoffset: '" << yoffset << "'"  ", "  "zoffset: '" << zoffset << "'"  ", "  "x: '" << x << "'"  ", "  "y: '" << y << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'" ;
+              glCopyTexSubImage3D(TargetConstant::value, level, xoffset, yoffset, zoffset, x, y, width, height);
               __gl_check_error();
               
             }
@@ -1485,10 +1485,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t, typename type_t >
+            template< typename ModeConstant, typename TypeConstant >
             inline static void call(::std::uint32_t start, ::std::uint32_t end, GLsizei count, void const* indices) {
-              __gl_debug << "call glDrawRangeElements "  "mode: '" << mode_t::name << "'"  ", "  "start: '" << start << "'"  ", "  "end: '" << end << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "indices: '" << indices << "'" ;
-              glDrawRangeElements(mode_t::value, start, end, count, type_t::value, indices);
+              __gl_debug << "call glDrawRangeElements "  "mode: '" << ModeConstant::name << "'"  ", "  "start: '" << start << "'"  ", "  "end: '" << end << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "indices: '" << indices << "'" ;
+              glDrawRangeElements(ModeConstant::value, start, end, count, TypeConstant::value, indices);
               __gl_check_error();
               
             }
@@ -1508,10 +1508,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t, typename format_t, typename type_t >
+            template< typename TargetConstant, typename InternalformatConstant, typename FormatConstant, typename TypeConstant >
             inline static void call(::std::int32_t level, GLsizei width, GLsizei height, GLsizei depth, ::std::int32_t border, void const* pixels) {
-              __gl_debug << "call glTexImage3D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "depth: '" << depth << "'"  ", "  "border: '" << border << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "pixels: '" << pixels << "'" ;
-              glTexImage3D(target_t::value, level, internalformat_t::value, width, height, depth, border, format_t::value, type_t::value, pixels);
+              __gl_debug << "call glTexImage3D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "depth: '" << depth << "'"  ", "  "border: '" << border << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "pixels: '" << pixels << "'" ;
+              glTexImage3D(TargetConstant::value, level, InternalformatConstant::value, width, height, depth, border, FormatConstant::value, TypeConstant::value, pixels);
               __gl_check_error();
               
             }
@@ -1531,10 +1531,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename format_t, typename type_t >
+            template< typename TargetConstant, typename FormatConstant, typename TypeConstant >
             inline static void call(::std::int32_t level, ::std::int32_t xoffset, ::std::int32_t yoffset, ::std::int32_t zoffset, GLsizei width, GLsizei height, GLsizei depth, void const* pixels) {
-              __gl_debug << "call glTexSubImage3D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "yoffset: '" << yoffset << "'"  ", "  "zoffset: '" << zoffset << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "depth: '" << depth << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "pixels: '" << pixels << "'" ;
-              glTexSubImage3D(target_t::value, level, xoffset, yoffset, zoffset, width, height, depth, format_t::value, type_t::value, pixels);
+              __gl_debug << "call glTexSubImage3D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "yoffset: '" << yoffset << "'"  ", "  "zoffset: '" << zoffset << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "depth: '" << depth << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "pixels: '" << pixels << "'" ;
+              glTexSubImage3D(TargetConstant::value, level, xoffset, yoffset, zoffset, width, height, depth, FormatConstant::value, TypeConstant::value, pixels);
               __gl_check_error();
               
             }
@@ -1558,10 +1558,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename texture_t >
+            template< typename TextureConstant >
             inline static void call() {
-              __gl_debug << "call glActiveTexture "  "texture: '" << texture_t::name << "'" ;
-              glActiveTexture(texture_t::value);
+              __gl_debug << "call glActiveTexture "  "texture: '" << TextureConstant::name << "'" ;
+              glActiveTexture(TextureConstant::value);
               __gl_check_error();
               
             }
@@ -1581,10 +1581,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(::std::int32_t level, GLsizei width, ::std::int32_t border, GLsizei imageSize, void const* data) {
-              __gl_debug << "call glCompressedTexImage1D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'"  ", "  "border: '" << border << "'"  ", "  "imageSize: '" << imageSize << "'"  ", "  "data: '" << data << "'" ;
-              glCompressedTexImage1D(target_t::value, level, internalformat_t::value, width, border, imageSize, data);
+              __gl_debug << "call glCompressedTexImage1D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'"  ", "  "border: '" << border << "'"  ", "  "imageSize: '" << imageSize << "'"  ", "  "data: '" << data << "'" ;
+              glCompressedTexImage1D(TargetConstant::value, level, InternalformatConstant::value, width, border, imageSize, data);
               __gl_check_error();
               
             }
@@ -1604,10 +1604,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(::std::int32_t level, GLsizei width, GLsizei height, ::std::int32_t border, GLsizei imageSize, void const* data) {
-              __gl_debug << "call glCompressedTexImage2D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "border: '" << border << "'"  ", "  "imageSize: '" << imageSize << "'"  ", "  "data: '" << data << "'" ;
-              glCompressedTexImage2D(target_t::value, level, internalformat_t::value, width, height, border, imageSize, data);
+              __gl_debug << "call glCompressedTexImage2D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "border: '" << border << "'"  ", "  "imageSize: '" << imageSize << "'"  ", "  "data: '" << data << "'" ;
+              glCompressedTexImage2D(TargetConstant::value, level, InternalformatConstant::value, width, height, border, imageSize, data);
               __gl_check_error();
               
             }
@@ -1627,10 +1627,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(::std::int32_t level, GLsizei width, GLsizei height, GLsizei depth, ::std::int32_t border, GLsizei imageSize, void const* data) {
-              __gl_debug << "call glCompressedTexImage3D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "depth: '" << depth << "'"  ", "  "border: '" << border << "'"  ", "  "imageSize: '" << imageSize << "'"  ", "  "data: '" << data << "'" ;
-              glCompressedTexImage3D(target_t::value, level, internalformat_t::value, width, height, depth, border, imageSize, data);
+              __gl_debug << "call glCompressedTexImage3D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "depth: '" << depth << "'"  ", "  "border: '" << border << "'"  ", "  "imageSize: '" << imageSize << "'"  ", "  "data: '" << data << "'" ;
+              glCompressedTexImage3D(TargetConstant::value, level, InternalformatConstant::value, width, height, depth, border, imageSize, data);
               __gl_check_error();
               
             }
@@ -1650,10 +1650,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename format_t >
+            template< typename TargetConstant, typename FormatConstant >
             inline static void call(::std::int32_t level, ::std::int32_t xoffset, GLsizei width, GLsizei imageSize, void const* data) {
-              __gl_debug << "call glCompressedTexSubImage1D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "width: '" << width << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "imageSize: '" << imageSize << "'"  ", "  "data: '" << data << "'" ;
-              glCompressedTexSubImage1D(target_t::value, level, xoffset, width, format_t::value, imageSize, data);
+              __gl_debug << "call glCompressedTexSubImage1D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "width: '" << width << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "imageSize: '" << imageSize << "'"  ", "  "data: '" << data << "'" ;
+              glCompressedTexSubImage1D(TargetConstant::value, level, xoffset, width, FormatConstant::value, imageSize, data);
               __gl_check_error();
               
             }
@@ -1673,10 +1673,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename format_t >
+            template< typename TargetConstant, typename FormatConstant >
             inline static void call(::std::int32_t level, ::std::int32_t xoffset, ::std::int32_t yoffset, GLsizei width, GLsizei height, GLsizei imageSize, void const* data) {
-              __gl_debug << "call glCompressedTexSubImage2D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "yoffset: '" << yoffset << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "imageSize: '" << imageSize << "'"  ", "  "data: '" << data << "'" ;
-              glCompressedTexSubImage2D(target_t::value, level, xoffset, yoffset, width, height, format_t::value, imageSize, data);
+              __gl_debug << "call glCompressedTexSubImage2D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "yoffset: '" << yoffset << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "imageSize: '" << imageSize << "'"  ", "  "data: '" << data << "'" ;
+              glCompressedTexSubImage2D(TargetConstant::value, level, xoffset, yoffset, width, height, FormatConstant::value, imageSize, data);
               __gl_check_error();
               
             }
@@ -1696,10 +1696,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename format_t >
+            template< typename TargetConstant, typename FormatConstant >
             inline static void call(::std::int32_t level, ::std::int32_t xoffset, ::std::int32_t yoffset, ::std::int32_t zoffset, GLsizei width, GLsizei height, GLsizei depth, GLsizei imageSize, void const* data) {
-              __gl_debug << "call glCompressedTexSubImage3D "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "yoffset: '" << yoffset << "'"  ", "  "zoffset: '" << zoffset << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "depth: '" << depth << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "imageSize: '" << imageSize << "'"  ", "  "data: '" << data << "'" ;
-              glCompressedTexSubImage3D(target_t::value, level, xoffset, yoffset, zoffset, width, height, depth, format_t::value, imageSize, data);
+              __gl_debug << "call glCompressedTexSubImage3D "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "xoffset: '" << xoffset << "'"  ", "  "yoffset: '" << yoffset << "'"  ", "  "zoffset: '" << zoffset << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "depth: '" << depth << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "imageSize: '" << imageSize << "'"  ", "  "data: '" << data << "'" ;
+              glCompressedTexSubImage3D(TargetConstant::value, level, xoffset, yoffset, zoffset, width, height, depth, FormatConstant::value, imageSize, data);
               __gl_check_error();
               
             }
@@ -1719,10 +1719,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::int32_t level, void* img) {
-              __gl_debug << "call glGetCompressedTexImage "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "img: '" << img << "'" ;
-              glGetCompressedTexImage(target_t::value, level, img);
+              __gl_debug << "call glGetCompressedTexImage "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "img: '" << img << "'" ;
+              glGetCompressedTexImage(TargetConstant::value, level, img);
               __gl_check_error();
               
             }
@@ -1759,10 +1759,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename sfactorRGB_t, typename dfactorRGB_t, typename sfactorAlpha_t, typename dfactorAlpha_t >
+            template< typename SfactorRGBConstant, typename DfactorRGBConstant, typename SfactorAlphaConstant, typename DfactorAlphaConstant >
             inline static void call() {
-              __gl_debug << "call glBlendFuncSeparate "  "sfactorRGB: '" << sfactorRGB_t::name << "'"  ", "  "dfactorRGB: '" << dfactorRGB_t::name << "'"  ", "  "sfactorAlpha: '" << sfactorAlpha_t::name << "'"  ", "  "dfactorAlpha: '" << dfactorAlpha_t::name << "'" ;
-              glBlendFuncSeparate(sfactorRGB_t::value, dfactorRGB_t::value, sfactorAlpha_t::value, dfactorAlpha_t::value);
+              __gl_debug << "call glBlendFuncSeparate "  "sfactorRGB: '" << SfactorRGBConstant::name << "'"  ", "  "dfactorRGB: '" << DfactorRGBConstant::name << "'"  ", "  "sfactorAlpha: '" << SfactorAlphaConstant::name << "'"  ", "  "dfactorAlpha: '" << DfactorAlphaConstant::name << "'" ;
+              glBlendFuncSeparate(SfactorRGBConstant::value, DfactorRGBConstant::value, SfactorAlphaConstant::value, DfactorAlphaConstant::value);
               __gl_check_error();
               
             }
@@ -1778,10 +1778,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename srcRGB_t, typename dstRGB_t, typename srcAlpha_t, typename dstAlpha_t >
+            template< typename SrcRGBConstant, typename DstRGBConstant, typename SrcAlphaConstant, typename DstAlphaConstant >
             inline static void call(::std::uint32_t buf) {
-              __gl_debug << "call glBlendFuncSeparatei "  "buf: '" << buf << "'"  ", "  "srcRGB: '" << srcRGB_t::name << "'"  ", "  "dstRGB: '" << dstRGB_t::name << "'"  ", "  "srcAlpha: '" << srcAlpha_t::name << "'"  ", "  "dstAlpha: '" << dstAlpha_t::name << "'" ;
-              glBlendFuncSeparatei(buf, srcRGB_t::value, dstRGB_t::value, srcAlpha_t::value, dstAlpha_t::value);
+              __gl_debug << "call glBlendFuncSeparatei "  "buf: '" << buf << "'"  ", "  "srcRGB: '" << SrcRGBConstant::name << "'"  ", "  "dstRGB: '" << DstRGBConstant::name << "'"  ", "  "srcAlpha: '" << SrcAlphaConstant::name << "'"  ", "  "dstAlpha: '" << DstAlphaConstant::name << "'" ;
+              glBlendFuncSeparatei(buf, SrcRGBConstant::value, DstRGBConstant::value, SrcAlphaConstant::value, DstAlphaConstant::value);
               __gl_check_error();
               
             }
@@ -1801,10 +1801,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call(::std::int32_t const* first, GLsizei const* count, GLsizei primcount) {
-              __gl_debug << "call glMultiDrawArrays "  "mode: '" << mode_t::name << "'"  ", "  "first: '" << first << "'"  ", "  "count: '" << count << "'"  ", "  "primcount: '" << primcount << "'" ;
-              glMultiDrawArrays(mode_t::value, first, count, primcount);
+              __gl_debug << "call glMultiDrawArrays "  "mode: '" << ModeConstant::name << "'"  ", "  "first: '" << first << "'"  ", "  "count: '" << count << "'"  ", "  "primcount: '" << primcount << "'" ;
+              glMultiDrawArrays(ModeConstant::value, first, count, primcount);
               __gl_check_error();
               
             }
@@ -1824,10 +1824,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t, typename type_t >
+            template< typename ModeConstant, typename TypeConstant >
             inline static void call(GLsizei const* count, void const** indices, GLsizei primcount) {
-              __gl_debug << "call glMultiDrawElements "  "mode: '" << mode_t::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "primcount: '" << primcount << "'" ;
-              glMultiDrawElements(mode_t::value, count, type_t::value, indices, primcount);
+              __gl_debug << "call glMultiDrawElements "  "mode: '" << ModeConstant::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "primcount: '" << primcount << "'" ;
+              glMultiDrawElements(ModeConstant::value, count, TypeConstant::value, indices, primcount);
               __gl_check_error();
               
             }
@@ -1847,10 +1847,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(float param) {
-              __gl_debug << "call glPointParameterf "  "pname: '" << pname_t::name << "'"  ", "  "param: '" << param << "'" ;
-              glPointParameterf(pname_t::value, param);
+              __gl_debug << "call glPointParameterf "  "pname: '" << PnameConstant::name << "'"  ", "  "param: '" << param << "'" ;
+              glPointParameterf(PnameConstant::value, param);
               __gl_check_error();
               
             }
@@ -1866,10 +1866,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(float const* params) {
-              __gl_debug << "call glPointParameterfv "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glPointParameterfv(pname_t::value, params);
+              __gl_debug << "call glPointParameterfv "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glPointParameterfv(PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -1885,10 +1885,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::int32_t param) {
-              __gl_debug << "call glPointParameteri "  "pname: '" << pname_t::name << "'"  ", "  "param: '" << param << "'" ;
-              glPointParameteri(pname_t::value, param);
+              __gl_debug << "call glPointParameteri "  "pname: '" << PnameConstant::name << "'"  ", "  "param: '" << param << "'" ;
+              glPointParameteri(PnameConstant::value, param);
               __gl_check_error();
               
             }
@@ -1904,10 +1904,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::int32_t const* params) {
-              __gl_debug << "call glPointParameteriv "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glPointParameteriv(pname_t::value, params);
+              __gl_debug << "call glPointParameteriv "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glPointParameteriv(PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -1931,10 +1931,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t id) {
-              __gl_debug << "call glBeginQuery "  "target: '" << target_t::name << "'"  ", "  "id: '" << id << "'" ;
-              glBeginQuery(target_t::value, id);
+              __gl_debug << "call glBeginQuery "  "target: '" << TargetConstant::name << "'"  ", "  "id: '" << id << "'" ;
+              glBeginQuery(TargetConstant::value, id);
               __gl_check_error();
               
             }
@@ -1954,10 +1954,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t buffer) {
-              __gl_debug << "call glBindBuffer "  "target: '" << target_t::name << "'"  ", "  "buffer: '" << buffer << "'" ;
-              glBindBuffer(target_t::value, buffer);
+              __gl_debug << "call glBindBuffer "  "target: '" << TargetConstant::name << "'"  ", "  "buffer: '" << buffer << "'" ;
+              glBindBuffer(TargetConstant::value, buffer);
               __gl_check_error();
               
             }
@@ -1977,10 +1977,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename usage_t >
+            template< typename TargetConstant, typename UsageConstant >
             inline static void call(GLsizeiptr size, void const* data) {
-              __gl_debug << "call glBufferData "  "target: '" << target_t::name << "'"  ", "  "size: '" << size << "'"  ", "  "data: '" << data << "'"  ", "  "usage: '" << usage_t::name << "'" ;
-              glBufferData(target_t::value, size, data, usage_t::value);
+              __gl_debug << "call glBufferData "  "target: '" << TargetConstant::name << "'"  ", "  "size: '" << size << "'"  ", "  "data: '" << data << "'"  ", "  "usage: '" << UsageConstant::name << "'" ;
+              glBufferData(TargetConstant::value, size, data, UsageConstant::value);
               __gl_check_error();
               
             }
@@ -2000,10 +2000,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(GLintptr offset, GLsizeiptr size, void const* data) {
-              __gl_debug << "call glBufferSubData "  "target: '" << target_t::name << "'"  ", "  "offset: '" << offset << "'"  ", "  "size: '" << size << "'"  ", "  "data: '" << data << "'" ;
-              glBufferSubData(target_t::value, offset, size, data);
+              __gl_debug << "call glBufferSubData "  "target: '" << TargetConstant::name << "'"  ", "  "offset: '" << offset << "'"  ", "  "size: '" << size << "'"  ", "  "data: '" << data << "'" ;
+              glBufferSubData(TargetConstant::value, offset, size, data);
               __gl_check_error();
               
             }
@@ -2049,10 +2049,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call() {
-              __gl_debug << "call glEndQuery "  "target: '" << target_t::name << "'" ;
-              glEndQuery(target_t::value);
+              __gl_debug << "call glEndQuery "  "target: '" << TargetConstant::name << "'" ;
+              glEndQuery(TargetConstant::value);
               __gl_check_error();
               
             }
@@ -2098,10 +2098,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(::std::int32_t* params) {
-              __gl_debug << "call glGetBufferParameteriv "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetBufferParameteriv(target_t::value, pname_t::value, params);
+              __gl_debug << "call glGetBufferParameteriv "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetBufferParameteriv(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -2117,10 +2117,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(GLint64* params) {
-              __gl_debug << "call glGetBufferParameteri64v "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetBufferParameteri64v(target_t::value, pname_t::value, params);
+              __gl_debug << "call glGetBufferParameteri64v "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetBufferParameteri64v(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -2140,10 +2140,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(void** params) {
-              __gl_debug << "call glGetBufferPointerv "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetBufferPointerv(target_t::value, pname_t::value, params);
+              __gl_debug << "call glGetBufferPointerv "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetBufferPointerv(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -2163,10 +2163,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(GLintptr offset, GLsizeiptr size, void* data) {
-              __gl_debug << "call glGetBufferSubData "  "target: '" << target_t::name << "'"  ", "  "offset: '" << offset << "'"  ", "  "size: '" << size << "'"  ", "  "data: '" << data << "'" ;
-              glGetBufferSubData(target_t::value, offset, size, data);
+              __gl_debug << "call glGetBufferSubData "  "target: '" << TargetConstant::name << "'"  ", "  "offset: '" << offset << "'"  ", "  "size: '" << size << "'"  ", "  "data: '" << data << "'" ;
+              glGetBufferSubData(TargetConstant::value, offset, size, data);
               __gl_check_error();
               
             }
@@ -2186,10 +2186,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(::std::int32_t* params) {
-              __gl_debug << "call glGetQueryiv "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetQueryiv(target_t::value, pname_t::value, params);
+              __gl_debug << "call glGetQueryiv "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetQueryiv(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -2209,10 +2209,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t id, ::std::int32_t* params) {
-              __gl_debug << "call glGetQueryObjectiv "  "id: '" << id << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetQueryObjectiv(id, pname_t::value, params);
+              __gl_debug << "call glGetQueryObjectiv "  "id: '" << id << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetQueryObjectiv(id, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -2228,10 +2228,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t id, ::std::uint32_t* params) {
-              __gl_debug << "call glGetQueryObjectuiv "  "id: '" << id << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetQueryObjectuiv(id, pname_t::value, params);
+              __gl_debug << "call glGetQueryObjectuiv "  "id: '" << id << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetQueryObjectuiv(id, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -2247,10 +2247,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t id, GLint64* params) {
-              __gl_debug << "call glGetQueryObjecti64v "  "id: '" << id << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetQueryObjecti64v(id, pname_t::value, params);
+              __gl_debug << "call glGetQueryObjecti64v "  "id: '" << id << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetQueryObjecti64v(id, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -2266,10 +2266,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t id, GLuint64* params) {
-              __gl_debug << "call glGetQueryObjectui64v "  "id: '" << id << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetQueryObjectui64v(id, pname_t::value, params);
+              __gl_debug << "call glGetQueryObjectui64v "  "id: '" << id << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetQueryObjectui64v(id, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -2315,10 +2315,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename access_t >
+            template< typename TargetConstant, typename AccessConstant >
             inline static GLvoid* call() {
-              __gl_debug << "call glMapBuffer "  "target: '" << target_t::name << "'"  ", "  "access: '" << access_t::name << "'" ;
-              GLvoid* out = glMapBuffer(target_t::value, access_t::value);
+              __gl_debug << "call glMapBuffer "  "target: '" << TargetConstant::name << "'"  ", "  "access: '" << AccessConstant::name << "'" ;
+              GLvoid* out = glMapBuffer(TargetConstant::value, AccessConstant::value);
               __gl_check_error();
               return out;
             }
@@ -2338,10 +2338,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static GLboolean call() {
-              __gl_debug << "call glUnmapBuffer "  "target: '" << target_t::name << "'" ;
-              GLboolean out = glUnmapBuffer(target_t::value);
+              __gl_debug << "call glUnmapBuffer "  "target: '" << TargetConstant::name << "'" ;
+              GLboolean out = glUnmapBuffer(TargetConstant::value);
               __gl_check_error();
               return out;
             }
@@ -2391,10 +2391,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename modeRGB_t, typename modeAlpha_t >
+            template< typename ModeRGBConstant, typename ModeAlphaConstant >
             inline static void call() {
-              __gl_debug << "call glBlendEquationSeparate "  "modeRGB: '" << modeRGB_t::name << "'"  ", "  "modeAlpha: '" << modeAlpha_t::name << "'" ;
-              glBlendEquationSeparate(modeRGB_t::value, modeAlpha_t::value);
+              __gl_debug << "call glBlendEquationSeparate "  "modeRGB: '" << ModeRGBConstant::name << "'"  ", "  "modeAlpha: '" << ModeAlphaConstant::name << "'" ;
+              glBlendEquationSeparate(ModeRGBConstant::value, ModeAlphaConstant::value);
               __gl_check_error();
               
             }
@@ -2410,10 +2410,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename modeRGB_t, typename modeAlpha_t >
+            template< typename ModeRGBConstant, typename ModeAlphaConstant >
             inline static void call(::std::uint32_t buf) {
-              __gl_debug << "call glBlendEquationSeparatei "  "buf: '" << buf << "'"  ", "  "modeRGB: '" << modeRGB_t::name << "'"  ", "  "modeAlpha: '" << modeAlpha_t::name << "'" ;
-              glBlendEquationSeparatei(buf, modeRGB_t::value, modeAlpha_t::value);
+              __gl_debug << "call glBlendEquationSeparatei "  "buf: '" << buf << "'"  ", "  "modeRGB: '" << ModeRGBConstant::name << "'"  ", "  "modeAlpha: '" << ModeAlphaConstant::name << "'" ;
+              glBlendEquationSeparatei(buf, ModeRGBConstant::value, ModeAlphaConstant::value);
               __gl_check_error();
               
             }
@@ -2459,10 +2459,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static GLuint call() {
-              __gl_debug << "call glCreateShader "  "type: '" << type_t::name << "'" ;
-              GLuint out = glCreateShader(type_t::value);
+              __gl_debug << "call glCreateShader "  "type: '" << TypeConstant::name << "'" ;
+              GLuint out = glCreateShader(TypeConstant::value);
               __gl_check_error();
               return out;
             }
@@ -2612,10 +2612,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t program, ::std::int32_t* params) {
-              __gl_debug << "call glGetProgramiv "  "program: '" << program << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetProgramiv(program, pname_t::value, params);
+              __gl_debug << "call glGetProgramiv "  "program: '" << program << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetProgramiv(program, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -2648,10 +2648,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t shader, ::std::int32_t* params) {
-              __gl_debug << "call glGetShaderiv "  "shader: '" << shader << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetShaderiv(shader, pname_t::value, params);
+              __gl_debug << "call glGetShaderiv "  "shader: '" << shader << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetShaderiv(shader, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -2750,10 +2750,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t index, double* params) {
-              __gl_debug << "call glGetVertexAttribdv "  "index: '" << index << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetVertexAttribdv(index, pname_t::value, params);
+              __gl_debug << "call glGetVertexAttribdv "  "index: '" << index << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetVertexAttribdv(index, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -2769,10 +2769,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t index, float* params) {
-              __gl_debug << "call glGetVertexAttribfv "  "index: '" << index << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetVertexAttribfv(index, pname_t::value, params);
+              __gl_debug << "call glGetVertexAttribfv "  "index: '" << index << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetVertexAttribfv(index, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -2788,10 +2788,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t index, ::std::int32_t* params) {
-              __gl_debug << "call glGetVertexAttribiv "  "index: '" << index << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetVertexAttribiv(index, pname_t::value, params);
+              __gl_debug << "call glGetVertexAttribiv "  "index: '" << index << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetVertexAttribiv(index, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -2811,10 +2811,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t index, void** pointer) {
-              __gl_debug << "call glGetVertexAttribPointerv "  "index: '" << index << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "pointer: '" << pointer << "'" ;
-              glGetVertexAttribPointerv(index, pname_t::value, pointer);
+              __gl_debug << "call glGetVertexAttribPointerv "  "index: '" << index << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "pointer: '" << pointer << "'" ;
+              glGetVertexAttribPointerv(index, PnameConstant::value, pointer);
               __gl_check_error();
               
             }
@@ -2886,10 +2886,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename face_t, typename func_t >
+            template< typename FaceConstant, typename FuncConstant >
             inline static void call(::std::int32_t ref, ::std::uint32_t mask) {
-              __gl_debug << "call glStencilFuncSeparate "  "face: '" << face_t::name << "'"  ", "  "func: '" << func_t::name << "'"  ", "  "ref: '" << ref << "'"  ", "  "mask: '" << mask << "'" ;
-              glStencilFuncSeparate(face_t::value, func_t::value, ref, mask);
+              __gl_debug << "call glStencilFuncSeparate "  "face: '" << FaceConstant::name << "'"  ", "  "func: '" << FuncConstant::name << "'"  ", "  "ref: '" << ref << "'"  ", "  "mask: '" << mask << "'" ;
+              glStencilFuncSeparate(FaceConstant::value, FuncConstant::value, ref, mask);
               __gl_check_error();
               
             }
@@ -2909,10 +2909,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename face_t >
+            template< typename FaceConstant >
             inline static void call(::std::uint32_t mask) {
-              __gl_debug << "call glStencilMaskSeparate "  "face: '" << face_t::name << "'"  ", "  "mask: '" << mask << "'" ;
-              glStencilMaskSeparate(face_t::value, mask);
+              __gl_debug << "call glStencilMaskSeparate "  "face: '" << FaceConstant::name << "'"  ", "  "mask: '" << mask << "'" ;
+              glStencilMaskSeparate(FaceConstant::value, mask);
               __gl_check_error();
               
             }
@@ -2932,10 +2932,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename face_t, typename sfail_t, typename dpfail_t, typename dppass_t >
+            template< typename FaceConstant, typename SfailConstant, typename DpfailConstant, typename DppassConstant >
             inline static void call() {
-              __gl_debug << "call glStencilOpSeparate "  "face: '" << face_t::name << "'"  ", "  "sfail: '" << sfail_t::name << "'"  ", "  "dpfail: '" << dpfail_t::name << "'"  ", "  "dppass: '" << dppass_t::name << "'" ;
-              glStencilOpSeparate(face_t::value, sfail_t::value, dpfail_t::value, dppass_t::value);
+              __gl_debug << "call glStencilOpSeparate "  "face: '" << FaceConstant::name << "'"  ", "  "sfail: '" << SfailConstant::name << "'"  ", "  "dpfail: '" << DpfailConstant::name << "'"  ", "  "dppass: '" << DppassConstant::name << "'" ;
+              glStencilOpSeparate(FaceConstant::value, SfailConstant::value, DpfailConstant::value, DppassConstant::value);
               __gl_check_error();
               
             }
@@ -3695,10 +3695,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t index, ::std::int32_t size, bool normalized, GLsizei stride, void const* pointer) {
-              __gl_debug << "call glVertexAttribPointer "  "index: '" << index << "'"  ", "  "size: '" << size << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "stride: '" << stride << "'"  ", "  "pointer: '" << pointer << "'" ;
-              glVertexAttribPointer(index, size, type_t::value, (normalized ? 1 : 0), stride, pointer);
+              __gl_debug << "call glVertexAttribPointer "  "index: '" << index << "'"  ", "  "size: '" << size << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "stride: '" << stride << "'"  ", "  "pointer: '" << pointer << "'" ;
+              glVertexAttribPointer(index, size, TypeConstant::value, (normalized ? 1 : 0), stride, pointer);
               __gl_check_error();
               
             }
@@ -3858,10 +3858,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call(::std::uint32_t id) {
-              __gl_debug << "call glBeginConditionalRender "  "id: '" << id << "'"  ", "  "mode: '" << mode_t::name << "'" ;
-              glBeginConditionalRender(id, mode_t::value);
+              __gl_debug << "call glBeginConditionalRender "  "id: '" << id << "'"  ", "  "mode: '" << ModeConstant::name << "'" ;
+              glBeginConditionalRender(id, ModeConstant::value);
               __gl_check_error();
               
             }
@@ -3881,10 +3881,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename primitiveMode_t >
+            template< typename PrimitiveModeConstant >
             inline static void call() {
-              __gl_debug << "call glBeginTransformFeedback "  "primitiveMode: '" << primitiveMode_t::name << "'" ;
-              glBeginTransformFeedback(primitiveMode_t::value);
+              __gl_debug << "call glBeginTransformFeedback "  "primitiveMode: '" << PrimitiveModeConstant::name << "'" ;
+              glBeginTransformFeedback(PrimitiveModeConstant::value);
               __gl_check_error();
               
             }
@@ -3904,10 +3904,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index, ::std::uint32_t buffer) {
-              __gl_debug << "call glBindBufferBase "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "buffer: '" << buffer << "'" ;
-              glBindBufferBase(target_t::value, index, buffer);
+              __gl_debug << "call glBindBufferBase "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "buffer: '" << buffer << "'" ;
+              glBindBufferBase(TargetConstant::value, index, buffer);
               __gl_check_error();
               
             }
@@ -3927,10 +3927,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index, ::std::uint32_t buffer, GLintptr offset, GLsizeiptr size) {
-              __gl_debug << "call glBindBufferRange "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "buffer: '" << buffer << "'"  ", "  "offset: '" << offset << "'"  ", "  "size: '" << size << "'" ;
-              glBindBufferRange(target_t::value, index, buffer, offset, size);
+              __gl_debug << "call glBindBufferRange "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "buffer: '" << buffer << "'"  ", "  "offset: '" << offset << "'"  ", "  "size: '" << size << "'" ;
+              glBindBufferRange(TargetConstant::value, index, buffer, offset, size);
               __gl_check_error();
               
             }
@@ -3963,10 +3963,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename clamp_t >
+            template< typename TargetConstant, typename ClampConstant >
             inline static void call() {
-              __gl_debug << "call glClampColor "  "target: '" << target_t::name << "'"  ", "  "clamp: '" << clamp_t::name << "'" ;
-              glClampColor(target_t::value, clamp_t::value);
+              __gl_debug << "call glClampColor "  "target: '" << TargetConstant::name << "'"  ", "  "clamp: '" << ClampConstant::name << "'" ;
+              glClampColor(TargetConstant::value, ClampConstant::value);
               __gl_check_error();
               
             }
@@ -3986,10 +3986,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename buffer_t >
+            template< typename BufferConstant >
             inline static void call(::std::int32_t drawbuffer, ::std::int32_t const* value) {
-              __gl_debug << "call glClearBufferiv "  "buffer: '" << buffer_t::name << "'"  ", "  "drawbuffer: '" << drawbuffer << "'"  ", "  "value: '" << value << "'" ;
-              glClearBufferiv(buffer_t::value, drawbuffer, value);
+              __gl_debug << "call glClearBufferiv "  "buffer: '" << BufferConstant::name << "'"  ", "  "drawbuffer: '" << drawbuffer << "'"  ", "  "value: '" << value << "'" ;
+              glClearBufferiv(BufferConstant::value, drawbuffer, value);
               __gl_check_error();
               
             }
@@ -4005,10 +4005,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename buffer_t >
+            template< typename BufferConstant >
             inline static void call(::std::int32_t drawbuffer, ::std::uint32_t const* value) {
-              __gl_debug << "call glClearBufferuiv "  "buffer: '" << buffer_t::name << "'"  ", "  "drawbuffer: '" << drawbuffer << "'"  ", "  "value: '" << value << "'" ;
-              glClearBufferuiv(buffer_t::value, drawbuffer, value);
+              __gl_debug << "call glClearBufferuiv "  "buffer: '" << BufferConstant::name << "'"  ", "  "drawbuffer: '" << drawbuffer << "'"  ", "  "value: '" << value << "'" ;
+              glClearBufferuiv(BufferConstant::value, drawbuffer, value);
               __gl_check_error();
               
             }
@@ -4024,10 +4024,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename buffer_t >
+            template< typename BufferConstant >
             inline static void call(::std::int32_t drawbuffer, float const* value) {
-              __gl_debug << "call glClearBufferfv "  "buffer: '" << buffer_t::name << "'"  ", "  "drawbuffer: '" << drawbuffer << "'"  ", "  "value: '" << value << "'" ;
-              glClearBufferfv(buffer_t::value, drawbuffer, value);
+              __gl_debug << "call glClearBufferfv "  "buffer: '" << BufferConstant::name << "'"  ", "  "drawbuffer: '" << drawbuffer << "'"  ", "  "value: '" << value << "'" ;
+              glClearBufferfv(BufferConstant::value, drawbuffer, value);
               __gl_check_error();
               
             }
@@ -4047,10 +4047,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename buffer_t >
+            template< typename BufferConstant >
             inline static void call(::std::int32_t drawbuffer, float depth, ::std::int32_t stencil) {
-              __gl_debug << "call glClearBufferfi "  "buffer: '" << buffer_t::name << "'"  ", "  "drawbuffer: '" << drawbuffer << "'"  ", "  "depth: '" << depth << "'"  ", "  "stencil: '" << stencil << "'" ;
-              glClearBufferfi(buffer_t::value, drawbuffer, depth, stencil);
+              __gl_debug << "call glClearBufferfi "  "buffer: '" << BufferConstant::name << "'"  ", "  "drawbuffer: '" << drawbuffer << "'"  ", "  "depth: '" << depth << "'"  ", "  "stencil: '" << stencil << "'" ;
+              glClearBufferfi(BufferConstant::value, drawbuffer, depth, stencil);
               __gl_check_error();
               
             }
@@ -4092,10 +4092,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename cap_t >
+            template< typename CapConstant >
             inline static void call() {
-              __gl_debug << "call glDisable "  "cap: '" << cap_t::name << "'" ;
-              glDisable(cap_t::value);
+              __gl_debug << "call glDisable "  "cap: '" << CapConstant::name << "'" ;
+              glDisable(CapConstant::value);
               __gl_check_error();
               
             }
@@ -4111,10 +4111,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index) {
-              __gl_debug << "call glDisablei "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'" ;
-              glDisablei(target_t::value, index);
+              __gl_debug << "call glDisablei "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'" ;
+              glDisablei(TargetConstant::value, index);
               __gl_check_error();
               
             }
@@ -4134,10 +4134,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename cap_t >
+            template< typename CapConstant >
             inline static void call() {
-              __gl_debug << "call glEnable "  "cap: '" << cap_t::name << "'" ;
-              glEnable(cap_t::value);
+              __gl_debug << "call glEnable "  "cap: '" << CapConstant::name << "'" ;
+              glEnable(CapConstant::value);
               __gl_check_error();
               
             }
@@ -4153,10 +4153,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index) {
-              __gl_debug << "call glEnablei "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'" ;
-              glEnablei(target_t::value, index);
+              __gl_debug << "call glEnablei "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'" ;
+              glEnablei(TargetConstant::value, index);
               __gl_check_error();
               
             }
@@ -4202,10 +4202,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index, GLboolean* data) {
-              __gl_debug << "call glGetBooleani_v "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "data: '" << data << "'" ;
-              glGetBooleani_v(target_t::value, index, data);
+              __gl_debug << "call glGetBooleani_v "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "data: '" << data << "'" ;
+              glGetBooleani_v(TargetConstant::value, index, data);
               __gl_check_error();
               
             }
@@ -4238,10 +4238,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index, ::std::int32_t* data) {
-              __gl_debug << "call glGetIntegeri_v "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "data: '" << data << "'" ;
-              glGetIntegeri_v(target_t::value, index, data);
+              __gl_debug << "call glGetIntegeri_v "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "data: '" << data << "'" ;
+              glGetIntegeri_v(TargetConstant::value, index, data);
               __gl_check_error();
               
             }
@@ -4257,10 +4257,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index, GLint64* data) {
-              __gl_debug << "call glGetInteger64i_v "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "data: '" << data << "'" ;
-              glGetInteger64i_v(target_t::value, index, data);
+              __gl_debug << "call glGetInteger64i_v "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "data: '" << data << "'" ;
+              glGetInteger64i_v(TargetConstant::value, index, data);
               __gl_check_error();
               
             }
@@ -4280,10 +4280,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename name_t >
+            template< typename NameConstant >
             inline static GLubyte const* call() {
-              __gl_debug << "call glGetString "  "name: '" << name_t::name << "'" ;
-              GLubyte const* out = glGetString(name_t::value);
+              __gl_debug << "call glGetString "  "name: '" << NameConstant::name << "'" ;
+              GLubyte const* out = glGetString(NameConstant::value);
               __gl_check_error();
               return out;
             }
@@ -4299,10 +4299,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename name_t >
+            template< typename NameConstant >
             inline static GLubyte const* call(::std::uint32_t index) {
-              __gl_debug << "call glGetStringi "  "name: '" << name_t::name << "'"  ", "  "index: '" << index << "'" ;
-              GLubyte const* out = glGetStringi(name_t::value, index);
+              __gl_debug << "call glGetStringi "  "name: '" << NameConstant::name << "'"  ", "  "index: '" << index << "'" ;
+              GLubyte const* out = glGetStringi(NameConstant::value, index);
               __gl_check_error();
               return out;
             }
@@ -4322,10 +4322,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(::std::int32_t* params) {
-              __gl_debug << "call glGetTexParameterIiv "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetTexParameterIiv(target_t::value, pname_t::value, params);
+              __gl_debug << "call glGetTexParameterIiv "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetTexParameterIiv(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -4341,10 +4341,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(::std::uint32_t* params) {
-              __gl_debug << "call glGetTexParameterIuiv "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetTexParameterIuiv(target_t::value, pname_t::value, params);
+              __gl_debug << "call glGetTexParameterIuiv "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetTexParameterIuiv(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -4417,10 +4417,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t index, ::std::int32_t* params) {
-              __gl_debug << "call glGetVertexAttribIiv "  "index: '" << index << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetVertexAttribIiv(index, pname_t::value, params);
+              __gl_debug << "call glGetVertexAttribIiv "  "index: '" << index << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetVertexAttribIiv(index, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -4436,10 +4436,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t index, ::std::uint32_t* params) {
-              __gl_debug << "call glGetVertexAttribIuiv "  "index: '" << index << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetVertexAttribIuiv(index, pname_t::value, params);
+              __gl_debug << "call glGetVertexAttribIuiv "  "index: '" << index << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetVertexAttribIuiv(index, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -4459,10 +4459,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename cap_t >
+            template< typename CapConstant >
             inline static GLboolean call() {
-              __gl_debug << "call glIsEnabled "  "cap: '" << cap_t::name << "'" ;
-              GLboolean out = glIsEnabled(cap_t::value);
+              __gl_debug << "call glIsEnabled "  "cap: '" << CapConstant::name << "'" ;
+              GLboolean out = glIsEnabled(CapConstant::value);
               __gl_check_error();
               return out;
             }
@@ -4478,10 +4478,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static GLboolean call(::std::uint32_t index) {
-              __gl_debug << "call glIsEnabledi "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'" ;
-              GLboolean out = glIsEnabledi(target_t::value, index);
+              __gl_debug << "call glIsEnabledi "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'" ;
+              GLboolean out = glIsEnabledi(TargetConstant::value, index);
               __gl_check_error();
               return out;
             }
@@ -4501,10 +4501,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(::std::int32_t const* params) {
-              __gl_debug << "call glTexParameterIiv "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glTexParameterIiv(target_t::value, pname_t::value, params);
+              __gl_debug << "call glTexParameterIiv "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glTexParameterIiv(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -4520,10 +4520,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(::std::uint32_t const* params) {
-              __gl_debug << "call glTexParameterIuiv "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glTexParameterIuiv(target_t::value, pname_t::value, params);
+              __gl_debug << "call glTexParameterIuiv "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glTexParameterIuiv(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -4543,10 +4543,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename bufferMode_t >
+            template< typename BufferModeConstant >
             inline static void call(::std::uint32_t program, GLsizei count, GLchar const** varyings) {
-              __gl_debug << "call glTransformFeedbackVaryings "  "program: '" << program << "'"  ", "  "count: '" << count << "'"  ", "  "varyings: '" << varyings << "'"  ", "  "bufferMode: '" << bufferMode_t::name << "'" ;
-              glTransformFeedbackVaryings(program, count, varyings, bufferMode_t::value);
+              __gl_debug << "call glTransformFeedbackVaryings "  "program: '" << program << "'"  ", "  "count: '" << count << "'"  ", "  "varyings: '" << varyings << "'"  ", "  "bufferMode: '" << BufferModeConstant::name << "'" ;
+              glTransformFeedbackVaryings(program, count, varyings, BufferModeConstant::value);
               __gl_check_error();
               
             }
@@ -5066,10 +5066,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t index, ::std::int32_t size, GLsizei stride, void const* pointer) {
-              __gl_debug << "call glVertexAttribIPointer "  "index: '" << index << "'"  ", "  "size: '" << size << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "stride: '" << stride << "'"  ", "  "pointer: '" << pointer << "'" ;
-              glVertexAttribIPointer(index, size, type_t::value, stride, pointer);
+              __gl_debug << "call glVertexAttribIPointer "  "index: '" << index << "'"  ", "  "size: '" << size << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "stride: '" << stride << "'"  ", "  "pointer: '" << pointer << "'" ;
+              glVertexAttribIPointer(index, size, TypeConstant::value, stride, pointer);
               __gl_check_error();
               
             }
@@ -5093,10 +5093,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call(::std::int32_t first, GLsizei count, GLsizei primcount) {
-              __gl_debug << "call glDrawArraysInstanced "  "mode: '" << mode_t::name << "'"  ", "  "first: '" << first << "'"  ", "  "count: '" << count << "'"  ", "  "primcount: '" << primcount << "'" ;
-              glDrawArraysInstanced(mode_t::value, first, count, primcount);
+              __gl_debug << "call glDrawArraysInstanced "  "mode: '" << ModeConstant::name << "'"  ", "  "first: '" << first << "'"  ", "  "count: '" << count << "'"  ", "  "primcount: '" << primcount << "'" ;
+              glDrawArraysInstanced(ModeConstant::value, first, count, primcount);
               __gl_check_error();
               
             }
@@ -5116,10 +5116,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t, typename type_t >
+            template< typename ModeConstant, typename TypeConstant >
             inline static void call(GLsizei count, void const* indices, GLsizei primcount) {
-              __gl_debug << "call glDrawElementsInstanced "  "mode: '" << mode_t::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "primcount: '" << primcount << "'" ;
-              glDrawElementsInstanced(mode_t::value, count, type_t::value, indices, primcount);
+              __gl_debug << "call glDrawElementsInstanced "  "mode: '" << ModeConstant::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "primcount: '" << primcount << "'" ;
+              glDrawElementsInstanced(ModeConstant::value, count, TypeConstant::value, indices, primcount);
               __gl_check_error();
               
             }
@@ -5152,10 +5152,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(::std::uint32_t buffer) {
-              __gl_debug << "call glTexBuffer "  "target: '" << target_t::name << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "buffer: '" << buffer << "'" ;
-              glTexBuffer(target_t::value, internalformat_t::value, buffer);
+              __gl_debug << "call glTexBuffer "  "target: '" << TargetConstant::name << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "buffer: '" << buffer << "'" ;
+              glTexBuffer(TargetConstant::value, InternalformatConstant::value, buffer);
               __gl_check_error();
               
             }
@@ -5179,10 +5179,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename attachment_t >
+            template< typename TargetConstant, typename AttachmentConstant >
             inline static void call(::std::uint32_t texture, ::std::int32_t level) {
-              __gl_debug << "call glFramebufferTexture "  "target: '" << target_t::name << "'"  ", "  "attachment: '" << attachment_t::name << "'"  ", "  "texture: '" << texture << "'"  ", "  "level: '" << level << "'" ;
-              glFramebufferTexture(target_t::value, attachment_t::value, texture, level);
+              __gl_debug << "call glFramebufferTexture "  "target: '" << TargetConstant::name << "'"  ", "  "attachment: '" << AttachmentConstant::name << "'"  ", "  "texture: '" << texture << "'"  ", "  "level: '" << level << "'" ;
+              glFramebufferTexture(TargetConstant::value, AttachmentConstant::value, texture, level);
               __gl_check_error();
               
             }
@@ -5202,10 +5202,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(::std::int32_t* params) {
-              __gl_debug << "call glGetBufferParameteriv "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetBufferParameteriv(target_t::value, pname_t::value, params);
+              __gl_debug << "call glGetBufferParameteriv "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetBufferParameteriv(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -5221,10 +5221,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(GLint64* params) {
-              __gl_debug << "call glGetBufferParameteri64v "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetBufferParameteri64v(target_t::value, pname_t::value, params);
+              __gl_debug << "call glGetBufferParameteri64v "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetBufferParameteri64v(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -5244,10 +5244,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index, ::std::int32_t* data) {
-              __gl_debug << "call glGetIntegeri_v "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "data: '" << data << "'" ;
-              glGetIntegeri_v(target_t::value, index, data);
+              __gl_debug << "call glGetIntegeri_v "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "data: '" << data << "'" ;
+              glGetIntegeri_v(TargetConstant::value, index, data);
               __gl_check_error();
               
             }
@@ -5263,10 +5263,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index, GLint64* data) {
-              __gl_debug << "call glGetInteger64i_v "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "data: '" << data << "'" ;
-              glGetInteger64i_v(target_t::value, index, data);
+              __gl_debug << "call glGetInteger64i_v "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "data: '" << data << "'" ;
+              glGetInteger64i_v(TargetConstant::value, index, data);
               __gl_check_error();
               
             }
@@ -5307,10 +5307,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call() {
-              __gl_debug << "call glBlendEquation "  "mode: '" << mode_t::name << "'" ;
-              glBlendEquation(mode_t::value);
+              __gl_debug << "call glBlendEquation "  "mode: '" << ModeConstant::name << "'" ;
+              glBlendEquation(ModeConstant::value);
               __gl_check_error();
               
             }
@@ -5326,10 +5326,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call(::std::uint32_t buf) {
-              __gl_debug << "call glBlendEquationi "  "buf: '" << buf << "'"  ", "  "mode: '" << mode_t::name << "'" ;
-              glBlendEquationi(buf, mode_t::value);
+              __gl_debug << "call glBlendEquationi "  "buf: '" << buf << "'"  ", "  "mode: '" << ModeConstant::name << "'" ;
+              glBlendEquationi(buf, ModeConstant::value);
               __gl_check_error();
               
             }
@@ -5349,10 +5349,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename modeRGB_t, typename modeAlpha_t >
+            template< typename ModeRGBConstant, typename ModeAlphaConstant >
             inline static void call() {
-              __gl_debug << "call glBlendEquationSeparate "  "modeRGB: '" << modeRGB_t::name << "'"  ", "  "modeAlpha: '" << modeAlpha_t::name << "'" ;
-              glBlendEquationSeparate(modeRGB_t::value, modeAlpha_t::value);
+              __gl_debug << "call glBlendEquationSeparate "  "modeRGB: '" << ModeRGBConstant::name << "'"  ", "  "modeAlpha: '" << ModeAlphaConstant::name << "'" ;
+              glBlendEquationSeparate(ModeRGBConstant::value, ModeAlphaConstant::value);
               __gl_check_error();
               
             }
@@ -5368,10 +5368,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename modeRGB_t, typename modeAlpha_t >
+            template< typename ModeRGBConstant, typename ModeAlphaConstant >
             inline static void call(::std::uint32_t buf) {
-              __gl_debug << "call glBlendEquationSeparatei "  "buf: '" << buf << "'"  ", "  "modeRGB: '" << modeRGB_t::name << "'"  ", "  "modeAlpha: '" << modeAlpha_t::name << "'" ;
-              glBlendEquationSeparatei(buf, modeRGB_t::value, modeAlpha_t::value);
+              __gl_debug << "call glBlendEquationSeparatei "  "buf: '" << buf << "'"  ", "  "modeRGB: '" << ModeRGBConstant::name << "'"  ", "  "modeAlpha: '" << ModeAlphaConstant::name << "'" ;
+              glBlendEquationSeparatei(buf, ModeRGBConstant::value, ModeAlphaConstant::value);
               __gl_check_error();
               
             }
@@ -5391,10 +5391,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename sfactor_t, typename dfactor_t >
+            template< typename SfactorConstant, typename DfactorConstant >
             inline static void call() {
-              __gl_debug << "call glBlendFunc "  "sfactor: '" << sfactor_t::name << "'"  ", "  "dfactor: '" << dfactor_t::name << "'" ;
-              glBlendFunc(sfactor_t::value, dfactor_t::value);
+              __gl_debug << "call glBlendFunc "  "sfactor: '" << SfactorConstant::name << "'"  ", "  "dfactor: '" << DfactorConstant::name << "'" ;
+              glBlendFunc(SfactorConstant::value, DfactorConstant::value);
               __gl_check_error();
               
             }
@@ -5410,10 +5410,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename src_t, typename dst_t >
+            template< typename SrcConstant, typename DstConstant >
             inline static void call(::std::uint32_t buf) {
-              __gl_debug << "call glBlendFunci "  "buf: '" << buf << "'"  ", "  "src: '" << src_t::name << "'"  ", "  "dst: '" << dst_t::name << "'" ;
-              glBlendFunci(buf, src_t::value, dst_t::value);
+              __gl_debug << "call glBlendFunci "  "buf: '" << buf << "'"  ", "  "src: '" << SrcConstant::name << "'"  ", "  "dst: '" << DstConstant::name << "'" ;
+              glBlendFunci(buf, SrcConstant::value, DstConstant::value);
               __gl_check_error();
               
             }
@@ -5433,10 +5433,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename sfactorRGB_t, typename dfactorRGB_t, typename sfactorAlpha_t, typename dfactorAlpha_t >
+            template< typename SfactorRGBConstant, typename DfactorRGBConstant, typename SfactorAlphaConstant, typename DfactorAlphaConstant >
             inline static void call() {
-              __gl_debug << "call glBlendFuncSeparate "  "sfactorRGB: '" << sfactorRGB_t::name << "'"  ", "  "dfactorRGB: '" << dfactorRGB_t::name << "'"  ", "  "sfactorAlpha: '" << sfactorAlpha_t::name << "'"  ", "  "dfactorAlpha: '" << dfactorAlpha_t::name << "'" ;
-              glBlendFuncSeparate(sfactorRGB_t::value, dfactorRGB_t::value, sfactorAlpha_t::value, dfactorAlpha_t::value);
+              __gl_debug << "call glBlendFuncSeparate "  "sfactorRGB: '" << SfactorRGBConstant::name << "'"  ", "  "dfactorRGB: '" << DfactorRGBConstant::name << "'"  ", "  "sfactorAlpha: '" << SfactorAlphaConstant::name << "'"  ", "  "dfactorAlpha: '" << DfactorAlphaConstant::name << "'" ;
+              glBlendFuncSeparate(SfactorRGBConstant::value, DfactorRGBConstant::value, SfactorAlphaConstant::value, DfactorAlphaConstant::value);
               __gl_check_error();
               
             }
@@ -5452,10 +5452,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename srcRGB_t, typename dstRGB_t, typename srcAlpha_t, typename dstAlpha_t >
+            template< typename SrcRGBConstant, typename DstRGBConstant, typename SrcAlphaConstant, typename DstAlphaConstant >
             inline static void call(::std::uint32_t buf) {
-              __gl_debug << "call glBlendFuncSeparatei "  "buf: '" << buf << "'"  ", "  "srcRGB: '" << srcRGB_t::name << "'"  ", "  "dstRGB: '" << dstRGB_t::name << "'"  ", "  "srcAlpha: '" << srcAlpha_t::name << "'"  ", "  "dstAlpha: '" << dstAlpha_t::name << "'" ;
-              glBlendFuncSeparatei(buf, srcRGB_t::value, dstRGB_t::value, srcAlpha_t::value, dstAlpha_t::value);
+              __gl_debug << "call glBlendFuncSeparatei "  "buf: '" << buf << "'"  ", "  "srcRGB: '" << SrcRGBConstant::name << "'"  ", "  "dstRGB: '" << DstRGBConstant::name << "'"  ", "  "srcAlpha: '" << SrcAlphaConstant::name << "'"  ", "  "dstAlpha: '" << DstAlphaConstant::name << "'" ;
+              glBlendFuncSeparatei(buf, SrcRGBConstant::value, DstRGBConstant::value, SrcAlphaConstant::value, DstAlphaConstant::value);
               __gl_check_error();
               
             }
@@ -5546,10 +5546,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename shadertype_t, typename precisiontype_t >
+            template< typename ShadertypeConstant, typename PrecisiontypeConstant >
             inline static void call(::std::int32_t* range, ::std::int32_t* precision) {
-              __gl_debug << "call glGetShaderPrecisionFormat "  "shadertype: '" << shadertype_t::name << "'"  ", "  "precisiontype: '" << precisiontype_t::name << "'"  ", "  "range: '" << range << "'"  ", "  "precision: '" << precision << "'" ;
-              glGetShaderPrecisionFormat(shadertype_t::value, precisiontype_t::value, range, precision);
+              __gl_debug << "call glGetShaderPrecisionFormat "  "shadertype: '" << ShadertypeConstant::name << "'"  ", "  "precisiontype: '" << PrecisiontypeConstant::name << "'"  ", "  "range: '" << range << "'"  ", "  "precision: '" << precision << "'" ;
+              glGetShaderPrecisionFormat(ShadertypeConstant::value, PrecisiontypeConstant::value, range, precision);
               __gl_check_error();
               
             }
@@ -5582,10 +5582,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename binaryformat_t >
+            template< typename BinaryformatConstant >
             inline static void call(GLsizei count, ::std::uint32_t const* shaders, void const* binary, GLsizei length) {
-              __gl_debug << "call glShaderBinary "  "count: '" << count << "'"  ", "  "shaders: '" << shaders << "'"  ", "  "binaryformat: '" << binaryformat_t::name << "'"  ", "  "binary: '" << binary << "'"  ", "  "length: '" << length << "'" ;
-              glShaderBinary(count, shaders, binaryformat_t::value, binary, length);
+              __gl_debug << "call glShaderBinary "  "count: '" << count << "'"  ", "  "shaders: '" << shaders << "'"  ", "  "binaryformat: '" << BinaryformatConstant::name << "'"  ", "  "binary: '" << binary << "'"  ", "  "length: '" << length << "'" ;
+              glShaderBinary(count, shaders, BinaryformatConstant::value, binary, length);
               __gl_check_error();
               
             }
@@ -5609,10 +5609,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call(::std::int32_t first, GLsizei count, GLsizei primcount, ::std::uint32_t baseinstance) {
-              __gl_debug << "call glDrawArraysInstancedBaseInstance "  "mode: '" << mode_t::name << "'"  ", "  "first: '" << first << "'"  ", "  "count: '" << count << "'"  ", "  "primcount: '" << primcount << "'"  ", "  "baseinstance: '" << baseinstance << "'" ;
-              glDrawArraysInstancedBaseInstance(mode_t::value, first, count, primcount, baseinstance);
+              __gl_debug << "call glDrawArraysInstancedBaseInstance "  "mode: '" << ModeConstant::name << "'"  ", "  "first: '" << first << "'"  ", "  "count: '" << count << "'"  ", "  "primcount: '" << primcount << "'"  ", "  "baseinstance: '" << baseinstance << "'" ;
+              glDrawArraysInstancedBaseInstance(ModeConstant::value, first, count, primcount, baseinstance);
               __gl_check_error();
               
             }
@@ -5632,10 +5632,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t, typename type_t >
+            template< typename ModeConstant, typename TypeConstant >
             inline static void call(GLsizei count, void const* indices, GLsizei primcount, ::std::uint32_t baseinstance) {
-              __gl_debug << "call glDrawElementsInstancedBaseInstance "  "mode: '" << mode_t::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "primcount: '" << primcount << "'"  ", "  "baseinstance: '" << baseinstance << "'" ;
-              glDrawElementsInstancedBaseInstance(mode_t::value, count, type_t::value, indices, primcount, baseinstance);
+              __gl_debug << "call glDrawElementsInstancedBaseInstance "  "mode: '" << ModeConstant::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "primcount: '" << primcount << "'"  ", "  "baseinstance: '" << baseinstance << "'" ;
+              glDrawElementsInstancedBaseInstance(ModeConstant::value, count, TypeConstant::value, indices, primcount, baseinstance);
               __gl_check_error();
               
             }
@@ -5655,10 +5655,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t, typename type_t >
+            template< typename ModeConstant, typename TypeConstant >
             inline static void call(GLsizei count, void const* indices, GLsizei primcount, ::std::int32_t basevertex, ::std::uint32_t baseinstance) {
-              __gl_debug << "call glDrawElementsInstancedBaseVertexBaseInstance "  "mode: '" << mode_t::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "primcount: '" << primcount << "'"  ", "  "basevertex: '" << basevertex << "'"  ", "  "baseinstance: '" << baseinstance << "'" ;
-              glDrawElementsInstancedBaseVertexBaseInstance(mode_t::value, count, type_t::value, indices, primcount, basevertex, baseinstance);
+              __gl_debug << "call glDrawElementsInstancedBaseVertexBaseInstance "  "mode: '" << ModeConstant::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "primcount: '" << primcount << "'"  ", "  "basevertex: '" << basevertex << "'"  ", "  "baseinstance: '" << baseinstance << "'" ;
+              glDrawElementsInstancedBaseVertexBaseInstance(ModeConstant::value, count, TypeConstant::value, indices, primcount, basevertex, baseinstance);
               __gl_check_error();
               
             }
@@ -5720,10 +5720,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename readTarget_t, typename writeTarget_t >
+            template< typename ReadTargetConstant, typename WriteTargetConstant >
             inline static void call(GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size) {
-              __gl_debug << "call glCopyBufferSubData "  "readTarget: '" << readTarget_t::name << "'"  ", "  "writeTarget: '" << writeTarget_t::name << "'"  ", "  "readOffset: '" << readOffset << "'"  ", "  "writeOffset: '" << writeOffset << "'"  ", "  "size: '" << size << "'" ;
-              glCopyBufferSubData(readTarget_t::value, writeTarget_t::value, readOffset, writeOffset, size);
+              __gl_debug << "call glCopyBufferSubData "  "readTarget: '" << ReadTargetConstant::name << "'"  ", "  "writeTarget: '" << WriteTargetConstant::name << "'"  ", "  "readOffset: '" << readOffset << "'"  ", "  "writeOffset: '" << writeOffset << "'"  ", "  "size: '" << size << "'" ;
+              glCopyBufferSubData(ReadTargetConstant::value, WriteTargetConstant::value, readOffset, writeOffset, size);
               __gl_check_error();
               
             }
@@ -5760,10 +5760,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename source_t, typename type_t, typename severity_t >
+            template< typename SourceConstant, typename TypeConstant, typename SeverityConstant >
             inline static void call(GLsizei count, ::std::uint32_t const* ids, bool enabled) {
-              __gl_debug << "call glDebugMessageControlARB "  "source: '" << source_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "severity: '" << severity_t::name << "'"  ", "  "count: '" << count << "'"  ", "  "ids: '" << ids << "'"  ", "  "enabled: '" << enabled << "'" ;
-              glDebugMessageControlARB(source_t::value, type_t::value, severity_t::value, count, ids, (enabled ? 1 : 0));
+              __gl_debug << "call glDebugMessageControlARB "  "source: '" << SourceConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "severity: '" << SeverityConstant::name << "'"  ", "  "count: '" << count << "'"  ", "  "ids: '" << ids << "'"  ", "  "enabled: '" << enabled << "'" ;
+              glDebugMessageControlARB(SourceConstant::value, TypeConstant::value, SeverityConstant::value, count, ids, (enabled ? 1 : 0));
               __gl_check_error();
               
             }
@@ -5783,10 +5783,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename source_t, typename type_t, typename severity_t >
+            template< typename SourceConstant, typename TypeConstant, typename SeverityConstant >
             inline static void call(::std::uint32_t id, GLsizei length, GLchar const* buf) {
-              __gl_debug << "call glDebugMessageInsertARB "  "source: '" << source_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "id: '" << id << "'"  ", "  "severity: '" << severity_t::name << "'"  ", "  "length: '" << length << "'"  ", "  "buf: '" << buf << "'" ;
-              glDebugMessageInsertARB(source_t::value, type_t::value, id, severity_t::value, length, buf);
+              __gl_debug << "call glDebugMessageInsertARB "  "source: '" << SourceConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "id: '" << id << "'"  ", "  "severity: '" << SeverityConstant::name << "'"  ", "  "length: '" << length << "'"  ", "  "buf: '" << buf << "'" ;
+              glDebugMessageInsertARB(SourceConstant::value, TypeConstant::value, id, SeverityConstant::value, length, buf);
               __gl_check_error();
               
             }
@@ -5831,10 +5831,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call() {
-              __gl_debug << "call glBlendEquation "  "mode: '" << mode_t::name << "'" ;
-              glBlendEquation(mode_t::value);
+              __gl_debug << "call glBlendEquation "  "mode: '" << ModeConstant::name << "'" ;
+              glBlendEquation(ModeConstant::value);
               __gl_check_error();
               
             }
@@ -5850,10 +5850,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call(::std::uint32_t buf) {
-              __gl_debug << "call glBlendEquationi "  "buf: '" << buf << "'"  ", "  "mode: '" << mode_t::name << "'" ;
-              glBlendEquationi(buf, mode_t::value);
+              __gl_debug << "call glBlendEquationi "  "buf: '" << buf << "'"  ", "  "mode: '" << ModeConstant::name << "'" ;
+              glBlendEquationi(buf, ModeConstant::value);
               __gl_check_error();
               
             }
@@ -5873,10 +5873,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename modeRGB_t, typename modeAlpha_t >
+            template< typename ModeRGBConstant, typename ModeAlphaConstant >
             inline static void call() {
-              __gl_debug << "call glBlendEquationSeparate "  "modeRGB: '" << modeRGB_t::name << "'"  ", "  "modeAlpha: '" << modeAlpha_t::name << "'" ;
-              glBlendEquationSeparate(modeRGB_t::value, modeAlpha_t::value);
+              __gl_debug << "call glBlendEquationSeparate "  "modeRGB: '" << ModeRGBConstant::name << "'"  ", "  "modeAlpha: '" << ModeAlphaConstant::name << "'" ;
+              glBlendEquationSeparate(ModeRGBConstant::value, ModeAlphaConstant::value);
               __gl_check_error();
               
             }
@@ -5892,10 +5892,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename modeRGB_t, typename modeAlpha_t >
+            template< typename ModeRGBConstant, typename ModeAlphaConstant >
             inline static void call(::std::uint32_t buf) {
-              __gl_debug << "call glBlendEquationSeparatei "  "buf: '" << buf << "'"  ", "  "modeRGB: '" << modeRGB_t::name << "'"  ", "  "modeAlpha: '" << modeAlpha_t::name << "'" ;
-              glBlendEquationSeparatei(buf, modeRGB_t::value, modeAlpha_t::value);
+              __gl_debug << "call glBlendEquationSeparatei "  "buf: '" << buf << "'"  ", "  "modeRGB: '" << ModeRGBConstant::name << "'"  ", "  "modeAlpha: '" << ModeAlphaConstant::name << "'" ;
+              glBlendEquationSeparatei(buf, ModeRGBConstant::value, ModeAlphaConstant::value);
               __gl_check_error();
               
             }
@@ -5915,10 +5915,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename sfactor_t, typename dfactor_t >
+            template< typename SfactorConstant, typename DfactorConstant >
             inline static void call() {
-              __gl_debug << "call glBlendFunc "  "sfactor: '" << sfactor_t::name << "'"  ", "  "dfactor: '" << dfactor_t::name << "'" ;
-              glBlendFunc(sfactor_t::value, dfactor_t::value);
+              __gl_debug << "call glBlendFunc "  "sfactor: '" << SfactorConstant::name << "'"  ", "  "dfactor: '" << DfactorConstant::name << "'" ;
+              glBlendFunc(SfactorConstant::value, DfactorConstant::value);
               __gl_check_error();
               
             }
@@ -5934,10 +5934,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename src_t, typename dst_t >
+            template< typename SrcConstant, typename DstConstant >
             inline static void call(::std::uint32_t buf) {
-              __gl_debug << "call glBlendFunci "  "buf: '" << buf << "'"  ", "  "src: '" << src_t::name << "'"  ", "  "dst: '" << dst_t::name << "'" ;
-              glBlendFunci(buf, src_t::value, dst_t::value);
+              __gl_debug << "call glBlendFunci "  "buf: '" << buf << "'"  ", "  "src: '" << SrcConstant::name << "'"  ", "  "dst: '" << DstConstant::name << "'" ;
+              glBlendFunci(buf, SrcConstant::value, DstConstant::value);
               __gl_check_error();
               
             }
@@ -5957,10 +5957,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename sfactorRGB_t, typename dfactorRGB_t, typename sfactorAlpha_t, typename dfactorAlpha_t >
+            template< typename SfactorRGBConstant, typename DfactorRGBConstant, typename SfactorAlphaConstant, typename DfactorAlphaConstant >
             inline static void call() {
-              __gl_debug << "call glBlendFuncSeparate "  "sfactorRGB: '" << sfactorRGB_t::name << "'"  ", "  "dfactorRGB: '" << dfactorRGB_t::name << "'"  ", "  "sfactorAlpha: '" << sfactorAlpha_t::name << "'"  ", "  "dfactorAlpha: '" << dfactorAlpha_t::name << "'" ;
-              glBlendFuncSeparate(sfactorRGB_t::value, dfactorRGB_t::value, sfactorAlpha_t::value, dfactorAlpha_t::value);
+              __gl_debug << "call glBlendFuncSeparate "  "sfactorRGB: '" << SfactorRGBConstant::name << "'"  ", "  "dfactorRGB: '" << DfactorRGBConstant::name << "'"  ", "  "sfactorAlpha: '" << SfactorAlphaConstant::name << "'"  ", "  "dfactorAlpha: '" << DfactorAlphaConstant::name << "'" ;
+              glBlendFuncSeparate(SfactorRGBConstant::value, DfactorRGBConstant::value, SfactorAlphaConstant::value, DfactorAlphaConstant::value);
               __gl_check_error();
               
             }
@@ -5976,10 +5976,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename srcRGB_t, typename dstRGB_t, typename srcAlpha_t, typename dstAlpha_t >
+            template< typename SrcRGBConstant, typename DstRGBConstant, typename SrcAlphaConstant, typename DstAlphaConstant >
             inline static void call(::std::uint32_t buf) {
-              __gl_debug << "call glBlendFuncSeparatei "  "buf: '" << buf << "'"  ", "  "srcRGB: '" << srcRGB_t::name << "'"  ", "  "dstRGB: '" << dstRGB_t::name << "'"  ", "  "srcAlpha: '" << srcAlpha_t::name << "'"  ", "  "dstAlpha: '" << dstAlpha_t::name << "'" ;
-              glBlendFuncSeparatei(buf, srcRGB_t::value, dstRGB_t::value, srcAlpha_t::value, dstAlpha_t::value);
+              __gl_debug << "call glBlendFuncSeparatei "  "buf: '" << buf << "'"  ", "  "srcRGB: '" << SrcRGBConstant::name << "'"  ", "  "dstRGB: '" << DstRGBConstant::name << "'"  ", "  "srcAlpha: '" << SrcAlphaConstant::name << "'"  ", "  "dstAlpha: '" << DstAlphaConstant::name << "'" ;
+              glBlendFuncSeparatei(buf, SrcRGBConstant::value, DstRGBConstant::value, SrcAlphaConstant::value, DstAlphaConstant::value);
               __gl_check_error();
               
             }
@@ -6003,10 +6003,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t, typename type_t >
+            template< typename ModeConstant, typename TypeConstant >
             inline static void call(GLsizei count, void const* indices, ::std::int32_t basevertex) {
-              __gl_debug << "call glDrawElementsBaseVertex "  "mode: '" << mode_t::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "basevertex: '" << basevertex << "'" ;
-              glDrawElementsBaseVertex(mode_t::value, count, type_t::value, indices, basevertex);
+              __gl_debug << "call glDrawElementsBaseVertex "  "mode: '" << ModeConstant::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "basevertex: '" << basevertex << "'" ;
+              glDrawElementsBaseVertex(ModeConstant::value, count, TypeConstant::value, indices, basevertex);
               __gl_check_error();
               
             }
@@ -6026,10 +6026,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t, typename type_t >
+            template< typename ModeConstant, typename TypeConstant >
             inline static void call(GLsizei count, void const* indices, GLsizei primcount, ::std::int32_t basevertex) {
-              __gl_debug << "call glDrawElementsInstancedBaseVertex "  "mode: '" << mode_t::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "primcount: '" << primcount << "'"  ", "  "basevertex: '" << basevertex << "'" ;
-              glDrawElementsInstancedBaseVertex(mode_t::value, count, type_t::value, indices, primcount, basevertex);
+              __gl_debug << "call glDrawElementsInstancedBaseVertex "  "mode: '" << ModeConstant::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "primcount: '" << primcount << "'"  ", "  "basevertex: '" << basevertex << "'" ;
+              glDrawElementsInstancedBaseVertex(ModeConstant::value, count, TypeConstant::value, indices, primcount, basevertex);
               __gl_check_error();
               
             }
@@ -6049,10 +6049,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t, typename type_t >
+            template< typename ModeConstant, typename TypeConstant >
             inline static void call(::std::uint32_t start, ::std::uint32_t end, GLsizei count, void const* indices, ::std::int32_t basevertex) {
-              __gl_debug << "call glDrawRangeElementsBaseVertex "  "mode: '" << mode_t::name << "'"  ", "  "start: '" << start << "'"  ", "  "end: '" << end << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "basevertex: '" << basevertex << "'" ;
-              glDrawRangeElementsBaseVertex(mode_t::value, start, end, count, type_t::value, indices, basevertex);
+              __gl_debug << "call glDrawRangeElementsBaseVertex "  "mode: '" << ModeConstant::name << "'"  ", "  "start: '" << start << "'"  ", "  "end: '" << end << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "basevertex: '" << basevertex << "'" ;
+              glDrawRangeElementsBaseVertex(ModeConstant::value, start, end, count, TypeConstant::value, indices, basevertex);
               __gl_check_error();
               
             }
@@ -6072,10 +6072,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t, typename type_t >
+            template< typename ModeConstant, typename TypeConstant >
             inline static void call(GLsizei const* count, void const** indices, GLsizei primcount, ::std::int32_t const* basevertex) {
-              __gl_debug << "call glMultiDrawElementsBaseVertex "  "mode: '" << mode_t::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "primcount: '" << primcount << "'"  ", "  "basevertex: '" << basevertex << "'" ;
-              glMultiDrawElementsBaseVertex(mode_t::value, count, type_t::value, indices, primcount, basevertex);
+              __gl_debug << "call glMultiDrawElementsBaseVertex "  "mode: '" << ModeConstant::name << "'"  ", "  "count: '" << count << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "indices: '" << indices << "'"  ", "  "primcount: '" << primcount << "'"  ", "  "basevertex: '" << basevertex << "'" ;
+              glMultiDrawElementsBaseVertex(ModeConstant::value, count, TypeConstant::value, indices, primcount, basevertex);
               __gl_check_error();
               
             }
@@ -6099,10 +6099,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call(void const* indirect) {
-              __gl_debug << "call glDrawArraysIndirect "  "mode: '" << mode_t::name << "'"  ", "  "indirect: '" << indirect << "'" ;
-              glDrawArraysIndirect(mode_t::value, indirect);
+              __gl_debug << "call glDrawArraysIndirect "  "mode: '" << ModeConstant::name << "'"  ", "  "indirect: '" << indirect << "'" ;
+              glDrawArraysIndirect(ModeConstant::value, indirect);
               __gl_check_error();
               
             }
@@ -6122,10 +6122,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t, typename type_t >
+            template< typename ModeConstant, typename TypeConstant >
             inline static void call(void const* indirect) {
-              __gl_debug << "call glDrawElementsIndirect "  "mode: '" << mode_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "indirect: '" << indirect << "'" ;
-              glDrawElementsIndirect(mode_t::value, type_t::value, indirect);
+              __gl_debug << "call glDrawElementsIndirect "  "mode: '" << ModeConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "indirect: '" << indirect << "'" ;
+              glDrawElementsIndirect(ModeConstant::value, TypeConstant::value, indirect);
               __gl_check_error();
               
             }
@@ -6157,10 +6157,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t framebuffer) {
-              __gl_debug << "call glBindFramebuffer "  "target: '" << target_t::name << "'"  ", "  "framebuffer: '" << framebuffer << "'" ;
-              glBindFramebuffer(target_t::value, framebuffer);
+              __gl_debug << "call glBindFramebuffer "  "target: '" << TargetConstant::name << "'"  ", "  "framebuffer: '" << framebuffer << "'" ;
+              glBindFramebuffer(TargetConstant::value, framebuffer);
               __gl_check_error();
               
             }
@@ -6180,10 +6180,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t renderbuffer) {
-              __gl_debug << "call glBindRenderbuffer "  "target: '" << target_t::name << "'"  ", "  "renderbuffer: '" << renderbuffer << "'" ;
-              glBindRenderbuffer(target_t::value, renderbuffer);
+              __gl_debug << "call glBindRenderbuffer "  "target: '" << TargetConstant::name << "'"  ", "  "renderbuffer: '" << renderbuffer << "'" ;
+              glBindRenderbuffer(TargetConstant::value, renderbuffer);
               __gl_check_error();
               
             }
@@ -6203,10 +6203,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename filter_t >
+            template< typename FilterConstant >
             inline static void call(::std::int32_t srcX0, ::std::int32_t srcY0, ::std::int32_t srcX1, ::std::int32_t srcY1, ::std::int32_t dstX0, ::std::int32_t dstY0, ::std::int32_t dstX1, ::std::int32_t dstY1, GLbitfield mask) {
-              __gl_debug << "call glBlitFramebuffer "  "srcX0: '" << srcX0 << "'"  ", "  "srcY0: '" << srcY0 << "'"  ", "  "srcX1: '" << srcX1 << "'"  ", "  "srcY1: '" << srcY1 << "'"  ", "  "dstX0: '" << dstX0 << "'"  ", "  "dstY0: '" << dstY0 << "'"  ", "  "dstX1: '" << dstX1 << "'"  ", "  "dstY1: '" << dstY1 << "'"  ", "  "mask: '" << mask << "'"  ", "  "filter: '" << filter_t::name << "'" ;
-              glBlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter_t::value);
+              __gl_debug << "call glBlitFramebuffer "  "srcX0: '" << srcX0 << "'"  ", "  "srcY0: '" << srcY0 << "'"  ", "  "srcX1: '" << srcX1 << "'"  ", "  "srcY1: '" << srcY1 << "'"  ", "  "dstX0: '" << dstX0 << "'"  ", "  "dstY0: '" << dstY0 << "'"  ", "  "dstX1: '" << dstX1 << "'"  ", "  "dstY1: '" << dstY1 << "'"  ", "  "mask: '" << mask << "'"  ", "  "filter: '" << FilterConstant::name << "'" ;
+              glBlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, FilterConstant::value);
               __gl_check_error();
               
             }
@@ -6226,10 +6226,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static GLenum call() {
-              __gl_debug << "call glCheckFramebufferStatus "  "target: '" << target_t::name << "'" ;
-              GLenum out = glCheckFramebufferStatus(target_t::value);
+              __gl_debug << "call glCheckFramebufferStatus "  "target: '" << TargetConstant::name << "'" ;
+              GLenum out = glCheckFramebufferStatus(TargetConstant::value);
               __gl_check_error();
               return out;
             }
@@ -6275,10 +6275,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename attachment_t, typename renderbuffertarget_t >
+            template< typename TargetConstant, typename AttachmentConstant, typename RenderbuffertargetConstant >
             inline static void call(::std::uint32_t renderbuffer) {
-              __gl_debug << "call glFramebufferRenderbuffer "  "target: '" << target_t::name << "'"  ", "  "attachment: '" << attachment_t::name << "'"  ", "  "renderbuffertarget: '" << renderbuffertarget_t::name << "'"  ", "  "renderbuffer: '" << renderbuffer << "'" ;
-              glFramebufferRenderbuffer(target_t::value, attachment_t::value, renderbuffertarget_t::value, renderbuffer);
+              __gl_debug << "call glFramebufferRenderbuffer "  "target: '" << TargetConstant::name << "'"  ", "  "attachment: '" << AttachmentConstant::name << "'"  ", "  "renderbuffertarget: '" << RenderbuffertargetConstant::name << "'"  ", "  "renderbuffer: '" << renderbuffer << "'" ;
+              glFramebufferRenderbuffer(TargetConstant::value, AttachmentConstant::value, RenderbuffertargetConstant::value, renderbuffer);
               __gl_check_error();
               
             }
@@ -6298,10 +6298,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename attachment_t, typename textarget_t >
+            template< typename TargetConstant, typename AttachmentConstant, typename TextargetConstant >
             inline static void call(::std::uint32_t texture, ::std::int32_t level) {
-              __gl_debug << "call glFramebufferTexture1D "  "target: '" << target_t::name << "'"  ", "  "attachment: '" << attachment_t::name << "'"  ", "  "textarget: '" << textarget_t::name << "'"  ", "  "texture: '" << texture << "'"  ", "  "level: '" << level << "'" ;
-              glFramebufferTexture1D(target_t::value, attachment_t::value, textarget_t::value, texture, level);
+              __gl_debug << "call glFramebufferTexture1D "  "target: '" << TargetConstant::name << "'"  ", "  "attachment: '" << AttachmentConstant::name << "'"  ", "  "textarget: '" << TextargetConstant::name << "'"  ", "  "texture: '" << texture << "'"  ", "  "level: '" << level << "'" ;
+              glFramebufferTexture1D(TargetConstant::value, AttachmentConstant::value, TextargetConstant::value, texture, level);
               __gl_check_error();
               
             }
@@ -6321,10 +6321,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename attachment_t, typename textarget_t >
+            template< typename TargetConstant, typename AttachmentConstant, typename TextargetConstant >
             inline static void call(::std::uint32_t texture, ::std::int32_t level) {
-              __gl_debug << "call glFramebufferTexture2D "  "target: '" << target_t::name << "'"  ", "  "attachment: '" << attachment_t::name << "'"  ", "  "textarget: '" << textarget_t::name << "'"  ", "  "texture: '" << texture << "'"  ", "  "level: '" << level << "'" ;
-              glFramebufferTexture2D(target_t::value, attachment_t::value, textarget_t::value, texture, level);
+              __gl_debug << "call glFramebufferTexture2D "  "target: '" << TargetConstant::name << "'"  ", "  "attachment: '" << AttachmentConstant::name << "'"  ", "  "textarget: '" << TextargetConstant::name << "'"  ", "  "texture: '" << texture << "'"  ", "  "level: '" << level << "'" ;
+              glFramebufferTexture2D(TargetConstant::value, AttachmentConstant::value, TextargetConstant::value, texture, level);
               __gl_check_error();
               
             }
@@ -6344,10 +6344,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename attachment_t, typename textarget_t >
+            template< typename TargetConstant, typename AttachmentConstant, typename TextargetConstant >
             inline static void call(::std::uint32_t texture, ::std::int32_t level, ::std::int32_t zoffset) {
-              __gl_debug << "call glFramebufferTexture3D "  "target: '" << target_t::name << "'"  ", "  "attachment: '" << attachment_t::name << "'"  ", "  "textarget: '" << textarget_t::name << "'"  ", "  "texture: '" << texture << "'"  ", "  "level: '" << level << "'"  ", "  "zoffset: '" << zoffset << "'" ;
-              glFramebufferTexture3D(target_t::value, attachment_t::value, textarget_t::value, texture, level, zoffset);
+              __gl_debug << "call glFramebufferTexture3D "  "target: '" << TargetConstant::name << "'"  ", "  "attachment: '" << AttachmentConstant::name << "'"  ", "  "textarget: '" << TextargetConstant::name << "'"  ", "  "texture: '" << texture << "'"  ", "  "level: '" << level << "'"  ", "  "zoffset: '" << zoffset << "'" ;
+              glFramebufferTexture3D(TargetConstant::value, AttachmentConstant::value, TextargetConstant::value, texture, level, zoffset);
               __gl_check_error();
               
             }
@@ -6367,10 +6367,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename attachment_t >
+            template< typename TargetConstant, typename AttachmentConstant >
             inline static void call(::std::uint32_t texture, ::std::int32_t level, ::std::int32_t layer) {
-              __gl_debug << "call glFramebufferTextureLayer "  "target: '" << target_t::name << "'"  ", "  "attachment: '" << attachment_t::name << "'"  ", "  "texture: '" << texture << "'"  ", "  "level: '" << level << "'"  ", "  "layer: '" << layer << "'" ;
-              glFramebufferTextureLayer(target_t::value, attachment_t::value, texture, level, layer);
+              __gl_debug << "call glFramebufferTextureLayer "  "target: '" << TargetConstant::name << "'"  ", "  "attachment: '" << AttachmentConstant::name << "'"  ", "  "texture: '" << texture << "'"  ", "  "level: '" << level << "'"  ", "  "layer: '" << layer << "'" ;
+              glFramebufferTextureLayer(TargetConstant::value, AttachmentConstant::value, texture, level, layer);
               __gl_check_error();
               
             }
@@ -6416,10 +6416,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call() {
-              __gl_debug << "call glGenerateMipmap "  "target: '" << target_t::name << "'" ;
-              glGenerateMipmap(target_t::value);
+              __gl_debug << "call glGenerateMipmap "  "target: '" << TargetConstant::name << "'" ;
+              glGenerateMipmap(TargetConstant::value);
               __gl_check_error();
               
             }
@@ -6439,10 +6439,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename attachment_t, typename pname_t >
+            template< typename TargetConstant, typename AttachmentConstant, typename PnameConstant >
             inline static void call(::std::int32_t* params) {
-              __gl_debug << "call glGetFramebufferAttachmentParameteriv "  "target: '" << target_t::name << "'"  ", "  "attachment: '" << attachment_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetFramebufferAttachmentParameteriv(target_t::value, attachment_t::value, pname_t::value, params);
+              __gl_debug << "call glGetFramebufferAttachmentParameteriv "  "target: '" << TargetConstant::name << "'"  ", "  "attachment: '" << AttachmentConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetFramebufferAttachmentParameteriv(TargetConstant::value, AttachmentConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -6462,10 +6462,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(::std::int32_t* params) {
-              __gl_debug << "call glGetRenderbufferParameteriv "  "target: '" << target_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetRenderbufferParameteriv(target_t::value, pname_t::value, params);
+              __gl_debug << "call glGetRenderbufferParameteriv "  "target: '" << TargetConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetRenderbufferParameteriv(TargetConstant::value, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -6511,10 +6511,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(GLsizei width, GLsizei height) {
-              __gl_debug << "call glRenderbufferStorage "  "target: '" << target_t::name << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'" ;
-              glRenderbufferStorage(target_t::value, internalformat_t::value, width, height);
+              __gl_debug << "call glRenderbufferStorage "  "target: '" << TargetConstant::name << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'" ;
+              glRenderbufferStorage(TargetConstant::value, InternalformatConstant::value, width, height);
               __gl_check_error();
               
             }
@@ -6534,10 +6534,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(GLsizei samples, GLsizei width, GLsizei height) {
-              __gl_debug << "call glRenderbufferStorageMultisample "  "target: '" << target_t::name << "'"  ", "  "samples: '" << samples << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'" ;
-              glRenderbufferStorageMultisample(target_t::value, samples, internalformat_t::value, width, height);
+              __gl_debug << "call glRenderbufferStorageMultisample "  "target: '" << TargetConstant::name << "'"  ", "  "samples: '" << samples << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'" ;
+              glRenderbufferStorageMultisample(TargetConstant::value, samples, InternalformatConstant::value, width, height);
               __gl_check_error();
               
             }
@@ -6578,10 +6578,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename binaryFormat_t >
+            template< typename BinaryFormatConstant >
             inline static void call(::std::uint32_t program, void const* binary, GLsizei length) {
-              __gl_debug << "call glProgramBinary "  "program: '" << program << "'"  ", "  "binaryFormat: '" << binaryFormat_t::name << "'"  ", "  "binary: '" << binary << "'"  ", "  "length: '" << length << "'" ;
-              glProgramBinary(program, binaryFormat_t::value, binary, length);
+              __gl_debug << "call glProgramBinary "  "program: '" << program << "'"  ", "  "binaryFormat: '" << BinaryFormatConstant::name << "'"  ", "  "binary: '" << binary << "'"  ", "  "length: '" << length << "'" ;
+              glProgramBinary(program, BinaryFormatConstant::value, binary, length);
               __gl_check_error();
               
             }
@@ -6601,10 +6601,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t program, ::std::int32_t value) {
-              __gl_debug << "call glProgramParameteri "  "program: '" << program << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "value: '" << value << "'" ;
-              glProgramParameteri(program, pname_t::value, value);
+              __gl_debug << "call glProgramParameteri "  "program: '" << program << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "value: '" << value << "'" ;
+              glProgramParameteri(program, PnameConstant::value, value);
               __gl_check_error();
               
             }
@@ -7190,10 +7190,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t, typename pname_t >
+            template< typename TargetConstant, typename InternalformatConstant, typename PnameConstant >
             inline static void call(GLsizei bufSize, ::std::int32_t* params) {
-              __gl_debug << "call glGetInternalformativ "  "target: '" << target_t::name << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "params: '" << params << "'" ;
-              glGetInternalformativ(target_t::value, internalformat_t::value, pname_t::value, bufSize, params);
+              __gl_debug << "call glGetInternalformativ "  "target: '" << TargetConstant::name << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "params: '" << params << "'" ;
+              glGetInternalformativ(TargetConstant::value, InternalformatConstant::value, PnameConstant::value, bufSize, params);
               __gl_check_error();
               
             }
@@ -7221,10 +7221,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(GLintptr offset, GLsizeiptr length) {
-              __gl_debug << "call glFlushMappedBufferRange "  "target: '" << target_t::name << "'"  ", "  "offset: '" << offset << "'"  ", "  "length: '" << length << "'" ;
-              glFlushMappedBufferRange(target_t::value, offset, length);
+              __gl_debug << "call glFlushMappedBufferRange "  "target: '" << TargetConstant::name << "'"  ", "  "offset: '" << offset << "'"  ", "  "length: '" << length << "'" ;
+              glFlushMappedBufferRange(TargetConstant::value, offset, length);
               __gl_check_error();
               
             }
@@ -7244,10 +7244,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static GLvoid* call(GLintptr offset, GLsizeiptr length, GLbitfield access) {
-              __gl_debug << "call glMapBufferRange "  "target: '" << target_t::name << "'"  ", "  "offset: '" << offset << "'"  ", "  "length: '" << length << "'"  ", "  "access: '" << access << "'" ;
-              GLvoid* out = glMapBufferRange(target_t::value, offset, length, access);
+              __gl_debug << "call glMapBufferRange "  "target: '" << TargetConstant::name << "'"  ", "  "offset: '" << offset << "'"  ", "  "length: '" << length << "'"  ", "  "access: '" << access << "'" ;
+              GLvoid* out = glMapBufferRange(TargetConstant::value, offset, length, access);
               __gl_check_error();
               return out;
             }
@@ -7275,10 +7275,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call() {
-              __gl_debug << "call glProvokingVertex "  "mode: '" << mode_t::name << "'" ;
-              glProvokingVertex(mode_t::value);
+              __gl_debug << "call glProvokingVertex "  "mode: '" << ModeConstant::name << "'" ;
+              glProvokingVertex(ModeConstant::value);
               __gl_check_error();
               
             }
@@ -7315,10 +7315,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename format_t, typename type_t >
+            template< typename TargetConstant, typename FormatConstant, typename TypeConstant >
             inline static void call(GLsizei bufSize, void* table) {
-              __gl_debug << "call glGetnColorTableARB "  "target: '" << target_t::name << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "table: '" << table << "'" ;
-              glGetnColorTableARB(target_t::value, format_t::value, type_t::value, bufSize, table);
+              __gl_debug << "call glGetnColorTableARB "  "target: '" << TargetConstant::name << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "table: '" << table << "'" ;
+              glGetnColorTableARB(TargetConstant::value, FormatConstant::value, TypeConstant::value, bufSize, table);
               __gl_check_error();
               
             }
@@ -7338,10 +7338,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::int32_t lod, GLsizei bufSize, void* img) {
-              __gl_debug << "call glGetnCompressedTexImageARB "  "target: '" << target_t::name << "'"  ", "  "lod: '" << lod << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "img: '" << img << "'" ;
-              glGetnCompressedTexImageARB(target_t::value, lod, bufSize, img);
+              __gl_debug << "call glGetnCompressedTexImageARB "  "target: '" << TargetConstant::name << "'"  ", "  "lod: '" << lod << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "img: '" << img << "'" ;
+              glGetnCompressedTexImageARB(TargetConstant::value, lod, bufSize, img);
               __gl_check_error();
               
             }
@@ -7361,10 +7361,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename format_t, typename type_t >
+            template< typename TargetConstant, typename FormatConstant, typename TypeConstant >
             inline static void call(GLsizei bufSize, void* image) {
-              __gl_debug << "call glGetnConvolutionFilterARB "  "target: '" << target_t::name << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "image: '" << image << "'" ;
-              glGetnConvolutionFilterARB(target_t::value, format_t::value, type_t::value, bufSize, image);
+              __gl_debug << "call glGetnConvolutionFilterARB "  "target: '" << TargetConstant::name << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "image: '" << image << "'" ;
+              glGetnConvolutionFilterARB(TargetConstant::value, FormatConstant::value, TypeConstant::value, bufSize, image);
               __gl_check_error();
               
             }
@@ -7384,10 +7384,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename format_t, typename type_t >
+            template< typename TargetConstant, typename FormatConstant, typename TypeConstant >
             inline static void call(bool reset, GLsizei bufSize, void* values) {
-              __gl_debug << "call glGetnHistogramARB "  "target: '" << target_t::name << "'"  ", "  "reset: '" << reset << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "values: '" << values << "'" ;
-              glGetnHistogramARB(target_t::value, (reset ? 1 : 0), format_t::value, type_t::value, bufSize, values);
+              __gl_debug << "call glGetnHistogramARB "  "target: '" << TargetConstant::name << "'"  ", "  "reset: '" << reset << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "values: '" << values << "'" ;
+              glGetnHistogramARB(TargetConstant::value, (reset ? 1 : 0), FormatConstant::value, TypeConstant::value, bufSize, values);
               __gl_check_error();
               
             }
@@ -7407,10 +7407,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename query_t >
+            template< typename TargetConstant, typename QueryConstant >
             inline static void call(GLsizei bufSize, double* v) {
-              __gl_debug << "call glGetnMapdvARB "  "target: '" << target_t::name << "'"  ", "  "query: '" << query_t::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "v: '" << v << "'" ;
-              glGetnMapdvARB(target_t::value, query_t::value, bufSize, v);
+              __gl_debug << "call glGetnMapdvARB "  "target: '" << TargetConstant::name << "'"  ", "  "query: '" << QueryConstant::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "v: '" << v << "'" ;
+              glGetnMapdvARB(TargetConstant::value, QueryConstant::value, bufSize, v);
               __gl_check_error();
               
             }
@@ -7426,10 +7426,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename query_t >
+            template< typename TargetConstant, typename QueryConstant >
             inline static void call(GLsizei bufSize, float* v) {
-              __gl_debug << "call glGetnMapfvARB "  "target: '" << target_t::name << "'"  ", "  "query: '" << query_t::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "v: '" << v << "'" ;
-              glGetnMapfvARB(target_t::value, query_t::value, bufSize, v);
+              __gl_debug << "call glGetnMapfvARB "  "target: '" << TargetConstant::name << "'"  ", "  "query: '" << QueryConstant::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "v: '" << v << "'" ;
+              glGetnMapfvARB(TargetConstant::value, QueryConstant::value, bufSize, v);
               __gl_check_error();
               
             }
@@ -7445,10 +7445,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename query_t >
+            template< typename TargetConstant, typename QueryConstant >
             inline static void call(GLsizei bufSize, ::std::int32_t* v) {
-              __gl_debug << "call glGetnMapivARB "  "target: '" << target_t::name << "'"  ", "  "query: '" << query_t::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "v: '" << v << "'" ;
-              glGetnMapivARB(target_t::value, query_t::value, bufSize, v);
+              __gl_debug << "call glGetnMapivARB "  "target: '" << TargetConstant::name << "'"  ", "  "query: '" << QueryConstant::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "v: '" << v << "'" ;
+              glGetnMapivARB(TargetConstant::value, QueryConstant::value, bufSize, v);
               __gl_check_error();
               
             }
@@ -7468,10 +7468,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename format_t, typename type_t >
+            template< typename TargetConstant, typename FormatConstant, typename TypeConstant >
             inline static void call(bool reset, GLsizei bufSize, void* values) {
-              __gl_debug << "call glGetnMinmaxARB "  "target: '" << target_t::name << "'"  ", "  "reset: '" << reset << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "values: '" << values << "'" ;
-              glGetnMinmaxARB(target_t::value, (reset ? 1 : 0), format_t::value, type_t::value, bufSize, values);
+              __gl_debug << "call glGetnMinmaxARB "  "target: '" << TargetConstant::name << "'"  ", "  "reset: '" << reset << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "values: '" << values << "'" ;
+              glGetnMinmaxARB(TargetConstant::value, (reset ? 1 : 0), FormatConstant::value, TypeConstant::value, bufSize, values);
               __gl_check_error();
               
             }
@@ -7491,10 +7491,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename map_t >
+            template< typename MapConstant >
             inline static void call(GLsizei bufSize, float* values) {
-              __gl_debug << "call glGetnPixelMapfvARB "  "map: '" << map_t::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "values: '" << values << "'" ;
-              glGetnPixelMapfvARB(map_t::value, bufSize, values);
+              __gl_debug << "call glGetnPixelMapfvARB "  "map: '" << MapConstant::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "values: '" << values << "'" ;
+              glGetnPixelMapfvARB(MapConstant::value, bufSize, values);
               __gl_check_error();
               
             }
@@ -7510,10 +7510,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename map_t >
+            template< typename MapConstant >
             inline static void call(GLsizei bufSize, ::std::uint32_t* values) {
-              __gl_debug << "call glGetnPixelMapuivARB "  "map: '" << map_t::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "values: '" << values << "'" ;
-              glGetnPixelMapuivARB(map_t::value, bufSize, values);
+              __gl_debug << "call glGetnPixelMapuivARB "  "map: '" << MapConstant::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "values: '" << values << "'" ;
+              glGetnPixelMapuivARB(MapConstant::value, bufSize, values);
               __gl_check_error();
               
             }
@@ -7529,10 +7529,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename map_t >
+            template< typename MapConstant >
             inline static void call(GLsizei bufSize, ::std::uint16_t* values) {
-              __gl_debug << "call glGetnPixelMapusvARB "  "map: '" << map_t::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "values: '" << values << "'" ;
-              glGetnPixelMapusvARB(map_t::value, bufSize, values);
+              __gl_debug << "call glGetnPixelMapusvARB "  "map: '" << MapConstant::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "values: '" << values << "'" ;
+              glGetnPixelMapusvARB(MapConstant::value, bufSize, values);
               __gl_check_error();
               
             }
@@ -7565,10 +7565,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename format_t, typename type_t >
+            template< typename TargetConstant, typename FormatConstant, typename TypeConstant >
             inline static void call(GLsizei rowBufSize, void* row, GLsizei columnBufSize, void* column, void* span) {
-              __gl_debug << "call glGetnSeparableFilterARB "  "target: '" << target_t::name << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "rowBufSize: '" << rowBufSize << "'"  ", "  "row: '" << row << "'"  ", "  "columnBufSize: '" << columnBufSize << "'"  ", "  "column: '" << column << "'"  ", "  "span: '" << span << "'" ;
-              glGetnSeparableFilterARB(target_t::value, format_t::value, type_t::value, rowBufSize, row, columnBufSize, column, span);
+              __gl_debug << "call glGetnSeparableFilterARB "  "target: '" << TargetConstant::name << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "rowBufSize: '" << rowBufSize << "'"  ", "  "row: '" << row << "'"  ", "  "columnBufSize: '" << columnBufSize << "'"  ", "  "column: '" << column << "'"  ", "  "span: '" << span << "'" ;
+              glGetnSeparableFilterARB(TargetConstant::value, FormatConstant::value, TypeConstant::value, rowBufSize, row, columnBufSize, column, span);
               __gl_check_error();
               
             }
@@ -7588,10 +7588,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename format_t, typename type_t >
+            template< typename TargetConstant, typename FormatConstant, typename TypeConstant >
             inline static void call(::std::int32_t level, GLsizei bufSize, void* img) {
-              __gl_debug << "call glGetnTexImageARB "  "target: '" << target_t::name << "'"  ", "  "level: '" << level << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "img: '" << img << "'" ;
-              glGetnTexImageARB(target_t::value, level, format_t::value, type_t::value, bufSize, img);
+              __gl_debug << "call glGetnTexImageARB "  "target: '" << TargetConstant::name << "'"  ", "  "level: '" << level << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "img: '" << img << "'" ;
+              glGetnTexImageARB(TargetConstant::value, level, FormatConstant::value, TypeConstant::value, bufSize, img);
               __gl_check_error();
               
             }
@@ -7651,10 +7651,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename format_t, typename type_t >
+            template< typename FormatConstant, typename TypeConstant >
             inline static void call(::std::int32_t x, ::std::int32_t y, GLsizei width, GLsizei height, GLsizei bufSize, void* data) {
-              __gl_debug << "call glReadnPixelsARB "  "x: '" << x << "'"  ", "  "y: '" << y << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "format: '" << format_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "data: '" << data << "'" ;
-              glReadnPixelsARB(x, y, width, height, format_t::value, type_t::value, bufSize, data);
+              __gl_debug << "call glReadnPixelsARB "  "x: '" << x << "'"  ", "  "y: '" << y << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "format: '" << FormatConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "data: '" << data << "'" ;
+              glReadnPixelsARB(x, y, width, height, FormatConstant::value, TypeConstant::value, bufSize, data);
               __gl_check_error();
               
             }
@@ -7734,10 +7734,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t sampler, ::std::int32_t* params) {
-              __gl_debug << "call glGetSamplerParameteriv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetSamplerParameteriv(sampler, pname_t::value, params);
+              __gl_debug << "call glGetSamplerParameteriv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetSamplerParameteriv(sampler, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -7753,10 +7753,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t sampler, float* params) {
-              __gl_debug << "call glGetSamplerParameterfv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetSamplerParameterfv(sampler, pname_t::value, params);
+              __gl_debug << "call glGetSamplerParameterfv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetSamplerParameterfv(sampler, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -7776,10 +7776,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t sampler, ::std::int32_t* params) {
-              __gl_debug << "call glGetSamplerParameterIiv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetSamplerParameterIiv(sampler, pname_t::value, params);
+              __gl_debug << "call glGetSamplerParameterIiv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetSamplerParameterIiv(sampler, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -7795,10 +7795,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t sampler, ::std::uint32_t* params) {
-              __gl_debug << "call glGetSamplerParameterIuiv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetSamplerParameterIuiv(sampler, pname_t::value, params);
+              __gl_debug << "call glGetSamplerParameterIuiv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetSamplerParameterIuiv(sampler, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -7831,10 +7831,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t sampler, ::std::int32_t param) {
-              __gl_debug << "call glSamplerParameteri "  "sampler: '" << sampler << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "param: '" << param << "'" ;
-              glSamplerParameteri(sampler, pname_t::value, param);
+              __gl_debug << "call glSamplerParameteri "  "sampler: '" << sampler << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "param: '" << param << "'" ;
+              glSamplerParameteri(sampler, PnameConstant::value, param);
               __gl_check_error();
               
             }
@@ -7850,10 +7850,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t sampler, ::std::int32_t const* param) {
-              __gl_debug << "call glSamplerParameteriv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "param: '" << param << "'" ;
-              glSamplerParameteriv(sampler, pname_t::value, param);
+              __gl_debug << "call glSamplerParameteriv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "param: '" << param << "'" ;
+              glSamplerParameteriv(sampler, PnameConstant::value, param);
               __gl_check_error();
               
             }
@@ -7869,10 +7869,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t sampler, float param) {
-              __gl_debug << "call glSamplerParameterf "  "sampler: '" << sampler << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "param: '" << param << "'" ;
-              glSamplerParameterf(sampler, pname_t::value, param);
+              __gl_debug << "call glSamplerParameterf "  "sampler: '" << sampler << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "param: '" << param << "'" ;
+              glSamplerParameterf(sampler, PnameConstant::value, param);
               __gl_check_error();
               
             }
@@ -7888,10 +7888,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t sampler, float const* param) {
-              __gl_debug << "call glSamplerParameterfv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "param: '" << param << "'" ;
-              glSamplerParameterfv(sampler, pname_t::value, param);
+              __gl_debug << "call glSamplerParameterfv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "param: '" << param << "'" ;
+              glSamplerParameterfv(sampler, PnameConstant::value, param);
               __gl_check_error();
               
             }
@@ -7911,10 +7911,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t sampler, ::std::int32_t const* param) {
-              __gl_debug << "call glSamplerParameterIiv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "param: '" << param << "'" ;
-              glSamplerParameterIiv(sampler, pname_t::value, param);
+              __gl_debug << "call glSamplerParameterIiv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "param: '" << param << "'" ;
+              glSamplerParameterIiv(sampler, PnameConstant::value, param);
               __gl_check_error();
               
             }
@@ -7930,10 +7930,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t sampler, ::std::uint32_t const* param) {
-              __gl_debug << "call glSamplerParameterIuiv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "param: '" << param << "'" ;
-              glSamplerParameterIuiv(sampler, pname_t::value, param);
+              __gl_debug << "call glSamplerParameterIuiv "  "sampler: '" << sampler << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "param: '" << param << "'" ;
+              glSamplerParameterIuiv(sampler, PnameConstant::value, param);
               __gl_check_error();
               
             }
@@ -7987,10 +7987,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static GLuint call(GLsizei count, GLchar const** strings) {
-              __gl_debug << "call glCreateShaderProgramv "  "type: '" << type_t::name << "'"  ", "  "count: '" << count << "'"  ", "  "strings: '" << strings << "'" ;
-              GLuint out = glCreateShaderProgramv(type_t::value, count, strings);
+              __gl_debug << "call glCreateShaderProgramv "  "type: '" << TypeConstant::name << "'"  ", "  "count: '" << count << "'"  ", "  "strings: '" << strings << "'" ;
+              GLuint out = glCreateShaderProgramv(TypeConstant::value, count, strings);
               __gl_check_error();
               return out;
             }
@@ -8036,10 +8036,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t pipeline, ::std::int32_t* params) {
-              __gl_debug << "call glGetProgramPipelineiv "  "pipeline: '" << pipeline << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetProgramPipelineiv(pipeline, pname_t::value, params);
+              __gl_debug << "call glGetProgramPipelineiv "  "pipeline: '" << pipeline << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetProgramPipelineiv(pipeline, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -8617,10 +8617,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t program, ::std::uint32_t bufferIndex, ::std::int32_t* params) {
-              __gl_debug << "call glGetActiveAtomicCounterBufferiv "  "program: '" << program << "'"  ", "  "bufferIndex: '" << bufferIndex << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetActiveAtomicCounterBufferiv(program, bufferIndex, pname_t::value, params);
+              __gl_debug << "call glGetActiveAtomicCounterBufferiv "  "program: '" << program << "'"  ", "  "bufferIndex: '" << bufferIndex << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetActiveAtomicCounterBufferiv(program, bufferIndex, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -8648,10 +8648,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename access_t, typename format_t >
+            template< typename AccessConstant, typename FormatConstant >
             inline static void call(::std::uint32_t unit, ::std::uint32_t texture, ::std::int32_t level, bool layered, ::std::int32_t layer) {
-              __gl_debug << "call glBindImageTexture "  "unit: '" << unit << "'"  ", "  "texture: '" << texture << "'"  ", "  "level: '" << level << "'"  ", "  "layered: '" << layered << "'"  ", "  "layer: '" << layer << "'"  ", "  "access: '" << access_t::name << "'"  ", "  "format: '" << format_t::name << "'" ;
-              glBindImageTexture(unit, texture, level, (layered ? 1 : 0), layer, access_t::value, format_t::value);
+              __gl_debug << "call glBindImageTexture "  "unit: '" << unit << "'"  ", "  "texture: '" << texture << "'"  ", "  "level: '" << level << "'"  ", "  "layered: '" << layered << "'"  ", "  "layer: '" << layer << "'"  ", "  "access: '" << AccessConstant::name << "'"  ", "  "format: '" << FormatConstant::name << "'" ;
+              glBindImageTexture(unit, texture, level, (layered ? 1 : 0), layer, AccessConstant::value, FormatConstant::value);
               __gl_check_error();
               
             }
@@ -8700,10 +8700,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename shadertype_t >
+            template< typename ShadertypeConstant >
             inline static void call(::std::uint32_t program, ::std::uint32_t index, GLsizei bufsize, GLsizei* length, GLchar* name) {
-              __gl_debug << "call glGetActiveSubroutineName "  "program: '" << program << "'"  ", "  "shadertype: '" << shadertype_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "bufsize: '" << bufsize << "'"  ", "  "length: '" << length << "'"  ", "  "name: '" << name << "'" ;
-              glGetActiveSubroutineName(program, shadertype_t::value, index, bufsize, length, name);
+              __gl_debug << "call glGetActiveSubroutineName "  "program: '" << program << "'"  ", "  "shadertype: '" << ShadertypeConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "bufsize: '" << bufsize << "'"  ", "  "length: '" << length << "'"  ", "  "name: '" << name << "'" ;
+              glGetActiveSubroutineName(program, ShadertypeConstant::value, index, bufsize, length, name);
               __gl_check_error();
               
             }
@@ -8723,10 +8723,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename shadertype_t, typename pname_t >
+            template< typename ShadertypeConstant, typename PnameConstant >
             inline static void call(::std::uint32_t program, ::std::uint32_t index, ::std::int32_t* values) {
-              __gl_debug << "call glGetActiveSubroutineUniformiv "  "program: '" << program << "'"  ", "  "shadertype: '" << shadertype_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "values: '" << values << "'" ;
-              glGetActiveSubroutineUniformiv(program, shadertype_t::value, index, pname_t::value, values);
+              __gl_debug << "call glGetActiveSubroutineUniformiv "  "program: '" << program << "'"  ", "  "shadertype: '" << ShadertypeConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "values: '" << values << "'" ;
+              glGetActiveSubroutineUniformiv(program, ShadertypeConstant::value, index, PnameConstant::value, values);
               __gl_check_error();
               
             }
@@ -8746,10 +8746,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename shadertype_t >
+            template< typename ShadertypeConstant >
             inline static void call(::std::uint32_t program, ::std::uint32_t index, GLsizei bufsize, GLsizei* length, GLchar* name) {
-              __gl_debug << "call glGetActiveSubroutineUniformName "  "program: '" << program << "'"  ", "  "shadertype: '" << shadertype_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "bufsize: '" << bufsize << "'"  ", "  "length: '" << length << "'"  ", "  "name: '" << name << "'" ;
-              glGetActiveSubroutineUniformName(program, shadertype_t::value, index, bufsize, length, name);
+              __gl_debug << "call glGetActiveSubroutineUniformName "  "program: '" << program << "'"  ", "  "shadertype: '" << ShadertypeConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "bufsize: '" << bufsize << "'"  ", "  "length: '" << length << "'"  ", "  "name: '" << name << "'" ;
+              glGetActiveSubroutineUniformName(program, ShadertypeConstant::value, index, bufsize, length, name);
               __gl_check_error();
               
             }
@@ -8769,10 +8769,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename shadertype_t, typename pname_t >
+            template< typename ShadertypeConstant, typename PnameConstant >
             inline static void call(::std::uint32_t program, ::std::int32_t* values) {
-              __gl_debug << "call glGetProgramStageiv "  "program: '" << program << "'"  ", "  "shadertype: '" << shadertype_t::name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "values: '" << values << "'" ;
-              glGetProgramStageiv(program, shadertype_t::value, pname_t::value, values);
+              __gl_debug << "call glGetProgramStageiv "  "program: '" << program << "'"  ", "  "shadertype: '" << ShadertypeConstant::name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "values: '" << values << "'" ;
+              glGetProgramStageiv(program, ShadertypeConstant::value, PnameConstant::value, values);
               __gl_check_error();
               
             }
@@ -8792,10 +8792,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename shadertype_t >
+            template< typename ShadertypeConstant >
             inline static GLuint call(::std::uint32_t program, GLchar const* name) {
-              __gl_debug << "call glGetSubroutineIndex "  "program: '" << program << "'"  ", "  "shadertype: '" << shadertype_t::name << "'"  ", "  "name: '" << name << "'" ;
-              GLuint out = glGetSubroutineIndex(program, shadertype_t::value, name);
+              __gl_debug << "call glGetSubroutineIndex "  "program: '" << program << "'"  ", "  "shadertype: '" << ShadertypeConstant::name << "'"  ", "  "name: '" << name << "'" ;
+              GLuint out = glGetSubroutineIndex(program, ShadertypeConstant::value, name);
               __gl_check_error();
               return out;
             }
@@ -8815,10 +8815,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename shadertype_t >
+            template< typename ShadertypeConstant >
             inline static GLint call(::std::uint32_t program, GLchar const* name) {
-              __gl_debug << "call glGetSubroutineUniformLocation "  "program: '" << program << "'"  ", "  "shadertype: '" << shadertype_t::name << "'"  ", "  "name: '" << name << "'" ;
-              GLint out = glGetSubroutineUniformLocation(program, shadertype_t::value, name);
+              __gl_debug << "call glGetSubroutineUniformLocation "  "program: '" << program << "'"  ", "  "shadertype: '" << ShadertypeConstant::name << "'"  ", "  "name: '" << name << "'" ;
+              GLint out = glGetSubroutineUniformLocation(program, ShadertypeConstant::value, name);
               __gl_check_error();
               return out;
             }
@@ -8838,10 +8838,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename shadertype_t >
+            template< typename ShadertypeConstant >
             inline static void call(::std::int32_t location, ::std::uint32_t* params) {
-              __gl_debug << "call glGetUniformSubroutineuiv "  "shadertype: '" << shadertype_t::name << "'"  ", "  "location: '" << location << "'"  ", "  "params: '" << params << "'" ;
-              glGetUniformSubroutineuiv(shadertype_t::value, location, params);
+              __gl_debug << "call glGetUniformSubroutineuiv "  "shadertype: '" << ShadertypeConstant::name << "'"  ", "  "location: '" << location << "'"  ", "  "params: '" << params << "'" ;
+              glGetUniformSubroutineuiv(ShadertypeConstant::value, location, params);
               __gl_check_error();
               
             }
@@ -8861,10 +8861,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename shadertype_t >
+            template< typename ShadertypeConstant >
             inline static void call(GLsizei count, ::std::uint32_t const* indices) {
-              __gl_debug << "call glUniformSubroutinesuiv "  "shadertype: '" << shadertype_t::name << "'"  ", "  "count: '" << count << "'"  ", "  "indices: '" << indices << "'" ;
-              glUniformSubroutinesuiv(shadertype_t::value, count, indices);
+              __gl_debug << "call glUniformSubroutinesuiv "  "shadertype: '" << ShadertypeConstant::name << "'"  ", "  "count: '" << count << "'"  ", "  "indices: '" << indices << "'" ;
+              glUniformSubroutinesuiv(ShadertypeConstant::value, count, indices);
               __gl_check_error();
               
             }
@@ -8927,10 +8927,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::int32_t namelen, GLchar const* name, ::std::int32_t* params) {
-              __gl_debug << "call glGetNamedStringivARB "  "namelen: '" << namelen << "'"  ", "  "name: '" << name << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetNamedStringivARB(namelen, name, pname_t::value, params);
+              __gl_debug << "call glGetNamedStringivARB "  "namelen: '" << namelen << "'"  ", "  "name: '" << name << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetNamedStringivARB(namelen, name, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -8963,10 +8963,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::int32_t namelen, GLchar const* name, ::std::int32_t stringlen, GLchar const* string) {
-              __gl_debug << "call glNamedStringARB "  "type: '" << type_t::name << "'"  ", "  "namelen: '" << namelen << "'"  ", "  "name: '" << name << "'"  ", "  "stringlen: '" << stringlen << "'"  ", "  "string: '" << string << "'" ;
-              glNamedStringARB(type_t::value, namelen, name, stringlen, string);
+              __gl_debug << "call glNamedStringARB "  "type: '" << TypeConstant::name << "'"  ", "  "namelen: '" << namelen << "'"  ", "  "name: '" << name << "'"  ", "  "stringlen: '" << stringlen << "'"  ", "  "string: '" << string << "'" ;
+              glNamedStringARB(TypeConstant::value, namelen, name, stringlen, string);
               __gl_check_error();
               
             }
@@ -9020,10 +9020,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename condition_t >
+            template< typename ConditionConstant >
             inline static GLsync call(GLbitfield flags) {
-              __gl_debug << "call glFenceSync "  "condition: '" << condition_t::name << "'"  ", "  "flags: '" << flags << "'" ;
-              GLsync out = glFenceSync(condition_t::value, flags);
+              __gl_debug << "call glFenceSync "  "condition: '" << ConditionConstant::name << "'"  ", "  "flags: '" << flags << "'" ;
+              GLsync out = glFenceSync(ConditionConstant::value, flags);
               __gl_check_error();
               return out;
             }
@@ -9043,10 +9043,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::int32_t* params) {
-              __gl_debug << "call glGetIntegerv "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetIntegerv(pname_t::value, params);
+              __gl_debug << "call glGetIntegerv "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetIntegerv(PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -9062,10 +9062,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(GLint64* params) {
-              __gl_debug << "call glGetInteger64v "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetInteger64v(pname_t::value, params);
+              __gl_debug << "call glGetInteger64v "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetInteger64v(PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -9085,10 +9085,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(GLsync sync, GLsizei bufSize, GLsizei* length, ::std::int32_t* values) {
-              __gl_debug << "call glGetSynciv "  "sync: '" << sync << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "length: '" << length << "'"  ", "  "values: '" << values << "'" ;
-              glGetSynciv(sync, pname_t::value, bufSize, length, values);
+              __gl_debug << "call glGetSynciv "  "sync: '" << sync << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "bufSize: '" << bufSize << "'"  ", "  "length: '" << length << "'"  ", "  "values: '" << values << "'" ;
+              glGetSynciv(sync, PnameConstant::value, bufSize, length, values);
               __gl_check_error();
               
             }
@@ -9138,10 +9138,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::int32_t value) {
-              __gl_debug << "call glPatchParameteri "  "pname: '" << pname_t::name << "'"  ", "  "value: '" << value << "'" ;
-              glPatchParameteri(pname_t::value, value);
+              __gl_debug << "call glPatchParameteri "  "pname: '" << PnameConstant::name << "'"  ", "  "value: '" << value << "'" ;
+              glPatchParameteri(PnameConstant::value, value);
               __gl_check_error();
               
             }
@@ -9157,10 +9157,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(float const* values) {
-              __gl_debug << "call glPatchParameterfv "  "pname: '" << pname_t::name << "'"  ", "  "values: '" << values << "'" ;
-              glPatchParameterfv(pname_t::value, values);
+              __gl_debug << "call glPatchParameterfv "  "pname: '" << PnameConstant::name << "'"  ", "  "values: '" << values << "'" ;
+              glPatchParameterfv(PnameConstant::value, values);
               __gl_check_error();
               
             }
@@ -9204,10 +9204,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t index, float* val) {
-              __gl_debug << "call glGetMultisamplefv "  "pname: '" << pname_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "val: '" << val << "'" ;
-              glGetMultisamplefv(pname_t::value, index, val);
+              __gl_debug << "call glGetMultisamplefv "  "pname: '" << PnameConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "val: '" << val << "'" ;
+              glGetMultisamplefv(PnameConstant::value, index, val);
               __gl_check_error();
               
             }
@@ -9240,10 +9240,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(GLsizei samples, GLsizei width, GLsizei height, bool fixedsamplelocations) {
-              __gl_debug << "call glTexImage2DMultisample "  "target: '" << target_t::name << "'"  ", "  "samples: '" << samples << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "fixedsamplelocations: '" << fixedsamplelocations << "'" ;
-              glTexImage2DMultisample(target_t::value, samples, internalformat_t::value, width, height, (fixedsamplelocations ? 1 : 0));
+              __gl_debug << "call glTexImage2DMultisample "  "target: '" << TargetConstant::name << "'"  ", "  "samples: '" << samples << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "fixedsamplelocations: '" << fixedsamplelocations << "'" ;
+              glTexImage2DMultisample(TargetConstant::value, samples, InternalformatConstant::value, width, height, (fixedsamplelocations ? 1 : 0));
               __gl_check_error();
               
             }
@@ -9263,10 +9263,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(GLsizei samples, GLsizei width, GLsizei height, GLsizei depth, bool fixedsamplelocations) {
-              __gl_debug << "call glTexImage3DMultisample "  "target: '" << target_t::name << "'"  ", "  "samples: '" << samples << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "depth: '" << depth << "'"  ", "  "fixedsamplelocations: '" << fixedsamplelocations << "'" ;
-              glTexImage3DMultisample(target_t::value, samples, internalformat_t::value, width, height, depth, (fixedsamplelocations ? 1 : 0));
+              __gl_debug << "call glTexImage3DMultisample "  "target: '" << TargetConstant::name << "'"  ", "  "samples: '" << samples << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "depth: '" << depth << "'"  ", "  "fixedsamplelocations: '" << fixedsamplelocations << "'" ;
+              glTexImage3DMultisample(TargetConstant::value, samples, InternalformatConstant::value, width, height, depth, (fixedsamplelocations ? 1 : 0));
               __gl_check_error();
               
             }
@@ -9302,10 +9302,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(GLsizei levels, GLsizei width) {
-              __gl_debug << "call glTexStorage1D "  "target: '" << target_t::name << "'"  ", "  "levels: '" << levels << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'" ;
-              glTexStorage1D(target_t::value, levels, internalformat_t::value, width);
+              __gl_debug << "call glTexStorage1D "  "target: '" << TargetConstant::name << "'"  ", "  "levels: '" << levels << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'" ;
+              glTexStorage1D(TargetConstant::value, levels, InternalformatConstant::value, width);
               __gl_check_error();
               
             }
@@ -9325,10 +9325,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(GLsizei levels, GLsizei width, GLsizei height) {
-              __gl_debug << "call glTexStorage2D "  "target: '" << target_t::name << "'"  ", "  "levels: '" << levels << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'" ;
-              glTexStorage2D(target_t::value, levels, internalformat_t::value, width, height);
+              __gl_debug << "call glTexStorage2D "  "target: '" << TargetConstant::name << "'"  ", "  "levels: '" << levels << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'" ;
+              glTexStorage2D(TargetConstant::value, levels, InternalformatConstant::value, width, height);
               __gl_check_error();
               
             }
@@ -9348,10 +9348,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(GLsizei levels, GLsizei width, GLsizei height, GLsizei depth) {
-              __gl_debug << "call glTexStorage3D "  "target: '" << target_t::name << "'"  ", "  "levels: '" << levels << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "depth: '" << depth << "'" ;
-              glTexStorage3D(target_t::value, levels, internalformat_t::value, width, height, depth);
+              __gl_debug << "call glTexStorage3D "  "target: '" << TargetConstant::name << "'"  ", "  "levels: '" << levels << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "depth: '" << depth << "'" ;
+              glTexStorage3D(TargetConstant::value, levels, InternalformatConstant::value, width, height, depth);
               __gl_check_error();
               
             }
@@ -9371,10 +9371,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(::std::uint32_t texture, GLsizei levels, GLsizei width) {
-              __gl_debug << "call glTextureStorage1DEXT "  "texture: '" << texture << "'"  ", "  "target: '" << target_t::name << "'"  ", "  "levels: '" << levels << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'" ;
-              glTextureStorage1DEXT(texture, target_t::value, levels, internalformat_t::value, width);
+              __gl_debug << "call glTextureStorage1DEXT "  "texture: '" << texture << "'"  ", "  "target: '" << TargetConstant::name << "'"  ", "  "levels: '" << levels << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'" ;
+              glTextureStorage1DEXT(texture, TargetConstant::value, levels, InternalformatConstant::value, width);
               __gl_check_error();
               
             }
@@ -9394,10 +9394,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(::std::uint32_t texture, GLsizei levels, GLsizei width, GLsizei height) {
-              __gl_debug << "call glTextureStorage2DEXT "  "texture: '" << texture << "'"  ", "  "target: '" << target_t::name << "'"  ", "  "levels: '" << levels << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'" ;
-              glTextureStorage2DEXT(texture, target_t::value, levels, internalformat_t::value, width, height);
+              __gl_debug << "call glTextureStorage2DEXT "  "texture: '" << texture << "'"  ", "  "target: '" << TargetConstant::name << "'"  ", "  "levels: '" << levels << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'" ;
+              glTextureStorage2DEXT(texture, TargetConstant::value, levels, InternalformatConstant::value, width, height);
               __gl_check_error();
               
             }
@@ -9417,10 +9417,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename internalformat_t >
+            template< typename TargetConstant, typename InternalformatConstant >
             inline static void call(::std::uint32_t texture, GLsizei levels, GLsizei width, GLsizei height, GLsizei depth) {
-              __gl_debug << "call glTextureStorage3DEXT "  "texture: '" << texture << "'"  ", "  "target: '" << target_t::name << "'"  ", "  "levels: '" << levels << "'"  ", "  "internalformat: '" << internalformat_t::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "depth: '" << depth << "'" ;
-              glTextureStorage3DEXT(texture, target_t::value, levels, internalformat_t::value, width, height, depth);
+              __gl_debug << "call glTextureStorage3DEXT "  "texture: '" << texture << "'"  ", "  "target: '" << TargetConstant::name << "'"  ", "  "levels: '" << levels << "'"  ", "  "internalformat: '" << InternalformatConstant::name << "'"  ", "  "width: '" << width << "'"  ", "  "height: '" << height << "'"  ", "  "depth: '" << depth << "'" ;
+              glTextureStorage3DEXT(texture, TargetConstant::value, levels, InternalformatConstant::value, width, height, depth);
               __gl_check_error();
               
             }
@@ -9448,10 +9448,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t id, ::std::int32_t* params) {
-              __gl_debug << "call glGetQueryObjectiv "  "id: '" << id << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetQueryObjectiv(id, pname_t::value, params);
+              __gl_debug << "call glGetQueryObjectiv "  "id: '" << id << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetQueryObjectiv(id, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -9467,10 +9467,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t id, ::std::uint32_t* params) {
-              __gl_debug << "call glGetQueryObjectuiv "  "id: '" << id << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetQueryObjectuiv(id, pname_t::value, params);
+              __gl_debug << "call glGetQueryObjectuiv "  "id: '" << id << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetQueryObjectuiv(id, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -9486,10 +9486,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t id, GLint64* params) {
-              __gl_debug << "call glGetQueryObjecti64v "  "id: '" << id << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetQueryObjecti64v(id, pname_t::value, params);
+              __gl_debug << "call glGetQueryObjecti64v "  "id: '" << id << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetQueryObjecti64v(id, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -9505,10 +9505,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t id, GLuint64* params) {
-              __gl_debug << "call glGetQueryObjectui64v "  "id: '" << id << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetQueryObjectui64v(id, pname_t::value, params);
+              __gl_debug << "call glGetQueryObjectui64v "  "id: '" << id << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetQueryObjectui64v(id, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -9528,10 +9528,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t id) {
-              __gl_debug << "call glQueryCounter "  "id: '" << id << "'"  ", "  "target: '" << target_t::name << "'" ;
-              glQueryCounter(id, target_t::value);
+              __gl_debug << "call glQueryCounter "  "id: '" << id << "'"  ", "  "target: '" << TargetConstant::name << "'" ;
+              glQueryCounter(id, TargetConstant::value);
               __gl_check_error();
               
             }
@@ -9555,10 +9555,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t id) {
-              __gl_debug << "call glBindTransformFeedback "  "target: '" << target_t::name << "'"  ", "  "id: '" << id << "'" ;
-              glBindTransformFeedback(target_t::value, id);
+              __gl_debug << "call glBindTransformFeedback "  "target: '" << TargetConstant::name << "'"  ", "  "id: '" << id << "'" ;
+              glBindTransformFeedback(TargetConstant::value, id);
               __gl_check_error();
               
             }
@@ -9591,10 +9591,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call(::std::uint32_t id) {
-              __gl_debug << "call glDrawTransformFeedback "  "mode: '" << mode_t::name << "'"  ", "  "id: '" << id << "'" ;
-              glDrawTransformFeedback(mode_t::value, id);
+              __gl_debug << "call glDrawTransformFeedback "  "mode: '" << ModeConstant::name << "'"  ", "  "id: '" << id << "'" ;
+              glDrawTransformFeedback(ModeConstant::value, id);
               __gl_check_error();
               
             }
@@ -9670,10 +9670,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index, ::std::uint32_t id) {
-              __gl_debug << "call glBeginQueryIndexed "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "id: '" << id << "'" ;
-              glBeginQueryIndexed(target_t::value, index, id);
+              __gl_debug << "call glBeginQueryIndexed "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "id: '" << id << "'" ;
+              glBeginQueryIndexed(TargetConstant::value, index, id);
               __gl_check_error();
               
             }
@@ -9693,10 +9693,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call(::std::uint32_t id, ::std::uint32_t stream) {
-              __gl_debug << "call glDrawTransformFeedbackStream "  "mode: '" << mode_t::name << "'"  ", "  "id: '" << id << "'"  ", "  "stream: '" << stream << "'" ;
-              glDrawTransformFeedbackStream(mode_t::value, id, stream);
+              __gl_debug << "call glDrawTransformFeedbackStream "  "mode: '" << ModeConstant::name << "'"  ", "  "id: '" << id << "'"  ", "  "stream: '" << stream << "'" ;
+              glDrawTransformFeedbackStream(ModeConstant::value, id, stream);
               __gl_check_error();
               
             }
@@ -9716,10 +9716,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index) {
-              __gl_debug << "call glEndQueryIndexed "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'" ;
-              glEndQueryIndexed(target_t::value, index);
+              __gl_debug << "call glEndQueryIndexed "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'" ;
+              glEndQueryIndexed(TargetConstant::value, index);
               __gl_check_error();
               
             }
@@ -9739,10 +9739,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t, typename pname_t >
+            template< typename TargetConstant, typename PnameConstant >
             inline static void call(::std::uint32_t index, ::std::int32_t* params) {
-              __gl_debug << "call glGetQueryIndexediv "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetQueryIndexediv(target_t::value, index, pname_t::value, params);
+              __gl_debug << "call glGetQueryIndexediv "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetQueryIndexediv(TargetConstant::value, index, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -9766,10 +9766,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call(::std::uint32_t id, GLsizei primcount) {
-              __gl_debug << "call glDrawTransformFeedbackInstanced "  "mode: '" << mode_t::name << "'"  ", "  "id: '" << id << "'"  ", "  "primcount: '" << primcount << "'" ;
-              glDrawTransformFeedbackInstanced(mode_t::value, id, primcount);
+              __gl_debug << "call glDrawTransformFeedbackInstanced "  "mode: '" << ModeConstant::name << "'"  ", "  "id: '" << id << "'"  ", "  "primcount: '" << primcount << "'" ;
+              glDrawTransformFeedbackInstanced(ModeConstant::value, id, primcount);
               __gl_check_error();
               
             }
@@ -9789,10 +9789,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename mode_t >
+            template< typename ModeConstant >
             inline static void call(::std::uint32_t id, ::std::uint32_t stream, GLsizei primcount) {
-              __gl_debug << "call glDrawTransformFeedbackStreamInstanced "  "mode: '" << mode_t::name << "'"  ", "  "id: '" << id << "'"  ", "  "stream: '" << stream << "'"  ", "  "primcount: '" << primcount << "'" ;
-              glDrawTransformFeedbackStreamInstanced(mode_t::value, id, stream, primcount);
+              __gl_debug << "call glDrawTransformFeedbackStreamInstanced "  "mode: '" << ModeConstant::name << "'"  ", "  "id: '" << id << "'"  ", "  "stream: '" << stream << "'"  ", "  "primcount: '" << primcount << "'" ;
+              glDrawTransformFeedbackStreamInstanced(ModeConstant::value, id, stream, primcount);
               __gl_check_error();
               
             }
@@ -9816,10 +9816,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t program, ::std::uint32_t uniformBlockIndex, ::std::int32_t* params) {
-              __gl_debug << "call glGetActiveUniformBlockiv "  "program: '" << program << "'"  ", "  "uniformBlockIndex: '" << uniformBlockIndex << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetActiveUniformBlockiv(program, uniformBlockIndex, pname_t::value, params);
+              __gl_debug << "call glGetActiveUniformBlockiv "  "program: '" << program << "'"  ", "  "uniformBlockIndex: '" << uniformBlockIndex << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetActiveUniformBlockiv(program, uniformBlockIndex, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -9865,10 +9865,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t program, GLsizei uniformCount, ::std::uint32_t const* uniformIndices, ::std::int32_t* params) {
-              __gl_debug << "call glGetActiveUniformsiv "  "program: '" << program << "'"  ", "  "uniformCount: '" << uniformCount << "'"  ", "  "uniformIndices: '" << uniformIndices << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetActiveUniformsiv(program, uniformCount, uniformIndices, pname_t::value, params);
+              __gl_debug << "call glGetActiveUniformsiv "  "program: '" << program << "'"  ", "  "uniformCount: '" << uniformCount << "'"  ", "  "uniformIndices: '" << uniformIndices << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetActiveUniformsiv(program, uniformCount, uniformIndices, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -9991,10 +9991,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename pname_t >
+            template< typename PnameConstant >
             inline static void call(::std::uint32_t index, double* params) {
-              __gl_debug << "call glGetVertexAttribLdv "  "index: '" << index << "'"  ", "  "pname: '" << pname_t::name << "'"  ", "  "params: '" << params << "'" ;
-              glGetVertexAttribLdv(index, pname_t::value, params);
+              __gl_debug << "call glGetVertexAttribLdv "  "index: '" << index << "'"  ", "  "pname: '" << PnameConstant::name << "'"  ", "  "params: '" << params << "'" ;
+              glGetVertexAttribLdv(index, PnameConstant::value, params);
               __gl_check_error();
               
             }
@@ -10102,10 +10102,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t index, ::std::int32_t size, GLsizei stride, void const* pointer) {
-              __gl_debug << "call glVertexAttribLPointer "  "index: '" << index << "'"  ", "  "size: '" << size << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "stride: '" << stride << "'"  ", "  "pointer: '" << pointer << "'" ;
-              glVertexAttribLPointer(index, size, type_t::value, stride, pointer);
+              __gl_debug << "call glVertexAttribLPointer "  "index: '" << index << "'"  ", "  "size: '" << size << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "stride: '" << stride << "'"  ", "  "pointer: '" << pointer << "'" ;
+              glVertexAttribLPointer(index, size, TypeConstant::value, stride, pointer);
               __gl_check_error();
               
             }
@@ -10133,10 +10133,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t color) {
-              __gl_debug << "call glColorP3ui "  "type: '" << type_t::name << "'"  ", "  "color: '" << color << "'" ;
-              glColorP3ui(type_t::value, color);
+              __gl_debug << "call glColorP3ui "  "type: '" << TypeConstant::name << "'"  ", "  "color: '" << color << "'" ;
+              glColorP3ui(TypeConstant::value, color);
               __gl_check_error();
               
             }
@@ -10152,10 +10152,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t const* color) {
-              __gl_debug << "call glColorP3uiv "  "type: '" << type_t::name << "'"  ", "  "color: '" << color << "'" ;
-              glColorP3uiv(type_t::value, color);
+              __gl_debug << "call glColorP3uiv "  "type: '" << TypeConstant::name << "'"  ", "  "color: '" << color << "'" ;
+              glColorP3uiv(TypeConstant::value, color);
               __gl_check_error();
               
             }
@@ -10175,10 +10175,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t color) {
-              __gl_debug << "call glColorP4ui "  "type: '" << type_t::name << "'"  ", "  "color: '" << color << "'" ;
-              glColorP4ui(type_t::value, color);
+              __gl_debug << "call glColorP4ui "  "type: '" << TypeConstant::name << "'"  ", "  "color: '" << color << "'" ;
+              glColorP4ui(TypeConstant::value, color);
               __gl_check_error();
               
             }
@@ -10194,10 +10194,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t const* color) {
-              __gl_debug << "call glColorP4uiv "  "type: '" << type_t::name << "'"  ", "  "color: '" << color << "'" ;
-              glColorP4uiv(type_t::value, color);
+              __gl_debug << "call glColorP4uiv "  "type: '" << TypeConstant::name << "'"  ", "  "color: '" << color << "'" ;
+              glColorP4uiv(TypeConstant::value, color);
               __gl_check_error();
               
             }
@@ -10217,10 +10217,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename texture_t, typename type_t >
+            template< typename TextureConstant, typename TypeConstant >
             inline static void call(::std::uint32_t coords) {
-              __gl_debug << "call glMultiTexCoordP1ui "  "texture: '" << texture_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glMultiTexCoordP1ui(texture_t::value, type_t::value, coords);
+              __gl_debug << "call glMultiTexCoordP1ui "  "texture: '" << TextureConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glMultiTexCoordP1ui(TextureConstant::value, TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10236,10 +10236,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename texture_t, typename type_t >
+            template< typename TextureConstant, typename TypeConstant >
             inline static void call(::std::uint32_t const* coords) {
-              __gl_debug << "call glMultiTexCoordP1uiv "  "texture: '" << texture_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glMultiTexCoordP1uiv(texture_t::value, type_t::value, coords);
+              __gl_debug << "call glMultiTexCoordP1uiv "  "texture: '" << TextureConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glMultiTexCoordP1uiv(TextureConstant::value, TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10259,10 +10259,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename texture_t, typename type_t >
+            template< typename TextureConstant, typename TypeConstant >
             inline static void call(::std::uint32_t coords) {
-              __gl_debug << "call glMultiTexCoordP2ui "  "texture: '" << texture_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glMultiTexCoordP2ui(texture_t::value, type_t::value, coords);
+              __gl_debug << "call glMultiTexCoordP2ui "  "texture: '" << TextureConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glMultiTexCoordP2ui(TextureConstant::value, TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10278,10 +10278,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename texture_t, typename type_t >
+            template< typename TextureConstant, typename TypeConstant >
             inline static void call(::std::uint32_t const* coords) {
-              __gl_debug << "call glMultiTexCoordP2uiv "  "texture: '" << texture_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glMultiTexCoordP2uiv(texture_t::value, type_t::value, coords);
+              __gl_debug << "call glMultiTexCoordP2uiv "  "texture: '" << TextureConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glMultiTexCoordP2uiv(TextureConstant::value, TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10301,10 +10301,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename texture_t, typename type_t >
+            template< typename TextureConstant, typename TypeConstant >
             inline static void call(::std::uint32_t coords) {
-              __gl_debug << "call glMultiTexCoordP3ui "  "texture: '" << texture_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glMultiTexCoordP3ui(texture_t::value, type_t::value, coords);
+              __gl_debug << "call glMultiTexCoordP3ui "  "texture: '" << TextureConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glMultiTexCoordP3ui(TextureConstant::value, TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10320,10 +10320,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename texture_t, typename type_t >
+            template< typename TextureConstant, typename TypeConstant >
             inline static void call(::std::uint32_t const* coords) {
-              __gl_debug << "call glMultiTexCoordP3uiv "  "texture: '" << texture_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glMultiTexCoordP3uiv(texture_t::value, type_t::value, coords);
+              __gl_debug << "call glMultiTexCoordP3uiv "  "texture: '" << TextureConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glMultiTexCoordP3uiv(TextureConstant::value, TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10343,10 +10343,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename texture_t, typename type_t >
+            template< typename TextureConstant, typename TypeConstant >
             inline static void call(::std::uint32_t coords) {
-              __gl_debug << "call glMultiTexCoordP4ui "  "texture: '" << texture_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glMultiTexCoordP4ui(texture_t::value, type_t::value, coords);
+              __gl_debug << "call glMultiTexCoordP4ui "  "texture: '" << TextureConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glMultiTexCoordP4ui(TextureConstant::value, TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10362,10 +10362,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename texture_t, typename type_t >
+            template< typename TextureConstant, typename TypeConstant >
             inline static void call(::std::uint32_t const* coords) {
-              __gl_debug << "call glMultiTexCoordP4uiv "  "texture: '" << texture_t::name << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glMultiTexCoordP4uiv(texture_t::value, type_t::value, coords);
+              __gl_debug << "call glMultiTexCoordP4uiv "  "texture: '" << TextureConstant::name << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glMultiTexCoordP4uiv(TextureConstant::value, TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10385,10 +10385,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t coords) {
-              __gl_debug << "call glNormalP3ui "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glNormalP3ui(type_t::value, coords);
+              __gl_debug << "call glNormalP3ui "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glNormalP3ui(TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10404,10 +10404,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t const* coords) {
-              __gl_debug << "call glNormalP3uiv "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glNormalP3uiv(type_t::value, coords);
+              __gl_debug << "call glNormalP3uiv "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glNormalP3uiv(TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10427,10 +10427,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t color) {
-              __gl_debug << "call glSecondaryColorP3ui "  "type: '" << type_t::name << "'"  ", "  "color: '" << color << "'" ;
-              glSecondaryColorP3ui(type_t::value, color);
+              __gl_debug << "call glSecondaryColorP3ui "  "type: '" << TypeConstant::name << "'"  ", "  "color: '" << color << "'" ;
+              glSecondaryColorP3ui(TypeConstant::value, color);
               __gl_check_error();
               
             }
@@ -10446,10 +10446,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t const* color) {
-              __gl_debug << "call glSecondaryColorP3uiv "  "type: '" << type_t::name << "'"  ", "  "color: '" << color << "'" ;
-              glSecondaryColorP3uiv(type_t::value, color);
+              __gl_debug << "call glSecondaryColorP3uiv "  "type: '" << TypeConstant::name << "'"  ", "  "color: '" << color << "'" ;
+              glSecondaryColorP3uiv(TypeConstant::value, color);
               __gl_check_error();
               
             }
@@ -10469,10 +10469,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t coords) {
-              __gl_debug << "call glTexCoordP1ui "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glTexCoordP1ui(type_t::value, coords);
+              __gl_debug << "call glTexCoordP1ui "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glTexCoordP1ui(TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10488,10 +10488,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t const* coords) {
-              __gl_debug << "call glTexCoordP1uiv "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glTexCoordP1uiv(type_t::value, coords);
+              __gl_debug << "call glTexCoordP1uiv "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glTexCoordP1uiv(TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10511,10 +10511,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t coords) {
-              __gl_debug << "call glTexCoordP2ui "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glTexCoordP2ui(type_t::value, coords);
+              __gl_debug << "call glTexCoordP2ui "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glTexCoordP2ui(TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10530,10 +10530,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t const* coords) {
-              __gl_debug << "call glTexCoordP2uiv "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glTexCoordP2uiv(type_t::value, coords);
+              __gl_debug << "call glTexCoordP2uiv "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glTexCoordP2uiv(TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10553,10 +10553,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t coords) {
-              __gl_debug << "call glTexCoordP3ui "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glTexCoordP3ui(type_t::value, coords);
+              __gl_debug << "call glTexCoordP3ui "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glTexCoordP3ui(TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10572,10 +10572,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t const* coords) {
-              __gl_debug << "call glTexCoordP3uiv "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glTexCoordP3uiv(type_t::value, coords);
+              __gl_debug << "call glTexCoordP3uiv "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glTexCoordP3uiv(TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10595,10 +10595,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t coords) {
-              __gl_debug << "call glTexCoordP4ui "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glTexCoordP4ui(type_t::value, coords);
+              __gl_debug << "call glTexCoordP4ui "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glTexCoordP4ui(TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10614,10 +10614,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t const* coords) {
-              __gl_debug << "call glTexCoordP4uiv "  "type: '" << type_t::name << "'"  ", "  "coords: '" << coords << "'" ;
-              glTexCoordP4uiv(type_t::value, coords);
+              __gl_debug << "call glTexCoordP4uiv "  "type: '" << TypeConstant::name << "'"  ", "  "coords: '" << coords << "'" ;
+              glTexCoordP4uiv(TypeConstant::value, coords);
               __gl_check_error();
               
             }
@@ -10637,10 +10637,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t value) {
-              __gl_debug << "call glVertexP2ui "  "type: '" << type_t::name << "'"  ", "  "value: '" << value << "'" ;
-              glVertexP2ui(type_t::value, value);
+              __gl_debug << "call glVertexP2ui "  "type: '" << TypeConstant::name << "'"  ", "  "value: '" << value << "'" ;
+              glVertexP2ui(TypeConstant::value, value);
               __gl_check_error();
               
             }
@@ -10656,10 +10656,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t const* value) {
-              __gl_debug << "call glVertexP2uiv "  "type: '" << type_t::name << "'"  ", "  "value: '" << value << "'" ;
-              glVertexP2uiv(type_t::value, value);
+              __gl_debug << "call glVertexP2uiv "  "type: '" << TypeConstant::name << "'"  ", "  "value: '" << value << "'" ;
+              glVertexP2uiv(TypeConstant::value, value);
               __gl_check_error();
               
             }
@@ -10679,10 +10679,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t value) {
-              __gl_debug << "call glVertexP3ui "  "type: '" << type_t::name << "'"  ", "  "value: '" << value << "'" ;
-              glVertexP3ui(type_t::value, value);
+              __gl_debug << "call glVertexP3ui "  "type: '" << TypeConstant::name << "'"  ", "  "value: '" << value << "'" ;
+              glVertexP3ui(TypeConstant::value, value);
               __gl_check_error();
               
             }
@@ -10698,10 +10698,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t const* value) {
-              __gl_debug << "call glVertexP3uiv "  "type: '" << type_t::name << "'"  ", "  "value: '" << value << "'" ;
-              glVertexP3uiv(type_t::value, value);
+              __gl_debug << "call glVertexP3uiv "  "type: '" << TypeConstant::name << "'"  ", "  "value: '" << value << "'" ;
+              glVertexP3uiv(TypeConstant::value, value);
               __gl_check_error();
               
             }
@@ -10721,10 +10721,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t value) {
-              __gl_debug << "call glVertexP4ui "  "type: '" << type_t::name << "'"  ", "  "value: '" << value << "'" ;
-              glVertexP4ui(type_t::value, value);
+              __gl_debug << "call glVertexP4ui "  "type: '" << TypeConstant::name << "'"  ", "  "value: '" << value << "'" ;
+              glVertexP4ui(TypeConstant::value, value);
               __gl_check_error();
               
             }
@@ -10740,10 +10740,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t const* value) {
-              __gl_debug << "call glVertexP4uiv "  "type: '" << type_t::name << "'"  ", "  "value: '" << value << "'" ;
-              glVertexP4uiv(type_t::value, value);
+              __gl_debug << "call glVertexP4uiv "  "type: '" << TypeConstant::name << "'"  ", "  "value: '" << value << "'" ;
+              glVertexP4uiv(TypeConstant::value, value);
               __gl_check_error();
               
             }
@@ -10763,10 +10763,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t index, bool normalized, ::std::uint32_t value) {
-              __gl_debug << "call glVertexAttribP1ui "  "index: '" << index << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
-              glVertexAttribP1ui(index, type_t::value, (normalized ? 1 : 0), value);
+              __gl_debug << "call glVertexAttribP1ui "  "index: '" << index << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
+              glVertexAttribP1ui(index, TypeConstant::value, (normalized ? 1 : 0), value);
               __gl_check_error();
               
             }
@@ -10782,10 +10782,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t index, bool normalized, ::std::uint32_t const* value) {
-              __gl_debug << "call glVertexAttribP1uiv "  "index: '" << index << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
-              glVertexAttribP1uiv(index, type_t::value, (normalized ? 1 : 0), value);
+              __gl_debug << "call glVertexAttribP1uiv "  "index: '" << index << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
+              glVertexAttribP1uiv(index, TypeConstant::value, (normalized ? 1 : 0), value);
               __gl_check_error();
               
             }
@@ -10805,10 +10805,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t index, bool normalized, ::std::uint32_t value) {
-              __gl_debug << "call glVertexAttribP2ui "  "index: '" << index << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
-              glVertexAttribP2ui(index, type_t::value, (normalized ? 1 : 0), value);
+              __gl_debug << "call glVertexAttribP2ui "  "index: '" << index << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
+              glVertexAttribP2ui(index, TypeConstant::value, (normalized ? 1 : 0), value);
               __gl_check_error();
               
             }
@@ -10824,10 +10824,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t index, bool normalized, ::std::uint32_t const* value) {
-              __gl_debug << "call glVertexAttribP2uiv "  "index: '" << index << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
-              glVertexAttribP2uiv(index, type_t::value, (normalized ? 1 : 0), value);
+              __gl_debug << "call glVertexAttribP2uiv "  "index: '" << index << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
+              glVertexAttribP2uiv(index, TypeConstant::value, (normalized ? 1 : 0), value);
               __gl_check_error();
               
             }
@@ -10847,10 +10847,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t index, bool normalized, ::std::uint32_t value) {
-              __gl_debug << "call glVertexAttribP3ui "  "index: '" << index << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
-              glVertexAttribP3ui(index, type_t::value, (normalized ? 1 : 0), value);
+              __gl_debug << "call glVertexAttribP3ui "  "index: '" << index << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
+              glVertexAttribP3ui(index, TypeConstant::value, (normalized ? 1 : 0), value);
               __gl_check_error();
               
             }
@@ -10866,10 +10866,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t index, bool normalized, ::std::uint32_t const* value) {
-              __gl_debug << "call glVertexAttribP3uiv "  "index: '" << index << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
-              glVertexAttribP3uiv(index, type_t::value, (normalized ? 1 : 0), value);
+              __gl_debug << "call glVertexAttribP3uiv "  "index: '" << index << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
+              glVertexAttribP3uiv(index, TypeConstant::value, (normalized ? 1 : 0), value);
               __gl_check_error();
               
             }
@@ -10889,10 +10889,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t index, bool normalized, ::std::uint32_t value) {
-              __gl_debug << "call glVertexAttribP4ui "  "index: '" << index << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
-              glVertexAttribP4ui(index, type_t::value, (normalized ? 1 : 0), value);
+              __gl_debug << "call glVertexAttribP4ui "  "index: '" << index << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
+              glVertexAttribP4ui(index, TypeConstant::value, (normalized ? 1 : 0), value);
               __gl_check_error();
               
             }
@@ -10908,10 +10908,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename type_t >
+            template< typename TypeConstant >
             inline static void call(::std::uint32_t index, bool normalized, ::std::uint32_t const* value) {
-              __gl_debug << "call glVertexAttribP4uiv "  "index: '" << index << "'"  ", "  "type: '" << type_t::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
-              glVertexAttribP4uiv(index, type_t::value, (normalized ? 1 : 0), value);
+              __gl_debug << "call glVertexAttribP4uiv "  "index: '" << index << "'"  ", "  "type: '" << TypeConstant::name << "'"  ", "  "normalized: '" << normalized << "'"  ", "  "value: '" << value << "'" ;
+              glVertexAttribP4uiv(index, TypeConstant::value, (normalized ? 1 : 0), value);
               __gl_check_error();
               
             }
@@ -10961,10 +10961,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index, double* data) {
-              __gl_debug << "call glGetDoublei_v "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "data: '" << data << "'" ;
-              glGetDoublei_v(target_t::value, index, data);
+              __gl_debug << "call glGetDoublei_v "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "data: '" << data << "'" ;
+              glGetDoublei_v(TargetConstant::value, index, data);
               __gl_check_error();
               
             }
@@ -10984,10 +10984,10 @@ namespace gtulu {
             
             /**
              */
-            template< typename target_t >
+            template< typename TargetConstant >
             inline static void call(::std::uint32_t index, float* data) {
-              __gl_debug << "call glGetFloati_v "  "target: '" << target_t::name << "'"  ", "  "index: '" << index << "'"  ", "  "data: '" << data << "'" ;
-              glGetFloati_v(target_t::value, index, data);
+              __gl_debug << "call glGetFloati_v "  "target: '" << TargetConstant::name << "'"  ", "  "index: '" << index << "'"  ", "  "data: '" << data << "'" ;
+              glGetFloati_v(TargetConstant::value, index, data);
               __gl_check_error();
               
             }

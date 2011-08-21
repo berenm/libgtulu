@@ -250,7 +250,7 @@ struct attribute_type_info {
     ::std::string name;
 };
 
-template< typename base_t >
+template< typename Base >
 struct is_sampler: ::boost::false_type {
 };
 

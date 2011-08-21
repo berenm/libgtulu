@@ -21,7 +21,7 @@ namespace gtulu {
     namespace formats {
       namespace internal {
 
-        template< typename base_t >
+        template< typename InternalBase >
         struct to_data_packing;
 
 #define DECLARE_CONVERT(internal_m, data_m) \
@@ -36,9 +36,9 @@ namespace gtulu {
 
 #undef DECLARE_CONVERT
 
-        template< typename type_t >
+        template< typename InternalType >
         struct to_group_type;
-        template< typename type_t >
+        template< typename InternalType >
         struct to_data_type;
 
 #define DECLARE_CONVERT(internal_m, common_m) \

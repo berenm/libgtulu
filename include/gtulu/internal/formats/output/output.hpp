@@ -50,15 +50,15 @@ namespace gtulu {
             (unsigned_integer)
         )
 
-        template< typename format_t, typename base_t, typename type_t >
+        template< typename Format, typename Base, typename DataType >
         struct output_metadata {
-          typedef format_t format;
-          typedef base_t base;
-          typedef type_t type;
+          typedef Format format;
+          typedef Base base;
+          typedef DataType type;
           typedef fcd::one count;
         };
 
-        template< typename format_t >
+        template< typename Format >
         struct output_format;
 
 #define DECLARE_OUTPUT_FORMAT(format_m, base_m, type_m) \
@@ -66,12 +66,12 @@ namespace gtulu {
         typedef output_metadata< format::format_m, base::base_m, type::type_m > info; \
     }; \
     typedef output_format< format::format_m > format_m; \
-    DECLARE_HAS_TRAIT_FORMAT(base, base_m, format_m) \
-    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m)
+    DECLARE_HAS_TRAIT_FORMAT(base, base_m, format_m); \
+    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m);
 
-DECLARE_OUTPUT_FORMAT(gl_float, literal, floating)
+        DECLARE_OUTPUT_FORMAT(gl_float, literal, floating)
         DECLARE_OUTPUT_FORMAT(gl_int, literal, integer)
-                DECLARE_OUTPUT_FORMAT(gl_unsigned_int, literal, unsigned_integer)
+        DECLARE_OUTPUT_FORMAT(gl_unsigned_int, literal, unsigned_integer)
 
 #undef DECLARE_OUTPUT_FORMAT
 

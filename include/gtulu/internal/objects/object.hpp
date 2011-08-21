@@ -31,30 +31,30 @@ namespace gtulu {
           ::std::uint32_t operator*() const;
       };
 
-      template< typename object_type_t >
+      template< typename ObjectType >
       struct object: virtual public object_base {
           object();
           ~object();
       };
 
-      template< typename object_type_t >
+      template< typename ObjectType >
       struct plug: virtual public object_base {
       };
 
-      template< typename object_type_t >
+      template< typename ObjectType >
       struct slot_binder {
-          template< typename target_type_t = void >
-          static void bind(plug< object_type_t > const& pluggable_object) {
-            bind< target_type_t >(*pluggable_object);
+          template< typename TargetType = void >
+          static void bind(plug< ObjectType > const& pluggable_object) {
+            bind< TargetType >(*pluggable_object);
           }
 
-          template< typename target_type_t = void >
+          template< typename TargetType = void >
           static void clear() {
-            bind< target_type_t >(0);
+            bind< TargetType >(0);
           }
 
         protected:
-          template< typename target_type_t = void >
+          template< typename TargetType = void >
           static void bind(::std::uint32_t handle_);
       };
     } // namespace objects

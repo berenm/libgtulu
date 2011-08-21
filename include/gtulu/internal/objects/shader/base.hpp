@@ -26,10 +26,10 @@ namespace gtulu {
         public:
           virtual void compile();
 
-          template< typename shader_attribute_t >
+          template< typename ShaderAttribute >
           inline ::std::uint32_t get() const {
             ::std::int32_t data;
-            fnc::gl_get_shader::call < shader_attribute_t > (handle_, &data);
+            fnc::gl_get_shader::call< ShaderAttribute >(handle_, &data);
             return data;
           }
           void set();
@@ -37,10 +37,10 @@ namespace gtulu {
           void set_source(char const* code);
 
         protected:
-          template< typename shader_type_t >
+          template< typename ShaderType >
           void create_shader() {
             if (handle_ == 0) {
-              handle_ = fnc::gl_create_shader::call< shader_type_t >();
+              handle_ = fnc::gl_create_shader::call< ShaderType >();
             }
           }
       };

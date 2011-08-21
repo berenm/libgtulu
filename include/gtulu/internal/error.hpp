@@ -70,10 +70,10 @@ namespace gtulu {
         typedef cst::gl_out_of_memory out_of_memory;
       } // namespace code
 
-      template< typename error_code_t >
-      struct error: public error_code_t {
-          using error_code_t::name;
-          using error_code_t::value;
+      template< typename ErrorCode >
+      struct error: public ErrorCode {
+          using ErrorCode::name;
+          using ErrorCode::value;
       };
 
       typedef error< code::no_error > no_error;

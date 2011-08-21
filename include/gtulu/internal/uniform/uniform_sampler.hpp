@@ -27,36 +27,36 @@ namespace gtulu {
     namespace objects {
       struct texture_base;
 
-      template< typename texture_format_t >
+      template< typename TextureFormat >
       struct texture;
     }
 
     namespace uniform {
       namespace sampler {
 
-        template< typename sampler_format_t, typename texture_format_t >
-        struct uniform_texture_binder: fus::is_texture_compatible< sampler_format_t, texture_format_t > {
-            inline static void bind(location_t const location_in, gio::texture< texture_format_t > const& texture_in) {
+        template< typename SamplerFormat, typename TextureFormat >
+        struct uniform_texture_binder: fus::is_texture_compatible< SamplerFormat, TextureFormat > {
+            inline static void bind(location_t const location_in, gio::texture< TextureFormat > const& texture_in) {
               ::boost::shared_ptr< texture_unit > unit_ptr = texture_unit_manager::instance().get_current_or_new(texture_in);
               unit_ptr->bind(texture_in);
               fnc::gl_uniform_1::call(location_in, static_cast< ::std::int32_t >(**unit_ptr));
             }
         };
 
-        template< typename sampler_format_t >
+        template< typename SamplerFormat >
         struct uniform_binder {
-            template< typename texture_format_t >
-            inline static void bind(location_t const location_in, gio::texture< texture_format_t > const& texture_in) {
-              uniform_texture_binder< sampler_format_t, texture_format_t >::bind(location_in, texture_in);
+            template< typename TextureFormat >
+            inline static void bind(location_t const location_in, gio::texture< TextureFormat > const& texture_in) {
+              uniform_texture_binder< SamplerFormat, TextureFormat >::bind(location_in, texture_in);
             }
         };
 
-        template< typename format_t, typename binder_t = uniform_binder< format_t >,
-            typename value_t = gio::texture_base >
+        template< typename Format, typename BinderType = uniform_binder< Format >,
+            typename ValueType = gio::texture_base >
         struct uniform {
-            typedef format_t format;
-            typedef value_t value_type;
-            typedef binder_t binder;
+            typedef Format format;
+            typedef ValueType value_type;
+            typedef BinderType binder;
         };
 
       } // namespace sampler

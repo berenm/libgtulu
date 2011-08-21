@@ -46,16 +46,16 @@ namespace gtulu {
         DECLARE_TRAIT_ASPECT(sample, struct, (simple) (multi))
         DECLARE_TRAIT_ASPECT(cardinality, struct, (single) (array))
 
-        template< typename format_t, typename base_t, typename type_t, typename cardinality_t, typename sample_t >
+        template< typename Format, typename Base, typename DataType, typename Cardinality, typename Sample >
         struct target_metadata {
-            typedef format_t format;
-            typedef base_t base;
-            typedef type_t type;
-            typedef cardinality_t cardinality;
-            typedef sample_t sample;
+            typedef Format format;
+            typedef Base base;
+            typedef DataType type;
+            typedef Cardinality cardinality;
+            typedef Sample sample;
         };
 
-        template< typename format_t >
+        template< typename Format >
         struct target_format;
 
 #define DECLARE_TARGET_FORMAT(format_m, base_m, type_m, cardinality_m, sample_m) \
@@ -63,10 +63,10 @@ namespace gtulu {
           typedef target_metadata< format::format_m, base::base_m, type::type_m, cardinality::cardinality_m, sample::sample_m > info; \
       }; \
       typedef target_format< format::format_m > format_m; \
-      DECLARE_HAS_TRAIT_FORMAT(base, base_m, format_m) \
-      DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m) \
-      DECLARE_HAS_TRAIT_FORMAT(sample, sample_m, format_m) \
-      DECLARE_HAS_TRAIT_FORMAT(cardinality, cardinality_m, format_m) \
+      DECLARE_HAS_TRAIT_FORMAT(base, base_m, format_m); \
+      DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m); \
+      DECLARE_HAS_TRAIT_FORMAT(sample, sample_m, format_m); \
+      DECLARE_HAS_TRAIT_FORMAT(cardinality, cardinality_m, format_m); \
 
         DECLARE_TARGET_FORMAT(gl_texture_1d, texture, oned, single, simple)
         DECLARE_TARGET_FORMAT(gl_texture_1d_array, texture, oned, array, simple)

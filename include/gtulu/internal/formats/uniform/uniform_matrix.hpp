@@ -34,16 +34,16 @@ namespace gtulu {
               (four_by_four)
           )
 
-          template< typename format_t, typename type_t, typename dimension_t >
-          struct uniform_metadata: fu::uniform_metadata< format_t, fub::matrix, type_t > {
-            using fu::uniform_metadata< format_t, fub::matrix, type_t >::format;
-            using fu::uniform_metadata< format_t, fub::matrix, type_t >::base;
-            using fu::uniform_metadata< format_t, fub::matrix, type_t >::type;
-            using fu::uniform_metadata< format_t, fub::matrix, type_t >::count;
-            typedef dimension_t dimension;
+          template< typename Format, typename DataType, typename Dimension >
+          struct uniform_metadata: fu::uniform_metadata< Format, fub::matrix, DataType > {
+            using fu::uniform_metadata< Format, fub::matrix, DataType >::format;
+            using fu::uniform_metadata< Format, fub::matrix, DataType >::base;
+            using fu::uniform_metadata< Format, fub::matrix, DataType >::type;
+            using fu::uniform_metadata< Format, fub::matrix, DataType >::count;
+            typedef Dimension dimension;
           };
 
-          template< typename format_t >
+          template< typename Format >
           struct uniform_format;
         } // namespace matrix
 
@@ -54,10 +54,10 @@ namespace gtulu {
       }; \
     } \
     typedef matrix::uniform_format< format::format_m > format_m; \
-    DECLARE_HAS_TRAIT_FORMAT(base, matrix, format_m) \
-    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m) \
+    DECLARE_HAS_TRAIT_FORMAT(base, matrix, format_m); \
+    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m); \
     namespace matrix { \
-      DECLARE_HAS_TRAIT_FORMAT(dimension, dimension_m, format_m) \
+      DECLARE_HAS_TRAIT_FORMAT(dimension, dimension_m, format_m); \
     }
 
         DECLARE_UNIFORM_FORMAT(gl_float_mat2, floating, two_by_two)

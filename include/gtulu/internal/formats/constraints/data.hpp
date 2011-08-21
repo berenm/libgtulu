@@ -22,34 +22,34 @@ namespace gtulu {
     namespace formats {
       namespace data {
 
-        template< typename data_format_t, typename group_format_t >
+        template< typename DataFormat, typename GroupFormat >
         struct group_type_check {
-            typedef bm::or_< fdt::is_floating< data_format_t >, fdt::is_integer< data_format_t > > is_floating_convertible;
-            typedef fdt::is_integer< data_format_t > is_integer_convertible;
+            typedef bm::or_< fdt::is_floating< DataFormat >, fdt::is_integer< DataFormat > > is_floating_convertible;
+            typedef fdt::is_integer< DataFormat > is_integer_convertible;
 
-            typedef bm::and_< is_floating_convertible, fgt::is_floating< group_format_t > > floating_check;
-            typedef bm::and_< is_integer_convertible, fgt::is_integer< group_format_t > > integer_check;
+            typedef bm::and_< is_floating_convertible, fgt::is_floating< GroupFormat > > floating_check;
+            typedef bm::and_< is_integer_convertible, fgt::is_integer< GroupFormat > > integer_check;
 
             typedef bm::or_< floating_check, integer_check > type;
-            static_assert(type::value, "data_format_t is not compatible with group_format_t, floating group requires integer or floating data, integer group requires integer data.");
+            static_assert(type::value, "DataFormat is not compatible with GroupFormat, floating group requires integer or floating data, integer group requires integer data.");
         };
 
-        template< typename data_format_t, typename internal_format_t >
+        template< typename DataFormat, typename InternalFormat >
         struct data_packing_check {
-            typedef fdp::is_none< data_format_t > not_packed;
+            typedef fdp::is_none< DataFormat > not_packed;
 
-            typedef bm::and_< fdp::is_rgb< data_format_t >, fib::is_rgb< internal_format_t > > rgb_packed_check;
-            typedef bm::and_< fdp::is_rgba< data_format_t >, fib::is_rgba< internal_format_t > > rgba_packed_check;
-            typedef bm::and_< fdp::is_depth_stencil< data_format_t >, fib::is_depth_stencil< internal_format_t > > depth_stencil_packed_check;
+            typedef bm::and_< fdp::is_rgb< DataFormat >, fib::is_rgb< InternalFormat > > rgb_packed_check;
+            typedef bm::and_< fdp::is_rgba< DataFormat >, fib::is_rgba< InternalFormat > > rgba_packed_check;
+            typedef bm::and_< fdp::is_depth_stencil< DataFormat >, fib::is_depth_stencil< InternalFormat > > depth_stencil_packed_check;
 
             typedef bm::or_< not_packed, rgb_packed_check, rgba_packed_check, depth_stencil_packed_check > type;
-            static_assert(type::value, "data_format_t is not compatible with internal_format_t, rgb, rgba, depth_stencil packed data can only be used with, respectively, rgb, rgba, depth_stencil internal formats.");
+            static_assert(type::value, "DataFormat is not compatible with InternalFormat, rgb, rgba, depth_stencil packed data can only be used with, respectively, rgb, rgba, depth_stencil internal formats.");
         };
 
-        template< typename data_format_t, typename group_format_t, typename internal_format_t >
+        template< typename DataFormat, typename GroupFormat, typename InternalFormat >
         struct are_group_internal_compatible {
-            typedef typename group_type_check< data_format_t, group_format_t >::type group_type_c;
-            typedef typename data_packing_check< data_format_t, internal_format_t >::type data_packing_c;
+            typedef typename group_type_check< DataFormat, GroupFormat >::type group_type_c;
+            typedef typename data_packing_check< DataFormat, InternalFormat >::type data_packing_c;
 
             typedef bm::and_< group_type_c, data_packing_c > type;
         };

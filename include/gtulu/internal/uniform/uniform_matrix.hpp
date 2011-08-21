@@ -23,7 +23,7 @@ namespace gtulu {
     namespace uniform {
       namespace matrix {
 
-        template< typename type_t, typename dimension_t >
+        template< typename DataType, typename Dimension >
         struct uniform_binder;
 
 #define DECLARE_BINDER(type_m, suffix_m, dimension1_m, dimension2_m) \
@@ -46,13 +46,13 @@ namespace gtulu {
 
 #undef DECLARE_BINDER
 
-        template< typename format_t, typename binder_t = uniform_binder< typename format_t::info::type,
-            typename format_t::info::dimension > , typename value_t = typename fu::to_typename<
-            typename format_t::info::type >::type >
+        template< typename Format, typename BinderType = uniform_binder< typename Format::info::type,
+            typename Format::info::dimension > , typename ValueType = typename fu::to_typename<
+            typename Format::info::type >::type >
         struct uniform {
-            typedef format_t format;
-            typedef value_t value_type;
-            typedef binder_t binder;
+            typedef Format format;
+            typedef ValueType value_type;
+            typedef BinderType binder;
         };
       } // namespace matrix
 

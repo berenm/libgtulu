@@ -47,18 +47,18 @@ namespace gtulu {
         DECLARE_TRAIT_ASPECT(order, struct, (normal) (reverse))
         DECLARE_TRAIT_ASPECT(type, struct, (floating) (integer))
 
-        template< typename format_t, typename base_t, typename type_t, typename order_t >
+        template< typename Format, typename Base, typename DataType, typename Order >
         struct group_metadata {
-            typedef format_t format;
-            typedef base_t base;
-            typedef type_t type;
-            typedef order_t order;
+            typedef Format format;
+            typedef Base base;
+            typedef DataType type;
+            typedef Order order;
         };
 
-        template< typename format_t >
+        template< typename Format >
         struct group_format;
 
-        template< typename base_t, typename type_t, typename order_t >
+        template< typename Base, typename DataType, typename Order >
         struct format_selector;
 
 #define DECLARE_GROUP_FORMAT(format_m, group_m, type_m, order_m) \
@@ -66,9 +66,9 @@ namespace gtulu {
         typedef group_metadata< format::format_m, base::group_m, type::type_m, order::order_m> info; \
     }; \
     typedef group_format< format::format_m > format_m; \
-    DECLARE_HAS_TRAIT_FORMAT(order, order_m, format_m) \
-    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m) \
-    DECLARE_HAS_TRAIT_FORMAT(base, group_m, format_m) \
+    DECLARE_HAS_TRAIT_FORMAT(order, order_m, format_m); \
+    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m); \
+    DECLARE_HAS_TRAIT_FORMAT(base, group_m, format_m); \
     \
     template< > struct format_selector < base::group_m, type::type_m, order::order_m > { \
         typedef format_m format; \

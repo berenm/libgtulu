@@ -25,21 +25,21 @@ namespace gtulu {
 
     namespace objects {
       template< >
-      template< typename target_type_t >
+      template< typename TargetType >
       void slot_binder< renderbuffer_base >::bind(::std::uint32_t handle_) {
-        fnc::gl_bind_renderbuffer::call< typename target_type_t::info::format >(handle_);
+        fnc::gl_bind_renderbuffer::call< typename TargetType::info::format >(handle_);
       }
     } // namespace objects
 
     namespace renderbuffer {
 
-      template< typename target_type_t >
-      struct renderbuffer_slot: private ft::is_of_target_base< target_type_t, ft::base::renderbuffer > {
+      template< typename TargetType >
+      struct renderbuffer_slot: private ft::is_of_target_base< TargetType, ft::base::renderbuffer > {
           static inline void bind(gio::plug< gio::renderbuffer_base > const& buffer) {
-            gio::slot_binder< gio::renderbuffer_base >::bind< typename target_type_t::info::format >(buffer);
+            gio::slot_binder< gio::renderbuffer_base >::bind< typename TargetType::info::format >(buffer);
           }
           static inline void unbind(gio::plug< gio::renderbuffer_base > const& buffer) {
-            gio::slot_binder< gio::renderbuffer_base >::clear< typename target_type_t::info::format >();
+            gio::slot_binder< gio::renderbuffer_base >::clear< typename TargetType::info::format >();
           }
       };
 
@@ -52,17 +52,17 @@ namespace gtulu {
       struct renderbuffer_base: public plug< renderbuffer_base > {
       };
 
-      template< typename renderbuffer_format_t >
+      template< typename RenderbufferFormat >
       struct renderbuffer: public renderbuffer_base,
                            public object< renderbuffer_base >,
                            public drawable,
-                           private renderbuffer_format_t {
+                           private RenderbufferFormat {
           inline void bind() const {
-            gir::renderbuffer_slot< typename renderbuffer_format_t::target >::bind(*this);
+            gir::renderbuffer_slot< typename RenderbufferFormat::target >::bind(*this);
           }
 
           inline void unbind() const {
-            gir::renderbuffer_slot< typename renderbuffer_format_t::target >::unbind(*this);
+            gir::renderbuffer_slot< typename RenderbufferFormat::target >::unbind(*this);
           }
       };
 

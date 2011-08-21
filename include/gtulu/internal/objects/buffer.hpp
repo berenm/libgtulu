@@ -57,46 +57,46 @@ namespace gtulu {
 
     namespace objects {
       template< >
-      template< typename target_type_t >
+      template< typename TargetType >
       void slot_binder< buffer_base >::bind(::std::uint32_t handle_) {
         static ::std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
-          fnc::gl_bind_buffer::call < target_type_t > (handle_);
+          fnc::gl_bind_buffer::call< TargetType >(handle_);
           bound_handle_ = handle_;
         }
       }
     } // namespace objects
 
     namespace buffer {
-      template< typename slot_type_t >
+      template< typename SlotType >
       struct buffer_slot {
-          typedef slot_type_t type;
+          typedef SlotType type;
 
           static inline void bind(gio::plug< gio::buffer_base > const& buffer) {
-            gio::slot_binder< gio::buffer_base >::bind< slot_type_t >(buffer);
+            gio::slot_binder< gio::buffer_base >::bind< SlotType >(buffer);
           }
           static inline void unbind(gio::plug< gio::buffer_base > const& buffer) {
-            gio::slot_binder< gio::buffer_base >::clear< slot_type_t >();
+            gio::slot_binder< gio::buffer_base >::clear< SlotType >();
           }
       };
 
-      template< typename slot_type_t >
-      struct buffer_indexed_slot: public buffer_slot< slot_type_t > {
-          typedef slot_type_t type;
+      template< typename SlotType >
+      struct buffer_indexed_slot: public buffer_slot< SlotType > {
+          typedef SlotType type;
 
-          using buffer_slot< slot_type_t >::bind;
-          using buffer_slot< slot_type_t >::unbind;
+          using buffer_slot< SlotType >::bind;
+          using buffer_slot< SlotType >::unbind;
 
           static inline void bind(gio::plug< gio::buffer_base > const& buffer,
                                   ::std::uint32_t const index,
                                   ::std::uint32_t const offset,
                                   ::std::uint32_t const size) {
-            fnc::gl_bind_buffer_range::call < slot_type_t > (index, *buffer, offset, size);
+            fnc::gl_bind_buffer_range::call< SlotType >(index, *buffer, offset, size);
           }
 
           static inline void bind(gio::plug< gio::buffer_base > const& buffer, ::std::uint32_t const index) {
-            fnc::gl_bind_buffer_base::call < slot_type_t > (index, *buffer);
+            fnc::gl_bind_buffer_base::call< SlotType >(index, *buffer);
           }
       };
 #define DECLARE_SLOT(slot_type_m) \
@@ -123,24 +123,24 @@ namespace gtulu {
     namespace objects {
 
       struct buffer_base: public plug< buffer_base > {
-          template< typename slot_type_t >
+          template< typename SlotType >
           inline void bind() const {
-            slot_type_t::bind(*this);
+            SlotType::bind(*this);
           }
 
-          template< typename slot_type_t >
+          template< typename SlotType >
           inline void bind(::std::uint32_t const index) const {
-            slot_type_t::bind(*this, index);
+            SlotType::bind(*this, index);
           }
 
-          template< typename slot_type_t >
+          template< typename SlotType >
           inline void bind(::std::uint32_t const index, ::std::size_t const offset, ::std::size_t const size) const {
-            slot_type_t::bind(*this, index, offset, size);
+            SlotType::bind(*this, index, offset, size);
           }
 
-          template< typename slot_type_t >
+          template< typename SlotType >
           inline void unbind() const {
-            slot_type_t::unbind(*this);
+            SlotType::unbind(*this);
           }
 
         protected:
@@ -156,10 +156,10 @@ namespace gtulu {
           }
       };
 
-      template< typename buffer_format_t, typename buffer_usage_t = gib::usages::gl_stream_draw >
+      template< typename BufferFormat, typename BufferUsage = gib::usages::gl_stream_draw >
       struct buffer: public buffer_base, public object< buffer_base > {
         public:
-          typedef typename fd::to_typename< typename buffer_format_t::info::value_type >::type data_type_t;
+          typedef typename fd::to_typename< typename BufferFormat::info::value_type >::type data_type_t;
 
           buffer() :
               object< buffer_base >() {
@@ -170,20 +170,19 @@ namespace gtulu {
             fill(size, data);
           }
 
-          template< typename temporary_slot_type_t = gib::array_buffer_slot >
+          template< typename TemporarySlotType = gib::array_buffer_slot >
           inline void fill(::std::size_t const size, data_type_t const* data = 0) {
-            bind< temporary_slot_type_t >();
+            bind< TemporarySlotType >();
 
-            fnc::gl_buffer_data::call< typename temporary_slot_type_t::type, buffer_usage_t >(size
-                                                                                                  * sizeof(data_type_t),
-                                                                                              data);
+            fnc::gl_buffer_data::call< typename TemporarySlotType::type, BufferUsage >(size * sizeof(data_type_t),
+                                                                                       data);
 
             set_size(size);
           }
 
-          template< typename new_buffer_format_t, typename new_buffer_usage_t >
-          operator buffer< new_buffer_format_t, new_buffer_usage_t > const&() const {
-            return *reinterpret_cast< buffer< new_buffer_format_t, new_buffer_usage_t > const* >(this);
+          template< typename NewBufferFormat, typename NewBufferUsage >
+          operator buffer< NewBufferFormat, NewBufferUsage > const&() const {
+            return *reinterpret_cast< buffer< NewBufferFormat, NewBufferUsage > const* >(this);
           }
       };
 

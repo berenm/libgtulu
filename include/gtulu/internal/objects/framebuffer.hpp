@@ -54,27 +54,27 @@ namespace gtulu {
 
     namespace objects {
       template< >
-      template< typename target_type_t >
+      template< typename TargetType >
       void slot_binder< framebuffer_base >::bind(::std::uint32_t handle_) {
         static ::std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
-          fnc::gl_bind_framebuffer::call < target_type_t > (handle_);
+          fnc::gl_bind_framebuffer::call< TargetType >(handle_);
           bound_handle_ = handle_;
         }
       }
     } // namespace objects
 
     namespace framebuffer {
-      template< typename slot_type_t >
+      template< typename SlotType >
       struct framebuffer_slot {
-          typedef slot_type_t slot_type;
+          typedef SlotType slot_type;
 
           static inline void bind(gio::plug< gio::framebuffer_base > const& framebuffer) {
-            gio::slot_binder< gio::framebuffer_base >::bind< slot_type_t >(framebuffer);
+            gio::slot_binder< gio::framebuffer_base >::bind< SlotType >(framebuffer);
           }
           static inline void unbind(gio::plug< gio::framebuffer_base > const& framebuffer) {
-            gio::slot_binder< gio::framebuffer_base >::clear< slot_type_t >();
+            gio::slot_binder< gio::framebuffer_base >::clear< SlotType >();
           }
       };
 #define DECLARE_SLOT(slot_type_m) \
@@ -88,14 +88,14 @@ namespace gtulu {
 
     namespace objects {
       struct framebuffer_base: public plug< framebuffer_base > {
-          template< typename slot_type_t = gif::draw_framebuffer_slot >
+          template< typename SlotType = gif::draw_framebuffer_slot >
           inline void bind() const {
-            slot_type_t::bind(*this);
+            SlotType::bind(*this);
           }
 
-          template< typename slot_type_t = gif::draw_framebuffer_slot >
+          template< typename SlotType = gif::draw_framebuffer_slot >
           inline void unbind() const {
-            slot_type_t::unbind(*this);
+            SlotType::unbind(*this);
           }
 
           void set_viewport(::std::uint32_t width,
@@ -113,8 +113,8 @@ namespace gtulu {
         front_left = GL_FRONT_LEFT, front_right = GL_FRONT_RIGHT, back_left = GL_BACK_LEFT, back_right = GL_BACK_RIGHT
       };
 
-      template< typename framebuffer_format_t >
-      struct default_framebuffer: virtual public object_base, public framebuffer_format_t {
+      template< typename FramebufferFormat >
+      struct default_framebuffer: virtual public object_base, public FramebufferFormat {
           //          void set_default_viewport() {
           //            framebuffer_format_t::bind();
           //            ::std::int32_t data[4];
@@ -127,8 +127,8 @@ namespace gtulu {
           //          }
       };
 
-      template< typename framebuffer_format_t, typename layered_t = gif::layered::no >
-      struct framebuffer: public object< framebuffer_base >, public framebuffer_format_t {
+      template< typename FramebufferFormat, typename Layered = gif::layered::no >
+      struct framebuffer: public object< framebuffer_base >, public FramebufferFormat {
       };
     } // namespace objects
 

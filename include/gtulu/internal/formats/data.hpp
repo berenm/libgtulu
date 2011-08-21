@@ -59,21 +59,21 @@ namespace gtulu {
 
         typedef ::std::uint32_t size_type;
 
-        template< typename format_t, typename value_type_t, typename type_t, typename packing_t, typename order_t,
-            size_type size_t >
+        template< typename Format, typename ValueType, typename DataType, typename Packing, typename Order,
+            size_type Size >
         struct data_metadata {
-            typedef format_t format;
-            typedef value_type_t value_type;
-            typedef type_t type;
-            typedef packing_t packing;
-            typedef order_t order;
-            static size_type const size_ = size_t;
+            typedef Format format;
+            typedef ValueType value_type;
+            typedef DataType type;
+            typedef Packing packing;
+            typedef Order order;
+            static size_type const size_ = Size;
         };
 
-        template< typename format_t >
+        template< typename Format >
         struct data_format;
 
-        template< typename type_t, typename packing_t, size_type size_t, typename order_t = order::normal >
+        template< typename DataType, typename Packing, size_type Size, typename Order = order::normal >
         struct format_selector;
 
 #define DECLARE_DATA_FORMAT(format_m, value_type_m, type_m, packing_m, order_m, size_m) \
@@ -86,10 +86,10 @@ namespace gtulu {
                                 size_m > info; \
       }; \
       typedef data_format< format::format_m > format_m; \
-      DECLARE_HAS_TRAIT_FORMAT(order, order_m, format_m) \
-      DECLARE_HAS_TRAIT_FORMAT(packing, packing_m, format_m) \
-      DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m) \
-      DECLARE_HAS_TRAIT_FORMAT(value_type, value_type_m, format_m) \
+      DECLARE_HAS_TRAIT_FORMAT(order, order_m, format_m); \
+      DECLARE_HAS_TRAIT_FORMAT(packing, packing_m, format_m); \
+      DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m); \
+      DECLARE_HAS_TRAIT_FORMAT(value_type, value_type_m, format_m); \
 
 #define DECLARE_DATA_FORMAT_DEFAULT(format_m, value_type_m, type_m, packing_m, order_m, size_m) \
      DECLARE_DATA_FORMAT(format_m, value_type_m, type_m, packing_m, order_m, size_m) \
@@ -128,7 +128,7 @@ namespace gtulu {
                                     reverse,
                                     32)
 
-        template< typename type_t, typename packing_t, size_type size_t, typename order_t >
+        template< typename DataType, typename Packing, size_type Size, typename Order >
         struct format_selector {
             typedef gl_unsigned_byte format;
         };

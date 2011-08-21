@@ -24,7 +24,7 @@ namespace gtulu {
 
     namespace objects {
       template< >
-      template< typename target_type_t >
+      template< typename TargetType >
       void slot_binder< vertexarray_base >::bind(::std::uint32_t handle_) {
         static ::std::uint32_t bound_handle_ = 0;
 
@@ -60,8 +60,8 @@ namespace gtulu {
           }
       };
 
-      template< typename vertexarray_format_t >
-      struct vertexarray: public object< vertexarray_base >, public vertexarray_format_t {
+      template< typename VertexarrayFormat >
+      struct vertexarray: public object< vertexarray_base >, public VertexarrayFormat {
       };
 
     } // namespace objects

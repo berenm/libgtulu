@@ -20,25 +20,25 @@ namespace gtulu {
 
     namespace uniform {
 
-      template< typename type_t >
+      template< typename DataType >
       struct uniform_binder {
           inline static void bind(location_t const location_in,
-                                  typename fu::to_typename< type_t >::type const value_in) {
+                                  typename fu::to_typename< DataType >::type const value_in) {
             fnc::gl_uniform_1::call(location_in, value_in);
           }
           inline static void bind(location_t const location_in,
                                   ::std::uint32_t const number_in,
-                                  typename fu::to_typename< type_t >::type const* values_in) {
+                                  typename fu::to_typename< DataType >::type const* values_in) {
             fnc::gl_uniform_1::call(location_in, number_in, values_in);
           }
       };
 
-      template< typename format_t, typename binder_t = uniform_binder< typename format_t::info::type >,
-          typename value_t = typename fu::to_typename< typename format_t::info::type >::type >
+      template< typename Format, typename BinderType = uniform_binder< typename Format::info::type >,
+          typename ValueType = typename fu::to_typename< typename Format::info::type >::type >
       struct uniform {
-          typedef format_t format;
-          typedef value_t value_type;
-          typedef binder_t binder;
+          typedef Format format;
+          typedef ValueType value_type;
+          typedef BinderType binder;
       };
 
 #define DECLARE_UNIFORM(format_m) \

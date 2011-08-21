@@ -25,7 +25,7 @@ namespace gtulu {
     namespace uniform {
       namespace vector {
 
-        template< typename type_t, typename count_t >
+        template< typename DataType, typename Count >
         struct uniform_binder;
 
 #define DECLARE_BINDER(type_m, count_m) \
@@ -52,13 +52,13 @@ namespace gtulu {
 #undef DECLARE_VECTOR_BINDER
 #undef DECLARE_BINDER
 
-        template< typename format_t, typename binder_t = uniform_binder< typename format_t::info::type,
-            typename format_t::info::count > , typename value_t = typename fu::to_typename<
-            typename format_t::info::type >::type >
+        template< typename Format, typename BinderType = uniform_binder< typename Format::info::type,
+            typename Format::info::count >
+            , typename ValueType = typename fu::to_typename< typename Format::info::type >::type >
         struct uniform {
-            typedef format_t format;
-            typedef value_t value_type;
-            typedef binder_t binder;
+            typedef Format format;
+            typedef ValueType value_type;
+            typedef BinderType binder;
         };
       } // namespace vector
 

@@ -16,19 +16,6 @@
 #include "gtulu/opengl.hpp"
 
 #include <string>
-
-#define BOOST_MPL_LIMIT_STRING_SIZE 52
-#include <boost/mpl/string.hpp>
-
-// define unsigned integer 64 ::boost::mpl integral
-#define AUX_WRAPPER_VALUE_TYPE ::std::uint64_t
-#define AUX_WRAPPER_NAME uint64_
-#define AUX_WRAPPER_PARAMS(N) ::std::uint64_t N
-#include <boost/mpl/aux_/integral_wrapper.hpp>
-#undef AUX_WRAPPER_VALUE_TYPE
-#undef AUX_WRAPPER_NAME
-#undef AUX_WRAPPER_PARAMS
-
 #include <boost/lexical_cast.hpp>
 
 namespace gtulu {
@@ -88,14 +75,14 @@ namespace gtulu {
           runtime_constant(gl_constant_base const& base, ::std::uint64_t offset_in) :
               gl_constant_base(base) {
             string_value.erase(string_value.end() - 1);
-            string_value += ::boost::lexical_cast < ::std::string > (offset_in);
+            string_value += ::boost::lexical_cast< ::std::string >(offset_in);
             integer_value += offset_in;
           }
       };
 
       struct invalid_constant: public gl_constant< invalid_constant > {
           static constexpr char name[] = "<invalid-constant>";
-          static constexpr ::std::uint64_t value = 0xFFFFFFFFFFFFFFFF;
+          static constexpr::std::uint64_t value = 0xFFFFFFFFFFFFFFFF;
       };
 
     } // namespace constant

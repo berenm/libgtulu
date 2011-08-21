@@ -26,10 +26,10 @@ namespace buffer {
     struct many;
   }
 
-  template< typename from_use_t, typename to_use_t >
+  template< typename FromUse, typename ToUse >
   struct use_mode {
   };
-  template< typename from_t, typename to_t >
+  template< typename From, typename To >
   struct side_mode {
   };
 
@@ -41,10 +41,10 @@ namespace buffer {
   typedef side_mode< side::gl, side::client > read_mode;
   typedef side_mode< side::gl, side::gl > copy_mode;
 
-  template< typename use_mode, typename side_mode >
+  template< typename UseMode, typename SideMode >
   struct mode;
 
-  template< typename from_t, typename from_use_t, typename to_t, typename to_use_t >
+  template< typename From, typename FromUse, typename To, typename ToUse >
   struct mode_selector;
 
   template< >

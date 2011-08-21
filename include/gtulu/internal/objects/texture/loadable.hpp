@@ -23,12 +23,12 @@ namespace gtulu {
 
     namespace objects {
 
-      template< typename target_format_t >
+      template< typename TargetFormat >
       struct texture_loadable_helper;
 
       template< >
       struct texture_loadable_helper< fta::gl_texture_rectangle > {
-          template< typename texture_format_t >
+          template< typename TextureFormat >
           struct loader {
 
           };

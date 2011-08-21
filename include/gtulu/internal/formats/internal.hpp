@@ -113,21 +113,21 @@ namespace gtulu {
 
         typedef ::std::uint32_t size_type;
 
-        template< typename format_t, typename base_t, size_type size_t, typename type_t, typename compression_t,
-            typename restriction_t >
+        template< typename Format, typename Base, size_type Size, typename DataType, typename Compression,
+            typename Restriction >
         struct internal_format_metadata {
-            typedef format_t format;
-            typedef base_t base;
-            typedef type_t type;
-            typedef compression_t compression;
-            typedef restriction_t restriction;
-            static size_type const size_ = size_t;
+            typedef Format format;
+            typedef Base base;
+            typedef DataType type;
+            typedef Compression compression;
+            typedef Restriction restriction;
+            static size_type const size_ = Size;
         };
 
-        template< typename format_t >
+        template< typename Format >
         struct internal_format;
 
-        template< typename base_t, size_type size_t, typename type_t, typename compression_t >
+        template< typename Base, size_type Size, typename DataType, typename Compression >
         struct format_selector;
 
 #define DECLARE_INTERNAL_FORMAT(format_m, base_m, size_m, type_m, compression_m, restriction_m) \
@@ -140,10 +140,10 @@ namespace gtulu {
                                           restriction::restriction_m > info; \
     }; \
     typedef internal_format< format::format_m > format_m; \
-    DECLARE_HAS_TRAIT_FORMAT(base, base_m, format_m) \
-    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m) \
-    DECLARE_HAS_TRAIT_FORMAT(compression, compression_m, format_m) \
-    DECLARE_HAS_TRAIT_FORMAT(restriction, restriction_m, format_m) \
+    DECLARE_HAS_TRAIT_FORMAT(base, base_m, format_m); \
+    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m); \
+    DECLARE_HAS_TRAIT_FORMAT(compression, compression_m, format_m); \
+    DECLARE_HAS_TRAIT_FORMAT(restriction, restriction_m, format_m); \
 
 #define DECLARE_INTERNAL_FORMAT_DEFAULT(format_m, base_m, size_m, type_m, compression_m, restriction_m) \
     DECLARE_INTERNAL_FORMAT(format_m, base_m, size_m, type_m, compression_m, restriction_m) \
@@ -240,7 +240,7 @@ namespace gtulu {
 #undef DECLARE_INTERNAL_FORMAT_DEFAULT
 #undef DECLARE_INTERNAL_FORMAT
 
-        template< typename format_t > struct base_internal_format;
+        template< typename Format > struct base_internal_format;
 #define DECLARE_BASE_INTERNAL_FORMAT(base_m, size_m, type_m, compressed_m) \
     typedef format_selector< base::base_m, size_m, type::type_m, compression::compressed_m >::format base_m; \
 

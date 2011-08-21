@@ -30,8 +30,10 @@ class parameter:
     if not self.is_pointer:
       if self.type == 'GLenum':
         self.is_template = True
+        self.tpl_name = ''.join(n[0].upper() + n[1:] for n in self.name.split('_')) + 'Constant'
       elif self.name == 'internalformat' and self.type == 'GLint':
         self.is_template = True
+        self.tpl_name = ''.join(n[0].upper() + n[1:] for n in self.name.split('_')) + 'Constant'
       else:
         self.is_template = False
     else:
@@ -79,7 +81,7 @@ class parameter:
     return string
 
   def tpl_str(self):
-    string = "typename " + self.name + "_t"
+    string = "typename " + self.tpl_name
     return string
 
   def __repr__(self):
