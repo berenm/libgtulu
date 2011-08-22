@@ -101,36 +101,50 @@
         <li class='category'>Lighting and Color</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glClampColor.xml'>glClampColor</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glProvokingVertex.xml'>glProvokingVertex</a></li>
-        <li class='category'>Rendering Control and Queries</li>
+
+        <li class='category'>Query Objects</li>
+            <li class='group'>Creation:</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGenQueries.xml'>glGenQueries</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDeleteQueries.xml'>glDeleteQueries</a></li>
 
+            <li class='group'>Usage:</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBeginQuery.xml'>glBeginQuery</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glEndQuery.xml'>glEndQuery</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glBeginQueryIndexed.xml'>glBeginQueryIndexed</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glEndQueryIndexed.xml'>glEndQueryIndexed</a></li>
 
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBeginConditionalRender.xml'>glBeginConditionalRender</a></li>
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glEndConditionalRender.xml'>glEndConditionalRender</a></li>
+
+            <li class='group'>Properties:</li>
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsQuery.xml'>glIsQuery</a></li>
+
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetQueryiv.xml'>glGetQueryiv</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetQueryObject.xml'>glGetQueryObject</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetQueryIndexed.xml'>glGetQueryIndexed</a></li>
 
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBeginConditionalRender.xml'>glBeginConditionalRender</a></li>
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glEndConditionalRender.xml'>glEndConditionalRender</a></li>
-
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGenTransformFeedbacks.xml'>glGenTransformFeedbacks</a></li>
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glDeleteTransformFeedbacks.xml'>glDeleteTransformFeedbacks</a></li>
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glBindTransformFeedback.xml'>glBindTransformFeedback</a></li>
-
+        <li class='category'>Transform Feedbacks Rendering</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBeginTransformFeedback.xml'>glBeginTransformFeedback</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glEndTransformFeedback.xml'>glEndTransformFeedback</a></li>
+
+        <li class='category gl41'>Transform Feedback Objects</li>
+            <li class='group'>Creation:</li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGenTransformFeedbacks.xml'>glGenTransformFeedbacks</a></li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glDeleteTransformFeedbacks.xml'>glDeleteTransformFeedbacks</a></li>
+
+            <li class='group'>Binding:</li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glBindTransformFeedback.xml'>glBindTransformFeedback</a></li>
+
+            <li class='group'>Usage:</li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glPauseTransformFeedback.xml'>glPauseTransformFeedback</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glResumeTransformFeedback.xml'>glResumeTransformFeedback</a></li>
 
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glDrawTransformFeedback.xml'>glDrawTransformFeedback</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glDrawTransformFeedbackStream.xml'>glDrawTransformFeedbackStream</a></li>
 
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsQuery.xml'>glIsQuery</a></li>
+            <li class='group'>Properties:</li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glIsTransformFeedback.xml'>glIsTransformFeedback</a></li>
+
         <li class='category'>Viewport and Cliping</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDepthRange.xml'>glDepthRange</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glDepthRangeArray.xml'>glDepthRangeArray</a></li>
@@ -140,7 +154,7 @@
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glViewportArray.xml'>glViewportArray</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glViewportIndexed.xml'>glViewportIndexed</a></li>
 
-        <li class='category'>Shaders Objects</li>
+        <li class='category'>Shader Objects</li>
             <li class='group covered'>Creation:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCreateShader.xml'>glCreateShader</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDeleteShader.xml'>glDeleteShader</a></li>
@@ -162,7 +176,7 @@
 
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsShader.xml'>glIsShader</a></li>
 
-        <li class='category'>Programs Objects</li>
+        <li class='category'>Program Objects</li>
             <li class='group covered'>Creation:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCreateProgram.xml'>glCreateProgram</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDeleteProgram.xml'>glDeleteProgram</a></li>
