@@ -152,6 +152,7 @@ html {
 .coverage li.group {
   clear: left;
   color: #c90707;
+  text-align: right;
 }
 
 li.group.covered {
@@ -163,5 +164,6 @@ li.group.covered {
 .features li.group,
 .coverage li.group {
   background: transparent;
-  width: 23%;
+  width: 10%;
+  padding-right: 2%;
 }
