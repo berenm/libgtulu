@@ -141,6 +141,12 @@ html {
 .gl41:after {
   content: " ⁽⁴⁺⁾"
 }
+.group::after {
+  content: ":";
+}
+.gl41.group::after {
+  content: " ⁽⁴⁺⁾:";
+}
 
 .coverage a:link,
 .coverage a:hover,
