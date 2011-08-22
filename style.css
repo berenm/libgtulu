@@ -157,13 +157,17 @@ html {
 .features li.group,
 .coverage li.group {
   clear: left;
-  color: #c90707;
+  color: #BBB;
   text-align: right;
   background: transparent;
   width: 10%;
   padding-right: 2%;
   margin-left: 0;
   margin-right: -14%;
+}
+
+li.group.partial {
+  color: #5d855e;
 }
 
 li.group.covered {
