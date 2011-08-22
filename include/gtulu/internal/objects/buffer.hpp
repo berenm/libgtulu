@@ -167,22 +167,77 @@ namespace gtulu {
 
           buffer(::std::size_t const size, data_type_t const* data = 0) :
               object< buffer_base >() {
-            fill(size, data);
+            init_store(size, data);
           }
 
-          template< typename TemporarySlotType = gib::array_buffer_slot >
-          inline void fill(::std::size_t const size, data_type_t const* data = 0) {
+          template< typename TemporarySlotType = gib::copy_write_buffer_slot >
+          inline void init_store(::std::size_t const size, data_type_t const* data = 0) {
             bind< TemporarySlotType >();
 
-            fnc::gl_buffer_data::call< typename TemporarySlotType::type, BufferUsage >(size * sizeof(data_type_t),
-                                                                                       data);
+            typedef typename TemporarySlotType::type slot_t;
+            fnc::gl_buffer_data::call< slot_t, BufferUsage >(size * sizeof(data_type_t), data);
 
             set_size(size);
           }
 
-          template< typename NewBufferFormat, typename NewBufferUsage >
-          operator buffer< NewBufferFormat, NewBufferUsage > const&() const {
-            return *reinterpret_cast< buffer< NewBufferFormat, NewBufferUsage > const* >(this);
+          /**
+           * Reads data from the buffer.
+           *
+           * @param data_inout
+           * @param size_in
+           * @param offset_in
+           */
+          template< typename TemporarySlotType = gib::copy_read_buffer_slot >
+          void read(data_type_t* data_inout, ::std::size_t const size_in = 0, ::std::size_t const offset_in = 0) {
+            ::std::size_t const size = (size_in == 0) ? get_size() : size_in;
+
+            bind< TemporarySlotType >();
+
+            typedef typename TemporarySlotType::type slot_t;
+            fnc::gl_get_buffer_sub_data::call< slot_t >(offset_in, size * sizeof(data_type_t), data_inout);
+          }
+
+          /**
+           * Writes data to the buffer.
+           *
+           * @param data_in
+           * @param size_in
+           * @param offset_in
+           */
+          template< typename TemporarySlotType = gib::copy_write_buffer_slot >
+          void write(data_type_t const* data_in, ::std::size_t const size_in = 0, ::std::size_t const offset_in = 0) {
+            ::std::size_t const size = (size_in == 0) ? get_size() : size_in;
+
+            bind< TemporarySlotType >();
+
+            typedef typename TemporarySlotType::type slot_t;
+            fnc::gl_buffer_sub_data::call< slot_t >(offset_in, size * sizeof(data_type_t), data_in);
+          }
+
+          /**
+           * Copies the buffer data to another buffer.
+           *
+           * @param dest_buffer_inout
+           * @param size_in
+           * @param write_offset_in
+           * @param read_offset_in
+           */
+          template< typename DestBufferType, typename ReadSlotType = gib::copy_read_buffer_slot,
+              typename WriteSlotType = gib::copy_write_buffer_slot >
+          void copy(DestBufferType& dest_buffer_inout,
+                    ::std::size_t const size_in = 0,
+                    ::std::size_t const write_offset_in = 0,
+                    ::std::size_t const read_offset_in = 0) {
+            ::std::size_t const size = (size_in == 0) ? get_size() : size_in;
+
+            bind< ReadSlotType >();
+            dest_buffer_inout.bind< WriteSlotType >();
+
+            typedef typename ReadSlotType::type read_slot_t;
+            typedef typename WriteSlotType::type write_slot_t;
+            fnc::gl_copy_buffer_sub_data::call< read_slot_t, write_slot_t >(read_offset_in,
+                                                                            write_offset_in,
+                                                                            size * sizeof(data_type_t));
           }
       };
 
