@@ -151,11 +151,11 @@ html {
 .features li.group,
 .coverage li.group {
   clear: left;
-  color: #CC0000;
+  color: #c90707;
 }
 
 li.group.covered {
-  color: #008811;
+  color: #004f02;
 }
 
 .features li.filler,
