@@ -58,7 +58,7 @@ html {
 
 .coverage li {
   float: left;
-  width: 30%;
+  width: 23%;
 }
 .coverage li.category {
   clear: left;
@@ -146,4 +146,22 @@ html {
 .coverage a:hover,
 .coverage a:active {
   font-weight: bold;
+}
+
+.features li.group,
+.coverage li.group {
+  clear: left;
+  color: #CC0000;
+}
+
+li.group.covered {
+  color: #008811;
+}
+
+.features li.filler,
+.coverage li.filler,
+.features li.group,
+.coverage li.group {
+  background: transparent;
+  width: 23%;
 }
