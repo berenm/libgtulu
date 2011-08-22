@@ -84,7 +84,7 @@
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glFlushMappedBufferRange.xml'>glFlushMappedBufferRange</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glUnmapBuffer.xml'>glUnmapBuffer</a></li>
 
-            <li class='group'>Attributes:</li>
+            <li class='group'>Properties:</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetBufferPointerv.xml'>glGetBufferPointerv</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetBufferParameter.xml'>glGetBufferParameter</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsBuffer.xml'>glIsBuffer</a></li>
@@ -92,11 +92,11 @@
             <li class='group covered'>Creation:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGenVertexArrays.xml'>glGenVertexArrays</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDeleteVertexArrays.xml'>glDeleteVertexArrays</a></li>
-            
+
             <li class='group covered'>Binding:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBindVertexArray.xml'>glBindVertexArray</a></li>
-            
-            <li class='group'>Attributes:</li>
+
+            <li class='group'>Properties:</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsVertexArray.xml'>glIsVertexArray</a></li>
         <li class='category'>Lighting and Color</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glClampColor.xml'>glClampColor</a></li>
@@ -139,90 +139,125 @@
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glViewport.xml'>glViewport</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glViewportArray.xml'>glViewportArray</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glViewportIndexed.xml'>glViewportIndexed</a></li>
-        <li class='category'>Shaders and Programs</li>
+
+        <li class='category'>Shaders Objects</li>
+            <li class='group covered'>Creation:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCreateShader.xml'>glCreateShader</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDeleteShader.xml'>glDeleteShader</a></li>
+
+            <li class='group'>Compilation:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glShaderSource.xml'>glShaderSource</a></li>
+            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetShaderSource.xml'>glGetShaderSource</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCompileShader.xml'>glCompileShader</a></li>
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glShaderBinary.xml'>glShaderBinary</a></li>
+            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetShaderInfoLog.xml'>glGetShaderInfoLog</a></li>
+
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glReleaseShaderCompiler.xml'>glReleaseShaderCompiler</a></li>
 
+            <li class='group'>Binary:</li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glShaderBinary.xml'>glShaderBinary</a></li>
+
+            <li class='group'>Properties:</li>
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetShader.xml'>glGetShader</a></li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetShaderPrecisionFormat.xml'>glGetShaderPrecisionFormat</a></li>
+
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsShader.xml'>glIsShader</a></li>
+
+        <li class='category'>Programs Objects</li>
+            <li class='group covered'>Creation:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCreateProgram.xml'>glCreateProgram</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDeleteProgram.xml'>glDeleteProgram</a></li>
-            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glAttachShader.xml'>glAttachShader</a></li>
-            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDetachShader.xml'>glDetachShader</a></li>
-            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glLinkProgram.xml'>glLinkProgram</a></li>
+
+            <li class='group covered'>Usage:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glUseProgram.xml'>glUseProgram</a></li>
 
+            <li class='group'>Attachment:</li>
+            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glAttachShader.xml'>glAttachShader</a></li>
+            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDetachShader.xml'>glDetachShader</a></li>
+
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetAttachedShaders.xml'>glGetAttachedShaders</a></li>
+
+            <li class='group'>Compilation:</li>
+            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glLinkProgram.xml'>glLinkProgram</a></li>
+            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glValidateProgram.xml'>glValidateProgram</a></li>
+            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetProgramInfoLog.xml'>glGetProgramInfoLog</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glCreateShaderProgram.xml'>glCreateShaderProgram</a></li>
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glProgramParameter.xml'>glProgramParameter</a></li>
 
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGenProgramPipelines.xml'>glGenProgramPipelines</a></li>
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glDeleteProgramPipelines.xml'>glDeleteProgramPipelines</a></li>
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glBindProgramPipeline.xml'>glBindProgramPipeline</a></li>
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glUseProgramStages.xml'>glUseProgramStages</a></li>
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glActiveShaderProgram.xml'>glActiveShaderProgram</a></li>
-
+            <li class='group'>Binary:</li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetProgramBinary.xml'>glGetProgramBinary</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glProgramBinary.xml'>glProgramBinary</a></li>
 
+            <li class='group'>Attributes:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetActiveAttrib.xml'>glGetActiveAttrib</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetAttribLocation.xml'>glGetAttribLocation</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBindAttribLocation.xml'>glBindAttribLocation</a></li>
 
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetVertexAttrib.xml'>glGetVertexAttrib</a></li>
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetVertexAttribPointerv.xml'>glGetVertexAttribPointerv</a></li>
+
+            <li class='group'>Uniforms:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetUniformLocation.xml'>glGetUniformLocation</a></li>
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetUniformBlockIndex.xml'>glGetUniformBlockIndex</a></li>
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetActiveUniformBlockName.xml'>glGetActiveUniformBlockName</a></li>
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetActiveUniformBlock.xml'>glGetActiveUniformBlock</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetUniformIndices.xml'>glGetUniformIndices</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetActiveUniformName.xml'>glGetActiveUniformName</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetActiveUniform.xml'>glGetActiveUniform</a></li>
 
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glUniform.xml'>glUniform</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glProgramUniform.xml'>glProgramUniform</a></li>
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetUniform.xml'>glGetUniform</a></li>
+
+            <li class='group'>Uniform blocks:</li>
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetUniformBlockIndex.xml'>glGetUniformBlockIndex</a></li>
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetActiveUniformBlockName.xml'>glGetActiveUniformBlockName</a></li>
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetActiveUniformBlock.xml'>glGetActiveUniformBlock</a></li>
 
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glUniformBlockBinding.xml'>glUniformBlockBinding</a></li>
 
+            <li class='group'>Frag Data:</li>
+            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBindFragDataLocation.xml'>glBindFragDataLocation</a></li>
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBindFragDataLocationIndexed.xml'>glBindFragDataLocationIndexed</a></li>
+            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetFragDataLocation.xml'>glGetFragDataLocation</a></li>
+            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetFragDataIndex.xml'>glGetFragDataIndex</a></li>
+
+            <li class='group'>Subroutines:</li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetSubroutineIndex.xml'>glGetSubroutineIndex</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetSubroutineUniformLocation.xml'>glGetSubroutineUniformLocation</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetActiveSubroutineUniformName.xml'>glGetActiveSubroutineUniformName</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetActiveSubroutineUniform.xml'>glGetActiveSubroutineUniform</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetActiveSubroutineName.xml'>glGetActiveSubroutineName</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glUniformSubroutines.xml'>glUniformSubroutines</a></li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetUniformSubroutine.xml'>glGetUniformSubroutine</a></li>
 
+            <li class='group'>Transform feedbacks:</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glTransformFeedbackVaryings.xml'>glTransformFeedbackVaryings</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetTransformFeedbackVarying.xml'>glGetTransformFeedbackVarying</a></li>
 
-            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glValidateProgram.xml'>glValidateProgram</a></li>
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glValidateProgramPipeline.xml'>glValidateProgramPipeline</a></li>
-
+            <li class='group'>Properties:</li>
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetProgram.xml'>glGetProgram</a></li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetProgramStage.xml'>glGetProgramStage</a></li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glProgramParameter.xml'>glProgramParameter</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glPatchParameter.xml'>glPatchParameter</a></li>
 
-            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBindFragDataLocation.xml'>glBindFragDataLocation</a></li>
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBindFragDataLocationIndexed.xml'>glBindFragDataLocationIndexed</a></li>
-            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetFragDataLocation.xml'>glGetFragDataLocation</a></li>
-            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetFragDataIndex.xml'>glGetFragDataIndex</a></li>
-        <li class='category'>Shaders and Programs Queries</li>
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetShader.xml'>glGetShader</a></li>
-            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetShaderInfoLog.xml'>glGetShaderInfoLog</a></li>
-            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetShaderSource.xml'>glGetShaderSource</a></li>
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetShaderPrecisionFormat.xml'>glGetShaderPrecisionFormat</a></li>
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetProgramStage.xml'>glGetProgramStage</a></li>
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsProgram.xml'>glIsProgram</a></li>
 
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetAttachedShaders.xml'>glGetAttachedShaders</a></li>
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetVertexAttrib.xml'>glGetVertexAttrib</a></li>
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetVertexAttribPointerv.xml'>glGetVertexAttribPointerv</a></li>
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetUniform.xml'>glGetUniform</a></li>
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetUniformSubroutine.xml'>glGetUniformSubroutine</a></li>
+        <li class='category gl41'>Pipeline Objects</li>
+            <li class='group'>Creation:</li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGenProgramPipelines.xml'>glGenProgramPipelines</a></li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glDeleteProgramPipelines.xml'>glDeleteProgramPipelines</a></li>
 
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetProgram.xml'>glGetProgram</a></li>
-            <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetProgramInfoLog.xml'>glGetProgramInfoLog</a></li>
-            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetProgramPipeline.xml'>glGetProgramPipeline</a></li>
+            <li class='group'>Binding:</li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glBindProgramPipeline.xml'>glBindProgramPipeline</a></li>
+
+            <li class='group'>Attachment:</li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glUseProgramStages.xml'>glUseProgramStages</a></li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glActiveShaderProgram.xml'>glActiveShaderProgram</a></li>
+
+            <li class='group'>Validation:</li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glValidateProgramPipeline.xml'>glValidateProgramPipeline</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetProgramPipelineInfoLog.xml'>glGetProgramPipelineInfoLog</a></li>
 
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsProgram.xml'>glIsProgram</a></li>
+            <li class='group'>Properties:</li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetProgramPipeline.xml'>glGetProgramPipeline</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glIsProgramPipeline.xml'>glIsProgramPipeline</a></li>
-            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsShader.xml'>glIsShader</a></li>
+
         <li class='category'>Rasterization</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetMultisample.xml'>glGetMultisample</a></li>
 
@@ -258,7 +293,7 @@
             <li class='group covered'>Creation:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGenTextures.xml'>glGenTextures</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDeleteTextures.xml'>glDeleteTextures</a></li>
-            
+
             <li class='group covered'>Binding:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBindTexture.xml'>glBindTexture</a></li>
 
@@ -274,31 +309,31 @@
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCompressedTexImage1D.xml'>glCompressedTexImage1D</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCompressedTexImage2D.xml'>glCompressedTexImage2D</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCompressedTexImage3D.xml'>glCompressedTexImage3D</a></li>
-            
+
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCompressedTexSubImage1D.xml'>glCompressedTexSubImage1D</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCompressedTexSubImage2D.xml'>glCompressedTexSubImage2D</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCompressedTexSubImage3D.xml'>glCompressedTexSubImage3D</a></li>
 
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glTexImage2DMultisample.xml'>glTexImage2DMultisample</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glTexImage3DMultisample.xml'>glTexImage3DMultisample</a></li>
-            
+
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glTexBuffer.xml'>glTexBuffer</a></li>
-            
+
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGenerateMipmap.xml'>glGenerateMipmap</a></li>
 
             <li class='group'>Read:</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetTexImage.xml'>glGetTexImage</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetCompressedTexImage.xml'>glGetCompressedTexImage</a></li>
-            
+
             <li class='group'>Copy:</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCopyTexSubImage1D.xml'>glCopyTexSubImage1D</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCopyTexSubImage2D.xml'>glCopyTexSubImage2D</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCopyTexSubImage3D.xml'>glCopyTexSubImage3D</a></li>
-            
+
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCopyTexImage1D.xml'>glCopyTexImage1D</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCopyTexImage2D.xml'>glCopyTexImage2D</a></li>
 
-            <li class='group'>Attributes:</li>
+            <li class='group'>Properties:</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glTexParameter.xml'>glTexParameter</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetTexParameter.xml'>glGetTexParameter</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetTexLevelParameter.xml'>glGetTexLevelParameter</a></li>
@@ -306,16 +341,16 @@
 
             <li class='group covered'>Texture unit:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glActiveTexture.xml'>glActiveTexture</a></li>
-            
+
         <li class='category'>Sampler Objects</li>
             <li class='group'>Creation:</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGenSamplers.xml'>glGenSamplers</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDeleteSamplers.xml'>glDeleteSamplers</a></li>
-            
+
             <li class='group'>Binding:</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBindSampler.xml'>glBindSampler</a></li>
-            
-            <li class='group'>Attributes:</li>
+
+            <li class='group'>Properties:</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glSamplerParameter.xml'>glSamplerParameter</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetSamplerParameter.xml'>glGetSamplerParameter</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsSampler.xml'>glIsSampler</a></li>
@@ -345,7 +380,7 @@
             <li class='group covered'>Creation:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGenFramebuffers.xml'>glGenFramebuffers</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDeleteFramebuffers.xml'>glDeleteFramebuffers</a></li>
-            
+
             <li class='group covered'>Binding:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBindFramebuffer.xml'>glBindFramebuffer</a></li>
 
@@ -355,7 +390,7 @@
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glFramebufferTextureLayer.xml'>glFramebufferTextureLayer</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glFramebufferRenderbuffer.xml'>glFramebufferRenderbuffer</a></li>
 
-            <li class='group'>Attributes:</li>
+            <li class='group'>Properties:</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCheckFramebufferStatus.xml'>glCheckFramebufferStatus</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetFramebufferAttachmentParameter.xml'>glGetFramebufferAttachmentParameter</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsFramebuffer.xml'>glIsFramebuffer</a></li>
@@ -364,15 +399,15 @@
             <li class='group covered'>Creation:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGenRenderbuffers.xml'>glGenRenderbuffers</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDeleteRenderbuffers.xml'>glDeleteRenderbuffers</a></li>
-            
+
             <li class='group covered'>Binding:</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBindRenderbuffer.xml'>glBindRenderbuffer</a></li>
 
             <li class='group'>Storage:</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glRenderbufferStorage.xml'>glRenderbufferStorage</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glRenderbufferStorageMultisample.xml'>glRenderbufferStorageMultisample</a></li>
-            
-            <li class='group'>Attributes:</li>
+
+            <li class='group'>Properties:</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetRenderbufferParameter.xml'>glGetRenderbufferParameter</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsRenderbuffer.xml'>glIsRenderbuffer</a></li>
         <li class='category'>Special Functions</li>
