@@ -138,14 +138,20 @@ html {
   text-align: right;
 }
 
-.gl41:after {
-  content: " ⁽⁴⁺⁾"
+.gl41:before {
+  content: "⁴⁺";
+  display: block;
+  float: left;
+  margin-left: -2.5em;
+  width: 0;
+  color: #d23131;
 }
 .group::after {
   content: ":";
 }
-.gl41.group::after {
-  content: " ⁽⁴⁺⁾:";
+.gl41.group::before {
+  float: none;
+  display: inline;
 }
 
 .coverage a:link,
