@@ -50,6 +50,8 @@
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glMultiDrawArrays.xml'>glMultiDrawArrays</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glDrawArraysIndirect.xml'>glDrawArraysIndirect</a></li>
 
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glDrawArraysInstancedBaseInstance.xml'>glDrawArraysInstancedBaseInstance</a></li>
+
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDrawElements.xml'>glDrawElements</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDrawElementsInstanced.xml'>glDrawElementsInstanced</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glMultiDrawElements.xml'>glMultiDrawElements</a></li>
@@ -60,6 +62,10 @@
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDrawElementsInstancedBaseVertex.xml'>glDrawElementsInstancedBaseVertex</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glMultiDrawElementsBaseVertex.xml'>glMultiDrawElementsBaseVertex</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDrawRangeElementsBaseVertex.xml'>glDrawRangeElementsBaseVertex</a></li>
+
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDrawElementsInstancedBaseInstance.xml'>glDrawElementsInstancedBaseInstance</a></li>
+            <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glDrawElementsInstancedBaseVertexBaseInstance.xml'>glDrawElementsInstancedBaseVertexBaseInstance</a></li>
+
         <li class='category'>Vertex Specification</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glVertexAttrib.xml'>glVertexAttrib</a></li>
         <li class='category'>Buffer Objects</li>
@@ -148,6 +154,9 @@
 
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glDrawTransformFeedback.xml'>glDrawTransformFeedback</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glDrawTransformFeedbackStream.xml'>glDrawTransformFeedbackStream</a></li>
+
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glDrawTransformFeedbackInstanced.xml'>glDrawTransformFeedbackInstanced</a></li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glDrawTransformFeedbackStreamInstanced.xml'>glDrawTransformFeedbackStreamInstanced</a></li>
 
             <li class='group'>Properties</li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glIsTransformFeedback.xml'>glIsTransformFeedback</a></li>
@@ -253,6 +262,8 @@
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glProgramParameter.xml'>glProgramParameter</a></li>
             <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glPatchParameter.xml'>glPatchParameter</a></li>
 
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetActiveAtomicCounterBuffer.xml'>glGetActiveAtomicCounterBuffer</a></li>
+
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsProgram.xml'>glIsProgram</a></li>
 
         <li class='category gl41'>Pipeline Objects</li>
@@ -314,6 +325,8 @@
             <li class='group covered'>Binding</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glBindTexture.xml'>glBindTexture</a></li>
 
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glBindImageTexture.xml'>glBindImageTexture</a></li>
+
             <li class='group'>Write</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glTexImage1D.xml'>glTexImage1D</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glTexImage2D.xml'>glTexImage2D</a></li>
@@ -349,6 +362,14 @@
 
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCopyTexImage1D.xml'>glCopyTexImage1D</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glCopyTexImage2D.xml'>glCopyTexImage2D</a></li>
+
+            <li class='group gl41'>Storage</li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glTexStorage1D.xml'>glTexStorage1D</a></li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glTexStorage2D.xml'>glTexStorage2D</a></li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glTexStorage3D.xml'>glTexStorage3D</a></li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glTextureStorage1D.xml'>glTextureStorage1D</a></li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glTextureStorage2D.xml'>glTextureStorage2D</a></li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glTextureStorage3D.xml'>glTextureStorage3D</a></li>
 
             <li class='group'>Properties</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glTexParameter.xml'>glTexParameter</a></li>
@@ -445,15 +466,21 @@
             <li class='group'>Properties</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetSync.xml'>glGetSync</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsSync.xml'>glIsSync</a></li>
-            
+
             <li class='group'>Flushing</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glFlush.xml'>glFlush</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glFinish.xml'>glFinish</a></li>
-            
+
+            <li class='group'>Barrier</li>
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glMemoryBarrier.xml'>glMemoryBarrier</a></li>
+
         <li class='category'>State and State Requests</li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGet.xml'>glGet</a></li>
             <li class='covered'><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glGetString.xml'>glGetString</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glIsEnabled.xml'>glIsEnabled</a></li>
+
+            <li class='gl41'><a href='http://www.opengl.org/sdk/docs/man4/xhtml/glGetInternalformat.xml'>glGetInternalformat</a></li>
+
         <li class='category'>Reading, and Copying Pixels</li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glReadBuffer.xml'>glReadBuffer</a></li>
             <li><a href='http://www.opengl.org/sdk/docs/man3/xhtml/glReadPixels.xml'>glReadPixels</a></li>
