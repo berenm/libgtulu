@@ -21,11 +21,12 @@ namespace gtulu {
     namespace formats {
       namespace shader {
 
-        DECLARE_TRAIT_ASPECT(attribute,
-                             using cst::,
-                             (gl_shader_type) (gl_delete_status) (gl_compile_status) (gl_info_log_length) (gl_shader_source_length))
+        META_ASPECT_DECLARE(attribute,
+                            Attribute,
+                            using cst::,
+                            (gl_shader_type) (gl_delete_status) (gl_compile_status) (gl_info_log_length) (gl_shader_source_length))
 
-        DECLARE_TRAIT_ASPECT(type, using cst::, (gl_vertex_shader) (gl_geometry_shader) (gl_fragment_shader))
+        META_ASPECT_DECLARE(type, Type, using cst::, (gl_vertex_shader) (gl_geometry_shader) (gl_fragment_shader))
 
       } // namespace shader
     } // namespace formats

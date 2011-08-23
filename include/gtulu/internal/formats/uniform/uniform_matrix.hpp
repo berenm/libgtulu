@@ -22,7 +22,7 @@ namespace gtulu {
       namespace uniform {
         namespace matrix {
 
-          DECLARE_TRAIT_ASPECT(dimension, using fcd::,
+          META_ASPECT_DECLARE(dimension, Dimension, using fcd::,
               (two_by_two)
               (two_by_three)
               (two_by_four)

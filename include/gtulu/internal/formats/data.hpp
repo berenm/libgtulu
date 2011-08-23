@@ -21,17 +21,18 @@ namespace gtulu {
     namespace formats {
       namespace data {
 
-        DECLARE_TRAIT_ASPECT(format,
-                             using cst::,
-                             (gl_unsigned_byte) (gl_byte) (gl_unsigned_short) (gl_short) (gl_unsigned_int) (gl_int) (gl_half_float) (gl_float) (gl_double) (gl_unsigned_byte_3_3_2) (gl_unsigned_byte_2_3_3_rev) (gl_unsigned_short_5_6_5) (gl_unsigned_short_5_6_5_rev) (gl_unsigned_short_4_4_4_4) (gl_unsigned_short_4_4_4_4_rev) (gl_unsigned_short_5_5_5_1) (gl_unsigned_short_1_5_5_5_rev) (gl_unsigned_int_8_8_8_8) (gl_unsigned_int_8_8_8_8_rev) (gl_unsigned_int_10_10_10_2) (gl_unsigned_int_2_10_10_10_rev) (gl_unsigned_int_24_8) (gl_unsigned_int_10f_11f_11f_rev) (gl_unsigned_int_5_9_9_9_rev) (gl_float_32_unsigned_int_24_8_rev))
-
-        DECLARE_TRAIT_ASPECT(type, struct, (floating) (integer))
-        DECLARE_TRAIT_ASPECT(value_type,
-                             struct,
-                             (unsigned_byte) (byte_) (unsigned_short) (short_) (unsigned_int) (int_) (half_float) (float_) (float_unsigned_int) (double_))
-        DECLARE_TRAIT_ASPECT(order, struct, (normal) (reverse))
-        DECLARE_TRAIT_ASPECT(normalized, struct, (normalized) (normal))
-        DECLARE_TRAIT_ASPECT(packing, struct, (none) (rgb) (rgba) (depth_stencil))
+        META_ASPECT_DECLARE(format,
+                            Format,
+                            using cst::,
+                            (gl_unsigned_byte) (gl_byte) (gl_unsigned_short) (gl_short) (gl_unsigned_int) (gl_int) (gl_half_float) (gl_float) (gl_double) (gl_unsigned_byte_3_3_2) (gl_unsigned_byte_2_3_3_rev) (gl_unsigned_short_5_6_5) (gl_unsigned_short_5_6_5_rev) (gl_unsigned_short_4_4_4_4) (gl_unsigned_short_4_4_4_4_rev) (gl_unsigned_short_5_5_5_1) (gl_unsigned_short_1_5_5_5_rev) (gl_unsigned_int_8_8_8_8) (gl_unsigned_int_8_8_8_8_rev) (gl_unsigned_int_10_10_10_2) (gl_unsigned_int_2_10_10_10_rev) (gl_unsigned_int_24_8) (gl_unsigned_int_10f_11f_11f_rev) (gl_unsigned_int_5_9_9_9_rev) (gl_float_32_unsigned_int_24_8_rev))
+        META_ASPECT_DECLARE(type, Type, struct, (floating) (integer))
+        META_ASPECT_DECLARE(value_type,
+                            ValueType,
+                            struct,
+                            (unsigned_byte) (byte_) (unsigned_short) (short_) (unsigned_int) (int_) (half_float) (float_) (float_unsigned_int) (double_))
+        META_ASPECT_DECLARE(order, Order, struct, (normal) (reverse))
+        META_ASPECT_DECLARE(normalized, Normalized, struct, (normalized) (normal))
+        META_ASPECT_DECLARE(packing, Packing, struct, (none) (rgb) (rgba) (depth_stencil))
 
         typedef ::std::uint32_t size_type;
 

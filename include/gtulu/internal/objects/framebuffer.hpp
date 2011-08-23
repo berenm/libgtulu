@@ -26,10 +26,10 @@ namespace gtulu {
 
     namespace framebuffer {
 
-      DECLARE_TRAIT_ASPECT(slot, using cst::, (gl_read_framebuffer) (gl_draw_framebuffer))
-      DECLARE_TRAIT_ASPECT(builtin, struct, (simple_buffer) (double_buffer))
-      DECLARE_TRAIT_ASPECT(mode, struct, (monoscopic) (stereoscopic))
-      DECLARE_TRAIT_ASPECT(layered, struct, (yes) (no))
+      META_ASPECT_DECLARE(slot, SlotType, using cst::, (gl_read_framebuffer) (gl_draw_framebuffer))
+      META_ASPECT_DECLARE(builtin, Builtin, struct, (simple_buffer) (double_buffer))
+      META_ASPECT_DECLARE(mode, Mode, struct, (monoscopic) (stereoscopic))
+      META_ASPECT_DECLARE(layered, Layered, struct, (yes) (no))
 
     } // namespace framebuffer
 
@@ -37,7 +37,7 @@ namespace gtulu {
     namespace gifb = ::gtulu::internal::framebuffer::builtin;
     namespace gifl = ::gtulu::internal::framebuffer::layered;
     namespace gifm = ::gtulu::internal::framebuffer::mode;
-    namespace gifs = ::gtulu::internal::framebuffer::slots;
+    namespace gifs = ::gtulu::internal::framebuffer::slot;
 
     namespace objects {
       template< >
@@ -65,7 +65,7 @@ namespace gtulu {
           }
       };
 #define DECLARE_SLOT(slot_type_m) \
-  typedef framebuffer_slot< slots::gl_##slot_type_m > slot_type_m##_slot; \
+  typedef framebuffer_slot< slot::gl_##slot_type_m > slot_type_m##_slot; \
 
       DECLARE_SLOT(read_framebuffer)
       DECLARE_SLOT(draw_framebuffer)

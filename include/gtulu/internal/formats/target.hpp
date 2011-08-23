@@ -21,14 +21,15 @@ namespace gtulu {
     namespace formats {
       namespace target {
 
-        DECLARE_TRAIT_ASPECT(format,
-                             using cst::,
-                             (gl_texture_1d) (gl_texture_1d_array) (gl_texture_2d) (gl_texture_2d_array) (gl_texture_2d_multisample) (gl_texture_2d_multisample_array) (gl_texture_3d) (gl_texture_rectangle) (gl_texture_buffer) (gl_texture_cube_map) (gl_texture_cube_map_negative_x) (gl_texture_cube_map_negative_y) (gl_texture_cube_map_negative_z) (gl_texture_cube_map_positive_x) (gl_texture_cube_map_positive_y) (gl_texture_cube_map_positive_z) (gl_renderbuffer))
+        META_ASPECT_DECLARE(format,
+                            Format,
+                            using cst::,
+                            (gl_texture_1d) (gl_texture_1d_array) (gl_texture_2d) (gl_texture_2d_array) (gl_texture_2d_multisample) (gl_texture_2d_multisample_array) (gl_texture_3d) (gl_texture_rectangle) (gl_texture_buffer) (gl_texture_cube_map) (gl_texture_cube_map_negative_x) (gl_texture_cube_map_negative_y) (gl_texture_cube_map_negative_z) (gl_texture_cube_map_positive_x) (gl_texture_cube_map_positive_y) (gl_texture_cube_map_positive_z) (gl_renderbuffer))
 
-        DECLARE_TRAIT_ASPECT(base, struct, (texture) (renderbuffer))
-        DECLARE_TRAIT_ASPECT(type, struct, (oned) (twod) (threed) (rectangle) (buffer) (cube_map))
-        DECLARE_TRAIT_ASPECT(sample, struct, (simple) (multi))
-        DECLARE_TRAIT_ASPECT(cardinality, struct, (single) (array))
+        META_ASPECT_DECLARE(base, Base, struct, (texture) (renderbuffer))
+        META_ASPECT_DECLARE(type, Type, struct, (oned) (twod) (threed) (rectangle) (buffer) (cube_map))
+        META_ASPECT_DECLARE(sample, Sample, struct, (simple) (multi))
+        META_ASPECT_DECLARE(cardinality, Cardinality, struct, (single) (array))
 
         template< typename Format, typename Base, typename DataType, typename Cardinality, typename Sample >
         struct target_metadata {

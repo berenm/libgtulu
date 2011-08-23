@@ -24,7 +24,7 @@ namespace gtulu {
       namespace uniform {
         namespace sampler {
 
-          DECLARE_TRAIT_ASPECT(compare, struct, (normal) (shadow))
+          META_ASPECT_DECLARE(compare, Compare, struct, (normal) (shadow))
 
           template< typename Format, typename DataType, typename TargetFormat, typename Compare >
           struct uniform_metadata: fu::uniform_metadata< Format, fub::sampler, DataType > {

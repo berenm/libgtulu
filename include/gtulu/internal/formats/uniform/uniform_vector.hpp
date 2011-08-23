@@ -22,7 +22,7 @@ namespace gtulu {
       namespace uniform {
         namespace vector {
 
-          DECLARE_TRAIT_ASPECT(count, using fcd::,
+          META_ASPECT_DECLARE(count, Count, using fcd::,
               (two)
               (three)
               (four)

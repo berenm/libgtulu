@@ -20,15 +20,20 @@ namespace gtulu {
 
     namespace formats {
       namespace common {
-        DECLARE_TRAIT_ASPECT(order, struct, (normal) (reverse))
-        DECLARE_TRAIT_ASPECT(type, struct, (floating) (fixed) (unsigned_fixed) (integer) (unsigned_integer) (boolean))
-        DECLARE_TRAIT_ASPECT(dimension,
-                             struct,
-                             (one) (two) (two_by_two) (two_by_three) (two_by_four) (three) (three_by_two) (three_by_three) (three_by_four) (four) (four_by_two) (four_by_three) (four_by_four))
+        META_ASPECT_DECLARE(order, Order, struct, (normal) (reverse))
+        META_ASPECT_DECLARE(type,
+                            Type,
+                            struct,
+                            (floating) (fixed) (unsigned_fixed) (integer) (unsigned_integer) (boolean))
+        META_ASPECT_DECLARE(dimension,
+                            Dimension,
+                            struct,
+                            (one) (two) (two_by_two) (two_by_three) (two_by_four) (three) (three_by_two) (three_by_three) (three_by_four) (four) (four_by_two) (four_by_three) (four_by_four))
 
-        DECLARE_TRAIT_ASPECT(base,
-                             using cst::,
-                             (gl_depth) (gl_stencil) (gl_depth_stencil) (gl_red) (gl_rg) (gl_rgb) (gl_rgba))
+        META_ASPECT_DECLARE(base,
+                            Base,
+                            using cst::,
+                            (gl_depth) (gl_stencil) (gl_depth_stencil) (gl_red) (gl_rg) (gl_rgb) (gl_rgba))
         namespace base {
           typedef cst::gl_red gl_r;
         } // namespace base

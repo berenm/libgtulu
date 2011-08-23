@@ -21,9 +21,10 @@ namespace gtulu {
     namespace formats {
       namespace group {
 
-        DECLARE_TRAIT_ASPECT(format,
-                             using cst::,
-                             (gl_depth) (gl_stencil) (gl_depth_stencil) (gl_red) (gl_green) (gl_blue) (gl_rg) (gl_rgb) (gl_rgba) (gl_bgr) (gl_bgra) (gl_red_integer ) (gl_green_integer) (gl_blue_integer ) (gl_rg_integer) (gl_rgb_integer) (gl_rgba_integer) (gl_bgr_integer) (gl_bgra_integer))
+        META_ASPECT_DECLARE(format,
+                            Format,
+                            using cst::,
+                            (gl_depth) (gl_stencil) (gl_depth_stencil) (gl_red) (gl_green) (gl_blue) (gl_rg) (gl_rgb) (gl_rgba) (gl_bgr) (gl_bgra) (gl_red_integer ) (gl_green_integer) (gl_blue_integer ) (gl_rg_integer) (gl_rgb_integer) (gl_rgba_integer) (gl_bgr_integer) (gl_bgra_integer))
         namespace format {
           typedef cst::gl_red gl_r;
           typedef cst::gl_green gl_g;
@@ -33,9 +34,9 @@ namespace gtulu {
           typedef cst::gl_blue_integer gl_b_integer;
         } // namespace format
 
-        DECLARE_TRAIT_ASPECT(base, struct, (depth) (stencil) (depth_stencil) (r) (g) (b) (rg) (rgb) (rgba))
-        DECLARE_TRAIT_ASPECT(order, struct, (normal) (reverse))
-        DECLARE_TRAIT_ASPECT(type, struct, (floating) (integer))
+        META_ASPECT_DECLARE(base, Base, struct, (depth) (stencil) (depth_stencil) (r) (g) (b) (rg) (rgb) (rgba))
+        META_ASPECT_DECLARE(order, Order, struct, (normal) (reverse))
+        META_ASPECT_DECLARE(type, Type, struct, (floating) (integer))
 
         template< typename Format, typename Base, typename DataType, typename Order >
         struct group_metadata {

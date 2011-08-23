@@ -23,9 +23,10 @@ namespace gtulu {
 
     namespace drawing {
 
-      DECLARE_TRAIT_ASPECT(mode,
-                           using cst::,
-                           (gl_points) (gl_lines) (gl_line_strip) (gl_lines_adjacency) (gl_line_strip_adjacency) (gl_line_loop) (gl_triangles) (gl_triangle_strip) (gl_triangles_adjacency) (gl_triangle_strip_adjacency) (gl_triangle_fan))
+      META_ASPECT_DECLARE(mode,
+                          Mode,
+                          using cst::,
+                          (gl_points) (gl_lines) (gl_line_strip) (gl_lines_adjacency) (gl_line_strip_adjacency) (gl_line_loop) (gl_triangles) (gl_triangle_strip) (gl_triangles_adjacency) (gl_triangle_strip_adjacency) (gl_triangle_fan))
 
       typedef ::std::uint32_t draw_mode_t;
 

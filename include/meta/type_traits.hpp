@@ -23,20 +23,29 @@
 
 #include <boost/preprocessor.hpp>
 
-#define DECLARE_TRAIT(n, data_m, trait_m) \
-  BOOST_PP_TUPLE_ELEM(2, 0, data_m) trait_m; \
+#define META_ASPECT_DECLARE_TRAIT(aspect_m, prefix_m, trait_m) \
+  prefix_m trait_m; \
   template< typename T > struct BOOST_PP_CAT(is_, trait_m): ::boost::mpl::false_ {}; \
   template< > struct BOOST_PP_CAT(is_, trait_m)< trait_m >: ::boost::mpl::true_ {}; \
-  template< > struct BOOST_PP_CAT(is_a_, BOOST_PP_TUPLE_ELEM(2, 1, data_m))< trait_m >: ::boost::mpl::true_ {};
+  template< > struct BOOST_PP_CAT(is_a_, aspect_m)< trait_m >: ::boost::mpl::true_ {};
 
-#define TRAIT_CAT_PREFIX(_, prefix_m, trait_m) prefix_m trait_m
+#define META_ASPECT_DECLARE_TRAIT_EACH(n, data_m, trait_m) META_ASPECT_DECLARE_TRAIT(BOOST_PP_TUPLE_ELEM(2, 0, data_m), BOOST_PP_TUPLE_ELEM(2, 1, data_m), trait_m)
 
-#define DECLARE_TRAIT_ASPECT(aspect_m, prefix_m, traits_m) \
+#define META_ASPECT_DECLARE(aspect_m, aspect_template_m, prefix_m, traits_m) \
     namespace aspect_m { \
       template< typename Trait > struct BOOST_PP_CAT(is_a_, aspect_m): ::boost::mpl::false_ {}; \
-      BOOST_PP_SEQ_FOR_EACH(DECLARE_TRAIT, (prefix_m, aspect_m), traits_m) \
+      BOOST_PP_SEQ_FOR_EACH(META_ASPECT_DECLARE_TRAIT_EACH, (aspect_m, prefix_m), traits_m) \
     } \
-    template< typename Trait > struct BOOST_PP_CAT(is_a_, aspect_m): aspect_m:: BOOST_PP_CAT(is_a_, aspect_m) < Trait > {};
+    template< typename Trait > struct BOOST_PP_CAT(is_a_, aspect_m): aspect_m:: BOOST_PP_CAT(is_a_, aspect_m) < Trait > {}; \
+    template< typename aspect_template_m > \
+    struct BOOST_PP_CAT(aspect_m, _check) { \
+      static_assert(BOOST_PP_CAT(is_a_, aspect_m)< aspect_template_m >::value, BOOST_PP_STRINGIZE(aspect_template_m) " is not a valid " BOOST_PP_STRINGIZE(aspect_m)); \
+      typedef aspect_template_m type; \
+    }; \
+    template< typename Type > \
+    struct BOOST_PP_CAT(get_, aspect_m) { \
+      typedef typename Type::aspect::aspect_m type; \
+    };
 
 #define DECLARE_HAS_TRAIT(aspect_m, trait_m, type_m) \
     namespace aspect_m { \

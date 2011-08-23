@@ -21,7 +21,7 @@ namespace gtulu {
     namespace formats {
       namespace attribute {
 
-        DECLARE_TRAIT_ASPECT(format, using cst::,
+        META_ASPECT_DECLARE(format, Format, using cst::,
             (gl_float)
             (gl_float_vec2)
             (gl_float_vec3)
@@ -49,12 +49,12 @@ namespace gtulu {
           cst::gl_constant_base const get(::std::uint32_t value);
         } // namespace format
 
-        DECLARE_TRAIT_ASPECT(base, struct,
+        META_ASPECT_DECLARE(base, Base, struct,
             (literal)
             (vector)
             (matrix)
         )
-        DECLARE_TRAIT_ASPECT(type, struct,
+        META_ASPECT_DECLARE(type, Type, struct,
             (floating)
             (integer)
             (unsigned_integer)

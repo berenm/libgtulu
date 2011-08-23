@@ -28,15 +28,18 @@ namespace gtulu {
 
     namespace buffer {
 
-      DECLARE_TRAIT_ASPECT(slot,
-                           using cst::,
-                           (gl_array_buffer) (gl_copy_read_buffer) (gl_copy_write_buffer) (gl_element_array_buffer) (gl_pixel_pack_buffer) (gl_pixel_unpack_buffer) (gl_texture_buffer) (gl_transform_feedback_buffer) (gl_uniform_buffer) (gl_draw_indirect_buffer))
-      DECLARE_TRAIT_ASPECT(usage,
-                           using cst::,
-                           (gl_stream_draw) (gl_stream_read) (gl_stream_copy) (gl_static_draw) (gl_static_read) (gl_static_copy) (gl_dynamic_draw) (gl_dynamic_read) (gl_dynamic_copy))
-      DECLARE_TRAIT_ASPECT(parameter,
-                           using cst::,
-                           (gl_buffer_access) (gl_buffer_mapped) (gl_buffer_size) (gl_buffer_usage))
+      META_ASPECT_DECLARE(slot,
+                          SlotType,
+                          using cst::,
+                          (gl_array_buffer) (gl_copy_read_buffer) (gl_copy_write_buffer) (gl_element_array_buffer) (gl_pixel_pack_buffer) (gl_pixel_unpack_buffer) (gl_texture_buffer) (gl_transform_feedback_buffer) (gl_uniform_buffer) (gl_draw_indirect_buffer))
+      META_ASPECT_DECLARE(usage,
+                          Usage,
+                          using cst::,
+                          (gl_stream_draw) (gl_stream_read) (gl_stream_copy) (gl_static_draw) (gl_static_read) (gl_static_copy) (gl_dynamic_draw) (gl_dynamic_read) (gl_dynamic_copy))
+      META_ASPECT_DECLARE(parameter,
+                          Parameter,
+                          using cst::,
+                          (gl_buffer_access) (gl_buffer_mapped) (gl_buffer_size) (gl_buffer_usage))
 
     } // namespace buffer
 
