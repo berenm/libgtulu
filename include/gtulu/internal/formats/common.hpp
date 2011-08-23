@@ -26,15 +26,13 @@ namespace gtulu {
                              struct,
                              (one) (two) (two_by_two) (two_by_three) (two_by_four) (three) (three_by_two) (three_by_three) (three_by_four) (four) (four_by_two) (four_by_three) (four_by_four))
 
+        DECLARE_TRAIT_ASPECT(base,
+                             using cst::,
+                             (gl_depth) (gl_stencil) (gl_depth_stencil) (gl_red) (gl_rg) (gl_rgb) (gl_rgba))
         namespace base {
-          using cst::gl_depth;
-          using cst::gl_stencil;
-          using cst::gl_depth_stencil;
           typedef cst::gl_red gl_r;
-          using cst::gl_rg;
-          using cst::gl_rgb;
-          using cst::gl_rgba;
         } // namespace base
+
       } // namespace common
     } // namespace formats
 

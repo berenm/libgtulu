@@ -18,6 +18,7 @@
 #include <boost/mpl/not.hpp>
 #include <boost/mpl/equal_to.hpp>
 #include <boost/mpl/same_as.hpp>
+#include <boost/mpl/vector.hpp>
 #include <type_traits>
 
 #include <boost/preprocessor.hpp>
@@ -27,10 +28,14 @@
   template< typename T > struct BOOST_PP_CAT(is_, trait_m): ::boost::mpl::false_ {}; \
   template< > struct BOOST_PP_CAT(is_, trait_m)< trait_m >: ::boost::mpl::true_ {};
 
+#define TRAIT_CAT_PREFIX(_, prefix_m, trait_m) prefix_m trait_m
+
 #define DECLARE_TRAIT_ASPECT(aspect_m, prefix_m, traits_m) \
     namespace aspect_m { \
       BOOST_PP_SEQ_FOR_EACH(DECLARE_TRAIT, prefix_m, traits_m) \
-    }
+    } \
+    typedef ::boost::mpl::vector< BOOST_PP_SEQ_ENUM(BOOST_PP_SEQ_TRANSFORM(TRAIT_CAT_PREFIX, aspect_m::, traits_m)) > BOOST_PP_CAT(aspect_m, s_t); \
+    template< typename Trait > struct BOOST_PP_CAT(is_a_, aspect_m): ::boost::mpl::contains< BOOST_PP_CAT(aspect_m, s_t), Trait > {};
 
 #define DECLARE_HAS_TRAIT(aspect_m, trait_m, type_m) \
     namespace aspect_m { \

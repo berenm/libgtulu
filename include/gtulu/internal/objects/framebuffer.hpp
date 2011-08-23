@@ -25,25 +25,12 @@ namespace gtulu {
   namespace internal {
 
     namespace framebuffer {
-      namespace slots {
-        using cst::gl_read_framebuffer;
-        using cst::gl_draw_framebuffer;
-      } // namespace slots
 
-      namespace builtin {
-        struct simple_buffer;
-        struct double_buffer;
-      } // namespace builtin
+      DECLARE_TRAIT_ASPECT(slot, using cst::, (gl_read_framebuffer) (gl_draw_framebuffer))
+      DECLARE_TRAIT_ASPECT(builtin, struct, (simple_buffer) (double_buffer))
+      DECLARE_TRAIT_ASPECT(mode, struct, (monoscopic) (stereoscopic))
+      DECLARE_TRAIT_ASPECT(layered, struct, (yes) (no))
 
-      namespace mode {
-        struct monoscopic;
-        struct stereoscopic;
-      } // namespace mode
-
-      namespace layered {
-        struct yes;
-        struct no;
-      } // namespace layered
     } // namespace framebuffer
 
     namespace gif = ::gtulu::internal::framebuffer;

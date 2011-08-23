@@ -21,69 +21,71 @@ namespace gtulu {
     namespace formats {
       namespace uniform {
 
-        namespace format {
-          using cst::gl_float;
-          using cst::gl_float_vec2;
-          using cst::gl_float_vec3;
-          using cst::gl_float_vec4;
-          using cst::gl_int;
-          using cst::gl_int_vec2;
-          using cst::gl_int_vec3;
-          using cst::gl_int_vec4;
-          using cst::gl_unsigned_int;
-          using cst::gl_unsigned_int_vec2;
-          using cst::gl_unsigned_int_vec3;
-          using cst::gl_unsigned_int_vec4;
-          using cst::gl_bool;
-          using cst::gl_bool_vec2;
-          using cst::gl_bool_vec3;
-          using cst::gl_bool_vec4;
-          using cst::gl_float_mat2;
-          using cst::gl_float_mat3;
-          using cst::gl_float_mat4;
-          using cst::gl_float_mat2x3;
-          using cst::gl_float_mat2x4;
-          using cst::gl_float_mat3x2;
-          using cst::gl_float_mat3x4;
-          using cst::gl_float_mat4x2;
-          using cst::gl_float_mat4x3;
-          using cst::gl_sampler_1d;
-          using cst::gl_sampler_2d;
-          using cst::gl_sampler_3d;
-          using cst::gl_sampler_cube;
-          using cst::gl_sampler_1d_shadow;
-          using cst::gl_sampler_2d_shadow;
-          using cst::gl_sampler_1d_array;
-          using cst::gl_sampler_2d_array;
-          using cst::gl_sampler_1d_array_shadow;
-          using cst::gl_sampler_2d_array_shadow;
-          using cst::gl_sampler_2d_multisample;
-          using cst::gl_sampler_2d_multisample_array;
-          using cst::gl_sampler_cube_shadow;
-          using cst::gl_sampler_buffer;
-          using cst::gl_sampler_2d_rect;
-          using cst::gl_sampler_2d_rect_shadow;
-          using cst::gl_int_sampler_1d;
-          using cst::gl_int_sampler_2d;
-          using cst::gl_int_sampler_3d;
-          using cst::gl_int_sampler_cube;
-          using cst::gl_int_sampler_1d_array;
-          using cst::gl_int_sampler_2d_array;
-          using cst::gl_int_sampler_2d_multisample;
-          using cst::gl_int_sampler_2d_multisample_array;
-          using cst::gl_int_sampler_buffer;
-          using cst::gl_int_sampler_2d_rect;
-          using cst::gl_unsigned_int_sampler_1d;
-          using cst::gl_unsigned_int_sampler_2d;
-          using cst::gl_unsigned_int_sampler_3d;
-          using cst::gl_unsigned_int_sampler_cube;
-          using cst::gl_unsigned_int_sampler_1d_array;
-          using cst::gl_unsigned_int_sampler_2d_array;
-          using cst::gl_unsigned_int_sampler_2d_multisample;
-          using cst::gl_unsigned_int_sampler_2d_multisample_array;
-          using cst::gl_unsigned_int_sampler_buffer;
-          using cst::gl_unsigned_int_sampler_2d_rect;
+        DECLARE_TRAIT_ASPECT(format, using cst::,
+            (gl_float)
+            (gl_float_vec2)
+            (gl_float_vec3)
+            (gl_float_vec4)
+            (gl_int)
+            (gl_int_vec2)
+            (gl_int_vec3)
+            (gl_int_vec4)
+            (gl_unsigned_int)
+            (gl_unsigned_int_vec2)
+            (gl_unsigned_int_vec3)
+            (gl_unsigned_int_vec4)
+            (gl_bool)
+            (gl_bool_vec2)
+            (gl_bool_vec3)
+            (gl_bool_vec4)
+            (gl_float_mat2)
+            (gl_float_mat3)
+            (gl_float_mat4)
+            (gl_float_mat2x3)
+            (gl_float_mat2x4)
+            (gl_float_mat3x2)
+            (gl_float_mat3x4)
+            (gl_float_mat4x2)
+            (gl_float_mat4x3)
+            (gl_sampler_1d)
+            (gl_sampler_2d)
+            (gl_sampler_3d)
+            (gl_sampler_cube)
+            (gl_sampler_1d_shadow)
+            (gl_sampler_2d_shadow)
+            (gl_sampler_1d_array)
+            (gl_sampler_2d_array)
+            (gl_sampler_1d_array_shadow)
+            (gl_sampler_2d_array_shadow)
+            (gl_sampler_2d_multisample)
+            (gl_sampler_2d_multisample_array)
+            (gl_sampler_cube_shadow)
+            (gl_sampler_buffer)
+            (gl_sampler_2d_rect)
+            (gl_sampler_2d_rect_shadow)
+            (gl_int_sampler_1d)
+            (gl_int_sampler_2d)
+            (gl_int_sampler_3d)
+            (gl_int_sampler_cube)
+            (gl_int_sampler_1d_array)
+            (gl_int_sampler_2d_array)
+            (gl_int_sampler_2d_multisample)
+            (gl_int_sampler_2d_multisample_array)
+            (gl_int_sampler_buffer)
+            (gl_int_sampler_2d_rect)
+            (gl_unsigned_int_sampler_1d)
+            (gl_unsigned_int_sampler_2d)
+            (gl_unsigned_int_sampler_3d)
+            (gl_unsigned_int_sampler_cube)
+            (gl_unsigned_int_sampler_1d_array)
+            (gl_unsigned_int_sampler_2d_array)
+            (gl_unsigned_int_sampler_2d_multisample)
+            (gl_unsigned_int_sampler_2d_multisample_array)
+            (gl_unsigned_int_sampler_buffer)
+            (gl_unsigned_int_sampler_2d_rect)
+        )
 
+        namespace format {
           cst::gl_constant_base const get(::std::uint32_t value);
         } // namespace format
 

@@ -23,20 +23,22 @@ namespace gtulu {
     namespace formats {
       namespace output {
 
-        namespace format {
-          using cst::gl_float;
-          using cst::gl_float_vec2;
-          using cst::gl_float_vec3;
-          using cst::gl_float_vec4;
-          using cst::gl_int;
-          using cst::gl_int_vec2;
-          using cst::gl_int_vec3;
-          using cst::gl_int_vec4;
-          using cst::gl_unsigned_int;
-          using cst::gl_unsigned_int_vec2;
-          using cst::gl_unsigned_int_vec3;
-          using cst::gl_unsigned_int_vec4;
+        DECLARE_TRAIT_ASPECT(format, using cst::,
+            (gl_float)
+            (gl_float_vec2)
+            (gl_float_vec3)
+            (gl_float_vec4)
+            (gl_int)
+            (gl_int_vec2)
+            (gl_int_vec3)
+            (gl_int_vec4)
+            (gl_unsigned_int)
+            (gl_unsigned_int_vec2)
+            (gl_unsigned_int_vec3)
+            (gl_unsigned_int_vec4)
+        )
 
+        namespace format {
           cst::gl_constant_base const get(::std::string type_name);
         } // namespace format
 

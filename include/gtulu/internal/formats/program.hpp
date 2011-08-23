@@ -13,25 +13,18 @@
 
 #include "gtulu/internal/constants_fwd.hpp"
 
+#include "gtulu/internal/formats/common.hpp"
+
 namespace gtulu {
   namespace internal {
 
     namespace formats {
       namespace program {
 
-        namespace attribute {
-          using cst::gl_delete_status;
-          using cst::gl_link_status;
-          using cst::gl_validate_status;
-          using cst::gl_info_log_length;
-          using cst::gl_attached_shaders;
-          using cst::gl_active_attributes;
-          using cst::gl_active_attribute_max_length;
-          using cst::gl_active_uniforms;
-          using cst::gl_active_uniform_max_length;
-          using cst::gl_active_uniform_blocks;
-          using cst::gl_active_uniform_block_max_name_length;
-        } // namespace attribute
+        DECLARE_TRAIT_ASPECT(attribute,
+                             using cst::,
+                             (gl_delete_status) (gl_link_status) (gl_validate_status) (gl_info_log_length) (gl_attached_shaders) (gl_active_attributes) (gl_active_attribute_max_length) (gl_active_uniforms) (gl_active_uniform_max_length) (gl_active_uniform_blocks) (gl_active_uniform_block_max_name_length))
+
       } // namespace program
     } // namespace formats
 

@@ -13,25 +13,19 @@
 
 #include "gtulu/internal/constants_fwd.hpp"
 
+#include "gtulu/internal/formats/common.hpp"
+
 namespace gtulu {
   namespace internal {
 
     namespace formats {
       namespace shader {
 
-        namespace attribute {
-          using cst::gl_shader_type;
-          using cst::gl_delete_status;
-          using cst::gl_compile_status;
-          using cst::gl_info_log_length;
-          using cst::gl_shader_source_length;
-        } // namespace attribute
+        DECLARE_TRAIT_ASPECT(attribute,
+                             using cst::,
+                             (gl_shader_type) (gl_delete_status) (gl_compile_status) (gl_info_log_length) (gl_shader_source_length))
 
-        namespace type {
-          using cst::gl_vertex_shader;
-          using cst::gl_geometry_shader;
-          using cst::gl_fragment_shader;
-        } // namespace type
+        DECLARE_TRAIT_ASPECT(type, using cst::, (gl_vertex_shader) (gl_geometry_shader) (gl_fragment_shader))
 
       } // namespace shader
     } // namespace formats

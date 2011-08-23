@@ -28,52 +28,21 @@ namespace gtulu {
 
     namespace buffer {
 
-      namespace slots {
-        using cst::gl_array_buffer;
-        using cst::gl_copy_read_buffer;
-        using cst::gl_copy_write_buffer;
-        using cst::gl_element_array_buffer;
-        using cst::gl_pixel_pack_buffer;
-        using cst::gl_pixel_unpack_buffer;
-        using cst::gl_texture_buffer;
-        using cst::gl_transform_feedback_buffer;
-        using cst::gl_uniform_buffer;
-        using cst::gl_draw_indirect_buffer;
-      } // namespace slots
-      typedef bm::vector< slots::gl_array_buffer, slots::gl_copy_read_buffer, slots::gl_copy_write_buffer,
-          slots::gl_element_array_buffer, slots::gl_pixel_pack_buffer, slots::gl_pixel_unpack_buffer,
-          slots::gl_texture_buffer, slots::gl_transform_feedback_buffer, slots::gl_uniform_buffer,
-          slots::gl_draw_indirect_buffer > slots_t;
-
-      namespace usages {
-        using cst::gl_stream_draw;
-        using cst::gl_stream_read;
-        using cst::gl_stream_copy;
-        using cst::gl_static_draw;
-        using cst::gl_static_read;
-        using cst::gl_static_copy;
-        using cst::gl_dynamic_draw;
-        using cst::gl_dynamic_read;
-        using cst::gl_dynamic_copy;
-      } // namespace usages
-      typedef bm::vector< usages::gl_stream_draw, usages::gl_stream_read, usages::gl_stream_copy,
-          usages::gl_static_draw, usages::gl_static_read, usages::gl_static_copy, usages::gl_dynamic_draw,
-          usages::gl_dynamic_read, usages::gl_dynamic_copy > usages_t;
-
-      namespace parameters {
-        using cst::gl_buffer_access;
-        using cst::gl_buffer_mapped;
-        using cst::gl_buffer_size;
-        using cst::gl_buffer_usage;
-      } // namespace parameters
-      typedef bm::vector< parameters::gl_buffer_access, parameters::gl_buffer_mapped, parameters::gl_buffer_size,
-          parameters::gl_buffer_usage > parameters_t;
+      DECLARE_TRAIT_ASPECT(slot,
+                           using cst::,
+                           (gl_array_buffer) (gl_copy_read_buffer) (gl_copy_write_buffer) (gl_element_array_buffer) (gl_pixel_pack_buffer) (gl_pixel_unpack_buffer) (gl_texture_buffer) (gl_transform_feedback_buffer) (gl_uniform_buffer) (gl_draw_indirect_buffer))
+      DECLARE_TRAIT_ASPECT(usage,
+                           using cst::,
+                           (gl_stream_draw) (gl_stream_read) (gl_stream_copy) (gl_static_draw) (gl_static_read) (gl_static_copy) (gl_dynamic_draw) (gl_dynamic_read) (gl_dynamic_copy))
+      DECLARE_TRAIT_ASPECT(parameter,
+                           using cst::,
+                           (gl_buffer_access) (gl_buffer_mapped) (gl_buffer_size) (gl_buffer_usage))
 
     } // namespace buffer
 
     namespace gib = ::gtulu::internal::buffer;
-    namespace gibs = ::gtulu::internal::buffer::slots;
-    namespace gibu = ::gtulu::internal::buffer::usages;
+    namespace gibs = ::gtulu::internal::buffer::slot;
+    namespace gibu = ::gtulu::internal::buffer::usage;
 
     namespace objects {
       template< >
@@ -91,7 +60,7 @@ namespace gtulu {
     namespace buffer {
       template< typename SlotType >
       struct buffer_slot {
-          static_assert(bm::contains< slots_t, SlotType>::type::value, "SlotType is not a valid buffer slot.");
+          static_assert(is_a_slot< SlotType >::type::value, "SlotType is not a valid buffer slot.");
 
           typedef SlotType type;
 
@@ -122,10 +91,10 @@ namespace gtulu {
           }
       };
 #define DECLARE_SLOT(slot_type_m) \
-  typedef buffer_slot< slots::gl_##slot_type_m > slot_type_m##_slot; \
+  typedef buffer_slot< slot::gl_##slot_type_m > slot_type_m##_slot; \
 
 #define DECLARE_INDEXED_SLOT(slot_type_m) \
-  typedef buffer_indexed_slot< slots::gl_##slot_type_m > slot_type_m##_slot; \
+  typedef buffer_indexed_slot< slot::gl_##slot_type_m > slot_type_m##_slot; \
 
       DECLARE_SLOT(array_buffer)
       DECLARE_SLOT(copy_read_buffer)
@@ -146,29 +115,29 @@ namespace gtulu {
 
       struct buffer_base: public plug< buffer_base > {
           template< typename SlotType >
-          inline typename boost::enable_if< bm::contains< buffer::slots_t, SlotType > , void >::type bind() const {
+          inline typename boost::enable_if< buffer::is_a_slot< SlotType >, void >::type bind() const {
             SlotType::bind(*this);
           }
 
           template< typename SlotType >
-          inline typename boost::enable_if< bm::contains< buffer::slots_t, SlotType > , void >::type bind(::std::uint32_t const index) const {
+          inline typename boost::enable_if< buffer::is_a_slot< SlotType >, void >::type bind(::std::uint32_t const index) const {
             SlotType::bind(*this, index);
           }
 
           template< typename SlotType >
-          inline typename boost::enable_if< bm::contains< buffer::slots_t, SlotType > , void >::type bind(::std::uint32_t const index,
-                                                                                                          ::std::size_t const offset,
-                                                                                                          ::std::size_t const size) const {
+          inline typename boost::enable_if< buffer::is_a_slot< SlotType >, void >::type bind(::std::uint32_t const index,
+                                                                                             ::std::size_t const offset,
+                                                                                             ::std::size_t const size) const {
             SlotType::bind(*this, index, offset, size);
           }
 
           template< typename SlotType >
-          inline typename boost::enable_if< bm::contains< buffer::slots_t, SlotType > , void >::type unbind() const {
+          inline typename boost::enable_if< buffer::is_a_slot< SlotType >, void >::type unbind() const {
             SlotType::unbind(*this);
           }
       };
 
-      template< typename BufferFormat, typename BufferUsage = gib::usages::gl_stream_draw >
+      template< typename BufferFormat, typename BufferUsage = gib::usage::gl_stream_draw >
       struct buffer: public buffer_base, public object< buffer_base > {
         public:
           typedef typename fd::to_typename< typename BufferFormat::info::value_type >::type data_type_t;

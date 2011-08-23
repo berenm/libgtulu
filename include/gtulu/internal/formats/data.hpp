@@ -21,33 +21,9 @@ namespace gtulu {
     namespace formats {
       namespace data {
 
-        namespace format {
-          using cst::gl_unsigned_byte;
-          using cst::gl_byte;
-          using cst::gl_unsigned_short;
-          using cst::gl_short;
-          using cst::gl_unsigned_int;
-          using cst::gl_int;
-          using cst::gl_half_float;
-          using cst::gl_float;
-          using cst::gl_double;
-          using cst::gl_unsigned_byte_3_3_2;
-          using cst::gl_unsigned_byte_2_3_3_rev;
-          using cst::gl_unsigned_short_5_6_5;
-          using cst::gl_unsigned_short_5_6_5_rev;
-          using cst::gl_unsigned_short_4_4_4_4;
-          using cst::gl_unsigned_short_4_4_4_4_rev;
-          using cst::gl_unsigned_short_5_5_5_1;
-          using cst::gl_unsigned_short_1_5_5_5_rev;
-          using cst::gl_unsigned_int_8_8_8_8;
-          using cst::gl_unsigned_int_8_8_8_8_rev;
-          using cst::gl_unsigned_int_10_10_10_2;
-          using cst::gl_unsigned_int_2_10_10_10_rev;
-          using cst::gl_unsigned_int_24_8;
-          using cst::gl_unsigned_int_10f_11f_11f_rev;
-          using cst::gl_unsigned_int_5_9_9_9_rev;
-          using cst::gl_float_32_unsigned_int_24_8_rev;
-        } // namespace format
+        DECLARE_TRAIT_ASPECT(format,
+                             using cst::,
+                             (gl_unsigned_byte) (gl_byte) (gl_unsigned_short) (gl_short) (gl_unsigned_int) (gl_int) (gl_half_float) (gl_float) (gl_double) (gl_unsigned_byte_3_3_2) (gl_unsigned_byte_2_3_3_rev) (gl_unsigned_short_5_6_5) (gl_unsigned_short_5_6_5_rev) (gl_unsigned_short_4_4_4_4) (gl_unsigned_short_4_4_4_4_rev) (gl_unsigned_short_5_5_5_1) (gl_unsigned_short_1_5_5_5_rev) (gl_unsigned_int_8_8_8_8) (gl_unsigned_int_8_8_8_8_rev) (gl_unsigned_int_10_10_10_2) (gl_unsigned_int_2_10_10_10_rev) (gl_unsigned_int_24_8) (gl_unsigned_int_10f_11f_11f_rev) (gl_unsigned_int_5_9_9_9_rev) (gl_float_32_unsigned_int_24_8_rev))
 
         DECLARE_TRAIT_ASPECT(type, struct, (floating) (integer))
         DECLARE_TRAIT_ASPECT(value_type,

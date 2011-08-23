@@ -21,25 +21,9 @@ namespace gtulu {
     namespace formats {
       namespace target {
 
-        namespace format {
-          using cst::gl_texture_1d;
-          using cst::gl_texture_1d_array;
-          using cst::gl_texture_2d;
-          using cst::gl_texture_2d_array;
-          using cst::gl_texture_2d_multisample;
-          using cst::gl_texture_2d_multisample_array;
-          using cst::gl_texture_3d;
-          using cst::gl_texture_rectangle;
-          using cst::gl_texture_buffer;
-          using cst::gl_texture_cube_map;
-          using cst::gl_texture_cube_map_negative_x;
-          using cst::gl_texture_cube_map_negative_y;
-          using cst::gl_texture_cube_map_negative_z;
-          using cst::gl_texture_cube_map_positive_x;
-          using cst::gl_texture_cube_map_positive_y;
-          using cst::gl_texture_cube_map_positive_z;
-          using cst::gl_renderbuffer;
-        } // namespace format
+        DECLARE_TRAIT_ASPECT(format,
+                             using cst::,
+                             (gl_texture_1d) (gl_texture_1d_array) (gl_texture_2d) (gl_texture_2d_array) (gl_texture_2d_multisample) (gl_texture_2d_multisample_array) (gl_texture_3d) (gl_texture_rectangle) (gl_texture_buffer) (gl_texture_cube_map) (gl_texture_cube_map_negative_x) (gl_texture_cube_map_negative_y) (gl_texture_cube_map_negative_z) (gl_texture_cube_map_positive_x) (gl_texture_cube_map_positive_y) (gl_texture_cube_map_positive_z) (gl_renderbuffer))
 
         DECLARE_TRAIT_ASPECT(base, struct, (texture) (renderbuffer))
         DECLARE_TRAIT_ASPECT(type, struct, (oned) (twod) (threed) (rectangle) (buffer) (cube_map))

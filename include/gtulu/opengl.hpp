@@ -12,6 +12,9 @@
 #define OPENGL_HPP_
 #define IN_OPENGL_HPP_
 
+#define FUSION_MAX_VECTOR_SIZE 90
+#include <boost/fusion/container.hpp>
+
 #include <string>
 #include <cstdint>
 

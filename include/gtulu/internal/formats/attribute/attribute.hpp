@@ -21,29 +21,31 @@ namespace gtulu {
     namespace formats {
       namespace attribute {
 
-        namespace format {
-          using cst::gl_float;
-          using cst::gl_float_vec2;
-          using cst::gl_float_vec3;
-          using cst::gl_float_vec4;
-          using cst::gl_int;
-          using cst::gl_int_vec2;
-          using cst::gl_int_vec3;
-          using cst::gl_int_vec4;
-          using cst::gl_unsigned_int;
-          using cst::gl_unsigned_int_vec2;
-          using cst::gl_unsigned_int_vec3;
-          using cst::gl_unsigned_int_vec4;
-          using cst::gl_float_mat2;
-          using cst::gl_float_mat3;
-          using cst::gl_float_mat4;
-          using cst::gl_float_mat2x3;
-          using cst::gl_float_mat2x4;
-          using cst::gl_float_mat3x2;
-          using cst::gl_float_mat3x4;
-          using cst::gl_float_mat4x2;
-          using cst::gl_float_mat4x3;
+        DECLARE_TRAIT_ASPECT(format, using cst::,
+            (gl_float)
+            (gl_float_vec2)
+            (gl_float_vec3)
+            (gl_float_vec4)
+            (gl_int)
+            (gl_int_vec2)
+            (gl_int_vec3)
+            (gl_int_vec4)
+            (gl_unsigned_int)
+            (gl_unsigned_int_vec2)
+            (gl_unsigned_int_vec3)
+            (gl_unsigned_int_vec4)
+            (gl_float_mat2)
+            (gl_float_mat3)
+            (gl_float_mat4)
+            (gl_float_mat2x3)
+            (gl_float_mat2x4)
+            (gl_float_mat3x2)
+            (gl_float_mat3x4)
+            (gl_float_mat4x2)
+            (gl_float_mat4x3)
+        )
 
+        namespace format {
           cst::gl_constant_base const get(::std::uint32_t value);
         } // namespace format
 
