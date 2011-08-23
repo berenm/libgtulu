@@ -14,45 +14,42 @@
 #include "gtulu/opengl.hpp"
 #include "gtulu/internal/constants.hpp"
 
+#define GTULU_SAFE_MULTILINE(contents_m) \
+  do { \
+    contents_m; \
+  } while(0)
+
 #if defined(NO_GTULU_DEBUG) || defined(NDEBUG)
-#define __gl_check_error() ;
+#define __gl_check_error() GTULU_SAFE_MULTILINE()
 #define __gl_debug if(0) ::std::cout
 #else
-#define __gl_check_error() \
-    { \
-      ::std::int32_t __gl_error; \
-      while ((__gl_error = glGetError()) \
-                        != ::gtulu::internal::error::no_error::value) { \
-        switch (__gl_error) { \
-          case ::gtulu::internal::error::invalid_enum::value: \
-            __errorM(gl) \
-              << ::gtulu::internal::error::invalid_enum::name(); \
-            break; \
-          case ::gtulu::internal::error::invalid_value::value: \
-            __errorM(gl) \
-              << ::gtulu::internal::error::invalid_value::name(); \
-            break; \
-          case ::gtulu::internal::error::invalid_operation::value: \
-            __errorM(gl) \
-              << ::gtulu::internal::error::invalid_operation::name(); \
-            break; \
-          case ::gtulu::internal::error::invalid_framebuffer_operation::value: \
-            __errorM(gl) \
-              << ::gtulu::internal::error::invalid_framebuffer_operation::name(); \
-            break; \
-          case ::gtulu::internal::error::out_of_memory::value: \
-            __fatalM(gl) \
-              << ::gtulu::internal::error::out_of_memory::name(); \
-            break; \
-          case ::gtulu::internal::error::no_error::value: \
-            break; \
-          default: \
-            __errorM(gl) \
-              << "unknown error code: " << __gl_error; \
-            break; \
-        } \
-      }; \
-    }
+#define __gl_check_error() GTULU_SAFE_MULTILINE( \
+  ::std::int32_t __gl_error; \
+  while ((__gl_error = glGetError()) != ::gtulu::internal::error::no_error::value) { \
+    switch (__gl_error) { \
+      case ::gtulu::internal::error::invalid_enum::value: \
+        __errorM(gl) << ::gtulu::internal::error::invalid_enum::name(); \
+        break; \
+      case ::gtulu::internal::error::invalid_value::value: \
+        __errorM(gl) << ::gtulu::internal::error::invalid_value::name(); \
+        break; \
+      case ::gtulu::internal::error::invalid_operation::value: \
+        __errorM(gl) << ::gtulu::internal::error::invalid_operation::name(); \
+        break; \
+      case ::gtulu::internal::error::invalid_framebuffer_operation::value: \
+        __errorM(gl) << ::gtulu::internal::error::invalid_framebuffer_operation::name(); \
+        break; \
+      case ::gtulu::internal::error::out_of_memory::value: \
+        __fatalM(gl) << ::gtulu::internal::error::out_of_memory::name(); \
+        break; \
+      case ::gtulu::internal::error::no_error::value: \
+        break; \
+      default: \
+        __errorM(gl) << "unknown error code: " << __gl_error; \
+        break; \
+    } \
+  }; \
+)
 
 #define __gl_debug __debugM(gl)
 #endif

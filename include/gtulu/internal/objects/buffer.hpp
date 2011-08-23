@@ -20,8 +20,11 @@
 #include "gtulu/internal/formats/data.hpp"
 #include "gtulu/internal/formats/conversions/data.hpp"
 
+#include <boost/mpl/vector.hpp>
+
 namespace gtulu {
   namespace internal {
+    namespace bm = ::boost::mpl;
 
     namespace buffer {
 
@@ -37,6 +40,10 @@ namespace gtulu {
         using cst::gl_uniform_buffer;
         using cst::gl_draw_indirect_buffer;
       } // namespace slots
+      typedef bm::vector< slots::gl_array_buffer, slots::gl_copy_read_buffer, slots::gl_copy_write_buffer,
+          slots::gl_element_array_buffer, slots::gl_pixel_pack_buffer, slots::gl_pixel_unpack_buffer,
+          slots::gl_texture_buffer, slots::gl_transform_feedback_buffer, slots::gl_uniform_buffer,
+          slots::gl_draw_indirect_buffer > slots_t;
 
       namespace usages {
         using cst::gl_stream_draw;
@@ -49,6 +56,19 @@ namespace gtulu {
         using cst::gl_dynamic_read;
         using cst::gl_dynamic_copy;
       } // namespace usages
+      typedef bm::vector< usages::gl_stream_draw, usages::gl_stream_read, usages::gl_stream_copy,
+          usages::gl_static_draw, usages::gl_static_read, usages::gl_static_copy, usages::gl_dynamic_draw,
+          usages::gl_dynamic_read, usages::gl_dynamic_copy > usages_t;
+
+      namespace parameters {
+        using cst::gl_buffer_access;
+        using cst::gl_buffer_mapped;
+        using cst::gl_buffer_size;
+        using cst::gl_buffer_usage;
+      } // namespace parameters
+      typedef bm::vector< parameters::gl_buffer_access, parameters::gl_buffer_mapped, parameters::gl_buffer_size,
+          parameters::gl_buffer_usage > parameters_t;
+
     } // namespace buffer
 
     namespace gib = ::gtulu::internal::buffer;
@@ -71,6 +91,8 @@ namespace gtulu {
     namespace buffer {
       template< typename SlotType >
       struct buffer_slot {
+          static_assert(bm::contains< slots_t, SlotType>::type::value, "SlotType is not a valid buffer slot.");
+
           typedef SlotType type;
 
           static inline void bind(gio::plug< gio::buffer_base > const& buffer) {
@@ -124,35 +146,25 @@ namespace gtulu {
 
       struct buffer_base: public plug< buffer_base > {
           template< typename SlotType >
-          inline void bind() const {
+          inline typename boost::enable_if< bm::contains< buffer::slots_t, SlotType > , void >::type bind() const {
             SlotType::bind(*this);
           }
 
           template< typename SlotType >
-          inline void bind(::std::uint32_t const index) const {
+          inline typename boost::enable_if< bm::contains< buffer::slots_t, SlotType > , void >::type bind(::std::uint32_t const index) const {
             SlotType::bind(*this, index);
           }
 
           template< typename SlotType >
-          inline void bind(::std::uint32_t const index, ::std::size_t const offset, ::std::size_t const size) const {
+          inline typename boost::enable_if< bm::contains< buffer::slots_t, SlotType > , void >::type bind(::std::uint32_t const index,
+                                                                                                          ::std::size_t const offset,
+                                                                                                          ::std::size_t const size) const {
             SlotType::bind(*this, index, offset, size);
           }
 
           template< typename SlotType >
-          inline void unbind() const {
+          inline typename boost::enable_if< bm::contains< buffer::slots_t, SlotType > , void >::type unbind() const {
             SlotType::unbind(*this);
-          }
-
-        protected:
-          ::std::size_t size;
-
-          void set_size(::std::size_t const size_in) {
-            size = size_in;
-          }
-
-        public:
-          ::std::size_t get_size() {
-            return size;
           }
       };
 
@@ -176,8 +188,6 @@ namespace gtulu {
 
             typedef typename TemporarySlotType::type slot_t;
             fnc::gl_buffer_data::call< slot_t, BufferUsage >(size * sizeof(data_type_t), data);
-
-            set_size(size);
           }
 
           /**
@@ -189,7 +199,7 @@ namespace gtulu {
            */
           template< typename TemporarySlotType = gib::copy_read_buffer_slot >
           void read(data_type_t* data_inout, ::std::size_t const size_in = 0, ::std::size_t const offset_in = 0) {
-            ::std::size_t const size = (size_in == 0) ? get_size() : size_in;
+            ::std::size_t const size = (size_in == 0) ? get< cst::gl_buffer_size >() : size_in;
 
             bind< TemporarySlotType >();
 
@@ -206,7 +216,7 @@ namespace gtulu {
            */
           template< typename TemporarySlotType = gib::copy_write_buffer_slot >
           void write(data_type_t const* data_in, ::std::size_t const size_in = 0, ::std::size_t const offset_in = 0) {
-            ::std::size_t const size = (size_in == 0) ? get_size() : size_in;
+            ::std::size_t const size = (size_in == 0) ? get< cst::gl_buffer_size >() : size_in;
 
             bind< TemporarySlotType >();
 
@@ -228,7 +238,7 @@ namespace gtulu {
                     ::std::size_t const size_in = 0,
                     ::std::size_t const write_offset_in = 0,
                     ::std::size_t const read_offset_in = 0) {
-            ::std::size_t const size = (size_in == 0) ? get_size() : size_in;
+            ::std::size_t const size = (size_in == 0) ? get< cst::gl_buffer_size >() : size_in;
 
             bind< ReadSlotType >();
             dest_buffer_inout.bind< WriteSlotType >();
@@ -238,6 +248,15 @@ namespace gtulu {
             fnc::gl_copy_buffer_sub_data::call< read_slot_t, write_slot_t >(read_offset_in,
                                                                             write_offset_in,
                                                                             size * sizeof(data_type_t));
+          }
+
+          template< typename Parameter, typename TemporarySlotType = gib::copy_read_buffer_slot >
+          int get() {
+            ::std::uint32_t data_out;
+
+            typedef typename TemporarySlotType::type slot_t;
+            fnc::gl_get_buffer_parameter::call< slot_t, Parameter >(&data_out);
+            return data_out;
           }
       };
 
