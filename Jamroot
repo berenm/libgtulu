@@ -43,6 +43,7 @@ project libgtulu : requirements
   <variant>release:<define>NO_GTULU_DEBUG
   <cflags>-std=c++0x
   <cflags>-Wno-multichar
+  <cflags>-DGTULU_USE_LIBLOGGING
   : default-build debug ;
 
 

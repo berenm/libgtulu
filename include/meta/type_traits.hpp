@@ -24,18 +24,19 @@
 #include <boost/preprocessor.hpp>
 
 #define DECLARE_TRAIT(n, data_m, trait_m) \
-  data_m trait_m; \
+  BOOST_PP_TUPLE_ELEM(2, 0, data_m) trait_m; \
   template< typename T > struct BOOST_PP_CAT(is_, trait_m): ::boost::mpl::false_ {}; \
-  template< > struct BOOST_PP_CAT(is_, trait_m)< trait_m >: ::boost::mpl::true_ {};
+  template< > struct BOOST_PP_CAT(is_, trait_m)< trait_m >: ::boost::mpl::true_ {}; \
+  template< > struct BOOST_PP_CAT(is_a_, BOOST_PP_TUPLE_ELEM(2, 1, data_m))< trait_m >: ::boost::mpl::true_ {};
 
 #define TRAIT_CAT_PREFIX(_, prefix_m, trait_m) prefix_m trait_m
 
 #define DECLARE_TRAIT_ASPECT(aspect_m, prefix_m, traits_m) \
     namespace aspect_m { \
-      BOOST_PP_SEQ_FOR_EACH(DECLARE_TRAIT, prefix_m, traits_m) \
+      template< typename Trait > struct BOOST_PP_CAT(is_a_, aspect_m): ::boost::mpl::false_ {}; \
+      BOOST_PP_SEQ_FOR_EACH(DECLARE_TRAIT, (prefix_m, aspect_m), traits_m) \
     } \
-    typedef ::boost::mpl::vector< BOOST_PP_SEQ_ENUM(BOOST_PP_SEQ_TRANSFORM(TRAIT_CAT_PREFIX, aspect_m::, traits_m)) > BOOST_PP_CAT(aspect_m, s_t); \
-    template< typename Trait > struct BOOST_PP_CAT(is_a_, aspect_m): ::boost::mpl::contains< BOOST_PP_CAT(aspect_m, s_t), Trait > {};
+    template< typename Trait > struct BOOST_PP_CAT(is_a_, aspect_m): aspect_m:: BOOST_PP_CAT(is_a_, aspect_m) < Trait > {};
 
 #define DECLARE_HAS_TRAIT(aspect_m, trait_m, type_m) \
     namespace aspect_m { \

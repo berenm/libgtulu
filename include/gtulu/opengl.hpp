@@ -12,16 +12,13 @@
 #define OPENGL_HPP_
 #define IN_OPENGL_HPP_
 
-#define FUSION_MAX_VECTOR_SIZE 90
-#include <boost/fusion/container.hpp>
-
 #include <string>
 #include <cstdint>
 
 #define GL3_PROTOTYPES 1
 #include <GL3/gl3.h>
 
-#include <logging/logging.hpp>
+#include "gtulu/utils/logging.hpp"
 
 namespace gtulu {
   typedef ::std::uint32_t location_t;

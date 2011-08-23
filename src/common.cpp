@@ -12,7 +12,6 @@
 #include "gtulu/platform.hpp"
 #include "gtulu/internal/context.hpp"
 #include "gtulu/internal/context_info.hpp"
-#include <logging/logging.hpp>
 
 #ifdef GTULU_PLATFORM_LINUX
 
@@ -36,16 +35,14 @@ void init_gl(::std::int32_t argc, char** argv) {
   Display* display = NULL;
   display = XOpenDisplay(NULL);
   if (display == NULL) {
-    __fatalM(gl)
-    << "unable to open X display.";
+    __gtulu_fatal << "unable to open X display.";
 
   } else {
     int framebuffer_config_count = 0;
     GLXFBConfig* framebuffer_configs = NULL;
     framebuffer_configs = glXChooseFBConfig(display, DefaultScreen(display), NULL, &framebuffer_config_count);
     if (framebuffer_configs == NULL) {
-      __fatalM(gl)
-      << "unable to retrieve framebuffer configuration.";
+      __gtulu_fatal << "unable to retrieve framebuffer configuration.";
 
     } else {
       int context_attribs[] = { GLX_CONTEXT_MAJOR_VERSION_ARB, 3, GLX_CONTEXT_MINOR_VERSION_ARB, 3,
@@ -56,23 +53,20 @@ void init_gl(::std::int32_t argc, char** argv) {
       XFree(framebuffer_configs);
 
       if (context == NULL) {
-        __fatalM(gl)
-        << "unable to create OpenGL context.";
+        __gtulu_fatal << "unable to create OpenGL context.";
 
       } else {
         XSync(display, false);
 
         gtulu::internal::context::context_info context_info(display, context);
         if (!context_info.try_acquire()) {
-          __errorM(gl)
-          << "unable to create detached context.";
+          __gtulu_error << "unable to create detached context.";
 
           context_info.drawable = DefaultRootWindow(display);
           context_info.readable = DefaultRootWindow(display);
 
           if (!context_info.try_acquire()) {
-            __fatalM(gl)
-            << "unable to attach context to default drawable.";
+            __gtulu_fatal << "unable to attach context to default drawable.";
           }
         }
       }
@@ -105,14 +99,10 @@ void init_gl(::std::int32_t argc, char** argv) {
   ::std::string const gl_version = gic::gl_version::get();
   ::std::string const gl_shading_language_version = gic::gl_shading_language_version::get();
 
-  __info
-  << gicp::gl_vendor() << ": " << gl_vendor;
-  __info
-  << gicp::gl_renderer() << ": " << gl_renderer;
-  __info
-  << gicp::gl_version() << ": " << gl_version;
-  __info
-  << gicp::gl_shading_language_version() << ": " << gl_shading_language_version;
+  __gtulu_info << gicp::gl_vendor() << ": " << gl_vendor;
+  __gtulu_info << gicp::gl_renderer() << ": " << gl_renderer;
+  __gtulu_info << gicp::gl_version() << ": " << gl_version;
+  __gtulu_info << gicp::gl_shading_language_version() << ": " << gl_shading_language_version;
 }
 
 void close_gl() {

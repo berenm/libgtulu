@@ -9,8 +9,6 @@
  */
 #include "gtulu_opengl_pch.hpp"
 
-#include <logging/logging.hpp>
-
 #include <string>
 #include <vector>
 #include <map>
@@ -232,8 +230,8 @@ const cst::gl_constant_base get_shader_type(::bfs::path const& shader_file) {
   } else if (extension.compare(".gs") == 0 || extension.compare(".geom") == 0) {
     return fst::gl_geometry_shader();
   } else {
-    __error
-    << "Unknown shader extension " << extension << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
+    __gtulu_error << "Unknown shader extension " << extension
+          << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
   }
 
   return cst::invalid_constant();
@@ -395,8 +393,7 @@ int main(int argc, char *argv[]) {
   for (::std::int32_t i = 0; i < argc; ++i) {
     cmdline << argv[i] << " ";
   }
-  __info
-  << cmdline.str();
+  __gtulu_info << cmdline.str();
 
   init_gl(argc, argv);
 
@@ -548,8 +545,8 @@ int main(int argc, char *argv[]) {
                           ::boost::lexical_cast< ::std::string >(info.location),
                           ::boost::lexical_cast< ::std::string >(info.size));
     } else {
-      __warnM(shader)
-      << "Output data '" << info.type << "' " << info.name << " not bound. Maybe only used internally.";
+      __gtulu_warn << "shader: " << "Output data '" << info.type << "' " << info.name
+            << " not bound. Maybe only used internally.";
     }
   }
 

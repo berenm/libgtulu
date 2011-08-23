@@ -11,8 +11,6 @@
 #ifndef GTULU_UTILS_FILE_HPP_
 #define GTULU_UTILS_FILE_HPP_
 
-#include <logging/logging.hpp>
-
 #include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
 
