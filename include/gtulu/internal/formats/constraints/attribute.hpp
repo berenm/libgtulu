@@ -23,8 +23,8 @@ namespace gtulu {
 
         template< typename AttributeFormat, typename DataFormat >
         struct data_packing_check {
-            typedef fdp::is_none< DataFormat > type;
-            static_assert(type::value, "AttributeFormat is not compatible with DataFormat, vertex attributes require non packed buffer data and DataFormat packing is not fdp::none.");
+            typedef fc::packing::is_one_in_one< DataFormat > type;
+            static_assert(type::value, "AttributeFormat is not compatible with DataFormat, vertex attributes require non packed buffer data and DataFormat packing is not fc::packing::one_in_one.");
         };
 
         template< typename AttributeFormat, typename DataFormat >

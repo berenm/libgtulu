@@ -15,6 +15,8 @@
 #include "gtulu/internal/formats/group.hpp"
 #include "gtulu/internal/formats/internal.hpp"
 
+#include <boost/mpl/or.hpp>
+
 namespace gtulu {
   namespace internal {
     namespace bm = ::boost::mpl;
@@ -23,35 +25,41 @@ namespace gtulu {
       namespace data {
 
         template< typename DataFormat, typename GroupFormat >
-        struct group_type_check {
-            typedef bm::or_< fdt::is_floating< DataFormat >, fdt::is_integer< DataFormat > > is_floating_convertible;
-            typedef fdt::is_integer< DataFormat > is_integer_convertible;
+        struct integral_check {
+            typedef bm::or_< fc::integral::is_floating< DataFormat >, fc::integral::is_integral< DataFormat > > is_data_floating_convertible;
+            typedef fc::integral::is_integral< DataFormat > is_data_integral_convertible;
 
-            typedef bm::and_< is_floating_convertible, fgt::is_floating< GroupFormat > > floating_check;
-            typedef bm::and_< is_integer_convertible, fgt::is_integer< GroupFormat > > integer_check;
+            typedef fc::integral::is_floating< GroupFormat > is_group_floating;
+            typedef fc::integral::is_integral< GroupFormat > is_group_integral;
 
-            typedef bm::or_< floating_check, integer_check > type;
-            static_assert(type::value, "DataFormat is not compatible with GroupFormat, floating group requires integer or floating data, integer group requires integer data.");
+            typedef bm::and_< is_group_floating, is_data_floating_convertible > floating_check;
+            typedef bm::and_< is_group_integral, is_data_integral_convertible > integral_check;
+
+            typedef bm::or_< floating_check, integral_check > type;
+            static_assert(type::value, "DataFormat is not compatible with GroupFormat, floating GroupFormat requires integral or floating DataFormat, integral GroupFormat requires integral DataFormat.");
         };
 
         template< typename DataFormat, typename InternalFormat >
-        struct data_packing_check {
-            typedef fdp::is_none< DataFormat > not_packed;
+        struct packing_check {
+            typedef fc::packing::is_one< DataFormat > simple_packing_check;
 
-            typedef bm::and_< fdp::is_rgb< DataFormat >, fib::is_rgb< InternalFormat > > rgb_packed_check;
-            typedef bm::and_< fdp::is_rgba< DataFormat >, fib::is_rgba< InternalFormat > > rgba_packed_check;
-            typedef bm::and_< fdp::is_depth_stencil< DataFormat >, fib::is_depth_stencil< InternalFormat > > depth_stencil_packed_check;
+            typedef bm::and_< fc::packing::is_three_in_one< DataFormat >,
+                fc::component::is_red_green_blue< InternalFormat > > rgb_packing_check;
+            typedef bm::and_< fc::packing::is_four_in_one< DataFormat >,
+                fc::component::is_red_green_blue_alpha< InternalFormat > > rgba_packing_check;
+            typedef bm::and_< fc::packing::is_two_in_one< DataFormat >,
+                fc::component::is_depth_stencil< InternalFormat > > depth_stencil_packing_check;
 
-            typedef bm::or_< not_packed, rgb_packed_check, rgba_packed_check, depth_stencil_packed_check > type;
-            static_assert(type::value, "DataFormat is not compatible with InternalFormat, rgb, rgba, depth_stencil packed data can only be used with, respectively, rgb, rgba, depth_stencil internal formats.");
+            typedef bm::or_< simple_packing_check, rgb_packing_check, rgba_packing_check, depth_stencil_packing_check > type;
+            static_assert(type::value, "DataFormat packing is not compatible with InternalFormat component, two_in_one, three_in_one and four_in_one packing DataFormat can only be used with, respectively, depth_stencil, rgb and rgba component InternalFormat.");
         };
 
         template< typename DataFormat, typename GroupFormat, typename InternalFormat >
         struct are_group_internal_compatible {
-            typedef typename group_type_check< DataFormat, GroupFormat >::type group_type_c;
-            typedef typename data_packing_check< DataFormat, InternalFormat >::type data_packing_c;
+            typedef typename integral_check< DataFormat, GroupFormat >::type integral_c;
+            typedef typename packing_check< DataFormat, InternalFormat >::type packing_c;
 
-            typedef bm::and_< group_type_c, data_packing_c > type;
+            typedef bm::and_< integral_c, packing_c > type;
         };
       } // namespace data
     } // namespace formats

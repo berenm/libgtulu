@@ -24,7 +24,7 @@ namespace gtulu {
         META_ASPECT_DECLARE(format,
                             Format,
                             using cst::,
-                            (gl_depth) (gl_stencil) (gl_depth_stencil) (gl_red) (gl_green) (gl_blue) (gl_rg) (gl_rgb) (gl_rgba) (gl_bgr) (gl_bgra) (gl_red_integer ) (gl_green_integer) (gl_blue_integer ) (gl_rg_integer) (gl_rgb_integer) (gl_rgba_integer) (gl_bgr_integer) (gl_bgra_integer))
+                            (gl_depth)(gl_stencil)(gl_depth_stencil)(gl_red)(gl_green)(gl_blue)(gl_rg)(gl_rgb)(gl_rgba)(gl_bgr)(gl_bgra)(gl_red_integer )(gl_green_integer)(gl_blue_integer )(gl_rg_integer)(gl_rgb_integer)(gl_rgba_integer)(gl_bgr_integer)(gl_bgra_integer))
         namespace format {
           typedef cst::gl_red gl_r;
           typedef cst::gl_green gl_g;
@@ -34,15 +34,11 @@ namespace gtulu {
           typedef cst::gl_blue_integer gl_b_integer;
         } // namespace format
 
-        META_ASPECT_DECLARE(base, Base, struct, (depth) (stencil) (depth_stencil) (r) (g) (b) (rg) (rgb) (rgba))
-        META_ASPECT_DECLARE(order, Order, struct, (normal) (reverse))
-        META_ASPECT_DECLARE(type, Type, struct, (floating) (integer))
-
-        template< typename Format, typename Base, typename DataType, typename Order >
-        struct group_metadata {
+        template< typename Format, typename Component, typename Integral, typename Order >
+        struct group_format_aspect {
             typedef Format format;
-            typedef Base base;
-            typedef DataType type;
+            typedef Component component;
+            typedef Integral integral;
             typedef Order order;
         };
 
@@ -50,51 +46,50 @@ namespace gtulu {
         struct group_format;
 
         template< typename Base, typename DataType, typename Order >
-        struct format_selector;
+        struct select_format;
 
-#define DECLARE_GROUP_FORMAT(format_m, group_m, type_m, order_m) \
-    template< > struct group_format< format::format_m > { \
-        typedef group_metadata< format::format_m, base::group_m, type::type_m, order::order_m> info; \
-    }; \
-    typedef group_format< format::format_m > format_m; \
-    DECLARE_HAS_TRAIT_FORMAT(order, order_m, format_m); \
-    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m); \
-    DECLARE_HAS_TRAIT_FORMAT(base, group_m, format_m); \
-    \
-    template< > struct format_selector < base::group_m, type::type_m, order::order_m > { \
-        typedef format_m format; \
-    };\
+#define DECLARE_FORMAT(format_m, component_m, integral_m, order_m)      \
+    template< > struct group_format< format::format_m > {               \
+        typedef group_format_aspect< format::format_m,                  \
+                                     fc::component::component_m,        \
+                                     fc::integral::integral_m,          \
+                                     fc::order::order_m > aspect;       \
+    };                                                                  \
+    typedef group_format< format::format_m > format_m;                  \
+                                                                        \
+    template< > struct select_format< fc::component::component_m,       \
+                                      fc::integral::integral_m,         \
+                                      fc::order::order_m > {            \
+        typedef format_m type;                                          \
+    };
 
-        DECLARE_GROUP_FORMAT(gl_depth, depth, floating, normal)
-        DECLARE_GROUP_FORMAT(gl_stencil, stencil, integer, normal)
-        DECLARE_GROUP_FORMAT(gl_depth_stencil, depth_stencil, floating, normal)
-        DECLARE_GROUP_FORMAT(gl_r, r, floating, normal)
-        DECLARE_GROUP_FORMAT(gl_g, g, floating, normal)
-        DECLARE_GROUP_FORMAT(gl_b, b, floating, normal)
-        DECLARE_GROUP_FORMAT(gl_rg, rg, floating, normal)
-        DECLARE_GROUP_FORMAT(gl_rgb, rgb, floating, normal)
-        DECLARE_GROUP_FORMAT(gl_rgba, rgba, floating, normal)
-        DECLARE_GROUP_FORMAT(gl_bgr, rgb, floating, reverse)
-        DECLARE_GROUP_FORMAT(gl_bgra, rgba, floating, reverse)
-        DECLARE_GROUP_FORMAT(gl_r_integer, r, integer, normal)
-        DECLARE_GROUP_FORMAT(gl_g_integer, g, integer, normal)
-        DECLARE_GROUP_FORMAT(gl_b_integer, b, integer, normal)
-        DECLARE_GROUP_FORMAT(gl_rg_integer, rg, integer, normal)
-        DECLARE_GROUP_FORMAT(gl_rgb_integer, rgb, integer, normal)
-        DECLARE_GROUP_FORMAT(gl_rgba_integer, rgba, integer, normal)
-        DECLARE_GROUP_FORMAT(gl_bgr_integer, rgb, integer, reverse)
-        DECLARE_GROUP_FORMAT(gl_bgra_integer, rgba, integer, reverse)
+        DECLARE_FORMAT(gl_depth, depth, floating, forward)
+        DECLARE_FORMAT(gl_stencil, stencil, integral, forward)
+        DECLARE_FORMAT(gl_depth_stencil, depth_stencil, floating, forward)
+        DECLARE_FORMAT(gl_r, red, floating, forward)
+        DECLARE_FORMAT(gl_g, green, floating, forward)
+        DECLARE_FORMAT(gl_b, blue, floating, forward)
+        DECLARE_FORMAT(gl_rg, red_green, floating, forward)
+        DECLARE_FORMAT(gl_rgb, red_green_blue, floating, forward)
+        DECLARE_FORMAT(gl_rgba, red_green_blue_alpha, floating, forward)
+        DECLARE_FORMAT(gl_bgr, red_green_blue, floating, reverse)
+        DECLARE_FORMAT(gl_bgra, red_green_blue_alpha, floating, reverse)
+        DECLARE_FORMAT(gl_r_integer, red, integral, forward)
+        DECLARE_FORMAT(gl_g_integer, green, integral, forward)
+        DECLARE_FORMAT(gl_b_integer, blue, integral, forward)
+        DECLARE_FORMAT(gl_rg_integer, red_green, integral, forward)
+        DECLARE_FORMAT(gl_rgb_integer, red_green_blue, integral, forward)
+        DECLARE_FORMAT(gl_rgba_integer, red_green_blue_alpha, integral, forward)
+        DECLARE_FORMAT(gl_bgr_integer, red_green_blue, integral, reverse)
+        DECLARE_FORMAT(gl_bgra_integer, red_green_blue_alpha, integral, reverse)
 
-#undef DECLARE_GROUP_FORMAT
+#undef DECLARE_FORMAT
 
       } // namespace group
     } // namespace formats
 
     namespace fg = ::gtulu::internal::formats::group;
-    namespace fgb = ::gtulu::internal::formats::group::base;
     namespace fgf = ::gtulu::internal::formats::group::format;
-    namespace fgo = ::gtulu::internal::formats::group::order;
-    namespace fgt = ::gtulu::internal::formats::group::type;
 
   } // namespace internal
 } // namespace gtulu

@@ -24,105 +24,104 @@ namespace gtulu {
         META_ASPECT_DECLARE(format,
                             Format,
                             using cst::,
-                            (gl_unsigned_byte) (gl_byte) (gl_unsigned_short) (gl_short) (gl_unsigned_int) (gl_int) (gl_half_float) (gl_float) (gl_double) (gl_unsigned_byte_3_3_2) (gl_unsigned_byte_2_3_3_rev) (gl_unsigned_short_5_6_5) (gl_unsigned_short_5_6_5_rev) (gl_unsigned_short_4_4_4_4) (gl_unsigned_short_4_4_4_4_rev) (gl_unsigned_short_5_5_5_1) (gl_unsigned_short_1_5_5_5_rev) (gl_unsigned_int_8_8_8_8) (gl_unsigned_int_8_8_8_8_rev) (gl_unsigned_int_10_10_10_2) (gl_unsigned_int_2_10_10_10_rev) (gl_unsigned_int_24_8) (gl_unsigned_int_10f_11f_11f_rev) (gl_unsigned_int_5_9_9_9_rev) (gl_float_32_unsigned_int_24_8_rev))
-        META_ASPECT_DECLARE(type, Type, struct, (floating) (integer))
-        META_ASPECT_DECLARE(value_type,
-                            ValueType,
-                            struct,
-                            (unsigned_byte) (byte_) (unsigned_short) (short_) (unsigned_int) (int_) (half_float) (float_) (float_unsigned_int) (double_))
-        META_ASPECT_DECLARE(order, Order, struct, (normal) (reverse))
-        META_ASPECT_DECLARE(normalized, Normalized, struct, (normalized) (normal))
-        META_ASPECT_DECLARE(packing, Packing, struct, (none) (rgb) (rgba) (depth_stencil))
-
+                            (gl_unsigned_byte)(gl_byte)(gl_unsigned_short)(gl_short)(gl_unsigned_int)(gl_int)(gl_half_float)(gl_float)(gl_double)(gl_unsigned_byte_3_3_2)(gl_unsigned_byte_2_3_3_rev)(gl_unsigned_short_5_6_5)(gl_unsigned_short_5_6_5_rev)(gl_unsigned_short_4_4_4_4)(gl_unsigned_short_4_4_4_4_rev)(gl_unsigned_short_5_5_5_1)(gl_unsigned_short_1_5_5_5_rev)(gl_unsigned_int_8_8_8_8)(gl_unsigned_int_8_8_8_8_rev)(gl_unsigned_int_10_10_10_2)(gl_unsigned_int_2_10_10_10_rev)(gl_unsigned_int_24_8)(gl_unsigned_int_10f_11f_11f_rev)(gl_unsigned_int_5_9_9_9_rev)(gl_float_32_unsigned_int_24_8_rev))
         typedef ::std::uint32_t size_type;
 
-        template< typename Format, typename ValueType, typename DataType, typename Packing, typename Order,
-            size_type Size >
-        struct data_metadata {
+        template< typename Format, typename Sign, typename Integral, typename Precision, typename Packing,
+            typename Order, size_type Size >
+        struct data_format_aspect {
             typedef Format format;
-            typedef ValueType value_type;
-            typedef DataType type;
+            typedef Sign sign;
+            typedef Integral integral;
+            typedef Precision precision;
             typedef Packing packing;
             typedef Order order;
+
             static size_type const size_ = Size;
         };
 
         template< typename Format >
         struct data_format;
 
-        template< typename DataType, typename Packing, size_type Size, typename Order = order::normal >
-        struct format_selector;
+        template< typename Integral, typename Packing, size_type Size, typename Order = fc::order::forward >
+        struct select_format;
 
-#define DECLARE_DATA_FORMAT(format_m, value_type_m, type_m, packing_m, order_m, size_m) \
-      template< > struct data_format< format::format_m > { \
-         typedef data_metadata< format::format_m, \
-                                value_type::value_type_m, \
-                                type::type_m, \
-                                packing::packing_m, \
-                                order::order_m, \
-                                size_m > info; \
-      }; \
-      typedef data_format< format::format_m > format_m; \
-      DECLARE_HAS_TRAIT_FORMAT(order, order_m, format_m); \
-      DECLARE_HAS_TRAIT_FORMAT(packing, packing_m, format_m); \
-      DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m); \
-      DECLARE_HAS_TRAIT_FORMAT(value_type, value_type_m, format_m); \
+#define DECLARE_FORMAT(format_m, sign_m, integral_m, precision_m, packing_m, order_m, size_m)   \
+      template< > struct data_format< format::format_m > {                                      \
+         typedef data_format_aspect< format::format_m,                                          \
+                                     fc::sign::sign_m,                                          \
+                                     fc::integral::integral_m,                                  \
+                                     fc::precision::precision_m,                                \
+                                     fc::packing::packing_m,                                    \
+                                     fc::order::order_m,                                        \
+                                     size_m > aspect;                                           \
+      };                                                                                        \
+      typedef data_format< format::format_m > format_m;                                         \
 
-#define DECLARE_DATA_FORMAT_DEFAULT(format_m, value_type_m, type_m, packing_m, order_m, size_m) \
-     DECLARE_DATA_FORMAT(format_m, value_type_m, type_m, packing_m, order_m, size_m) \
-     template < > struct format_selector < type::type_m, packing::packing_m, size_m, order::order_m > { \
-         typedef format_m format; \
+#define DECLARE_FORMAT_DEFAULT(format_m, sign_m, integral_m, precision_m, packing_m, order_m, size_m)   \
+     DECLARE_FORMAT(format_m, sign_m, integral_m, precision_m, packing_m, order_m, size_m)              \
+     template < > struct select_format< fc::integral::integral_m, fc::packing::packing_m,               \
+                                        size_m, fc::order::order_m > {                                  \
+         typedef format_m type;                                                                         \
      };
 
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_byte, unsigned_byte, integer, none, normal, 1)
-        DECLARE_DATA_FORMAT(gl_byte, byte_, integer, none, normal, 1)
-        DECLARE_DATA_FORMAT(gl_unsigned_short, unsigned_short, integer, none, normal, 1)
-        DECLARE_DATA_FORMAT(gl_short, short_, integer, none, normal, 1)
-        DECLARE_DATA_FORMAT(gl_unsigned_int, unsigned_int, integer, none, normal, 1)
-        DECLARE_DATA_FORMAT(gl_int, int_, integer, none, normal, 1)
-        DECLARE_DATA_FORMAT(gl_half_float, half_float, floating, none, normal, 1)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_float, float_, floating, none, normal, 1)
-        DECLARE_DATA_FORMAT(gl_double, double_, floating, none, normal, 1)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_byte_3_3_2, unsigned_byte, integer, rgb, normal, 3)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_byte_2_3_3_rev, unsigned_byte, integer, rgb, reverse, 3)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_short_5_6_5, unsigned_short, integer, rgb, normal, 5)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_short_5_6_5_rev, unsigned_short, integer, rgb, reverse, 5)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_short_4_4_4_4, unsigned_short, integer, rgba, normal, 4)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_short_4_4_4_4_rev, unsigned_short, integer, rgba, reverse, 4)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_short_5_5_5_1, unsigned_short, integer, rgba, normal, 5)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_short_1_5_5_5_rev, unsigned_short, integer, rgba, reverse, 5)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_int_8_8_8_8, unsigned_int, integer, rgba, normal, 8)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_int_8_8_8_8_rev, unsigned_int, integer, rgba, reverse, 8)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_int_10_10_10_2, unsigned_int, integer, rgba, normal, 10)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_int_2_10_10_10_rev, unsigned_int, integer, rgba, reverse, 10)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_int_24_8, unsigned_int, floating, depth_stencil, normal, 24)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_int_10f_11f_11f_rev, unsigned_int, floating, rgb, reverse, 11)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_unsigned_int_5_9_9_9_rev, unsigned_int, floating, rgb, reverse, 9)
-        DECLARE_DATA_FORMAT_DEFAULT(gl_float_32_unsigned_int_24_8_rev,
-                                    float_unsigned_int,
-                                    floating,
-                                    depth_stencil,
-                                    reverse,
-                                    32)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_byte, unsigned_, integral, one_byte, one_in_one, forward, 1)
+        DECLARE_FORMAT(gl_byte, signed_, integral, one_byte, one_in_one, forward, 1)
+        DECLARE_FORMAT(gl_unsigned_short, unsigned_, integral, two_bytes, one_in_one, forward, 1)
+        DECLARE_FORMAT(gl_short, signed_, integral, two_bytes, one_in_one, forward, 1)
+        DECLARE_FORMAT(gl_unsigned_int, unsigned_, integral, four_bytes, one_in_one, forward, 1)
+        DECLARE_FORMAT(gl_int, signed_, integral, four_bytes, one_in_one, forward, 1)
+        DECLARE_FORMAT(gl_half_float, signed_, floating, two_bytes, one_in_one, forward, 1)
+        DECLARE_FORMAT_DEFAULT(gl_float, signed_, floating, four_bytes, one_in_one, forward, 1)
+        DECLARE_FORMAT(gl_double, signed_, floating, eight_bytes, one_in_one, forward, 1)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_byte_3_3_2, unsigned_, integral, one_byte, three_in_one, forward, 3)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_byte_2_3_3_rev, unsigned_, integral, one_byte, three_in_one, reverse, 3)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_short_5_6_5, unsigned_, integral, two_bytes, three_in_one, forward, 5)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_short_5_6_5_rev, unsigned_, integral, two_bytes, three_in_one, reverse, 5)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_short_4_4_4_4, unsigned_, integral, two_bytes, four_in_one, forward, 4)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_short_4_4_4_4_rev, unsigned_, integral, two_bytes, four_in_one, reverse, 4)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_short_5_5_5_1, unsigned_, integral, two_bytes, four_in_one, forward, 5)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_short_1_5_5_5_rev, unsigned_, integral, two_bytes, four_in_one, reverse, 5)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_int_8_8_8_8, unsigned_, integral, four_bytes, four_in_one, forward, 8)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_int_8_8_8_8_rev, unsigned_, integral, four_bytes, four_in_one, reverse, 8)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_int_10_10_10_2, unsigned_, integral, four_bytes, four_in_one, forward, 10)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_int_2_10_10_10_rev,
+                               unsigned_,
+                               integral,
+                               four_bytes,
+                               four_in_one,
+                               reverse,
+                               10)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_int_24_8, unsigned_, floating, four_bytes, two_in_one, forward, 24)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_int_10f_11f_11f_rev,
+                               unsigned_,
+                               floating,
+                               four_bytes,
+                               three_in_one,
+                               reverse,
+                               11)
+        DECLARE_FORMAT_DEFAULT(gl_unsigned_int_5_9_9_9_rev, unsigned_, floating, four_bytes, three_in_one, reverse, 9)
+        DECLARE_FORMAT_DEFAULT(gl_float_32_unsigned_int_24_8_rev,
+                               unsigned_,
+                               floating,
+                               eight_bytes,
+                               two_in_one,
+                               reverse,
+                               32)
 
-        template< typename DataType, typename Packing, size_type Size, typename Order >
-        struct format_selector {
-            typedef gl_unsigned_byte format;
+        template< typename Integral, typename Packing, size_type Size, typename Order >
+        struct select_format {
+            typedef gl_unsigned_byte type;
         };
 
-#undef DECLARE_DATA_FORMAT_DEFAULT
-#undef DECLARE_DATA_FORMAT
+#undef DECLARE_FORMAT_DEFAULT
+#undef DECLARE_FORMAT
 
       } // namespace data
     } // namespace formats
 
     namespace fd = ::gtulu::internal::formats::data;
     namespace fdf = ::gtulu::internal::formats::data::format;
-    namespace fdn = ::gtulu::internal::formats::data::normalized;
-    namespace fdo = ::gtulu::internal::formats::data::order;
-    namespace fdp = ::gtulu::internal::formats::data::packing;
-    namespace fdt = ::gtulu::internal::formats::data::type;
-    namespace fdv = ::gtulu::internal::formats::data::value_type;
 
   } // namespace internal
 } // namespace gtulu

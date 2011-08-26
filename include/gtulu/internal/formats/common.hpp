@@ -3,9 +3,6 @@
  *
  * Distributed under the Boost Software License, Version 1.0.
  * See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt
- *
- * @date 19 déc. 2009
- * @todo comment
  */
 
 #ifndef GTULU_INTERNAL_FORMAT_COMMON_HPP_
@@ -20,32 +17,29 @@ namespace gtulu {
 
     namespace formats {
       namespace common {
-        META_ASPECT_DECLARE(order, Order, struct, (normal) (reverse))
-        META_ASPECT_DECLARE(type,
-                            Type,
-                            struct,
-                            (floating) (fixed) (unsigned_fixed) (integer) (unsigned_integer) (boolean))
+
+        META_ASPECT_DECLARE(sign, Sign, struct, (signed_)(unsigned_))
+        META_ASPECT_DECLARE(integral, Integral, struct, (floating)(fixed)(integral))
+        META_ASPECT_DECLARE(precision, Precision, struct, (one_byte)(two_bytes)(four_bytes)(eight_bytes))
         META_ASPECT_DECLARE(dimension,
                             Dimension,
                             struct,
-                            (one) (two) (two_by_two) (two_by_three) (two_by_four) (three) (three_by_two) (three_by_three) (three_by_four) (four) (four_by_two) (four_by_three) (four_by_four))
-
-        META_ASPECT_DECLARE(base,
-                            Base,
-                            using cst::,
-                            (gl_depth) (gl_stencil) (gl_depth_stencil) (gl_red) (gl_rg) (gl_rgb) (gl_rgba))
-        namespace base {
-          typedef cst::gl_red gl_r;
-        } // namespace base
+                            (one)(two)(two_by_two)(two_by_three)(two_by_four)(three)(three_by_two)(three_by_three)(three_by_four)(four)(four_by_two)(four_by_three)(four_by_four))
+        META_ASPECT_DECLARE(packing, Packing, struct, (one_in_one)(two_in_one)(three_in_one)(four_in_one))
+        META_ASPECT_DECLARE(component,
+                            Component,
+                            struct,
+                            (depth)(stencil)(depth_stencil)(red)(green)(blue)(red_green)(red_green_blue)(red_green_blue_alpha))
+        META_ASPECT_DECLARE(order, Order, struct, (forward)(reverse))
+        META_ASPECT_DECLARE(normalization, Normalization, struct, (none)(normalized))
+        META_ASPECT_DECLARE(compression, Compression, struct, (none)(compressed))
+        META_ASPECT_DECLARE(target, Target, struct, (unknown)(any)(texture)(renderbuffer))
+        META_ASPECT_DECLARE(count, Count, struct, (one)(two)(three)(four))
 
       } // namespace common
     } // namespace formats
 
     namespace fc = ::gtulu::internal::formats::common;
-    namespace fcb = ::gtulu::internal::formats::common::base;
-    namespace fcd = ::gtulu::internal::formats::common::dimension;
-    namespace fco = ::gtulu::internal::formats::common::order;
-    namespace fct = ::gtulu::internal::formats::common::type;
 
   } // namespace internal
 } // namespace gtulu
