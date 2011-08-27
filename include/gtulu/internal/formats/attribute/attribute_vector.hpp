@@ -18,60 +18,60 @@
 namespace gtulu {
   namespace internal {
 
-    namespace formats {
-      namespace attribute {
-        namespace vector {
+//    namespace formats {
+//      namespace attribute {
+//        namespace vector {
+//
+//          META_ASPECT_DECLARE(count, Count, using fcd::,
+//              (two)
+//              (three)
+//              (four)
+//          )
+//
+//          template< typename Format, typename DataType, typename Count >
+//          struct attribute_metadata: fa::attribute_metadata< Format, fab::vector, DataType > {
+//            using fa::attribute_metadata< Format, fab::vector, DataType >::format;
+//            using fa::attribute_metadata< Format, fab::vector, DataType >::base;
+//            using fa::attribute_metadata< Format, fab::vector, DataType >::type;
+//            typedef Count count;
+//          };
+//
+//          template< typename Format >
+//          struct attribute_format;
+//        } // namespace vector
+//
+//#define DECLARE_ATTRIBUTE_FORMAT(format_m, type_m, count_m) \
+//    namespace vector { \
+//      template< > struct attribute_format< faf::format_m > { \
+//          typedef attribute_metadata< faf::format_m, fat::type_m, count::count_m > info; \
+//      }; \
+//    } \
+//    typedef vector::attribute_format< format::format_m > format_m; \
+//    DECLARE_HAS_TRAIT_FORMAT(base, vector, format_m); \
+//    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m); \
+//    namespace vector { \
+//      DECLARE_HAS_TRAIT_FORMAT(count, count_m, format_m) \
+//    }
+//
+//        DECLARE_ATTRIBUTE_FORMAT(gl_float_vec2, floating, two)
+//        DECLARE_ATTRIBUTE_FORMAT(gl_float_vec3, floating, three)
+//        DECLARE_ATTRIBUTE_FORMAT(gl_float_vec4, floating, four)
+//        DECLARE_ATTRIBUTE_FORMAT(gl_int_vec2, integer, two)
+//        DECLARE_ATTRIBUTE_FORMAT(gl_int_vec3, integer, three)
+//        DECLARE_ATTRIBUTE_FORMAT(gl_int_vec4, integer, four)
+//        DECLARE_ATTRIBUTE_FORMAT(gl_unsigned_int_vec2, unsigned_integer, two)
+//        DECLARE_ATTRIBUTE_FORMAT(gl_unsigned_int_vec3, unsigned_integer, three)
+//        DECLARE_ATTRIBUTE_FORMAT(gl_unsigned_int_vec4, unsigned_integer, four)
+//
+//#undef DECLARE_ATTRIBUTE_FORMAT
+//
+//      } // namespace attribute
+//    } // namespace formats
+//
+//    namespace fav = ::gtulu::internal::formats::attribute::vector;
+//    namespace favc = ::gtulu::internal::formats::attribute::vector::count;
 
-          META_ASPECT_DECLARE(count, Count, using fcd::,
-              (two)
-              (three)
-              (four)
-          )
-
-          template< typename Format, typename DataType, typename Count >
-          struct attribute_metadata: fa::attribute_metadata< Format, fab::vector, DataType > {
-            using fa::attribute_metadata< Format, fab::vector, DataType >::format;
-            using fa::attribute_metadata< Format, fab::vector, DataType >::base;
-            using fa::attribute_metadata< Format, fab::vector, DataType >::type;
-            typedef Count count;
-          };
-
-          template< typename Format >
-          struct attribute_format;
-        } // namespace vector
-
-#define DECLARE_ATTRIBUTE_FORMAT(format_m, type_m, count_m) \
-    namespace vector { \
-      template< > struct attribute_format< faf::format_m > { \
-          typedef attribute_metadata< faf::format_m, fat::type_m, count::count_m > info; \
-      }; \
-    } \
-    typedef vector::attribute_format< format::format_m > format_m; \
-    DECLARE_HAS_TRAIT_FORMAT(base, vector, format_m); \
-    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m); \
-    namespace vector { \
-      DECLARE_HAS_TRAIT_FORMAT(count, count_m, format_m) \
-    }
-
-        DECLARE_ATTRIBUTE_FORMAT(gl_float_vec2, floating, two)
-        DECLARE_ATTRIBUTE_FORMAT(gl_float_vec3, floating, three)
-        DECLARE_ATTRIBUTE_FORMAT(gl_float_vec4, floating, four)
-        DECLARE_ATTRIBUTE_FORMAT(gl_int_vec2, integer, two)
-        DECLARE_ATTRIBUTE_FORMAT(gl_int_vec3, integer, three)
-        DECLARE_ATTRIBUTE_FORMAT(gl_int_vec4, integer, four)
-        DECLARE_ATTRIBUTE_FORMAT(gl_unsigned_int_vec2, unsigned_integer, two)
-        DECLARE_ATTRIBUTE_FORMAT(gl_unsigned_int_vec3, unsigned_integer, three)
-        DECLARE_ATTRIBUTE_FORMAT(gl_unsigned_int_vec4, unsigned_integer, four)
-
-#undef DECLARE_ATTRIBUTE_FORMAT
-
-      } // namespace attribute
-    } // namespace formats
-
-    namespace fav = ::gtulu::internal::formats::attribute::vector;
-    namespace favc = ::gtulu::internal::formats::attribute::vector::count;
-
-  } // namespace internal
+  }// namespace internal
 } // namespace gtulu
 
 #endif /* GTULU_INTERNAL_FORMAT_ATTRIBUTE_VECTOR_HPP_ */

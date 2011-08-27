@@ -29,8 +29,8 @@ namespace gtulu {
 
         template< typename AttributeFormat, typename DataFormat >
         struct data_type_check {
-            typedef fat::is_floating< AttributeFormat > floating_check;
-            typedef bm::and_< fdt::is_integer< DataFormat >, type::is_integer< AttributeFormat > > integer_check;
+            typedef fc::integral::is_floating< AttributeFormat > floating_check;
+            typedef bm::and_< fc::integral::is_integral< DataFormat >, fc::integral::is_integral< AttributeFormat > > integer_check;
 
             typedef bm::or_< floating_check, integer_check > type;
             static_assert(type::value, "AttributeFormat is not compatible with DataFormat, integer attribute formats require integer data, only floating attribute formats can be used with any data format types.");

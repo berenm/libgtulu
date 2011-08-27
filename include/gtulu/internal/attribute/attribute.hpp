@@ -62,6 +62,7 @@ namespace gtulu {
 
 #define DECLARE_ATTRIBUTE(format_m) \
   typedef attribute< fa::format_m > format_m;
+
       DECLARE_ATTRIBUTE(gl_float)
       DECLARE_ATTRIBUTE(gl_int)
       DECLARE_ATTRIBUTE(gl_unsigned_int)
