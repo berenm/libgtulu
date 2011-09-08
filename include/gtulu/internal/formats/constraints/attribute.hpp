@@ -11,6 +11,8 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONSTRAINT_ATTRIBUTE_HPP_
 #define GTULU_INTERNAL_FORMAT_CONSTRAINT_ATTRIBUTE_HPP_
 
+#include <boost/mpl/or.hpp>
+
 #include "gtulu/internal/formats/attribute.hpp"
 #include "gtulu/internal/formats/data.hpp"
 
@@ -23,8 +25,13 @@ namespace gtulu {
 
         template< typename AttributeFormat, typename DataFormat >
         struct data_packing_check {
-            typedef fc::packing::is_one_in_one< DataFormat > type;
-            static_assert(type::value, "AttributeFormat is not compatible with DataFormat, vertex attributes require non packed buffer data and DataFormat packing is not fc::packing::one_in_one.");
+            typedef fc::packing::is_one_in_one< DataFormat > is_one_in_one_packed;
+            typedef fc::packing::is_four_in_one< DataFormat > is_four_in_one_packed;
+
+            static_assert(type::value, "AttributeFormat is not compatible with DataFormat");
+            static_assert(type::value, "");
+            static_assert(type::value, "  [2.8 Vertex Arrays]");
+            static_assert(type::value, "  vertex attributes require non packed buffer data and DataFormat packing is not fc::packing::one_in_one.");
         };
 
         template< typename AttributeFormat, typename DataFormat >

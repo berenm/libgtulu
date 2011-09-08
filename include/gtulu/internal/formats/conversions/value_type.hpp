@@ -17,42 +17,41 @@ namespace gtulu {
 
     namespace formats {
       namespace common {
-        template< typename Sign, typename Integral, typename Precision >
+
+        template< typename NumericFormat >
         struct to_value_type;
 
-#define DECLARE_CONVERSION(value_type_m,sign_m,integral_m,precision_m) \
-  template< > \
-  struct to_value_type< sign::sign_m, integral::integral_m, precision::precision_m > { \
-      typedef value_type_m type; \
+#define DECLARE_CONVERSION(value_type_m, numeric_format_m)      \
+  template< >                                                   \
+  struct to_value_type< numeric::format::numeric_format_m > {   \
+      typedef value_type_m type;                                \
   };
 
-        DECLARE_CONVERSION(::std::uint8_t, unsigned_, integral, one_byte)
-        DECLARE_CONVERSION(::std::int8_t, signed_, integral, one_byte)
-        DECLARE_CONVERSION(::std::uint16_t, unsigned_, integral, two_bytes)
-        DECLARE_CONVERSION(::std::int16_t, signed_, integral, two_bytes)
-        DECLARE_CONVERSION(::std::uint32_t, unsigned_, integral, four_bytes)
-        DECLARE_CONVERSION(::std::int32_t, signed_, integral, four_bytes)
-        DECLARE_CONVERSION(::std::uint64_t, unsigned_, integral, eight_bytes)
-        DECLARE_CONVERSION(::std::int64_t, signed_, integral, eight_bytes)
+        DECLARE_CONVERSION(::std::int8_t, int8_)
+        DECLARE_CONVERSION(::std::int16_t, int16_)
+        DECLARE_CONVERSION(::std::int32_t, int32_)
+        DECLARE_CONVERSION(::std::int64_t, int64_)
+        DECLARE_CONVERSION(::std::uint8_t, uint8_)
+        DECLARE_CONVERSION(::std::uint16_t, uint16_)
+        DECLARE_CONVERSION(::std::uint32_t, uint32_)
+        DECLARE_CONVERSION(::std::uint64_t, uint64_)
 
-        DECLARE_CONVERSION(::std::uint8_t, unsigned_, fixed, one_byte)
-        DECLARE_CONVERSION(::std::int8_t, signed_, fixed, one_byte)
-        DECLARE_CONVERSION(::std::uint16_t, unsigned_, fixed, two_bytes)
-        DECLARE_CONVERSION(::std::int16_t, signed_, fixed, two_bytes)
-        DECLARE_CONVERSION(::std::uint32_t, unsigned_, fixed, four_bytes)
-        DECLARE_CONVERSION(::std::int32_t, signed_, fixed, four_bytes)
-        DECLARE_CONVERSION(::std::uint64_t, unsigned_, fixed, eight_bytes)
-        DECLARE_CONVERSION(::std::int64_t, signed_, fixed, eight_bytes)
+        DECLARE_CONVERSION(::std::int16_t, fixed16_)
+        DECLARE_CONVERSION(::std::int32_t, fixed32_)
+        DECLARE_CONVERSION(::std::int64_t, fixed64_)
+        DECLARE_CONVERSION(::std::uint16_t, ufixed16_)
+        DECLARE_CONVERSION(::std::uint32_t, ufixed32_)
+        DECLARE_CONVERSION(::std::uint64_t, ufixed64_)
 
-        DECLARE_CONVERSION(::std::int16_t, signed_, floating, two_bytes)
-        DECLARE_CONVERSION(float, signed_, floating, four_bytes)
-        DECLARE_CONVERSION(double, signed_, floating, eight_bytes)
+        DECLARE_CONVERSION(::std::int16_t, float16_)
+        DECLARE_CONVERSION(float, float32_)
+        DECLARE_CONVERSION(double, float64_)
 
         // Special case for uint32 packed floating points formats
-        DECLARE_CONVERSION(::std::uint32_t, unsigned_, floating, four_bytes)
+        DECLARE_CONVERSION(::std::uint32_t, ufloat32_)
 
         // Special case for float32_uint24_8 packed floating point format
-        DECLARE_CONVERSION(float, unsigned_, floating, eight_bytes)
+        DECLARE_CONVERSION(float, float32_stride32_)
 
 #undef DECLARE_CONVERSION
 

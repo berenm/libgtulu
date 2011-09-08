@@ -20,8 +20,6 @@
 #define IN_GTULU_INTERNAL_UNIFORM_HPP_
 
 #include "gtulu/internal/uniform/uniform.hpp"
-#include "gtulu/internal/uniform/uniform_vector.hpp"
-#include "gtulu/internal/uniform/uniform_matrix.hpp"
 #include "gtulu/internal/uniform/uniform_sampler.hpp"
 
 #undef IN_GTULU_INTERNAL_UNIFORM_HPP_

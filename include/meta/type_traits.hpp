@@ -36,6 +36,13 @@
 #define META_ASPECT_DECLARE_TRAIT_EACH(n, data_m, trait_m) \
         META_ASPECT_DECLARE_TRAIT(BOOST_PP_TUPLE_ELEM(2, 0, data_m), BOOST_PP_TUPLE_ELEM(2, 1, data_m), trait_m)
 
+#define META_ASPECT_DECLARE_PRINT_TRAIT(condition_m, trait_m)   \
+      static_assert(condition_m,                                \
+                    "  " BOOST_PP_STRINGIZE(trait_m));
+
+#define META_ASPECT_DECLARE_PRINT_TRAIT_EACH(n, data_m, trait_m) \
+        META_ASPECT_DECLARE_PRINT_TRAIT(data_m, trait_m)
+
 #define META_ASPECT_DECLARE(aspect_m, aspect_template_m, prefix_m, traits_m)                    \
     template< typename Type >                                                                   \
     struct BOOST_PP_CAT(get_, aspect_m) {                                                       \
@@ -53,9 +60,11 @@
     template< typename aspect_template_m >                                                      \
     struct BOOST_PP_CAT(aspect_m, _check) {                                                     \
       static_assert(BOOST_PP_CAT(is_a_, aspect_m)< aspect_template_m >::value,                  \
-                    BOOST_PP_STRINGIZE(aspect_template_m)                                       \
-                    " is not a valid "                                                          \
-                    BOOST_PP_STRINGIZE(aspect_m));                                              \
+                    BOOST_PP_STRINGIZE(aspect_template_m) " is not a valid "                    \
+                    BOOST_PP_STRINGIZE(aspect_m) ", valid values are: ");                       \
+      BOOST_PP_SEQ_FOR_EACH(META_ASPECT_DECLARE_PRINT_TRAIT_EACH,                               \
+                            BOOST_PP_CAT(is_a_, aspect_m)< aspect_template_m >::value,          \
+                            traits_m)                                                           \
       typedef aspect_template_m type;                                                           \
     };
 

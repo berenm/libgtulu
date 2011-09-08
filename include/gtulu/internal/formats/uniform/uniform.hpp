@@ -89,42 +89,53 @@ namespace gtulu {
           cst::gl_constant_base const get(::std::uint32_t value);
         } // namespace format
 
-        META_ASPECT_DECLARE(base, Base, struct,
-            (literal)
-            (vector)
-            (matrix)
-            (sampler)
-        )
-        META_ASPECT_DECLARE(type, Type, struct,
-            (floating)
-            (integer)
-            (unsigned_integer)
-            (boolean)
-        )
-
-        template< typename Format, typename Base, typename DataType >
-        struct uniform_metadata {
-          typedef Format format;
-          typedef Base base;
-          typedef DataType type;
-          typedef fcd::one count;
+        template< typename Format, typename Numeric, typename Dimension, typename Cardinality >
+        struct uniform_aspect {
+            typedef Format format;
+            typedef Numeric numeric;
+            typedef Dimension dimension;
+            typedef Cardinality cardinality;
         };
 
         template< typename Format >
         struct uniform_format;
 
-#define DECLARE_UNIFORM_FORMAT(format_m, base_m, type_m) \
-    template< > struct uniform_format< format::format_m > { \
-        typedef uniform_metadata< format::format_m, base::base_m, type::type_m > info; \
-    }; \
-    typedef uniform_format< format::format_m > format_m; \
-    DECLARE_HAS_TRAIT_FORMAT(base, base_m, format_m); \
-    DECLARE_HAS_TRAIT_FORMAT(type, type_m, format_m);
+#define DECLARE_UNIFORM_FORMAT(format_m, numeric_m, dimension_m, cardinality_m) \
+    template< > struct uniform_format< format::format_m > {                     \
+        typedef uniform_aspect< format::format_m,                               \
+                                fc::numeric::numeric_m,                         \
+                                fc::dimension::dimension_m,                     \
+                                fc::cardinality::cardinality_m > aspect;        \
+    };                                                                          \
+    typedef uniform_format< format::format_m > format_m;
 
-        DECLARE_UNIFORM_FORMAT(gl_float, literal, floating)
-        DECLARE_UNIFORM_FORMAT(gl_int, literal, integer)
-        DECLARE_UNIFORM_FORMAT(gl_unsigned_int, literal, unsigned_integer)
-        DECLARE_UNIFORM_FORMAT(gl_bool, literal, boolean)
+        DECLARE_UNIFORM_FORMAT(gl_float, signed_floating, oned, one)
+        DECLARE_UNIFORM_FORMAT(gl_int, signed_integral, oned, one)
+        DECLARE_UNIFORM_FORMAT(gl_unsigned_int, unsigned_integral, oned, one)
+        DECLARE_UNIFORM_FORMAT(gl_bool, bool_, oned, one)
+
+        DECLARE_UNIFORM_FORMAT(gl_float_vec2, signed_floating, oned, two)
+        DECLARE_UNIFORM_FORMAT(gl_float_vec3, signed_floating, oned, three)
+        DECLARE_UNIFORM_FORMAT(gl_float_vec4, signed_floating, oned, four)
+        DECLARE_UNIFORM_FORMAT(gl_int_vec2, signed_integral, oned, two)
+        DECLARE_UNIFORM_FORMAT(gl_int_vec3, signed_integral, oned, three)
+        DECLARE_UNIFORM_FORMAT(gl_int_vec4, signed_integral, oned, four)
+        DECLARE_UNIFORM_FORMAT(gl_unsigned_int_vec2, unsigned_integral, oned, two)
+        DECLARE_UNIFORM_FORMAT(gl_unsigned_int_vec3, unsigned_integral, oned, three)
+        DECLARE_UNIFORM_FORMAT(gl_unsigned_int_vec4, unsigned_integral, oned, four)
+        DECLARE_UNIFORM_FORMAT(gl_bool_vec2, unsigned_integral, oned, two)
+        DECLARE_UNIFORM_FORMAT(gl_bool_vec3, unsigned_integral, oned, three)
+        DECLARE_UNIFORM_FORMAT(gl_bool_vec4, unsigned_integral, oned, four)
+
+        DECLARE_UNIFORM_FORMAT(gl_float_mat2, signed_floating, twod, two_by_two)
+        DECLARE_UNIFORM_FORMAT(gl_float_mat2x3, signed_floating, twod, two_by_three)
+        DECLARE_UNIFORM_FORMAT(gl_float_mat2x4, signed_floating, twod, two_by_four)
+        DECLARE_UNIFORM_FORMAT(gl_float_mat3x2, signed_floating, twod, three_by_two)
+        DECLARE_UNIFORM_FORMAT(gl_float_mat3, signed_floating, twod, three_by_three)
+        DECLARE_UNIFORM_FORMAT(gl_float_mat3x4, signed_floating, twod, three_by_four)
+        DECLARE_UNIFORM_FORMAT(gl_float_mat4x2, signed_floating, twod, four_by_two)
+        DECLARE_UNIFORM_FORMAT(gl_float_mat4x3, signed_floating, twod, four_by_three)
+        DECLARE_UNIFORM_FORMAT(gl_float_mat4, signed_floating, twod, four_by_four)
 
 #undef DECLARE_UNIFORM_FORMAT
 
@@ -132,9 +143,7 @@ namespace gtulu {
     } // namespace formats
 
     namespace fu = ::gtulu::internal::formats::uniform;
-    namespace fub = ::gtulu::internal::formats::uniform::base;
     namespace fuf = ::gtulu::internal::formats::uniform::format;
-    namespace fut = ::gtulu::internal::formats::uniform::type;
 
   } // namespace internal
 } // namespace gtulu
