@@ -14,8 +14,13 @@
 
 #include "gtulu/internal/format/numeric.hpp"
 
+#include <boost/mpl/not.hpp>
+#include <boost/mpl/or.hpp>
+#include <boost/mpl/and.hpp>
+
 namespace gtulu {
   namespace internal {
+    namespace bm = ::boost::mpl;
 
     namespace format {
       namespace common {
@@ -23,7 +28,7 @@ namespace gtulu {
         META_ASPECT_DECLARE(numeric,
                             Numeric,
                             using fn::,
-                            (signed_)(unsigned_)(integral_)(signed_integral)(unsigned_integral)(fixed_)(signed_fixed)(unsigned_fixed)(floating_)(signed_floating)(unsigned_floating)(bool_)(int8_)(int16_)(int32_)(int64_)(uint8_)(uint16_)(uint32_)(uint64_)(fixed16_)(fixed32_)(fixed64_)(ufixed16_)(ufixed32_)(ufixed64_)(float16_)(float32_)(float64_)(ufloat32_)(float32_stride32_))
+                            (signed_)(unsigned_)(integral_)(signed_integral)(unsigned_integral)(fixed_)(signed_fixed)(unsigned_fixed)(floating_)(signed_floating)(unsigned_floating)(bool_)(int8_)(int16_)(int32_)(int64_)(uint8_)(uint16_)(uint32_)(uint64_)(fixed8_)(fixed16_)(fixed32_)(fixed64_)(ufixed8_)(ufixed16_)(ufixed32_)(ufixed64_)(float16_)(float32_)(float64_)(ufloat32_)(float32_stride32_)(ufixed2_)(ufixed_least2_)(ufixed4_)(ufixed5_)(ufixed10_)(ufixed12_)(ufixed14_)(ufixed24_)(uint1_)(uint2_)(uint4_)(float_least10_))
 
         META_ASPECT_DECLARE(dimension, Dimension, struct, (oned)(twod)(threed)(rectangle)(buffer)(cube_map))
         META_ASPECT_DECLARE(cardinality,
@@ -42,6 +47,10 @@ namespace gtulu {
         META_ASPECT_DECLARE(count, Count, struct, (one)(two)(three)(four))
         META_ASPECT_DECLARE(sample, Sample, struct, (simple)(multi))
         META_ASPECT_DECLARE(compare, Compare, struct, (normal)(shadow))
+        META_ASPECT_DECLARE(precision,
+                            Precision,
+                            struct,
+                            (at_least_one_bit)(at_least_two_bits)(at_least_three_bits)(at_least_four_bits)(at_least_five_bits)(at_least_six_bits)(at_least_seven_bits)(at_least_one_byte)(at_least_two_bytes)(at_least_four_bytes)(at_least_eight_bytes))
 
       } // namespace common
     } // namespace format

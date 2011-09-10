@@ -11,6 +11,8 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONSTRAINT_DATA_HPP_
 #define GTULU_INTERNAL_FORMAT_CONSTRAINT_DATA_HPP_
 
+#include "gtulu/internal/format/constraints/common.hpp"
+
 #include "gtulu/internal/format/data.hpp"
 #include "gtulu/internal/format/group.hpp"
 #include "gtulu/internal/format/internal.hpp"

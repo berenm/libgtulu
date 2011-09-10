@@ -28,22 +28,22 @@ namespace gtulu {
       namespace renderbuffer {
         template< typename TargetFormat, typename InternalFormat >
         struct renderbuffer_format: ft::is_internal_compatible< TargetFormat, InternalFormat >,
-        ft::is_of_target_base< TargetFormat, ftb::renderbuffer > {
+        fc::target::is_renderbuffer< TargetFormat > {
             typedef TargetFormat target;
             typedef InternalFormat internal;
         };
 
-        template< typename Base = fib::rgba, fi::size_type Size = 8, typename Type = fit::unsigned_fixed,
-            typename Compression = fic::normal >
-        class renderbuffer_format_selector {
-            typedef typename fi::to_group_type< Type >::type group_type;
-            typedef typename fi::to_data_type< Type >::type data_type;
-            typedef typename fi::to_data_packing< Base >::packing data_packing;
+        template< typename Component = fc::component::red_green_blue_alpha, typename Numeric = fc::numeric::ufixed8_,
+            typename Compression = fc::compression::none >
+        class select_format {
+//            typedef typename fi::to_group_type< Type >::type group_type;
+//            typedef typename fi::to_data_type< Type >::type data_type;
+//            typedef typename fi::to_data_packing< Base >::packing data_packing;
 
-            typedef typename fi::format_selector< Base, Size, Type, Compression >::format internal_format;
+            typedef typename fi::select_format< Component, Numeric, Compression >::type internal_format;
 
           public:
-            typedef renderbuffer_format< ft::gl_renderbuffer, internal_format > format;
+            typedef renderbuffer_format< ft::gl_renderbuffer, internal_format > type;
         };
       } // namespace renderbuffer
     } // namespace format

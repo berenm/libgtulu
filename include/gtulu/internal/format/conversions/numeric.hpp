@@ -5,10 +5,10 @@
  * See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt
  */
 
-#ifndef GTULU_INTERNAL_FORMAT_CONVERSION_VALUE_TYPE_HPP_
-#define GTULU_INTERNAL_FORMAT_CONVERSION_VALUE_TYPE_HPP_
+#ifndef GTULU_INTERNAL_FORMAT_CONVERSION_NUMERIC_HPP_
+#define GTULU_INTERNAL_FORMAT_CONVERSION_NUMERIC_HPP_
 
-#include "gtulu/internal/format/common.hpp"
+#include "gtulu/internal/format/numeric.hpp"
 
 #include <cstdint>
 
@@ -16,7 +16,7 @@ namespace gtulu {
   namespace internal {
 
     namespace format {
-      namespace common {
+      namespace numeric {
 
         template< typename NumericFormat >
         struct to_value_type;
@@ -55,10 +55,10 @@ namespace gtulu {
 
 #undef DECLARE_CONVERSION
 
-      } // namespace common
+      } // namespace numeric
     } // namespace format
 
   } // namespace internal
 } // namespace gtulu
 
-#endif /* GTULU_INTERNAL_FORMAT_CONVERSION_VALUE_TYPE_HPP_ */
+#endif /* GTULU_INTERNAL_FORMAT_CONVERSION_NUMERIC_HPP_ */

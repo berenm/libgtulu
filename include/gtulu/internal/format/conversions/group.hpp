@@ -20,21 +20,21 @@ namespace gtulu {
     namespace format {
       namespace group {
 
-        template< typename GroupBase >
-        struct to_internal_base;
+        template< typename GroupComponent >
+        struct get_ideal_internal_component;
 
-#define DECLARE_CONVERT(group_m, internal_m) \
-    template< > struct to_internal_base< base::group_m > { typedef fib::internal_m type; };
+#define DECLARE_CONVERT(group_component_m, internal_component_m) \
+    template< > struct get_ideal_internal_component< fc::component::group_component_m > { typedef fc::component::internal_component_m type; };
 
         DECLARE_CONVERT(depth, depth)
         DECLARE_CONVERT(depth_stencil, depth_stencil)
         DECLARE_CONVERT(stencil, stencil)
-        DECLARE_CONVERT(r, r)
-        DECLARE_CONVERT(g, rg)
-        DECLARE_CONVERT(b, rgb)
-        DECLARE_CONVERT(rg, rg)
-        DECLARE_CONVERT(rgb, rgb)
-        DECLARE_CONVERT(rgba, rgba)
+        DECLARE_CONVERT(red, red)
+        DECLARE_CONVERT(green, red_green)
+        DECLARE_CONVERT(blue, red_green_blue)
+        DECLARE_CONVERT(red_green, red_green)
+        DECLARE_CONVERT(red_green_blue, red_green_blue)
+        DECLARE_CONVERT(red_green_blue_alpha, red_green_blue_alpha)
 
 #undef DECLARE_CONVERT
 

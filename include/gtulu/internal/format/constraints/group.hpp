@@ -11,6 +11,8 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONSTRAINT_GROUP_HPP_
 #define GTULU_INTERNAL_FORMAT_CONSTRAINT_GROUP_HPP_
 
+#include "gtulu/internal/format/constraints/common.hpp"
+
 #include "gtulu/internal/format/group.hpp"
 #include "gtulu/internal/format/internal.hpp"
 
@@ -42,48 +44,21 @@ namespace gtulu {
             static_assert(group_is_integral_but_internal_is_not::value, "  - GroupFormat is integral but InternalFormat is not.");
         };
 
-        template< typename Format >
-        struct has_no_red_component: bm::and_< bm::not_< fc::component::is_red< Format > >,
-            bm::not_< fc::component::is_red_green< Format > >, bm::not_< fc::component::is_red_green_blue< Format > >,
-            bm::not_< fc::component::is_red_green_blue_alpha< Format > > > {
-        };
-        template< typename Format >
-        struct has_no_green_component: bm::and_< bm::not_< fc::component::is_green< Format > >,
-            bm::not_< fc::component::is_red_green< Format > >, bm::not_< fc::component::is_red_green_blue< Format > >,
-            bm::not_< fc::component::is_red_green_blue_alpha< Format > > > {
-        };
-        template< typename Format >
-        struct has_no_blue_component: bm::and_< bm::not_< fc::component::is_blue< Format > >,
-            bm::not_< fc::component::is_red_green_blue< Format > >,
-            bm::not_< fc::component::is_red_green_blue_alpha< Format > > > {
-        };
-        template< typename Format >
-        struct has_no_alpha_component: bm::not_< fc::component::is_red_green_blue_alpha< Format > > {
-        };
-        template< typename Format >
-        struct has_no_depth_component: bm::and_< bm::not_< fc::component::is_depth< Format > >,
-            bm::not_< fc::component::is_depth_stencil< Format > > > {
-        };
-        template< typename Format >
-        struct has_no_stencil_component: bm::and_< bm::not_< fc::component::is_stencil< Format > >,
-            bm::not_< fc::component::is_depth_stencil< Format > > > {
-        };
-
         template< typename GroupFormat, typename InternalFormat >
         struct components_check {
-            typedef has_no_red_component< InternalFormat > internal_has_no_red_component;
-            typedef has_no_green_component< InternalFormat > internal_has_no_green_component;
-            typedef has_no_blue_component< InternalFormat > internal_has_no_blue_component;
-            typedef has_no_alpha_component< InternalFormat > internal_has_no_alpha_component;
-            typedef has_no_depth_component< InternalFormat > internal_has_no_depth_component;
-            typedef has_no_stencil_component< InternalFormat > internal_has_no_stencil_component;
+            typedef fc::component::has_no_red< InternalFormat > internal_has_no_red_component;
+            typedef fc::component::has_no_green< InternalFormat > internal_has_no_green_component;
+            typedef fc::component::has_no_blue< InternalFormat > internal_has_no_blue_component;
+            typedef fc::component::has_no_alpha< InternalFormat > internal_has_no_alpha_component;
+            typedef fc::component::has_no_depth< InternalFormat > internal_has_no_depth_component;
+            typedef fc::component::has_no_stencil< InternalFormat > internal_has_no_stencil_component;
 
-            typedef bm::not_< has_no_red_component< GroupFormat > > group_has_red_component;
-            typedef bm::not_< has_no_green_component< GroupFormat > > group_has_green_component;
-            typedef bm::not_< has_no_blue_component< GroupFormat > > group_has_blue_component;
-            typedef bm::not_< has_no_alpha_component< GroupFormat > > group_has_alpha_component;
-            typedef bm::not_< has_no_depth_component< GroupFormat > > group_has_depth_component;
-            typedef bm::not_< has_no_stencil_component< GroupFormat > > group_has_stencil_component;
+            typedef fc::component::has_red< GroupFormat > group_has_red_component;
+            typedef fc::component::has_green< GroupFormat > group_has_green_component;
+            typedef fc::component::has_blue< GroupFormat > group_has_blue_component;
+            typedef fc::component::has_alpha< GroupFormat > group_has_alpha_component;
+            typedef fc::component::has_depth< GroupFormat > group_has_depth_component;
+            typedef fc::component::has_stencil< GroupFormat > group_has_stencil_component;
 
             typedef bm::and_< group_has_red_component, internal_has_no_red_component > group_has_red_but_internal_has_not;
             typedef bm::and_< group_has_green_component, internal_has_no_green_component > group_has_green_but_internal_has_not;

@@ -18,7 +18,7 @@
 #include "gtulu/internal/object/object.hpp"
 
 #include "gtulu/internal/format/data.hpp"
-#include "gtulu/internal/format/conversions/data.hpp"
+#include "gtulu/internal/format/conversions/numeric.hpp"
 
 #include <boost/mpl/vector.hpp>
 
@@ -140,10 +140,10 @@ namespace gtulu {
           }
       };
 
-      template< typename BufferFormat, typename BufferUsage = gib::usage::gl_stream_draw >
+      template< typename DataFormat, typename BufferUsage = gib::usage::gl_stream_draw >
       struct buffer: public buffer_base, public object< buffer_base > {
         public:
-          typedef typename fd::to_typename< typename BufferFormat::info::value_type >::type data_type_t;
+          typedef typename fn::to_value_type< typename fc::get_numeric< DataFormat >::type >::type data_type_t;
 
           buffer() :
               object< buffer_base >() {

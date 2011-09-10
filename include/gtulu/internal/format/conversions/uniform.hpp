@@ -19,20 +19,20 @@ namespace gtulu {
     namespace format {
       namespace uniform {
 
-        template< typename DataType >
-        struct to_typename;
+//        template< typename DataType >
+//        struct to_typename;
+//
+//#define DECLARE_CONVERT(uniform_m, typename_m) \
+//    template< > struct to_typename< type::uniform_m > { typedef typename_m type; };
+//
+//        DECLARE_CONVERT(floating, float)
+//        DECLARE_CONVERT(integer, ::std::int32_t)
+//        DECLARE_CONVERT(unsigned_integer, ::std::uint32_t)
+//        DECLARE_CONVERT(boolean, ::std::int32_t)
+//
+//#undef DECLARE_CONVERT
 
-#define DECLARE_CONVERT(uniform_m, typename_m) \
-    template< > struct to_typename< type::uniform_m > { typedef typename_m type; };
-
-        DECLARE_CONVERT(floating, float)
-        DECLARE_CONVERT(integer, ::std::int32_t)
-        DECLARE_CONVERT(unsigned_integer, ::std::uint32_t)
-        DECLARE_CONVERT(boolean, ::std::int32_t)
-
-#undef DECLARE_CONVERT
-
-      } // namespace uniform
+      }// namespace uniform
     } // namespace format
 
   } // namespace internal

@@ -34,7 +34,7 @@ namespace gtulu {
     namespace renderbuffer {
 
       template< typename TargetType >
-      struct renderbuffer_slot: private ft::is_of_target_base< TargetType, ft::base::renderbuffer > {
+      struct renderbuffer_slot: private fc::target::is_renderbuffer< TargetType > {
           static inline void bind(gio::plug< gio::renderbuffer_base > const& buffer) {
             gio::slot_binder< gio::renderbuffer_base >::bind< typename TargetType::info::format >(buffer);
           }

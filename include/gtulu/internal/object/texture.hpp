@@ -39,7 +39,7 @@ namespace gtulu {
     namespace texture {
 
       template< typename TargetType >
-      struct texture_slot: private ft::is_of_target_base< TargetType, ftb::texture > {
+      struct texture_slot: private fc::target::is_texture< TargetType > {
           static inline void bind(gio::plug< gio::texture_base > const& buffer) {
             gio::slot_binder< gio::texture_base >::bind< TargetType >(buffer);
           }

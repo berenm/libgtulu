@@ -21,35 +21,33 @@ namespace gtulu {
     namespace format {
       namespace internal {
 
-        template< typename InternalBase >
-        struct to_data_packing;
+        template< typename Component >
+        struct get_ideal_component_packing;
 
-#define DECLARE_CONVERT(internal_m, data_m) \
-    template< > struct to_data_packing< base::internal_m > { typedef fdp::data_m type; };
+#define DECLARE_CONVERT(component_m, packing_m) \
+    template< > struct get_ideal_component_packing< fc::component::component_m > { typedef fc::packing::packing_m type; };
 
-        DECLARE_CONVERT(stencil, depth_stencil)
-        DECLARE_CONVERT(depth, depth_stencil)
-        DECLARE_CONVERT(depth_stencil, depth_stencil)
-        DECLARE_CONVERT(r, none)
-        DECLARE_CONVERT(rgb, rgb)
-        DECLARE_CONVERT(rgba, rgba)
+        DECLARE_CONVERT(stencil, two_in_one)
+        DECLARE_CONVERT(depth, two_in_one)
+        DECLARE_CONVERT(depth_stencil, two_in_one)
+        DECLARE_CONVERT(red, one_in_one)
+        DECLARE_CONVERT(red_green_blue, three_in_one)
+        DECLARE_CONVERT(red_green_blue_alpha, four_in_one)
 
 #undef DECLARE_CONVERT
 
-        template< typename InternalType >
-        struct to_group_type;
-        template< typename InternalType >
-        struct to_data_type;
+        template< typename InternalIntegral >
+        struct get_ideal_group_integral;
+        template< typename InternalIntegral >
+        struct get_ideal_data_integral;
 
-#define DECLARE_CONVERT(internal_m, common_m) \
-    template< > struct to_group_type< type::internal_m > { typedef fgt::common_m type; }; \
-    template< > struct to_data_type< type::internal_m > { typedef fdt::common_m type; };
+#define DECLARE_CONVERT(internal_integral_m, integral_m) \
+    template< > struct get_ideal_group_integral< fn::integral::internal_integral_m > { typedef fn::integral::integral_m type; }; \
+    template< > struct get_ideal_data_integral< fn::integral::internal_integral_m > { typedef fn::integral::integral_m type; };
 
         DECLARE_CONVERT(floating, floating)
         DECLARE_CONVERT(fixed, floating)
-        DECLARE_CONVERT(unsigned_fixed, floating)
-        DECLARE_CONVERT(integer, integer)
-        DECLARE_CONVERT(unsigned_integer, integer)
+        DECLARE_CONVERT(integral, integral)
 
 #undef DECLARE_CONVERT
 

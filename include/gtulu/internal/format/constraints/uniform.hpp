@@ -11,6 +11,8 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONSTRAINT_UNIFORM_HPP_
 #define GTULU_INTERNAL_FORMAT_CONSTRAINT_UNIFORM_HPP_
 
+#include "gtulu/internal/format/constraints/common.hpp"
+
 #include "gtulu/internal/format/uniform.hpp"
 #include "gtulu/internal/format/internal.hpp"
 #include "gtulu/internal/format/target.hpp"
@@ -27,11 +29,12 @@ namespace gtulu {
 
           template< typename SamplerFormat, typename InternalFormat >
           struct shadow_stencil_check {
-              typedef bm::or_< fib::is_depth< InternalFormat >, fib::is_depth_stencil< InternalFormat > > shadow_capable_c;
-              typedef bm::not_< bm::and_< fusc::is_shadow< SamplerFormat >, shadow_capable_c > > shadow_c;
+              typedef bm::or_< fc::component::is_depth< InternalFormat >,
+                  fc::component::is_depth_stencil< InternalFormat > > shadow_capable_c;
+              typedef bm::not_< bm::and_< fc::compare::is_shadow< SamplerFormat >, shadow_capable_c > > shadow_c;
               static_assert(shadow_c::value, "shadow uniform sampler only supports depth or depth_stencil InternalFormat.");
 
-              typedef bm::not_< fib::is_stencil< InternalFormat > > stencil_c;
+              typedef bm::not_< fc::component::is_stencil< InternalFormat > > stencil_c;
               static_assert(shadow_c::value, "uniform sampler does not support stencil InternalFormat.");
 
               typedef bm::and_< shadow_c, stencil_c > type;
@@ -39,14 +42,20 @@ namespace gtulu {
 
           template< typename SamplerFormat, typename InternalFormat >
           struct internal_type_check {
-              typedef bm::or_< fit::is_floating< InternalFormat >, fit::is_fixed< InternalFormat >,
-                  fit::is_unsigned_fixed< InternalFormat > > is_internal_floating;
+              typedef bm::or_< fn::integral::is_floating< typename fc::get_numeric< InternalFormat >::type >,
+                  fn::integral::is_fixed< typename fc::get_numeric< InternalFormat >::type > > is_internal_floating;
 
-              typedef bm::and_< is_internal_floating, fut::is_floating< SamplerFormat > > are_both_floating;
-              typedef bm::and_< fit::is_integer< InternalFormat >, fut::is_integer< SamplerFormat > > are_both_integer;
-              typedef bm::and_< fit::is_unsigned_integer< InternalFormat >, fut::is_unsigned_integer< SamplerFormat > > are_both_unsigned_integer;
+              typedef bm::and_< is_internal_floating,
+                  fn::integral::is_floating< typename fc::get_numeric< SamplerFormat >::type > > are_both_floating;
+              typedef bm::and_< fn::integral::is_integral< typename fc::get_numeric< InternalFormat >::type >,
+                  fn::integral::is_integral< typename fc::get_numeric< SamplerFormat >::type > > are_both_integer;
+              typedef bm::and_< fn::sign::is_signed_< typename fc::get_numeric< InternalFormat >::type >,
+                  fn::sign::is_signed_< typename fc::get_numeric< SamplerFormat >::type > > are_both_signed;
+              typedef bm::and_< fn::sign::is_unsigned_< typename fc::get_numeric< InternalFormat >::type >,
+                  fn::sign::is_unsigned_< typename fc::get_numeric< SamplerFormat >::type > > are_both_unsigned;
+              typedef bm::and_< are_both_integer, bm::or_< are_both_signed, are_both_unsigned > > are_both_same_integral;
 
-              typedef bm::or_< are_both_floating, are_both_integer, are_both_unsigned_integer > type;
+              typedef bm::or_< are_both_floating, are_both_same_integral > type;
               static_assert(type::value, "internal_type_t is not compatible with uniform sampler_type_t, floating sampler require floating, fixed or unsigned_fixed internal type, integer sampler require integer internal type and ::std::uint32_teger sampler require ::std::uint32_teger internal type.");
           };
 

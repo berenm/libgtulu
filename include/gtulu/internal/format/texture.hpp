@@ -35,15 +35,17 @@ namespace gtulu {
 
         template< typename TargetFormat >
         struct dimension_check {
-            typedef ftt::is_oned< TargetFormat > is_oned_t;
-            typedef typename bm::or_< ftt::is_twod< TargetFormat >, ftt::is_rectangle< TargetFormat > >::type is_twod_t;
-            typedef ftt::is_threed< TargetFormat > is_threed_t;
+            typedef fc::dimension::is_oned< TargetFormat > is_oned_t;
+            typedef typename bm::not_<
+                bm::and_< bm::not_< fc::dimension::is_twod< TargetFormat > >,
+                    bm::not_< fc::dimension::is_rectangle< TargetFormat > > > >::type is_twod_t;
+            typedef fc::dimension::is_threed< TargetFormat > is_threed_t;
         };
 
         template< typename InternalFormat >
         struct compression_check {
-            typedef fic::is_compressed< InternalFormat > is_compressed_t;
-            typedef typename bm::not_< fic::is_compressed< InternalFormat > >::type is_not_compressed_t;
+            typedef fc::compression::is_compressed< InternalFormat > is_compressed_t;
+            typedef typename bm::not_< fc::compression::is_compressed< InternalFormat > >::type is_not_compressed_t;
         };
 
         template< typename Target, typename Internal, typename Group, typename Data, typename Value,
@@ -237,7 +239,7 @@ namespace gtulu {
             typedef typename TextureFormat::internal::info::format internal_t;
             typedef typename TextureFormat::group::info::format group_t;
             typedef typename TextureFormat::data::info::format data_t;
-            typedef typename fd::to_typename< typename TextureFormat::data::info::value_type >::type value_t;
+            typedef typename fn::to_value_type< typename fc::get_numeric< typename TextureFormat::data >::type >::type value_t;
 
             typedef loader< target_t, internal_t, group_t, data_t, value_t > type;
         };
@@ -251,7 +253,7 @@ namespace gtulu {
                                ,
                                ft::is_internal_compatible< TargetFormat, InternalFormat >
                                ,
-                               ft::is_of_target_base< TargetFormat, ft::base::texture > {
+                               fc::target::is_texture< TargetFormat > {
             typedef TargetFormat target;
             typedef InternalFormat internal;
             typedef GroupFormat group;
@@ -260,27 +262,25 @@ namespace gtulu {
             typedef typename texture_loader< texture_format< TargetFormat, InternalFormat, GroupFormat, DataFormat > >::type loader;
         };
 
-        template< typename TargetFormat, typename Base = fgb::rgba, fi::size_type Size = 8,
-            typename Type = fit::unsigned_fixed, typename Compression = fic::normal, typename Order = fg::order::normal >
-        class texture_format_selector {
-            typedef typename fi::to_data_type< Type >::type ideal_data_type;
-            typedef typename fg::to_internal_base< Base >::type ideal_internal_base;
-            typedef typename fi::to_data_packing< ideal_internal_base >::type ideal_data_packing;
-            typedef typename fd::format_selector< ideal_data_type, ideal_data_packing, Size, Order >::format data_format;
+        template< typename TargetFormat, typename Component = fc::component::red_green_blue_alpha,
+            typename Numeric = fc::numeric::unsigned_fixed, typename Compression = fc::compression::none,
+            typename Order = fc::order::forward >
+        class select_format {
+            typedef typename fg::get_ideal_internal_component< Component >::type ideal_internal_component;
+            typedef typename fi::select_format< ideal_internal_component, Numeric, Compression >::type internal_format;
 
-            typedef typename data_format::info::type data_type;
-            typedef typename data_format::info::packing data_packing;
+            typedef typename fi::get_ideal_data_integral< typename fn::get_integral< Numeric >::type >::type ideal_data_integral;
+            typedef typename fi::get_ideal_component_packing< ideal_internal_component >::type ideal_data_packing;
+            typedef typename fd::select_format< typename fn::get_width< Numeric >::type, ideal_data_packing, Order,
+                typename fn::get_sign< Numeric >::type, ideal_data_integral >::type data_format;
 
-            typedef typename fi::format_selector< ideal_internal_base, Size, Type, Compression >::format internal_format;
-
-            typedef typename internal_format::info::base internal_base;
-
-            typedef typename fi::to_group_type< Type >::type group_type;
-            typedef typename fg::format_selector< Base, group_type, Order >::format group_format;
+            typedef typename fi::get_ideal_group_integral< typename fn::get_integral< Numeric >::type >::type ideal_group_integral;
+            typedef typename fg::select_format< Component, ideal_group_integral, Order >::type group_format;
 
           public:
-            typedef texture_format< TargetFormat, internal_format, group_format, data_format > format;
+            typedef texture_format< TargetFormat, internal_format, group_format, data_format > type;
         };
+
       } // namespace texture
     } // namespace format
 

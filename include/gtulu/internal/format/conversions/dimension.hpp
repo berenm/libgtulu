@@ -25,55 +25,55 @@ namespace gtulu {
 
         template< >
         struct to_typename< 1 > {
-            typedef fcd::one type;
+            typedef fc::cardinality::one type;
         };
         template< >
         struct to_typename< 2 > {
-            typedef fcd::two type;
+            typedef fc::cardinality::two type;
         };
         template< >
         struct to_typename< 2, 2 > {
-            typedef fcd::two_by_two type;
+            typedef fc::cardinality::two_by_two type;
         };
         template< >
         struct to_typename< 2, 3 > {
-            typedef fcd::two_by_three type;
+            typedef fc::cardinality::two_by_three type;
         };
         template< >
         struct to_typename< 2, 4 > {
-            typedef fcd::two_by_four type;
+            typedef fc::cardinality::two_by_four type;
         };
         template< >
         struct to_typename< 3 > {
-            typedef fcd::three type;
+            typedef fc::cardinality::three type;
         };
         template< >
         struct to_typename< 3, 2 > {
-            typedef fcd::three_by_two type;
+            typedef fc::cardinality::three_by_two type;
         };
         template< >
         struct to_typename< 3, 3 > {
-            typedef fcd::three_by_three type;
+            typedef fc::cardinality::three_by_three type;
         };
         template< >
         struct to_typename< 3, 4 > {
-            typedef fcd::three_by_four type;
+            typedef fc::cardinality::three_by_four type;
         };
         template< >
         struct to_typename< 4 > {
-            typedef fcd::four type;
+            typedef fc::cardinality::four type;
         };
         template< >
         struct to_typename< 4, 2 > {
-            typedef fcd::four_by_two type;
+            typedef fc::cardinality::four_by_two type;
         };
         template< >
         struct to_typename< 4, 3 > {
-            typedef fcd::four_by_three type;
+            typedef fc::cardinality::four_by_three type;
         };
         template< >
         struct to_typename< 4, 4 > {
-            typedef fcd::four_by_four type;
+            typedef fc::cardinality::four_by_four type;
         };
 
         template< typename Dimension >
@@ -81,15 +81,15 @@ namespace gtulu {
             typedef ::boost::mpl::int_< 1 > type;
         };
         template< >
-        struct to_literal< fcd::two > {
+        struct to_literal< fc::cardinality::two > {
             typedef ::boost::mpl::int_< 2 > type;
         };
         template< >
-        struct to_literal< fcd::three > {
+        struct to_literal< fc::cardinality::three > {
             typedef ::boost::mpl::int_< 3 > type;
         };
         template< >
-        struct to_literal< fcd::four > {
+        struct to_literal< fc::cardinality::four > {
             typedef ::boost::mpl::int_< 4 > type;
         };
       } // namespace common
