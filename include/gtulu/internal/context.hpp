@@ -518,8 +518,8 @@ namespace gtulu {
         using cst::gl_smooth_line_width_granularity;
         using cst::gl_max_elements_indices;
         using cst::gl_max_elements_vertices;
-        using cst::gl_compressed_texture_format;
-        using cst::gl_num_compressed_texture_format;
+        using cst::gl_compressed_texture_formats;
+        using cst::gl_num_compressed_texture_formats;
         using cst::gl_max_texture_buffer_size;
         using cst::gl_max_rectangle_texture_size;
 
@@ -856,9 +856,9 @@ namespace gtulu {
       DECLARE_GETTOR_TYPED(gl_color_logic_op, 1, ::std::uint8_t)
       DECLARE_GETTOR_TYPED(gl_color_writemask, 4, ::std::uint8_t)
 
-      DECLARE_GETTOR_TYPED(gl_num_compressed_texture_format, 1, ::std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_num_compressed_texture_formats, 1, ::std::int32_t)
 
-      DECLARE_GETTOR_DYNAMIC(gl_compressed_texture_format, gl_num_compressed_texture_format, ::std::int32_t)
+      DECLARE_GETTOR_DYNAMIC(gl_compressed_texture_formats, gl_num_compressed_texture_formats, ::std::int32_t)
       DECLARE_GETTOR_TYPED(gl_cull_face, 1, ::std::uint8_t)
       DECLARE_GETTOR_TYPED(gl_current_program, 1, ::std::int32_t)
       DECLARE_GETTOR(gl_depth_clear_value, 1)

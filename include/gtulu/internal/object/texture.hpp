@@ -68,7 +68,7 @@ namespace gtulu {
             git::texture_slot< typename TextureFormat::target >::unbind(*this);
           }
 
-          typedef typename fd::to_typename< typename TextureFormat::data::info::value_type >::type data_type;
+          typedef typename fn::to_value_type< typename fc::get_numeric< typename TextureFormat::data >::type >::type data_type;
 
           inline void load(data_type const* data,
                            ::std::size_t size,
