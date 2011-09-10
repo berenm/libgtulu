@@ -143,7 +143,7 @@ namespace gtulu {
       template< typename DataFormat, typename BufferUsage = gib::usage::gl_stream_draw >
       struct buffer: public buffer_base, public object< buffer_base > {
         public:
-          typedef typename fn::to_value_type< typename fc::get_numeric< DataFormat >::type >::type data_type_t;
+          typedef typename fc::to_value_type< DataFormat >::type data_type_t;
 
           buffer() :
               object< buffer_base >() {

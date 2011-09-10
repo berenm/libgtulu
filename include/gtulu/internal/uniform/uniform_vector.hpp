@@ -19,72 +19,78 @@
 
 #include <boost/preprocessor/repetition/enum_params.hpp>
 
-namespace gtulu {
-  namespace internal {
-
-    namespace uniform {
-      namespace vector {
-
-        template< typename DataType, typename Count >
-        struct uniform_binder;
-
-#define DECLARE_BINDER(type_m, count_m) \
-      template< > \
-      struct uniform_binder< fut::type_m, fc::to_typename< count_m >::type > { \
-          inline static void bind(location_t const location_in, BOOST_PP_ENUM_PARAMS(count_m, fu::to_typename< fut::type_m >::type const value_in)) { \
-            fnc:: gl_uniform_##count_m ::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in)); \
-          } \
-          inline static void bind(location_t const location_in, ::std::uint32_t const number_in, fu::to_typename< fut::type_m >::type const* values_in) { \
-            fnc:: gl_uniform_##count_m ::call(location_in, number_in, values_in); \
-          } \
-      };
-
-#define DECLARE_VECTOR_BINDER(type_m) \
-        DECLARE_BINDER(type_m, 2) \
-        DECLARE_BINDER(type_m, 3) \
-        DECLARE_BINDER(type_m, 4)
-
-        DECLARE_VECTOR_BINDER(floating)
-        DECLARE_VECTOR_BINDER(integer)
-        DECLARE_VECTOR_BINDER(unsigned_integer)
-        DECLARE_VECTOR_BINDER(boolean)
-
-#undef DECLARE_VECTOR_BINDER
-#undef DECLARE_BINDER
-
-        template< typename Format, typename BinderType = uniform_binder< typename Format::info::type,
-            typename Format::info::count >
-            , typename ValueType = typename fu::to_typename< typename Format::info::type >::type >
-        struct uniform {
-            typedef Format format;
-            typedef ValueType value_type;
-            typedef BinderType binder;
-        };
-      } // namespace vector
-
-#define DECLARE_UNIFORM_VECTOR(format_m) \
-    typedef vector::uniform< fu::format_m > format_m;
-
-      DECLARE_UNIFORM_VECTOR(gl_float_vec2)
-      DECLARE_UNIFORM_VECTOR(gl_float_vec3)
-      DECLARE_UNIFORM_VECTOR(gl_float_vec4)
-      DECLARE_UNIFORM_VECTOR(gl_int_vec2)
-      DECLARE_UNIFORM_VECTOR(gl_int_vec3)
-      DECLARE_UNIFORM_VECTOR(gl_int_vec4)
-      DECLARE_UNIFORM_VECTOR(gl_unsigned_int_vec2)
-      DECLARE_UNIFORM_VECTOR(gl_unsigned_int_vec3)
-      DECLARE_UNIFORM_VECTOR(gl_unsigned_int_vec4)
-      DECLARE_UNIFORM_VECTOR(gl_bool_vec2)
-      DECLARE_UNIFORM_VECTOR(gl_bool_vec3)
-      DECLARE_UNIFORM_VECTOR(gl_bool_vec4)
-
-#undef DECLARE_UNIFORM_VECTOR
-
-    } // namespace uniform
-
-    namespace giuv = ::gtulu::internal::uniform::vector;
-
-  } // namespace internal
-} // namespace gtulu
+//namespace gtulu {
+//  namespace internal {
+//
+//    namespace uniform {
+//      namespace vector {
+//
+//        namespace detail {
+//
+//          template< typename Cardinality >
+//          struct cardinality_binder;
+//
+//#define DECLARE_BINDER(count_m, cardinality_m)                                                          \
+//      template< >                                                                                       \
+//      struct cardinality_binder< fc::cardinality::cardinality_m > {                                     \
+//          template< typename DataFormat >                                                               \
+//          struct uniform_binder {                                                                       \
+//            inline static void bind(location_t const location_in,                                       \
+//              BOOST_PP_ENUM_PARAMS(count_m, fc::to_value_type< DataFormat >::type const value_in)) {    \
+//              fnc:: gl_uniform_##count_m ::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in));  \
+//            }                                                                                           \
+//            inline static void bind(location_t const location_in, ::std::uint32_t const number_in,      \
+//                                    fc::to_value_type< DataFormat >::type const* values_in) {           \
+//              fnc:: gl_uniform_##count_m ::call(location_in, number_in, values_in);                     \
+//            }                                                                                           \
+//          };                                                                                            \
+//      };
+//
+//          DECLARE_BINDER(2, two)
+//          DECLARE_BINDER(3, three)
+//          DECLARE_BINDER(4, four)
+//
+//#undef DECLARE_BINDER
+//
+//        } // namespace detail
+//
+//        template< typename DataFormat >
+//        struct uniform_binder: detail::cardinality_binder< typename fc::get_cardinality< DataFormat >::type >::uniform_binder<
+//            DataFormat > {
+//        };
+//
+//        template< typename Format, typename BinderType = uniform_binder< Format >,
+//            typename ValueType = typename fc::to_value_type< Format >::type >
+//        struct uniform {
+//            typedef Format format;
+//            typedef ValueType value_type;
+//            typedef BinderType binder;
+//        };
+//      } // namespace vector
+//
+//#define DECLARE_UNIFORM_VECTOR(format_m) \
+//    typedef vector::uniform< fu::format_m > format_m;
+//
+//      DECLARE_UNIFORM_VECTOR(gl_float_vec2)
+//      DECLARE_UNIFORM_VECTOR(gl_float_vec3)
+//      DECLARE_UNIFORM_VECTOR(gl_float_vec4)
+//      DECLARE_UNIFORM_VECTOR(gl_int_vec2)
+//      DECLARE_UNIFORM_VECTOR(gl_int_vec3)
+//      DECLARE_UNIFORM_VECTOR(gl_int_vec4)
+//      DECLARE_UNIFORM_VECTOR(gl_unsigned_int_vec2)
+//      DECLARE_UNIFORM_VECTOR(gl_unsigned_int_vec3)
+//      DECLARE_UNIFORM_VECTOR(gl_unsigned_int_vec4)
+//      DECLARE_UNIFORM_VECTOR(gl_bool_vec2)
+//      DECLARE_UNIFORM_VECTOR(gl_bool_vec3)
+//      DECLARE_UNIFORM_VECTOR(gl_bool_vec4)
+//
+//#undef DECLARE_UNIFORM_VECTOR
+//
+//    } // namespace uniform
+//
+//    namespace giuv = ::gtulu::internal::uniform::vector;
+//
+//  } // namespace internal
+//} // namespace gtulu
 
 #endif /* GTULU_INTERNAL_UNIFORM_VECTOR_HPP_ */

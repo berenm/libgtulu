@@ -14,6 +14,7 @@
 #include "gtulu/internal/format/internal.hpp"
 #include "gtulu/internal/format/data.hpp"
 #include "gtulu/internal/format/group.hpp"
+#include "gtulu/internal/format/conversion/common.hpp"
 
 namespace gtulu {
   namespace internal {

@@ -20,42 +20,72 @@ namespace gtulu {
 
     namespace attribute {
 
-      template< typename DataType >
-      struct attribute_binder;
+      namespace detail {
+        template< typename Cardinality >
+        struct cardinality_binder;
 
-#define DECLARE_BINDER_METHODS(value_type_m, suffix_m) \
-    inline static void bind(location_t const location_in, value_type_m const value_in) { \
-      BOOST_PP_SEQ_CAT((fnc::gl_vertex_attrib_1)(suffix_m))::call(location_in, value_in); \
-      fnc::gl_disable_vertex_attrib_array::call(location_in); \
-    } \
-    inline static void bind(location_t const location_in, value_type_m const* values_in) { \
-      BOOST_PP_SEQ_CAT((fnc::gl_vertex_attrib_1)(suffix_m))::call(location_in, values_in); \
-      fnc::gl_disable_vertex_attrib_array::call(location_in); \
-    } \
+#define DECLARE_BINDER(count_m, cardinality_m)                                                          \
+    template< >                                                                                         \
+    struct cardinality_binder< fc::cardinality::cardinality_m > {                                       \
+      template< typename Integral > struct attribute_binder;                                            \
+    };                                                                                                  \
+    template< > template< >                                                                             \
+    struct cardinality_binder< fc::cardinality::cardinality_m >                                         \
+         ::attribute_binder< fn::integral::floating > {                                                 \
+         template< typename DataFormat >                                                                \
+         inline static void bind(location_t const location_in,                                          \
+                                 BOOST_PP_ENUM_PARAMS(count_m,                                          \
+                                   typename fc::to_value_type< DataFormat >::type const value_in)) {    \
+             fnc::gl_vertex_attrib_##count_m ::call(location_in,                                        \
+                                                    BOOST_PP_ENUM_PARAMS(count_m, value_in));           \
+             fnc::gl_disable_vertex_attrib_array::call(location_in);                                    \
+         }                                                                                              \
+         template< typename DataFormat >                                                                \
+         inline static void bind(location_t const location_in, ::std::uint32_t const number_in,         \
+                                 typename fc::to_value_type< DataFormat >::type const* values_in) {     \
+           fnc::gl_vertex_attrib_##count_m ::call(location_in, values_in);                              \
+           fnc::gl_disable_vertex_attrib_array::call(location_in);                                      \
+         }                                                                                              \
+    };                                                                                                  \
+    template< > template< >                                                                             \
+    struct cardinality_binder< fc::cardinality::cardinality_m >                                         \
+         ::attribute_binder< fn::integral::integral > {                                                 \
+        template< typename DataFormat >                                                                 \
+        inline static void bind(location_t const location_in,                                           \
+                                BOOST_PP_ENUM_PARAMS(count_m,                                           \
+                                  typename fc::to_value_type< DataFormat >::type const value_in)) {     \
+           fnc::gl_vertex_attrib_##count_m##_integer ::call(location_in,                                \
+                                                            BOOST_PP_ENUM_PARAMS(count_m, value_in));   \
+           fnc::gl_disable_vertex_attrib_array::call(location_in);                                      \
+         }                                                                                              \
+         template< typename DataFormat >                                                                \
+         inline static void bind(location_t const location_in, ::std::uint32_t const number_in,         \
+                                 typename fc::to_value_type< DataFormat >::type const* values_in) {     \
+           fnc::gl_vertex_attrib_##count_m##_integer ::call(location_in, values_in);                    \
+           fnc::gl_disable_vertex_attrib_array::call(location_in);                                      \
+         }                                                                                              \
+    };
 
-      template< >
-      struct attribute_binder< fat::floating > {
-          DECLARE_BINDER_METHODS(double, BOOST_PP_EMPTY())DECLARE_BINDER_METHODS(float, BOOST_PP_EMPTY())DECLARE_BINDER_METHODS(::std::int16_t, BOOST_PP_EMPTY())
+        DECLARE_BINDER(1, one)
+        DECLARE_BINDER(2, two)
+        DECLARE_BINDER(3, three)
+        DECLARE_BINDER(4, four)
+
+#undef DECLARE_BINDER
+
+      } // namespace detail
+
+      template< typename AttributeFormat >
+      struct attribute_binder: detail::cardinality_binder< typename fc::get_cardinality< AttributeFormat >::type >::template attribute_binder<
+          typename fn::get_integral< typename fc::get_numeric< AttributeFormat >::type >::type > {
       };
 
-      template< >
-      struct attribute_binder< fat::integer > {
-          DECLARE_BINDER_METHODS(::std::int32_t, _integer)
-      };
-
-      template< >
-      struct attribute_binder< fat::unsigned_integer > {
-          DECLARE_BINDER_METHODS(::std::uint32_t, _integer)
-      };
-
-#undef DECLARE_BINDER_METHODS
-
-      template< typename Format, typename BinderType = attribute_binder< typename Format::info::type >,
-          typename BufferBinderType = attribute_buffer_binder< Format >, typename ValueType = typename fa::to_typename<
-              typename Format::info::type >::type >
+      template< typename Format, typename BinderType = attribute_binder< Format >,
+          typename BufferBinderType = attribute_buffer_binder< Format > >
+//      , typename ValueType = typename fc::to_value_type< Format >::type >
       struct attribute {
           typedef Format format;
-          typedef ValueType value_type;
+//          typedef ValueType value_type;
           typedef BinderType binder;
           typedef BufferBinderType buffer_binder;
       };
@@ -66,6 +96,16 @@ namespace gtulu {
       DECLARE_ATTRIBUTE(gl_float)
       DECLARE_ATTRIBUTE(gl_int)
       DECLARE_ATTRIBUTE(gl_unsigned_int)
+
+      DECLARE_ATTRIBUTE(gl_float_vec2)
+      DECLARE_ATTRIBUTE(gl_float_vec3)
+      DECLARE_ATTRIBUTE(gl_float_vec4)
+      DECLARE_ATTRIBUTE(gl_int_vec2)
+      DECLARE_ATTRIBUTE(gl_int_vec3)
+      DECLARE_ATTRIBUTE(gl_int_vec4)
+      DECLARE_ATTRIBUTE(gl_unsigned_int_vec2)
+      DECLARE_ATTRIBUTE(gl_unsigned_int_vec3)
+      DECLARE_ATTRIBUTE(gl_unsigned_int_vec4)
 
 #undef DECLARE_ATTRIBUTE
 

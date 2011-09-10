@@ -55,11 +55,9 @@ namespace fc = ::gtulu::internal::format::common;
 
 namespace fu = ::gtulu::internal::format::uniform;
 namespace fuf = ::gtulu::internal::format::uniform::format;
-namespace fub = ::gtulu::internal::format::uniform::base;
 
 namespace fa = ::gtulu::internal::format::attribute;
 namespace faf = ::gtulu::internal::format::attribute::format;
-namespace fab = ::gtulu::internal::format::attribute::base;
 
 namespace fs = ::gtulu::internal::format::shader;
 namespace fp = ::gtulu::internal::format::program;
@@ -248,86 +246,78 @@ struct attribute_type_info {
     ::std::string name;
 };
 
-template< typename Base >
-struct is_sampler: ::boost::false_type {
-};
-
-template< >
-struct is_sampler< fub::sampler > : ::boost::true_type {
-};
-
-#define COMPLETE_UNIFORM_INFO(type_m) \
+#define COMPLETE_UNIFORM_INFO(type_m, is_sampler_m) \
 	case fuf::gl_ ##type_m::value:\
-  	info.count = fc::to_literal< fu::gl_##type_m::info::count >::type::value; \
+  	info.count = fc::get_cardinality_literal< fu::gl_##type_m >::type::value; \
   	info.name = #type_m; \
-  	info.is_sampler = is_sampler< fu::gl_##type_m::info::base >::value; \
+  	info.is_sampler = is_sampler_m; \
   	break; \
 
 const uniform_type_info get_uniform_info(cst::gl_constant_base const& type) {
   uniform_type_info info;
 
   switch (::std::uint32_t(type)) {
-    COMPLETE_UNIFORM_INFO(float)
-    COMPLETE_UNIFORM_INFO(float_vec2)
-    COMPLETE_UNIFORM_INFO(float_vec3)
-    COMPLETE_UNIFORM_INFO(float_vec4)
-    COMPLETE_UNIFORM_INFO(int)
-    COMPLETE_UNIFORM_INFO(int_vec2)
-    COMPLETE_UNIFORM_INFO(int_vec3)
-    COMPLETE_UNIFORM_INFO(int_vec4)
-    COMPLETE_UNIFORM_INFO(unsigned_int)
-    COMPLETE_UNIFORM_INFO(unsigned_int_vec2)
-    COMPLETE_UNIFORM_INFO(unsigned_int_vec3)
-    COMPLETE_UNIFORM_INFO(unsigned_int_vec4)
-    COMPLETE_UNIFORM_INFO(bool)
-    COMPLETE_UNIFORM_INFO(bool_vec2)
-    COMPLETE_UNIFORM_INFO(bool_vec3)
-    COMPLETE_UNIFORM_INFO(bool_vec4)
-    COMPLETE_UNIFORM_INFO(float_mat2)
-    COMPLETE_UNIFORM_INFO(float_mat3)
-    COMPLETE_UNIFORM_INFO(float_mat4)
-    COMPLETE_UNIFORM_INFO(float_mat2x3)
-    COMPLETE_UNIFORM_INFO(float_mat2x4)
-    COMPLETE_UNIFORM_INFO(float_mat3x2)
-    COMPLETE_UNIFORM_INFO(float_mat3x4)
-    COMPLETE_UNIFORM_INFO(float_mat4x2)
-    COMPLETE_UNIFORM_INFO(float_mat4x3)
-    COMPLETE_UNIFORM_INFO(sampler_1d)
-    COMPLETE_UNIFORM_INFO(sampler_2d)
-    COMPLETE_UNIFORM_INFO(sampler_3d)
-    COMPLETE_UNIFORM_INFO(sampler_cube)
-    COMPLETE_UNIFORM_INFO(sampler_1d_shadow)
-    COMPLETE_UNIFORM_INFO(sampler_2d_shadow)
-    COMPLETE_UNIFORM_INFO(sampler_1d_array)
-    COMPLETE_UNIFORM_INFO(sampler_2d_array)
-    COMPLETE_UNIFORM_INFO(sampler_1d_array_shadow)
-    COMPLETE_UNIFORM_INFO(sampler_2d_array_shadow)
-    COMPLETE_UNIFORM_INFO(sampler_2d_multisample)
-    COMPLETE_UNIFORM_INFO(sampler_2d_multisample_array)
-    COMPLETE_UNIFORM_INFO(sampler_cube_shadow)
-    COMPLETE_UNIFORM_INFO(sampler_buffer)
-    COMPLETE_UNIFORM_INFO(sampler_2d_rect)
-    COMPLETE_UNIFORM_INFO(sampler_2d_rect_shadow)
-    COMPLETE_UNIFORM_INFO(int_sampler_1d)
-    COMPLETE_UNIFORM_INFO(int_sampler_2d)
-    COMPLETE_UNIFORM_INFO(int_sampler_3d)
-    COMPLETE_UNIFORM_INFO(int_sampler_cube)
-    COMPLETE_UNIFORM_INFO(int_sampler_1d_array)
-    COMPLETE_UNIFORM_INFO(int_sampler_2d_array)
-    COMPLETE_UNIFORM_INFO(int_sampler_2d_multisample)
-    COMPLETE_UNIFORM_INFO(int_sampler_2d_multisample_array)
-    COMPLETE_UNIFORM_INFO(int_sampler_buffer)
-    COMPLETE_UNIFORM_INFO(int_sampler_2d_rect)
-    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_1d)
-    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_2d)
-    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_3d)
-    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_cube)
-    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_1d_array)
-    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_2d_array)
-    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_2d_multisample)
-    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_2d_multisample_array)
-    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_buffer)
-    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_2d_rect)
+    COMPLETE_UNIFORM_INFO(float, false)
+    COMPLETE_UNIFORM_INFO(float_vec2, false)
+    COMPLETE_UNIFORM_INFO(float_vec3, false)
+    COMPLETE_UNIFORM_INFO(float_vec4, false)
+    COMPLETE_UNIFORM_INFO(int, false)
+    COMPLETE_UNIFORM_INFO(int_vec2, false)
+    COMPLETE_UNIFORM_INFO(int_vec3, false)
+    COMPLETE_UNIFORM_INFO(int_vec4, false)
+    COMPLETE_UNIFORM_INFO(unsigned_int, false)
+    COMPLETE_UNIFORM_INFO(unsigned_int_vec2, false)
+    COMPLETE_UNIFORM_INFO(unsigned_int_vec3, false)
+    COMPLETE_UNIFORM_INFO(unsigned_int_vec4, false)
+    COMPLETE_UNIFORM_INFO(bool, false)
+    COMPLETE_UNIFORM_INFO(bool_vec2, false)
+    COMPLETE_UNIFORM_INFO(bool_vec3, false)
+    COMPLETE_UNIFORM_INFO(bool_vec4, false)
+    COMPLETE_UNIFORM_INFO(float_mat2, false)
+    COMPLETE_UNIFORM_INFO(float_mat3, false)
+    COMPLETE_UNIFORM_INFO(float_mat4, false)
+    COMPLETE_UNIFORM_INFO(float_mat2x3, false)
+    COMPLETE_UNIFORM_INFO(float_mat2x4, false)
+    COMPLETE_UNIFORM_INFO(float_mat3x2, false)
+    COMPLETE_UNIFORM_INFO(float_mat3x4, false)
+    COMPLETE_UNIFORM_INFO(float_mat4x2, false)
+    COMPLETE_UNIFORM_INFO(float_mat4x3, false)
+    COMPLETE_UNIFORM_INFO(sampler_1d, true)
+    COMPLETE_UNIFORM_INFO(sampler_2d, true)
+    COMPLETE_UNIFORM_INFO(sampler_3d, true)
+    COMPLETE_UNIFORM_INFO(sampler_cube, true)
+    COMPLETE_UNIFORM_INFO(sampler_1d_shadow, true)
+    COMPLETE_UNIFORM_INFO(sampler_2d_shadow, true)
+    COMPLETE_UNIFORM_INFO(sampler_1d_array, true)
+    COMPLETE_UNIFORM_INFO(sampler_2d_array, true)
+    COMPLETE_UNIFORM_INFO(sampler_1d_array_shadow, true)
+    COMPLETE_UNIFORM_INFO(sampler_2d_array_shadow, true)
+    COMPLETE_UNIFORM_INFO(sampler_2d_multisample, true)
+    COMPLETE_UNIFORM_INFO(sampler_2d_multisample_array, true)
+    COMPLETE_UNIFORM_INFO(sampler_cube_shadow, true)
+    COMPLETE_UNIFORM_INFO(sampler_buffer, true)
+    COMPLETE_UNIFORM_INFO(sampler_2d_rect, true)
+    COMPLETE_UNIFORM_INFO(sampler_2d_rect_shadow, true)
+    COMPLETE_UNIFORM_INFO(int_sampler_1d, true)
+    COMPLETE_UNIFORM_INFO(int_sampler_2d, true)
+    COMPLETE_UNIFORM_INFO(int_sampler_3d, true)
+    COMPLETE_UNIFORM_INFO(int_sampler_cube, true)
+    COMPLETE_UNIFORM_INFO(int_sampler_1d_array, true)
+    COMPLETE_UNIFORM_INFO(int_sampler_2d_array, true)
+    COMPLETE_UNIFORM_INFO(int_sampler_2d_multisample, true)
+    COMPLETE_UNIFORM_INFO(int_sampler_2d_multisample_array, true)
+    COMPLETE_UNIFORM_INFO(int_sampler_buffer, true)
+    COMPLETE_UNIFORM_INFO(int_sampler_2d_rect, true)
+    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_1d, true)
+    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_2d, true)
+    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_3d, true)
+    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_cube, true)
+    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_1d_array, true)
+    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_2d_array, true)
+    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_2d_multisample, true)
+    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_2d_multisample_array, true)
+    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_buffer, true)
+    COMPLETE_UNIFORM_INFO(unsigned_int_sampler_2d_rect, true)
   }
 
   return info;
@@ -336,7 +326,7 @@ const uniform_type_info get_uniform_info(cst::gl_constant_base const& type) {
 
 #define COMPLETE_ATTRIBUTE_INFO(type_m) \
         case faf::gl_ ##type_m::value:\
-        info.count = fc::to_literal< fa::gl_##type_m::info::count >::type::value; \
+        info.count = fc::get_cardinality_literal< fa::gl_##type_m >::type::value; \
         info.name = #type_m; \
         break; \
 
@@ -546,13 +536,13 @@ int main(int argc, char *argv[]) {
                           ::boost::lexical_cast< ::std::string >(info.size));
     } else {
       __gtulu_warn << "shader: " << "Output data '" << info.type << "' " << info.name
-            << " not bound. Maybe only used internally.";
-    }
+          << " not bound. Maybe only used internally.";
   }
+}
 
-  compiler.save(destination);
+compiler.save(destination);
 
-  close_gl();
+close_gl();
 
-  return 0;
+return 0;
 }

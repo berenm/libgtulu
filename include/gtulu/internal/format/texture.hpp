@@ -21,6 +21,7 @@
 #include "gtulu/internal/format/constraint/group.hpp"
 #include "gtulu/internal/format/constraint/target.hpp"
 
+#include "gtulu/internal/format/conversion/common.hpp"
 #include "gtulu/internal/format/conversion/group.hpp"
 #include "gtulu/internal/format/conversion/internal.hpp"
 
@@ -239,7 +240,7 @@ namespace gtulu {
             typedef typename TextureFormat::internal::info::format internal_t;
             typedef typename TextureFormat::group::info::format group_t;
             typedef typename TextureFormat::data::info::format data_t;
-            typedef typename fn::to_value_type< typename fc::get_numeric< typename TextureFormat::data >::type >::type value_t;
+            typedef typename fc::to_value_type< typename TextureFormat::data >::type value_t;
 
             typedef loader< target_t, internal_t, group_t, data_t, value_t > type;
         };

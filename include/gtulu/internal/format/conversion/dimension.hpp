@@ -12,6 +12,7 @@
 #define GTULU_INTERNAL_FORMAT_CONVERSION_DIMENSION_HPP_
 
 #include "gtulu/internal/format/common.hpp"
+#include "gtulu/internal/format/conversion/common.hpp"
 
 #include <boost/mpl/int.hpp>
 

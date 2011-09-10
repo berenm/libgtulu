@@ -19,6 +19,7 @@
 #include "gtulu/internal/object/drawable.hpp"
 
 #include "gtulu/internal/format/constraint/target.hpp"
+#include "gtulu/internal/format/conversion/common.hpp"
 #include "gtulu/internal/format/conversion/data.hpp"
 
 #include "gtulu/internal/object/texture/base.hpp"
@@ -68,7 +69,7 @@ namespace gtulu {
             git::texture_slot< typename TextureFormat::target >::unbind(*this);
           }
 
-          typedef typename fn::to_value_type< typename fc::get_numeric< typename TextureFormat::data >::type >::type data_type;
+          typedef typename fc::to_value_type< typename TextureFormat::data >::type data_type;
 
           inline void load(data_type const* data,
                            ::std::size_t size,

@@ -12,6 +12,7 @@
 #define GTULU_INTERNAL_FORMAT_CONVERSION_DATA_HPP_
 
 #include "gtulu/internal/format/data.hpp"
+#include "gtulu/internal/format/conversion/common.hpp"
 
 namespace gtulu {
   namespace internal {

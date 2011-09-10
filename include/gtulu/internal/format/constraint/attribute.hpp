@@ -37,9 +37,8 @@ namespace gtulu {
             typedef bm::and_< is_four_in_one_packed, bm::not_< is_four_elements > > is_packed_but_not_four_elements;
             typedef bm::and_<
                 is_four_in_one_packed,
-                bm::and_<
-                    bm::not_< fdf::is_gl_unsigned_int_2_10_10_10_rev< DataFormat >,
-                        fdf::is_gl_int_2_10_10_10_rev< DataFormat > > > > is_packed_but_not_2_10_10_10;
+                bm::and_< bm::not_< fdf::is_gl_unsigned_int_2_10_10_10_rev< DataFormat > >,
+                    bm::not_< fdf::is_gl_int_2_10_10_10_rev< DataFormat > > > > is_packed_but_not_2_10_10_10;
 
             typedef bm::and_< bm::not_< is_not_one_or_four_packed >, bm::not_< is_packed_but_not_four_elements >,
                 bm::not_< is_packed_but_not_2_10_10_10 > > type;
@@ -54,7 +53,7 @@ namespace gtulu {
 
         template< typename AttributeFormat, typename DataFormat >
         struct data_type_check {
-            typedef bm::and_< fn::integral::is_integral< fc::get_numeric< AttributeFormat >::type >,
+            typedef bm::and_< fn::integral::is_integral< typename fc::get_numeric< AttributeFormat >::type >,
                 bm::not_< fn::integral::is_integral< typename fc::get_numeric< DataFormat >::type > > > attribute_is_integral_but_data_is_not;
 
             typedef bm::not_< attribute_is_integral_but_data_is_not > type;

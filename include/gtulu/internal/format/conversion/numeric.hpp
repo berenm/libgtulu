@@ -23,9 +23,11 @@ namespace gtulu {
 
 #define DECLARE_CONVERSION(value_type_m, numeric_format_m)      \
   template< >                                                   \
-  struct to_value_type< numeric::format::numeric_format_m > {   \
+  struct to_value_type< numeric::numeric_format_m > {           \
       typedef value_type_m type;                                \
   };
+
+        DECLARE_CONVERSION(bool, bool_)
 
         DECLARE_CONVERSION(::std::int8_t, int8_)
         DECLARE_CONVERSION(::std::int16_t, int16_)
