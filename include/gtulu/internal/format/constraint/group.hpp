@@ -40,8 +40,8 @@ namespace gtulu {
             static_assert(type::value, "");
             static_assert(type::value, "  [3.7.2 Transfer of Pixel Rectangles]");
             static_assert(type::value, "  [3.9.3 Texture Image Specification]");
-            static_assert(group_is_floating_but_internal_is_not::value, "  - GroupFormat is floating but InternalFormat is neither floating nor fixed.");
-            static_assert(group_is_integral_but_internal_is_not::value, "  - GroupFormat is integral but InternalFormat is not.");
+            static_assert(bm::not_< group_is_floating_but_internal_is_not >::value, "  - GroupFormat is floating but InternalFormat is neither floating nor fixed.");
+            static_assert(bm::not_< group_is_integral_but_internal_is_not >::value, "  - GroupFormat is integral but InternalFormat is not.");
         };
 
         template< typename GroupFormat, typename InternalFormat >
@@ -78,12 +78,12 @@ namespace gtulu {
             static_assert(type::value, "");
             static_assert(type::value, "  [3.7.2 Transfer of Pixel Rectangles]");
             static_assert(type::value, "  [3.9.3 Texture Image Specification]");
-            static_assert(group_has_red_but_internal_has_not::value, "  - GroupFormat has red component but InternalFormat doesn't.");
-            static_assert(group_has_green_but_internal_has_not::value, "  - GroupFormat has green component but InternalFormat doesn't.");
-            static_assert(group_has_blue_but_internal_has_not::value, "  - GroupFormat has blue component but InternalFormat doesn't.");
-            static_assert(group_has_alpha_but_internal_has_not::value, "  - GroupFormat has alpha component but InternalFormat doesn't.");
-            static_assert(group_has_depth_but_internal_has_not::value, "  - GroupFormat has depth component but InternalFormat doesn't.");
-            static_assert(group_has_stencil_but_internal_has_not::value, "  - GroupFormat has stencil component but InternalFormat doesn't.");
+            static_assert(bm::not_< group_has_red_but_internal_has_not >::value, "  - GroupFormat has red component but InternalFormat doesn't.");
+            static_assert(bm::not_< group_has_green_but_internal_has_not >::value, "  - GroupFormat has green component but InternalFormat doesn't.");
+            static_assert(bm::not_< group_has_blue_but_internal_has_not >::value, "  - GroupFormat has blue component but InternalFormat doesn't.");
+            static_assert(bm::not_< group_has_alpha_but_internal_has_not >::value, "  - GroupFormat has alpha component but InternalFormat doesn't.");
+            static_assert(bm::not_< group_has_depth_but_internal_has_not >::value, "  - GroupFormat has depth component but InternalFormat doesn't.");
+            static_assert(bm::not_< group_has_stencil_but_internal_has_not >::value, "  - GroupFormat has stencil component but InternalFormat doesn't.");
         };
 
         template< typename GroupFormat, typename InternalFormat >

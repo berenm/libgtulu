@@ -47,9 +47,9 @@ namespace gtulu {
             static_assert(type::value, "AttributeFormat is not compatible with DataFormat");
             static_assert(type::value, "");
             static_assert(type::value, "  [2.8 Vertex Arrays]");
-            static_assert(is_not_one_or_four_packed::value, "  - AttributeFormat requires one- or four-packed data and DataFormat is not.");
-            static_assert(is_packed_but_not_four_elements::value, "  - DataFormat is packed but AttributeFormat doesn't have four elements.");
-            static_assert(is_packed_but_not_2_10_10_10::value, "  - DataFormat is packed but is not gl_unsigned_int_2_10_10_10_rev or gl_int_2_10_10_10_rev.");
+            static_assert(bm::not_< is_not_one_or_four_packed >::value, "  - AttributeFormat requires one- or four-packed data and DataFormat is not.");
+            static_assert(bm::not_< is_packed_but_not_four_elements >::value, "  - DataFormat is packed but AttributeFormat doesn't have four elements.");
+            static_assert(bm::not_< is_packed_but_not_2_10_10_10 >::value, "  - DataFormat is packed but is not gl_unsigned_int_2_10_10_10_rev or gl_int_2_10_10_10_rev.");
         };
 
         template< typename AttributeFormat, typename DataFormat >
@@ -62,7 +62,7 @@ namespace gtulu {
             static_assert(type::value, "AttributeFormat is not compatible with DataFormat");
             static_assert(type::value, "");
             static_assert(type::value, "  [2.8 Vertex Arrays]");
-            static_assert(attribute_is_integral_but_data_is_not::value, "  - AttributeFormat is integral but DataFormat is not.");
+            static_assert(bm::not_< attribute_is_integral_but_data_is_not >::value, "  - AttributeFormat is integral but DataFormat is not.");
         };
 
         template< typename AttributeFormat, typename DataFormat >

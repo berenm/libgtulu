@@ -36,7 +36,7 @@ namespace gtulu {
             static_assert(type::value, "");
             static_assert(type::value, "  [3.7.2 Transfer of Pixel Rectangles]");
             static_assert(type::value, "  [3.9.3 Texture Image Specification]");
-            static_assert(group_is_integral_but_data_is_not::value, "  - GroupFormat is integral but DataFormat is not.");
+            static_assert(bm::not_< group_is_integral_but_data_is_not >::value, "  - GroupFormat is integral but DataFormat is not.");
         };
 
         template< typename DataFormat, typename GroupFormat >
@@ -50,7 +50,7 @@ namespace gtulu {
             static_assert(type::value, "");
             static_assert(type::value, "  [3.7.2 Transfer of Pixel Rectangles]");
             static_assert(type::value, "  [3.9.3 Texture Image Specification]");
-            static_assert(group_is_depth_stencil_but_data_is_not_two_packed::value, "  - GroupFormat is depth_stencil but DataFormat is not two_in_one packed.");
+            static_assert(bm::not_< group_is_depth_stencil_but_data_is_not_two_packed >::value, "  - GroupFormat is depth_stencil but DataFormat is not two_in_one packed.");
         };
 
         template< typename DataFormat, typename InternalFormat >
@@ -70,9 +70,9 @@ namespace gtulu {
             static_assert(type::value, "");
             static_assert(type::value, "  [3.7.2 Transfer of Pixel Rectangles]");
             static_assert(type::value, "  [3.9.3 Texture Image Specification]");
-            static_assert(data_is_four_packed_but_internal_is_not_rgba::value, "  - DataFormat is four_in_one packed but InternalFormat components aren't rgba.");
-            static_assert(data_is_three_packed_but_internal_is_not_rgb::value, "  - DataFormat is three_in_one packed but InternalFormat components aren't rgb.");
-            static_assert(data_is_two_packed_but_internal_is_not_depth_stencil::value, "  - DataFormat is two_in_one packed but InternalFormat components aren't depth_stencil.");
+            static_assert(bm::not_< data_is_four_packed_but_internal_is_not_rgba >::value, "  - DataFormat is four_in_one packed but InternalFormat components aren't rgba.");
+            static_assert(bm::not_< data_is_three_packed_but_internal_is_not_rgb >::value, "  - DataFormat is three_in_one packed but InternalFormat components aren't rgb.");
+            static_assert(bm::not_< data_is_two_packed_but_internal_is_not_depth_stencil >::value, "  - DataFormat is two_in_one packed but InternalFormat components aren't depth_stencil.");
         };
 
         template< typename DataFormat, typename GroupFormat, typename InternalFormat >
