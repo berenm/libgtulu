@@ -20,7 +20,6 @@
 
 #include "gtulu/internal/format/constraint/target.hpp"
 #include "gtulu/internal/format/conversion/common.hpp"
-#include "gtulu/internal/format/conversion/data.hpp"
 
 #include "gtulu/internal/object/texture/base.hpp"
 

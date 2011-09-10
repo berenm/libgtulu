@@ -15,7 +15,6 @@
 #ifndef GTULU_INTERNAL_ATTRIBUTE_BUFFER_CONSTRAINT_HPP_
 #define GTULU_INTERNAL_ATTRIBUTE_BUFFER_CONSTRAINT_HPP_
 
-#include "gtulu/internal/format/conversion/dimension.hpp"
 #include "gtulu/internal/format/constraint/attribute.hpp"
 #include "gtulu/internal/format/data.hpp"
 
