@@ -17,12 +17,12 @@
 
 #include "gtulu/internal/format/common.hpp"
 
-#include "gtulu/internal/format/constraints/data.hpp"
-#include "gtulu/internal/format/constraints/group.hpp"
-#include "gtulu/internal/format/constraints/target.hpp"
+#include "gtulu/internal/format/constraint/data.hpp"
+#include "gtulu/internal/format/constraint/group.hpp"
+#include "gtulu/internal/format/constraint/target.hpp"
 
-#include "gtulu/internal/format/conversions/group.hpp"
-#include "gtulu/internal/format/conversions/internal.hpp"
+#include "gtulu/internal/format/conversion/group.hpp"
+#include "gtulu/internal/format/conversion/internal.hpp"
 
 #include "gtulu/internal/object/buffer.hpp"
 

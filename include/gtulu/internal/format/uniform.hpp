@@ -20,9 +20,9 @@
 #include "gtulu/internal/format/uniform/uniform.hpp"
 #include "gtulu/internal/format/uniform/uniform_sampler.hpp"
 
-#include "gtulu/internal/format/constraints/uniform.hpp"
+#include "gtulu/internal/format/constraint/uniform.hpp"
 
-#include "gtulu/internal/format/conversions/uniform.hpp"
+#include "gtulu/internal/format/conversion/uniform.hpp"
 
 #undef IN_GTULU_INTERNAL_FORMAT_UNIFORM_HPP_
 

@@ -18,7 +18,7 @@
 #include "gtulu/internal/object/object.hpp"
 
 #include "gtulu/internal/format/data.hpp"
-#include "gtulu/internal/format/conversions/numeric.hpp"
+#include "gtulu/internal/format/conversion/numeric.hpp"
 
 #include <boost/mpl/vector.hpp>
 

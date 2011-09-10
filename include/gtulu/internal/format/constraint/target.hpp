@@ -11,7 +11,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONSTRAINT_TARGET_HPP_
 #define GTULU_INTERNAL_FORMAT_CONSTRAINT_TARGET_HPP_
 
-#include "gtulu/internal/format/constraints/common.hpp"
+#include "gtulu/internal/format/constraint/common.hpp"
 
 #include "gtulu/internal/format/target.hpp"
 #include "gtulu/internal/format/internal.hpp"

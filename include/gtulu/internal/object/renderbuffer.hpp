@@ -18,7 +18,7 @@
 #include "gtulu/internal/object/object.hpp"
 #include "gtulu/internal/object/drawable.hpp"
 
-#include "gtulu/internal/format/constraints/target.hpp"
+#include "gtulu/internal/format/constraint/target.hpp"
 
 namespace gtulu {
   namespace internal {

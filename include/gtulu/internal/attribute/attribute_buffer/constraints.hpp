@@ -12,10 +12,10 @@
 #error "gtulu/internal/attribute/attribute_buffer.hpp should not be included directly, please include gtulu/internal/attribute.hpp instead."
 #endif /* IN_GTULU_INTERNAL_ATTRIBUTE_HPP_ */
 
-#ifndef GTULU_INTERNAL_ATTRIBUTE_BUFFER_CONSTRAINTS_HPP_
-#define GTULU_INTERNAL_ATTRIBUTE_BUFFER_CONSTRAINTS_HPP_
+#ifndef GTULU_INTERNAL_ATTRIBUTE_BUFFER_CONSTRAINT_HPP_
+#define GTULU_INTERNAL_ATTRIBUTE_BUFFER_CONSTRAINT_HPP_
 
-#include "gtulu/internal/format/conversions/dimension.hpp"
+#include "gtulu/internal/format/conversion/dimension.hpp"
 #include "gtulu/internal/format/data.hpp"
 
 #include <boost/mpl/equal_to.hpp>
@@ -94,4 +94,4 @@ namespace gtulu {
   } // namespace internal
 } // namespace gtulu
 
-#endif /* GTULU_INTERNAL_ATTRIBUTE_BUFFER_CONSTRAINTS_HPP_ */
+#endif /* GTULU_INTERNAL_ATTRIBUTE_BUFFER_CONSTRAINT_HPP_ */

@@ -11,13 +11,13 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONSTRAINT_UNIFORM_HPP_
 #define GTULU_INTERNAL_FORMAT_CONSTRAINT_UNIFORM_HPP_
 
-#include "gtulu/internal/format/constraints/common.hpp"
+#include "gtulu/internal/format/constraint/common.hpp"
 
 #include "gtulu/internal/format/uniform.hpp"
 #include "gtulu/internal/format/internal.hpp"
 #include "gtulu/internal/format/target.hpp"
 
-#include "gtulu/internal/format/conversions/internal.hpp"
+#include "gtulu/internal/format/conversion/internal.hpp"
 
 namespace gtulu {
   namespace internal {

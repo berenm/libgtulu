@@ -17,7 +17,7 @@
 
 #include "gtulu/internal/object/buffer.hpp"
 
-#include "gtulu/internal/attribute/attribute_buffer/constraints.hpp"
+#include "gtulu/internal/attribute/attribute_buffer/constraint.hpp"
 #include "gtulu/internal/attribute/attribute_buffer/callable.hpp"
 
 namespace gtulu {
