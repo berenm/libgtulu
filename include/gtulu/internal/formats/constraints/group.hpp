@@ -23,52 +23,92 @@ namespace gtulu {
 
         template< typename GroupFormat, typename InternalFormat >
         struct internal_type_check {
-            typedef bm::or_< fc::integral::is_floating< InternalFormat >, fc::integral::is_fixed< InternalFormat > > is_internal_floating;
-            typedef bm::or_< fc::integral::is_integral< InternalFormat > > is_internal_integral;
+            typedef bm::and_< bm::not_< fn::integral::is_floating< fc::get_numeric< InternalFormat >::type > >,
+                bm::not_< fn::integral::is_fixed< fc::get_numeric< InternalFormat >::type > > > internal_is_neither_floating_or_fixed;
 
-            typedef bm::and_< is_internal_floating, fc::integral::is_floating< GroupFormat > > are_both_floating;
-            typedef bm::and_< is_internal_integral, fc::integral::is_integral< GroupFormat > > are_both_integral;
+            typedef bm::and_< fn::integral::is_floating< fc::get_numeric< GroupFormat >::type >,
+                internal_is_neither_floating_or_fixed > group_is_floating_but_internal_is_not;
+            typedef bm::and_< fn::integral::is_integral< fc::get_numeric< GroupFormat >::type >,
+                bm::not_< fn::integral::is_integral< fc::get_numeric< InternalFormat >::type > > > group_is_integral_but_internal_is_not;
 
-            typedef bm::or_< are_both_floating, are_both_integral > type;
-            static_assert(type::value, "internal_type_t is not compatible with GroupFormat, floating group require floating, fixed or unsigned_fixed internal type, integer group require integer internal type and ::std::uint32_teger group require ::std::uint32_teger internal type.");
+            typedef bm::and_< bm::not_< group_is_floating_but_internal_is_not >,
+                bm::not_< group_is_integral_but_internal_is_not > > type;
+
+            static_assert(type::value, "GroupFormat is not compatible with InternalFormat");
+            static_assert(type::value, "");
+            static_assert(type::value, "  [3.7.2 Transfer of Pixel Rectangles]");
+            static_assert(type::value, "  [3.9.3 Texture Image Specification]");
+            static_assert(group_is_floating_but_internal_is_not::value, "  - GroupFormat is floating but InternalFormat is neither floating nor fixed.");
+            static_assert(group_is_integral_but_internal_is_not::value, "  - GroupFormat is integral but InternalFormat is not.");
+        };
+
+        template< typename Format >
+        struct has_no_red_component: bm::and_< bm::not_< fc::component::is_red< Format > >,
+            bm::not_< fc::component::is_red_green< Format > >, bm::not_< fc::component::is_red_green_blue< Format > >,
+            bm::not_< fc::component::is_red_green_blue_alpha< Format > > > {
+        };
+        template< typename Format >
+        struct has_no_green_component: bm::and_< bm::not_< fc::component::is_green< Format > >,
+            bm::not_< fc::component::is_red_green< Format > >, bm::not_< fc::component::is_red_green_blue< Format > >,
+            bm::not_< fc::component::is_red_green_blue_alpha< Format > > > {
+        };
+        template< typename Format >
+        struct has_no_blue_component: bm::and_< bm::not_< fc::component::is_blue< Format > >,
+            bm::not_< fc::component::is_red_green_blue< Format > >,
+            bm::not_< fc::component::is_red_green_blue_alpha< Format > > > {
+        };
+        template< typename Format >
+        struct has_no_alpha_component: bm::not_< fc::component::is_red_green_blue_alpha< Format > > {
+        };
+        template< typename Format >
+        struct has_no_depth_component: bm::and_< bm::not_< fc::component::is_depth< Format > >,
+            bm::not_< fc::component::is_depth_stencil< Format > > > {
+        };
+        template< typename Format >
+        struct has_no_stencil_component: bm::and_< bm::not_< fc::component::is_stencil< Format > >,
+            bm::not_< fc::component::is_depth_stencil< Format > > > {
         };
 
         template< typename GroupFormat, typename InternalFormat >
         struct components_check {
-            typedef bm::or_< fc::component::is_red< InternalFormat >, fc::component::is_red_green< InternalFormat >,
-                fc::component::is_red_green_blue< InternalFormat >,
-                fc::component::is_red_green_blue_alpha< InternalFormat > > has_red_component;
-            typedef bm::or_< fc::component::is_green< InternalFormat >, fc::component::is_red_green< InternalFormat >,
-                fc::component::is_red_green_blue< InternalFormat >,
-                fc::component::is_red_green_blue_alpha< InternalFormat > > has_green_component;
-            typedef bm::or_< fc::component::is_blue< InternalFormat >,
-                fc::component::is_red_green_blue< InternalFormat >,
-                fc::component::is_red_green_blue_alpha< InternalFormat > > has_blue_component;
-            typedef fc::component::is_red_green_blue_alpha< InternalFormat > has_alpha_component;
+            typedef has_no_red_component< InternalFormat > internal_has_no_red_component;
+            typedef has_no_green_component< InternalFormat > internal_has_no_green_component;
+            typedef has_no_blue_component< InternalFormat > internal_has_no_blue_component;
+            typedef has_no_alpha_component< InternalFormat > internal_has_no_alpha_component;
+            typedef has_no_depth_component< InternalFormat > internal_has_no_depth_component;
+            typedef has_no_stencil_component< InternalFormat > internal_has_no_stencil_component;
 
-            typedef bm::or_< fc::component::is_depth< InternalFormat >,
-                fc::component::is_depth_stencil< InternalFormat > > has_depth_component;
-            typedef bm::or_< fc::component::is_stencil< InternalFormat >,
-                fc::component::is_depth_stencil< InternalFormat > > has_stencil_component;
+            typedef bm::not_< has_no_red_component< GroupFormat > > group_has_red_component;
+            typedef bm::not_< has_no_green_component< GroupFormat > > group_has_green_component;
+            typedef bm::not_< has_no_blue_component< GroupFormat > > group_has_blue_component;
+            typedef bm::not_< has_no_alpha_component< GroupFormat > > group_has_alpha_component;
+            typedef bm::not_< has_no_depth_component< GroupFormat > > group_has_depth_component;
+            typedef bm::not_< has_no_stencil_component< GroupFormat > > group_has_stencil_component;
 
-            typedef bm::and_< fc::component::is_red< GroupFormat >, has_red_component > red_c;
-            typedef bm::and_< fc::component::is_green< GroupFormat >, has_red_component > green_c;
-            typedef bm::and_< fc::component::is_blue< GroupFormat >, has_red_component > blue_c;
-            typedef bm::and_< fc::component::is_red_green< GroupFormat >,
-                bm::and_< has_red_component, has_green_component > > rg_c;
-            typedef bm::and_< fc::component::is_red_green_blue< GroupFormat >,
-                bm::and_< has_red_component, has_green_component, has_blue_component > > rgb_c;
-            typedef bm::and_< fc::component::is_red_green_blue_alpha< GroupFormat >,
-                bm::and_< has_red_component, has_green_component, has_blue_component, has_alpha_component > > rgba_c;
+            typedef bm::and_< group_has_red_component, internal_has_no_red_component > group_has_red_but_internal_has_not;
+            typedef bm::and_< group_has_green_component, internal_has_no_green_component > group_has_green_but_internal_has_not;
+            typedef bm::and_< group_has_blue_component, internal_has_no_blue_component > group_has_blue_but_internal_has_not;
+            typedef bm::and_< group_has_alpha_component, internal_has_no_alpha_component > group_has_alpha_but_internal_has_not;
+            typedef bm::and_< group_has_depth_component, internal_has_no_depth_component > group_has_depth_but_internal_has_not;
+            typedef bm::and_< group_has_stencil_component, internal_has_no_stencil_component > group_has_stencil_but_internal_has_not;
 
-            typedef bm::and_< fc::component::is_depth< GroupFormat >, has_depth_component > depth_c;
-            typedef bm::and_< fc::component::is_stencil< GroupFormat >, has_stencil_component > stencil_c;
-            typedef bm::and_< fc::component::is_depth_stencil< GroupFormat >,
-                bm::and_< has_depth_component, has_stencil_component > > depth_stencil_c;
+            typedef bm::and_<
+                bm::and_< bm::not_< group_has_red_but_internal_has_not >,
+                    bm::not_< group_has_green_but_internal_has_not >, bm::not_< group_has_blue_but_internal_has_not >,
+                    bm::not_< group_has_alpha_but_internal_has_not > >
+                , bm::and_< bm::not_< group_has_depth_but_internal_has_not >,
+                    bm::not_< group_has_stencil_but_internal_has_not > > > type;
 
-            typedef bm::or_< bm::or_< red_c, green_c, blue_c, rg_c, rgb_c >
-                , bm::or_< rgba_c, depth_c, stencil_c, depth_stencil_c > > type;
-            static_assert(type::value, "cannot find group components from GroupFormat in internal_type_t, groups with red component require red component in internal data, groups with green component require green component in internal data, etc...");
+            static_assert(type::value, "GroupFormat is not compatible with InternalFormat");
+            static_assert(type::value, "");
+            static_assert(type::value, "  [3.7.2 Transfer of Pixel Rectangles]");
+            static_assert(type::value, "  [3.9.3 Texture Image Specification]");
+            static_assert(group_has_red_but_internal_has_not::value, "  - GroupFormat has red component but InternalFormat doesn't.");
+            static_assert(group_has_green_but_internal_has_not::value, "  - GroupFormat has green component but InternalFormat doesn't.");
+            static_assert(group_has_blue_but_internal_has_not::value, "  - GroupFormat has blue component but InternalFormat doesn't.");
+            static_assert(group_has_alpha_but_internal_has_not::value, "  - GroupFormat has alpha component but InternalFormat doesn't.");
+            static_assert(group_has_depth_but_internal_has_not::value, "  - GroupFormat has depth component but InternalFormat doesn't.");
+            static_assert(group_has_stencil_but_internal_has_not::value, "  - GroupFormat has stencil component but InternalFormat doesn't.");
         };
 
         template< typename GroupFormat, typename InternalFormat >

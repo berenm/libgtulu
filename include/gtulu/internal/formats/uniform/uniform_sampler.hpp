@@ -43,7 +43,7 @@ namespace gtulu {
     namespace sampler {                                                 \
       template< > struct uniform_format< fuf::format_m > {              \
           typedef uniform_aspect< fuf::format_m,                        \
-              fn::numeric_m,                                            \
+              fc::numeric::numeric_m,                                   \
               fc::dimension::oned,                                      \
               fc::cardinality::one,                                     \
               ft::target_m,                                             \

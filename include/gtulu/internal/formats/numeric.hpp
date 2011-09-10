@@ -8,7 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_NUMERIC_HPP_
 #define GTULU_INTERNAL_FORMAT_NUMERIC_HPP_
 
-#include "gtulu/internal/formats/common.hpp"
+#include "meta/type_traits.hpp"
 
 namespace gtulu {
   namespace internal {

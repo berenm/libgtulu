@@ -14,7 +14,6 @@
 #include "gtulu/internal/constants_fwd.hpp"
 
 #include "gtulu/internal/formats/common.hpp"
-#include "gtulu/internal/formats/numeric.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -53,13 +52,13 @@ namespace gtulu {
     template< > struct group_format< format::format_m > {               \
         typedef group_format_aspect< format::format_m,                  \
                                      fc::component::component_m,        \
-                                     fn::numeric_m,                     \
+                                     fc::numeric::numeric_m,            \
                                      fc::order::order_m > aspect;       \
     };                                                                  \
     typedef group_format< format::format_m > format_m;                  \
                                                                         \
     template< > struct select_format< fc::component::component_m,       \
-                                      fn::numeric_m,                    \
+                                      fc::numeric::numeric_m,           \
                                       fc::order::order_m > {            \
         typedef format_m type;                                          \
     };

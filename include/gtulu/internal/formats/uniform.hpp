@@ -14,7 +14,6 @@
 #include "gtulu/internal/constants_fwd.hpp"
 
 #include "gtulu/internal/formats/common.hpp"
-#include "gtulu/internal/formats/numeric.hpp"
 
 #define IN_GTULU_INTERNAL_FORMAT_UNIFORM_HPP_
 

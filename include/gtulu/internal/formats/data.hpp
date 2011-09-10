@@ -14,7 +14,6 @@
 #include "gtulu/internal/constants_fwd.hpp"
 
 #include "gtulu/internal/formats/common.hpp"
-#include "gtulu/internal/formats/numeric.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -47,7 +46,7 @@ namespace gtulu {
 #define DECLARE_FORMAT(format_m, numeric_m, packing_m, order_m, size_m) \
       template< > struct data_format< format::format_m > {              \
          typedef data_format_aspect< format::format_m,                  \
-                                     fn::numeric_m,                     \
+                                     fc::numeric::numeric_m,            \
                                      fc::packing::packing_m,            \
                                      fc::order::order_m,                \
                                      size_m > aspect;                   \
@@ -56,7 +55,7 @@ namespace gtulu {
 
 #define DECLARE_FORMAT_DEFAULT(format_m, numeric_m, packing_m, order_m, size_m) \
      DECLARE_FORMAT(format_m, numeric_m, packing_m, order_m, size_m)            \
-     template < > struct select_format< fn::numeric_m,                          \
+     template < > struct select_format< fc::numeric::numeric_m,                 \
                                         fc::packing::packing_m, size_m,         \
                                         fc::order::order_m > {                  \
          typedef format_m type;                                                 \

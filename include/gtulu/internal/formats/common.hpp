@@ -12,11 +12,18 @@
 
 #include "meta/type_traits.hpp"
 
+#include "gtulu/internal/formats/numeric.hpp"
+
 namespace gtulu {
   namespace internal {
 
     namespace formats {
       namespace common {
+
+        META_ASPECT_DECLARE(numeric,
+                            Numeric,
+                            using fn::,
+                            (signed_)(unsigned_)(integral_)(signed_integral)(unsigned_integral)(fixed_)(signed_fixed)(unsigned_fixed)(floating_)(signed_floating)(unsigned_floating)(bool_)(int8_)(int16_)(int32_)(int64_)(uint8_)(uint16_)(uint32_)(uint64_)(fixed16_)(fixed32_)(fixed64_)(ufixed16_)(ufixed32_)(ufixed64_)(float16_)(float32_)(float64_)(ufloat32_)(float32_stride32_))
 
         META_ASPECT_DECLARE(dimension, Dimension, struct, (oned)(twod)(threed)(rectangle)(buffer)(cube_map))
         META_ASPECT_DECLARE(cardinality,

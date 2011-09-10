@@ -12,7 +12,6 @@
 #define GTULU_INTERNAL_FORMAT_ATTRIBUTE_HPP_
 
 #include "gtulu/internal/formats/common.hpp"
-#include "gtulu/internal/formats/numeric.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -43,7 +42,7 @@ namespace gtulu {
 #define DECLARE_FORMAT(format_m, numeric_m, dimension_m, cardinality_m)         \
     template< > struct attribute_format< format::format_m > {                   \
         typedef attribute_aspect< format::format_m,                             \
-                                  fn::numeric_m,                                \
+                                  fc::numeric::numeric_m,                       \
                                   fc::dimension::dimension_m,                   \
                                   fc::cardinality::cardinality_m > aspect;      \
     };                                                                          \
