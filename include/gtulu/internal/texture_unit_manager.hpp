@@ -15,7 +15,7 @@
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
 
-#include "gtulu/internal/objects/texture.hpp"
+#include "gtulu/internal/object/texture.hpp"
 
 #include <boost/thread/tss.hpp>
 #include <boost/smart_ptr.hpp>

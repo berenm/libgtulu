@@ -15,7 +15,7 @@
 #ifndef GTULU_INTERNAL_ATTRIBUTE_VECTOR_HPP_
 #define GTULU_INTERNAL_ATTRIBUTE_VECTOR_HPP_
 
-#include "gtulu/internal/formats/conversions/dimension.hpp"
+#include "gtulu/internal/format/conversions/dimension.hpp"
 
 #include <boost/preprocessor.hpp>
 

@@ -6,7 +6,7 @@
 
 namespace gtulu {
   namespace internal {
-    namespace formats {
+    namespace format {
       namespace program {
 
         // #template#<declare_shader_source/>
@@ -31,7 +31,7 @@ namespace gtulu {
         ;
 
       } // namespace program
-    } // namespace formats
+    } // namespace format
   } // namespace internal
 } // namespace gtulu
 

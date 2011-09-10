@@ -15,7 +15,7 @@
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
 
-#include "gtulu/internal/formats/output.hpp"
+#include "gtulu/internal/format/output.hpp"
 
 #define IN_GTULU_INTERNAL_OUTPUT_HPP_
 

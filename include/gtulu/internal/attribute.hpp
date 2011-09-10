@@ -15,7 +15,7 @@
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
 
-#include "gtulu/internal/formats/attribute.hpp"
+#include "gtulu/internal/format/attribute.hpp"
 
 #define IN_GTULU_INTERNAL_ATTRIBUTE_HPP_
 

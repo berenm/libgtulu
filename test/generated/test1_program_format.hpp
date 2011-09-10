@@ -11,17 +11,17 @@
 #define GTULU_PROGRAM_FORMATTEST1_HPP_
 
 #include <gtulu/opengl.hpp>
-#include <gtulu/internal/formats/shader/static.hpp>
-#include <gtulu/internal/formats/program/static.hpp>
+#include <gtulu/internal/format/shader/static.hpp>
+#include <gtulu/internal/format/program/static.hpp>
 #include <gtulu/internal/uniform.hpp>
 #include <gtulu/internal/attribute.hpp>
-#include <gtulu/internal/objects/shader.hpp>
-#include <gtulu/internal/objects/program.hpp>
-#include <gtulu/internal/objects/vertexarray.hpp>
-#include <gtulu/internal/objects/framebuffer.hpp>
-#include <gtulu/internal/objects/framebuffer/attacher.hpp>
-#include <gtulu/internal/objects/framebuffer/format.hpp>
-#include <gtulu/internal/objects/texture.hpp>
+#include <gtulu/internal/object/shader.hpp>
+#include <gtulu/internal/object/program.hpp>
+#include <gtulu/internal/object/vertexarray.hpp>
+#include <gtulu/internal/object/framebuffer.hpp>
+#include <gtulu/internal/object/framebuffer/attacher.hpp>
+#include <gtulu/internal/object/framebuffer/format.hpp>
+#include <gtulu/internal/object/texture.hpp>
 
 #include <boost/shared_ptr.hpp>
 #include <boost/preprocessor.hpp>
@@ -29,7 +29,7 @@
 namespace gtulu {
   namespace internal {
 
-    namespace formats {
+    namespace format {
       namespace program {
 
         class test1_program_format: public fp::static_program_format {
@@ -387,7 +387,7 @@ namespace gtulu {
         };
 
       } // namespace program
-    } // namespace formats
+    } // namespace format
 
   } // namespace internal
 } // namespace gtulu

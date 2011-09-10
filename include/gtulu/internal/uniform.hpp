@@ -15,7 +15,7 @@
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
 
-#include "gtulu/internal/formats/uniform.hpp"
+#include "gtulu/internal/format/uniform.hpp"
 
 #define IN_GTULU_INTERNAL_UNIFORM_HPP_
 

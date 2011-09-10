@@ -14,17 +14,17 @@
 #include <boost/preprocessor.hpp>
 #include <boost/type_traits.hpp>
 
-#include "gtulu/internal/formats/common.hpp"
-#include "gtulu/internal/formats/attribute.hpp"
-#include "gtulu/internal/formats/data.hpp"
-#include "gtulu/internal/formats/group.hpp"
-#include "gtulu/internal/formats/internal.hpp"
-#include "gtulu/internal/formats/output.hpp"
-#include "gtulu/internal/formats/program.hpp"
-#include "gtulu/internal/formats/renderbuffer.hpp"
-#include "gtulu/internal/formats/shader.hpp"
-#include "gtulu/internal/formats/target.hpp"
-#include "gtulu/internal/formats/texture.hpp"
-#include "gtulu/internal/formats/uniform.hpp"
+#include "gtulu/internal/format/common.hpp"
+#include "gtulu/internal/format/attribute.hpp"
+#include "gtulu/internal/format/data.hpp"
+#include "gtulu/internal/format/group.hpp"
+#include "gtulu/internal/format/internal.hpp"
+#include "gtulu/internal/format/output.hpp"
+#include "gtulu/internal/format/program.hpp"
+#include "gtulu/internal/format/renderbuffer.hpp"
+#include "gtulu/internal/format/shader.hpp"
+#include "gtulu/internal/format/target.hpp"
+#include "gtulu/internal/format/texture.hpp"
+#include "gtulu/internal/format/uniform.hpp"
 
 #endif /*  BOOST_BUILD_PCH_ENABLED */

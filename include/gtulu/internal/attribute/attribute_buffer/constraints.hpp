@@ -15,8 +15,8 @@
 #ifndef GTULU_INTERNAL_ATTRIBUTE_BUFFER_CONSTRAINTS_HPP_
 #define GTULU_INTERNAL_ATTRIBUTE_BUFFER_CONSTRAINTS_HPP_
 
-#include "gtulu/internal/formats/conversions/dimension.hpp"
-#include "gtulu/internal/formats/data.hpp"
+#include "gtulu/internal/format/conversions/dimension.hpp"
+#include "gtulu/internal/format/data.hpp"
 
 #include <boost/mpl/equal_to.hpp>
 #include <boost/mpl/or.hpp>

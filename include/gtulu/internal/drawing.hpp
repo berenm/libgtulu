@@ -15,8 +15,8 @@
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
 
-#include "gtulu/internal/objects/buffer.hpp"
-#include "gtulu/internal/formats/data.hpp"
+#include "gtulu/internal/object/buffer.hpp"
+#include "gtulu/internal/format/data.hpp"
 
 namespace gtulu {
   namespace internal {

@@ -15,7 +15,7 @@
 #ifndef GTULU_INTERNAL_ATTRIBUTE_BUFFER_HPP_
 #define GTULU_INTERNAL_ATTRIBUTE_BUFFER_HPP_
 
-#include "gtulu/internal/objects/buffer.hpp"
+#include "gtulu/internal/object/buffer.hpp"
 
 #include "gtulu/internal/attribute/attribute_buffer/constraints.hpp"
 #include "gtulu/internal/attribute/attribute_buffer/callable.hpp"

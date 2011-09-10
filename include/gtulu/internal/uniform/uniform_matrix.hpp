@@ -15,7 +15,7 @@
 #ifndef GTULU_INTERNAL_UNIFORM_MATRIX_HPP_
 #define GTULU_INTERNAL_UNIFORM_MATRIX_HPP_
 
-#include "gtulu/internal/formats/conversions/dimension.hpp"
+#include "gtulu/internal/format/conversions/dimension.hpp"
 
 namespace gtulu {
   namespace internal {

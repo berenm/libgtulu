@@ -15,10 +15,10 @@
 
 #include "gtulu/internal/uniform.hpp"
 #include "gtulu/internal/attribute.hpp"
-#include "gtulu/internal/objects/program.hpp"
-#include "gtulu/internal/formats/program/dynamic.hpp"
-#include "gtulu/internal/objects/shader.hpp"
-#include "gtulu/internal/formats/shader/dynamic.hpp"
+#include "gtulu/internal/object/program.hpp"
+#include "gtulu/internal/format/program/dynamic.hpp"
+#include "gtulu/internal/object/shader.hpp"
+#include "gtulu/internal/format/shader/dynamic.hpp"
 
 #include "gtulu/utils/file.hpp"
 
@@ -49,21 +49,21 @@ namespace po = ::boost::program_options;
 namespace bfs = ::boost::filesystem;
 
 namespace gu = ::gtulu::utils;
-namespace gio = ::gtulu::internal::objects;
+namespace gio = ::gtulu::internal::object;
 
-namespace fc = ::gtulu::internal::formats::common;
+namespace fc = ::gtulu::internal::format::common;
 
-namespace fu = ::gtulu::internal::formats::uniform;
-namespace fuf = ::gtulu::internal::formats::uniform::format;
-namespace fub = ::gtulu::internal::formats::uniform::base;
+namespace fu = ::gtulu::internal::format::uniform;
+namespace fuf = ::gtulu::internal::format::uniform::format;
+namespace fub = ::gtulu::internal::format::uniform::base;
 
-namespace fa = ::gtulu::internal::formats::attribute;
-namespace faf = ::gtulu::internal::formats::attribute::format;
-namespace fab = ::gtulu::internal::formats::attribute::base;
+namespace fa = ::gtulu::internal::format::attribute;
+namespace faf = ::gtulu::internal::format::attribute::format;
+namespace fab = ::gtulu::internal::format::attribute::base;
 
-namespace fs = ::gtulu::internal::formats::shader;
-namespace fp = ::gtulu::internal::formats::program;
-namespace fst = ::gtulu::internal::formats::shader::type;
+namespace fs = ::gtulu::internal::format::shader;
+namespace fp = ::gtulu::internal::format::program;
+namespace fst = ::gtulu::internal::format::shader::type;
 
 namespace cst = ::gtulu::internal::constant;
 

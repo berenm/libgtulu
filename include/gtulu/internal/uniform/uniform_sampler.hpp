@@ -15,8 +15,8 @@
 #ifndef GTULU_INTERNAL_UNIFORM_SAMPLER_HPP_
 #define GTULU_INTERNAL_UNIFORM_SAMPLER_HPP_
 
-#include "gtulu/internal/formats/internal.hpp"
-#include "gtulu/internal/formats/target.hpp"
+#include "gtulu/internal/format/internal.hpp"
+#include "gtulu/internal/format/target.hpp"
 #include "gtulu/internal/texture_unit_manager.hpp"
 
 #include <boost/preprocessor/repetition/enum_params.hpp>
@@ -24,7 +24,7 @@
 namespace gtulu {
   namespace internal {
 
-    namespace objects {
+    namespace object {
       struct texture_base;
 
       template< typename TextureFormat >

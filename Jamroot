@@ -73,15 +73,15 @@ lib gtulu :
   src/gtulu/utils/file.cpp
   src/gtulu/internal/constants.cpp
   src/gtulu/internal/texture_unit_manager.cpp
-  src/gtulu/internal/formats/output.cpp
-  src/gtulu/internal/formats/uniform.cpp
-  src/gtulu/internal/formats/attribute.cpp
-  src/gtulu/internal/objects/object.cpp
-  src/gtulu/internal/formats/program/dynamic.cpp
-  src/gtulu/internal/formats/shader/dynamic.cpp
-  src/gtulu/internal/objects/framebuffer/attachment_manager.cpp
-  src/gtulu/internal/objects/program/base.cpp
-  src/gtulu/internal/objects/shader/base.cpp
+  src/gtulu/internal/format/output.cpp
+  src/gtulu/internal/format/uniform.cpp
+  src/gtulu/internal/format/attribute.cpp
+  src/gtulu/internal/object/object.cpp
+  src/gtulu/internal/format/program/dynamic.cpp
+  src/gtulu/internal/format/shader/dynamic.cpp
+  src/gtulu/internal/object/framebuffer/attachment_manager.cpp
+  src/gtulu/internal/object/program/base.cpp
+  src/gtulu/internal/object/shader/base.cpp
   gtulu_opengl_pch.hpp
   ;
 exe gtulu-compiler : src/compile.cpp common gtulu gtulu_opengl_pch.hpp ;
