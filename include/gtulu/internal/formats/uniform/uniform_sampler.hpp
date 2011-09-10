@@ -39,17 +39,17 @@ namespace gtulu {
           struct uniform_format;
         } // namespace sampler
 
-#define DECLARE_FORMAT(format_m, numeric_m, target_m, compare_m)       \
-    namespace sampler {                                                         \
-      template< > struct uniform_format< fuf::format_m > {                      \
-          typedef uniform_aspect< fuf::format_m,                                \
-              fc::numeric::numeric_m,                                           \
-              fc::dimension::oned,                                              \
-              fc::cardinality::one,                                             \
-              ft::target_m,                                                     \
-              fc::compare::compare_m > aspect;                                  \
-      };                                                                        \
-    }                                                                           \
+#define DECLARE_FORMAT(format_m, numeric_m, target_m, compare_m)        \
+    namespace sampler {                                                 \
+      template< > struct uniform_format< fuf::format_m > {              \
+          typedef uniform_aspect< fuf::format_m,                        \
+              fn::numeric_m,                                            \
+              fc::dimension::oned,                                      \
+              fc::cardinality::one,                                     \
+              ft::target_m,                                             \
+              fc::compare::compare_m > aspect;                          \
+      };                                                                \
+    }                                                                   \
     typedef sampler::uniform_format< format::format_m > format_m;
 
         DECLARE_FORMAT(gl_sampler_1d, signed_floating, gl_texture_1d, normal)

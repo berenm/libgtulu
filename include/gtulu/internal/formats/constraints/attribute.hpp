@@ -11,10 +11,12 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONSTRAINT_ATTRIBUTE_HPP_
 #define GTULU_INTERNAL_FORMAT_CONSTRAINT_ATTRIBUTE_HPP_
 
-#include <boost/mpl/or.hpp>
-
 #include "gtulu/internal/formats/attribute.hpp"
 #include "gtulu/internal/formats/data.hpp"
+
+#include <boost/mpl/not.hpp>
+#include <boost/mpl/or.hpp>
+#include <boost/mpl/and.hpp>
 
 namespace gtulu {
   namespace internal {
@@ -27,16 +29,30 @@ namespace gtulu {
         struct data_packing_check {
             typedef fc::packing::is_one_in_one< DataFormat > is_one_in_one_packed;
             typedef fc::packing::is_four_in_one< DataFormat > is_four_in_one_packed;
+            typedef fc::cardinality::is_four< AttributeFormat > is_four_elements;
+
+            typedef bm::and_< bm::not_< is_one_in_one_packed >, bm::not_< is_four_in_one_packed > > is_not_one_or_four_packed;
+            typedef bm::and_< is_four_in_one_packed, bm::not_< is_four_elements > > is_packed_but_not_four_elements;
+            typedef bm::and_<
+                is_four_in_one_packed,
+                bm::and_<
+                    bm::not_< fdf::is_gl_unsigned_int_2_10_10_10_rev< DataFormat >,
+                        fdf::is_gl_int_2_10_10_10_rev< DataFormat > > > > is_packed_but_not_2_10_10_10;
+
+            typedef bm::and_< bm::not_< is_not_one_or_four_packed >, bm::not_< is_packed_but_not_four_elements >,
+                bm::not_< is_packed_but_not_2_10_10_10 > > type;
 
             static_assert(type::value, "AttributeFormat is not compatible with DataFormat");
             static_assert(type::value, "");
             static_assert(type::value, "  [2.8 Vertex Arrays]");
-            static_assert(type::value, "  vertex attributes require non packed buffer data and DataFormat packing is not fc::packing::one_in_one.");
+            static_assert(is_not_one_or_four_packed::value, "  - AttributeFormat requires one- or four-packed data and DataFormat is not.");
+            static_assert(is_packed_but_not_four_elements::value, "  - DataFormat is packed but AttributeFormat doesn't have four elements.");
+            static_assert(is_packed_but_not_2_10_10_10::value, "  - DataFormat is packed but is not gl_unsigned_int_2_10_10_10_rev or gl_int_2_10_10_10_rev.");
         };
 
         template< typename AttributeFormat, typename DataFormat >
         struct data_type_check {
-            typedef fc::integral::is_floating< AttributeFormat > floating_check;
+            typedef fcn::integral::is_floating< typename fc::get_numeric< AttributeFormat >::type > floating_check;
             typedef bm::and_< fc::integral::is_integral< DataFormat >, fc::integral::is_integral< AttributeFormat > > integer_check;
 
             typedef bm::or_< floating_check, integer_check > type;

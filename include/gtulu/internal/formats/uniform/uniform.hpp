@@ -103,7 +103,7 @@ namespace gtulu {
 #define DECLARE_UNIFORM_FORMAT(format_m, numeric_m, dimension_m, cardinality_m) \
     template< > struct uniform_format< format::format_m > {                     \
         typedef uniform_aspect< format::format_m,                               \
-                                fc::numeric::numeric_m,                         \
+                                fn::numeric_m,                                  \
                                 fc::dimension::dimension_m,                     \
                                 fc::cardinality::cardinality_m > aspect;        \
     };                                                                          \

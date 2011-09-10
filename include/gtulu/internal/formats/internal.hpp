@@ -14,6 +14,7 @@
 #include "gtulu/internal/constants_fwd.hpp"
 
 #include "gtulu/internal/formats/common.hpp"
+#include "gtulu/internal/formats/numeric.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -60,7 +61,7 @@ namespace gtulu {
         typedef internal_format_aspect< format::format_m,                                       \
                                         fc::component::component_m,                             \
                                         size_m,                                                 \
-                                        fc::numeric::numeric_m,                                 \
+                                        fn::numeric_m,                                          \
                                         fc::compression::compression_m,                         \
                                         fc::target::target_m > aspect;                          \
     };                                                                                          \
@@ -70,7 +71,7 @@ namespace gtulu {
     DECLARE_FORMAT(format_m, component_m, size_m, numeric_m, compression_m, target_m)                   \
     template< > struct select_format< fc::component::component_m,                                       \
                                       size_m,                                                           \
-                                      fc::numeric::numeric_m,                                           \
+                                      fn::numeric_m,                                                    \
                                       fc::compression::compression_m > {                                \
         typedef format_m type;                                                                          \
     };
@@ -165,7 +166,7 @@ namespace gtulu {
 #define DECLARE_DEFAULT_FORMAT(component_m, size_m, numeric_m, compressed_m)    \
     typedef select_format< fc::component::component_m,                          \
                            size_m,                                              \
-                           fc::numeric::numeric_m,                              \
+                           fn::numeric_m,                                       \
                            fc::compression::compressed_m >::type component_m;
 
         DECLARE_DEFAULT_FORMAT(red, 8, unsigned_fixed, none)
