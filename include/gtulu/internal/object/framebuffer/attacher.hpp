@@ -125,7 +125,7 @@ namespace gtulu {
       };
 
       template< typename Layered, typename TextureFormat, typename TargetFormat >
-      struct texture_attacher: public is_target_attachable< typename TextureFormat::target, TargetFormat > {
+      struct texture_attacher: public is_target_attachable< typename TextureFormat::target_format, TargetFormat > {
           template< typename FramebufferSlotType >
           inline static void attach(cst::gl_constant_base const& color,
                                     gio::texture< TextureFormat > const& texture,
@@ -141,7 +141,7 @@ namespace gtulu {
       template< typename FramebufferSlotType >
       struct attacher {
           template< typename Layered, typename TextureFormat,
-              typename TargetFormat = typename TextureFormat::target::info::format >
+              typename TargetFormat = typename TextureFormat::target_format >
           inline static void attach(cst::gl_constant_base const& color,
                                     gio::texture< TextureFormat > const& texture,
                                     ::std::uint32_t const mipmap_level,
@@ -158,7 +158,7 @@ namespace gtulu {
                                     ::std::uint32_t const layer) {
             fnc::gl_framebuffer_renderbuffer::call(FramebufferSlotType::get(),
                                                    color,
-                                                   ft::gl_renderbuffer::info::format(),
+                                                   cst::gl_renderbuffer(),
                                                    *renderbuffer);
           }
       };

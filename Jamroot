@@ -3,6 +3,8 @@
 
 import multiarch ;
 import path ;
+import shader ;
+import testing ;
 
 lib GL : : [ multiarch.search-path ] <name>:libGL.so.1 ;
 lib GLU : : [ multiarch.search-path ] ;
@@ -18,11 +20,17 @@ lib boost_log : : [ multiarch.search-path ] ;
 lib logging : : [ multiarch.search-path ] ;
 lib glut : : [ multiarch.search-path ] ;
 lib X11 : : [ multiarch.search-path ] ;
+lib xcb : : [ multiarch.search-path ] ;
+lib Xau : : [ multiarch.search-path ] ;
+lib Xdmcp : : [ multiarch.search-path ] ;
 
 project libgtulu : requirements
   <library>GL/<link>shared
   <library>GLU
   <library>X11
+  <library>xcb
+  <library>Xau
+  <library>Xdmcp
   <library>glfw
   <library>boost_thread
   <library>boost_program_options
@@ -84,30 +92,24 @@ lib gtulu :
   src/gtulu/internal/object/shader/base.cpp
   gtulu_opengl_pch.hpp
   ;
-exe gtulu-compiler : src/compile.cpp common gtulu gtulu_opengl_pch.hpp ;
+exe gtulu-compiler : src/compile.cpp common gtulu gtulu_opengl_pch.hpp : <link>shared ;
 
-#program test1 : test/shaders/test1.vs test/shaders/test1.fs : <location>test/generated/ ;
-#program test2 : test/shaders/test2.vs test/shaders/test2.fs : <location>test/generated/ ;
-#program test3 : test/shaders/test3.vs test/shaders/test3.fs : <location>test/generated/ ;
-#
-#exe test1exe : test/test1.cpp test1 common gtulu gtulu_opengl_pch.hpp
-#    : <address-model>$(default_address_model) ;
-#exe test2exe : test/test2.cpp test2 common gtulu gtulu_opengl_pch.hpp
-#    : <address-model>$(default_address_model) ;
-#exe test3exe : test/test3.cpp test3 common gtulu gtulu_opengl_pch.hpp
-#    : <address-model>$(default_address_model) ;
-#
-#alias test : test1exe/<link>shared
-#             test2exe/<link>shared
-#             test3exe/<link>shared
-#             test1exe/<link>static
-#             test2exe/<link>static
-#             test3exe/<link>static ;
+shader.program test1 : test/shaders/test1.vs test/shaders/test1.fs : <location>test/generated/ ;
+shader.program test2 : test/shaders/test2.vs test/shaders/test2.fs : <location>test/generated/ ;
+shader.program test3 : test/shaders/test3.vs test/shaders/test3.fs : <location>test/generated/ ;
+
+unit-test test1exe : test/test1.cpp test1 common gtulu gtulu_opengl_pch.hpp : <link>shared ;
+unit-test test2exe : test/test2.cpp test2 common gtulu gtulu_opengl_pch.hpp : <link>shared ;
+unit-test test3exe : test/test3.cpp test3 common gtulu gtulu_opengl_pch.hpp : <link>shared ;
+
+alias test : test1exe/<link>shared
+             test2exe/<link>shared
+             test3exe/<link>shared ;
 
 
 multiarch.build build libgtulu
                 : gtulu-compiler
-                : gtulu
+                : gtulu test
                 : ;
 
 multiarch.install install libgtulu 

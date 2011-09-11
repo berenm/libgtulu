@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
   init_gl(argc, argv);
 
   // Select default texture format for 2d texture.
-  typedef ftext::texture_format_selector< ft::gl_texture_2d >::format texture_format;
+  typedef ftext::select_format< ft::gl_texture_2d, fc::component::red_green_blue, fn::float32_ >::type texture_format;
   gio::texture< texture_format > texture;
 
   // New data buffers.

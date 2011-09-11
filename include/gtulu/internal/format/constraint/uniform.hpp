@@ -67,17 +67,17 @@ namespace gtulu {
               static_assert(bm::not_< sampler_is_unsigned_but_internal_is_not >::value, "  - SamplerFormat is unsigned but InternalFormat is not.");
           };
 
-          template< typename SamplerTargetFormat, typename TextureTargetFormat >
+          template< typename SamplerFormat, typename TargetFormat >
           struct is_target_same {
-              typedef ::std::is_same< SamplerTargetFormat, TextureTargetFormat > type;
+              typedef ::std::is_same< typename SamplerFormat::aspect::target_format, TargetFormat > type;
               static_assert(type::value, "SamplerTargetFormat and TextureTargetFormat are not same.");
           };
 
           template< typename SamplerFormat, typename TextureFormat >
           struct is_texture_compatible {
-              typedef typename shadow_stencil_check< SamplerFormat, typename TextureFormat::internal >::type shadow_stencil_c;
-              typedef typename internal_type_check< SamplerFormat, typename TextureFormat::internal >::type internal_type_c;
-              typedef typename is_target_same< typename SamplerFormat::info::target, typename TextureFormat::target >::type target_same_c;
+              typedef typename shadow_stencil_check< SamplerFormat, typename TextureFormat::internal_format >::type shadow_stencil_c;
+              typedef typename internal_type_check< SamplerFormat, typename TextureFormat::internal_format >::type internal_type_c;
+              typedef typename is_target_same< SamplerFormat, typename TextureFormat::target_format >::type target_same_c;
 
               typedef bm::and_< shadow_stencil_c, internal_type_c, target_same_c > type;
           };

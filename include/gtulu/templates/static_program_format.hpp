@@ -274,10 +274,10 @@ namespace gtulu {
 
             // #template#<attribute>_name_tpl,_type_tpl,_location_tpl,_size_tpl
             typedef gia::gl__type_tpl::binder _name_tpl_binder_t;
-            typedef gia::gl__type_tpl::value_type _name_tpl_value_t;
             typedef gia::gl__type_tpl::buffer_binder _name_tpl_buffer_binder_t;
 
-            void set__name_tpl(BOOST_PP_ENUM_PARAMS(_size_tpl, _name_tpl_value_t const _name_tpl_in)) {
+            template< typename DataFormat >
+            void set__name_tpl(BOOST_PP_ENUM_PARAMS(_size_tpl, DataFormat const _name_tpl_in)) {
               gio::vertexarray_base::bind();
               _name_tpl_binder_t::bind(_location_tpl, BOOST_PP_ENUM_PARAMS(_size_tpl, _name_tpl_in));
             }
@@ -293,14 +293,14 @@ namespace gtulu {
                 ::std::uint32_t const offset_in = 0,
                 ::std::uint32_t const stride_in = 0) {
               gio::vertexarray_base::bind();
-              _name_tpl_buffer_binder_t::bind< fdn::normalized >(_location_tpl, buffer_in, offset_in, stride_in);
+              _name_tpl_buffer_binder_t::bind< fc::normalization::normalized >(_location_tpl, buffer_in, offset_in, stride_in);
             }
             template< typename BufferFormat, typename BufferUsage >
             void set__name_tpl_gbra(gio::buffer< BufferFormat, BufferUsage > const & buffer_in,
                 ::std::uint32_t const offset_in = 0,
                 ::std::uint32_t const stride_in = 0) {
               gio::vertexarray_base::bind();
-              _name_tpl_buffer_binder_t::bind< fdn::normal, fdo::reverse >(_location_tpl,
+              _name_tpl_buffer_binder_t::bind< fc::normalization::none, fc::order::reverse >(_location_tpl,
                   buffer_in,
                   offset_in,
                   stride_in);
@@ -309,10 +309,10 @@ namespace gtulu {
 
             // #template#<attribute_array>_name_tpl,_type_tpl,_location_tpl,_size_tpl,_count_tpl
             typedef gia::gl__type_tpl::binder _name_tpl_binder_t;
-            typedef gia::gl__type_tpl::value_type _name_tpl_value_t;
             typedef gia::gl__type_tpl::buffer_binder _name_tpl_buffer_binder_t;
 
-            void set__name_tpl(_name_tpl_value_t const values_in[_size_tpl * _count_tpl]) {
+            template< typename DataFormat >
+            void set__name_tpl(DataFormat const values_in[_size_tpl * _count_tpl]) {
               gio::vertexarray_base::bind();
               _name_tpl_binder_t::bind(_location_tpl, _count_tpl, values_in);
             }
@@ -328,14 +328,14 @@ namespace gtulu {
                 ::std::uint32_t const offset_in = 0,
                 ::std::uint32_t const stride_in = 0) {
               gio::vertexarray_base::bind();
-              _name_tpl_buffer_binder_t::bind< fdn::normalized >(_location_tpl, buffer_in, offset_in, stride_in);
+              _name_tpl_buffer_binder_t::bind< fc::normalization::normalized >(_location_tpl, buffer_in, offset_in, stride_in);
             }
             template< typename BufferFormat, typename BufferUsage >
             void set__name_tpl_gbra(const gio::buffer< BufferFormat, BufferUsage >& buffer_in,
                 const ::std::uint32_t offset_in = 0,
                 const ::std::uint32_t stride_in = 0) {
               gio::vertexarray_base::bind();
-              _name_tpl_buffer_binder_t::bind< fdn::normal, fdo::reverse >(_location_tpl,
+              _name_tpl_buffer_binder_t::bind< fc::normalization::none, fc::order::reverse >(_location_tpl,
                   buffer_in,
                   offset_in,
                   stride_in);

@@ -115,19 +115,17 @@ namespace gtulu {
 
       struct buffer_base: public plug< buffer_base > {
           template< typename SlotType >
-          inline typename boost::enable_if< buffer::is_a_slot< SlotType >, void >::type bind() const {
+          inline void bind() const {
             SlotType::bind(*this);
           }
 
           template< typename SlotType >
-          inline typename boost::enable_if< buffer::is_a_slot< SlotType >, void >::type bind(::std::uint32_t const index) const {
+          inline void bind(::std::uint32_t const index) const {
             SlotType::bind(*this, index);
           }
 
           template< typename SlotType >
-          inline typename boost::enable_if< buffer::is_a_slot< SlotType >, void >::type bind(::std::uint32_t const index,
-                                                                                             ::std::size_t const offset,
-                                                                                             ::std::size_t const size) const {
+          inline void bind(::std::uint32_t const index, ::std::size_t const offset, ::std::size_t const size) const {
             SlotType::bind(*this, index, offset, size);
           }
 

@@ -46,200 +46,230 @@ namespace gtulu {
             typedef typename bm::not_< fc::compression::is_compressed< InternalFormat > >::type is_not_compressed_t;
         };
 
-        template< typename Target, typename Internal, typename Group, typename Data, typename Value,
-            typename EnableIfDimension = void, typename EnableIfCompressed = void >
-        struct loader {
-        };
+        namespace detail {
 
-        template< typename Target, typename Internal, typename Group, typename Data, typename Value >
-        struct loader< Target, Internal, Group, Data, Value,
-            typename ::boost::enable_if< typename dimension_check< Target >::is_oned_t >::type,
-            typename ::boost::enable_if< typename compression_check< Target >::is_not_compressed_t >::type > {
-            inline static void load(Value const* data,
-                                    ::std::size_t const data_size,
-                                    ::std::size_t const width,
-                                    ::std::uint32_t const level,
-                                    ::std::uint8_t const border) {
-              fnc::gl_tex_image_1d::call< Target, Internal, Group, Data >(level, width, border, data);
-            }
+          template< typename TargetFormat, typename InternalFormat, typename GroupFormat, typename DataFormat,
+              typename EnableIfDimension = void, typename EnableIfCompressed = void >
+          struct texture_loader {
+          };
 
-            inline static void load(Value const* data,
-                                    ::std::size_t const data_size,
-                                    ::std::size_t const xoffset,
-                                    ::std::size_t const width,
-                                    ::std::uint32_t const level) {
-              fnc::gl_tex_sub_image_1d::call< Target, Group, Data >(level, xoffset, width, data);
-            }
-        };
+          template< typename TargetFormat, typename InternalFormat, typename GroupFormat, typename DataFormat >
+          struct texture_loader< TargetFormat, InternalFormat, GroupFormat, DataFormat,
+              typename ::boost::enable_if< fc::dimension::is_oned< TargetFormat > >::type,
+              typename ::boost::enable_if< fc::compression::is_none< InternalFormat > >::type > {
+              typedef typename fc::to_value_type< DataFormat >::type value_type;
 
-        template< typename Target, typename Internal, typename Group, typename Data, typename Value >
-        struct loader< Target, Internal, Group, Data, Value,
-            typename ::boost::enable_if< typename dimension_check< Target >::is_twod_t >::type,
-            typename ::boost::enable_if< typename compression_check< Target >::is_not_compressed_t >::type > {
-            inline static void load(Value const* data,
-                                    ::std::size_t const data_size,
-                                    ::std::size_t const width,
-                                    ::std::size_t const height,
-                                    ::std::uint32_t const level,
-                                    ::std::uint8_t const border) {
-              fnc::gl_tex_image_2d::call< Target, Internal, Group, Data >(level, width, height, border, data);
-            }
+              inline static void load(value_type const* data,
+                                      ::std::size_t const data_size,
+                                      ::std::size_t const width,
+                                      ::std::uint32_t const level,
+                                      ::std::uint8_t const border) {
+                fnc::gl_tex_image_1d::call< TargetFormat, InternalFormat, GroupFormat, DataFormat >(level,
+                                                                                                    width,
+                                                                                                    border,
+                                                                                                    data);
+              }
 
-            inline static void load(Value const* data,
-                                    ::std::size_t const data_size,
-                                    ::std::size_t const xoffset,
-                                    ::std::size_t const yoffset,
-                                    ::std::size_t const width,
-                                    ::std::size_t const height,
-                                    ::std::uint32_t const level) {
-              fnc::gl_tex_sub_image_2d::call< Target, Group, Data >(level, xoffset, yoffset, width, height, data);
-            }
-        };
+              inline static void load(value_type const* data,
+                                      ::std::size_t const data_size,
+                                      ::std::size_t const xoffset,
+                                      ::std::size_t const width,
+                                      ::std::uint32_t const level) {
+                fnc::gl_tex_sub_image_1d::call< TargetFormat, GroupFormat, DataFormat >(level, xoffset, width, data);
+              }
+          };
 
-        template< typename Target, typename Internal, typename Group, typename Data, typename Value >
-        struct loader< Target, Internal, Group, Data, Value,
-            typename ::boost::enable_if< typename dimension_check< Target >::is_threed_t >::type,
-            typename ::boost::enable_if< typename compression_check< Target >::is_not_compressed_t >::type > {
-            inline static void load(Value const* data,
-                                    ::std::size_t const data_size,
-                                    ::std::size_t const width,
-                                    ::std::size_t const height,
-                                    ::std::size_t const depth,
-                                    ::std::uint32_t const level,
-                                    ::std::uint8_t const border) {
-              fnc::gl_tex_image_3d::call< Target, Internal, Group, Data >(level, width, height, depth, border, data);
-            }
+          template< typename TargetFormat, typename InternalFormat, typename GroupFormat, typename DataFormat >
+          struct texture_loader< TargetFormat, InternalFormat, GroupFormat, DataFormat,
+              typename ::boost::enable_if< fc::dimension::is_twod< TargetFormat > >::type,
+              typename ::boost::enable_if< fc::compression::is_none< InternalFormat > >::type > {
+              typedef typename fc::to_value_type< DataFormat >::type value_type;
 
-            inline static void load(Value const* data,
-                                    ::std::size_t const data_size,
-                                    ::std::size_t const xoffset,
-                                    ::std::size_t const yoffset,
-                                    ::std::size_t const zoffset,
-                                    ::std::size_t const width,
-                                    ::std::size_t const height,
-                                    ::std::size_t const depth,
-                                    ::std::uint32_t const level) {
-              fnc::gl_tex_sub_image_3d::call< Target, Group, Data >(level,
-                                                                    xoffset,
-                                                                    yoffset,
-                                                                    zoffset,
-                                                                    width,
-                                                                    height,
-                                                                    depth,
-                                                                    data);
-            }
-        };
+              inline static void load(value_type const* data,
+                                      ::std::size_t const data_size,
+                                      ::std::size_t const width,
+                                      ::std::size_t const height,
+                                      ::std::uint32_t const level,
+                                      ::std::uint8_t const border) {
+                fnc::gl_tex_image_2d::call< TargetFormat, InternalFormat, GroupFormat, DataFormat >(level,
+                                                                                                    width,
+                                                                                                    height,
+                                                                                                    border,
+                                                                                                    data);
+              }
 
-        template< typename Target, typename Internal, typename Group, typename Data, typename Value >
-        struct loader< Target, Internal, Group, Data, Value,
-            typename ::boost::enable_if< typename dimension_check< Target >::is_oned_t >::type,
-            typename ::boost::enable_if< typename compression_check< Target >::is_compressed_t >::type > {
-            inline static void load(Value const* data,
-                                    ::std::size_t const data_size,
-                                    ::std::size_t const width,
-                                    ::std::uint32_t const level,
-                                    ::std::uint8_t const border) {
-              fnc::gl_compressed_tex_image_1d::call< Target, Internal, Group, Data >(level,
-                                                                                     width,
-                                                                                     border,
-                                                                                     data_size,
-                                                                                     data);
-            }
+              inline static void load(value_type const* data,
+                                      ::std::size_t const data_size,
+                                      ::std::size_t const xoffset,
+                                      ::std::size_t const yoffset,
+                                      ::std::size_t const width,
+                                      ::std::size_t const height,
+                                      ::std::uint32_t const level) {
+                fnc::gl_tex_sub_image_2d::call< TargetFormat, GroupFormat, DataFormat >(level,
+                                                                                        xoffset,
+                                                                                        yoffset,
+                                                                                        width,
+                                                                                        height,
+                                                                                        data);
+              }
+          };
 
-            inline static void load(Value const* data,
-                                    ::std::size_t const data_size,
-                                    ::std::size_t const xoffset,
-                                    ::std::size_t const width,
-                                    ::std::uint32_t const level) {
-              fnc::gl_compressed_tex_sub_image_1d::call< Target, Group, Data >(level, xoffset, width, data_size, data);
-            }
-        };
+          template< typename TargetFormat, typename InternalFormat, typename GroupFormat, typename DataFormat >
+          struct texture_loader< TargetFormat, InternalFormat, GroupFormat, DataFormat,
+              typename ::boost::enable_if< fc::dimension::is_threed< TargetFormat > >::type,
+              typename ::boost::enable_if< fc::compression::is_none< InternalFormat > >::type > {
+              typedef typename fc::to_value_type< DataFormat >::type value_type;
 
-        template< typename Target, typename Internal, typename Group, typename Data, typename Value >
-        struct loader< Target, Internal, Group, Data, Value,
-            typename ::boost::enable_if< typename dimension_check< Target >::is_twod_t >::type,
-            typename ::boost::enable_if< typename compression_check< Target >::is_compressed_t >::type > {
-            inline static void load(Value const* data,
-                                    ::std::size_t const data_size,
-                                    ::std::size_t const width,
-                                    ::std::size_t const height,
-                                    ::std::uint32_t const level,
-                                    ::std::uint8_t const border) {
-              fnc::gl_compressed_tex_image_2d::call< Target, Internal, Group, Data >(level,
-                                                                                     width,
-                                                                                     height,
-                                                                                     border,
-                                                                                     data_size,
-                                                                                     data);
-            }
+              inline static void load(value_type const* data,
+                                      ::std::size_t const data_size,
+                                      ::std::size_t const width,
+                                      ::std::size_t const height,
+                                      ::std::size_t const depth,
+                                      ::std::uint32_t const level,
+                                      ::std::uint8_t const border) {
+                fnc::gl_tex_image_3d::call< TargetFormat, InternalFormat, GroupFormat, DataFormat >(level,
+                                                                                                    width,
+                                                                                                    height,
+                                                                                                    depth,
+                                                                                                    border,
+                                                                                                    data);
+              }
 
-            inline static void load(Value const* data,
-                                    ::std::size_t const data_size,
-                                    ::std::size_t const xoffset,
-                                    ::std::size_t const yoffset,
-                                    ::std::size_t const width,
-                                    ::std::size_t const height,
-                                    ::std::uint32_t const level) {
-              fnc::gl_compressed_tex_sub_image_2d::call< Target, Group, Data >(level,
-                                                                               xoffset,
-                                                                               yoffset,
-                                                                               width,
-                                                                               height,
-                                                                               data_size,
-                                                                               data);
-            }
-        };
+              inline static void load(value_type const* data,
+                                      ::std::size_t const data_size,
+                                      ::std::size_t const xoffset,
+                                      ::std::size_t const yoffset,
+                                      ::std::size_t const zoffset,
+                                      ::std::size_t const width,
+                                      ::std::size_t const height,
+                                      ::std::size_t const depth,
+                                      ::std::uint32_t const level) {
+                fnc::gl_tex_sub_image_3d::call< TargetFormat, GroupFormat, DataFormat >(level,
+                                                                                        xoffset,
+                                                                                        yoffset,
+                                                                                        zoffset,
+                                                                                        width,
+                                                                                        height,
+                                                                                        depth,
+                                                                                        data);
+              }
+          };
 
-        template< typename Target, typename Internal, typename Group, typename Data, typename Value >
-        struct loader< Target, Internal, Group, Data, Value,
-            typename ::boost::enable_if< typename dimension_check< Target >::is_three_t >::type,
-            typename ::boost::enable_if< typename compression_check< Target >::is_compressed_t >::type > {
-            inline static void load(Value const* data,
-                                    ::std::size_t const data_size,
-                                    ::std::size_t const width,
-                                    ::std::size_t const height,
-                                    ::std::size_t const depth,
-                                    ::std::uint32_t const level,
-                                    ::std::uint8_t const border) {
-              fnc::gl_compressed_tex_image_3d::call< Target, Internal, Group, Data >(level,
-                                                                                     width,
-                                                                                     height,
-                                                                                     depth,
-                                                                                     border,
-                                                                                     data_size,
-                                                                                     data);
-            }
+          template< typename TargetFormat, typename InternalFormat, typename GroupFormat, typename DataFormat >
+          struct texture_loader< TargetFormat, InternalFormat, GroupFormat, DataFormat,
+              typename ::boost::enable_if< fc::dimension::is_oned< TargetFormat > >::type,
+              typename ::boost::enable_if< fc::compression::is_compressed< InternalFormat > >::type > {
+              typedef typename fc::to_value_type< DataFormat >::type value_type;
 
-            inline static void load(Value const* data,
-                                    ::std::size_t const data_size,
-                                    ::std::size_t const xoffset,
-                                    ::std::size_t const yoffset,
-                                    ::std::size_t const zoffset,
-                                    ::std::size_t const width,
-                                    ::std::size_t const height,
-                                    ::std::size_t const depth,
-                                    ::std::uint32_t const level) {
-              fnc::gl_compressed_tex_sub_image_3d::call< Target, Group, Data >(level,
-                                                                               xoffset,
-                                                                               yoffset,
-                                                                               zoffset,
-                                                                               width,
-                                                                               height,
-                                                                               depth,
-                                                                               data_size,
-                                                                               data);
-            }
-        };
+              inline static void load(value_type const* data,
+                                      ::std::size_t const data_size,
+                                      ::std::size_t const width,
+                                      ::std::uint32_t const level,
+                                      ::std::uint8_t const border) {
+                fnc::gl_compressed_tex_image_1d::call< TargetFormat, InternalFormat, GroupFormat, DataFormat >(level,
+                                                                                                               width,
+                                                                                                               border,
+                                                                                                               data_size,
+                                                                                                               data);
+              }
 
-        template< typename TextureFormat >
-        struct texture_loader {
-            typedef typename TextureFormat::target::info::format target_t;
-            typedef typename TextureFormat::internal::info::format internal_t;
-            typedef typename TextureFormat::group::info::format group_t;
-            typedef typename TextureFormat::data::info::format data_t;
-            typedef typename fc::to_value_type< typename TextureFormat::data >::type value_t;
+              inline static void load(value_type const* data,
+                                      ::std::size_t const data_size,
+                                      ::std::size_t const xoffset,
+                                      ::std::size_t const width,
+                                      ::std::uint32_t const level) {
+                fnc::gl_compressed_tex_sub_image_1d::call< TargetFormat, GroupFormat, DataFormat >(level,
+                                                                                                   xoffset,
+                                                                                                   width,
+                                                                                                   data_size,
+                                                                                                   data);
+              }
+          };
 
-            typedef loader< target_t, internal_t, group_t, data_t, value_t > type;
+          template< typename TargetFormat, typename InternalFormat, typename GroupFormat, typename DataFormat >
+          struct texture_loader< TargetFormat, InternalFormat, GroupFormat, DataFormat,
+              typename ::boost::enable_if< fc::dimension::is_twod< TargetFormat > >::type,
+              typename ::boost::enable_if< fc::compression::is_compressed< InternalFormat > >::type > {
+              typedef typename fc::to_value_type< DataFormat >::type value_type;
+
+              inline static void load(value_type const* data,
+                                      ::std::size_t const data_size,
+                                      ::std::size_t const width,
+                                      ::std::size_t const height,
+                                      ::std::uint32_t const level,
+                                      ::std::uint8_t const border) {
+                fnc::gl_compressed_tex_image_2d::call< TargetFormat, InternalFormat, GroupFormat, DataFormat >(level,
+                                                                                                               width,
+                                                                                                               height,
+                                                                                                               border,
+                                                                                                               data_size,
+                                                                                                               data);
+              }
+
+              inline static void load(value_type const* data,
+                                      ::std::size_t const data_size,
+                                      ::std::size_t const xoffset,
+                                      ::std::size_t const yoffset,
+                                      ::std::size_t const width,
+                                      ::std::size_t const height,
+                                      ::std::uint32_t const level) {
+                fnc::gl_compressed_tex_sub_image_2d::call< TargetFormat, GroupFormat, DataFormat >(level,
+                                                                                                   xoffset,
+                                                                                                   yoffset,
+                                                                                                   width,
+                                                                                                   height,
+                                                                                                   data_size,
+                                                                                                   data);
+              }
+          };
+
+          template< typename TargetFormat, typename InternalFormat, typename GroupFormat, typename DataFormat >
+          struct texture_loader< TargetFormat, InternalFormat, GroupFormat, DataFormat,
+              typename ::boost::enable_if< fc::dimension::is_threed< TargetFormat > >::type,
+              typename ::boost::enable_if< fc::compression::is_compressed< InternalFormat > >::type > {
+              typedef typename fc::to_value_type< DataFormat >::type value_type;
+
+              inline static void load(value_type const* data,
+                                      ::std::size_t const data_size,
+                                      ::std::size_t const width,
+                                      ::std::size_t const height,
+                                      ::std::size_t const depth,
+                                      ::std::uint32_t const level,
+                                      ::std::uint8_t const border) {
+                fnc::gl_compressed_tex_image_3d::call< TargetFormat, InternalFormat, GroupFormat, DataFormat >(level,
+                                                                                                               width,
+                                                                                                               height,
+                                                                                                               depth,
+                                                                                                               border,
+                                                                                                               data_size,
+                                                                                                               data);
+              }
+
+              inline static void load(value_type const* data,
+                                      ::std::size_t const data_size,
+                                      ::std::size_t const xoffset,
+                                      ::std::size_t const yoffset,
+                                      ::std::size_t const zoffset,
+                                      ::std::size_t const width,
+                                      ::std::size_t const height,
+                                      ::std::size_t const depth,
+                                      ::std::uint32_t const level) {
+                fnc::gl_compressed_tex_sub_image_3d::call< TargetFormat, GroupFormat, DataFormat >(level,
+                                                                                                   xoffset,
+                                                                                                   yoffset,
+                                                                                                   zoffset,
+                                                                                                   width,
+                                                                                                   height,
+                                                                                                   depth,
+                                                                                                   data_size,
+                                                                                                   data);
+              }
+          };
+
+        } // namespace detail
+
+        template< typename TargetFormat, typename InternalFormat, typename GroupFormat, typename DataFormat >
+        struct texture_loader: detail::texture_loader< TargetFormat, InternalFormat, GroupFormat, DataFormat > {
         };
 
         template< typename TargetFormat, typename InternalFormat, typename GroupFormat, typename DataFormat >
@@ -252,16 +282,16 @@ namespace gtulu {
                                ft::is_internal_compatible< TargetFormat, InternalFormat >
                                ,
                                fc::target::is_texture< TargetFormat > {
-            typedef TargetFormat target;
-            typedef InternalFormat internal;
-            typedef GroupFormat group;
-            typedef DataFormat data;
+            typedef TargetFormat target_format;
+            typedef InternalFormat internal_format;
+            typedef GroupFormat group_format;
+            typedef DataFormat data_format;
 
-            typedef typename texture_loader< texture_format< TargetFormat, InternalFormat, GroupFormat, DataFormat > >::type loader;
+            typedef texture_loader< TargetFormat, InternalFormat, GroupFormat, DataFormat > loader;
         };
 
         template< typename TargetFormat, typename Component = fc::component::red_green_blue_alpha,
-            typename Numeric = fc::numeric::unsigned_fixed, typename Compression = fc::compression::none,
+            typename Numeric = fc::numeric::ufixed8_, typename Compression = fc::compression::none,
             typename Order = fc::order::forward >
         class select_format {
             typedef typename fg::get_ideal_internal_component< Component >::type ideal_internal_component;

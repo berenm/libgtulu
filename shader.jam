@@ -1,5 +1,5 @@
 # Distributed under the Boost Software License, Version 1.0.
-# See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
+# See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt
 
 module shader {
   import feature ;
@@ -7,6 +7,7 @@ module shader {
   import toolset ;
   import type ;
   import property ;
+  import project ;
 
   type.register SHADER : vs vert vertex fs frag fragment gs geom geometry ;
 
@@ -19,16 +20,19 @@ module shader {
   toolset.flags shader.compile DESTINATION <location> ;
   toolset.flags shader.compile TEMPLATES <shader-templates> ;
 
-  generators.register-composing shader.compile : SHADER CPP HPP : CPP(%_program_format) HPP(%_program_format) ;
+  generators.register-composing shader.compile : SHADER : CPP(%_program_format) HPP(%_program_format) ;
 
   rule compile ( targets + : sources + : properties * ) {
+    local compiler = [ property.select <shader-compiler> : $(properties) ] ;
     local templates = [ property.select <shader-templates> : $(properties) ] ;
     
     if ! $(templates) {
       local compiler = [ property.select <shader-compiler> : $(properties) ] ;
-      local lproject = [ $(compiler:B).project ] ;
+      local lproject = [ project.current ] ;
       templates = [ $(lproject).location ] ;
       templates = $(templates)/include/gtulu/templates/ ;
+    } else {
+      templates = $(templates:G=) ;
     }
     
     local shaders = "" ;
@@ -38,26 +42,33 @@ module shader {
         shaders = $(shaders) $(source:G=) ;
       }
     }
-        
+
+    local compiler_path = [ $(compiler:B).path ] ;
+    local compiler_name = [ $(compiler:B).name ] ;
+    local compiler = "$(compiler_path)/$(compiler_name)" ;
+
+    COMPILER on $(<) = $(compiler) ;
     TEMPLATES on $(<) = $(templates) ;
     SOURCES on $(<) = $(shaders) ;
   }
   
-  actions compile bind COMPILER DESTINATION {
+  actions compile bind DESTINATION {
     $(COMPILER) -d $(DESTINATION) -p $(PROGRAM) -t $(TEMPLATES) $(SOURCES) 2>/dev/null >/dev/null
   }
 
   rule program ( name : sources + : properties * ) {
     local location = [ property.select <location> : $(properties) ] ;
+    local compiler = [ property.select <shader-compiler> : $(properties) ] ;
     
     if ! $(location) {
       properties = $(properties) <location>generated/ ;
     }
     
     cpp $(name) : $(sources) $(TEMPLATES)/static_program_format.hpp
-                : <shader-compiler>compiler
+                : <shader-compiler>gtulu-compiler
                   <shader-name>$(name) 
                   <link>static 
+                  <dependency>gtulu-compiler
                   $(properties) ;
   }
 }

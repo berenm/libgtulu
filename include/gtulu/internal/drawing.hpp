@@ -49,12 +49,12 @@ namespace gtulu {
                                   ::std::uint32_t const base_vertex_in) {
             gib::element_array_buffer_slot::bind(buffer_in);
             if (base_vertex_in == 0) {
-              fnc::gl_draw_elements::call< DrawingMode, typename BufferFormat::info::format >(count_in,
-                                                                                              reinterpret_cast< GLvoid* >(offset_in));
+              fnc::gl_draw_elements::call< DrawingMode, typename BufferFormat::aspect::format >(count_in,
+                                                                                                reinterpret_cast< GLvoid* >(offset_in));
             } else {
-              fnc::gl_draw_elements_base_vertex::call< DrawingMode, typename BufferFormat::info::format >(count_in,
-                                                                                                          reinterpret_cast< GLvoid* >(offset_in),
-                                                                                                          base_vertex_in);
+              fnc::gl_draw_elements_base_vertex::call< DrawingMode, typename BufferFormat::aspect::format >(count_in,
+                                                                                                            reinterpret_cast< GLvoid* >(offset_in),
+                                                                                                            base_vertex_in);
             }
           }
 
@@ -68,14 +68,14 @@ namespace gtulu {
                                   ::std::uint32_t const base_vertex_in) {
             gib::element_array_buffer_slot::bind(buffer_in);
             if (base_vertex_in == 0) {
-              fnc::gl_draw_elements_instanced::call< DrawingMode, typename BufferFormat::info::format >(count_in,
-                                                                                                        reinterpret_cast< GLvoid* >(offset_in),
-                                                                                                        instance_count_in);
+              fnc::gl_draw_elements_instanced::call< DrawingMode, typename BufferFormat::aspect::format >(count_in,
+                                                                                                          reinterpret_cast< GLvoid* >(offset_in),
+                                                                                                          instance_count_in);
             } else {
-              fnc::gl_draw_elements_instanced_base_vertex::call< DrawingMode, typename BufferFormat::info::format >(count_in,
-                                                                                                                    reinterpret_cast< GLvoid* >(offset_in),
-                                                                                                                    instance_count_in,
-                                                                                                                    base_vertex_in);
+              fnc::gl_draw_elements_instanced_base_vertex::call< DrawingMode, typename BufferFormat::aspect::format >(count_in,
+                                                                                                                      reinterpret_cast< GLvoid* >(offset_in),
+                                                                                                                      instance_count_in,
+                                                                                                                      base_vertex_in);
             }
           }
 
@@ -91,16 +91,16 @@ namespace gtulu {
                                   ::std::uint32_t const base_vertex_in) {
             gib::element_array_buffer_slot::bind(buffer_in);
             if (base_vertex_in == 0) {
-              fnc::gl_draw_range_elements::call< DrawingMode, typename BufferFormat::info::format >(min_index_in,
-                                                                                                    max_index_in,
-                                                                                                    count_in,
-                                                                                                    reinterpret_cast< GLvoid* >(offset_in));
+              fnc::gl_draw_range_elements::call< DrawingMode, typename BufferFormat::aspect::format >(min_index_in,
+                                                                                                      max_index_in,
+                                                                                                      count_in,
+                                                                                                      reinterpret_cast< GLvoid* >(offset_in));
             } else {
-              fnc::gl_draw_range_elements_base_vertex::call< DrawingMode, typename BufferFormat::info::format >(min_index_in,
-                                                                                                                max_index_in,
-                                                                                                                count_in,
-                                                                                                                reinterpret_cast< GLvoid* >(offset_in),
-                                                                                                                base_vertex_in);
+              fnc::gl_draw_range_elements_base_vertex::call< DrawingMode, typename BufferFormat::aspect::format >(min_index_in,
+                                                                                                                  max_index_in,
+                                                                                                                  count_in,
+                                                                                                                  reinterpret_cast< GLvoid* >(offset_in),
+                                                                                                                  base_vertex_in);
             }
           }
 
@@ -111,9 +111,9 @@ namespace gtulu {
                                   ,
                                   ::std::size_t const count_in) {
             gib::element_array_buffer_slot::bind(buffer_in);
-            fnc::gl_multi_draw_elements::call< DrawingMode, typename BufferFormat::info::format >(counts_in,
-                                                                                                  offsets_in,
-                                                                                                  count_in);
+            fnc::gl_multi_draw_elements::call< DrawingMode, typename BufferFormat::aspect::format >(counts_in,
+                                                                                                    offsets_in,
+                                                                                                    count_in);
           }
       };
 

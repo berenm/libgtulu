@@ -42,7 +42,7 @@ namespace gtulu {
         template< typename Format >
         struct group_format;
 
-        template< typename Base, typename Numeric, typename Order >
+        template< typename Base, typename Integral, typename Order >
         struct select_format;
 
 #define DECLARE_FORMAT(format_m, component_m, numeric_m, order_m)       \
@@ -55,7 +55,9 @@ namespace gtulu {
     typedef group_format< format::format_m > format_m;                  \
                                                                         \
     template< > struct select_format< fc::component::component_m,       \
-                                      fc::numeric::numeric_m,           \
+                                      typename fn::get_integral<        \
+                                          fc::numeric::numeric_m        \
+                                        >::type,                        \
                                       fc::order::order_m > {            \
         typedef format_m type;                                          \
     };

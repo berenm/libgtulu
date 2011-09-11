@@ -46,9 +46,9 @@ namespace gtulu {
 
 #undef DECLARE_BINDER
 
-        template< typename Format, typename BinderType = output_binder< typename Format::info::type,
-            typename Format::info::count >
-            , typename ValueType = typename fo::to_typename< typename Format::info::type >::type >
+        template< typename Format, typename BinderType = output_binder< typename Format::aspect::type,
+            typename Format::aspect::count > , typename ValueType = typename fo::to_typename<
+            typename Format::aspect::type >::type >
         struct output {
             typedef Format format;
             typedef ValueType value_type;

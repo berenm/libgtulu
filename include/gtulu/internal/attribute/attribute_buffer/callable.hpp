@@ -31,11 +31,11 @@ namespace gtulu {
                                   ::std::uint32_t const stride_in,
                                   ::std::int32_t const count_in,
                                   bool const normalized_in) {
-            fnc::gl_vertex_attrib_pointer::call< typename DataFormat::info::format >(location_in,
-                                                                                     count_in,
-                                                                                     normalized_in,
-                                                                                     stride_in,
-                                                                                     reinterpret_cast< void const* >(offset_in));
+            fnc::gl_vertex_attrib_pointer::call< typename DataFormat::aspect::format >(location_in,
+                                                                                       count_in,
+                                                                                       normalized_in,
+                                                                                       stride_in,
+                                                                                       reinterpret_cast< void const* >(offset_in));
           }
       };
 
@@ -47,10 +47,10 @@ namespace gtulu {
                                   ::std::uint32_t const stride_in,
                                   ::std::int32_t const count_in,
                                   bool const normalized_in) {
-            fnc::gl_vertex_attrib_pointer_integer::call< typename DataFormat::info::format >(location_in,
-                                                                                             count_in,
-                                                                                             stride_in,
-                                                                                             reinterpret_cast< void const* >(offset_in));
+            fnc::gl_vertex_attrib_pointer_integer::call< typename DataFormat::aspect::format >(location_in,
+                                                                                               count_in,
+                                                                                               stride_in,
+                                                                                               reinterpret_cast< void const* >(offset_in));
           }
       };
 

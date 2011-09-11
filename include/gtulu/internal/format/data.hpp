@@ -53,12 +53,12 @@ namespace gtulu {
      template < > struct select_format< fn::width::width_m,                             \
                                         fc::packing::packing_m,                         \
                                         fc::order::order_m,                             \
-                                        fn::get_sign<                                   \
-                                          typename fc::get_numeric< format_m >::type    \
-                                        >,                                              \
-                                        fn::get_integral<                               \
-                                          typename fc::get_numeric< format_m >::type    \
-                                        > > {                                           \
+                                        typename fn::get_sign<                          \
+                                          fc::numeric::numeric_m                        \
+                                        >::type,                                        \
+                                        typename fn::get_integral<                      \
+                                          fc::numeric::numeric_m                        \
+                                        >::type > {                                     \
          typedef format_m type;                                                         \
      };
 

@@ -18,7 +18,7 @@ namespace gtulu {
     namespace format {
       namespace program {
 
-        class static_program_format: virtual public gio::program_base {
+        struct static_program_format: virtual public gio::program_base {
             virtual ~static_program_format() {
             }
         };

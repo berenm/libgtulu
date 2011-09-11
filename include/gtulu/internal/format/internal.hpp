@@ -48,7 +48,14 @@ namespace gtulu {
         struct internal_format;
 
         template< typename Component, typename Numeric, typename Compression >
-        struct select_format;
+        struct select_format {
+            template< typename Type >
+            struct lazy_false: ::boost::false_type {
+            };
+            static_assert(lazy_false< Component >::value, "Unable to find an internal format with such criterias.");
+
+            typedef void type;
+        };
 
 #define DECLARE_FORMAT(format_m, component_m, numeric_m, compression_m, target_m)       \
     template< > struct internal_format< format::format_m > {                            \

@@ -19,8 +19,7 @@ namespace gtulu {
       namespace shader {
 
         template< typename ShaderType >
-        class static_shader_format: virtual public gio::shader_base {
-          public:
+        struct static_shader_format: virtual public gio::shader_base {
             static_shader_format() {
               create_shader();
             }

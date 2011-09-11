@@ -19,8 +19,6 @@
 
 #include "gtulu/internal/format/constraint/uniform.hpp"
 
-#include "gtulu/internal/format/conversion/uniform.hpp"
-
 #undef IN_GTULU_INTERNAL_FORMAT_UNIFORM_HPP_
 
 #endif /* GTULU_INTERNAL_FORMAT_UNIFORM_HPP_ */

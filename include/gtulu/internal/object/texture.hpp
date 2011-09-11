@@ -29,7 +29,7 @@ namespace gtulu {
       template< >
       template< typename TargetType >
       void slot_binder< texture_base >::bind(::std::uint32_t handle_) {
-        fnc::gl_bind_texture::call< typename TargetType::info::format >(handle_);
+        fnc::gl_bind_texture::call< typename TargetType::aspect::format >(handle_);
       }
     } // namespace object
 
@@ -58,14 +58,14 @@ namespace gtulu {
                       private TextureFormat,
                       public TextureFormat::loader {
           inline void bind() const {
-            git::texture_slot< typename TextureFormat::target >::bind(*this);
+            git::texture_slot< typename TextureFormat::target_format >::bind(*this);
           }
 
           inline void unbind() const {
-            git::texture_slot< typename TextureFormat::target >::unbind(*this);
+            git::texture_slot< typename TextureFormat::target_format >::unbind(*this);
           }
 
-          typedef typename fc::to_value_type< typename TextureFormat::data >::type data_type;
+          typedef typename fc::to_value_type< typename TextureFormat::data_format >::type data_type;
 
           inline void load(data_type const* data,
                            ::std::size_t size,
@@ -78,7 +78,7 @@ namespace gtulu {
 
           template< typename MinFilter >
           inline void set_minification() {
-            fnc::gl_tex_parameter::call< typename TextureFormat::target, cst::gl_texture_min_filter >(MinFilter::value);
+            fnc::gl_tex_parameter::call< typename TextureFormat::target_format, cst::gl_texture_min_filter >(MinFilter::value);
           }
 
           inline void load(data_type const* data, ::std::size_t width, ::std::size_t height) {
@@ -89,7 +89,7 @@ namespace gtulu {
 
           inline void compute_mipmaps() {
             bind();
-            fnc::gl_generate_mipmap::call< typename TextureFormat::target::info::format >();
+            fnc::gl_generate_mipmap::call< typename TextureFormat::target_format::aspect::format >();
           }
       };
 

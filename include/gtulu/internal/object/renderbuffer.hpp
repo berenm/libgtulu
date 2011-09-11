@@ -24,7 +24,7 @@ namespace gtulu {
       template< >
       template< typename TargetType >
       void slot_binder< renderbuffer_base >::bind(::std::uint32_t handle_) {
-        fnc::gl_bind_renderbuffer::call< typename TargetType::info::format >(handle_);
+        fnc::gl_bind_renderbuffer::call< typename TargetType::aspect::format >(handle_);
       }
     } // namespace object
 
@@ -33,10 +33,10 @@ namespace gtulu {
       template< typename TargetType >
       struct renderbuffer_slot: private fc::target::is_renderbuffer< TargetType > {
           static inline void bind(gio::plug< gio::renderbuffer_base > const& buffer) {
-            gio::slot_binder< gio::renderbuffer_base >::bind< typename TargetType::info::format >(buffer);
+            gio::slot_binder< gio::renderbuffer_base >::bind< typename TargetType::aspect::format >(buffer);
           }
           static inline void unbind(gio::plug< gio::renderbuffer_base > const& buffer) {
-            gio::slot_binder< gio::renderbuffer_base >::clear< typename TargetType::info::format >();
+            gio::slot_binder< gio::renderbuffer_base >::clear< typename TargetType::aspect::format >();
           }
       };
 
