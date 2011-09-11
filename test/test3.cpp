@@ -13,7 +13,7 @@ using namespace gtulu::internal;
 int main(int argc, char *argv[]) {
   init_gl(argc, argv);
 
-  gifp::test3_program_format program;
+  gio::program< gifp::test3_program_format > program;
 
   close_gl();
   return 0;
