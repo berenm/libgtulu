@@ -8,16 +8,13 @@
 #ifndef META_TYPE_TRAITS_HPP_
 #define META_TYPE_TRAITS_HPP_
 
+#include <type_traits>
 #include <boost/mpl/bool.hpp>
 #include <boost/mpl/if.hpp>
 #include <boost/mpl/and.hpp>
 #include <boost/mpl/or.hpp>
 #include <boost/mpl/not.hpp>
-#include <boost/mpl/equal_to.hpp>
 #include <boost/mpl/same_as.hpp>
-#include <boost/mpl/vector.hpp>
-#include <type_traits>
-
 #include <boost/preprocessor.hpp>
 
 #define META_ASPECT_DECLARE_TRAIT(aspect_m, prefix_m, trait_m)                  \

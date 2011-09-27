@@ -21,15 +21,15 @@
 #  define __gtulu_logL(level_m) if(0) ::std::cout
 #endif
 
-#define __gtulu_fatal __gtulu_logL(fatal)
-#define __gtulu_error __gtulu_logL(error)
-#define __gtulu_warn  __gtulu_logL(warning)
-#define __gtulu_info  __gtulu_logL(info)
+#define __gtulu_fatal() __gtulu_logL(fatal)
+#define __gtulu_error() __gtulu_logL(error)
+#define __gtulu_warn()  __gtulu_logL(warning)
+#define __gtulu_info()  __gtulu_logL(info)
 
 #if defined(GTULU_NO_DEBUG) || defined(NDEBUG)
-#  define __gtulu_debug if(0) ::std::cout
+#  define __gtulu_debug() if(0) ::std::cout
 #else
-#  define __gtulu_debug __gtulu_logL(debug)
+#  define __gtulu_debug() __gtulu_logL(debug)
 #endif
 
 #endif /* GTULU_LOGGING_INITIALIZED */

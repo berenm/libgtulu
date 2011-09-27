@@ -28,6 +28,7 @@ namespace gtulu {
 #endif
 
 #include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/error.hpp"
 #include "gtulu/internal/functions.hpp"
 
 #undef IN_OPENGL_HPP_

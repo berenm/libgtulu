@@ -110,9 +110,9 @@ inline static %(output)s call(%(tpl_args)s);'''
     string = '''
 %(comments)s
 inline static %(output)s call(%(std_args)s) {
-  __gl_debug << "call %(name)s " %(std_debg)s;
+  __gtulu_debug() << "call %(name)s " %(std_debg)s;
   %(var_stmt)s%(name)s(%(std_call)s);
-  __gl_check_error();
+  __gtulu_check_error();
   %(ret_stmt)s
 }'''
     if self.can_template:
@@ -120,9 +120,9 @@ inline static %(output)s call(%(std_args)s) {
 %(comments)s
 template< %(tpl_pars)s >
 inline static %(output)s call(%(tpl_args)s) {
-  __gl_debug << "call %(name)s " %(tpl_debg)s;
+  __gtulu_debug() << "call %(name)s " %(tpl_debg)s;
   %(var_stmt)s%(name)s(%(tpl_call)s);
-  __gl_check_error();
+  __gtulu_check_error();
   %(ret_stmt)s
 }'''
     return (string % (self.__dict__)).strip().splitlines()
@@ -170,17 +170,17 @@ inline static %(output)s call(%(tpl_args)s) {
 
   def __str__(self):
     string = '              inline static %(output)s call(%(std_args)s) {\n' % (self.__dict__)
-    string += '                __gl_debug << "call %(name)s " %(std_debg)s;\n' % (self.__dict__)
+    string += '                __gtulu_debug() << "call %(name)s " %(std_debg)s;\n' % (self.__dict__)
     string += '                %(var_stmt)s%(name)s(%(std_call)s);\n' % (self.__dict__)
-    string += '                __gl_check_error;\n'
+    string += '                __gtulu_check_error;\n'
     string += '                %(ret_stmt)s\n' % (self.__dict__)
     string += '              }\n'
     if self.can_template:
       string += '              template< %(tpl_pars)s >\n' % (self.__dict__)
       string += '              inline static %(output)s call(%(tpl_args)s) {\n' % (self.__dict__)
-      string += '                __gl_debug << "call %(name)s " %(tpl_debg)s;\n' % (self.__dict__)
+      string += '                __gtulu_debug() << "call %(name)s " %(tpl_debg)s;\n' % (self.__dict__)
       string += '                %(var_stmt)s%(name)s(%(tpl_call)s);\n' % (self.__dict__)
-      string += '                __gl_check_error;\n'
+      string += '                __gtulu_check_error;\n'
       string += '                %(ret_stmt)s\n' % (self.__dict__)
       string += '              }\n'
     return string

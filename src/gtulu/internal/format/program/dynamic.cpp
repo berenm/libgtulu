@@ -4,8 +4,8 @@
  * Distributed under the Boost Software License, Version 1.0.
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
-
 #include "gtulu_opengl_pch.hpp"
+#include "gtulu/opengl.hpp"
 
 #include "gtulu/internal/format/program/dynamic.hpp"
 #include "gtulu/internal/format/attribute.hpp"
@@ -165,21 +165,21 @@ namespace gtulu {
         }
 
         void dynamic_program_format::print() {
-          __gtulu_info << " ----- " << attributes_.size() << " attribute(s) ----- ";
+          __gtulu_info() << " ----- " << attributes_.size() << " attribute(s) ----- ";
           for (fp::attribute_vector_t::iterator it = attributes_.begin(); it != attributes_.end(); ++it) {
-            __gtulu_info << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: "
+            __gtulu_info() << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: "
                   << it->size << ", location: " << it->location;
           }
 
-          __gtulu_info << " ----- " << uniforms_.size() << " uniform(s)   ----- ";
+          __gtulu_info() << " ----- " << uniforms_.size() << " uniform(s)   ----- ";
           for (fp::uniform_vector_t::iterator it = uniforms_.begin(); it != uniforms_.end(); ++it) {
-            __gtulu_info << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: "
+            __gtulu_info() << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: "
                   << it->size << ", location: " << it->location;
           }
 
-          __gtulu_info << " ----- " << outputs_.size() << " output(s)    ----- ";
+          __gtulu_info() << " ----- " << outputs_.size() << " output(s)    ----- ";
           for (fp::output_vector_t::iterator it = outputs_.begin(); it != outputs_.end(); ++it) {
-            __gtulu_info << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: "
+            __gtulu_info() << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: "
                   << it->size << ", location: " << it->location << ", index: " << it->index;
           }
         }
@@ -191,7 +191,7 @@ namespace gtulu {
           has_link_log_ = length > 1;
 
           if (length > ::std::numeric_limits< ::std::uint32_t >::max()) {
-            __gtulu_error << "Log length too long.";
+            __gtulu_error() << "Log length too long.";
           } else if (!has_link_log_) {
             link_log_ = "";
           } else {
@@ -233,7 +233,7 @@ namespace gtulu {
           has_validation_log_ = length > 1;
 
           if (length > ::std::numeric_limits< ::std::uint32_t >::max()) {
-            __gtulu_error << "Log length too long.";
+            __gtulu_error() << "Log length too long.";
           } else if (!has_validation_log_) {
             validation_log_ = "";
           } else {
@@ -263,7 +263,7 @@ namespace gtulu {
 
             for (::std::vector< ::std::string >::iterator it = lines.begin(); it != lines.end(); ++it) {
               if (it->length() > 0) {
-                __gtulu_warn << "program: " << *it;
+                __gtulu_warn() << "program: " << *it;
               }
             }
           }
@@ -273,7 +273,7 @@ namespace gtulu {
 
             for (::std::vector< ::std::string >::iterator it = lines.begin(); it != lines.end(); ++it) {
               if (it->length() > 0) {
-                __gtulu_warn << "program: " << *it;
+                __gtulu_warn() << "program: " << *it;
               }
             }
           }

@@ -5,6 +5,7 @@
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
 #include "gtulu_opengl_pch.hpp"
+#include "gtulu/opengl.hpp"
 
 #include "gtulu/internal/format/shader/dynamic.hpp"
 #include "gtulu/internal/format/output.hpp"
@@ -51,7 +52,7 @@ namespace gtulu {
           } else if (extension.compare(".gs") == 0 || extension.compare(".geom") == 0) {
             gio::shader_base::create_shader< fst::gl_geometry_shader >();
           } else {
-            __gtulu_error << "Unknown shader extension " << extension
+            __gtulu_error() << "Unknown shader extension " << extension
                   << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
           }
 
@@ -100,7 +101,7 @@ namespace gtulu {
           has_log_ = length > 1;
 
           if (length > ::std::numeric_limits< ::std::uint32_t >::max()) {
-            __gtulu_error << "Log length too long.";
+            __gtulu_error() << "Log length too long.";
           } else if (!has_log_) {
             log_ = "";
           } else {
@@ -129,7 +130,7 @@ namespace gtulu {
 
             for (::std::vector< ::std::string >::iterator it = lines.begin(); it != lines.end(); ++it) {
               if (it->length() > 0) {
-                __gtulu_warn << "shader: " << *it;
+                __gtulu_warn() << "shader: " << *it;
               }
             }
           }

@@ -5,7 +5,7 @@ import os ;
 import path ;
 import common ;
 
-using gcc : : ccache /usr/lib/gcc-snapshot/bin/g++ ;
+using gcc : : ccache g++ ;
 
 path-constant BUILD_ROOT : . ;
 path-constant HOME : [ os.home-directories ] ;

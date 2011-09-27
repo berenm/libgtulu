@@ -5,10 +5,9 @@
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
 #include "gtulu_opengl_pch.hpp"
+#include "gtulu/opengl.hpp"
 
 #include "gtulu/internal/format/output.hpp"
-
-#include "gtulu/internal/constants.hpp"
 
 #include <string>
 

@@ -8,11 +8,27 @@
 #ifdef BOOST_BUILD_PCH_ENABLED
 
 #include "gtulu/opengl.hpp"
-#include "meta/type_traits.hpp"
 
+#include <type_traits>
+
+#include <boost/config.hpp>
 #include <boost/smart_ptr.hpp>
 #include <boost/preprocessor.hpp>
 #include <boost/type_traits.hpp>
+#include <boost/integer.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/thread.hpp>
+#include <boost/filesystem.hpp>
+#include <boost/regex.hpp>
+
+#include <boost/mpl/bool.hpp>
+#include <boost/mpl/if.hpp>
+#include <boost/mpl/and.hpp>
+#include <boost/mpl/or.hpp>
+#include <boost/mpl/not.hpp>
+#include <boost/mpl/same_as.hpp>
+
+#include "meta/type_traits.hpp"
 
 #include "gtulu/internal/format/common.hpp"
 #include "gtulu/internal/format/attribute.hpp"

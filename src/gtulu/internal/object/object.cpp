@@ -5,10 +5,9 @@
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
 #include "gtulu_opengl_pch.hpp"
+#include "gtulu/opengl.hpp"
 
 #include "gtulu/internal/object/object.hpp"
-
-#include "gtulu/internal/functions.hpp"
 
 namespace gtulu {
   namespace internal {

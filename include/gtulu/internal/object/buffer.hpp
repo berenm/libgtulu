@@ -17,8 +17,6 @@
 #include "gtulu/internal/format/data.hpp"
 #include "gtulu/internal/format/conversion/numeric.hpp"
 
-#include <boost/mpl/vector.hpp>
-
 namespace gtulu {
   namespace internal {
     namespace bm = ::boost::mpl;
@@ -130,7 +128,7 @@ namespace gtulu {
           }
 
           template< typename SlotType >
-          inline typename boost::enable_if< buffer::is_a_slot< SlotType >, void >::type unbind() const {
+          inline void unbind() const {
             SlotType::unbind(*this);
           }
       };

@@ -5,9 +5,9 @@
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
 #include "gtulu_opengl_pch.hpp"
+#include "gtulu/opengl.hpp"
 
 #include "gtulu/internal/texture_unit_manager.hpp"
-
 #include "gtulu/internal/context.hpp"
 
 namespace gtulu {
@@ -17,7 +17,7 @@ namespace gtulu {
     texture_unit_manager::texture_unit_manager() {
       max_texture_unit = gic::gl_max_combined_texture_image_units::get();
 
-      __gtulu_info << "Max combined texture units " << max_texture_unit;
+      __gtulu_info() << "Max combined texture units " << max_texture_unit;
 
       for (::std::int32_t unit_nb = 0; unit_nb < max_texture_unit; ++unit_nb) {
         texture_units[unit_nb].reset();
@@ -61,7 +61,7 @@ namespace gtulu {
         texture_units[unit_nb] = unit_ptr;
         texture_unit_mappings[*texture] = unit_ptr;
       } else {
-        __gtulu_error << "unable to find a free texture unit."
+        __gtulu_error() << "unable to find a free texture unit."
               << "Maybe some texture unit pointers are still active, or maybe the " << max_texture_unit
               << " texture unit limit has been reached.";
       }

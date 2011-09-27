@@ -12,9 +12,6 @@
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
 
-#include <boost/tuple/tuple.hpp>
-#include <boost/array.hpp>
-
 namespace gtulu {
   namespace internal {
 

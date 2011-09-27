@@ -15,7 +15,6 @@
 #include "gtulu/internal/format/constraint/attribute.hpp"
 #include "gtulu/internal/format/data.hpp"
 
-#include <boost/mpl/equal_to.hpp>
 #include <boost/mpl/or.hpp>
 #include <boost/mpl/and.hpp>
 

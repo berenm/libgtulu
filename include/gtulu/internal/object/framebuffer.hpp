@@ -103,9 +103,9 @@ namespace gtulu {
           //            framebuffer_format_t::bind();
           //            ::std::int32_t data[4];
           //
-          //            __gl_debug(glGetIntegerv, (GL_VIEWPORT)(data))
+          //            __gtulu_debug()(glGetIntegerv, (GL_VIEWPORT)(data))
           //            glGetIntegerv(GL_VIEWPORT, data);
-          //            __gl_check_error
+          //            __gtulu_check_error
           //
           //            framebuffer_format_t::set_viewport(data[2], data[3], 1, data[0], data[1]);
           //          }

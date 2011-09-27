@@ -7,6 +7,7 @@
 #include "gtulu_opengl_pch.hpp"
 
 #include "gtulu/utils/file.hpp"
+#include "gtulu/utils/logging.hpp"
 
 #include <iostream>
 #include <string>
@@ -34,7 +35,7 @@ namespace gtulu {
 
         return ::std::string(buffer.get(), size);
       } else {
-        __fatal << "Unable to read file " << path;
+        __gtulu_fatal() << "Unable to read file " << path;
       }
 
       return "";
@@ -107,7 +108,7 @@ namespace gtulu {
 
         parse(iterator);
       } else {
-        __fatalM(compiler) << "Unable to find template file " << template_file;
+        __gtulu_fatal() << "Unable to find template file " << template_file;
       }
     }
 

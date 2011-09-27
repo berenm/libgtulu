@@ -10,9 +10,6 @@
 
 #include "meta/type_traits.hpp"
 
-#include <boost/mpl/find_if.hpp>
-#include <boost/mpl/greater_equal.hpp>
-
 namespace gtulu {
   namespace internal {
 
