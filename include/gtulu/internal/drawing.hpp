@@ -192,8 +192,8 @@ namespace gtulu {
 
     } // namespace drawing
 
-    namespace gid = ::gtulu::internal::drawing;
-    namespace gidm = ::gtulu::internal::drawing::mode;
+    namespace gidr = ::gtulu::internal::drawing;
+    namespace gidrm = ::gtulu::internal::drawing::mode;
 
   } // namespace internal
 } // namespace gtulu

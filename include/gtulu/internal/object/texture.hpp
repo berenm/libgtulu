@@ -19,6 +19,7 @@
 #include "gtulu/internal/format/conversion/common.hpp"
 
 #include "gtulu/internal/object/texture/base.hpp"
+#include "gtulu/internal/object/texture/loader.hpp"
 
 #include <boost/shared_ptr.hpp>
 
@@ -52,11 +53,7 @@ namespace gtulu {
     namespace object {
 
       template< typename TextureFormat >
-      struct texture: public texture_base,
-                      public object< texture_base >,
-                      public drawable,
-                      private TextureFormat,
-                      public TextureFormat::loader {
+      struct texture: public texture_base, public object< texture_base >, public drawable, private TextureFormat {
           inline void bind() const {
             git::texture_slot< typename TextureFormat::target_format >::bind(*this);
           }
@@ -65,26 +62,25 @@ namespace gtulu {
             git::texture_slot< typename TextureFormat::target_format >::unbind(*this);
           }
 
-          typedef typename fc::to_value_type< typename TextureFormat::data_format >::type data_type;
-
-          inline void load(data_type const* data,
-                           ::std::size_t size,
-                           ::std::size_t width,
-                           ::std::size_t height,
-                           ::std::size_t level) {
+          template< typename Data >
+          inline static void load(Data const& data_in,
+                                  ::std::uint32_t const level = 0,
+                                  ::std::uint8_t const border = 0) {
             bind();
-            TextureFormat::loader::load(data, size, width, height, 0, level);
+            git::texture_loader< TextureFormat >::load(data_in, level, border);
+            compute_mipmaps();
+          }
+
+          template< typename Data >
+          inline static void load(Data const& data_in, gid::offset const& offset_in, ::std::uint32_t const level = 0) {
+            bind();
+            git::texture_loader< TextureFormat >::load(data_in, offset_in, level);
+            compute_mipmaps();
           }
 
           template< typename MinFilter >
           inline void set_minification() {
             fnc::gl_tex_parameter::call< typename TextureFormat::target_format, cst::gl_texture_min_filter >(MinFilter::value);
-          }
-
-          inline void load(data_type const* data, ::std::size_t width, ::std::size_t height) {
-            bind();
-            load(data, 0, width, height, 0);
-            compute_mipmaps();
           }
 
           inline void compute_mipmaps() {

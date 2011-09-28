@@ -118,8 +118,8 @@ namespace gtulu {
             return ::boost::shared_ptr< default_framebuffer_t >(new default_framebuffer_t());
           }
 
-          struct vertex_array_format: public gio::vertexarray_base, public gid::drawable {
-            template< typename DrawingMode = gidm::gl_triangles >
+          struct vertex_array_format: public gio::vertexarray_base, public gidr::drawable {
+            template< typename DrawingMode = gidrm::gl_triangles >
             inline void draw(gio::program< _program_tpl_program_format > const& program_in,
                 ::std::uint32_t const start_in,
                 ::std::uint32_t const count_in,
@@ -131,7 +131,7 @@ namespace gtulu {
                   instance_count_in);
             }
 
-            template< typename DrawingMode = gidm::gl_triangles >
+            template< typename DrawingMode = gidrm::gl_triangles >
             inline void draw_multiple(gio::program< _program_tpl_program_format > const& program_in,
                 ::std::uint32_t const starts_in[],
                 ::std::uint32_t const counts_in[],
@@ -143,7 +143,7 @@ namespace gtulu {
                   count_in);
             }
 
-            template< typename DrawingMode = gidm::gl_triangles, typename BufferFormat,
+            template< typename DrawingMode = gidrm::gl_triangles, typename BufferFormat,
             typename BufferUsage >
             inline void draw(gio::program< _program_tpl_program_format > const& program_in,
                 gio::buffer< BufferFormat, BufferUsage > const& buffer_in,
@@ -160,7 +160,7 @@ namespace gtulu {
                   base_vertex_in);
             }
 
-            template< typename DrawingMode = gidm::gl_triangles, typename BufferFormat,
+            template< typename DrawingMode = gidrm::gl_triangles, typename BufferFormat,
             typename BufferUsage >
             inline void draw_range(gio::program< _program_tpl_program_format > const& program_in,
                 gio::buffer< BufferFormat, BufferUsage > const& buffer_in,
@@ -179,7 +179,7 @@ namespace gtulu {
                   base_vertex_in);
             }
 
-            template< typename DrawingMode = gidm::gl_triangles, typename BufferFormat,
+            template< typename DrawingMode = gidrm::gl_triangles, typename BufferFormat,
             typename BufferUsage >
             inline void draw_multiple(gio::program< _program_tpl_program_format > const& program_in,
                 gio::buffer< BufferFormat, BufferUsage > const& buffer_in,
@@ -194,7 +194,7 @@ namespace gtulu {
                   count_in);
             }
 
-            template< typename DrawingMode = gidm::gl_triangles >
+            template< typename DrawingMode = gidrm::gl_triangles >
             inline void draw(gio::program< _program_tpl_program_format > const& program_in,
                 gio::framebuffer_base const& framebuffer_in,
                 ::std::uint32_t const start_in,
@@ -203,10 +203,10 @@ namespace gtulu {
               program_in.bind();
               framebuffer_in.bind< gif::draw_framebuffer_slot > ();
               gio::vertexarray_base::bind();
-              gid::drawable::draw< DrawingMode >(start_in, count_in, instance_count_in);
+              gidr::drawable::draw< DrawingMode >(start_in, count_in, instance_count_in);
             }
 
-            template< typename DrawingMode = gidm::gl_triangles >
+            template< typename DrawingMode = gidrm::gl_triangles >
             inline void draw_multiple(gio::program< _program_tpl_program_format > const& program_in,
                 gio::framebuffer_base const& framebuffer_in,
                 ::std::uint32_t const starts_in[],
@@ -215,10 +215,10 @@ namespace gtulu {
               program_in.bind();
               framebuffer_in.bind< gif::draw_framebuffer_slot > ();
               gio::vertexarray_base::bind();
-              gid::drawable::draw< DrawingMode >(starts_in, counts_in, count_in);
+              gidr::drawable::draw< DrawingMode >(starts_in, counts_in, count_in);
             }
 
-            template< typename DrawingMode = gidm::gl_triangles, typename BufferFormat,
+            template< typename DrawingMode = gidrm::gl_triangles, typename BufferFormat,
             typename BufferUsage >
             inline void draw(gio::program< _program_tpl_program_format > const& program_in,
                 gio::framebuffer_base const& framebuffer_in,
@@ -230,14 +230,14 @@ namespace gtulu {
               program_in.bind();
               framebuffer_in.bind< gif::draw_framebuffer_slot > ();
               gio::vertexarray_base::bind();
-              gid::drawable::draw< DrawingMode >(buffer_in,
+              gidr::drawable::draw< DrawingMode >(buffer_in,
                   count_in,
                   offset_in,
                   instance_count_in,
                   base_vertex_in);
             }
 
-            template< typename DrawingMode = gidm::gl_triangles, typename BufferFormat,
+            template< typename DrawingMode = gidrm::gl_triangles, typename BufferFormat,
             typename BufferUsage >
             inline void draw_range(gio::program< _program_tpl_program_format > const& program_in,
                 gio::framebuffer_base const& framebuffer_in,
@@ -250,7 +250,7 @@ namespace gtulu {
               program_in.bind();
               framebuffer_in.bind< gif::draw_framebuffer_slot > ();
               gio::vertexarray_base::bind();
-              gid::drawable::draw< DrawingMode >(buffer_in,
+              gidr::drawable::draw< DrawingMode >(buffer_in,
                   count_in,
                   min_index_in,
                   max_index_in,
@@ -258,7 +258,7 @@ namespace gtulu {
                   base_vertex_in);
             }
 
-            template< typename DrawingMode = gidm::gl_triangles, typename BufferFormat,
+            template< typename DrawingMode = gidrm::gl_triangles, typename BufferFormat,
             typename BufferUsage >
             inline void draw_multiple(gio::program< _program_tpl_program_format > const& program_in,
                 gio::framebuffer_base const& framebuffer_in,
@@ -269,7 +269,7 @@ namespace gtulu {
               program_in.bind();
               framebuffer_in.bind< gif::draw_framebuffer_slot > ();
               gio::vertexarray_base::bind();
-              gid::drawable::draw< DrawingMode >(buffer_in, counts_in, offsets_in, count_in);
+              gidr::drawable::draw< DrawingMode >(buffer_in, counts_in, offsets_in, count_in);
             }
 
             // #template#<attribute>_name_tpl,_type_tpl,_location_tpl,_size_tpl
