@@ -16,7 +16,6 @@ html {
 }
 
 .title {
-  font-size: 8em;
   margin-bottom: 1%;
 }
 
@@ -115,6 +114,7 @@ html {
 }
 
 .menu a {
+  display: block;
   text-decoration: none;
   color: #7FA16B;
 }
@@ -184,5 +184,11 @@ li.group.partial {
 
 li.group.covered {
   color: #004f02;
+}
+
+img {
+  display: block;
+  margin: 0;
+  padding: 0;
 }
 
