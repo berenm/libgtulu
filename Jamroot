@@ -75,24 +75,10 @@ rule for-each ( rule : suffix ? : sources * : dependencies * : properties * ) {
 
 cpp-pch gtulu_opengl_pch.hpp : include/gtulu_opengl_pch.hpp ;
 
-obj common : src/common.cpp gtulu_opengl_pch.hpp ;
+obj common : src/lib/common.cpp gtulu_opengl_pch.hpp ;
 
-lib gtulu : 
-  src/gtulu/utils/file.cpp
-  src/gtulu/internal/constants.cpp
-  src/gtulu/internal/texture_unit_manager.cpp
-  src/gtulu/internal/format/output.cpp
-  src/gtulu/internal/format/uniform.cpp
-  src/gtulu/internal/format/attribute.cpp
-  src/gtulu/internal/object/object.cpp
-  src/gtulu/internal/format/program/dynamic.cpp
-  src/gtulu/internal/format/shader/dynamic.cpp
-  src/gtulu/internal/object/framebuffer/attachment_manager.cpp
-  src/gtulu/internal/object/program/base.cpp
-  src/gtulu/internal/object/shader/base.cpp
-  gtulu_opengl_pch.hpp
-  ;
-exe gtulu-compiler : src/compile.cpp common gtulu gtulu_opengl_pch.hpp : <link>shared ;
+lib gtulu : [ path.glob-tree src/lib/gtulu/ : *.cpp : ] gtulu_opengl_pch.hpp ;
+exe gtulu-compiler : src/bin/compile.cpp common gtulu gtulu_opengl_pch.hpp : <link>shared ;
 
 shader.program test1 : test/shaders/test1.vs test/shaders/test1.fs : <location>test/generated/ ;
 shader.program test2 : test/shaders/test2.vs test/shaders/test2.fs : <location>test/generated/ ;
@@ -105,7 +91,6 @@ unit-test test3exe : test/test3.cpp test3 common gtulu gtulu_opengl_pch.hpp : <l
 alias test : test1exe/<link>shared
              test2exe/<link>shared
              test3exe/<link>shared ;
-
 
 multiarch.build build libgtulu
                 : gtulu-compiler

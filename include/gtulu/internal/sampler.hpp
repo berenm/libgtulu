@@ -5,16 +5,20 @@
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
 
-#ifndef IN_GTULU_INTERNAL_UNIFORM_HPP_
-#error "gtulu/internal/uniform/uniform_sampler.hpp should not be included directly, please include gtulu/internal/uniform.hpp instead."
-#endif /* IN_GTULU_INTERNAL_UNIFORM_HPP_ */
+#ifndef GTULU_INTERNAL_SAMPLER_HPP_
+#define GTULU_INTERNAL_SAMPLER_HPP_
 
-#ifndef GTULU_INTERNAL_UNIFORM_SAMPLER_HPP_
-#define GTULU_INTERNAL_UNIFORM_SAMPLER_HPP_
+#include "gtulu/opengl.hpp"
+#include "gtulu/internal/constants.hpp"
+#include "gtulu/internal/functions.hpp"
+
+#include "gtulu/internal/format/sampler.hpp"
 
 #include "gtulu/internal/format/internal.hpp"
 #include "gtulu/internal/format/target.hpp"
 #include "gtulu/internal/texture_unit_manager.hpp"
+
+#include "gtulu/internal/format/constraint/sampler.hpp"
 
 #include <boost/preprocessor/repetition/enum_params.hpp>
 
@@ -28,38 +32,34 @@ namespace gtulu {
       struct texture;
     }
 
-    namespace uniform {
-      namespace sampler {
+    namespace sampler {
 
-        template< typename SamplerFormat, typename TextureFormat >
-        struct uniform_texture_binder: fus::is_texture_compatible< SamplerFormat, TextureFormat > {
-            inline static void bind(location_t const location_in, gio::texture< TextureFormat > const& texture_in) {
-              ::boost::shared_ptr< texture_unit > unit_ptr = texture_unit_manager::instance().get_current_or_new(texture_in);
-              unit_ptr->bind(texture_in);
-              fnc::gl_uniform_1::call(location_in, static_cast< ::std::int32_t >(**unit_ptr));
-            }
-        };
+      template< typename SamplerFormat, typename TextureFormat >
+      struct sampler_texture_binder: fsm::is_texture_compatible< SamplerFormat, TextureFormat > {
+          inline static void bind(location_t const location_in, gio::texture< TextureFormat > const& texture_in) {
+            ::boost::shared_ptr< texture_unit > unit_ptr = texture_unit_manager::instance().get_current_or_new(texture_in);
+            unit_ptr->bind(texture_in);
+            fnc::gl_uniform_1::call(location_in, static_cast< ::std::int32_t >(**unit_ptr));
+          }
+      };
 
-        template< typename SamplerFormat >
-        struct uniform_binder {
-            template< typename TextureFormat >
-            inline static void bind(location_t const location_in, gio::texture< TextureFormat > const& texture_in) {
-              uniform_texture_binder< SamplerFormat, TextureFormat >::bind(location_in, texture_in);
-            }
-        };
+      template< typename SamplerFormat >
+      struct sampler_binder {
+          template< typename TextureFormat >
+          inline static void bind(location_t const location_in, gio::texture< TextureFormat > const& texture_in) {
+            sampler_texture_binder< SamplerFormat, TextureFormat >::bind(location_in, texture_in);
+          }
+      };
 
-        template< typename Format, typename BinderType = uniform_binder< Format >,
-            typename ValueType = gio::texture_base >
-        struct uniform {
-            typedef Format format;
-            typedef ValueType value_type;
-            typedef BinderType binder;
-        };
+      template< typename Format, typename BinderType = sampler_binder< Format >, typename ValueType = gio::texture_base >
+      struct sampler {
+          typedef Format format;
+          typedef ValueType value_type;
+          typedef BinderType binder;
+      };
 
-      } // namespace sampler
-
-#define DECLARE_UNIFORM_SAMPLER(uniform_m) \
-      typedef sampler::uniform< fu::uniform_m > uniform_m;
+#define DECLARE_UNIFORM_SAMPLER(sampler_m) \
+      typedef sampler< fsm::sampler_m > sampler_m;
 
       DECLARE_UNIFORM_SAMPLER(gl_sampler_1d)
       DECLARE_UNIFORM_SAMPLER(gl_sampler_2d)
@@ -100,11 +100,11 @@ namespace gtulu {
 
 #undef DECLARE_UNIFORM_SAMPLER
 
-    } // namespace uniform
+    } // namespace sampler
 
-    namespace gius = ::gtulu::internal::uniform::sampler;
+    namespace gis = ::gtulu::internal::sampler;
 
   } // namespace internal
 } // namespace gtulu
 
-#endif /* GTULU_INTERNAL_UNIFORM_SAMPLER_HPP_ */
+#endif /* GTULU_INTERNAL_SAMPLER_HPP_ */

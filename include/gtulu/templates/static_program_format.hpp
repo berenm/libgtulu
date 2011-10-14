@@ -13,6 +13,7 @@
 #include <gtulu/internal/format/shader/static.hpp>
 #include <gtulu/internal/format/program/static.hpp>
 #include <gtulu/internal/uniform.hpp>
+#include <gtulu/internal/sampler.hpp>
 #include <gtulu/internal/attribute.hpp>
 #include <gtulu/internal/object/shader.hpp>
 #include <gtulu/internal/object/program.hpp>
@@ -74,8 +75,8 @@ namespace gtulu {
             // #template#</uniform>
 
             // #template#<uniform_sampler>_name_tpl,_type_tpl,_location_tpl
-            typedef giu::gl__type_tpl::binder _name_tpl_binder_t;
-            typedef giu::gl__type_tpl::value_type _name_tpl_value_t;
+            typedef gis::gl__type_tpl::binder _name_tpl_binder_t;
+            typedef gis::gl__type_tpl::value_type _name_tpl_value_t;
 
             template< typename TextureFormat >
             void set__name_tpl(gio::texture< TextureFormat > const& value_in) {

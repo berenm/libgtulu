@@ -13,6 +13,7 @@
 #include <gtulu/internal/format/shader/static.hpp>
 #include <gtulu/internal/format/program/static.hpp>
 #include <gtulu/internal/uniform.hpp>
+#include <gtulu/internal/sampler.hpp>
 #include <gtulu/internal/attribute.hpp>
 #include <gtulu/internal/object/shader.hpp>
 #include <gtulu/internal/object/program.hpp>

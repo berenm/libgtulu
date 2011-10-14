@@ -12,6 +12,8 @@
 #ifndef GTULU_INTERNAL_ATTRIBUTE_ATTRIBUTE_HPP_
 #define GTULU_INTERNAL_ATTRIBUTE_ATTRIBUTE_HPP_
 
+#include "gtulu/internal/format/conversion/common.hpp"
+
 namespace gtulu {
   namespace internal {
 

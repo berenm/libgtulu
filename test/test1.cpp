@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
   vertexarray->set_texture_position(texture_positions);
 
   // Draw the elements described with this vertex array, the given indexes buffer and the default framebuffer (draw to window).
-  vertexarray->draw< gidm::gl_triangle_strip >(program, *program.get_default_framebuffer(), indexes, 4);
+  vertexarray->draw< gidrm::gl_triangle_strip >(program, *program.get_default_framebuffer(), indexes, 4);
 
   close_gl();
   return 0;

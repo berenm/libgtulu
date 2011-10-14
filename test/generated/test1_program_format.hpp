@@ -13,6 +13,7 @@
 #include <gtulu/internal/format/shader/static.hpp>
 #include <gtulu/internal/format/program/static.hpp>
 #include <gtulu/internal/uniform.hpp>
+#include <gtulu/internal/sampler.hpp>
 #include <gtulu/internal/attribute.hpp>
 #include <gtulu/internal/object/shader.hpp>
 #include <gtulu/internal/object/program.hpp>
@@ -93,8 +94,8 @@ namespace gtulu {
 
             // #template#<uniform_sampler/>
 
-            typedef giu::gl_sampler_2d::binder background_binder_t;
-            typedef giu::gl_sampler_2d::value_type background_value_t;
+            typedef gis::gl_sampler_2d::binder background_binder_t;
+            typedef gis::gl_sampler_2d::value_type background_value_t;
 
             template< typename TextureFormat >
             void set_background(gio::texture< TextureFormat > const& value_in) {

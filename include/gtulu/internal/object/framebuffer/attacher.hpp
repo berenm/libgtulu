@@ -17,7 +17,8 @@
 #include "gtulu/internal/object/framebuffer.hpp"
 
 #include "gtulu/internal/format/texture.hpp"
-#include "gtulu/internal/format/uniform.hpp"
+#include "gtulu/internal/format/sampler.hpp"
+#include "gtulu/internal/format/constraint/sampler.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -102,7 +103,7 @@ namespace gtulu {
 #undef DECLARE_ATTACHER
 
       template< typename TextureTargetFormat, typename TargetFormat >
-      struct is_target_attachable: fus::is_target_same< TextureTargetFormat, ft::target_format< TargetFormat > > {
+      struct is_target_attachable: fsm::is_target_same< TextureTargetFormat, ft::target_format< TargetFormat > > {
       };
 
       template< >
