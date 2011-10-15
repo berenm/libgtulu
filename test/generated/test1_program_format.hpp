@@ -54,7 +54,7 @@ namespace gtulu {
             };
 
             typedef gio::shader< test1_fragment_shader_shader_format > test1_fragment_shader_shader_t;
-            
+
 
             class test1_vertex_shader_shader_format: public fs::static_shader_format< fst::gl_vertex_shader > {
               protected:
@@ -74,18 +74,18 @@ namespace gtulu {
             };
 
             typedef gio::shader< test1_vertex_shader_shader_format > test1_vertex_shader_shader_t;
-            
+
           public:
             test1_program_format() {
               // #template#<declare_shader/>
 
               test1_fragment_shader_shader_t test1_fragment_shader_shader;
               attach(test1_fragment_shader_shader);
-              
+
 
               test1_vertex_shader_shader_t test1_vertex_shader_shader;
               attach(test1_vertex_shader_shader);
-              
+
 
               link();
             }
@@ -102,7 +102,7 @@ namespace gtulu {
               gio::program_base::bind();
               background_binder_t::bind(0, value_in);
             }
-            
+
 
             // #template#<uniform_array/>
 
@@ -116,7 +116,7 @@ namespace gtulu {
               gif::framebuffer_format_base< DrawableType >::template set<
               typename TemporaryFramebufferSlot::slot_type >(0, drawable_in);
             }
-            
+
 
             // #template#<output_array/>
           };
@@ -319,7 +319,7 @@ namespace gtulu {
                   offset_in,
                   stride_in);
             }
-            
+
 
             typedef gia::gl_float_vec2::binder position_binder_t;
             typedef gia::gl_float_vec2::buffer_binder position_buffer_binder_t;
@@ -353,7 +353,7 @@ namespace gtulu {
                   offset_in,
                   stride_in);
             }
-            
+
 
             // #template#<attribute_array/>
           };

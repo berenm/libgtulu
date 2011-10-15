@@ -118,11 +118,10 @@ namespace gtulu {
       };
 
       struct drawable {
-        protected:
           template< typename DrawingMode >
-          inline void draw(::std::uint32_t const start_in,
-                           ::std::uint32_t const count_in,
-                           ::std::uint32_t const instance_count_in) {
+          inline static void draw(::std::uint32_t const start_in,
+                                  ::std::uint32_t const count_in,
+                                  ::std::uint32_t const instance_count_in) {
             if (instance_count_in > 1) {
               fnc::gl_draw_arrays_instanced::call< DrawingMode >(start_in, count_in, instance_count_in);
             } else {
@@ -131,21 +130,18 @@ namespace gtulu {
           }
 
           template< typename DrawingMode >
-          inline void draw(::std::uint32_t const starts_in[],
-                           ::std::uint32_t const counts_in[],
-                           ::std::size_t const count_in) {
+          inline static void draw(::std::uint32_t const starts_in[],
+                                  ::std::uint32_t const counts_in[],
+                                  ::std::size_t const count_in) {
             fnc::gl_multi_draw_arrays::call< DrawingMode >(starts_in, counts_in, count_in);
           }
 
           template< typename DrawingMode, typename BufferFormat, typename BufferUsage >
-          inline void draw(gio::buffer< BufferFormat, BufferUsage > const& buffer_in,
-          ::std::uint32_t const count_in
-                           ,
-                           ::std::uint32_t const offset_in
-                           ,
-                           ::std::uint32_t const instance_count_in
-                           ,
-                           ::std::uint32_t const base_vertex_in) {
+          inline static void draw(gio::buffer< BufferFormat, BufferUsage > const& buffer_in
+                                  , ::std::uint32_t const count_in
+                                  , ::std::uint32_t const offset_in
+                                  , ::std::uint32_t const instance_count_in
+                                  , ::std::uint32_t const base_vertex_in) {
             if (instance_count_in > 1) {
               checked_drawer< DrawingMode, BufferFormat, BufferUsage >::draw(buffer_in,
                                                                              count_in,
@@ -161,16 +157,13 @@ namespace gtulu {
           }
 
           template< typename DrawingMode, typename BufferFormat, typename BufferUsage >
-          inline void draw(draw_mode_t const mode_in, gio::buffer< BufferFormat, BufferUsage > const& buffer_in,
-          ::std::uint32_t const count_in
-                           ,
-                           ::std::uint32_t const min_index_in
-                           ,
-                           ::std::uint32_t const max_index_in
-                           ,
-                           ::std::uint32_t const offset_in
-                           ,
-                           ::std::uint32_t const base_vertex_in) {
+          inline static void draw(draw_mode_t const mode_in,
+                                  gio::buffer< BufferFormat, BufferUsage > const& buffer_in
+                                  , ::std::uint32_t const count_in
+                                  , ::std::uint32_t const min_index_in
+                                  , ::std::uint32_t const max_index_in
+                                  , ::std::uint32_t const offset_in
+                                  , ::std::uint32_t const base_vertex_in) {
             checked_drawer< DrawingMode, BufferFormat, BufferUsage >::draw(buffer_in,
                                                                            count_in,
                                                                            min_index_in,
@@ -180,12 +173,11 @@ namespace gtulu {
           }
 
           template< typename DrawingMode, typename BufferFormat, typename BufferUsage >
-          inline static void draw(draw_mode_t const mode_in, gio::buffer< BufferFormat, BufferUsage > const& buffer_in ,
-          ::std::uint32_t const counts_in[]
-                                  ,
-                                  ::std::uint32_t const offsets_in[]
-                                  ,
-                                  ::std::size_t const count_in) {
+          inline static void draw(draw_mode_t const mode_in,
+                                  gio::buffer< BufferFormat, BufferUsage > const& buffer_in
+                                  , ::std::uint32_t const counts_in[]
+                                  , ::std::uint32_t const offsets_in[]
+                                  , ::std::size_t const count_in) {
             checked_drawer< DrawingMode, BufferFormat, BufferUsage >::draw(buffer_in, counts_in, offsets_in, count_in);
           }
       };
