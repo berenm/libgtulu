@@ -64,6 +64,9 @@ namespace gtulu {
           static inline void unbind(obj::plug< obj::framebuffer_base > const& framebuffer) {
             obj::slot_binder< obj::framebuffer_base >::clear< SlotType >();
           }
+          static inline void clear() {
+            obj::slot_binder< obj::framebuffer_base >::clear< SlotType >();
+          }
       };
 #define DECLARE_SLOT(slot_type_m) \
   typedef framebuffer_slot< slot::gl_##slot_type_m > slot_type_m##_slot; \

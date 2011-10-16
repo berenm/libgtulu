@@ -41,6 +41,9 @@ namespace gtulu {
           static inline void unbind(obj::plug< obj::vertexarray_base > const& vertexarray) {
             obj::slot_binder< obj::vertexarray_base >::clear();
           }
+          static inline void clear() {
+            obj::slot_binder< obj::vertexarray_base >::clear();
+          }
       };
     } // namespace vertexarray
 

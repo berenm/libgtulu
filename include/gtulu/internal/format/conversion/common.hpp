@@ -23,6 +23,12 @@ namespace gtulu {
             typedef typename fnum::to_value_type< typename fcmn::get_numeric< Format >::type >::type type;
         };
 
+        template< typename Format >
+        struct size_of {
+            static std::uint8_t const value = fnum::size_of<
+                typename fnum::get_width< typename fcmn::get_numeric< Format >::type >::type >::value;
+        };
+
         namespace cardinality {
           template< typename Cardinality >
           struct get_literal {

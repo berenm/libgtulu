@@ -41,6 +41,9 @@ namespace gtulu {
           static inline void unbind(obj::plug< obj::program_base > const& program) {
             obj::slot_binder< obj::program_base >::clear();
           }
+          static inline void clear() {
+            obj::slot_binder< obj::program_base >::clear();
+          }
       };
     } // namespace program
 

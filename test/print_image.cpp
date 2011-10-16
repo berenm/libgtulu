@@ -18,16 +18,19 @@
 #include "generated/print_image_program_format.hpp"
 #include "gtulu/gil/data/accessor.hpp"
 
+#include "gtulu/internal/storage/init.hpp"
+
 int main(int argc, char *argv[]) {
   using namespace gtulu::internal;
+  namespace bgil = ::boost::gil;
 
-  context::context::create(argc, argv);
+  ctx::context::create(argc, argv);
 
-  ::boost::gil::rgb8_image_t image;
-//  ::boost::gil::read_image("test/data/mona_lisa.jpg", image, ::boost::gil::jpeg_tag());
-  ::boost::gil::read_image("test/data/mona_lisa.png", image, ::boost::gil::png_tag());
+  bgil::rgb8_image_t image;
+//  bgil::read_image("test/data/mona_lisa.jpg", image, bgil::jpeg_tag());
+  bgil::read_image("test/data/mona_lisa.png", image, bgil::png_tag());
 
-  ::boost::gil::rgb8_image_t output_image;
+  bgil::rgb8_image_t output_image;
   output_image.recreate(image.width() / 4, image.height() / 4);
 
   // Select default texture format for 2d texture.
@@ -65,10 +68,10 @@ int main(int argc, char *argv[]) {
   vertexarray->draw< drw::mode::gl_triangle_strip >(program, *framebuffer, indexes, 4);
 
   output_texture.save(output_image);
-//  ::boost::gil::write_view("test/data/mona_lisa_out.jpg", boost::gil::view(output_image), ::boost::gil::jpeg_tag());
-  ::boost::gil::write_view("test/data/mona_lisa_out.png", boost::gil::view(output_image), ::boost::gil::png_tag());
+//  bgil::write_view("test/data/mona_lisa_out.jpg", boost::gil::view(output_image), bgil::jpeg_tag());
+  bgil::write_view("test/data/mona_lisa_out.png", boost::gil::view(output_image), bgil::png_tag());
 
-  ::boost::gil::read_image("test/data/mona_lisa.jpg", image, ::boost::gil::jpeg_tag());
+  bgil::read_image("test/data/mona_lisa.jpg", image, bgil::jpeg_tag());
   output_image.recreate(image.width() / 4, image.height() / 4);
 
   texture.load(image);
@@ -82,8 +85,8 @@ int main(int argc, char *argv[]) {
   vertexarray->draw< drw::mode::gl_triangle_strip >(program, *framebuffer, indexes, 4);
 
   output_texture.save(output_image);
-  ::boost::gil::write_view("test/data/mona_lisa_out.jpg", boost::gil::view(output_image), ::boost::gil::jpeg_tag());
+  bgil::write_view("test/data/mona_lisa_out.jpg", boost::gil::view(output_image), bgil::jpeg_tag());
 
-  context::context::destroy();
+  ctx::context::destroy();
   return 0;
 }

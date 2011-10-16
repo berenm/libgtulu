@@ -45,6 +45,9 @@ namespace gtulu {
           static inline void unbind(obj::plug< obj::texture_base > const& buffer) {
             obj::slot_binder< obj::texture_base >::clear< TargetType >();
           }
+          static inline void clear() {
+            obj::slot_binder< obj::texture_base >::clear< TargetType >();
+          }
       };
 
     } // namespace texture

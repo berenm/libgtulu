@@ -39,6 +39,9 @@ namespace gtulu {
           static inline void unbind(obj::plug< obj::renderbuffer_base > const& buffer) {
             obj::slot_binder< obj::renderbuffer_base >::clear< typename TargetType::aspect::format >();
           }
+          static inline void clear() {
+            obj::slot_binder< obj::renderbuffer_base >::clear< typename TargetType::aspect::format >();
+          }
       };
 
     } // namespace renderbuffer

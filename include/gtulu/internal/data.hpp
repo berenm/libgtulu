@@ -11,6 +11,7 @@
 #include "gtulu/namespaces.hpp"
 
 #include <boost/range.hpp>
+#include <boost/range/pointer.hpp>
 #include <boost/type_traits.hpp>
 
 namespace gtulu {
@@ -47,7 +48,7 @@ namespace gtulu {
             return data_;
           }
           size_type size() const {
-            return size_ * sizeof(::boost::remove_pointer< pointer_type >::type);
+            return size_ * sizeof(boost::remove_pointer< pointer_type >::type);
           }
           std::size_t width() const {
             return width_;

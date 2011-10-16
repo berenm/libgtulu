@@ -67,6 +67,9 @@ namespace gtulu {
           static inline void unbind(obj::plug< obj::buffer_base > const& buffer) {
             obj::slot_binder< obj::buffer_base >::clear< SlotType >();
           }
+          static inline void clear() {
+            obj::slot_binder< obj::buffer_base >::clear< SlotType >();
+          }
       };
 
       template< typename SlotType >
@@ -75,6 +78,7 @@ namespace gtulu {
 
           using buffer_slot< SlotType >::bind;
           using buffer_slot< SlotType >::unbind;
+          using buffer_slot< SlotType >::clear;
 
           static inline void bind(obj::plug< obj::buffer_base > const& buffer,
                                   std::uint32_t const index,

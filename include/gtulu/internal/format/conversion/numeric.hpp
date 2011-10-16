@@ -58,6 +58,33 @@ namespace gtulu {
 
 #undef DECLARE_CONVERSION
 
+        template< typename Width >
+        struct size_of;
+
+#define DECLARE_CONVERSION(value_m, width_m)            \
+  template< >                                           \
+  struct size_of< numeric::width::width_m > {           \
+      static std::uint8_t const value = value_m;        \
+  };
+
+        DECLARE_CONVERSION(1, one_bit)
+        DECLARE_CONVERSION(1, two_bits)
+        DECLARE_CONVERSION(1, three_bits)
+        DECLARE_CONVERSION(1, four_bits)
+        DECLARE_CONVERSION(1, five_bits)
+        DECLARE_CONVERSION(2, ten_bits)
+        DECLARE_CONVERSION(2, eleven_bits)
+        DECLARE_CONVERSION(2, twelve_bits)
+        DECLARE_CONVERSION(2, fourteen_bits)
+        DECLARE_CONVERSION(3, twentyfour_bits)
+        DECLARE_CONVERSION(1, one_byte)
+        DECLARE_CONVERSION(2, two_bytes)
+        DECLARE_CONVERSION(4, four_bytes)
+        DECLARE_CONVERSION(8, eight_bytes)
+        DECLARE_CONVERSION(1, any)
+
+#undef DECLARE_CONVERSION
+
       } // namespace numeric
     } // namespace format
 
