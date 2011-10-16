@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_NUMERIC_HPP_
 #define GTULU_INTERNAL_FORMAT_NUMERIC_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "meta/type_traits.hpp"
 
 namespace gtulu {
@@ -101,8 +102,6 @@ namespace gtulu {
 
       } // namespace numeric
     } // namespace format
-
-    namespace fn = ::gtulu::internal::format::numeric;
 
   } // namespace internal
 } // namespace gtulu

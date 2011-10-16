@@ -9,6 +9,7 @@
 #ifndef GTULU_PROGRAM_FORMAT_program_upper_tpl_HPP_
 #define GTULU_PROGRAM_FORMAT_program_upper_tpl_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include <gtulu/opengl.hpp>
 #include <gtulu/internal/format/shader/static.hpp>
 #include <gtulu/internal/format/program/static.hpp>
@@ -32,16 +33,16 @@ namespace gtulu {
     namespace format {
       namespace program {
 
-        class _program_tpl_program_format: public fp::static_program_format {
+        class _program_tpl_program_format: public fprg::static_program_format {
           protected:
             // #template#<define_shader>_shader_tpl,_type_tpl
-            class _shader_tpl__type_tpl_shader_format: public fs::static_shader_format< fst::gl__type_tpl > {
+            class _shader_tpl__type_tpl_shader_format: public fshd::static_shader_format< fshd::type::gl__type_tpl > {
               protected:
                 static char const* source;
 
               public:
                 _shader_tpl__type_tpl_shader_format() :
-                    fs::static_shader_format< fst::gl__type_tpl >() {
+                    fshd::static_shader_format< fshd::type::gl__type_tpl >() {
                   set_source(get_source());
 
                   shader_base::compile();
@@ -52,7 +53,7 @@ namespace gtulu {
                 }
             };
 
-            typedef gio::shader< _shader_tpl__type_tpl_shader_format > _shader_tpl__type_tpl_shader_t;
+            typedef obj::shader< _shader_tpl__type_tpl_shader_format > _shader_tpl__type_tpl_shader_t;
             // #template#</define_shader>
           public:
             _program_tpl_program_format() {
@@ -65,42 +66,42 @@ namespace gtulu {
             }
 
             // #template#<uniform>_name_tpl,_type_tpl,_location_tpl,_size_tpl
-            typedef giu::gl__type_tpl::binder _name_tpl_binder_t;
-            typedef giu::gl__type_tpl::value_type _name_tpl_value_t;
+            typedef unf::gl__type_tpl::binder _name_tpl_binder_t;
+            typedef unf::gl__type_tpl::value_type _name_tpl_value_t;
 
             void set__name_tpl(BOOST_PP_ENUM_PARAMS(_size_tpl, _name_tpl_value_t const _name_tpl_in)) {
-              gio::program_base::bind();
+              obj::program_base::bind();
               _name_tpl_binder_t::bind(_location_tpl, BOOST_PP_ENUM_PARAMS(_size_tpl, _name_tpl_in));
             }
             // #template#</uniform>
 
             // #template#<uniform_sampler>_name_tpl,_type_tpl,_location_tpl
-            typedef gis::gl__type_tpl::binder _name_tpl_binder_t;
-            typedef gis::gl__type_tpl::value_type _name_tpl_value_t;
+            typedef smp::gl__type_tpl::binder _name_tpl_binder_t;
+            typedef smp::gl__type_tpl::value_type _name_tpl_value_t;
 
             template< typename TextureFormat >
-            void set__name_tpl(gio::texture< TextureFormat > const& value_in) {
-              gio::program_base::bind();
+            void set__name_tpl(obj::texture< TextureFormat > const& value_in) {
+              obj::program_base::bind();
               _name_tpl_binder_t::bind(_location_tpl, value_in);
             }
             // #template#</uniform_sampler>
 
             // #template#<uniform_array>_name_tpl,_type_tpl,_location_tpl,_size_tpl,_count_tpl
-            typedef giu::gl__type_tpl::binder _name_tpl_binder_t;
-            typedef giu::gl__type_tpl::value_type _name_tpl_value_t;
+            typedef unf::gl__type_tpl::binder _name_tpl_binder_t;
+            typedef unf::gl__type_tpl::value_type _name_tpl_value_t;
 
-            void set__name_tpl(_name_tpl_value_t const values_in[_size_tpl * _count_tpl]) {gio::program_base::bind();
+            void set__name_tpl(_name_tpl_value_t const values_in[_size_tpl * _count_tpl]) {obj::program_base::bind();
             _name_tpl_binder_t::bind(_location_tpl, _count_tpl, values_in);
           }
           // #template#</uniform_array>
 
-          template< typename DrawableType = gio::drawable const& >
-          struct framebuffer_format: public gio::framebuffer_base, public gif::framebuffer_format_base< DrawableType > {
+          template< typename DrawableType = obj::drawable const& >
+          struct framebuffer_format: public obj::framebuffer_base, public fbf::framebuffer_format_base< DrawableType > {
             // #template#<output>_name_tpl,_type_tpl,_location_tpl,_index_tpl
-            template< typename TemporaryFramebufferSlot = gif::draw_framebuffer_slot, typename NewDrawableType >
+            template< typename TemporaryFramebufferSlot = fbf::draw_framebuffer_slot, typename NewDrawableType >
             void set__name_tpl(NewDrawableType const& drawable_in) {
-              gio::framebuffer_base::bind< TemporaryFramebufferSlot >();
-              gif::framebuffer_format_base< DrawableType >::template set<
+              obj::framebuffer_base::bind< TemporaryFramebufferSlot >();
+              fbf::framebuffer_format_base< DrawableType >::template set<
               typename TemporaryFramebufferSlot::slot_type >(_location_tpl, drawable_in);
             }
             // #template#</output>
@@ -109,22 +110,22 @@ namespace gtulu {
             // #template#</output_array>
           };
 
-          typedef gio::framebuffer< framebuffer_format< > > framebuffer_t;
-          ::boost::shared_ptr< framebuffer_t > new_framebuffer() const {
-            return ::boost::shared_ptr< framebuffer_t >(new framebuffer_t());
+          typedef obj::framebuffer< framebuffer_format< > > framebuffer_t;
+          boost::shared_ptr< framebuffer_t > new_framebuffer() const {
+            return boost::shared_ptr< framebuffer_t >(new framebuffer_t());
           }
 
-          typedef gio::default_framebuffer< framebuffer_format< const gio::default_drawable > > default_framebuffer_t;
-          ::boost::shared_ptr< default_framebuffer_t > get_default_framebuffer() const {
-            return ::boost::shared_ptr< default_framebuffer_t >(new default_framebuffer_t());
+          typedef obj::default_framebuffer< framebuffer_format< const obj::default_drawable > > default_framebuffer_t;
+          boost::shared_ptr< default_framebuffer_t > get_default_framebuffer() const {
+            return boost::shared_ptr< default_framebuffer_t >(new default_framebuffer_t());
           }
 
-          struct vertex_array_format: public gio::vertexarray_base, public gidr::drawable {
-            template< typename DrawingMode = gidrm::gl_triangles >
-            inline void draw(gio::program< _program_tpl_program_format > const& program_in,
-                ::std::uint32_t const start_in,
-                ::std::uint32_t const count_in,
-                ::std::uint32_t const instance_count_in = 1) {
+          struct vertex_array_format: public obj::vertexarray_base, public drw::drawable {
+            template< typename DrawingMode = drw::mode::gl_triangles >
+            inline void draw(obj::program< _program_tpl_program_format > const& program_in,
+                std::uint32_t const start_in,
+                std::uint32_t const count_in,
+                std::uint32_t const instance_count_in = 1) {
               draw< DrawingMode > (program_in,
                   *program_in.get_default_framebuffer(),
                   start_in,
@@ -132,11 +133,11 @@ namespace gtulu {
                   instance_count_in);
             }
 
-            template< typename DrawingMode = gidrm::gl_triangles >
-            inline void draw_multiple(gio::program< _program_tpl_program_format > const& program_in,
-                ::std::uint32_t const starts_in[],
-                ::std::uint32_t const counts_in[],
-                ::std::size_t const count_in) {
+            template< typename DrawingMode = drw::mode::gl_triangles >
+            inline void draw_multiple(obj::program< _program_tpl_program_format > const& program_in,
+                std::uint32_t const starts_in[],
+                std::uint32_t const counts_in[],
+                std::size_t const count_in) {
               draw_multiple< DrawingMode > (program_in,
                   *program_in.get_default_framebuffer(),
                   starts_in,
@@ -144,14 +145,14 @@ namespace gtulu {
                   count_in);
             }
 
-            template< typename DrawingMode = gidrm::gl_triangles, typename BufferFormat,
+            template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat,
             typename BufferUsage >
-            inline void draw(gio::program< _program_tpl_program_format > const& program_in,
-                gio::buffer< BufferFormat, BufferUsage > const& buffer_in,
-                ::std::uint32_t const count_in,
-                ::std::uint32_t const offset_in = 0,
-                ::std::uint32_t const instance_count_in = 1,
-                ::std::uint32_t const base_vertex_in = 0) {
+            inline void draw(obj::program< _program_tpl_program_format > const& program_in,
+                obj::buffer< BufferFormat, BufferUsage > const& buffer_in,
+                std::uint32_t const count_in,
+                std::uint32_t const offset_in = 0,
+                std::uint32_t const instance_count_in = 1,
+                std::uint32_t const base_vertex_in = 0) {
               draw< DrawingMode > (program_in,
                   *program_in.get_default_framebuffer(),
                   buffer_in,
@@ -161,15 +162,15 @@ namespace gtulu {
                   base_vertex_in);
             }
 
-            template< typename DrawingMode = gidrm::gl_triangles, typename BufferFormat,
+            template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat,
             typename BufferUsage >
-            inline void draw_range(gio::program< _program_tpl_program_format > const& program_in,
-                gio::buffer< BufferFormat, BufferUsage > const& buffer_in,
-                ::std::uint32_t const count_in,
-                ::std::uint32_t const min_index_in,
-                ::std::uint32_t const max_index_in,
-                ::std::uint32_t const offset_in = 0,
-                ::std::uint32_t const base_vertex_in = 0) {
+            inline void draw_range(obj::program< _program_tpl_program_format > const& program_in,
+                obj::buffer< BufferFormat, BufferUsage > const& buffer_in,
+                std::uint32_t const count_in,
+                std::uint32_t const min_index_in,
+                std::uint32_t const max_index_in,
+                std::uint32_t const offset_in = 0,
+                std::uint32_t const base_vertex_in = 0) {
               draw_range< DrawingMode > (program_in,
                   *program_in.get_default_framebuffer(),
                   buffer_in,
@@ -180,13 +181,13 @@ namespace gtulu {
                   base_vertex_in);
             }
 
-            template< typename DrawingMode = gidrm::gl_triangles, typename BufferFormat,
+            template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat,
             typename BufferUsage >
-            inline void draw_multiple(gio::program< _program_tpl_program_format > const& program_in,
-                gio::buffer< BufferFormat, BufferUsage > const& buffer_in,
-                ::std::uint32_t const counts_in[],
-                ::std::uint32_t const offsets_in[],
-                ::std::size_t const count_in) {
+            inline void draw_multiple(obj::program< _program_tpl_program_format > const& program_in,
+                obj::buffer< BufferFormat, BufferUsage > const& buffer_in,
+                std::uint32_t const counts_in[],
+                std::uint32_t const offsets_in[],
+                std::size_t const count_in) {
               draw_multiple< DrawingMode > (program_in,
                   *program_in.get_default_framebuffer(),
                   buffer_in,
@@ -195,63 +196,63 @@ namespace gtulu {
                   count_in);
             }
 
-            template< typename DrawingMode = gidrm::gl_triangles >
-            inline void draw(gio::program< _program_tpl_program_format > const& program_in,
-                gio::framebuffer_base const& framebuffer_in,
-                ::std::uint32_t const start_in,
-                ::std::uint32_t const count_in,
-                ::std::uint32_t const instance_count_in = 1) {
+            template< typename DrawingMode = drw::mode::gl_triangles >
+            inline void draw(obj::program< _program_tpl_program_format > const& program_in,
+                obj::framebuffer_base const& framebuffer_in,
+                std::uint32_t const start_in,
+                std::uint32_t const count_in,
+                std::uint32_t const instance_count_in = 1) {
               program_in.bind();
-              framebuffer_in.bind< gif::draw_framebuffer_slot > ();
-              gio::vertexarray_base::bind();
-              gidr::drawable::draw< DrawingMode >(start_in, count_in, instance_count_in);
+              framebuffer_in.bind< fbf::draw_framebuffer_slot > ();
+              obj::vertexarray_base::bind();
+              drw::drawable::draw< DrawingMode >(start_in, count_in, instance_count_in);
             }
 
-            template< typename DrawingMode = gidrm::gl_triangles >
-            inline void draw_multiple(gio::program< _program_tpl_program_format > const& program_in,
-                gio::framebuffer_base const& framebuffer_in,
-                ::std::uint32_t const starts_in[],
-                ::std::uint32_t const counts_in[],
-                ::std::size_t const count_in) {
+            template< typename DrawingMode = drw::mode::gl_triangles >
+            inline void draw_multiple(obj::program< _program_tpl_program_format > const& program_in,
+                obj::framebuffer_base const& framebuffer_in,
+                std::uint32_t const starts_in[],
+                std::uint32_t const counts_in[],
+                std::size_t const count_in) {
               program_in.bind();
-              framebuffer_in.bind< gif::draw_framebuffer_slot > ();
-              gio::vertexarray_base::bind();
-              gidr::drawable::draw< DrawingMode >(starts_in, counts_in, count_in);
+              framebuffer_in.bind< fbf::draw_framebuffer_slot > ();
+              obj::vertexarray_base::bind();
+              drw::drawable::draw< DrawingMode >(starts_in, counts_in, count_in);
             }
 
-            template< typename DrawingMode = gidrm::gl_triangles, typename BufferFormat,
+            template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat,
             typename BufferUsage >
-            inline void draw(gio::program< _program_tpl_program_format > const& program_in,
-                gio::framebuffer_base const& framebuffer_in,
-                gio::buffer< BufferFormat, BufferUsage > const& buffer_in,
-                ::std::uint32_t const count_in,
-                ::std::uint32_t const offset_in = 0,
-                ::std::uint32_t const instance_count_in = 1,
-                ::std::uint32_t const base_vertex_in = 0) {
+            inline void draw(obj::program< _program_tpl_program_format > const& program_in,
+                obj::framebuffer_base const& framebuffer_in,
+                obj::buffer< BufferFormat, BufferUsage > const& buffer_in,
+                std::uint32_t const count_in,
+                std::uint32_t const offset_in = 0,
+                std::uint32_t const instance_count_in = 1,
+                std::uint32_t const base_vertex_in = 0) {
               program_in.bind();
-              framebuffer_in.bind< gif::draw_framebuffer_slot > ();
-              gio::vertexarray_base::bind();
-              gidr::drawable::draw< DrawingMode >(buffer_in,
+              framebuffer_in.bind< fbf::draw_framebuffer_slot > ();
+              obj::vertexarray_base::bind();
+              drw::drawable::draw< DrawingMode >(buffer_in,
                   count_in,
                   offset_in,
                   instance_count_in,
                   base_vertex_in);
             }
 
-            template< typename DrawingMode = gidrm::gl_triangles, typename BufferFormat,
+            template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat,
             typename BufferUsage >
-            inline void draw_range(gio::program< _program_tpl_program_format > const& program_in,
-                gio::framebuffer_base const& framebuffer_in,
-                gio::buffer< BufferFormat, BufferUsage > const& buffer_in,
-                ::std::uint32_t const count_in,
-                ::std::uint32_t const min_index_in,
-                ::std::uint32_t const max_index_in,
-                ::std::uint32_t const offset_in = 0,
-                ::std::uint32_t const base_vertex_in = 0) {
+            inline void draw_range(obj::program< _program_tpl_program_format > const& program_in,
+                obj::framebuffer_base const& framebuffer_in,
+                obj::buffer< BufferFormat, BufferUsage > const& buffer_in,
+                std::uint32_t const count_in,
+                std::uint32_t const min_index_in,
+                std::uint32_t const max_index_in,
+                std::uint32_t const offset_in = 0,
+                std::uint32_t const base_vertex_in = 0) {
               program_in.bind();
-              framebuffer_in.bind< gif::draw_framebuffer_slot > ();
-              gio::vertexarray_base::bind();
-              gidr::drawable::draw< DrawingMode >(buffer_in,
+              framebuffer_in.bind< fbf::draw_framebuffer_slot > ();
+              obj::vertexarray_base::bind();
+              drw::drawable::draw< DrawingMode >(buffer_in,
                   count_in,
                   min_index_in,
                   max_index_in,
@@ -259,49 +260,49 @@ namespace gtulu {
                   base_vertex_in);
             }
 
-            template< typename DrawingMode = gidrm::gl_triangles, typename BufferFormat,
+            template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat,
             typename BufferUsage >
-            inline void draw_multiple(gio::program< _program_tpl_program_format > const& program_in,
-                gio::framebuffer_base const& framebuffer_in,
-                gio::buffer< BufferFormat, BufferUsage > const& buffer_in,
-                ::std::uint32_t const counts_in[],
-                ::std::uint32_t const offsets_in[],
-                ::std::size_t const count_in) {
+            inline void draw_multiple(obj::program< _program_tpl_program_format > const& program_in,
+                obj::framebuffer_base const& framebuffer_in,
+                obj::buffer< BufferFormat, BufferUsage > const& buffer_in,
+                std::uint32_t const counts_in[],
+                std::uint32_t const offsets_in[],
+                std::size_t const count_in) {
               program_in.bind();
-              framebuffer_in.bind< gif::draw_framebuffer_slot > ();
-              gio::vertexarray_base::bind();
-              gidr::drawable::draw< DrawingMode >(buffer_in, counts_in, offsets_in, count_in);
+              framebuffer_in.bind< fbf::draw_framebuffer_slot > ();
+              obj::vertexarray_base::bind();
+              drw::drawable::draw< DrawingMode >(buffer_in, counts_in, offsets_in, count_in);
             }
 
             // #template#<attribute>_name_tpl,_type_tpl,_location_tpl,_size_tpl
-            typedef gia::gl__type_tpl::binder _name_tpl_binder_t;
-            typedef gia::gl__type_tpl::buffer_binder _name_tpl_buffer_binder_t;
+            typedef att::gl__type_tpl::binder _name_tpl_binder_t;
+            typedef att::gl__type_tpl::buffer_binder _name_tpl_buffer_binder_t;
 
             template< typename DataFormat >
             void set__name_tpl(BOOST_PP_ENUM_PARAMS(_size_tpl, DataFormat const _name_tpl_in)) {
-              gio::vertexarray_base::bind();
+              obj::vertexarray_base::bind();
               _name_tpl_binder_t::bind(_location_tpl, BOOST_PP_ENUM_PARAMS(_size_tpl, _name_tpl_in));
             }
             template< typename BufferFormat, typename BufferUsage >
-            void set__name_tpl(gio::buffer< BufferFormat, BufferUsage > const& buffer_in,
-                ::std::uint32_t const offset_in = 0,
-                ::std::uint32_t const stride_in = 0) {
-              gio::vertexarray_base::bind();
+            void set__name_tpl(obj::buffer< BufferFormat, BufferUsage > const& buffer_in,
+                std::uint32_t const offset_in = 0,
+                std::uint32_t const stride_in = 0) {
+              obj::vertexarray_base::bind();
               _name_tpl_buffer_binder_t::bind(_location_tpl, buffer_in, offset_in, stride_in);
             }
             template< typename BufferFormat, typename BufferUsage >
-            void set__name_tpl_normalized(gio::buffer< BufferFormat, BufferUsage > const & buffer_in,
-                ::std::uint32_t const offset_in = 0,
-                ::std::uint32_t const stride_in = 0) {
-              gio::vertexarray_base::bind();
-              _name_tpl_buffer_binder_t::bind< fc::normalization::normalized >(_location_tpl, buffer_in, offset_in, stride_in);
+            void set__name_tpl_normalized(obj::buffer< BufferFormat, BufferUsage > const & buffer_in,
+                std::uint32_t const offset_in = 0,
+                std::uint32_t const stride_in = 0) {
+              obj::vertexarray_base::bind();
+              _name_tpl_buffer_binder_t::bind< fcmn::normalization::normalized >(_location_tpl, buffer_in, offset_in, stride_in);
             }
             template< typename BufferFormat, typename BufferUsage >
-            void set__name_tpl_gbra(gio::buffer< BufferFormat, BufferUsage > const & buffer_in,
-                ::std::uint32_t const offset_in = 0,
-                ::std::uint32_t const stride_in = 0) {
-              gio::vertexarray_base::bind();
-              _name_tpl_buffer_binder_t::bind< fc::normalization::none, fc::order::reverse >(_location_tpl,
+            void set__name_tpl_gbra(obj::buffer< BufferFormat, BufferUsage > const & buffer_in,
+                std::uint32_t const offset_in = 0,
+                std::uint32_t const stride_in = 0) {
+              obj::vertexarray_base::bind();
+              _name_tpl_buffer_binder_t::bind< fcmn::normalization::none, fcmn::order::reverse >(_location_tpl,
                   buffer_in,
                   offset_in,
                   stride_in);
@@ -309,34 +310,34 @@ namespace gtulu {
             // #template#</attribute>
 
             // #template#<attribute_array>_name_tpl,_type_tpl,_location_tpl,_size_tpl,_count_tpl
-            typedef gia::gl__type_tpl::binder _name_tpl_binder_t;
-            typedef gia::gl__type_tpl::buffer_binder _name_tpl_buffer_binder_t;
+            typedef att::gl__type_tpl::binder _name_tpl_binder_t;
+            typedef att::gl__type_tpl::buffer_binder _name_tpl_buffer_binder_t;
 
             template< typename DataFormat >
             void set__name_tpl(DataFormat const values_in[_size_tpl * _count_tpl]) {
-              gio::vertexarray_base::bind();
+              obj::vertexarray_base::bind();
               _name_tpl_binder_t::bind(_location_tpl, _count_tpl, values_in);
             }
             template< typename BufferFormat, typename BufferUsage >
-            void set__name_tpl(gio::buffer< BufferFormat, BufferUsage > const & buffer_in,
-                ::std::uint32_t const offset_in = 0,
-                ::std::uint32_t const stride_in = 0) {
-              gio::vertexarray_base::bind();
+            void set__name_tpl(obj::buffer< BufferFormat, BufferUsage > const & buffer_in,
+                std::uint32_t const offset_in = 0,
+                std::uint32_t const stride_in = 0) {
+              obj::vertexarray_base::bind();
               _name_tpl_buffer_binder_t::bind(_location_tpl, buffer_in, offset_in, stride_in);
             }
             template< typename BufferFormat, typename BufferUsage >
-            void set__name_tpl_normalized(gio::buffer< BufferFormat, BufferUsage > const& buffer_in,
-                ::std::uint32_t const offset_in = 0,
-                ::std::uint32_t const stride_in = 0) {
-              gio::vertexarray_base::bind();
-              _name_tpl_buffer_binder_t::bind< fc::normalization::normalized >(_location_tpl, buffer_in, offset_in, stride_in);
+            void set__name_tpl_normalized(obj::buffer< BufferFormat, BufferUsage > const& buffer_in,
+                std::uint32_t const offset_in = 0,
+                std::uint32_t const stride_in = 0) {
+              obj::vertexarray_base::bind();
+              _name_tpl_buffer_binder_t::bind< fcmn::normalization::normalized >(_location_tpl, buffer_in, offset_in, stride_in);
             }
             template< typename BufferFormat, typename BufferUsage >
-            void set__name_tpl_gbra(const gio::buffer< BufferFormat, BufferUsage >& buffer_in,
-                const ::std::uint32_t offset_in = 0,
-                const ::std::uint32_t stride_in = 0) {
-              gio::vertexarray_base::bind();
-              _name_tpl_buffer_binder_t::bind< fc::normalization::none, fc::order::reverse >(_location_tpl,
+            void set__name_tpl_gbra(const obj::buffer< BufferFormat, BufferUsage >& buffer_in,
+                const std::uint32_t offset_in = 0,
+                const std::uint32_t stride_in = 0) {
+              obj::vertexarray_base::bind();
+              _name_tpl_buffer_binder_t::bind< fcmn::normalization::none, fcmn::order::reverse >(_location_tpl,
                   buffer_in,
                   offset_in,
                   stride_in);
@@ -344,9 +345,9 @@ namespace gtulu {
             // #template#</attribute_array>
           };
 
-          typedef gio::vertexarray< vertex_array_format > vertexarray_t;
-          ::boost::shared_ptr< vertexarray_t > new_vertexarray() {
-            return ::boost::shared_ptr< vertexarray_t >(new vertexarray_t());
+          typedef obj::vertexarray< vertex_array_format > vertexarray_t;
+          boost::shared_ptr< vertexarray_t > new_vertexarray() {
+            return boost::shared_ptr< vertexarray_t >(new vertexarray_t());
           }
         };
 

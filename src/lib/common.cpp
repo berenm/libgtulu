@@ -6,6 +6,8 @@
  */
 #include "gtulu_opengl_pch.hpp"
 
+#include "gtulu/namespaces.hpp"
+
 #include "gtulu/platform.hpp"
 #include "gtulu/internal/context.hpp"
 #include "gtulu/internal/context_info.hpp"
@@ -18,57 +20,11 @@
 #endif
 
 #include <iostream>
-#include "common.hpp"
 
-static int _x_error(Display *display, XErrorEvent *error) {
-  return 0;
-}
-
-void init_gl(::std::int32_t argc, char** argv) {
-  XSetErrorHandler(_x_error);
+void init_gl(std::int32_t argc, char** argv) {
+  using namespace gtulu::internal;
 
 #ifdef GTULU_PLATFORM_LINUX
-
-  Display* display = NULL;
-  display = XOpenDisplay(NULL);
-  if (display == NULL) {
-    __gtulu_fatal() << "unable to open X display.";
-
-  } else {
-    int framebuffer_config_count = 0;
-    GLXFBConfig* framebuffer_configs = NULL;
-    framebuffer_configs = glXChooseFBConfig(display, DefaultScreen(display), NULL, &framebuffer_config_count);
-    if (framebuffer_configs == NULL) {
-      __gtulu_fatal() << "unable to retrieve framebuffer configuration.";
-
-    } else {
-      int context_attribs[] = { GLX_CONTEXT_MAJOR_VERSION_ARB, 3, GLX_CONTEXT_MINOR_VERSION_ARB, 3,
-      // GLX_CONTEXT_FLAGS_ARB, GLX_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB | GLX_CONTEXT_DEBUG_BIT_ARB,
-                                GLX_CONTEXT_PROFILE_MASK_ARB, GLX_CONTEXT_CORE_PROFILE_BIT_ARB, None };
-      GLXContext context = NULL;
-      context = glXCreateContextAttribsARB(display, framebuffer_configs[0], NULL, true, context_attribs);
-      XFree(framebuffer_configs);
-
-      if (context == NULL) {
-        __gtulu_fatal() << "unable to create OpenGL context.";
-
-      } else {
-        XSync(display, false);
-
-        gtulu::internal::context::context_info context_info(display, context);
-        if (!context_info.try_acquire()) {
-          __gtulu_error() << "unable to create detached context.";
-
-          context_info.drawable = DefaultRootWindow(display);
-          context_info.readable = DefaultRootWindow(display);
-
-          if (!context_info.try_acquire()) {
-            __gtulu_fatal() << "unable to attach context to default drawable.";
-          }
-        }
-      }
-    }
-  }
 
 #else
 
@@ -88,26 +44,19 @@ void init_gl(::std::int32_t argc, char** argv) {
 
 #endif
 
-  namespace gic = ::gtulu::internal::gic;
-  namespace gicp = ::gtulu::internal::gicp;
+  std::string const gl_vendor = ctx::gl_vendor::get();
+  std::string const gl_renderer = ctx::gl_renderer::get();
+  std::string const gl_version = ctx::gl_version::get();
+  std::string const gl_shading_language_version = ctx::gl_shading_language_version::get();
 
-  ::std::string const gl_vendor = gic::gl_vendor::get();
-  ::std::string const gl_renderer = gic::gl_renderer::get();
-  ::std::string const gl_version = gic::gl_version::get();
-  ::std::string const gl_shading_language_version = gic::gl_shading_language_version::get();
-
-  __gtulu_info() << gicp::gl_vendor() << ": " << gl_vendor;
-  __gtulu_info() << gicp::gl_renderer() << ": " << gl_renderer;
-  __gtulu_info() << gicp::gl_version() << ": " << gl_version;
-  __gtulu_info() << gicp::gl_shading_language_version() << ": " << gl_shading_language_version;
+  __gtulu_info() << ctx::parameter::gl_vendor() << ": " << gl_vendor;
+  __gtulu_info() << ctx::parameter::gl_renderer() << ": " << gl_renderer;
+  __gtulu_info() << ctx::parameter::gl_version() << ": " << gl_version;
+  __gtulu_info() << ctx::parameter::gl_shading_language_version() << ": " << gl_shading_language_version;
 }
 
 void close_gl() {
 #ifdef GTULU_PLATFORM_LINUX
-
-  ::gtulu::internal::context::current_context_info context_info;
-  context_info.release();
-  XCloseDisplay(context_info.display);
 
 #else
   glfwCloseWindow(glfwGetCurrentWindow());

@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONSTRAINT_DATA_HPP_
 #define GTULU_INTERNAL_FORMAT_CONSTRAINT_DATA_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/format/constraint/common.hpp"
 
 #include "gtulu/internal/format/data.hpp"
@@ -18,15 +19,14 @@
 
 namespace gtulu {
   namespace internal {
-    namespace bm = ::boost::mpl;
 
     namespace format {
       namespace data {
 
         template< typename DataFormat, typename GroupFormat >
         struct integral_check {
-            typedef bm::and_< fn::integral::is_integral< typename fc::get_numeric< GroupFormat >::type >,
-                bm::not_< fn::integral::is_integral< typename fc::get_numeric< DataFormat >::type > > > group_is_integral_but_data_is_not;
+            typedef bm::and_< fnum::integral::is_integral< typename fcmn::get_numeric< GroupFormat >::type >,
+                bm::not_< fnum::integral::is_integral< typename fcmn::get_numeric< DataFormat >::type > > > group_is_integral_but_data_is_not;
             typedef bm::not_< group_is_integral_but_data_is_not > type;
 
             static_assert(type::value, "GroupFormat is not compatible with DataFormat");
@@ -38,8 +38,8 @@ namespace gtulu {
 
         template< typename DataFormat, typename GroupFormat >
         struct component_check {
-            typedef bm::and_< fc::component::is_depth_stencil< GroupFormat >,
-                bm::not_< fc::packing::is_two_in_one< DataFormat > > > group_is_depth_stencil_but_data_is_not_two_packed;
+            typedef bm::and_< fcmn::component::is_depth_stencil< GroupFormat >,
+                bm::not_< fcmn::packing::is_two_in_one< DataFormat > > > group_is_depth_stencil_but_data_is_not_two_packed;
 
             typedef bm::not_< group_is_depth_stencil_but_data_is_not_two_packed > type;
 
@@ -52,12 +52,12 @@ namespace gtulu {
 
         template< typename DataFormat, typename InternalFormat >
         struct packing_check {
-            typedef bm::and_< fc::packing::is_four_in_one< DataFormat >,
-                bm::not_< fc::component::is_red_green_blue_alpha< InternalFormat > > > data_is_four_packed_but_internal_is_not_rgba;
-            typedef bm::and_< fc::packing::is_three_in_one< DataFormat >,
-                bm::not_< fc::component::is_red_green_blue< InternalFormat > > > data_is_three_packed_but_internal_is_not_rgb;
-            typedef bm::and_< fc::packing::is_two_in_one< DataFormat >,
-                bm::not_< fc::component::is_depth_stencil< InternalFormat > > > data_is_two_packed_but_internal_is_not_depth_stencil;
+            typedef bm::and_< fcmn::packing::is_four_in_one< DataFormat >,
+                bm::not_< fcmn::component::is_red_green_blue_alpha< InternalFormat > > > data_is_four_packed_but_internal_is_not_rgba;
+            typedef bm::and_< fcmn::packing::is_three_in_one< DataFormat >,
+                bm::not_< fcmn::component::is_red_green_blue< InternalFormat > > > data_is_three_packed_but_internal_is_not_rgb;
+            typedef bm::and_< fcmn::packing::is_two_in_one< DataFormat >,
+                bm::not_< fcmn::component::is_depth_stencil< InternalFormat > > > data_is_two_packed_but_internal_is_not_depth_stencil;
 
             typedef bm::and_< bm::not_< data_is_four_packed_but_internal_is_not_rgba >,
                 bm::not_< data_is_three_packed_but_internal_is_not_rgb >,

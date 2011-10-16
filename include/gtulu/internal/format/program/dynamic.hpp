@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_PROGRAM_DYNAMIC_HPP_
 #define GTULU_INTERNAL_FORMAT_PROGRAM_DYNAMIC_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/constants_fwd.hpp"
 #include "gtulu/internal/format/shader/dynamic.hpp"
 
@@ -19,15 +20,13 @@
 namespace gtulu {
   namespace internal {
 
-    namespace gio = ::gtulu::internal::object;
-
     namespace format {
       namespace program {
         struct attribute_info {
-            attribute_info(::std::uint32_t id_in,
-                           ::std::string name_in,
+            attribute_info(std::uint32_t id_in,
+                           std::string name_in,
                            cst::gl_constant_base const& type_in,
-                           ::std::uint32_t size_in,
+                           std::uint32_t size_in,
                            location_t location_in) :
                 id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
             }
@@ -44,19 +43,19 @@ namespace gtulu {
               return *this;
             }
 
-            ::std::uint32_t id;
-            ::std::string name;
+            std::uint32_t id;
+            std::string name;
             cst::gl_constant_base type;
-            ::std::uint32_t size;
+            std::uint32_t size;
             location_t location;
         };
-        typedef ::std::vector< attribute_info > attribute_vector_t;
+        typedef std::vector< attribute_info > attribute_vector_t;
 
         struct uniform_info {
-            uniform_info(::std::uint32_t id_in,
-                         ::std::string name_in,
+            uniform_info(std::uint32_t id_in,
+                         std::string name_in,
                          cst::gl_constant_base const& type_in,
-                         ::std::uint32_t size_in,
+                         std::uint32_t size_in,
                          location_t location_in) :
                 id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
             }
@@ -73,19 +72,19 @@ namespace gtulu {
               return *this;
             }
 
-            ::std::uint32_t id;
-            ::std::string name;
+            std::uint32_t id;
+            std::string name;
             cst::gl_constant_base type;
-            ::std::uint32_t size;
+            std::uint32_t size;
             location_t location;
         };
-        typedef ::std::vector< uniform_info > uniform_vector_t;
+        typedef std::vector< uniform_info > uniform_vector_t;
 
         struct uniform_block_info {
-            uniform_block_info(::std::uint32_t id_in,
-                               ::std::string name_in,
+            uniform_block_info(std::uint32_t id_in,
+                               std::string name_in,
                                cst::gl_constant_base const& type_in,
-                               ::std::uint32_t size_in,
+                               std::uint32_t size_in,
                                location_t location_in) :
                 id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
             }
@@ -102,20 +101,20 @@ namespace gtulu {
               return *this;
             }
 
-            ::std::uint32_t id;
-            ::std::string name;
+            std::uint32_t id;
+            std::string name;
             cst::gl_constant_base type;
-            ::std::uint32_t size;
+            std::uint32_t size;
             location_t location;
         };
-        typedef ::std::vector< uniform_block_info > uniform_block_vector_t;
+        typedef std::vector< uniform_block_info > uniform_block_vector_t;
 
-        using fs::output_info;
-        using fs::output_vector_t;
+        using fshd::output_info;
+        using fshd::output_vector_t;
 
-        struct dynamic_program_format: virtual public gio::program_base {
-            typedef fs::dynamic_shader_format shader_t;
-            typedef ::std::vector< shader_t > shader_vector_t;
+        struct dynamic_program_format: virtual public obj::program_base {
+            typedef fshd::dynamic_shader_format shader_t;
+            typedef std::vector< shader_t > shader_vector_t;
 
           protected:
             shader_vector_t shaders_;
@@ -125,20 +124,20 @@ namespace gtulu {
             output_vector_t outputs_;
 
           protected:
-            ::std::uint32_t get_attribute_count();
-            ::std::uint32_t get_attribute_max_length();
-            attribute_info const get_attribute_info(::std::uint32_t id);
+            std::uint32_t get_attribute_count();
+            std::uint32_t get_attribute_max_length();
+            attribute_info const get_attribute_info(std::uint32_t id);
 
-            ::std::uint32_t get_uniform_count();
-            ::std::uint32_t get_uniform_max_length();
-            uniform_info const get_uniform_info(::std::uint32_t index);
+            std::uint32_t get_uniform_count();
+            std::uint32_t get_uniform_max_length();
+            uniform_info const get_uniform_info(std::uint32_t index);
 
-            ::std::uint32_t get_uniform_block_count();
-            ::std::uint32_t get_uniform_block_max_length();
-            uniform_block_info const get_uniform_block_info(::std::uint32_t index);
+            std::uint32_t get_uniform_block_count();
+            std::uint32_t get_uniform_block_max_length();
+            uniform_block_info const get_uniform_block_info(std::uint32_t index);
 
-            ::std::uint32_t get_outputs_count();
-            ::std::uint32_t get_output_location(::std::string name);
+            std::uint32_t get_outputs_count();
+            std::uint32_t get_output_location(std::string name);
 
             void refresh_outputs();
           public:
@@ -152,8 +151,8 @@ namespace gtulu {
             bool has_validation_log_;
             bool has_log() const;
 
-            ::std::string link_log_;
-            ::std::string validation_log_;
+            std::string link_log_;
+            std::string validation_log_;
             void print_log() const;
 
             virtual void link();
@@ -167,8 +166,6 @@ namespace gtulu {
 
       } // namespace program
     } // namespace format
-
-    namespace fp = ::gtulu::internal::format::program;
 
   } // namespace internal
 } // namespace gtulu

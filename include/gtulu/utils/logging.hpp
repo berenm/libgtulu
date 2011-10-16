@@ -8,6 +8,8 @@
 #ifndef GTULU_UTILS_LOGGING_HPP_
 #define GTULU_UTILS_LOGGING_HPP_
 
+#include "gtulu/namespaces.hpp"
+
 #ifndef GTULU_LOGGING_INITIALIZED
 #define GTULU_LOGGING_INITIALIZED
 
@@ -18,7 +20,7 @@
 #ifdef __logML
 #  define __gtulu_logL(level_m) __logML(gtulu,level_m)
 #else
-#  define __gtulu_logL(level_m) if(0) ::std::cout
+#  define __gtulu_logL(level_m) if(0) std::cout
 #endif
 
 #define __gtulu_fatal() __gtulu_logL(fatal)
@@ -27,7 +29,7 @@
 #define __gtulu_info()  __gtulu_logL(info)
 
 #if defined(GTULU_NO_DEBUG) || defined(NDEBUG)
-#  define __gtulu_debug() if(0) ::std::cout
+#  define __gtulu_debug() if(0) std::cout
 #else
 #  define __gtulu_debug() __gtulu_logL(debug)
 #endif

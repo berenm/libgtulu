@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONSTRAINT_UNIFORM_HPP_
 #define GTULU_INTERNAL_FORMAT_CONSTRAINT_UNIFORM_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/format/constraint/common.hpp"
 
 #include "gtulu/internal/format/uniform.hpp"
@@ -18,15 +19,14 @@
 
 namespace gtulu {
   namespace internal {
-    namespace bm = ::boost::mpl;
 
     namespace format {
       namespace sampler {
 
         template< typename SamplerFormat, typename InternalFormat >
         struct shadow_stencil_check {
-            typedef bm::and_< fc::compare::is_shadow< SamplerFormat >, fc::component::has_no_depth< InternalFormat > > sampler_is_shadow_and_internal_has_no_depth;
-            typedef fc::component::is_stencil< InternalFormat > internal_is_stencil;
+            typedef bm::and_< fcmn::compare::is_shadow< SamplerFormat >, fcmn::component::has_no_depth< InternalFormat > > sampler_is_shadow_and_internal_has_no_depth;
+            typedef fcmn::component::is_stencil< InternalFormat > internal_is_stencil;
 
             typedef bm::and_< bm::not_< sampler_is_shadow_and_internal_has_no_depth >, bm::not_< internal_is_stencil > > type;
             static_assert(type::value, "SamplerFormat is not compatible with InternalFormat.");
@@ -38,20 +38,21 @@ namespace gtulu {
 
         template< typename SamplerFormat, typename InternalFormat >
         struct internal_type_check {
-            typedef bm::and_< bm::not_< fn::integral::is_floating< typename fc::get_numeric< InternalFormat >::type > >,
-                bm::not_< fn::integral::is_fixed< typename fc::get_numeric< InternalFormat >::type > > > internal_is_not_floating;
+            typedef bm::and_<
+                bm::not_< fnum::integral::is_floating< typename fcmn::get_numeric< InternalFormat >::type > >,
+                bm::not_< fnum::integral::is_fixed< typename fcmn::get_numeric< InternalFormat >::type > > > internal_is_not_floating;
 
-            typedef bm::and_< fn::integral::is_floating< typename fc::get_numeric< SamplerFormat >::type >,
+            typedef bm::and_< fnum::integral::is_floating< typename fcmn::get_numeric< SamplerFormat >::type >,
                 internal_is_not_floating > sampler_is_floating_but_internal_is_not;
-            typedef bm::and_< fn::integral::is_integral< typename fc::get_numeric< SamplerFormat >::type >,
-                bm::not_< fn::integral::is_integral< typename fc::get_numeric< InternalFormat >::type > > > sampler_is_integral_but_internal_is_not;
+            typedef bm::and_< fnum::integral::is_integral< typename fcmn::get_numeric< SamplerFormat >::type >,
+                bm::not_< fnum::integral::is_integral< typename fcmn::get_numeric< InternalFormat >::type > > > sampler_is_integral_but_internal_is_not;
 
-            typedef bm::and_< fn::integral::is_integral< typename fc::get_numeric< SamplerFormat >::type >,
-                fn::sign::is_signed_< typename fc::get_numeric< SamplerFormat >::type >,
-                fn::sign::is_unsigned_< typename fc::get_numeric< InternalFormat >::type > > sampler_is_signed_but_internal_is_not;
-            typedef bm::and_< fn::integral::is_integral< typename fc::get_numeric< SamplerFormat >::type >,
-                fn::sign::is_unsigned_< typename fc::get_numeric< SamplerFormat >::type >,
-                fn::sign::is_signed_< typename fc::get_numeric< InternalFormat >::type > > sampler_is_unsigned_but_internal_is_not;
+            typedef bm::and_< fnum::integral::is_integral< typename fcmn::get_numeric< SamplerFormat >::type >,
+                fnum::sign::is_signed_< typename fcmn::get_numeric< SamplerFormat >::type >,
+                fnum::sign::is_unsigned_< typename fcmn::get_numeric< InternalFormat >::type > > sampler_is_signed_but_internal_is_not;
+            typedef bm::and_< fnum::integral::is_integral< typename fcmn::get_numeric< SamplerFormat >::type >,
+                fnum::sign::is_unsigned_< typename fcmn::get_numeric< SamplerFormat >::type >,
+                fnum::sign::is_signed_< typename fcmn::get_numeric< InternalFormat >::type > > sampler_is_unsigned_but_internal_is_not;
 
             typedef bm::and_< bm::not_< sampler_is_floating_but_internal_is_not >,
                 bm::not_< sampler_is_integral_but_internal_is_not >, bm::not_< sampler_is_signed_but_internal_is_not >,
@@ -67,7 +68,7 @@ namespace gtulu {
 
         template< typename SamplerFormat, typename TargetFormat >
         struct is_target_same {
-            typedef ::std::is_same< typename SamplerFormat::aspect::target_format, TargetFormat > type;
+            typedef std::is_same< typename SamplerFormat::aspect::target_format, TargetFormat > type;
             static_assert(type::value, "SamplerTargetFormat and TextureTargetFormat are not same.");
         };
 

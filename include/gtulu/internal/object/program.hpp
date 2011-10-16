@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_PROGRAM_HPP_
 #define GTULU_INTERNAL_PROGRAM_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
@@ -28,7 +29,7 @@ namespace gtulu {
           }
       };
 
-      typedef program< fp::dynamic_program_format > dynamic_program_t;
+      typedef program< fprg::dynamic_program_format > dynamic_program_t;
 
     } // namespace object
 

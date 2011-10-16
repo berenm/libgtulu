@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_OBJECT_TEXTURE_HPP_
 #define GTULU_INTERNAL_OBJECT_TEXTURE_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
@@ -29,63 +30,70 @@ namespace gtulu {
     namespace object {
       template< >
       template< typename TargetType >
-      void slot_binder< texture_base >::bind(::std::uint32_t handle_) {
-        fnc::gl_bind_texture::call< typename TargetType::aspect::format >(handle_);
+      void slot_binder< texture_base >::bind(std::uint32_t handle_) {
+        fct::gl_bind_texture::call< typename TargetType::aspect::format >(handle_);
       }
     } // namespace object
 
     namespace texture {
 
       template< typename TargetType >
-      struct texture_slot: private fc::target::is_texture< TargetType > {
-          static inline void bind(gio::plug< gio::texture_base > const& buffer) {
-            gio::slot_binder< gio::texture_base >::bind< TargetType >(buffer);
+      struct texture_slot: private fcmn::target::is_texture< TargetType > {
+          static inline void bind(obj::plug< obj::texture_base > const& buffer) {
+            obj::slot_binder< obj::texture_base >::bind< TargetType >(buffer);
           }
-          static inline void unbind(gio::plug< gio::texture_base > const& buffer) {
-            gio::slot_binder< gio::texture_base >::clear< TargetType >();
+          static inline void unbind(obj::plug< obj::texture_base > const& buffer) {
+            obj::slot_binder< obj::texture_base >::clear< TargetType >();
           }
       };
 
     } // namespace texture
 
-    namespace git = ::gtulu::internal::texture;
-
     namespace object {
 
       template< typename TextureFormat >
       struct texture: public texture_base, public object< texture_base >, public drawable, private TextureFormat {
+          texture() {
+            bind();
+          }
+
           inline void bind() const {
-            git::texture_slot< typename TextureFormat::target_format >::bind(*this);
+            tex::texture_slot< typename TextureFormat::target_format >::bind(*this);
           }
 
           inline void unbind() const {
-            git::texture_slot< typename TextureFormat::target_format >::unbind(*this);
+            tex::texture_slot< typename TextureFormat::target_format >::unbind(*this);
           }
 
           template< typename Data >
-          inline static void load(Data const& data_in,
-                                  ::std::uint32_t const level = 0,
-                                  ::std::uint8_t const border = 0) {
+          inline void load(Data const& data_in, std::uint32_t const level = 0, std::uint8_t const border = 0) {
             bind();
-            git::texture_loader< TextureFormat >::load(data_in, level, border);
+            tex::texture_loader< TextureFormat >::load(data_in, level, border);
             compute_mipmaps();
           }
 
           template< typename Data >
-          inline static void load(Data const& data_in, gid::offset const& offset_in, ::std::uint32_t const level = 0) {
+          inline void load(Data const& data_in, dat::offset const& offset_in, std::uint32_t const level = 0) {
             bind();
-            git::texture_loader< TextureFormat >::load(data_in, offset_in, level);
+            tex::texture_loader< TextureFormat >::load(data_in, offset_in, level);
             compute_mipmaps();
+          }
+
+          template< typename Data >
+          inline void save(Data& data_out, std::uint32_t const mipmap = 0) {
+            bind();
+            tex::texture_loader< TextureFormat >::save(data_out, mipmap);
           }
 
           template< typename MinFilter >
           inline void set_minification() {
-            fnc::gl_tex_parameter::call< typename TextureFormat::target_format, cst::gl_texture_min_filter >(MinFilter::value);
+            fct::gl_tex_parameter::call< typename TextureFormat::target_format::aspect::format,
+                cst::gl_texture_min_filter >(MinFilter::value);
           }
 
           inline void compute_mipmaps() {
             bind();
-            fnc::gl_generate_mipmap::call< typename TextureFormat::target_format::aspect::format >();
+            fct::gl_generate_mipmap::call< typename TextureFormat::target_format::aspect::format >();
           }
       };
 

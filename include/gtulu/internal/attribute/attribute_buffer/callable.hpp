@@ -12,6 +12,7 @@
 #ifndef GTULU_INTERNAL_ATTRIBUTE_BUFFER_CALLABLE_HPP_
 #define GTULU_INTERNAL_ATTRIBUTE_BUFFER_CALLABLE_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/functions_fwd.hpp"
 
 namespace gtulu {
@@ -27,11 +28,11 @@ namespace gtulu {
       struct attribute_buffer_binder_callable< true > {
           template< typename DataFormat >
           inline static void call(location_t const location_in,
-                                  ::std::uint32_t const offset_in,
-                                  ::std::uint32_t const stride_in,
-                                  ::std::int32_t const count_in,
+                                  std::uint32_t const offset_in,
+                                  std::uint32_t const stride_in,
+                                  std::int32_t const count_in,
                                   bool const normalized_in) {
-            fnc::gl_vertex_attrib_pointer::call< typename DataFormat::aspect::format >(location_in,
+            fct::gl_vertex_attrib_pointer::call< typename DataFormat::aspect::format >(location_in,
                                                                                        count_in,
                                                                                        normalized_in,
                                                                                        stride_in,
@@ -43,11 +44,11 @@ namespace gtulu {
       struct attribute_buffer_binder_callable< false > {
           template< typename DataFormat >
           inline static void call(location_t const location_in,
-                                  ::std::uint32_t const offset_in,
-                                  ::std::uint32_t const stride_in,
-                                  ::std::int32_t const count_in,
+                                  std::uint32_t const offset_in,
+                                  std::uint32_t const stride_in,
+                                  std::int32_t const count_in,
                                   bool const normalized_in) {
-            fnc::gl_vertex_attrib_pointer_integer::call< typename DataFormat::aspect::format >(location_in,
+            fct::gl_vertex_attrib_pointer_integer::call< typename DataFormat::aspect::format >(location_in,
                                                                                                count_in,
                                                                                                stride_in,
                                                                                                reinterpret_cast< void const* >(offset_in));

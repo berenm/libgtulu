@@ -19,7 +19,7 @@ namespace gtulu {
       struct mapped_buffer;
 
       struct buffer;
-      typedef ::boost::shared_ptr< buffer > buffer_ptr;
+      typedef boost::shared_ptr< buffer > buffer_ptr;
 
       struct buffer {
           static buffer_ptr create();
@@ -27,18 +27,18 @@ namespace gtulu {
           void read();
           void write();
 
-          ::boost::shared_ptr< mapped_buffer > map();
+          boost::shared_ptr< mapped_buffer > map();
 
           bool is_mapped();
-          ::std::uint32_t get_size();
-          ::std::uint32_t get_usage();
+          std::uint32_t get_size();
+          std::uint32_t get_usage();
 
         protected:
           void bind();
           void unbind();
 
           buffer();
-          buffer(::std::size_t const size, data_type_t const* data = 0);
+          buffer(std::size_t const size, data_type_t const* data = 0);
       };
 
       struct mapped_buffer {
@@ -51,7 +51,7 @@ namespace gtulu {
           ptr_type* operator *();
           ptr_type const* operator *();
 
-          ::std::uint32_t get_access();
+          std::uint32_t get_access();
       };
 
     } // namespace object

@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_TARGET_HPP_
 #define GTULU_INTERNAL_FORMAT_TARGET_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/constants_fwd.hpp"
 
 #include "gtulu/internal/format/common.hpp"
@@ -38,10 +39,10 @@ namespace gtulu {
 #define DECLARE_TARGET_FORMAT(format_m, target_m, dimension_m, cardinality_m, sample_m) \
       template< > struct target_format< format::format_m > {                            \
           typedef target_aspect< format::format_m,                                      \
-                                 fc::target::target_m,                                  \
-                                 fc::dimension::dimension_m,                            \
-                                 fc::cardinality::cardinality_m,                        \
-                                 fc::sample::sample_m > aspect;                         \
+                                 fcmn::target::target_m,                                  \
+                                 fcmn::dimension::dimension_m,                            \
+                                 fcmn::cardinality::cardinality_m,                        \
+                                 fcmn::sample::sample_m > aspect;                         \
       };                                                                                \
       typedef target_format< format::format_m > format_m;
 
@@ -57,13 +58,17 @@ namespace gtulu {
         DECLARE_TARGET_FORMAT(gl_texture_cube_map, texture, cube_map, one, simple)
         DECLARE_TARGET_FORMAT(gl_renderbuffer, renderbuffer, twod, one, simple)
 
+        DECLARE_TARGET_FORMAT(gl_texture_cube_map_positive_x, texture, twod, one, simple)
+        DECLARE_TARGET_FORMAT(gl_texture_cube_map_negative_x, texture, twod, one, simple)
+        DECLARE_TARGET_FORMAT(gl_texture_cube_map_positive_y, texture, twod, one, simple)
+        DECLARE_TARGET_FORMAT(gl_texture_cube_map_negative_y, texture, twod, one, simple)
+        DECLARE_TARGET_FORMAT(gl_texture_cube_map_positive_z, texture, twod, one, simple)
+        DECLARE_TARGET_FORMAT(gl_texture_cube_map_negative_z, texture, twod, one, simple)
+
 #undef DECLARE_TARGET_FORMAT
 
       } // namespace target
     } // namespace format
-
-    namespace ft = ::gtulu::internal::format::target;
-    namespace ftf = ::gtulu::internal::format::target::format;
 
   } // namespace internal
 } // namespace gtulu

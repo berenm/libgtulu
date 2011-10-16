@@ -22,18 +22,18 @@ gen_fct = open('../include/gtulu/internal/generated/functions.hpp', 'w')
 gen_fct_fwd = open('../include/gtulu/internal/generated/functions_fwd.hpp', 'w')
 
 def print_forward_functions(file, functions):
-  print >> file, "          namespace fnc {"
+  print >> file, "          namespace function {"
   for f in functions:
     print >> file, unicode('          ' + '\n          '.join(f.str_forward())).encode('utf-8')
     print >> file, ''
-  print >> file, "          } // namespace fnc"
+  print >> file, "          } // namespace function"
 
 def print_functions(file, functions):
-  print >> file, "        namespace fnc {"
+  print >> file, "        namespace function {"
   for f in functions:
     print >> file, unicode('          ' + '\n          '.join(f.str_define())).encode('utf-8')
     print >> file, ''
-  print >> file, "        } // namespace fnc"
+  print >> file, "        } // namespace function"
 
 gl3 = open('/usr/local/include/GL3/gl3.h', 'r')
 
@@ -48,16 +48,11 @@ header = """/**
  * THIS FILE IS AUTO GENERATED FROM scripts/generate_gl_headers.py,           *
  * ANY CHANGE WILL BE OVERWRITTEN                                             *
  ******************************************************************************/
- 
+
 %s
 namespace gtulu {
   namespace internal {
   
-    namespace generated {
-    } // namespace generated
-
-    namespace gig = ::gtulu::internal::generated;
-
     namespace generated {
 """
 
@@ -78,6 +73,7 @@ guard = """#ifndef IN_GTULU_INTERNAL_FUNCTIONS_HPP_
 #ifndef GTULU_INTERNAL_GENERATED_FUNCTIONS_HPP_
 #define GTULU_INTERNAL_GENERATED_FUNCTIONS_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/generated/functions_fwd.hpp"
 """
 print >> gen_fct, header % (guard)
@@ -90,6 +86,8 @@ guard = """#ifndef IN_GTULU_INTERNAL_FUNCTIONS_FWD_HPP_
 
 #ifndef GTULU_INTERNAL_GENERATED_FUNCTIONS_FWD_HPP_
 #define GTULU_INTERNAL_GENERATED_FUNCTIONS_FWD_HPP_
+
+#include "gtulu/namespaces.hpp"
 """
 print >> gen_fct_fwd, header % (guard)
 

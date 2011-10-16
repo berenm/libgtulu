@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_UNIFORM_HPP_
 #define GTULU_INTERNAL_UNIFORM_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
@@ -28,17 +29,17 @@ namespace gtulu {
 
 #define DECLARE_BINDER(count_m, cardinality_m)                                                        \
     template< >                                                                                       \
-    struct cardinality_binder< fc::cardinality::cardinality_m > {                                     \
+    struct cardinality_binder< fcmn::cardinality::cardinality_m > {                                     \
         template< typename DataFormat >                                                               \
         struct uniform_binder {                                                                       \
-          typedef fnc::gl_uniform_##count_m gl_bind_function;                                         \
+          typedef fct::gl_uniform_##count_m gl_bind_function;                                         \
           inline static void bind(location_t const location_in,                                       \
             BOOST_PP_ENUM_PARAMS(count_m,                                                             \
-                                 typename fc::to_value_type< DataFormat >::type const value_in)) {    \
+                                 typename fcmn::to_value_type< DataFormat >::type const value_in)) {    \
             gl_bind_function::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in));             \
           }                                                                                           \
-          inline static void bind(location_t const location_in, ::std::uint32_t const number_in,      \
-                                  typename fc::to_value_type< DataFormat >::type const* values_in) {  \
+          inline static void bind(location_t const location_in, std::uint32_t const number_in,      \
+                                  typename fcmn::to_value_type< DataFormat >::type const* values_in) {  \
             gl_bind_function::call(location_in, number_in, values_in);                                \
           }                                                                                           \
         };                                                                                            \
@@ -53,12 +54,12 @@ namespace gtulu {
 
 #define DECLARE_BINDER(count_m, cardinality_m)                                                        \
     template< >                                                                                       \
-    struct cardinality_binder< fc::cardinality::cardinality_m > {                                     \
+    struct cardinality_binder< fcmn::cardinality::cardinality_m > {                                     \
         template< typename DataFormat >                                                               \
         struct uniform_binder {                                                                       \
-          typedef fnc::gl_uniform_matrix_##count_m gl_bind_function;                                  \
-          inline static void bind(location_t const location_in, ::std::uint32_t const number_in,      \
-                                  typename fc::to_value_type< DataFormat >::type const* values_in) {  \
+          typedef fct::gl_uniform_matrix_##count_m gl_bind_function;                                  \
+          inline static void bind(location_t const location_in, std::uint32_t const number_in,      \
+                                  typename fcmn::to_value_type< DataFormat >::type const* values_in) {  \
             gl_bind_function::call(location_in, number_in, values_in);                                \
           }                                                                                           \
         };                                                                                            \
@@ -79,12 +80,12 @@ namespace gtulu {
       } // namespace detail
 
       template< typename DataFormat >
-      struct uniform_binder: detail::cardinality_binder< typename fc::get_cardinality< DataFormat >::type >::template uniform_binder<
+      struct uniform_binder: detail::cardinality_binder< typename fcmn::get_cardinality< DataFormat >::type >::template uniform_binder<
           DataFormat > {
       };
 
       template< typename Format, typename BinderType = uniform_binder< Format >,
-          typename ValueType = typename fc::to_value_type< Format >::type >
+          typename ValueType = typename fcmn::to_value_type< Format >::type >
       struct uniform {
           typedef Format format;
           typedef ValueType value_type;
@@ -92,7 +93,7 @@ namespace gtulu {
       };
 
 #define DECLARE_UNIFORM(format_m) \
-    typedef uniform< fu::format_m > format_m;
+    typedef uniform< funf::format_m > format_m;
 
       DECLARE_UNIFORM(gl_float)
       DECLARE_UNIFORM(gl_int)
@@ -125,8 +126,6 @@ namespace gtulu {
 #undef DECLARE_UNIFORM
 
     } // namespace uniform
-
-    namespace giu = ::gtulu::internal::uniform;
 
   } // namespace internal
 } // namespace gtulu

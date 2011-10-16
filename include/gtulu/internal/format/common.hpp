@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_COMMON_HPP_
 #define GTULU_INTERNAL_FORMAT_COMMON_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/constants_fwd.hpp"
 
 #include "meta/type_traits.hpp"
@@ -20,14 +21,13 @@
 
 namespace gtulu {
   namespace internal {
-    namespace bm = ::boost::mpl;
 
     namespace format {
       namespace common {
 
         META_ASPECT_DECLARE(numeric,
                             Numeric,
-                            using fn::,
+                            using fnum::,
                             (signed_)(unsigned_)(integral_)(signed_integral)(unsigned_integral)(fixed_)(signed_fixed)(unsigned_fixed)(floating_)(signed_floating)(unsigned_floating)(bool_)(int8_)(int16_)(int32_)(int64_)(uint8_)(uint16_)(uint32_)(uint64_)(fixed8_)(fixed16_)(fixed32_)(fixed64_)(ufixed8_)(ufixed16_)(ufixed32_)(ufixed64_)(float16_)(float32_)(float64_)(ufloat32_)(float32_stride32_)(ufixed2_)(ufixed_least2_)(ufixed4_)(ufixed5_)(ufixed10_)(ufixed12_)(ufixed14_)(ufixed24_)(uint1_)(uint2_)(uint4_)(float_least10_))
 
         META_ASPECT_DECLARE(dimension, Dimension, struct, (oned)(twod)(threed)(rectangle)(buffer)(cube_map))
@@ -54,8 +54,6 @@ namespace gtulu {
 
       } // namespace common
     } // namespace format
-
-    namespace fc = ::gtulu::internal::format::common;
 
   } // namespace internal
 } // namespace gtulu

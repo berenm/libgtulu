@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONSTRAINT_COMMON_HPP_
 #define GTULU_INTERNAL_FORMAT_CONSTRAINT_COMMON_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/format/common.hpp"
 
 #include <boost/mpl/not.hpp>
@@ -16,7 +17,6 @@
 
 namespace gtulu {
   namespace internal {
-    namespace bm = ::boost::mpl;
 
     namespace format {
       namespace common {
@@ -67,8 +67,6 @@ namespace gtulu {
 
       } // namespace common
     } // namespace format
-
-    namespace fc = ::gtulu::internal::format::common;
 
   } // namespace internal
 } // namespace gtulu

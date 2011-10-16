@@ -8,6 +8,8 @@
 #ifndef GTULU_PLATFORM_HPP_
 #define GTULU_PLATFORM_HPP_
 
+#include "gtulu/namespaces.hpp"
+
 #if defined(linux) || defined(__linux) || defined(__linux__) || defined(__GNU__) || defined(__GLIBC__)
 #  define GTULU_PLATFORM_LINUX
 

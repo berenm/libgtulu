@@ -40,9 +40,9 @@ class parameter:
       self.is_template = False
 
     if self.type == 'GLint':
-      self.type = '::std::int32_t'
+      self.type = 'std::int32_t'
     elif self.type == 'GLuint':
-      self.type = '::std::uint32_t'
+      self.type = 'std::uint32_t'
     elif self.type == 'GLboolean' and not self.is_pointer:
       self.type = 'bool'
     elif self.type == 'GLfloat':
@@ -52,13 +52,13 @@ class parameter:
     elif self.type == 'GLvoid':
       self.type = 'void'
     elif self.type == 'GLushort':
-      self.type = '::std::uint16_t'
+      self.type = 'std::uint16_t'
     elif self.type == 'GLubyte':
-      self.type = '::std::uint8_t'
+      self.type = 'std::uint8_t'
     elif self.type == 'GLclampf':
       self.type = 'float'
     elif self.is_template:
-      self.type = '::gtulu::internal::constant::gl_constant_base const&'
+      self.type = 'cst::gl_constant_base const&'
     else:
       print 'UNKN: ' + self.type
       self.type = self.type

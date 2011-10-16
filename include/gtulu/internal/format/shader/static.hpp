@@ -8,24 +8,23 @@
 #ifndef GTULU_INTERNAL_FORMAT_SHADER_STATIC_HPP_
 #define GTULU_INTERNAL_FORMAT_SHADER_STATIC_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/object/shader/base.hpp"
 
 namespace gtulu {
   namespace internal {
 
-    namespace gio = ::gtulu::internal::object;
-
     namespace format {
       namespace shader {
 
         template< typename ShaderType >
-        struct static_shader_format: virtual public gio::shader_base {
+        struct static_shader_format: virtual public obj::shader_base {
             static_shader_format() {
               create_shader();
             }
 
             void create_shader() {
-              gio::shader_base::create_shader< ShaderType >();
+              obj::shader_base::create_shader< ShaderType >();
             }
 
             virtual char const* get_source() const = 0;
@@ -33,8 +32,6 @@ namespace gtulu {
 
       } // namespace shader
     } // namespace format
-
-    namespace fs = ::gtulu::internal::format::shader;
 
   } // namespace internal
 } // namespace gtulu

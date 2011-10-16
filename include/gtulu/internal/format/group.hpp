@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_GROUP_HPP_
 #define GTULU_INTERNAL_FORMAT_GROUP_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/constants_fwd.hpp"
 
 #include "gtulu/internal/format/common.hpp"
@@ -48,17 +49,17 @@ namespace gtulu {
 #define DECLARE_FORMAT(format_m, component_m, numeric_m, order_m)       \
     template< > struct group_format< format::format_m > {               \
         typedef group_format_aspect< format::format_m,                  \
-                                     fc::component::component_m,        \
-                                     fc::numeric::numeric_m,            \
-                                     fc::order::order_m > aspect;       \
+                                     fcmn::component::component_m,        \
+                                     fcmn::numeric::numeric_m,            \
+                                     fcmn::order::order_m > aspect;       \
     };                                                                  \
     typedef group_format< format::format_m > format_m;                  \
                                                                         \
-    template< > struct select_format< fc::component::component_m,       \
-                                      typename fn::get_integral<        \
-                                          fc::numeric::numeric_m        \
+    template< > struct select_format< fcmn::component::component_m,       \
+                                      typename fnum::get_integral<        \
+                                          fcmn::numeric::numeric_m        \
                                         >::type,                        \
-                                      fc::order::order_m > {            \
+                                      fcmn::order::order_m > {            \
         typedef format_m type;                                          \
     };
 
@@ -86,9 +87,6 @@ namespace gtulu {
 
       } // namespace group
     } // namespace format
-
-    namespace fg = ::gtulu::internal::format::group;
-    namespace fgf = ::gtulu::internal::format::group::format;
 
   } // namespace internal
 } // namespace gtulu

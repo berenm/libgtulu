@@ -8,9 +8,12 @@
 #ifndef GTULU_INTERNAL_CONTEXT_HPP_
 #define GTULU_INTERNAL_CONTEXT_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
+
+#include "gtulu/internal/context_info.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -666,7 +669,7 @@ namespace gtulu {
           static void get(ReturnType* data);
 
           template< typename Parameter >
-          static void get(::std::uint32_t const index_in, ReturnType* data);
+          static void get(std::uint32_t const index_in, ReturnType* data);
       };
 
 #define DECLARE_GETTOR(return_type_m, function_m) \
@@ -674,7 +677,7 @@ namespace gtulu {
       struct gettor< return_type_m > { \
           template< typename Parameter > \
           static void get(return_type_m* data) { \
-            fnc:: function_m ::call< Parameter >(data); \
+            fct:: function_m ::call< Parameter >(data); \
           } \
       };
 
@@ -683,27 +686,27 @@ namespace gtulu {
       struct gettor< return_type_m > { \
           template< typename Parameter > \
           static void get(return_type_m* data) { \
-            fnc:: function_m ::call< Parameter >(data); \
+            fct:: function_m ::call< Parameter >(data); \
           } \
           \
           template< typename Parameter > \
-          static void get(::std::uint32_t const index_in, return_type_m* data) { \
-            fnc:: indexed_function_m ::call< Parameter >(index_in, data); \
+          static void get(std::uint32_t const index_in, return_type_m* data) { \
+            fct:: indexed_function_m ::call< Parameter >(index_in, data); \
           } \
       };
 
       template< >
-      struct gettor< ::std::string > {
+      struct gettor< std::string > {
           template< typename Parameter >
-          static void get(::std::string* data) {
-            GLubyte const* bytes = fnc::gl_get_string::call< Parameter >();
+          static void get(std::string* data) {
+            GLubyte const* bytes = fct::gl_get_string::call< Parameter >();
             if (bytes != 0) {
               data->assign(reinterpret_cast< char const* >(bytes));
             }
           }
           template< typename Parameter >
-          static void get(::std::uint32_t const index_in, ::std::string* data) {
-            GLubyte const* bytes = fnc::gl_get_string::call< Parameter >(index_in);
+          static void get(std::uint32_t const index_in, std::string* data) {
+            GLubyte const* bytes = fct::gl_get_string::call< Parameter >(index_in);
             if (bytes != 0) {
               data->assign(reinterpret_cast< char const* >(bytes));
             }
@@ -712,18 +715,18 @@ namespace gtulu {
 
       DECLARE_GETTOR(float, gl_get_float)
       DECLARE_GETTOR(double, gl_get_double)
-      DECLARE_GETTOR_INDEXED(::std::uint8_t, gl_get_boolean, gl_get_boolean_indexed)
-      DECLARE_GETTOR_INDEXED(::std::int32_t, gl_get_integer, gl_get_integer_indexed)
-      DECLARE_GETTOR_INDEXED(::std::int64_t, gl_get_integer, gl_get_integer_indexed)
+      DECLARE_GETTOR_INDEXED(std::uint8_t, gl_get_boolean, gl_get_boolean_indexed)
+      DECLARE_GETTOR_INDEXED(std::int32_t, gl_get_integer, gl_get_integer_indexed)
+      DECLARE_GETTOR_INDEXED(std::int64_t, gl_get_integer, gl_get_integer_indexed)
 
 #undef DECLARE_GETTOR_INDEXED
 #undef DECLARE_GETTOR
 
-      template< ::std::size_t Size >
+      template< std::size_t Size >
       struct sized_gettor {
           template< typename ReturnType >
           struct strong_gettor {
-              typedef ::boost::array< ReturnType, Size > gettor_return_type_t;
+              typedef boost::array< ReturnType, Size > gettor_return_type_t;
 
               template< typename Parameter >
               static gettor_return_type_t get() {
@@ -733,7 +736,7 @@ namespace gtulu {
               }
 
               template< typename Parameter >
-              static gettor_return_type_t get(::std::uint32_t index_in) {
+              static gettor_return_type_t get(std::uint32_t index_in) {
                 gettor_return_type_t data;
                 gettor< ReturnType >::template get< Parameter >(index_in, data.c_array());
                 return data;
@@ -755,7 +758,7 @@ namespace gtulu {
               }
 
               template< typename Parameter >
-              static gettor_return_type_t get(::std::uint32_t index_in) {
+              static gettor_return_type_t get(std::uint32_t index_in) {
                 gettor_return_type_t data;
                 gettor< ReturnType >::template get< Parameter >(index_in, &data);
                 return data;
@@ -767,10 +770,10 @@ namespace gtulu {
       struct sized_gettor< 0 > {
           template< typename ReturnType >
           struct strong_gettor {
-              typedef ::std::vector< ReturnType > gettor_return_type_t;
+              typedef std::vector< ReturnType > gettor_return_type_t;
 
               template< typename Parameter >
-              static gettor_return_type_t get(::std::size_t size_in) {
+              static gettor_return_type_t get(std::size_t size_in) {
                 ReturnType* array = new ReturnType[size_in];
                 gettor< ReturnType >::template get< Parameter >(array);
 
@@ -789,7 +792,7 @@ namespace gtulu {
       template< > \
       struct parameter_gettor< parameter::parameter_m > { \
           template< typename ReturnType > \
-          static ::boost::array< ReturnType, size_m > get() { \
+          static boost::array< ReturnType, size_m > get() { \
             typedef typename sized_gettor< size_m >::strong_gettor< ReturnType > gettor_type_t; \
             return gettor_type_t::template get< parameter::parameter_m >(); \
           } \
@@ -802,7 +805,7 @@ namespace gtulu {
           typedef sized_gettor< size_m >::strong_gettor< return_type_m > gettor_type_t; \
           typedef gettor_type_t::gettor_return_type_t gettor_return_type_t; \
           \
-          static gettor_return_type_t get(::std::uint32_t index_in) { \
+          static gettor_return_type_t get(std::uint32_t index_in) { \
             return gettor_type_t::get< parameter::parameter_m >(index_in); \
           } \
       }; \
@@ -827,197 +830,265 @@ namespace gtulu {
           typedef gettor_type_t::gettor_return_type_t gettor_return_type_t; \
           \
           static gettor_return_type_t get(){ \
-            ::std::size_t size = parameter_gettor< parameter::size_parameter_m >::get(); \
+            std::size_t size = parameter_gettor< parameter::size_parameter_m >::get(); \
             return gettor_type_t::get< parameter::parameter_m >(size); \
           } \
       }; \
       typedef parameter_gettor< parameter::parameter_m > parameter_m;
 
-      DECLARE_GETTOR_TYPED(gl_active_texture, 1, ::std::uint32_t)
+      DECLARE_GETTOR_TYPED(gl_active_texture, 1, std::uint32_t)
       DECLARE_GETTOR_TYPED(gl_aliased_line_width_range, 2, float)
       DECLARE_GETTOR_TYPED(gl_smooth_line_width_range, 2, float)
       DECLARE_GETTOR(gl_smooth_line_width_granularity, 1)
-      DECLARE_GETTOR_TYPED(gl_array_buffer_binding, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_blend, 1, ::std::uint8_t)
+      DECLARE_GETTOR_TYPED(gl_array_buffer_binding, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_blend, 1, std::uint8_t)
       //      DECLARE_GETTOR(gl_blend_color, 4)
-      DECLARE_GETTOR_TYPED(gl_blend_dst_alpha, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_blend_dst_rgb, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_blend_equation_alpha, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_blend_equation_rgb, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_blend_src_alpha, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_blend_src_rgb, 1, ::std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_blend_dst_alpha, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_blend_dst_rgb, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_blend_equation_alpha, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_blend_equation_rgb, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_blend_src_alpha, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_blend_src_rgb, 1, std::int32_t)
       DECLARE_GETTOR(gl_color_clear_value, 4)
-      DECLARE_GETTOR_TYPED(gl_color_logic_op, 1, ::std::uint8_t)
-      DECLARE_GETTOR_TYPED(gl_color_writemask, 4, ::std::uint8_t)
+      DECLARE_GETTOR_TYPED(gl_color_logic_op, 1, std::uint8_t)
+      DECLARE_GETTOR_TYPED(gl_color_writemask, 4, std::uint8_t)
 
-      DECLARE_GETTOR_TYPED(gl_num_compressed_texture_formats, 1, ::std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_num_compressed_texture_formats, 1, std::int32_t)
 
-      DECLARE_GETTOR_DYNAMIC(gl_compressed_texture_formats, gl_num_compressed_texture_formats, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_cull_face, 1, ::std::uint8_t)
-      DECLARE_GETTOR_TYPED(gl_current_program, 1, ::std::int32_t)
+      DECLARE_GETTOR_DYNAMIC(gl_compressed_texture_formats, gl_num_compressed_texture_formats, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_cull_face, 1, std::uint8_t)
+      DECLARE_GETTOR_TYPED(gl_current_program, 1, std::int32_t)
       DECLARE_GETTOR(gl_depth_clear_value, 1)
-      DECLARE_GETTOR_TYPED(gl_depth_func, 1, ::std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_depth_func, 1, std::int32_t)
       DECLARE_GETTOR(gl_depth_range, 2)
-      DECLARE_GETTOR_TYPED(gl_depth_test, 1, ::std::uint8_t)
-      DECLARE_GETTOR_TYPED(gl_depth_writemask, 1, ::std::uint8_t)
-      DECLARE_GETTOR_TYPED(gl_dither, 1, ::std::uint8_t)
-      DECLARE_GETTOR_TYPED(gl_doublebuffer, 1, ::std::uint8_t)
-      DECLARE_GETTOR_TYPED(gl_draw_buffer, 1, ::std::int32_t)
-      //      DECLARE_GETTOR_TYPED(gl_draw_buffer_i, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_draw_framebuffer_binding, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_read_framebuffer_binding, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_element_array_buffer_binding, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_renderbuffer_binding, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_fragment_shader_derivative_hint, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_line_smooth, 1, ::std::uint8_t)
-      DECLARE_GETTOR_TYPED(gl_line_smooth_hint, 1, ::std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_depth_test, 1, std::uint8_t)
+      DECLARE_GETTOR_TYPED(gl_depth_writemask, 1, std::uint8_t)
+      DECLARE_GETTOR_TYPED(gl_dither, 1, std::uint8_t)
+      DECLARE_GETTOR_TYPED(gl_doublebuffer, 1, std::uint8_t)
+      DECLARE_GETTOR_TYPED(gl_draw_buffer, 1, std::int32_t)
+      //      DECLARE_GETTOR_TYPED(gl_draw_buffer_i, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_draw_framebuffer_binding, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_read_framebuffer_binding, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_element_array_buffer_binding, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_renderbuffer_binding, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_fragment_shader_derivative_hint, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_line_smooth, 1, std::uint8_t)
+      DECLARE_GETTOR_TYPED(gl_line_smooth_hint, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_line_width, 1, float)
       DECLARE_GETTOR_TYPED(gl_line_width_granularity, 1, float)
       DECLARE_GETTOR_TYPED(gl_line_width_range, 2, float)
-      DECLARE_GETTOR_TYPED(gl_logic_op_mode, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_3d_texture_size, 1, ::std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_logic_op_mode, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_3d_texture_size, 1, std::int32_t)
       DECLARE_GETTOR(gl_max_clip_distances, 1)
-      DECLARE_GETTOR_TYPED(gl_max_combined_fragment_uniform_components, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_combined_texture_image_units, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_combined_vertex_uniform_components, 1, ::std::int32_t)
-      //      DECLARE_GETTOR_TYPED(gl_max_combined_geometry_uniform_components, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_varying_components, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_combined_uniform_blocks, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_cube_map_texture_size, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_draw_buffers, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_dual_source_draw_buffers, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_elements_indices, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_elements_vertices, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_fragment_uniform_components, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_fragment_uniform_blocks, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_fragment_input_components, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_min_program_texel_offset, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_program_texel_offset, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_rectangle_texture_size, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_texture_image_units, 1, ::std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_combined_fragment_uniform_components, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_combined_texture_image_units, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_combined_vertex_uniform_components, 1, std::int32_t)
+      //      DECLARE_GETTOR_TYPED(gl_max_combined_geometry_uniform_components, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_varying_components, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_combined_uniform_blocks, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_cube_map_texture_size, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_draw_buffers, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_dual_source_draw_buffers, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_elements_indices, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_elements_vertices, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_fragment_uniform_components, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_fragment_uniform_blocks, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_fragment_input_components, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_min_program_texel_offset, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_program_texel_offset, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_rectangle_texture_size, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_texture_image_units, 1, std::int32_t)
       DECLARE_GETTOR(gl_max_texture_lod_bias, 1)
-      DECLARE_GETTOR_TYPED(gl_max_texture_size, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_renderbuffer_size, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_array_texture_layers, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_texture_buffer_size, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_uniform_block_size, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_varying_floats, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_vertex_attribs, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_vertex_texture_image_units, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_geometry_texture_image_units, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_vertex_uniform_components, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_vertex_output_components, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_geometry_uniform_components, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_sample_mask_words, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_color_texture_samples, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_depth_texture_samples, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_integer_samples, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_server_wait_timeout, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_uniform_buffer_bindings, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_uniform_buffer_offset_alignment, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_vertex_uniform_blocks, 1, ::std::int32_t)
-      //      DECLARE_GETTOR_TYPED(gl_max_geometry_uniform_blocks, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_geometry_input_components, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_geometry_output_components, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_max_viewport_dims, 2, ::std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_texture_size, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_renderbuffer_size, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_array_texture_layers, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_texture_buffer_size, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_uniform_block_size, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_varying_floats, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_vertex_attribs, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_vertex_texture_image_units, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_geometry_texture_image_units, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_vertex_uniform_components, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_vertex_output_components, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_geometry_uniform_components, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_sample_mask_words, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_color_texture_samples, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_depth_texture_samples, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_integer_samples, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_server_wait_timeout, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_uniform_buffer_bindings, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_uniform_buffer_offset_alignment, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_vertex_uniform_blocks, 1, std::int32_t)
+      //      DECLARE_GETTOR_TYPED(gl_max_geometry_uniform_blocks, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_geometry_input_components, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_geometry_output_components, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_viewport_dims, 2, std::int32_t)
 
-      DECLARE_GETTOR_TYPED(gl_pack_alignment, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_pack_image_height, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_pack_lsb_first, 1, ::std::int8_t)
-      DECLARE_GETTOR_TYPED(gl_pack_row_length, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_pack_skip_images, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_pack_skip_pixels, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_pack_skip_rows, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_pack_swap_bytes, 1, ::std::int8_t)
-      DECLARE_GETTOR_TYPED(gl_pixel_pack_buffer_binding, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_pixel_unpack_buffer_binding, 1, ::std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_pack_alignment, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_pack_image_height, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_pack_lsb_first, 1, std::int8_t)
+      DECLARE_GETTOR_TYPED(gl_pack_row_length, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_pack_skip_images, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_pack_skip_pixels, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_pack_skip_rows, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_pack_swap_bytes, 1, std::int8_t)
+      DECLARE_GETTOR_TYPED(gl_pixel_pack_buffer_binding, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_pixel_unpack_buffer_binding, 1, std::int32_t)
       DECLARE_GETTOR(gl_point_fade_threshold_size, 1)
-      DECLARE_GETTOR_TYPED(gl_provoking_vertex, 1, ::std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_provoking_vertex, 1, std::int32_t)
       DECLARE_GETTOR(gl_point_size, 1)
       DECLARE_GETTOR(gl_point_size_granularity, 1)
       DECLARE_GETTOR(gl_point_size_range, 2)
       DECLARE_GETTOR(gl_polygon_offset_factor, 1)
       DECLARE_GETTOR(gl_polygon_offset_units, 1)
-      DECLARE_GETTOR_TYPED(gl_polygon_offset_fill, 1, ::std::int8_t)
-      DECLARE_GETTOR_TYPED(gl_polygon_offset_line, 1, ::std::int8_t)
-      DECLARE_GETTOR_TYPED(gl_polygon_offset_point, 1, ::std::int8_t)
-      DECLARE_GETTOR_TYPED(gl_polygon_smooth, 1, ::std::int8_t)
-      DECLARE_GETTOR_TYPED(gl_polygon_smooth_hint, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_read_buffer, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_sample_buffers, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_sample_coverage_value, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_sample_coverage_invert, 1, ::std::int8_t)
-      DECLARE_GETTOR_TYPED(gl_sampler_binding, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_samples, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_scissor_box, 4, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_scissor_test, 1, ::std::int8_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_back_fail, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_back_func, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_back_pass_depth_fail, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_back_pass_depth_pass, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_back_ref, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_back_value_mask, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_back_writemask, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_clear_value, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_fail, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_func, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_pass_depth_fail, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_pass_depth_pass, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_ref, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_test, 1, ::std::int8_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_value_mask, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stencil_writemask, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_stereo, 1, ::std::int8_t)
-      DECLARE_GETTOR_TYPED(gl_subpixel_bits, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_texture_binding_1d, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_texture_binding_1d_array, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_texture_binding_2d, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_texture_binding_2d_array, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_texture_binding_2d_multisample, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_texture_binding_2d_multisample_array, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_texture_binding_3d, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_texture_binding_buffer, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_texture_binding_cube_map, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_texture_binding_rectangle, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_texture_compression_hint, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_texture_buffer_data_store_binding, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_timestamp, 1, ::std::int64_t)
-      DECLARE_GETTOR_INDEXED(gl_transform_feedback_buffer_binding, 1, ::std::int32_t)
-      DECLARE_GETTOR_INDEXED(gl_transform_feedback_buffer_start, 1, ::std::int64_t)
-      DECLARE_GETTOR_INDEXED(gl_transform_feedback_buffer_size, 1, ::std::int64_t)
-      DECLARE_GETTOR_INDEXED(gl_uniform_buffer_binding, 1, ::std::int32_t)
-      DECLARE_GETTOR_INDEXED(gl_uniform_buffer_start, 1, ::std::int64_t)
-      DECLARE_GETTOR_INDEXED(gl_uniform_buffer_size, 1, ::std::int64_t)
-      DECLARE_GETTOR_TYPED(gl_unpack_alignment, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_unpack_image_height, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_unpack_lsb_first, 1, ::std::int8_t)
-      DECLARE_GETTOR_TYPED(gl_unpack_row_length, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_unpack_skip_images, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_unpack_skip_pixels, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_unpack_skip_rows, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_unpack_swap_bytes, 1, ::std::int8_t)
-      DECLARE_GETTOR_TYPED(gl_num_extensions, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_major_version, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_minor_version, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_context_flags, 1, ::std::int32_t)
-      DECLARE_GETTOR_TYPED(gl_vertex_program_point_size, 1, ::std::int8_t)
-      DECLARE_GETTOR_TYPED(gl_viewport, 4, ::std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_polygon_offset_fill, 1, std::int8_t)
+      DECLARE_GETTOR_TYPED(gl_polygon_offset_line, 1, std::int8_t)
+      DECLARE_GETTOR_TYPED(gl_polygon_offset_point, 1, std::int8_t)
+      DECLARE_GETTOR_TYPED(gl_polygon_smooth, 1, std::int8_t)
+      DECLARE_GETTOR_TYPED(gl_polygon_smooth_hint, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_read_buffer, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_sample_buffers, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_sample_coverage_value, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_sample_coverage_invert, 1, std::int8_t)
+      DECLARE_GETTOR_TYPED(gl_sampler_binding, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_samples, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_scissor_box, 4, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_scissor_test, 1, std::int8_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_back_fail, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_back_func, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_back_pass_depth_fail, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_back_pass_depth_pass, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_back_ref, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_back_value_mask, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_back_writemask, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_clear_value, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_fail, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_func, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_pass_depth_fail, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_pass_depth_pass, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_ref, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_test, 1, std::int8_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_value_mask, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stencil_writemask, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_stereo, 1, std::int8_t)
+      DECLARE_GETTOR_TYPED(gl_subpixel_bits, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_texture_binding_1d, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_texture_binding_1d_array, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_texture_binding_2d, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_texture_binding_2d_array, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_texture_binding_2d_multisample, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_texture_binding_2d_multisample_array, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_texture_binding_3d, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_texture_binding_buffer, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_texture_binding_cube_map, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_texture_binding_rectangle, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_texture_compression_hint, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_texture_buffer_data_store_binding, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_timestamp, 1, std::int64_t)
+      DECLARE_GETTOR_INDEXED(gl_transform_feedback_buffer_binding, 1, std::int32_t)
+      DECLARE_GETTOR_INDEXED(gl_transform_feedback_buffer_start, 1, std::int64_t)
+      DECLARE_GETTOR_INDEXED(gl_transform_feedback_buffer_size, 1, std::int64_t)
+      DECLARE_GETTOR_INDEXED(gl_uniform_buffer_binding, 1, std::int32_t)
+      DECLARE_GETTOR_INDEXED(gl_uniform_buffer_start, 1, std::int64_t)
+      DECLARE_GETTOR_INDEXED(gl_uniform_buffer_size, 1, std::int64_t)
+      DECLARE_GETTOR_TYPED(gl_unpack_alignment, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_unpack_image_height, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_unpack_lsb_first, 1, std::int8_t)
+      DECLARE_GETTOR_TYPED(gl_unpack_row_length, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_unpack_skip_images, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_unpack_skip_pixels, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_unpack_skip_rows, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_unpack_swap_bytes, 1, std::int8_t)
+      DECLARE_GETTOR_TYPED(gl_num_extensions, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_major_version, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_minor_version, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_context_flags, 1, std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_vertex_program_point_size, 1, std::int8_t)
+      DECLARE_GETTOR_TYPED(gl_viewport, 4, std::int32_t)
 
-      DECLARE_GETTOR_TYPED(gl_max_color_attachments, 1, ::std::int32_t)
+      DECLARE_GETTOR_TYPED(gl_max_color_attachments, 1, std::int32_t)
 
-      DECLARE_GETTOR_TYPED(gl_vendor, 1, ::std::string)
-      DECLARE_GETTOR_TYPED(gl_renderer, 1, ::std::string)
-      DECLARE_GETTOR_TYPED(gl_version, 1, ::std::string)
-      DECLARE_GETTOR_TYPED(gl_shading_language_version, 1, ::std::string)
+      DECLARE_GETTOR_TYPED(gl_vendor, 1, std::string)
+      DECLARE_GETTOR_TYPED(gl_renderer, 1, std::string)
+      DECLARE_GETTOR_TYPED(gl_version, 1, std::string)
+      DECLARE_GETTOR_TYPED(gl_shading_language_version, 1, std::string)
 
 #undef DECLARE_GETTOR_TYPED
 #undef DECLARE_GETTOR_INDEXED
 #undef DECLARE_GETTOR
 
-    } // namespace context
+      namespace toolkit {
+        struct glx;
+        struct glfw;
+        struct wgl;
 
-    namespace gic = ::gtulu::internal::context;
-    namespace gicp = ::gtulu::internal::context::parameter;
+        typedef glx default_;
+      } // namespace toolkit
+
+      namespace platform {
+        struct linux_;
+        struct windows;
+        struct macosx;
+
+        typedef linux_ default_;
+      } // namespace platform
+
+      namespace policy {
+        struct none;
+        struct detached;
+
+        typedef none default_;
+      } // namespace policy
+
+      template< typename Toolkit = toolkit::default_, typename Platform = platform::default_ >
+      struct context_info_selector;
+
+      template< >
+      struct context_info_selector< toolkit::glx, platform::linux_ > {
+          typedef glx_context context_info;
+          typedef glx_current_context current_context_info;
+      };
+
+      template< typename Toolkit = toolkit::default_, typename Platform = platform::default_ >
+      struct platform_context {
+          typedef platform_context< Toolkit, Platform > platform_context_t;
+          typedef typename context_info_selector< Toolkit, Platform >::context_info context_info_t;
+          typedef typename context_info_selector< Toolkit, Platform >::current_context_info current_context_info_t;
+
+          template< typename Policy = policy::detached >
+          static context_info_t create(int arg_count, char** arg_values) {
+            platform_context_t::_create< Policy >(arg_count, arg_values);
+            context_info_t context_info = current_context_info_t();
+            context_info.acquire();
+
+            std::string const gl_vendor = ctx::gl_vendor::get();
+            std::string const gl_renderer = ctx::gl_renderer::get();
+            std::string const gl_version = ctx::gl_version::get();
+            std::string const gl_shading_language_version = ctx::gl_shading_language_version::get();
+
+            __gtulu_info() << parameter::gl_vendor() << ": " << gl_vendor;
+            __gtulu_info() << parameter::gl_renderer() << ": " << gl_renderer;
+            __gtulu_info() << parameter::gl_version() << ": " << gl_version;
+            __gtulu_info() << parameter::gl_shading_language_version() << ": " << gl_shading_language_version;
+
+            return context_info;
+          }
+          static context_info_t current() {
+            return current_context_info_t();
+          }
+          static void destroy() {
+            platform_context_t::_destroy();
+          }
+
+        protected:
+          template< typename Policy = policy::detached >
+          static void _create(int arg_count, char** arg_values);
+          static void _destroy();
+      };
+
+      typedef platform_context< > context;
+
+    } // namespace context
 
   } // namespace internal
 } // namespace gtulu

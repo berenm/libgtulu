@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_OUTPUT_HPP_
 #define GTULU_INTERNAL_FORMAT_OUTPUT_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/format/common.hpp"
 
 #include <string>
@@ -24,7 +25,7 @@ namespace gtulu {
                             (gl_float)(gl_float_vec2)(gl_float_vec3)(gl_float_vec4)(gl_int)(gl_int_vec2)(gl_int_vec3)(gl_int_vec4)(gl_unsigned_int)(gl_unsigned_int_vec2)(gl_unsigned_int_vec3)(gl_unsigned_int_vec4))
 
         namespace format {
-          cst::gl_constant_base const get(::std::string type_name);
+          cst::gl_constant_base const get(std::string type_name);
         } // namespace format
 
         template< typename Format, typename Numeric, typename Dimension, typename Cardinality >
@@ -41,9 +42,9 @@ namespace gtulu {
 #define DECLARE_FORMAT(format_m, numeric_m, dimension_m, cardinality_m) \
     template< > struct output_format< format::format_m > {              \
         typedef output_aspect< format::format_m,                        \
-                               fc::numeric::numeric_m,                  \
-                               fc::dimension::dimension_m,              \
-                               fc::cardinality::cardinality_m > aspect; \
+                               fcmn::numeric::numeric_m,                  \
+                               fcmn::dimension::dimension_m,              \
+                               fcmn::cardinality::cardinality_m > aspect; \
     };                                                                  \
     typedef output_format< format::format_m > format_m;
 
@@ -65,9 +66,6 @@ namespace gtulu {
 
       } // namespace output
     } // namespace format
-
-    namespace fo = ::gtulu::internal::format::output;
-    namespace fof = ::gtulu::internal::format::output::format;
 
   } // namespace internal
 } // namespace gtulu

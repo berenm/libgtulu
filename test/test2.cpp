@@ -5,16 +5,18 @@
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
 
-#include "common.hpp"
+#include "gtulu/namespaces.hpp"
+
+#include "gtulu/internal/context.hpp"
 #include "generated/test2_program_format.hpp"
 
-using namespace gtulu::internal;
-
 int main(int argc, char *argv[]) {
-  init_gl(argc, argv);
+  using namespace gtulu::internal;
 
-  gio::program< gifp::test2_program_format > program;
+  context::context::create(argc, argv);
 
-  close_gl();
+  obj::program< fprg::test2_program_format > program;
+
+  context::context::destroy();
   return 0;
 }

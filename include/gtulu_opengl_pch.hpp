@@ -7,6 +7,7 @@
 
 #ifdef BOOST_BUILD_PCH_ENABLED
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 
 #include <type_traits>

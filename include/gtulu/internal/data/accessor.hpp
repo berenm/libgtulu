@@ -8,129 +8,138 @@
 #ifndef GTULU_INTERNAL_DATA_ACCESSOR_HPP_
 #define GTULU_INTERNAL_DATA_ACCESSOR_HPP_
 
+#include "gtulu/namespaces.hpp"
+#include "gtulu/opengl.hpp"
+
 namespace gtulu {
   namespace internal {
 
     namespace data {
 
-      template< class Container >
-      inline auto data(Container& container_in) -> decltype(container_in.begin()) {
-        return container_in.data();
-      }
+      template< typename Range >
+      struct data_range;
 
-      template< class Container >
-      inline auto begin(Container const& container_in) -> decltype(container_in.begin()) {
-        return container_in.data();
-      }
+      template< typename Data >
+      struct data_traits;
 
-      template< class ValueType, ::std::size_t Size >
-      inline ValueType* data(ValueType const(&array_in)[Size]) {
-        return array_in;
-      }
+      template< class Range >
+      struct data_traits< data_range< Range > > {
+          typedef data_range< Range > data_range_type;
+          typedef typename data_range_type::value_type value_type;
 
-      template< class Container >
-      inline auto size(Container& container_in) -> decltype(container_in.size()) {
-        return container_in.size();
-      }
+          static auto write(data_range_type& container_in) -> decltype(container_in.data()) {
+            return container_in.data();
+          }
 
-      template< class Container >
-      inline auto size(Container const& container_in) -> decltype(container_in.size()) {
-        return container_in.size();
-      }
+          static auto read(data_range_type const& container_in) -> decltype(container_in.data()) {
+            return container_in.data();
+          }
 
-      template< class ValueType, ::std::size_t Size >
-      inline ::std::size_t size(ValueType const(&array_in)[Size]) {
-        return Size;
-      }
+          static auto size(data_range_type const& container_in) -> decltype(container_in.size()) {
+            return container_in.size();
+          }
 
-      template< class ValueType, ::std::size_t Width, ::std::size_t Height >
-      inline ::std::size_t size(ValueType const(&array_in)[Width][Height]) {
-        return Width * Height;
-      }
+          static auto width(data_range_type const& container_in) -> decltype(container_in.width()) {
+            return container_in.width();
+          }
 
-      template< class ValueType, ::std::size_t Width, ::std::size_t Height, ::std::size_t Depth >
-      inline ::std::size_t size(ValueType const(&array_in)[Width][Height][Depth]) {
-        return Width * Height * Depth;
-      }
+          static auto height(data_range_type const& container_in) -> decltype(container_in.height()) {
+            return container_in.height();
+          }
 
-      template< class Container >
-      inline auto width(Container& container_in) -> decltype(container_in.width()) {
-        return container_in.width();
-      }
+          static auto depth(data_range_type const& container_in) -> decltype(container_in.depth()) {
+            return container_in.depth();
+          }
+      };
 
-      template< class Container >
-      inline auto width(Container const& container_in) -> decltype(container_in.width()) {
-        return container_in.width();
-      }
+      template< class ValueType, std::size_t Width >
+      struct data_traits< ValueType[Width] > {
+          typedef ValueType (array_type)[Width];
 
-      template< class ValueType, ::std::size_t Size >
-      inline ::std::size_t width(ValueType const(&array_in)[Size]) {
-        return Size;
-      }
+          static ValueType* write(array_type& array_in) {
+            return array_in;
+          }
 
-      template< class ValueType, ::std::size_t Width, ::std::size_t Height >
-      inline ::std::size_t width(ValueType const(&array_in)[Width][Height]) {
-        return Width;
-      }
+          static ValueType const* read(array_type const& array_in) {
+            return array_in;
+          }
 
-      template< class ValueType, ::std::size_t Width, ::std::size_t Height, ::std::size_t Depth >
-      inline ::std::size_t width(ValueType const(&array_in)[Width][Height][Depth]) {
-        return Width;
-      }
+          static std::size_t size(array_type const& container_in) {
+            return Width * sizeof(ValueType);
+          }
 
-      template< class Container >
-      inline auto height(Container& container_in) -> decltype(container_in.height()) {
-        return container_in.height();
-      }
+          static std::size_t width(array_type const& container_in) {
+            return Width;
+          }
 
-      template< class Container >
-      inline auto height(Container const& container_in) -> decltype(container_in.height()) {
-        return container_in.height();
-      }
+          static std::size_t height(array_type const& container_in) {
+            return 1;
+          }
 
-      template< class ValueType, ::std::size_t Size >
-      inline ::std::size_t height(ValueType const(&array_in)[Size]) {
-        return 1;
-      }
+          static std::size_t depth(array_type const& container_in) {
+            return 1;
+          }
+      };
 
-      template< class ValueType, ::std::size_t Width, ::std::size_t Height >
-      inline ::std::size_t height(ValueType const(&array_in)[Width][Height]) {
-        return Height;
-      }
+      template< class ValueType, std::size_t Width, std::size_t Height >
+      struct data_traits< ValueType[Width][Height] > {
+          typedef ValueType (array_type)[Width][Height];
 
-      template< class ValueType, ::std::size_t Width, ::std::size_t Height, ::std::size_t Depth >
-      inline ::std::size_t height(ValueType const(&array_in)[Width][Height][Depth]) {
-        return Height;
-      }
+          static ValueType* write(array_type& array_in) {
+            return array_in;
+          }
 
-      template< class Container >
-      inline auto depth(Container& container_in) -> decltype(container_in.depth()) {
-        return container_in.depth();
-      }
+          static ValueType const* read(array_type const& array_in) {
+            return array_in;
+          }
 
-      template< class Container >
-      inline auto depth(Container const& container_in) -> decltype(container_in.depth()) {
-        return container_in.depth();
-      }
+          static std::size_t size(array_type const& container_in) {
+            return Width * Height * sizeof(ValueType);
+          }
 
-      template< class ValueType, ::std::size_t Size >
-      inline ::std::size_t depth(ValueType const(&array_in)[Size]) {
-        return 1;
-      }
+          static std::size_t width(array_type const& container_in) {
+            return Width;
+          }
 
-      template< class ValueType, ::std::size_t Width, ::std::size_t Height >
-      inline ::std::size_t depth(ValueType const(&array_in)[Width][Height]) {
-        return 1;
-      }
+          static std::size_t height(array_type const& container_in) {
+            return Height;
+          }
 
-      template< class ValueType, ::std::size_t Width, ::std::size_t Height, ::std::size_t Depth >
-      inline ::std::size_t depth(ValueType const(&array_in)[Width][Height][Depth]) {
-        return Depth;
-      }
+          static std::size_t depth(array_type const& container_in) {
+            return 1;
+          }
+      };
+
+      template< class ValueType, std::size_t Width, std::size_t Height, std::size_t Depth >
+      struct data_traits< ValueType[Width][Height][Depth] > {
+          typedef ValueType (array_type)[Width][Height][Depth];
+
+          static ValueType* write(array_type& array_in) {
+            return array_in;
+          }
+
+          static ValueType const* read(array_type const& array_in) {
+            return array_in;
+          }
+
+          static std::size_t size(array_type const& container_in) {
+            return Width * Height * Depth * sizeof(ValueType);
+          }
+
+          static std::size_t width(array_type const& container_in) {
+            return Width;
+          }
+
+          static std::size_t height(array_type const& container_in) {
+            return Height;
+          }
+
+          static std::size_t depth(array_type const& container_in) {
+            return Depth;
+          }
+      };
 
     } // namespace data
-
-    namespace gid = ::gtulu::internal::data;
 
   } // namespace internal
 } // namespace gtulu

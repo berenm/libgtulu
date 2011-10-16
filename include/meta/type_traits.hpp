@@ -8,7 +8,10 @@
 #ifndef META_TYPE_TRAITS_HPP_
 #define META_TYPE_TRAITS_HPP_
 
+#include "gtulu/namespaces.hpp"
+
 #include <type_traits>
+#include <boost/type_traits.hpp>
 #include <boost/mpl/bool.hpp>
 #include <boost/mpl/if.hpp>
 #include <boost/mpl/and.hpp>
@@ -22,17 +25,17 @@
     prefix_m trait_m;                                                           \
     template< typename Type >                                                   \
     struct BOOST_PP_CAT(is_, trait_m):                                          \
-      ::boost::is_same< typename BOOST_PP_CAT(get_, aspect_m)< Type >::type,    \
+      boost::is_same< typename BOOST_PP_CAT(get_, aspect_m)< Type >::type,    \
                         trait_m > {                                             \
     };                                                                          \
     template< typename Type >                                                   \
     struct BOOST_PP_CAT(is_not_, trait_m):                                      \
-      ::boost::mpl::not_< BOOST_PP_CAT(is_, trait_m)< Type > > {                \
+      boost::mpl::not_< BOOST_PP_CAT(is_, trait_m)< Type > > {                \
     };                                                                          \
   }                                                                             \
   template< >                                                                   \
   struct BOOST_PP_CAT(is_a_, aspect_m)< aspect_m::trait_m >:                    \
-    ::boost::mpl::true_ {                                                       \
+    boost::mpl::true_ {                                                       \
   };                                                                            \
   template< >                                                                   \
   struct BOOST_PP_CAT(get_, aspect_m)< aspect_m::trait_m > {                    \
@@ -55,7 +58,7 @@
       typedef typename Type::aspect::aspect_m type;                                             \
     };                                                                                          \
     template< typename Trait >                                                                  \
-    struct BOOST_PP_CAT(is_a_, aspect_m): ::boost::mpl::false_ {};                              \
+    struct BOOST_PP_CAT(is_a_, aspect_m): boost::mpl::false_ {};                              \
     BOOST_PP_SEQ_FOR_EACH(META_ASPECT_DECLARE_TRAIT_EACH, (aspect_m, prefix_m), traits_m)       \
     template< typename aspect_template_m >                                                      \
     struct BOOST_PP_CAT(aspect_m, _check) {                                                     \

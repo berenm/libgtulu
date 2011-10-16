@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_OBJECT_VERTEXARRAY_HPP_
 #define GTULU_INTERNAL_OBJECT_VERTEXARRAY_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
@@ -22,11 +23,11 @@ namespace gtulu {
     namespace object {
       template< >
       template< typename TargetType >
-      void slot_binder< vertexarray_base >::bind(::std::uint32_t handle_) {
-        static ::std::uint32_t bound_handle_ = 0;
+      void slot_binder< vertexarray_base >::bind(std::uint32_t handle_) {
+        static std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
-          fnc::gl_bind_vertex_array::call(handle_);
+          fct::gl_bind_vertex_array::call(handle_);
           bound_handle_ = handle_;
         }
       }
@@ -34,26 +35,24 @@ namespace gtulu {
 
     namespace vertexarray {
       struct vertexarray_slot {
-          static inline void bind(gio::plug< gio::vertexarray_base > const& vertexarray) {
-            gio::slot_binder< gio::vertexarray_base >::bind(vertexarray);
+          static inline void bind(obj::plug< obj::vertexarray_base > const& vertexarray) {
+            obj::slot_binder< obj::vertexarray_base >::bind(vertexarray);
           }
-          static inline void unbind(gio::plug< gio::vertexarray_base > const& vertexarray) {
-            gio::slot_binder< gio::vertexarray_base >::clear();
+          static inline void unbind(obj::plug< obj::vertexarray_base > const& vertexarray) {
+            obj::slot_binder< obj::vertexarray_base >::clear();
           }
       };
     } // namespace vertexarray
-
-    namespace giv = ::gtulu::internal::vertexarray;
 
     namespace object {
 
       struct vertexarray_base: public plug< vertexarray_base > {
           inline void bind() const {
-            giv::vertexarray_slot::bind(*this);
+            vxa::vertexarray_slot::bind(*this);
           }
 
           inline void unbind() const {
-            giv::vertexarray_slot::unbind(*this);
+            vxa::vertexarray_slot::unbind(*this);
           }
       };
 

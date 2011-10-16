@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_SHADER_HPP_
 #define GTULU_INTERNAL_SHADER_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
@@ -28,7 +29,7 @@ namespace gtulu {
           }
       };
 
-      typedef shader< fs::dynamic_shader_format > dynamic_shader_t;
+      typedef shader< fshd::dynamic_shader_format > dynamic_shader_t;
 
     } // namespace object
 

@@ -7,6 +7,7 @@
  *
  */
 
+#include "gtulu/namespaces.hpp"
 #include "test3_program_format.hpp"
 
 namespace gtulu {

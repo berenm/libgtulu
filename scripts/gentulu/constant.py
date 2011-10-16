@@ -23,7 +23,7 @@ class constant:
     return "{namespace: %(namespace)s, name: %(name)s, value: %(value)s}" % (self.__dict__)
 
   def __str__(self):
-    return """          struct %(new_name)s: public ::gtulu::internal::constant::gl_constant< %(new_name)s > {
+    return """          struct %(new_name)s: public cst::gl_constant< %(new_name)s > {
               static inline char const* name() { return "%(temp_name)s"; }
-              static ::std::uint64_t const value = %(name)s;
+              static std::uint64_t const value = %(name)s;
           };""" % (self.__dict__)

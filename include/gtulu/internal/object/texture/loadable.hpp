@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_OBJECT_TEXTURE_LOADABLE_HPP_
 #define GTULU_INTERNAL_OBJECT_TEXTURE_LOADABLE_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
@@ -24,7 +25,7 @@ namespace gtulu {
       struct texture_loadable_helper;
 
       template< >
-      struct texture_loadable_helper< fta::gl_texture_rectangle > {
+      struct texture_loadable_helper< ftgt::gl_texture_rectangle > {
           template< typename TextureFormat >
           struct loader {
 

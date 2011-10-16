@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_INTERNAL_HPP_
 #define GTULU_INTERNAL_FORMAT_INTERNAL_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/constants_fwd.hpp"
 
 #include "gtulu/internal/format/common.hpp"
@@ -33,7 +34,7 @@ namespace gtulu {
           typedef cst::gl_stencil_index16 gl_stencil16;
         } // namespace format
 
-        typedef ::std::uint32_t size_type;
+        typedef std::uint32_t size_type;
 
         template< typename Format, typename Component, typename Numeric, typename Compression, typename Target >
         struct internal_format_aspect {
@@ -50,7 +51,7 @@ namespace gtulu {
         template< typename Component, typename Numeric, typename Compression >
         struct select_format {
             template< typename Type >
-            struct lazy_false: ::boost::false_type {
+            struct lazy_false: boost::false_type {
             };
             static_assert(lazy_false< Component >::value, "Unable to find an internal format with such criterias.");
 
@@ -60,18 +61,18 @@ namespace gtulu {
 #define DECLARE_FORMAT(format_m, component_m, numeric_m, compression_m, target_m)       \
     template< > struct internal_format< format::format_m > {                            \
         typedef internal_format_aspect< format::format_m,                               \
-                                        fc::component::component_m,                     \
-                                        fc::numeric::numeric_m,                         \
-                                        fc::compression::compression_m,                 \
-                                        fc::target::target_m > aspect;                  \
+                                        fcmn::component::component_m,                     \
+                                        fcmn::numeric::numeric_m,                         \
+                                        fcmn::compression::compression_m,                 \
+                                        fcmn::target::target_m > aspect;                  \
     };                                                                                  \
     typedef internal_format< format::format_m > format_m;
 
 #define DECLARE_FORMAT_DEFAULT(format_m, component_m, numeric_m, compression_m, target_m)       \
     DECLARE_FORMAT(format_m, component_m, numeric_m, compression_m, target_m)                   \
-    template< > struct select_format< fc::component::component_m,                               \
-                                      fc::numeric::numeric_m,                                   \
-                                      fc::compression::compression_m > {                        \
+    template< > struct select_format< fcmn::component::component_m,                               \
+                                      fcmn::numeric::numeric_m,                                   \
+                                      fcmn::compression::compression_m > {                        \
         typedef format_m type;                                                                  \
     };
 
@@ -163,9 +164,9 @@ namespace gtulu {
 
         template< typename Format > struct base_internal_format;
 #define DECLARE_DEFAULT_FORMAT(component_m, numeric_m, compression_m)           \
-    typedef select_format< fc::component::component_m,                          \
-                           fc::numeric::numeric_m,                              \
-                           fc::compression::compression_m >::type component_m;
+    typedef select_format< fcmn::component::component_m,                          \
+                           fcmn::numeric::numeric_m,                              \
+                           fcmn::compression::compression_m >::type component_m;
 
         DECLARE_DEFAULT_FORMAT(red, ufixed8_, none)
         DECLARE_DEFAULT_FORMAT(red_green, ufixed8_, none)
@@ -179,9 +180,6 @@ namespace gtulu {
 
       } // namespace internal
     } // namespace format
-
-    namespace fi = ::gtulu::internal::format::internal;
-    namespace fif = ::gtulu::internal::format::internal::format;
 
   } // namespace internal
 } // namespace gtulu

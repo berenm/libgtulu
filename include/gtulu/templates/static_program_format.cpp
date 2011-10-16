@@ -7,6 +7,7 @@
  *
  */
 
+#include "gtulu/namespaces.hpp"
 #include "_program_tpl_program_format.hpp"
 
 namespace gtulu {

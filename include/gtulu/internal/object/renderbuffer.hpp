@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_OBJECT_RENDERBUFFER_HPP_
 #define GTULU_INTERNAL_OBJECT_RENDERBUFFER_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
@@ -23,26 +24,24 @@ namespace gtulu {
     namespace object {
       template< >
       template< typename TargetType >
-      void slot_binder< renderbuffer_base >::bind(::std::uint32_t handle_) {
-        fnc::gl_bind_renderbuffer::call< typename TargetType::aspect::format >(handle_);
+      void slot_binder< renderbuffer_base >::bind(std::uint32_t handle_) {
+        fct::gl_bind_renderbuffer::call< typename TargetType::aspect::format >(handle_);
       }
     } // namespace object
 
     namespace renderbuffer {
 
       template< typename TargetType >
-      struct renderbuffer_slot: private fc::target::is_renderbuffer< TargetType > {
-          static inline void bind(gio::plug< gio::renderbuffer_base > const& buffer) {
-            gio::slot_binder< gio::renderbuffer_base >::bind< typename TargetType::aspect::format >(buffer);
+      struct renderbuffer_slot: private fcmn::target::is_renderbuffer< TargetType > {
+          static inline void bind(obj::plug< obj::renderbuffer_base > const& buffer) {
+            obj::slot_binder< obj::renderbuffer_base >::bind< typename TargetType::aspect::format >(buffer);
           }
-          static inline void unbind(gio::plug< gio::renderbuffer_base > const& buffer) {
-            gio::slot_binder< gio::renderbuffer_base >::clear< typename TargetType::aspect::format >();
+          static inline void unbind(obj::plug< obj::renderbuffer_base > const& buffer) {
+            obj::slot_binder< obj::renderbuffer_base >::clear< typename TargetType::aspect::format >();
           }
       };
 
     } // namespace renderbuffer
-
-    namespace gir = ::gtulu::internal::renderbuffer;
 
     namespace object {
 
@@ -55,11 +54,11 @@ namespace gtulu {
                            public drawable,
                            private RenderbufferFormat {
           inline void bind() const {
-            gir::renderbuffer_slot< typename RenderbufferFormat::target >::bind(*this);
+            rdb::renderbuffer_slot< typename RenderbufferFormat::target >::bind(*this);
           }
 
           inline void unbind() const {
-            gir::renderbuffer_slot< typename RenderbufferFormat::target >::unbind(*this);
+            rdb::renderbuffer_slot< typename RenderbufferFormat::target >::unbind(*this);
           }
       };
 

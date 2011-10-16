@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FUNCTION_HPP_
 #define GTULU_INTERNAL_FUNCTION_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/functions_fwd.hpp"
 
 #include "gtulu/opengl.hpp"

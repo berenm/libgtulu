@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONSTRAINT_TARGET_HPP_
 #define GTULU_INTERNAL_FORMAT_CONSTRAINT_TARGET_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/format/constraint/common.hpp"
 
 #include "gtulu/internal/format/target.hpp"
@@ -15,18 +16,17 @@
 
 namespace gtulu {
   namespace internal {
-    namespace bm = ::boost::mpl;
 
     namespace format {
       namespace target {
 
         template< typename TargetFormat, typename InternalFormat >
         struct depth_stencil_check {
-            typedef bm::and_< fc::component::has_no_red< InternalFormat >,
-                fc::component::has_no_green< InternalFormat >, fc::component::has_no_blue< InternalFormat >,
-                fc::component::has_no_alpha< InternalFormat > > internal_is_depth_stencil;
-            typedef bm::and_< bm::not_< fc::dimension::is_buffer< TargetFormat > >,
-                bm::not_< fc::dimension::is_threed< TargetFormat > >, fc::sample::is_simple< TargetFormat > > is_depth_stencil_capable;
+            typedef bm::and_< fcmn::component::has_no_red< InternalFormat >,
+                fcmn::component::has_no_green< InternalFormat >, fcmn::component::has_no_blue< InternalFormat >,
+                fcmn::component::has_no_alpha< InternalFormat > > internal_is_depth_stencil;
+            typedef bm::and_< bm::not_< fcmn::dimension::is_buffer< TargetFormat > >,
+                bm::not_< fcmn::dimension::is_threed< TargetFormat > >, fcmn::sample::is_simple< TargetFormat > > is_depth_stencil_capable;
 
             typedef bm::and_< internal_is_depth_stencil, bm::not_< is_depth_stencil_capable > > internal_is_ds_but_target_is_not_ds_capable;
 
@@ -41,16 +41,17 @@ namespace gtulu {
         template< typename TargetFormat, typename InternalFormat >
         struct compression_check {
             typedef bm::not_<
-                bm::and_< fc::compression::is_compressed< InternalFormat >, fc::dimension::is_rectangle< TargetFormat > > > type;
+                bm::and_< fcmn::compression::is_compressed< InternalFormat >,
+                    fcmn::dimension::is_rectangle< TargetFormat > > > type;
             static_assert(type::value, "compressed InternalFormat is not compatible with rectangle TargetFormat.");
         };
 
         template< typename TargetFormat, typename InternalFormat >
         struct restriction_check {
-            typedef bm::and_< fc::target::is_renderbuffer< InternalFormat >,
-                bm::not_< fc::target::is_renderbuffer< TargetFormat > > > internal_is_renderbuffer_only_but_target_is_not;
-            typedef bm::and_< fc::target::is_texture< InternalFormat >,
-                bm::not_< fc::target::is_texture< TargetFormat > > > internal_is_texture_only_but_target_is_not;
+            typedef bm::and_< fcmn::target::is_renderbuffer< InternalFormat >,
+                bm::not_< fcmn::target::is_renderbuffer< TargetFormat > > > internal_is_renderbuffer_only_but_target_is_not;
+            typedef bm::and_< fcmn::target::is_texture< InternalFormat >,
+                bm::not_< fcmn::target::is_texture< TargetFormat > > > internal_is_texture_only_but_target_is_not;
 
             typedef bm::and_< bm::not_< internal_is_renderbuffer_only_but_target_is_not >,
                 bm::not_< internal_is_texture_only_but_target_is_not > > type;

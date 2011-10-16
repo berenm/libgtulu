@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_OBJECT_PROGRAM_BASE_HPP_
 #define GTULU_INTERNAL_OBJECT_PROGRAM_BASE_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
@@ -22,11 +23,11 @@ namespace gtulu {
     namespace object {
       template< >
       template< typename TargetType >
-      void slot_binder< program_base >::bind(::std::uint32_t handle_) {
-        static ::std::uint32_t bound_handle_ = 0;
+      void slot_binder< program_base >::bind(std::uint32_t handle_) {
+        static std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
-          fnc::gl_use_program::call(handle_);
+          fct::gl_use_program::call(handle_);
           bound_handle_ = handle_;
         }
       }
@@ -34,39 +35,37 @@ namespace gtulu {
 
     namespace program {
       struct program_slot {
-          static inline void bind(gio::plug< gio::program_base > const& program) {
-            gio::slot_binder< gio::program_base >::bind(program);
+          static inline void bind(obj::plug< obj::program_base > const& program) {
+            obj::slot_binder< obj::program_base >::bind(program);
           }
-          static inline void unbind(gio::plug< gio::program_base > const& program) {
-            gio::slot_binder< gio::program_base >::clear();
+          static inline void unbind(obj::plug< obj::program_base > const& program) {
+            obj::slot_binder< obj::program_base >::clear();
           }
       };
     } // namespace program
-
-    namespace gip = ::gtulu::internal::program;
 
     namespace object {
 
       class program_base: public plug< program_base > {
         public:
-          void attach(gio::shader_base const& shader);
-          void detach(gio::shader_base const& shader);
+          void attach(obj::shader_base const& shader);
+          void detach(obj::shader_base const& shader);
 
           virtual void link();
           virtual void validate();
 
           inline void bind() const {
-            gip::program_slot::bind(*this);
+            prg::program_slot::bind(*this);
           }
 
           inline void unbind() const {
-            gip::program_slot::unbind(*this);
+            prg::program_slot::unbind(*this);
           }
 
           template< typename ProgramAttribute >
-          inline ::std::uint32_t get() const {
-            ::std::int32_t data;
-            fnc::gl_get_program::call< ProgramAttribute >(handle_, &data);
+          inline std::uint32_t get() const {
+            std::int32_t data;
+            fct::gl_get_program::call< ProgramAttribute >(handle_, &data);
             return data;
           }
 

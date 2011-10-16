@@ -5,6 +5,8 @@
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
 #include "gtulu_opengl_pch.hpp"
+
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 
 #include "gtulu/internal/object/program/base.hpp"
@@ -14,19 +16,19 @@ namespace gtulu {
 
     namespace object {
       void program_base::link() {
-        fnc::gl_link_program::call(handle_);
+        fct::gl_link_program::call(handle_);
       }
 
       void program_base::validate() {
-        fnc::gl_validate_program::call(handle_);
+        fct::gl_validate_program::call(handle_);
       }
 
-      void program_base::attach(gio::shader_base const& shader) {
-        fnc::gl_attach_shader::call(handle_, *shader);
+      void program_base::attach(obj::shader_base const& shader) {
+        fct::gl_attach_shader::call(handle_, *shader);
       }
 
-      void program_base::detach(gio::shader_base const& shader) {
-        fnc::gl_detach_shader::call(handle_, *shader);
+      void program_base::detach(obj::shader_base const& shader) {
+        fct::gl_detach_shader::call(handle_, *shader);
       }
     } // namespace object
 

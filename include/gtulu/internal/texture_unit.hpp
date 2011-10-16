@@ -8,6 +8,8 @@
 #ifndef GTULU_INTERNAL_TEXTURE_UNIT_HPP_
 #define GTULU_INTERNAL_TEXTURE_UNIT_HPP_
 
+#include "gtulu/namespaces.hpp"
+
 struct texture_unit {
 };
 

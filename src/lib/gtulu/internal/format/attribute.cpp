@@ -5,6 +5,8 @@
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
 #include "gtulu_opengl_pch.hpp"
+
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 
 #include "gtulu/internal/format/attribute.hpp"
@@ -16,7 +18,7 @@ namespace gtulu {
       namespace attribute {
 
         namespace format {
-          const cst::gl_constant_base get(::std::uint32_t value) {
+          const cst::gl_constant_base get(std::uint32_t value) {
             switch (value) {
               case gl_float::value:
                 return gl_float();

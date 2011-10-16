@@ -12,6 +12,7 @@
 #ifndef GTULU_INTERNAL_OUTPUT_VECTOR_HPP_
 #define GTULU_INTERNAL_OUTPUT_VECTOR_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include <boost/preprocessor/repetition/enum_params.hpp>
 
 namespace gtulu {
@@ -25,12 +26,12 @@ namespace gtulu {
 
 #define DECLARE_BINDER(type_m, count_m) \
       template< > \
-      struct output_binder< fo::type::type_m, fc::to_typename< count_m >::type > { \
-          inline static void bind(location_t const location_in, BOOST_PP_ENUM_PARAMS(count_m, fo::to_typename< fo::type::type_m >::type const value_in)) { \
-            fnc::gl_uniform_##count_m::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in)); \
+      struct output_binder< fout::type::type_m, fcmn::to_typename< count_m >::type > { \
+          inline static void bind(location_t const location_in, BOOST_PP_ENUM_PARAMS(count_m, fout::to_typename< fout::type::type_m >::type const value_in)) { \
+            fct::gl_uniform_##count_m::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in)); \
           } \
-          inline static void bind(location_t const location_in, ::std::uint32_t const number_in, fo::to_typename< fo::type::type_m >::type const* values_in) { \
-            fnc::gl_uniform_##count_m::call(location_in, number_in, values_in); \
+          inline static void bind(location_t const location_in, std::uint32_t const number_in, fout::to_typename< fout::type::type_m >::type const* values_in) { \
+            fct::gl_uniform_##count_m::call(location_in, number_in, values_in); \
           } \
       };
 
@@ -47,7 +48,7 @@ namespace gtulu {
 #undef DECLARE_BINDER
 
         template< typename Format, typename BinderType = output_binder< typename Format::aspect::type,
-            typename Format::aspect::count > , typename ValueType = typename fo::to_typename<
+            typename Format::aspect::count > , typename ValueType = typename fout::to_typename<
             typename Format::aspect::type >::type >
         struct output {
             typedef Format format;
@@ -58,7 +59,7 @@ namespace gtulu {
       } // namespace vector
 
 #define DECLARE_OUTPUT(format_m) \
-  typedef vector::output< fo::format_m > format_m;
+  typedef vector::output< fout::format_m > format_m;
       DECLARE_OUTPUT(gl_float_vec2)
       DECLARE_OUTPUT(gl_float_vec3)
       DECLARE_OUTPUT(gl_float_vec4)
@@ -72,8 +73,6 @@ namespace gtulu {
 #undef DECLARE_OUTPUT
 
     } // namespace output
-
-    namespace giouv = ::gtulu::internal::output::vector;
 
   } // namespace internal
 } // namespace gtulu

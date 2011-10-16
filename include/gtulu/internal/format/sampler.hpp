@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_SAMPLER_HPP_
 #define GTULU_INTERNAL_FORMAT_SAMPLER_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/format/target.hpp"
 
 namespace gtulu {
@@ -22,8 +23,8 @@ namespace gtulu {
                             (gl_sampler_1d)(gl_sampler_2d)(gl_sampler_3d)(gl_sampler_cube)(gl_sampler_1d_shadow)(gl_sampler_2d_shadow)(gl_sampler_1d_array)(gl_sampler_2d_array)(gl_sampler_1d_array_shadow)(gl_sampler_2d_array_shadow)(gl_sampler_2d_multisample)(gl_sampler_2d_multisample_array)(gl_sampler_cube_shadow)(gl_sampler_buffer)(gl_sampler_2d_rect)(gl_sampler_2d_rect_shadow)(gl_int_sampler_1d)(gl_int_sampler_2d)(gl_int_sampler_3d)(gl_int_sampler_cube)(gl_int_sampler_1d_array)(gl_int_sampler_2d_array)(gl_int_sampler_2d_multisample)(gl_int_sampler_2d_multisample_array)(gl_int_sampler_buffer)(gl_int_sampler_2d_rect)(gl_unsigned_int_sampler_1d)(gl_unsigned_int_sampler_2d)(gl_unsigned_int_sampler_3d)(gl_unsigned_int_sampler_cube)(gl_unsigned_int_sampler_1d_array)(gl_unsigned_int_sampler_2d_array)(gl_unsigned_int_sampler_2d_multisample)(gl_unsigned_int_sampler_2d_multisample_array)(gl_unsigned_int_sampler_buffer)(gl_unsigned_int_sampler_2d_rect))
 
         namespace format {
-          bool is_sampler(::std::uint32_t value);
-          cst::gl_constant_base const get(::std::uint32_t value);
+          bool is_sampler(std::uint32_t value);
+          cst::gl_constant_base const get(std::uint32_t value);
         } // namespace format
 
         template< typename Format, typename Numeric, typename Dimension, typename Cardinality, typename TargetFormat,
@@ -43,11 +44,11 @@ namespace gtulu {
 #define DECLARE_FORMAT(format_m, numeric_m, target_m, compare_m)        \
         template< > struct sampler_format< format::format_m > {         \
             typedef sampler_aspect< format::format_m,                   \
-                fc::numeric::numeric_m,                                 \
-                fc::dimension::oned,                                    \
-                fc::cardinality::one,                                   \
-                ft::target_m,                                           \
-                fc::compare::compare_m > aspect;                        \
+                fcmn::numeric::numeric_m,                                 \
+                fcmn::dimension::oned,                                    \
+                fcmn::cardinality::one,                                   \
+                ftgt::target_m,                                           \
+                fcmn::compare::compare_m > aspect;                        \
         };                                                              \
         typedef sampler_format< format::format_m > format_m;
 
@@ -95,9 +96,6 @@ namespace gtulu {
 
       } // namespace sampler
     } // namespace format
-
-    namespace fsm = ::gtulu::internal::format::sampler;
-    namespace fsmf = ::gtulu::internal::format::sampler::format;
 
   } // namespace internal
 } // namespace gtulu

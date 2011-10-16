@@ -47,7 +47,7 @@ class declaration(renamable):
         if p.type == 'bool':
           std_call.append('(%s ? 1 : 0)' % (p.name))
         elif p.is_template:
-          std_call.append('::std::uint32_t(%s)' % (p.name))
+          std_call.append('std::uint32_t(%s)' % (p.name))
         else:
           std_call.append('%s' % (p.name))
         std_debg.append(''' "%s: '" << %s << "'" ''' % (p.name, p.name))

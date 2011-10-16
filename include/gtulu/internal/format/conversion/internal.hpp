@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONVERSION_INTERNAL_HPP_
 #define GTULU_INTERNAL_FORMAT_CONVERSION_INTERNAL_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/format/internal.hpp"
 #include "gtulu/internal/format/data.hpp"
 #include "gtulu/internal/format/group.hpp"
@@ -23,7 +24,7 @@ namespace gtulu {
         struct get_ideal_component_packing;
 
 #define DECLARE_CONVERT(component_m, packing_m) \
-    template< > struct get_ideal_component_packing< fc::component::component_m > { typedef fc::packing::packing_m type; };
+    template< > struct get_ideal_component_packing< fcmn::component::component_m > { typedef fcmn::packing::packing_m type; };
 
         DECLARE_CONVERT(stencil, two_in_one)
         DECLARE_CONVERT(depth, two_in_one)
@@ -40,8 +41,8 @@ namespace gtulu {
         struct get_ideal_data_integral;
 
 #define DECLARE_CONVERT(internal_integral_m, integral_m) \
-    template< > struct get_ideal_group_integral< fn::integral::internal_integral_m > { typedef fn::integral::integral_m type; }; \
-    template< > struct get_ideal_data_integral< fn::integral::internal_integral_m > { typedef fn::integral::integral_m type; };
+    template< > struct get_ideal_group_integral< fnum::integral::internal_integral_m > { typedef fnum::integral::integral_m type; }; \
+    template< > struct get_ideal_data_integral< fnum::integral::internal_integral_m > { typedef fnum::integral::integral_m type; };
 
         DECLARE_CONVERT(floating, floating)
         DECLARE_CONVERT(fixed, floating)

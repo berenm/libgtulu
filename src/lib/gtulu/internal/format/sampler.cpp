@@ -5,6 +5,8 @@
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
 #include "gtulu_opengl_pch.hpp"
+
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 
 #include "gtulu/internal/format/sampler.hpp"
@@ -16,11 +18,11 @@ namespace gtulu {
       namespace sampler {
 
         namespace format {
-          bool is_uniform(::std::uint32_t value) {
-            return static_cast< ::std::uint64_t >(get(value)) != cst::invalid_constant::value;
+          bool is_sampler(std::uint32_t value) {
+            return static_cast< std::uint64_t >(get(value)) != cst::invalid_constant::value;
           }
 
-          cst::gl_constant_base const get(::std::uint32_t value) {
+          cst::gl_constant_base const get(std::uint32_t value) {
             switch (value) {
               case gl_sampler_1d::value:
                 return gl_sampler_1d();

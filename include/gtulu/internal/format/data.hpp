@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_DATA_HPP_
 #define GTULU_INTERNAL_FORMAT_DATA_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/constants_fwd.hpp"
 
 #include "gtulu/internal/format/common.hpp"
@@ -22,7 +23,7 @@ namespace gtulu {
                             Format,
                             using cst::,
                             (gl_unsigned_byte)(gl_byte)(gl_unsigned_short)(gl_short)(gl_unsigned_int)(gl_int)(gl_half_float)(gl_float)(gl_double)(gl_unsigned_byte_3_3_2)(gl_unsigned_byte_2_3_3_rev)(gl_unsigned_short_5_6_5)(gl_unsigned_short_5_6_5_rev)(gl_unsigned_short_4_4_4_4)(gl_unsigned_short_4_4_4_4_rev)(gl_unsigned_short_5_5_5_1)(gl_unsigned_short_1_5_5_5_rev)(gl_unsigned_int_8_8_8_8)(gl_unsigned_int_8_8_8_8_rev)(gl_unsigned_int_10_10_10_2)(gl_unsigned_int_2_10_10_10_rev)(gl_int_2_10_10_10_rev)(gl_unsigned_int_24_8)(gl_unsigned_int_10f_11f_11f_rev)(gl_unsigned_int_5_9_9_9_rev)(gl_float_32_unsigned_int_24_8_rev))
-        typedef ::std::uint32_t size_type;
+        typedef std::uint32_t size_type;
 
         template< typename Format, typename Numeric, typename Packing, typename Order >
         struct data_format_aspect {
@@ -35,29 +36,29 @@ namespace gtulu {
         template< typename Format >
         struct data_format;
 
-        template< typename Width, typename Packing = fc::packing::one_in_one, typename Order = fc::order::forward,
-            typename Sign = fn::sign::unsigned_, typename Integral = fn::integral::integral >
+        template< typename Width, typename Packing = fcmn::packing::one_in_one, typename Order = fcmn::order::forward,
+            typename Sign = fnum::sign::unsigned_, typename Integral = fnum::integral::integral >
         struct select_format;
 
 #define DECLARE_FORMAT(format_m, numeric_m, packing_m, order_m)         \
       template< > struct data_format< format::format_m > {              \
          typedef data_format_aspect< format::format_m,                  \
-                                     fc::numeric::numeric_m,            \
-                                     fc::packing::packing_m,            \
-                                     fc::order::order_m > aspect;       \
+                                     fcmn::numeric::numeric_m,            \
+                                     fcmn::packing::packing_m,            \
+                                     fcmn::order::order_m > aspect;       \
       };                                                                \
       typedef data_format< format::format_m > format_m;
 
 #define DECLARE_FORMAT_SELECT(format_m, numeric_m, packing_m, order_m, width_m)         \
      DECLARE_FORMAT(format_m, numeric_m, packing_m, order_m)                            \
-     template < > struct select_format< fn::width::width_m,                             \
-                                        fc::packing::packing_m,                         \
-                                        fc::order::order_m,                             \
-                                        typename fn::get_sign<                          \
-                                          fc::numeric::numeric_m                        \
+     template < > struct select_format< fnum::width::width_m,                             \
+                                        fcmn::packing::packing_m,                         \
+                                        fcmn::order::order_m,                             \
+                                        typename fnum::get_sign<                          \
+                                          fcmn::numeric::numeric_m                        \
                                         >::type,                                        \
-                                        typename fn::get_integral<                      \
-                                          fc::numeric::numeric_m                        \
+                                        typename fnum::get_integral<                      \
+                                          fcmn::numeric::numeric_m                        \
                                         >::type > {                                     \
          typedef format_m type;                                                         \
      };
@@ -99,9 +100,6 @@ namespace gtulu {
 
       } // namespace data
     } // namespace format
-
-    namespace fd = ::gtulu::internal::format::data;
-    namespace fdf = ::gtulu::internal::format::data::format;
 
   } // namespace internal
 } // namespace gtulu

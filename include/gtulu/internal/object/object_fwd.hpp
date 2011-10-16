@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_OBJECT_BASES_FWD_HPP_
 #define GTULU_INTERNAL_OBJECT_BASES_FWD_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 
 namespace gtulu {
@@ -37,8 +38,6 @@ namespace gtulu {
       template< typename VertexarrayFormat >
       struct vertexarray;
     } // namespace object
-
-    namespace gio = ::gtulu::internal::object;
 
   } // namespace internal
 } // namespace gtulu

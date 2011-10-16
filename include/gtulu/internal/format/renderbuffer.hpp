@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_RENDERBUFFER_HPP_
 #define GTULU_INTERNAL_FORMAT_RENDERBUFFER_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/constants_fwd.hpp"
 
 #include "gtulu/internal/format/common.hpp"
@@ -24,28 +25,26 @@ namespace gtulu {
     namespace format {
       namespace renderbuffer {
         template< typename TargetFormat, typename InternalFormat >
-        struct renderbuffer_format: ft::is_internal_compatible< TargetFormat, InternalFormat >,
-        fc::target::is_renderbuffer< TargetFormat > {
+        struct renderbuffer_format: ftgt::is_internal_compatible< TargetFormat, InternalFormat >,
+        fcmn::target::is_renderbuffer< TargetFormat > {
             typedef TargetFormat target;
             typedef InternalFormat internal;
         };
 
-        template< typename Component = fc::component::red_green_blue_alpha, typename Numeric = fc::numeric::ufixed8_,
-            typename Compression = fc::compression::none >
+        template< typename Component = fcmn::component::red_green_blue_alpha,
+            typename Numeric = fcmn::numeric::ufixed8_, typename Compression = fcmn::compression::none >
         class select_format {
-//            typedef typename fi::to_group_type< Type >::type group_type;
-//            typedef typename fi::to_data_type< Type >::type data_type;
-//            typedef typename fi::to_data_packing< Base >::packing data_packing;
+//            typedef typename fint::to_group_type< Type >::type group_type;
+//            typedef typename fint::to_data_type< Type >::type data_type;
+//            typedef typename fint::to_data_packing< Base >::packing data_packing;
 
-            typedef typename fi::select_format< Component, Numeric, Compression >::type internal_format;
+            typedef typename fint::select_format< Component, Numeric, Compression >::type internal_format;
 
           public:
-            typedef renderbuffer_format< ft::gl_renderbuffer, internal_format > type;
+            typedef renderbuffer_format< ftgt::gl_renderbuffer, internal_format > type;
         };
       } // namespace renderbuffer
     } // namespace format
-
-    namespace frend = ::gtulu::internal::format::renderbuffer;
 
   } // namespace internal
 } // namespace gtulu

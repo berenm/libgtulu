@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_attachment_manager_HPP_
 #define GTULU_INTERNAL_attachment_manager_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 
 #include "gtulu/internal/object/texture.hpp"
@@ -21,8 +22,8 @@
 namespace gtulu {
   namespace internal {
 
-    struct attachment: gio::object_base {
-        explicit attachment(::std::uint32_t const handle_in) :
+    struct attachment: obj::object_base {
+        explicit attachment(std::uint32_t const handle_in) :
             object_base(handle_in) {
         }
 
@@ -31,31 +32,31 @@ namespace gtulu {
         }
     };
 
-    struct attachment_manager: ::boost::noncopyable {
-        typedef ::std::map< ::std::uint32_t, ::boost::weak_ptr< attachment > > attachment_map;
-        typedef ::std::map< ::std::uint32_t, ::boost::shared_ptr< attachment > > attachment_mappings_map;
+    struct attachment_manager: boost::noncopyable {
+        typedef std::map< std::uint32_t, boost::weak_ptr< attachment > > attachment_map;
+        typedef std::map< std::uint32_t, boost::shared_ptr< attachment > > attachment_mappings_map;
 
-        ::std::uint32_t max_attachment;
+        std::uint32_t max_attachment;
         attachment_mappings_map attachment_mappings;
         attachment_map attachments;
 
         attachment_manager();
         ~attachment_manager();
 
-        ::boost::shared_ptr< attachment > get_current(gio::texture_base const& texture);
-        ::boost::shared_ptr< attachment > get_new(gio::texture_base const& texture);
-        ::boost::shared_ptr< attachment > get_current_or_new(gio::texture_base const& texture);
+        boost::shared_ptr< attachment > get_current(obj::texture_base const& texture);
+        boost::shared_ptr< attachment > get_new(obj::texture_base const& texture);
+        boost::shared_ptr< attachment > get_current_or_new(obj::texture_base const& texture);
 
-        ::boost::shared_ptr< attachment > get_current(gio::renderbuffer_base const& renderbuffer);
-        ::boost::shared_ptr< attachment > get_new(gio::renderbuffer_base const& renderbuffer);
-        ::boost::shared_ptr< attachment > get_current_or_new(gio::renderbuffer_base const& renderbuffer);
+        boost::shared_ptr< attachment > get_current(obj::renderbuffer_base const& renderbuffer);
+        boost::shared_ptr< attachment > get_new(obj::renderbuffer_base const& renderbuffer);
+        boost::shared_ptr< attachment > get_current_or_new(obj::renderbuffer_base const& renderbuffer);
 
         void clear();
 
       protected:
-        ::boost::shared_ptr< attachment > get_current(::std::uint32_t const handle);
-        ::boost::shared_ptr< attachment > get_new(::std::uint32_t const handle);
-        ::boost::shared_ptr< attachment > get_current_or_new(::std::uint32_t const handle);
+        boost::shared_ptr< attachment > get_current(std::uint32_t const handle);
+        boost::shared_ptr< attachment > get_new(std::uint32_t const handle);
+        boost::shared_ptr< attachment > get_current_or_new(std::uint32_t const handle);
     };
 
   } // namespace internal

@@ -12,6 +12,7 @@
 #ifndef GTULU_INTERNAL_ATTRIBUTE_BUFFER_HPP_
 #define GTULU_INTERNAL_ATTRIBUTE_BUFFER_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/object/buffer.hpp"
 
 #include "gtulu/internal/attribute/attribute_buffer/constraint.hpp"
@@ -25,24 +26,24 @@ namespace gtulu {
       template< typename AttributeFormat >
       struct attribute_buffer_binder {
           typedef attribute_buffer_binder_callable<
-              fn::integral::is_floating< typename fc::get_numeric< AttributeFormat >::type >::value > fnc_vertex_attrib_pointer_t;
+              fnum::integral::is_floating< typename fcmn::get_numeric< AttributeFormat >::type >::value > fnc_vertex_attrib_pointer_t;
 
-          template< typename Normalize = fc::normalization::none, typename Order = fc::order::forward,
+          template< typename Normalize = fcmn::normalization::none, typename Order = fcmn::order::forward,
               typename DataFormat >
           inline static void bind(location_t const location_in,
-                                  gio::buffer< DataFormat > const& buffer_in,
-                                  ::std::uint32_t const offset_in,
-                                  ::std::uint32_t const stride_in) {
+                                  obj::buffer< DataFormat > const& buffer_in,
+                                  std::uint32_t const offset_in,
+                                  std::uint32_t const stride_in) {
             typedef attribute_buffer_binder_check< AttributeFormat, DataFormat, Normalize, Order > check_t;
 
-            gib::array_buffer_slot::bind(buffer_in);
+            buf::array_buffer_slot::bind(buffer_in);
             fnc_vertex_attrib_pointer_t::template call< DataFormat >(location_in,
                                                                      offset_in,
                                                                      stride_in,
                                                                      check_t::count,
                                                                      check_t::normalized);
 
-            fnc::gl_enable_vertex_attrib_array::call(location_in);
+            fct::gl_enable_vertex_attrib_array::call(location_in);
           }
       };
 

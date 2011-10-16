@@ -5,6 +5,8 @@
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
 #include "gtulu_opengl_pch.hpp"
+
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 
 #include "gtulu/internal/format/shader/dynamic.hpp"
@@ -24,12 +26,11 @@
 
 namespace gtulu {
   namespace internal {
-    namespace gu = ::gtulu::utils;
 
     namespace format {
       namespace shader {
 
-        fs::output_vector_t const& dynamic_shader_format::get_outputs() {
+        fshd::output_vector_t const& dynamic_shader_format::get_outputs() {
           return outputs_;
         }
 
@@ -40,46 +41,46 @@ namespace gtulu {
         void dynamic_shader_format::print() {
         }
 
-        void dynamic_shader_format::load_shader(::boost::filesystem::path const& filename) {
-          ::std::string extension = filename.extension().string();
+        void dynamic_shader_format::load_shader(boost::filesystem::path const& filename) {
+          std::string extension = filename.extension().string();
           bool parse_outputs = false;
 
           if (extension.compare(".fs") == 0 || extension.compare(".frag") == 0) {
-            gio::shader_base::create_shader< fst::gl_fragment_shader >();
+            obj::shader_base::create_shader< fshd::type::gl_fragment_shader >();
             parse_outputs = true;
           } else if (extension.compare(".vs") == 0 || extension.compare(".vert") == 0) {
-            gio::shader_base::create_shader< fst::gl_vertex_shader >();
+            obj::shader_base::create_shader< fshd::type::gl_vertex_shader >();
           } else if (extension.compare(".gs") == 0 || extension.compare(".geom") == 0) {
-            gio::shader_base::create_shader< fst::gl_geometry_shader >();
+            obj::shader_base::create_shader< fshd::type::gl_geometry_shader >();
           } else {
             __gtulu_error() << "Unknown shader extension " << extension
-                  << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
+                << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
           }
 
-          ::std::string source = gu::file::get_contents(filename);
-          gio::shader_base::set_source(source.c_str());
+          std::string source = gu::file::get_contents(filename);
+          obj::shader_base::set_source(source.c_str());
 
           outputs_.clear();
           if (parse_outputs) {
-            ::boost::regex expression("out\\s+(\\S+)\\s+(\\S+);");
-            ::boost::regex array_expression("\\s*(\\S+)\\s*\\[(\\S*)\\]\\s*");
-            ::boost::sregex_iterator it(source.begin(), source.end(), expression);
-            ::boost::sregex_iterator end;
+            boost::regex expression("out\\s+(\\S+)\\s+(\\S+);");
+            boost::regex array_expression("\\s*(\\S+)\\s*\\[(\\S*)\\]\\s*");
+            boost::sregex_iterator it(source.begin(), source.end(), expression);
+            boost::sregex_iterator end;
 
-            ::std::uint32_t id = 0;
+            std::uint32_t id = 0;
             while (it != end) {
-              ::std::string type_name = it->str(1);
-              ::std::string name = it->str(2);
+              std::string type_name = it->str(1);
+              std::string name = it->str(2);
 
-              ::std::uint32_t size = 1;
+              std::uint32_t size = 1;
 
-              ::boost::sregex_iterator name_it(name.begin(), name.end(), array_expression);
-              ::boost::sregex_iterator type_it(type_name.begin(), type_name.end(), array_expression);
+              boost::sregex_iterator name_it(name.begin(), name.end(), array_expression);
+              boost::sregex_iterator type_it(type_name.begin(), type_name.end(), array_expression);
 
               // We've found a static sized output vector, that's really nice...
               if (name_it != end) {
                 name = name_it->str(1);
-                size = ::boost::lexical_cast< ::std::uint32_t >(name_it->str(2));
+                size = boost::lexical_cast< std::uint32_t >(name_it->str(2));
 
                 // We've just found a dynamic sized output vector, what a wonderful idea...
               } else if (type_it != end) {
@@ -87,20 +88,20 @@ namespace gtulu {
                 size = -1;
               }
 
-              outputs_.push_back(output_info(id++, name, fof::get(type_name), size, -1, -1));
+              outputs_.push_back(output_info(id++, name, fout::format::get(type_name), size, -1, -1));
               ++it;
             }
           }
         }
 
         void dynamic_shader_format::compile() {
-          gio::shader_base::compile();
+          obj::shader_base::compile();
 
-          ::std::uint32_t length = gio::shader_base::get< fsa::gl_info_log_length >();
+          std::uint32_t length = obj::shader_base::get< fshd::property::gl_info_log_length >();
 
           has_log_ = length > 1;
 
-          if (length > ::std::numeric_limits< ::std::uint32_t >::max()) {
+          if (length > std::numeric_limits< std::uint32_t >::max()) {
             __gtulu_error() << "Log length too long.";
           } else if (!has_log_) {
             log_ = "";
@@ -108,12 +109,12 @@ namespace gtulu {
             char* buffer = new char[length];
             buffer[0] = 0;
 
-            fnc::gl_get_shader_info_log::call(gio::shader_base::handle_,
+            fct::gl_get_shader_info_log::call(obj::shader_base::handle_,
                                               length,
-                                              reinterpret_cast< ::std::int32_t* >(&length),
+                                              reinterpret_cast< std::int32_t* >(&length),
                                               buffer);
 
-            log_ = ::std::string(buffer);
+            log_ = std::string(buffer);
 
             delete[] buffer;
           }
@@ -125,10 +126,10 @@ namespace gtulu {
 
         void dynamic_shader_format::print_log() const {
           if (has_log_) {
-            ::std::vector< ::std::string > lines;
-            ::boost::split(lines, log_, ::boost::is_any_of("\r\n"));
+            std::vector< std::string > lines;
+            boost::split(lines, log_, boost::is_any_of("\r\n"));
 
-            for (::std::vector< ::std::string >::iterator it = lines.begin(); it != lines.end(); ++it) {
+            for (std::vector< std::string >::iterator it = lines.begin(); it != lines.end(); ++it) {
               if (it->length() > 0) {
                 __gtulu_warn() << "shader: " << *it;
               }

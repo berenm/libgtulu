@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_CONSTANTS_HPP_
 #define GTULU_INTERNAL_CONSTANTS_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/constants_fwd.hpp"
 
 #include "gtulu/opengl.hpp"
@@ -21,10 +22,10 @@ namespace gtulu {
     namespace constant {
       struct gl_constant_base {
         protected:
-          ::std::string string_value;
-          ::std::uint64_t integer_value;
+          std::string string_value;
+          std::uint64_t integer_value;
 
-          gl_constant_base(char const* string_value_in, ::std::uint64_t integer_value_in) :
+          gl_constant_base(char const* string_value_in, std::uint64_t integer_value_in) :
               string_value(string_value_in), integer_value(integer_value_in) {
           }
 
@@ -42,14 +43,14 @@ namespace gtulu {
             return *this;
           }
 
-          operator ::std::string const&() const {
+          operator std::string const&() const {
             return string_value;
           }
-          operator ::std::uint64_t const&() const {
+          operator std::uint64_t const&() const {
             return integer_value;
           }
 
-          friend ::std::ostream& operator<<(::std::ostream& stream_inout, gl_constant_base const& constant_in);
+          friend std::ostream& operator<<(std::ostream& stream_inout, gl_constant_base const& constant_in);
       };
 
       template< typename ConstantImpl >
@@ -69,10 +70,10 @@ namespace gtulu {
       gl_constant< ConstantImpl > const gl_constant< ConstantImpl >::instance;
 
       struct runtime_constant: public gl_constant_base {
-          runtime_constant(gl_constant_base const& base, ::std::uint64_t offset_in) :
+          runtime_constant(gl_constant_base const& base, std::uint64_t offset_in) :
               gl_constant_base(base) {
             string_value.erase(string_value.end() - 1);
-            string_value += ::boost::lexical_cast< ::std::string >(offset_in);
+            string_value += boost::lexical_cast< std::string >(offset_in);
             integer_value += offset_in;
           }
       };
@@ -81,12 +82,10 @@ namespace gtulu {
           static inline char const* name() {
             return "<invalid-constant>";
           }
-          static ::std::uint64_t const value = 0xFFFFFFFFFFFFFFFF;
+          static std::uint64_t const value = 0xFFFFFFFFFFFFFFFF;
       };
 
     } // namespace constant
-
-    namespace cst = ::gtulu::internal::constant;
 
   } // namespace internal
 } // namespace gtulu

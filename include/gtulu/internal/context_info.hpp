@@ -8,8 +8,12 @@
 #ifndef GTULU_INTERNAL_CONTEXT_INFO_HPP_
 #define GTULU_INTERNAL_CONTEXT_INFO_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 #include "gtulu/platform.hpp"
+
+#include <boost/thread.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 namespace gtulu {
   namespace internal {
@@ -18,11 +22,9 @@ namespace gtulu {
 
       template< typename ContextImpl >
       struct context_info_base: ContextImpl {
-          typedef ::boost::mutex base_type;
-
           void acquire() {
             while (!ContextImpl::acquire()) {
-              ::boost::this_thread::sleep(::boost::posix_time::milliseconds(1));
+              boost::this_thread::sleep(boost::posix_time::milliseconds(1));
             }
           }
           bool try_acquire() {
@@ -34,8 +36,6 @@ namespace gtulu {
       };
 
     } // namespace context
-
-    namespace gic = ::gtulu::internal::context;
 
   } // namespace internal
 } // namespace gtulu

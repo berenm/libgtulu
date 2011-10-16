@@ -12,6 +12,8 @@
 #ifndef GTULU_INTERNAL_OUTPUT_OUTPUT_HPP_
 #define GTULU_INTERNAL_OUTPUT_OUTPUT_HPP_
 
+#include "gtulu/namespaces.hpp"
+
 namespace gtulu {
   namespace internal {
 
@@ -22,12 +24,12 @@ namespace gtulu {
 
 #define DECLARE_BINDER(type_m) \
     template< > \
-    struct output_binder< fo::type::type_m > { \
-        inline static void bind(location_t const location_in, fo::to_typename< fo::type::type_m >::type const value_in) { \
-          fnc::gl_uniform_1::call(location_in, value_in); \
+    struct output_binder< fout::type::type_m > { \
+        inline static void bind(location_t const location_in, fout::to_typename< fout::type::type_m >::type const value_in) { \
+          fct::gl_uniform_1::call(location_in, value_in); \
         } \
-        inline static void bind(location_t const location_in, ::std::uint32_t const number_in, fo::to_typename< fo::type::type_m >::type const* values_in) { \
-          fnc::gl_uniform_1::call(location_in, number_in, value_in); \
+        inline static void bind(location_t const location_in, std::uint32_t const number_in, fout::to_typename< fout::type::type_m >::type const* values_in) { \
+          fct::gl_uniform_1::call(location_in, number_in, value_in); \
         } \
     };
 
@@ -38,7 +40,7 @@ namespace gtulu {
 #undef DECLARE_BINDER
 
       template< typename Format, typename BinderType = output_binder< typename Format::aspect::type >,
-          typename ValueType = typename fo::to_typename< typename Format::aspect::type >::type >
+          typename ValueType = typename fout::to_typename< typename Format::aspect::type >::type >
       struct output {
           typedef Format format;
           typedef ValueType value_type;
@@ -46,7 +48,7 @@ namespace gtulu {
       };
 
 #define DECLARE_OUTPUT(format_m) \
-    typedef output< fo::format_m > format_m;
+    typedef output< fout::format_m > format_m;
       DECLARE_OUTPUT(gl_float)
       DECLARE_OUTPUT(gl_int)
       DECLARE_OUTPUT(gl_unsigned_int)
@@ -54,8 +56,6 @@ namespace gtulu {
 #undef DECLARE_OUTPUT
 
     } // namespace output
-
-    namespace giou = ::gtulu::internal::output;
 
   } // namespace internal
 } // namespace gtulu

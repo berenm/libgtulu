@@ -9,6 +9,8 @@ import testing ;
 lib GL : : [ multiarch.search-path ] <name>:libGL.so.1 ;
 lib GLU : : [ multiarch.search-path ] ;
 lib glfw : : [ multiarch.search-path ] ;
+lib jpeg : : [ multiarch.search-path ] ;
+lib png : : [ multiarch.search-path ] ;
 lib boost_thread : : [ multiarch.search-path ] ;
 lib boost_program_options : : [ multiarch.search-path ] ;
 lib boost_filesystem : : [ multiarch.search-path ] ;
@@ -83,14 +85,17 @@ exe gtulu-compiler : src/bin/compile.cpp common gtulu gtulu_opengl_pch.hpp : <li
 shader.program test1 : test/shaders/test1.vs test/shaders/test1.fs : <location>test/generated/ ;
 shader.program test2 : test/shaders/test2.vs test/shaders/test2.fs : <location>test/generated/ ;
 shader.program test3 : test/shaders/test3.vs test/shaders/test3.fs : <location>test/generated/ ;
+shader.program print_image : test/shaders/print_image.vs test/shaders/print_image.fs : <location>test/generated/ ;
 
 unit-test test1exe : test/test1.cpp test1 common gtulu gtulu_opengl_pch.hpp : <link>shared ;
 unit-test test2exe : test/test2.cpp test2 common gtulu gtulu_opengl_pch.hpp : <link>shared ;
 unit-test test3exe : test/test3.cpp test3 common gtulu gtulu_opengl_pch.hpp : <link>shared ;
+unit-test print_imageexe : test/print_image.cpp print_image common gtulu gtulu_opengl_pch.hpp jpeg png : <link>shared ;
 
 alias test : test1exe/<link>shared
              test2exe/<link>shared
-             test3exe/<link>shared ;
+             test3exe/<link>shared
+             print_imageexe/<link>shared ;
 
 multiarch.build build libgtulu
                 : gtulu-compiler

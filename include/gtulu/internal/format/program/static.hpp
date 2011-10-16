@@ -8,25 +8,22 @@
 #ifndef GTULU_INTERNAL_FORMAT_PROGRAM_STATIC_HPP_
 #define GTULU_INTERNAL_FORMAT_PROGRAM_STATIC_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/object/program/base.hpp"
 
 namespace gtulu {
   namespace internal {
 
-    namespace gio = ::gtulu::internal::object;
-
     namespace format {
       namespace program {
 
-        struct static_program_format: virtual public gio::program_base {
+        struct static_program_format: virtual public obj::program_base {
             virtual ~static_program_format() {
             }
         };
 
       } // namespace program
     } // namespace format
-
-    namespace fp = ::gtulu::internal::format::program;
 
   } // namespace internal
 } // namespace gtulu

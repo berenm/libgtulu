@@ -12,6 +12,7 @@
 #ifndef GTULU_INTERNAL_ATTRIBUTE_ATTRIBUTE_HPP_
 #define GTULU_INTERNAL_ATTRIBUTE_ATTRIBUTE_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/format/conversion/common.hpp"
 
 namespace gtulu {
@@ -25,43 +26,43 @@ namespace gtulu {
 
 #define DECLARE_BINDER(count_m, cardinality_m)                                                          \
     template< >                                                                                         \
-    struct cardinality_binder< fc::cardinality::cardinality_m > {                                       \
+    struct cardinality_binder< fcmn::cardinality::cardinality_m > {                                       \
       template< typename Integral > struct attribute_binder;                                            \
     };                                                                                                  \
     template< > template< >                                                                             \
-    struct cardinality_binder< fc::cardinality::cardinality_m >                                         \
-         ::attribute_binder< fn::integral::floating > {                                                 \
+    struct cardinality_binder< fcmn::cardinality::cardinality_m >                                         \
+         ::attribute_binder< fnum::integral::floating > {                                                 \
          template< typename DataFormat >                                                                \
          inline static void bind(location_t const location_in,                                          \
                                  BOOST_PP_ENUM_PARAMS(count_m,                                          \
-                                   typename fc::to_value_type< DataFormat >::type const value_in)) {    \
-             fnc::gl_vertex_attrib_##count_m ::call(location_in,                                        \
+                                   typename fcmn::to_value_type< DataFormat >::type const value_in)) {    \
+             fct::gl_vertex_attrib_##count_m ::call(location_in,                                        \
                                                     BOOST_PP_ENUM_PARAMS(count_m, value_in));           \
-             fnc::gl_disable_vertex_attrib_array::call(location_in);                                    \
+             fct::gl_disable_vertex_attrib_array::call(location_in);                                    \
          }                                                                                              \
          template< typename DataFormat >                                                                \
-         inline static void bind(location_t const location_in, ::std::uint32_t const number_in,         \
-                                 typename fc::to_value_type< DataFormat >::type const* values_in) {     \
-           fnc::gl_vertex_attrib_##count_m ::call(location_in, values_in);                              \
-           fnc::gl_disable_vertex_attrib_array::call(location_in);                                      \
+         inline static void bind(location_t const location_in, std::uint32_t const number_in,         \
+                                 typename fcmn::to_value_type< DataFormat >::type const* values_in) {     \
+           fct::gl_vertex_attrib_##count_m ::call(location_in, values_in);                              \
+           fct::gl_disable_vertex_attrib_array::call(location_in);                                      \
          }                                                                                              \
     };                                                                                                  \
     template< > template< >                                                                             \
-    struct cardinality_binder< fc::cardinality::cardinality_m >                                         \
-         ::attribute_binder< fn::integral::integral > {                                                 \
+    struct cardinality_binder< fcmn::cardinality::cardinality_m >                                         \
+         ::attribute_binder< fnum::integral::integral > {                                                 \
         template< typename DataFormat >                                                                 \
         inline static void bind(location_t const location_in,                                           \
                                 BOOST_PP_ENUM_PARAMS(count_m,                                           \
-                                  typename fc::to_value_type< DataFormat >::type const value_in)) {     \
-           fnc::gl_vertex_attrib_##count_m##_integer ::call(location_in,                                \
+                                  typename fcmn::to_value_type< DataFormat >::type const value_in)) {     \
+           fct::gl_vertex_attrib_##count_m##_integer ::call(location_in,                                \
                                                             BOOST_PP_ENUM_PARAMS(count_m, value_in));   \
-           fnc::gl_disable_vertex_attrib_array::call(location_in);                                      \
+           fct::gl_disable_vertex_attrib_array::call(location_in);                                      \
          }                                                                                              \
          template< typename DataFormat >                                                                \
-         inline static void bind(location_t const location_in, ::std::uint32_t const number_in,         \
-                                 typename fc::to_value_type< DataFormat >::type const* values_in) {     \
-           fnc::gl_vertex_attrib_##count_m##_integer ::call(location_in, values_in);                    \
-           fnc::gl_disable_vertex_attrib_array::call(location_in);                                      \
+         inline static void bind(location_t const location_in, std::uint32_t const number_in,         \
+                                 typename fcmn::to_value_type< DataFormat >::type const* values_in) {     \
+           fct::gl_vertex_attrib_##count_m##_integer ::call(location_in, values_in);                    \
+           fct::gl_disable_vertex_attrib_array::call(location_in);                                      \
          }                                                                                              \
     };
 
@@ -75,13 +76,13 @@ namespace gtulu {
       } // namespace detail
 
       template< typename AttributeFormat >
-      struct attribute_binder: detail::cardinality_binder< typename fc::get_cardinality< AttributeFormat >::type >::template attribute_binder<
-          typename fn::get_integral< typename fc::get_numeric< AttributeFormat >::type >::type > {
+      struct attribute_binder: detail::cardinality_binder< typename fcmn::get_cardinality< AttributeFormat >::type >::template attribute_binder<
+          typename fnum::get_integral< typename fcmn::get_numeric< AttributeFormat >::type >::type > {
       };
 
       template< typename Format, typename BinderType = attribute_binder< Format >,
           typename BufferBinderType = attribute_buffer_binder< Format > >
-//      , typename ValueType = typename fc::to_value_type< Format >::type >
+//      , typename ValueType = typename fcmn::to_value_type< Format >::type >
       struct attribute {
           typedef Format format;
 //          typedef ValueType value_type;
@@ -90,7 +91,7 @@ namespace gtulu {
       };
 
 #define DECLARE_ATTRIBUTE(format_m) \
-  typedef attribute< fa::format_m > format_m;
+  typedef attribute< fatt::format_m > format_m;
 
       DECLARE_ATTRIBUTE(gl_float)
       DECLARE_ATTRIBUTE(gl_int)
@@ -109,8 +110,6 @@ namespace gtulu {
 #undef DECLARE_ATTRIBUTE
 
     } // namespace attribute
-
-    namespace gia = ::gtulu::internal::attribute;
 
   } // namespace internal
 } // namespace gtulu

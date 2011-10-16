@@ -23,31 +23,31 @@ gen_cst_fwd = open('../include/gtulu/internal/generated/constants_fwd.hpp', 'w')
 def print_forward_functions(file, parser, namespace):
   n = parser.namespaces[namespace]
   print >> file, "        namespace %s {" % (n.short_name)
-  print >> file, "          namespace fnc {"
+  print >> file, "          namespace function {"
 
   n.functions.sort()
   for declaration in n.functions:
     print >> file, "            struct gl_%s;" % (declaration)
 
-  print >> file, "          } // namespace fnc"
+  print >> file, "          } // namespace function"
   print >> file, "        } // namespace %s" % (n.short_name)
 
 def print_forward_constants(file, parser, namespace):
   n = parser.namespaces[namespace]
   print >> file, "        namespace %s {" % (n.short_name)
-  print >> file, "          namespace cst {"
+  print >> file, "          namespace constant {"
 
   n.constants.sort()
   for constant in n.constants:
     print >> file, "            struct %s;" % (parser.constants[constant].new_name)
 
-  print >> file, "          } // namespace cst"
+  print >> file, "          } // namespace constant"
   print >> file, "        } // namespace %s" % (n.short_name)
 
 def print_forward_functions_ref(file, parser, namespace):
   n = parser.namespaces[namespace]
   print >> file, "      namespace %s {" % (n.short_name)
-  print >> file, "        namespace fnc {"
+  print >> file, "        namespace function {"
 
   n.namespace_ref.sort()
   for ref in n.namespace_ref:
@@ -57,15 +57,15 @@ def print_forward_functions_ref(file, parser, namespace):
       nn = parser.namespaces[ref]
       nn.functions.sort()
       for declaration in nn.functions:
-        print >> file, "          using gig::%s::%s::fnc::gl_%s;" % (nn.category, nn.short_name, declaration)
+        print >> file, "          using gen::%s::%s::function::gl_%s;" % (nn.category, nn.short_name, declaration)
 
-  print >> file, "        } // namespace fnc"
+  print >> file, "        } // namespace function"
   print >> file, "      } // namespace %s" % (n.short_name)
 
 def print_forward_constants_ref(file, parser, namespace):
   n = parser.namespaces[namespace]
   print >> file, "      namespace %s {" % (n.short_name)
-  print >> file, "        namespace cst {"
+  print >> file, "        namespace constant {"
 
   n.constants_ref.sort()
   for constant in n.constants_ref:
@@ -74,9 +74,9 @@ def print_forward_constants_ref(file, parser, namespace):
     else:
       c = parser.constants[constant]
       nn = parser.namespaces[c.namespace]
-      print >> file, "          using gig::%s::%s::cst::%s;" % (nn.category, nn.short_name, c.new_name)
+      print >> file, "          using gen::%s::%s::constant::%s;" % (nn.category, nn.short_name, c.new_name)
 
-  print >> file, "        } // namespace cst"
+  print >> file, "        } // namespace constant"
   print >> file, "      } // namespace %s" % (n.short_name)
 
 def print_functions(file, parser, namespace):
@@ -86,24 +86,24 @@ def print_functions(file, parser, namespace):
     return
 
   print >> file, "      namespace %s {" % (n.short_name)
-  print >> file, "        namespace fnc {"
+  print >> file, "        namespace function {"
 
   for declaration in n.functions:
     f = parser.functions[declaration]
     print >> file, '          ' + '\n          '.join(f.str_define())
 
-  print >> file, "        } // namespace fnc"
+  print >> file, "        } // namespace function"
   print >> file, "      } // namespace %s" % (n.short_name)
 
 def print_constants(file, parser, namespace):
   n = parser.namespaces[namespace]
   print >> file, "      namespace %s {" % (n.short_name)
-  print >> file, "        namespace cst {"
+  print >> file, "        namespace constant {"
 
   for constant in n.constants:
     print >> file, parser.constants[constant]
 
-  print >> file, "        } // namespace cst"
+  print >> file, "        } // namespace constant"
   print >> file, "      } // namespace %s" % (n.short_name)
 
 def print_forward_functions_category(file, parser, category):
@@ -213,16 +213,11 @@ header = """/**
  * THIS FILE IS AUTO GENERATED FROM scripts/generate_gl_headers.py,           *
  * ANY CHANGE WILL BE OVERWRITTEN                                             *
  ******************************************************************************/
- 
+
 %s
 namespace gtulu {
   namespace internal {
   
-    namespace generated {
-    } // namespace generated
-
-    namespace gig = ::gtulu::internal::generated;
-
     namespace generated {
 """
 
@@ -243,6 +238,7 @@ guard = """#ifndef IN_GTULU_INTERNAL_FUNCTIONS_HPP_
 #ifndef GTULU_INTERNAL_GENERATED_FUNCTIONS_HPP_
 #define GTULU_INTERNAL_GENERATED_FUNCTIONS_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/generated/functions_fwd.hpp"
 """
 print >> gen_fct, header % (guard)
@@ -255,6 +251,8 @@ guard = """#ifndef IN_GTULU_INTERNAL_FUNCTIONS_FWD_HPP_
 
 #ifndef GTULU_INTERNAL_GENERATED_FUNCTIONS_FWD_HPP_
 #define GTULU_INTERNAL_GENERATED_FUNCTIONS_FWD_HPP_
+
+#include "gtulu/namespaces.hpp"
 """
 print >> gen_fct_fwd, header % (guard)
 
@@ -265,6 +263,7 @@ guard = """#ifndef IN_GTULU_INTERNAL_CONSTANTS_HPP_
 #ifndef GTULU_INTERNAL_GENERATED_CONSTANTS_HPP_
 #define GTULU_INTERNAL_GENERATED_CONSTANTS_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/generated/constants_fwd.hpp"
 """
 print >> gen_cst, header % (guard)
@@ -277,6 +276,8 @@ guard = """#ifndef IN_GTULU_INTERNAL_CONSTANTS_FWD_HPP_
 
 #ifndef GTULU_INTERNAL_GENERATED_CONSTANTS_FWD_HPP_
 #define GTULU_INTERNAL_GENERATED_CONSTANTS_FWD_HPP_
+
+#include "gtulu/namespaces.hpp"
 """
 print >> gen_cst_fwd, header % (guard)
 

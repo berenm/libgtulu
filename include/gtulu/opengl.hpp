@@ -9,6 +9,8 @@
 #define OPENGL_HPP_
 #define IN_OPENGL_HPP_
 
+#include "gtulu/namespaces.hpp"
+
 #include <string>
 #include <cstdint>
 
@@ -18,8 +20,8 @@
 #include "gtulu/utils/logging.hpp"
 
 namespace gtulu {
-  typedef ::std::uint32_t location_t;
-  typedef ::std::uint32_t handle_t;
+  typedef std::uint32_t location_t;
+  typedef std::uint32_t handle_t;
 } // namespace gtulu
 
 #include <boost/config.hpp>

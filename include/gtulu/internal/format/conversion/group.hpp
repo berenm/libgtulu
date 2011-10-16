@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_FORMAT_CONVERTION_GROUP_HPP_
 #define GTULU_INTERNAL_FORMAT_CONVERTION_GROUP_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/internal/format/data.hpp"
 #include "gtulu/internal/format/internal.hpp"
 #include "gtulu/internal/format/conversion/common.hpp"
@@ -22,7 +23,7 @@ namespace gtulu {
         struct get_ideal_internal_component;
 
 #define DECLARE_CONVERT(group_component_m, internal_component_m) \
-    template< > struct get_ideal_internal_component< fc::component::group_component_m > { typedef fc::component::internal_component_m type; };
+    template< > struct get_ideal_internal_component< fcmn::component::group_component_m > { typedef fcmn::component::internal_component_m type; };
 
         DECLARE_CONVERT(depth, depth)
         DECLARE_CONVERT(depth_stencil, depth_stencil)

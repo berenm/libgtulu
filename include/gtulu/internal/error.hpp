@@ -8,6 +8,7 @@
 #ifndef GTULU_INTERNAL_ERROR_HPP_
 #define GTULU_INTERNAL_ERROR_HPP_
 
+#include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 #include "gtulu/internal/constants.hpp"
 
@@ -20,7 +21,7 @@
 #define __gtulu_check_error() GTULU_SAFE_MULTILINE()
 #else
 #define __gtulu_check_error() GTULU_SAFE_MULTILINE( \
-  ::std::int32_t __gl_error; \
+  std::int32_t __gl_error; \
   while ((__gl_error = glGetError()) != ::gtulu::internal::error::no_error::value) { \
     switch (__gl_error) { \
       case ::gtulu::internal::error::invalid_enum::value: \
@@ -61,8 +62,6 @@ namespace gtulu {
       typedef cst::gl_out_of_memory out_of_memory;
 
     } // namespace error
-
-    namespace gie = ::gtulu::internal::error;
 
   } // namespace internal
 } // namespace gtulu
