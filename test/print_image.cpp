@@ -68,12 +68,6 @@ int main(int argc, char *argv[]) {
 //  ::boost::gil::write_view("test/data/mona_lisa_out.jpg", boost::gil::view(output_image), ::boost::gil::jpeg_tag());
   ::boost::gil::write_view("test/data/mona_lisa_out.png", boost::gil::view(output_image), ::boost::gil::png_tag());
 
-
-
-
-
-
-
   ::boost::gil::read_image("test/data/mona_lisa.jpg", image, ::boost::gil::jpeg_tag());
   output_image.recreate(image.width() / 4, image.height() / 4);
 

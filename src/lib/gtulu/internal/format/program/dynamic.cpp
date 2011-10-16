@@ -177,19 +177,19 @@ namespace gtulu {
           __gtulu_info() << " ----- " << attributes_.size() << " attribute(s) ----- ";
           for (fprg::attribute_vector_t::iterator it = attributes_.begin(); it != attributes_.end(); ++it) {
             __gtulu_info() << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: "
-                << it->size << ", location: " << it->location;
+                  << it->size << ", location: " << it->location;
           }
 
           __gtulu_info() << " ----- " << uniforms_.size() << " uniform(s)   ----- ";
           for (fprg::uniform_vector_t::iterator it = uniforms_.begin(); it != uniforms_.end(); ++it) {
             __gtulu_info() << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: "
-                << it->size << ", location: " << it->location;
+                  << it->size << ", location: " << it->location;
           }
 
           __gtulu_info() << " ----- " << outputs_.size() << " output(s)    ----- ";
           for (fprg::output_vector_t::iterator it = outputs_.begin(); it != outputs_.end(); ++it) {
             __gtulu_info() << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: "
-                << it->size << ", location: " << it->location << ", index: " << it->index;
+                  << it->size << ", location: " << it->location << ", index: " << it->index;
           }
         }
 

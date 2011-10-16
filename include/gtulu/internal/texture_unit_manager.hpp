@@ -29,14 +29,15 @@ namespace gtulu {
         }
 
         void activate() {
-          fct::gl_active_texture::call(cst::runtime_constant(cst::gl_texture0(), handle_));}
+          fct::gl_active_texture::call(cst::runtime_constant(cst::gl_texture0(), handle_));
+        }
 
-          template< typename TextureFormat >
-          void bind(obj::texture< TextureFormat > const& texture_in) {
-            activate();
-            texture_in.bind();
-          }
-        };
+        template< typename TextureFormat >
+        void bind(obj::texture< TextureFormat > const& texture_in) {
+          activate();
+          texture_in.bind();
+        }
+    };
 
     struct texture_unit_manager {
         typedef std::map< std::uint32_t, boost::weak_ptr< texture_unit > > texture_unit_map;

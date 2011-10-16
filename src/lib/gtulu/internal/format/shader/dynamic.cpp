@@ -54,7 +54,7 @@ namespace gtulu {
             obj::shader_base::create_shader< fshd::type::gl_geometry_shader >();
           } else {
             __gtulu_error() << "Unknown shader extension " << extension
-                << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
+                  << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
           }
 
           std::string source = gu::file::get_contents(filename);

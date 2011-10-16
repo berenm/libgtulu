@@ -55,8 +55,8 @@ namespace gtulu {
         attachment_mappings[handle] = unit_ptr;
       } else {
         __gtulu_error() << "unable to find a free color attachment slot."
-            << "Maybe some attachment pointers are still active, or maybe the " << max_attachment
-            << " color attachment limit has been reached.";
+              << "Maybe some attachment pointers are still active, or maybe the " << max_attachment
+              << " color attachment limit has been reached.";
       }
 
       return unit_ptr;

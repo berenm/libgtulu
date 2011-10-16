@@ -203,7 +203,7 @@ namespace gtulu {
           return fshd::type::gl_geometry_shader();
         } else {
           __gtulu_error() << "Unknown shader extension " << extension
-              << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
+                << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
         }
 
         return cst::invalid_constant();
@@ -525,7 +525,7 @@ int main(int argc, char *argv[]) {
                           boost::lexical_cast< std::string >(info.size));
     } else {
       __gtulu_warn() << "shader: " << "Output data '" << info.type << "' " << info.name
-          << " not bound. Maybe only used internally.";
+            << " not bound. Maybe only used internally.";
     }
   }
 
