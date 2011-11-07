@@ -20,34 +20,32 @@ namespace gtulu {
         struct data_traits {
             typedef DataType data_type_t;
 
-            static void* write(data_type_t& data_in) {
-              static_assert(!std::is_same< data_type_t, data_type_t >::value, "DataType has no known traits. Please specialize the data_traits structure for DataType, to provide the accessor functions.");
-              return 0;
+            static auto write(data_type_t& data_in) -> decltype(data_in.write()) {
+              return data_in.write();
             }
 
-            static void const* read(data_type_t const& data_in) {
-              static_assert(!std::is_same< data_type_t, data_type_t >::value, "DataType has no known traits. Please specialize the data_traits structure for DataType, to provide the accessor functions.");
-              return 0;
+            static auto read(data_type_t const& data_in) -> decltype(data_in.read()) {
+              return data_in.read();
             }
 
-            static std::size_t size(data_type_t const& data_in) {
-              static_assert(!std::is_same< data_type_t, data_type_t >::value, "DataType has no known traits. Please specialize the data_traits structure for DataType, to provide the accessor functions.");
-              return 0;
+            static auto size(data_type_t const& data_in) -> decltype(data_in.size()) {
+              return data_in.size();
             }
 
-            static std::size_t width(data_type_t const& data_in) {
-              static_assert(!std::is_same< data_type_t, data_type_t >::value, "DataType has no known traits. Please specialize the data_traits structure for DataType, to provide the accessor functions.");
-              return 0;
+            static auto value_size(data_type_t const& data_in) -> decltype(data_in.value_size()) {
+              return data_in.value_size();
             }
 
-            static std::size_t height(data_type_t const& data_in) {
-              static_assert(!std::is_same< data_type_t, data_type_t >::value, "DataType has no known traits. Please specialize the data_traits structure for DataType, to provide the accessor functions.");
-              return 0;
+            static auto width(data_type_t const& data_in) -> decltype(data_in.width()) {
+              return data_in.width();
             }
 
-            static std::size_t depth(data_type_t const& data_in) {
-              static_assert(!std::is_same< data_type_t, data_type_t >::value, "DataType has no known traits. Please specialize the data_traits structure for DataType, to provide the accessor functions.");
-              return 0;
+            static auto height(data_type_t const& data_in) -> decltype(data_in.height()) {
+              return data_in.height();
+            }
+
+            static auto depth(data_type_t const& data_in) -> decltype(data_in.depth()) {
+              return data_in.depth();
             }
         };
 
@@ -56,5 +54,8 @@ namespace gtulu {
 
   } // namespace internal
 } // namespace gtulu
+
+#include "gtulu/internal/storage/data/traits/array.hpp"
+#include "gtulu/internal/storage/data/traits/gil.hpp"
 
 #endif /* GTULU_INTERNAL_STORAGE_DATA_TRAITS_HPP_ */

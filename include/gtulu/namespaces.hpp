@@ -103,6 +103,8 @@ namespace gtulu {
     } // namespace renderbuffer
     namespace sampler {
     } // namespace sampler
+    namespace storage {
+    } // namespace storage
     namespace texture {
     } // namespace texture
     namespace uniform {
@@ -122,6 +124,7 @@ namespace gtulu {
     namespace prg = program;
     namespace rdb = renderbuffer;
     namespace smp = sampler;
+    namespace sto = storage;
     namespace tex = texture;
     namespace unf = uniform;
     namespace vxa = vertexarray;

@@ -27,6 +27,7 @@ def print_forward_functions(file, parser, namespace):
 
   n.functions.sort()
   for declaration in n.functions:
+    print >> file, "            template< typename C1 = void, typename C2 = void, typename C3 = void, typename C4 = void, typename C5 = void >"
     print >> file, "            struct gl_%s;" % (declaration)
 
   print >> file, "          } // namespace function"

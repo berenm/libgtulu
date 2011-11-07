@@ -40,7 +40,7 @@ namespace gtulu {
           template< typename FramebufferSlotType > \
           inline static void attach(cst::gl_constant_base const& color, obj::texture_base const& texture, \
                                     std::uint32_t const mipmap_level, std::uint32_t const layer) { \
-            fct:: attach_function_m ::call(FramebufferSlotType::get(), color, *texture, mipmap_level); \
+            fct:: attach_function_m < >::call(FramebufferSlotType::get(), color, *texture, mipmap_level); \
           } \
       }; \
 
@@ -50,7 +50,7 @@ namespace gtulu {
           template< typename FramebufferSlotType > \
           inline static void attach(cst::gl_constant_base const& color, obj::texture_base const& texture, \
                                     std::uint32_t const mipmap_level, std::uint32_t const layer) { \
-            fct:: attach_function_m ::call(FramebufferSlotType::get(), color, ftgt::format::target_format_m(), *texture, mipmap_level); \
+            fct:: attach_function_m < >::call(FramebufferSlotType::get(), color, ftgt::format::target_format_m(), *texture, mipmap_level); \
           } \
       }; \
 
@@ -60,7 +60,7 @@ namespace gtulu {
           template< typename FramebufferSlotType > \
           inline static void attach(cst::gl_constant_base const& color, obj::texture_base const& texture, \
                                     std::uint32_t const mipmap_level, std::uint32_t const layer) { \
-            fct:: gl_framebuffer_texture_2d ::call(FramebufferSlotType::get(), color, ftgt::format::target_format_m(), *texture, mipmap_level); \
+            fct:: gl_framebuffer_texture_2d < >::call(FramebufferSlotType::get(), color, ftgt::format::target_format_m(), *texture, mipmap_level); \
           } \
       }; \
 
@@ -89,12 +89,12 @@ namespace gtulu {
                                     obj::texture_base const& texture,
                                     std::uint32_t const mipmap_level,
                                     std::uint32_t const layer) {
-            fct::gl_framebuffer_texture_3d::call(FramebufferSlotType::value,
-                                                 color,
-                                                 ftgt::format::gl_texture_3d::value,
-                                                 *texture,
-                                                 mipmap_level,
-                                                 layer);
+            fct::gl_framebuffer_texture_3d< >::call(FramebufferSlotType::value,
+                                                    color,
+                                                    ftgt::format::gl_texture_3d::value,
+                                                    *texture,
+                                                    mipmap_level,
+                                                    layer);
           }
       };
 
@@ -157,10 +157,10 @@ namespace gtulu {
                                     obj::renderbuffer_base const& renderbuffer,
                                     std::uint32_t const mipmap_level,
                                     std::uint32_t const layer) {
-            fct::gl_framebuffer_renderbuffer::call(FramebufferSlotType::get(),
-                                                   color,
-                                                   cst::gl_renderbuffer(),
-                                                   *renderbuffer);
+            fct::gl_framebuffer_renderbuffer< >::call(FramebufferSlotType::get(),
+                                                      color,
+                                                      cst::gl_renderbuffer(),
+                                                      *renderbuffer);
           }
       };
     } // namespace framebuffer

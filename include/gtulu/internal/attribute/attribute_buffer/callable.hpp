@@ -32,7 +32,7 @@ namespace gtulu {
                                   std::uint32_t const stride_in,
                                   std::int32_t const count_in,
                                   bool const normalized_in) {
-            fct::gl_vertex_attrib_pointer::call< typename DataFormat::aspect::format >(location_in,
+            fct::gl_vertex_attrib_pointer< typename DataFormat::aspect::format >::call(location_in,
                                                                                        count_in,
                                                                                        normalized_in,
                                                                                        stride_in,
@@ -48,7 +48,7 @@ namespace gtulu {
                                   std::uint32_t const stride_in,
                                   std::int32_t const count_in,
                                   bool const normalized_in) {
-            fct::gl_vertex_attrib_pointer_integer::call< typename DataFormat::aspect::format >(location_in,
+            fct::gl_vertex_attrib_pointer_integer< typename DataFormat::aspect::format >::call(location_in,
                                                                                                count_in,
                                                                                                stride_in,
                                                                                                reinterpret_cast< void const* >(offset_in));

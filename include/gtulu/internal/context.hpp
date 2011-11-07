@@ -677,7 +677,7 @@ namespace gtulu {
       struct gettor< return_type_m > { \
           template< typename Parameter > \
           static void get(return_type_m* data) { \
-            fct:: function_m ::call< Parameter >(data); \
+            fct:: function_m < Parameter >::call(data); \
           } \
       };
 
@@ -686,12 +686,12 @@ namespace gtulu {
       struct gettor< return_type_m > { \
           template< typename Parameter > \
           static void get(return_type_m* data) { \
-            fct:: function_m ::call< Parameter >(data); \
+            fct:: function_m < Parameter >::call(data); \
           } \
           \
           template< typename Parameter > \
           static void get(std::uint32_t const index_in, return_type_m* data) { \
-            fct:: indexed_function_m ::call< Parameter >(index_in, data); \
+            fct:: indexed_function_m < Parameter >::call(index_in, data); \
           } \
       };
 
@@ -699,14 +699,14 @@ namespace gtulu {
       struct gettor< std::string > {
           template< typename Parameter >
           static void get(std::string* data) {
-            GLubyte const* bytes = fct::gl_get_string::call< Parameter >();
+            GLubyte const* bytes = fct::gl_get_string< Parameter >::call();
             if (bytes != 0) {
               data->assign(reinterpret_cast< char const* >(bytes));
             }
           }
           template< typename Parameter >
           static void get(std::uint32_t const index_in, std::string* data) {
-            GLubyte const* bytes = fct::gl_get_string::call< Parameter >(index_in);
+            GLubyte const* bytes = fct::gl_get_string< Parameter >::call(index_in);
             if (bytes != 0) {
               data->assign(reinterpret_cast< char const* >(bytes));
             }

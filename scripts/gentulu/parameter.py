@@ -80,8 +80,12 @@ class parameter:
     string += " " + self.name
     return string
 
-  def tpl_str(self):
+  def tpl_decl_str(self):
     string = "typename " + self.tpl_name
+    return string
+
+  def tpl_str(self):
+    string = self.tpl_name
     return string
 
   def __repr__(self):

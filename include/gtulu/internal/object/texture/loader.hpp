@@ -11,8 +11,8 @@
 #include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 
-#include "gtulu/internal/data/accessor.hpp"
-#include "gtulu/internal/data/offset.hpp"
+#include "gtulu/internal/storage/data/offset.hpp"
+#include "gtulu/internal/storage/data/traits.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -34,33 +34,34 @@ namespace gtulu {
 
             template< typename Data >
             inline static void load(Data const& data_in, std::uint32_t const level, std::uint8_t const border) {
-              typedef dat::data_traits< Data > data_traits;
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_tex_image_1d::call< typename TargetFormat::aspect::format,
-                  typename InternalFormat::aspect::format, typename GroupFormat::aspect::format,
-                  typename DataFormat::aspect::format >(level,
-                                                        data_traits::width(data_in),
-                                                        border,
-                                                        data_traits::read(data_in));
+              fct::gl_tex_image_1d< typename TargetFormat::aspect::format, typename InternalFormat::aspect::format,
+                  typename GroupFormat::aspect::format, typename DataFormat::aspect::format >::call(level,
+                                                                                                    data_traits::width(data_in),
+                                                                                                    border,
+                                                                                                    data_traits::read(data_in));
             }
 
             template< typename Data >
-            inline static void load(Data const& data_in, dat::offset const& offset_in, std::uint32_t const level) {
-              typedef dat::data_traits< Data > data_traits;
+            inline static void load(Data const& data_in,
+                                    sto::data::offset const& offset_in,
+                                    std::uint32_t const level) {
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_tex_sub_image_1d::call< typename TargetFormat::aspect::format,
-                  typename GroupFormat::aspect::format, typename DataFormat::aspect::format >(level,
-                                                                                              offset_in.x(),
-                                                                                              data_traits::width(data_in),
-                                                                                              data_traits::read(data_in));
+              fct::gl_tex_sub_image_1d< typename TargetFormat::aspect::format, typename GroupFormat::aspect::format,
+                  typename DataFormat::aspect::format >::call(level,
+                                                              offset_in.x(),
+                                                              data_traits::width(data_in),
+                                                              data_traits::read(data_in));
             }
 
             template< typename Data >
             inline static void save(Data& data_out, std::uint32_t const mipmap) {
-              typedef dat::data_traits< Data > data_traits;
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_get_tex_image::call< typename TargetFormat::aspect::format, typename GroupFormat::aspect::format,
-                  typename DataFormat::aspect::format >(mipmap, data_traits::write(data_out));
+              fct::gl_get_tex_image< typename TargetFormat::aspect::format, typename GroupFormat::aspect::format,
+                  typename DataFormat::aspect::format >::call(mipmap, data_traits::write(data_out));
             }
         };
 
@@ -73,36 +74,37 @@ namespace gtulu {
 
             template< typename Data >
             inline static void load(Data const& data_in, std::uint32_t const level, std::uint8_t const border) {
-              typedef dat::data_traits< Data > data_traits;
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_tex_image_2d::call< typename TargetFormat::aspect::format,
-                  typename InternalFormat::aspect::format, typename GroupFormat::aspect::format,
-                  typename DataFormat::aspect::format >(level,
-                                                        data_traits::width(data_in),
-                                                        data_traits::height(data_in),
-                                                        border,
-                                                        data_traits::read(data_in));
+              fct::gl_tex_image_2d< typename TargetFormat::aspect::format, typename InternalFormat::aspect::format,
+                  typename GroupFormat::aspect::format, typename DataFormat::aspect::format >::call(level,
+                                                                                                    data_traits::width(data_in),
+                                                                                                    data_traits::height(data_in),
+                                                                                                    border,
+                                                                                                    data_traits::read(data_in));
             }
 
             template< typename Data >
-            inline static void load(Data const& data_in, dat::offset const& offset_in, std::uint32_t const level) {
-              typedef dat::data_traits< Data > data_traits;
+            inline static void load(Data const& data_in,
+                                    sto::data::offset const& offset_in,
+                                    std::uint32_t const level) {
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_tex_sub_image_2d::call< typename TargetFormat::aspect::format,
-                  typename GroupFormat::aspect::format, typename DataFormat::aspect::format >(level,
-                                                                                              offset_in.x(),
-                                                                                              offset_in.y(),
-                                                                                              data_traits::width(data_in),
-                                                                                              data_traits::height(data_in),
-                                                                                              data_traits::read(data_in));
+              fct::gl_tex_sub_image_2d< typename TargetFormat::aspect::format, typename GroupFormat::aspect::format,
+                  typename DataFormat::aspect::format >::call(level,
+                                                              offset_in.x(),
+                                                              offset_in.y(),
+                                                              data_traits::width(data_in),
+                                                              data_traits::height(data_in),
+                                                              data_traits::read(data_in));
             }
 
             template< typename Data >
             inline static void save(Data& data_out, std::uint32_t const mipmap) {
-              typedef dat::data_traits< Data > data_traits;
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_get_tex_image::call< typename TargetFormat::aspect::format, typename GroupFormat::aspect::format,
-                  typename DataFormat::aspect::format >(mipmap, data_traits::write(data_out));
+              fct::gl_get_tex_image< typename TargetFormat::aspect::format, typename GroupFormat::aspect::format,
+                  typename DataFormat::aspect::format >::call(mipmap, data_traits::write(data_out));
             }
         };
 
@@ -115,39 +117,40 @@ namespace gtulu {
 
             template< typename Data >
             inline static void load(Data const& data_in, std::uint32_t const level, std::uint8_t const border) {
-              typedef dat::data_traits< Data > data_traits;
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_tex_image_3d::call< typename TargetFormat::aspect::format,
-                  typename InternalFormat::aspect::format, typename GroupFormat::aspect::format,
-                  typename DataFormat::aspect::format >(level,
-                                                        data_traits::width(data_in),
-                                                        data_traits::height(data_in),
-                                                        data_traits::depth(data_in),
-                                                        border,
-                                                        data_traits::read(data_in));
+              fct::gl_tex_image_3d< typename TargetFormat::aspect::format, typename InternalFormat::aspect::format,
+                  typename GroupFormat::aspect::format, typename DataFormat::aspect::format >::call(level,
+                                                                                                    data_traits::width(data_in),
+                                                                                                    data_traits::height(data_in),
+                                                                                                    data_traits::depth(data_in),
+                                                                                                    border,
+                                                                                                    data_traits::read(data_in));
             }
 
             template< typename Data >
-            inline static void load(Data const& data_in, dat::offset const& offset_in, std::uint32_t const level) {
-              typedef dat::data_traits< Data > data_traits;
+            inline static void load(Data const& data_in,
+                                    sto::data::offset const& offset_in,
+                                    std::uint32_t const level) {
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_tex_sub_image_3d::call< typename TargetFormat::aspect::format,
-                  typename GroupFormat::aspect::format, typename DataFormat::aspect::format >(level,
-                                                                                              offset_in.x(),
-                                                                                              offset_in.y(),
-                                                                                              offset_in.z(),
-                                                                                              data_traits::width(data_in),
-                                                                                              data_traits::height(data_in),
-                                                                                              data_traits::depth(data_in),
-                                                                                              data_traits::read(data_in));
+              fct::gl_tex_sub_image_3d< typename TargetFormat::aspect::format, typename GroupFormat::aspect::format,
+                  typename DataFormat::aspect::format >::call(level,
+                                                              offset_in.x(),
+                                                              offset_in.y(),
+                                                              offset_in.z(),
+                                                              data_traits::width(data_in),
+                                                              data_traits::height(data_in),
+                                                              data_traits::depth(data_in),
+                                                              data_traits::read(data_in));
             }
 
             template< typename Data >
             inline static void save(Data& data_out, std::uint32_t const mipmap) {
-              typedef dat::data_traits< Data > data_traits;
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_get_tex_image::call< typename TargetFormat::aspect::format, typename GroupFormat::aspect::format,
-                  typename DataFormat::aspect::format >(mipmap, data_traits::write(data_out));
+              fct::gl_get_tex_image< typename TargetFormat::aspect::format, typename GroupFormat::aspect::format,
+                  typename DataFormat::aspect::format >::call(mipmap, data_traits::write(data_out));
             }
         };
 
@@ -160,33 +163,35 @@ namespace gtulu {
 
             template< typename Data >
             inline static void load(Data const& data_in, std::uint32_t const level, std::uint8_t const border) {
-              typedef dat::data_traits< Data > data_traits;
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_compressed_tex_image_1d::call< typename TargetFormat::aspect::format,
-                  typename InternalFormat::aspect::format >(level,
-                                                            data_traits::width(data_in),
-                                                            border,
-                                                            data_traits::size(data_in),
-                                                            data_traits::read(data_in));
+              fct::gl_compressed_tex_image_1d< typename TargetFormat::aspect::format,
+                  typename InternalFormat::aspect::format >::call(level,
+                                                                  data_traits::width(data_in),
+                                                                  border,
+                                                                  data_traits::size(data_in),
+                                                                  data_traits::read(data_in));
             }
 
             template< typename Data >
-            inline static void load(Data const& data_in, dat::offset const& offset_in, std::uint32_t const level) {
-              typedef dat::data_traits< Data > data_traits;
+            inline static void load(Data const& data_in,
+                                    sto::data::offset const& offset_in,
+                                    std::uint32_t const level) {
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_compressed_tex_sub_image_1d::call< typename TargetFormat::aspect::format,
-                  typename GroupFormat::aspect::format >(level,
-                                                         offset_in.x(),
-                                                         data_traits::width(data_in),
-                                                         data_traits::size(data_in),
-                                                         data_traits::read(data_in));
+              fct::gl_compressed_tex_sub_image_1d< typename TargetFormat::aspect::format,
+                  typename GroupFormat::aspect::format >::call(level,
+                                                               offset_in.x(),
+                                                               data_traits::width(data_in),
+                                                               data_traits::size(data_in),
+                                                               data_traits::read(data_in));
             }
 
             template< typename Data >
             inline static void save(Data& data_out, std::uint32_t const mipmap) {
-              typedef dat::data_traits< Data > data_traits;
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_get_compressed_tex_image::call< typename TargetFormat::aspect::format >(mipmap,
+              fct::gl_get_compressed_tex_image< typename TargetFormat::aspect::format >::call(mipmap,
                                                                                               data_traits::write(data_out));
             }
         };
@@ -200,35 +205,37 @@ namespace gtulu {
 
             template< typename Data >
             inline static void load(Data const& data_in, std::uint32_t const level, std::uint8_t const border) {
-              typedef dat::data_traits< Data > data_traits;
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_compressed_tex_image_2d::call< typename TargetFormat::aspect::format,
-                  typename InternalFormat::aspect::format >(level,
-                                                            data_traits::width(data_in),
-                                                            data_traits::height(data_in),
-                                                            border,
-                                                            data_traits::size(data_in),
-                                                            data_traits::read(data_in));
+              fct::gl_compressed_tex_image_2d< typename TargetFormat::aspect::format,
+                  typename InternalFormat::aspect::format >::call(level,
+                                                                  data_traits::width(data_in),
+                                                                  data_traits::height(data_in),
+                                                                  border,
+                                                                  data_traits::size(data_in),
+                                                                  data_traits::read(data_in));
             }
 
             template< typename Data >
-            inline static void load(Data const& data_in, dat::offset const& offset_in, std::uint32_t const level) {
-              typedef dat::data_traits< Data > data_traits;
+            inline static void load(Data const& data_in,
+                                    sto::data::offset const& offset_in,
+                                    std::uint32_t const level) {
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_compressed_tex_sub_image_2d::call< typename TargetFormat::aspect::format,
-                  typename GroupFormat::aspect::format >(level,
-                                                         offset_in.x(),
-                                                         data_traits::width(data_in),
-                                                         data_traits::height(data_in),
-                                                         data_traits::size(data_in),
-                                                         data_traits::read(data_in));
+              fct::gl_compressed_tex_sub_image_2d< typename TargetFormat::aspect::format,
+                  typename GroupFormat::aspect::format >::call(level,
+                                                               offset_in.x(),
+                                                               data_traits::width(data_in),
+                                                               data_traits::height(data_in),
+                                                               data_traits::size(data_in),
+                                                               data_traits::read(data_in));
             }
 
             template< typename Data >
             inline static void save(Data& data_out, std::uint32_t const mipmap) {
-              typedef dat::data_traits< Data > data_traits;
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_get_compressed_tex_image::call< typename TargetFormat::aspect::format >(mipmap,
+              fct::gl_get_compressed_tex_image< typename TargetFormat::aspect::format >::call(mipmap,
                                                                                               data_traits::write(data_out));
             }
         };
@@ -242,37 +249,39 @@ namespace gtulu {
 
             template< typename Data >
             inline static void load(Data const& data_in, std::uint32_t const level, std::uint8_t const border) {
-              typedef dat::data_traits< Data > data_traits;
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_compressed_tex_image_3d::call< typename TargetFormat::aspect::format,
-                  typename InternalFormat::aspect::format >(level,
-                                                            data_traits::width(data_in),
-                                                            data_traits::height(data_in),
-                                                            data_traits::depth(data_in),
-                                                            border,
-                                                            data_traits::size(data_in),
-                                                            data_traits::read(data_in));
+              fct::gl_compressed_tex_image_3d< typename TargetFormat::aspect::format,
+                  typename InternalFormat::aspect::format >::call(level,
+                                                                  data_traits::width(data_in),
+                                                                  data_traits::height(data_in),
+                                                                  data_traits::depth(data_in),
+                                                                  border,
+                                                                  data_traits::size(data_in),
+                                                                  data_traits::read(data_in));
             }
 
             template< typename Data >
-            inline static void load(Data const& data_in, dat::offset const& offset_in, std::uint32_t const level) {
-              typedef dat::data_traits< Data > data_traits;
+            inline static void load(Data const& data_in,
+                                    sto::data::offset const& offset_in,
+                                    std::uint32_t const level) {
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_compressed_tex_sub_image_3d::call< typename TargetFormat::aspect::format,
-                  typename GroupFormat::aspect::format >(level,
-                                                         offset_in.x(),
-                                                         data_traits::width(data_in),
-                                                         data_traits::height(data_in),
-                                                         data_traits::depth(data_in),
-                                                         data_traits::size(data_in),
-                                                         data_traits::read(data_in));
+              fct::gl_compressed_tex_sub_image_3d< typename TargetFormat::aspect::format,
+                  typename GroupFormat::aspect::format >::call(level,
+                                                               offset_in.x(),
+                                                               data_traits::width(data_in),
+                                                               data_traits::height(data_in),
+                                                               data_traits::depth(data_in),
+                                                               data_traits::size(data_in),
+                                                               data_traits::read(data_in));
             }
 
             template< typename Data >
             inline static void save(Data& data_out, std::uint32_t const mipmap) {
-              typedef dat::data_traits< Data > data_traits;
+              typedef sto::data::data_traits< Data > data_traits;
 
-              fct::gl_get_compressed_tex_image::call< typename TargetFormat::aspect::format >(mipmap,
+              fct::gl_get_compressed_tex_image< typename TargetFormat::aspect::format >::call(mipmap,
                                                                                               data_traits::write(data_out));
             }
         };

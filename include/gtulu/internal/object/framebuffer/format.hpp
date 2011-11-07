@@ -38,7 +38,7 @@ namespace gtulu {
           }
 
           void bind_colors() const {
-            fct::gl_draw_buffers::call(colors.size(), colors.data());
+            fct::gl_draw_buffers< >::call(colors.size(), colors.data());
           }
 
           template< typename FramebufferSlotType, typename TextureFormat >
@@ -68,7 +68,7 @@ namespace gtulu {
           }
 
           void bind_colors() const {
-            fct::gl_draw_buffers::call(4, colors.data());
+            fct::gl_draw_buffers< >::call(4, colors.data());
           }
 
           template< typename FramebufferSlotType >

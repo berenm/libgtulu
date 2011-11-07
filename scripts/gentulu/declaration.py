@@ -33,6 +33,7 @@ class declaration(renamable):
     tpl_args = []
     tpl_call = []
     tpl_debg = []
+    self.tpl_count = 0
 
     self.comments = '''
 /**'''
@@ -53,9 +54,10 @@ class declaration(renamable):
         std_debg.append(''' "%s: '" << %s << "'" ''' % (p.name, p.name))
 
         if p.is_template:
-          tpl_pars.append(p.tpl_str())
-          tpl_call.append('%s::value' % (p.tpl_name))
-          tpl_debg.append(''' "%s: '" << %s::name() << "'" ''' % (p.name, p.tpl_name))
+          self.tpl_count += 1
+          tpl_pars.append('typedef C' + str(self.tpl_count) + ' ' + p.tpl_str())
+          tpl_call.append('%s::value' % (p.tpl_str()))
+          tpl_debg.append(''' "%s: '" << %s::name() << "'" ''' % (p.name, p.tpl_str()))
         else:
           tpl_args.append(p.std_str())
           if p.type == 'bool':
@@ -75,7 +77,7 @@ class declaration(renamable):
     self.std_args = ', '.join(std_args)
     self.std_call = ', '.join(std_call)
     self.std_debg = ' ", " '.join(std_debg)
-    self.tpl_pars = ', '.join(tpl_pars)
+    self.tpl_pars = ';\n    '.join(tpl_pars)
     self.tpl_args = ', '.join(tpl_args)
     self.tpl_call = ', '.join(tpl_call)
     self.tpl_debg = ' ", " '.join(tpl_debg)
@@ -84,47 +86,46 @@ class declaration(renamable):
 
   def str_forward(self):
     string = '''
-%(comments)s
-inline static %(output)s call(%(std_args)s);
+  inline static %(output)s call(%(std_args)s);
 '''
     if self.can_template:
       string += '''
-%(comments)s
-template< %(tpl_pars)s >
-inline static %(output)s call(%(tpl_args)s);
+  inline static %(output)s call(%(tpl_args)s);
 '''
     return (string % (self.__dict__)).strip().splitlines()
 
-  def str_declare(self):
-    string = '''
-%(comments)s
-inline static %(output)s call(%(std_args)s);'''
-    if self.can_template:
-      string += '''
-%(comments)s
-template< %(tpl_pars)s >
-inline static %(output)s call(%(tpl_args)s);'''
+  def str_declare(self, declare_template=False):
+    if declare_template and self.can_template:
+      string = '''
+  inline static %(output)s call(%(tpl_args)s);
+'''
+    else:
+      string = '''
+  inline static %(output)s call(%(std_args)s);
+'''
+
     return (string % (self.__dict__)).strip().splitlines()
 
-  def str_define(self):
-    string = '''
-%(comments)s
-inline static %(output)s call(%(std_args)s) {
-  __gtulu_debug() << "call %(name)s " %(std_debg)s;
-  %(var_stmt)s%(name)s(%(std_call)s);
-  __gtulu_check_error();
-  %(ret_stmt)s
-}'''
-    if self.can_template:
-      string += '''
-%(comments)s
-template< %(tpl_pars)s >
-inline static %(output)s call(%(tpl_args)s) {
-  __gtulu_debug() << "call %(name)s " %(tpl_debg)s;
-  %(var_stmt)s%(name)s(%(tpl_call)s);
-  __gtulu_check_error();
-  %(ret_stmt)s
-}'''
+  def str_define(self, define_template=False):
+    if define_template and self.can_template:
+      string = '''
+  inline static %(output)s call(%(tpl_args)s) {
+    %(tpl_pars)s;
+    __gtulu_debug() << "call %(name)s " %(tpl_debg)s;
+    %(var_stmt)s%(name)s(%(tpl_call)s);
+    __gtulu_check_error();
+    %(ret_stmt)s
+  }
+'''
+    else:
+      string = '''
+  inline static %(output)s call(%(std_args)s) {
+    __gtulu_debug() << "call %(name)s " %(std_debg)s;
+    %(var_stmt)s%(name)s(%(std_call)s);
+    __gtulu_check_error();
+    %(ret_stmt)s
+  }
+'''
     return (string % (self.__dict__)).strip().splitlines()
 
   @staticmethod

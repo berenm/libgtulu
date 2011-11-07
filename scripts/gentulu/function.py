@@ -44,29 +44,82 @@ class function(renamable):
   def str_forward(self):
     string = '''
 %(comments)s
+template< typename C1 = void, typename C2 = void, typename C3 = void, typename C4 = void, typename C5 = void >
 struct gl_%(new_name)s;
 '''
     return (string % (self.__dict__)).strip().splitlines()
 
   def str_declare(self):
-    string = '''
+    string = ''
+    template_counts = set([ d.tpl_count for d in self.declarations if d.can_template ])
+    for tc in template_counts:
+      declarations = [ d for d in self.declarations if d.tpl_count == tc and d.can_template ]
+      tpl_decls = []
+      tpl_pars = []
+      for i in range(1, tc+1):
+        tpl_decls.append('typename C'+ i)
+        tpl_pars.append('C'+ i)
+      tpl_decls = ', '.join(tpl_decls)
+      tpl_pars = ', '.join(tpl_pars)
+
+      string += '''
 %(comments)s
-struct gl_%(new_name)s {
+template< ''' + tpl_decls + ''' >
+struct gl_%(new_name)s< ''' + tpl_pars + ''' > {
+'''
+      for d in declarations:
+        string += '  ' + '\n  '.join(d.str_declare(True)) + '\n\n'
+      string += '''
+};
+'''
+
+    string += '''
+%(comments)s
+template< >
+struct gl_%(new_name)s< > {
 '''
     for d in self.declarations:
-      string += '  ' + '\n  '.join(d.str_forward()) + '\n'
-    string += '''};'''
+      string += '  ' + '\n  '.join(d.str_declare(False)) + '\n\n'
+    string += '''
+};
+'''
+
     return (string % (self.__dict__)).strip().splitlines()
 
   def str_define(self):
-    string = '''
+    string = ''
+    template_counts = set([ d.tpl_count for d in self.declarations if d.can_template ])
+    for tc in template_counts:
+      declarations = [ d for d in self.declarations if d.tpl_count == tc and d.can_template ]
+      tpl_decls = []
+      tpl_pars = []
+      for i in range(1, tc+1):
+        tpl_decls.append('typename C'+ str(i))
+        tpl_pars.append('C'+ str(i))
+      tpl_decls = ', '.join(tpl_decls)
+      tpl_pars = ', '.join(tpl_pars)
+
+      string += '''
 %(comments)s
-struct gl_%(new_name)s {
+template< ''' + tpl_decls + ''' >
+struct gl_%(new_name)s< ''' + tpl_pars + ''' > {
+'''
+      for d in declarations:
+        string += '  ' + '\n  '.join(d.str_define(True)) + '\n\n'
+      string += '''
+};
+'''
+
+    string += '''
+%(comments)s
+template< >
+struct gl_%(new_name)s< > {
 '''
     for d in self.declarations:
-      string += '  ' + '\n  '.join(d.str_define()) + '\n\n'
-    string += '''};'''
-
+      string += '  ' + '\n  '.join(d.str_define(False)) + '\n\n'
+    string += '''
+};
+'''
     return (string % (self.__dict__)).strip().splitlines()
 
   @staticmethod

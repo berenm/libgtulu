@@ -72,9 +72,9 @@ namespace gtulu {
                 }
 
                 real_info.size = 1;
-                real_info.location = fct::gl_get_frag_data_location::call(program_base::handle_,
+                real_info.location = fct::gl_get_frag_data_location< >::call(program_base::handle_,
                                                                           real_info.name.c_str());
-                real_info.index = fct::gl_get_frag_data_index::call(program_base::handle_, real_info.name.c_str());
+                real_info.index = fct::gl_get_frag_data_index< >::call(program_base::handle_, real_info.name.c_str());
 
                 if (real_info.location >= 0) {
                   outputs_.push_back(real_info);
@@ -117,8 +117,8 @@ namespace gtulu {
           GLsizei length;
           GLint size;
           GLenum type;
-          fct::gl_get_active_attrib::call(**this, id, max_len, &length, &size, &type, buffer);
-          GLint location = fct::gl_get_attrib_location::call(**this, buffer);
+          fct::gl_get_active_attrib< >::call(**this, id, max_len, &length, &size, &type, buffer);
+          GLint location = fct::gl_get_attrib_location< >::call(**this, buffer);
 
           std::string name = std::string(buffer);
           delete[] buffer;
@@ -142,8 +142,8 @@ namespace gtulu {
           GLsizei length;
           GLint size;
           GLenum type;
-          fct::gl_get_active_uniform::call(**this, id, max_len, &length, &size, &type, buffer);
-          GLint location = fct::gl_get_uniform_location::call(**this, buffer);
+          fct::gl_get_active_uniform< >::call(**this, id, max_len, &length, &size, &type, buffer);
+          GLint location = fct::gl_get_uniform_location< >::call(**this, buffer);
 
           std::string name = std::string(buffer);
           delete[] buffer;
@@ -207,7 +207,7 @@ namespace gtulu {
             char* buffer = new char[length];
             buffer[0] = 0;
 
-            fct::gl_get_program_info_log::call(program_base::handle_,
+            fct::gl_get_program_info_log< >::call(program_base::handle_,
                                                length,
                                                reinterpret_cast< std::int32_t* >(&length),
                                                buffer);
@@ -249,7 +249,7 @@ namespace gtulu {
             char* buffer = new char[length];
             buffer[0] = 0;
 
-            fct::gl_get_program_info_log::call(program_base::handle_,
+            fct::gl_get_program_info_log< >::call(program_base::handle_,
                                                length,
                                                reinterpret_cast< std::int32_t* >(&length),
                                                buffer);

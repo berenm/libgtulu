@@ -40,7 +40,7 @@ namespace gtulu {
           inline static void bind(location_t const location_in, obj::texture< TextureFormat > const& texture_in) {
             boost::shared_ptr< texture_unit > unit_ptr = texture_unit_manager::instance().get_current_or_new(texture_in);
             unit_ptr->bind(texture_in);
-            fct::gl_uniform_1::call(location_in, static_cast< std::int32_t >(**unit_ptr));
+            fct::gl_uniform_1< >::call(location_in, static_cast< std::int32_t >(**unit_ptr));
           }
       };
 

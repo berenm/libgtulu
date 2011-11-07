@@ -18,8 +18,8 @@
 #include "gtulu/internal/format/data.hpp"
 #include "gtulu/internal/format/conversion/numeric.hpp"
 
-#include "gtulu/internal/data/accessor.hpp"
-#include "gtulu/internal/data/offset.hpp"
+#include "gtulu/internal/storage/data/offset.hpp"
+#include "gtulu/internal/storage/data/traits.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -29,15 +29,15 @@ namespace gtulu {
       META_ASPECT_DECLARE(slot,
                           SlotType,
                           using cst::,
-                          (gl_array_buffer) (gl_copy_read_buffer) (gl_copy_write_buffer) (gl_element_array_buffer) (gl_pixel_pack_buffer) (gl_pixel_unpack_buffer) (gl_texture_buffer) (gl_transform_feedback_buffer) (gl_uniform_buffer) (gl_draw_indirect_buffer))
+                          (gl_array_buffer)(gl_copy_read_buffer)(gl_copy_write_buffer)(gl_element_array_buffer)(gl_pixel_pack_buffer)(gl_pixel_unpack_buffer)(gl_texture_buffer)(gl_transform_feedback_buffer)(gl_uniform_buffer)(gl_draw_indirect_buffer))
       META_ASPECT_DECLARE(usage,
                           Usage,
                           using cst::,
-                          (gl_stream_draw) (gl_stream_read) (gl_stream_copy) (gl_static_draw) (gl_static_read) (gl_static_copy) (gl_dynamic_draw) (gl_dynamic_read) (gl_dynamic_copy))
+                          (gl_stream_draw)(gl_stream_read)(gl_stream_copy)(gl_static_draw)(gl_static_read)(gl_static_copy)(gl_dynamic_draw)(gl_dynamic_read)(gl_dynamic_copy))
       META_ASPECT_DECLARE(parameter,
                           Parameter,
                           using cst::,
-                          (gl_buffer_access) (gl_buffer_mapped) (gl_buffer_size) (gl_buffer_usage))
+                          (gl_buffer_access)(gl_buffer_mapped)(gl_buffer_size)(gl_buffer_usage))
 
     } // namespace buffer
 
@@ -48,7 +48,7 @@ namespace gtulu {
         static std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
-          fct::gl_bind_buffer::call< TargetType >(handle_);
+          fct::gl_bind_buffer< TargetType >::call(handle_);
           bound_handle_ = handle_;
         }
       }
@@ -84,11 +84,11 @@ namespace gtulu {
                                   std::uint32_t const index,
                                   std::uint32_t const offset,
                                   std::uint32_t const size) {
-            fct::gl_bind_buffer_range::call< SlotType >(index, *buffer, offset, size);
+            fct::gl_bind_buffer_range< SlotType >::call(index, *buffer, offset, size);
           }
 
           static inline void bind(obj::plug< obj::buffer_base > const& buffer, std::uint32_t const index) {
-            fct::gl_bind_buffer_base::call< SlotType >(index, *buffer);
+            fct::gl_bind_buffer_base< SlotType >::call(index, *buffer);
           }
       };
 #define DECLARE_SLOT(slot_type_m) \
@@ -159,7 +159,7 @@ namespace gtulu {
 
           template< typename Data, typename TemporarySlotType = buf::copy_write_buffer_slot >
           void resize_and_load(Data const& data) {
-            typedef dat::data_traits< Data > data_traits;
+            typedef sto::data::data_traits< Data > data_traits;
             resize_and_load< TemporarySlotType >(data_traits::size(data), data_traits::read(data));
           }
           template< typename TemporarySlotType = buf::copy_write_buffer_slot >
@@ -175,11 +175,11 @@ namespace gtulu {
            * @param offset_in
            */
           template< typename Data, typename TemporarySlotType = buf::copy_write_buffer_slot >
-          void load(Data const& data_in, dat::offset const offset_in = dat::offset()) {
-            typedef dat::data_traits< Data > data_traits;
+          void load(Data const& data_in, sto::data::offset const offset_in = sto::data::offset()) {
+            typedef sto::data::data_traits< Data > data_traits;
 
             bind< TemporarySlotType >();
-            fct::gl_get_buffer_sub_data::call< TemporarySlotType >(offset_in,
+            fct::gl_get_buffer_sub_data< TemporarySlotType >::call(offset_in,
                                                                    data_traits::size(data_in),
                                                                    data_traits::read(data_in));
           }
@@ -192,11 +192,11 @@ namespace gtulu {
            * @param offset_in
            */
           template< typename Data, typename TemporarySlotType = buf::copy_write_buffer_slot >
-          void save(Data& data_out, dat::offset const offset_in = dat::offset()) {
-            typedef dat::data_traits< Data > data_traits;
+          void save(Data& data_out, sto::data::offset const offset_in = sto::data::offset()) {
+            typedef sto::data::data_traits< Data > data_traits;
 
             bind< TemporarySlotType >();
-            fct::gl_buffer_sub_data::call< TemporarySlotType >(offset_in,
+            fct::gl_buffer_sub_data< TemporarySlotType >::call(offset_in,
                                                                data_traits::size(data_out),
                                                                data_traits::write(data_out));
           }
@@ -222,7 +222,7 @@ namespace gtulu {
 
             typedef typename ReadSlotType::type read_slot_t;
             typedef typename WriteSlotType::type write_slot_t;
-            fct::gl_copy_buffer_sub_data::call< read_slot_t, write_slot_t >(read_offset_in,
+            fct::gl_copy_buffer_sub_data< read_slot_t, write_slot_t >::call(read_offset_in,
                                                                             write_offset_in,
                                                                             size * sizeof(data_type_t));
           }
@@ -232,7 +232,7 @@ namespace gtulu {
             std::uint32_t data_out;
 
             typedef typename TemporarySlotType::type slot_t;
-            fct::gl_get_buffer_parameter::call< slot_t, Parameter >(&data_out);
+            fct::gl_get_buffer_parameter< slot_t, Parameter >::call(&data_out);
             return data_out;
           }
 
@@ -242,7 +242,7 @@ namespace gtulu {
             bind< TemporarySlotType >();
 
             typedef typename TemporarySlotType::type slot_t;
-            fct::gl_buffer_data::call< slot_t, BufferUsage >(size, data);
+            fct::gl_buffer_data< slot_t, BufferUsage >::call(size, data);
           }
       };
 

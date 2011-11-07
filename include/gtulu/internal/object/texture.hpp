@@ -31,7 +31,7 @@ namespace gtulu {
       template< >
       template< typename TargetType >
       void slot_binder< texture_base >::bind(std::uint32_t handle_) {
-        fct::gl_bind_texture::call< typename TargetType::aspect::format >(handle_);
+        fct::gl_bind_texture< typename TargetType::aspect::format >::call(handle_);
       }
     } // namespace object
 
@@ -76,7 +76,7 @@ namespace gtulu {
           }
 
           template< typename Data >
-          inline void load(Data const& data_in, dat::offset const& offset_in, std::uint32_t const level = 0) {
+          inline void load(Data const& data_in, sto::data::offset const& offset_in, std::uint32_t const level = 0) {
             bind();
             tex::texture_loader< TextureFormat >::load(data_in, offset_in, level);
             compute_mipmaps();
@@ -90,13 +90,12 @@ namespace gtulu {
 
           template< typename MinFilter >
           inline void set_minification() {
-            fct::gl_tex_parameter::call< typename TextureFormat::target_format::aspect::format,
-                cst::gl_texture_min_filter >(MinFilter::value);
+            fct::gl_tex_parameter< typename TextureFormat::target_format::aspect::format, cst::gl_texture_min_filter >::call(MinFilter::value);
           }
 
           inline void compute_mipmaps() {
             bind();
-            fct::gl_generate_mipmap::call< typename TextureFormat::target_format::aspect::format >();
+            fct::gl_generate_mipmap< typename TextureFormat::target_format::aspect::format >::call();
           }
       };
 

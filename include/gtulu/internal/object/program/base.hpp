@@ -27,7 +27,7 @@ namespace gtulu {
         static std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
-          fct::gl_use_program::call(handle_);
+          fct::gl_use_program< >::call(handle_);
           bound_handle_ = handle_;
         }
       }
@@ -68,7 +68,7 @@ namespace gtulu {
           template< typename ProgramAttribute >
           inline std::uint32_t get() const {
             std::int32_t data;
-            fct::gl_get_program::call< ProgramAttribute >(handle_, &data);
+            fct::gl_get_program < ProgramAttribute > ::call(handle_, &data);
             return data;
           }
 

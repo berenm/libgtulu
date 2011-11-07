@@ -36,15 +36,15 @@ namespace gtulu {
          inline static void bind(location_t const location_in,                                          \
                                  BOOST_PP_ENUM_PARAMS(count_m,                                          \
                                    typename fcmn::to_value_type< DataFormat >::type const value_in)) {    \
-             fct::gl_vertex_attrib_##count_m ::call(location_in,                                        \
+             fct::gl_vertex_attrib_##count_m < >::call(location_in,                                        \
                                                     BOOST_PP_ENUM_PARAMS(count_m, value_in));           \
-             fct::gl_disable_vertex_attrib_array::call(location_in);                                    \
+             fct::gl_disable_vertex_attrib_array< >::call(location_in);                                    \
          }                                                                                              \
          template< typename DataFormat >                                                                \
          inline static void bind(location_t const location_in, std::uint32_t const number_in,         \
                                  typename fcmn::to_value_type< DataFormat >::type const* values_in) {     \
-           fct::gl_vertex_attrib_##count_m ::call(location_in, values_in);                              \
-           fct::gl_disable_vertex_attrib_array::call(location_in);                                      \
+           fct::gl_vertex_attrib_##count_m < >::call(location_in, values_in);                              \
+           fct::gl_disable_vertex_attrib_array< >::call(location_in);                                      \
          }                                                                                              \
     };                                                                                                  \
     template< > template< >                                                                             \
@@ -54,15 +54,15 @@ namespace gtulu {
         inline static void bind(location_t const location_in,                                           \
                                 BOOST_PP_ENUM_PARAMS(count_m,                                           \
                                   typename fcmn::to_value_type< DataFormat >::type const value_in)) {     \
-           fct::gl_vertex_attrib_##count_m##_integer ::call(location_in,                                \
+           fct::gl_vertex_attrib_##count_m##_integer < >::call(location_in,                                \
                                                             BOOST_PP_ENUM_PARAMS(count_m, value_in));   \
-           fct::gl_disable_vertex_attrib_array::call(location_in);                                      \
+           fct::gl_disable_vertex_attrib_array< >::call(location_in);                                      \
          }                                                                                              \
          template< typename DataFormat >                                                                \
          inline static void bind(location_t const location_in, std::uint32_t const number_in,         \
                                  typename fcmn::to_value_type< DataFormat >::type const* values_in) {     \
-           fct::gl_vertex_attrib_##count_m##_integer ::call(location_in, values_in);                    \
-           fct::gl_disable_vertex_attrib_array::call(location_in);                                      \
+           fct::gl_vertex_attrib_##count_m##_integer < >::call(location_in, values_in);                    \
+           fct::gl_disable_vertex_attrib_array< >::call(location_in);                                      \
          }                                                                                              \
     };
 

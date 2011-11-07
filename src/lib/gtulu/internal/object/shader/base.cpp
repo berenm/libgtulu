@@ -16,11 +16,11 @@ namespace gtulu {
 
     namespace object {
       void shader_base::compile() {
-        fct::gl_compile_shader::call(handle_);
+        fct::gl_compile_shader< >::call(handle_);
       }
 
       void shader_base::set_source(char const* code) {
-        fct::gl_shader_source::call(handle_, 1, static_cast< GLchar const** >(&code), NULL);
+        fct::gl_shader_source< >::call(handle_, 1, static_cast< GLchar const** >(&code), NULL);
       }
     } // namespace object
 

@@ -16,19 +16,19 @@ namespace gtulu {
 
     namespace object {
       void program_base::link() {
-        fct::gl_link_program::call(handle_);
+        fct::gl_link_program< >::call(handle_);
       }
 
       void program_base::validate() {
-        fct::gl_validate_program::call(handle_);
+        fct::gl_validate_program< >::call(handle_);
       }
 
       void program_base::attach(obj::shader_base const& shader) {
-        fct::gl_attach_shader::call(handle_, *shader);
+        fct::gl_attach_shader< >::call(handle_, *shader);
       }
 
       void program_base::detach(obj::shader_base const& shader) {
-        fct::gl_detach_shader::call(handle_, *shader);
+        fct::gl_detach_shader< >::call(handle_, *shader);
       }
     } // namespace object
 

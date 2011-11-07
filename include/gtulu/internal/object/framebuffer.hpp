@@ -47,7 +47,7 @@ namespace gtulu {
         static std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
-          fct::gl_bind_framebuffer::call< TargetType >(handle_);
+          fct::gl_bind_framebuffer< TargetType >::call(handle_);
           bound_handle_ = handle_;
         }
       }
@@ -95,13 +95,13 @@ namespace gtulu {
                             std::uint32_t origin_x = 0,
                             std::uint32_t origin_y = 0,
                             std::uint32_t origin_z = 0) {
-            fct::gl_viewport::call(origin_x, origin_y, width, height);
-            fct::gl_depth_range::call(static_cast< float >(origin_z), static_cast< float >(depth));
+            fct::gl_viewport< >::call(origin_x, origin_y, width, height);
+            fct::gl_depth_range< >::call(static_cast< float >(origin_z), static_cast< float >(depth));
           }
 
           template< typename SlotType = fbf::slot::gl_draw_framebuffer >
           cst::gl_constant_base const get_status() {
-            return fbf::status::get(fct::gl_check_framebuffer_status::call< SlotType >());
+            return fbf::status::get(fct::gl_check_framebuffer_status< SlotType >::call());
           }
       };
 

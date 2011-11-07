@@ -32,7 +32,7 @@ namespace gtulu {
     struct cardinality_binder< fcmn::cardinality::cardinality_m > {                                     \
         template< typename DataFormat >                                                               \
         struct uniform_binder {                                                                       \
-          typedef fct::gl_uniform_##count_m gl_bind_function;                                         \
+          typedef fct::gl_uniform_##count_m< > gl_bind_function;                                         \
           inline static void bind(location_t const location_in,                                       \
             BOOST_PP_ENUM_PARAMS(count_m,                                                             \
                                  typename fcmn::to_value_type< DataFormat >::type const value_in)) {    \
@@ -57,7 +57,7 @@ namespace gtulu {
     struct cardinality_binder< fcmn::cardinality::cardinality_m > {                                     \
         template< typename DataFormat >                                                               \
         struct uniform_binder {                                                                       \
-          typedef fct::gl_uniform_matrix_##count_m gl_bind_function;                                  \
+          typedef fct::gl_uniform_matrix_##count_m< > gl_bind_function;                                  \
           inline static void bind(location_t const location_in, std::uint32_t const number_in,      \
                                   typename fcmn::to_value_type< DataFormat >::type const* values_in) {  \
             gl_bind_function::call(location_in, number_in, values_in);                                \

@@ -29,66 +29,66 @@ namespace gtulu {
 
       template< >
       object< texture_base >::object() {
-        fct::gl_gen_textures::call(1, &handle_);
+        fct::gl_gen_textures< >::call(1, &handle_);
       }
       template< >
       object< texture_base >::~object() {
-        fct::gl_delete_textures::call(1, &handle_);
+        fct::gl_delete_textures< >::call(1, &handle_);
       }
 
       template< >
       object< buffer_base >::object() {
-        fct::gl_gen_buffers::call(1, &handle_);
+        fct::gl_gen_buffers< >::call(1, &handle_);
       }
       template< >
       object< buffer_base >::~object() {
-        fct::gl_delete_buffers::call(1, &handle_);
+        fct::gl_delete_buffers< >::call(1, &handle_);
       }
 
       template< >
       object< renderbuffer_base >::object() {
-        fct::gl_gen_renderbuffers::call(1, &handle_);
+        fct::gl_gen_renderbuffers< >::call(1, &handle_);
       }
       template< >
       object< renderbuffer_base >::~object() {
-        fct::gl_delete_renderbuffers::call(1, &handle_);
+        fct::gl_delete_renderbuffers< >::call(1, &handle_);
       }
 
       template< >
       object< framebuffer_base >::object() {
-        fct::gl_gen_framebuffers::call(1, &handle_);
+        fct::gl_gen_framebuffers< >::call(1, &handle_);
       }
       template< >
       object< framebuffer_base >::~object() {
-        fct::gl_delete_framebuffers::call(1, &handle_);
+        fct::gl_delete_framebuffers< >::call(1, &handle_);
       }
 
       template< >
       object< vertexarray_base >::object() {
-        fct::gl_gen_vertex_arrays::call(1, &handle_);
+        fct::gl_gen_vertex_arrays< >::call(1, &handle_);
       }
       template< >
       object< vertexarray_base >::~object() {
-        fct::gl_delete_vertex_arrays::call(1, &handle_);
+        fct::gl_delete_vertex_arrays< >::call(1, &handle_);
       }
 
       template< >
       object< query_base >::object() {
-        fct::gl_gen_queries::call(1, &handle_);
+        fct::gl_gen_queries< >::call(1, &handle_);
       }
       template< >
       object< query_base >::~object() {
-        fct::gl_delete_queries::call(1, &handle_);
+        fct::gl_delete_queries< >::call(1, &handle_);
       }
 
       template< >
       object< program_base >::object() {
-        handle_ = fct::gl_create_program::call();
+        handle_ = fct::gl_create_program< >::call();
 
       }
       template< >
       object< program_base >::~object() {
-        fct::gl_delete_program::call(handle_);
+        fct::gl_delete_program< >::call(handle_);
       }
 
       template< >
@@ -96,7 +96,7 @@ namespace gtulu {
       }
       template< >
       object< shader_base >::~object() {
-        fct::gl_delete_shader::call(handle_);
+        fct::gl_delete_shader< >::call(handle_);
       }
     } // namespace object
 
