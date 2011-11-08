@@ -10,104 +10,103 @@
 
 #include "gtulu/namespaces.hpp"
 
-#include "gtulu/internal/object/buffer.hpp"
-#include "gtulu/internal/object/texture.hpp"
+#include "gtulu/internal/object/object_fwd.hpp"
+#include "gtulu/internal/object/buffer/slot.hpp"
+
 #include "gtulu/internal/storage/data/range.hpp"
 
 namespace gtulu {
   namespace internal {
 
     namespace storage {
-
       namespace detail {
 
-        template< typename SourceStore, typename TargetStore >
+        template< typename TargetStore, typename SourceStore >
         struct copy_binder {
-            typedef SourceStore source_store_t;
             typedef TargetStore target_store_t;
+            typedef SourceStore source_store_t;
 
-            static void bind(source_store_t const& source_store, target_store_t const& target_store) {
-            }
+            static void bind(target_store_t& target_store, source_store_t const& source_store);
         };
 
         /* Buffer to Host */
-        template< typename DataFormat, typename HostStore >
-        struct copy_binder< obj::buffer< DataFormat >, HostStore > {
-            typedef obj::buffer< DataFormat > source_store_t;
+        template< typename HostStore, typename DataFormat >
+        struct copy_binder< HostStore, obj::buffer< DataFormat > > {
             typedef HostStore target_store_t;
+            typedef obj::buffer< DataFormat > source_store_t;
 
-            static void bind(source_store_t const& source_store, target_store_t const& target_store) {
-              source_store.bind< buf::copy_read_buffer_slot >();
+            static void bind(target_store_t& target_store, source_store_t const& source_store) {
+              source_store.template bind< buf::copy_read_buffer_slot >();
             }
         };
 
         /* Host to Buffer */
-        template< typename HostStore, typename DataFormat >
-        struct copy_binder< HostStore, obj::buffer< DataFormat > > {
-            typedef HostStore source_store_t;
+        template< typename DataFormat, typename HostStore >
+        struct copy_binder< obj::buffer< DataFormat >, HostStore > {
             typedef obj::buffer< DataFormat > target_store_t;
+            typedef HostStore source_store_t;
 
-            static void bind(source_store_t const& source_store, target_store_t const& target_store) {
-              target_store.bind< buf::copy_write_buffer_slot >();
+            static void bind(target_store_t& target_store, source_store_t const& source_store) {
+              target_store.template bind< buf::copy_write_buffer_slot >();
             }
         };
 
         /* Buffer to Buffer */
-        template< typename SourceDataFormat, typename TargetDataFormat >
-        struct copy_binder< obj::buffer< SourceDataFormat >, obj::buffer< TargetDataFormat > > {
-            typedef obj::buffer< SourceDataFormat > source_store_t;
+        template< typename TargetDataFormat, typename SourceDataFormat >
+        struct copy_binder< obj::buffer< TargetDataFormat >, obj::buffer< SourceDataFormat > > {
             typedef obj::buffer< TargetDataFormat > target_store_t;
+            typedef obj::buffer< SourceDataFormat > source_store_t;
 
-            static void bind(source_store_t const& source_store, target_store_t const& target_store) {
-              source_store.bind< buf::copy_read_buffer_slot >();
-              target_store.bind< buf::copy_write_buffer_slot >();
+            static void bind(target_store_t& target_store, source_store_t const& source_store) {
+              source_store.template bind< buf::copy_read_buffer_slot >();
+              target_store.template bind< buf::copy_write_buffer_slot >();
             }
         };
 
         /* Texture to Host */
-        template< typename TextureFormat, typename HostStore >
-        struct copy_binder< obj::texture< TextureFormat >, HostStore > {
-            typedef obj::texture< TextureFormat > source_store_t;
+        template< typename HostStore, typename TextureFormat >
+        struct copy_binder< HostStore, obj::texture< TextureFormat > > {
             typedef HostStore target_store_t;
+            typedef obj::texture< TextureFormat > source_store_t;
 
-            static void bind(source_store_t const& source_store, target_store_t const& target_store) {
+            static void bind(target_store_t& target_store, source_store_t const& source_store) {
               source_store.bind();
               buf::pixel_pack_buffer_slot::clear();
             }
         };
 
         /* Host to Texture */
-        template< typename HostStore, typename TextureFormat >
-        struct copy_binder< HostStore, obj::texture< TextureFormat > > {
-            typedef HostStore source_store_t;
+        template< typename TextureFormat, typename HostStore >
+        struct copy_binder< obj::texture< TextureFormat >, HostStore > {
             typedef obj::texture< TextureFormat > target_store_t;
+            typedef HostStore source_store_t;
 
-            static void bind(source_store_t const& source_store, target_store_t const& target_store) {
+            static void bind(target_store_t& target_store, source_store_t const& source_store) {
               buf::pixel_unpack_buffer_slot::clear();
               target_store.bind();
             }
         };
 
         /* Texture to Buffer */
-        template< typename TextureFormat, typename DataFormat >
-        struct copy_binder< obj::texture< TextureFormat >, obj::buffer< DataFormat > > {
-            typedef obj::texture< TextureFormat > source_store_t;
+        template< typename DataFormat, typename TextureFormat >
+        struct copy_binder< obj::buffer< DataFormat >, obj::texture< TextureFormat > > {
             typedef obj::buffer< DataFormat > target_store_t;
+            typedef obj::texture< TextureFormat > source_store_t;
 
-            static void bind(source_store_t const& source_store, target_store_t const& target_store) {
+            static void bind(target_store_t& target_store, source_store_t const& source_store) {
               source_store.bind();
-              target_store.bind< buf::pixel_pack_buffer_slot >();
+              target_store.template bind< buf::pixel_pack_buffer_slot >();
             }
         };
 
         /* Buffer to Texture */
-        template< typename DataFormat, typename TextureFormat >
-        struct copy_binder< obj::buffer< DataFormat >, obj::texture< TextureFormat > > {
-            typedef obj::buffer< DataFormat > source_store_t;
+        template< typename TextureFormat, typename DataFormat >
+        struct copy_binder< obj::texture< TextureFormat >, obj::buffer< DataFormat > > {
             typedef obj::texture< TextureFormat > target_store_t;
+            typedef obj::buffer< DataFormat > source_store_t;
 
-            static void bind(source_store_t const& source_store, target_store_t const& target_store) {
-              source_store.bind< buf::pixel_unpack_buffer_slot >();
+            static void bind(target_store_t& target_store, source_store_t const& source_store) {
+              source_store.template bind< buf::pixel_unpack_buffer_slot >();
               target_store.bind();
             }
         };
@@ -115,69 +114,69 @@ namespace gtulu {
         /* -- Ranges ------------------------------------------------------------------------------------------------ */
 
         /* Source range to Target */
-        template< typename SourceStore, typename TargetStore >
-        struct copy_binder< data::range< SourceStore >, TargetStore > {
-            typedef data::range< SourceStore > source_store_t;
+        template< typename TargetStore, typename SourceStore >
+        struct copy_binder< TargetStore, data::range< SourceStore > > {
             typedef TargetStore target_store_t;
+            typedef data::range< SourceStore > source_store_t;
 
-            static void bind(source_store_t const& source_store, target_store_t const& target_store) {
-              copy_binder< SourceStore, TargetStore >::bind(source_store.store(), target_store);
+            static void bind(target_store_t& target_store, source_store_t const& source_store) {
+              copy_binder< TargetStore, SourceStore >::bind(source_store.store(), target_store);
             }
         };
 
         /* Source to Target range */
-        template< typename SourceStore, typename TargetStore >
-        struct copy_binder< SourceStore, data::range< TargetStore > > {
-            typedef SourceStore source_store_t;
+        template< typename TargetStore, typename SourceStore >
+        struct copy_binder< data::range< TargetStore >, SourceStore > {
             typedef data::range< TargetStore > target_store_t;
+            typedef SourceStore source_store_t;
 
-            static void bind(source_store_t const& source_store, target_store_t const& target_store) {
-              copy_binder< SourceStore, TargetStore >::bind(source_store, target_store.store());
+            static void bind(target_store_t& target_store, source_store_t const& source_store) {
+              copy_binder< TargetStore, SourceStore >::bind(source_store, target_store.store());
             }
         };
 
         /* Source range to Target range */
-        template< typename SourceStore, typename TargetStore >
-        struct copy_binder< data::range< SourceStore >, data::range< TargetStore > > {
-            typedef data::range< SourceStore > source_store_t;
+        template< typename TargetStore, typename SourceStore >
+        struct copy_binder< data::range< TargetStore >, data::range< SourceStore > > {
             typedef data::range< TargetStore > target_store_t;
+            typedef data::range< SourceStore > source_store_t;
 
-            static void bind(source_store_t const& source_store, target_store_t const& target_store) {
-              copy_binder< SourceStore, TargetStore >::bind(source_store.store(), target_store.store());
+            static void bind(target_store_t& target_store, source_store_t const& source_store) {
+              copy_binder< TargetStore, SourceStore >::bind(source_store.store(), target_store.store());
             }
         };
 
 //        /* Framebuffer to Host */
-//        template< typename ColorBufferFormat, typename HostStore >
-//        struct copy_binder< obj::color_buffer< ColorBufferFormat >, HostStore > {
-//            typedef obj::color_buffer< ColorBufferFormat > source_store_t;
+//        template< typename HostStore, typename ColorBufferFormat>
+//        struct copy_binder< HostStore, obj::color_buffer< ColorBufferFormat >> {
 //            typedef HostStore target_store_t;
+//            typedef obj::color_buffer< ColorBufferFormat > source_store_t;
 //
-//            static void bind(source_store_t const& source_store, target_store_t const& target_store) {
+//            static void bind(target_store_t& target_store, source_store_t const& source_store) {
 //              //              source_store.bind();
 //              buf::pixel_pack_buffer_slot::clear();
 //            }
 //        };
 //
 //        /* Framebuffer to Buffer */
-//        template< typename ColorBufferFormat, typename DataFormat >
-//        struct copy_binder< obj::color_buffer< ColorBufferFormat >, obj::buffer< DataFormat > > {
-//            typedef obj::color_buffer< ColorBufferFormat > source_store_t;
+//        template< typename DataFormat, typename ColorBufferFormat>
+//        struct copy_binder< obj::buffer< DataFormat >, obj::color_buffer< ColorBufferFormat >> {
 //            typedef obj::buffer< DataFormat > target_store_t;
+//            typedef obj::color_buffer< ColorBufferFormat > source_store_t;
 //
-//            static void bind(source_store_t const& source_store, target_store_t const& target_store) {
+//            static void bind(target_store_t& target_store, source_store_t const& source_store) {
 //              //              source_store.bind();
 //              target_store.bind< buf::pixel_pack_buffer_slot >();
 //            }
 //        };
 //
 //        /* Framebuffer to Texture */
-//        template< typename ColorBufferFormat, typename TextureFormat >
-//        struct copy_binder< obj::color_buffer< ColorBufferFormat >, obj::texture< TextureFormat > > {
-//            typedef obj::color_buffer< ColorBufferFormat > source_store_t;
+//        template< typename TextureFormat, typename ColorBufferFormat>
+//        struct copy_binder< obj::texture< TextureFormat >, obj::color_buffer< ColorBufferFormat >> {
 //            typedef obj::texture< TextureFormat > target_store_t;
+//            typedef obj::color_buffer< ColorBufferFormat > source_store_t;
 //
-//            static void bind(source_store_t const& source_store, target_store_t const& target_store) {
+//            static void bind(target_store_t& target_store, source_store_t const& source_store) {
 //              //              source_store.bind();
 //              buf::pixel_pack_buffer_slot::clear();
 //            }

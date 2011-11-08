@@ -20,7 +20,9 @@
 #include "gtulu/internal/format/conversion/common.hpp"
 
 #include "gtulu/internal/object/texture/base.hpp"
-#include "gtulu/internal/object/texture/loader.hpp"
+
+#include "gtulu/internal/storage.hpp"
+#include "gtulu/internal/storage/data/empty.hpp"
 
 #include <boost/shared_ptr.hpp>
 
@@ -60,32 +62,18 @@ namespace gtulu {
             bind();
           }
 
-          inline void bind() const {
-            tex::texture_slot< typename TextureFormat::target_format >::bind(*this);
+          texture(std::size_t const width, std::size_t const height = 1, std::size_t const depth = 1) :
+              object< buffer_base >() {
+            resize(width, height, depth);
+          }
+          template< typename SourceStore >
+          texture(SourceStore const& source_store) :
+              object< buffer_base >() {
+            sto::init(*this, source_store);
           }
 
-          inline void unbind() const {
-            tex::texture_slot< typename TextureFormat::target_format >::unbind(*this);
-          }
-
-          template< typename Data >
-          inline void load(Data const& data_in, std::uint32_t const level = 0, std::uint8_t const border = 0) {
-            bind();
-            tex::texture_loader< TextureFormat >::load(data_in, level, border);
-            compute_mipmaps();
-          }
-
-          template< typename Data >
-          inline void load(Data const& data_in, sto::data::offset const& offset_in, std::uint32_t const level = 0) {
-            bind();
-            tex::texture_loader< TextureFormat >::load(data_in, offset_in, level);
-            compute_mipmaps();
-          }
-
-          template< typename Data >
-          inline void save(Data& data_out, std::uint32_t const mipmap = 0) {
-            bind();
-            tex::texture_loader< TextureFormat >::save(data_out, mipmap);
+          void resize(std::size_t const width, std::size_t const height = 1, std::size_t const depth = 1) {
+            sto::init(*this, sto::data::empty< typename TextureFormat::data_format >(width, height, depth));
           }
 
           template< typename MinFilter >
@@ -96,6 +84,14 @@ namespace gtulu {
           inline void compute_mipmaps() {
             bind();
             fct::gl_generate_mipmap< typename TextureFormat::target_format::aspect::format >::call();
+          }
+
+          inline void bind() const {
+            tex::texture_slot< typename TextureFormat::target_format >::bind(*this);
+          }
+
+          inline void unbind() const {
+            tex::texture_slot< typename TextureFormat::target_format >::unbind(*this);
           }
       };
 

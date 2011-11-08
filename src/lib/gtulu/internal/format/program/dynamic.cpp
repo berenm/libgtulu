@@ -73,7 +73,7 @@ namespace gtulu {
 
                 real_info.size = 1;
                 real_info.location = fct::gl_get_frag_data_location< >::call(program_base::handle_,
-                                                                          real_info.name.c_str());
+                                                                             real_info.name.c_str());
                 real_info.index = fct::gl_get_frag_data_index< >::call(program_base::handle_, real_info.name.c_str());
 
                 if (real_info.location >= 0) {
@@ -208,9 +208,9 @@ namespace gtulu {
             buffer[0] = 0;
 
             fct::gl_get_program_info_log< >::call(program_base::handle_,
-                                               length,
-                                               reinterpret_cast< std::int32_t* >(&length),
-                                               buffer);
+                                                  length,
+                                                  reinterpret_cast< std::int32_t* >(&length),
+                                                  buffer);
 
             link_log_ = std::string(buffer);
 
@@ -250,9 +250,9 @@ namespace gtulu {
             buffer[0] = 0;
 
             fct::gl_get_program_info_log< >::call(program_base::handle_,
-                                               length,
-                                               reinterpret_cast< std::int32_t* >(&length),
-                                               buffer);
+                                                  length,
+                                                  reinterpret_cast< std::int32_t* >(&length),
+                                                  buffer);
 
             validation_log_ = std::string(buffer);
 

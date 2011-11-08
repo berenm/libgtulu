@@ -33,14 +33,13 @@ namespace gtulu {
 
         template< typename Component = fcmn::component::red_green_blue_alpha,
             typename Numeric = fcmn::numeric::ufixed8_, typename Compression = fcmn::compression::none >
-        class select_format {
+        struct select_format {
 //            typedef typename fint::to_group_type< Type >::type group_type;
 //            typedef typename fint::to_data_type< Type >::type data_type;
 //            typedef typename fint::to_data_packing< Base >::packing data_packing;
 
             typedef typename fint::select_format< Component, Numeric, Compression >::type internal_format;
 
-          public:
             typedef renderbuffer_format< ftgt::gl_renderbuffer, internal_format > type;
         };
       } // namespace renderbuffer

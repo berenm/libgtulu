@@ -10,103 +10,100 @@
 
 #include "gtulu/namespaces.hpp"
 
-#include "gtulu/internal/object/buffer.hpp"
+#include "gtulu/internal/object/object_fwd.hpp"
 #include "gtulu/internal/storage/bind.hpp"
 #include "gtulu/internal/storage/data/empty.hpp"
 #include "gtulu/internal/storage/data/traits.hpp"
+#include "gtulu/internal/storage/helper/texture.hpp"
 
 namespace gtulu {
   namespace internal {
 
     namespace storage {
-
       namespace detail {
 
-        template< typename SourceStore, typename TargetStore >
+        template< typename TargetStore, typename SourceStore >
         struct initializer {
-            typedef SourceStore source_store_t;
             typedef TargetStore target_store_t;
+            typedef SourceStore source_store_t;
 
-            static void init(source_store_t const& source_store, target_store_t const& target_store);
+            template< typename InitParameter = void >
+            static void init(target_store_t& target_store, source_store_t const& source_store);
         };
 
         /* Host to Buffer */
-        template< typename HostStore, typename DataFormat >
-        struct initializer< HostStore, obj::buffer< DataFormat > > {
-            typedef HostStore source_store_t;
+        template< typename DataFormat, typename HostStore >
+        struct initializer< obj::buffer< DataFormat >, HostStore > {
             typedef obj::buffer< DataFormat > target_store_t;
+            typedef HostStore source_store_t;
 
-            template< typename InitParameter >
-            static void init(source_store_t const& source_store, target_store_t const& target_store) {
-              copy_binder< source_store_t, target_store_t >::bind(source_store, target_store);
-              fct::gl_buffer_data< InitParameter >::call(data::data_traits< source_store_t >::size(source_store),
-                                                         data::data_traits< source_store_t >::read(source_store));
+            typedef data::data_traits< target_store_t > target_traits_t;
+            typedef data::data_traits< source_store_t > source_traits_t;
+
+            template< typename InitParameter = void >
+            static void init(target_store_t& target_store, source_store_t const& source_store) {
+              copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
+              fct::gl_buffer_data< buf::slot::gl_copy_write_buffer, InitParameter >::call(source_traits_t::size(source_store),
+                                                                                          source_traits_t::read(source_store));
             }
         };
 
         /* Host to Texture */
-        template< typename HostStore, typename TextureFormat >
-        struct initializer< HostStore, obj::texture< TextureFormat > > {
-            typedef HostStore source_store_t;
+        template< typename TextureFormat, typename HostStore >
+        struct initializer< obj::texture< TextureFormat >, HostStore > {
             typedef obj::texture< TextureFormat > target_store_t;
+            typedef HostStore source_store_t;
 
-            template< typename InitParameter >
-            static void init(source_store_t const& source_store, target_store_t const& target_store) {
-              copy_binder< source_store_t, target_store_t >::bind(source_store, target_store);
+            typedef data::data_traits< target_store_t > target_traits_t;
+            typedef data::data_traits< source_store_t > source_traits_t;
+
+            template< typename InitParameter = void >
+            static void init(target_store_t& target_store, source_store_t const& source_store) {
+              copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
+              detail::texture::init(target_store, source_store);
             }
         };
 
         /* Buffer to Texture */
-        template< typename DataFormat, typename TextureFormat >
-        struct initializer< obj::buffer< DataFormat >, obj::texture< TextureFormat > > {
-            typedef obj::buffer< DataFormat > source_store_t;
+        template< typename TextureFormat, typename DataFormat >
+        struct initializer< obj::texture< TextureFormat >, obj::buffer< DataFormat > > {
             typedef obj::texture< TextureFormat > target_store_t;
+            typedef obj::buffer< DataFormat > source_store_t;
 
-            template< typename InitParameter >
-            static void init(source_store_t const& source_store, target_store_t const& target_store) {
-              copy_binder< source_store_t, target_store_t >::bind(source_store, target_store);
+            typedef data::data_traits< target_store_t > target_traits_t;
+            typedef data::data_traits< source_store_t > source_traits_t;
+
+            template< typename InitParameter = void >
+            static void init(target_store_t& target_store, source_store_t const& source_store) {
+              copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
+              detail::texture::init(target_store, source_store);
             }
         };
 
         /* Buffer range to Texture */
-        template< typename DataFormat, typename TextureFormat >
-        struct initializer< data::range< obj::buffer< DataFormat > >, obj::texture< TextureFormat > > {
-            typedef data::range< obj::buffer< DataFormat > > source_store_t;
+        template< typename TextureFormat, typename DataFormat >
+        struct initializer< obj::texture< TextureFormat >, data::range< obj::buffer< DataFormat > > > {
             typedef obj::texture< TextureFormat > target_store_t;
+            typedef data::range< obj::buffer< DataFormat > > source_store_t;
 
-            template< typename InitParameter >
-            static void init(source_store_t const& source_store, target_store_t const& target_store) {
-              copy_binder< source_store_t, target_store_t >::bind(source_store, target_store);
+            typedef data::data_traits< target_store_t > target_traits_t;
+            typedef data::data_traits< source_store_t > source_traits_t;
+
+            template< typename InitParameter = void >
+            static void init(target_store_t& target_store, source_store_t const& source_store) {
+              copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
+              detail::texture::init(target_store, source_store);
             }
         };
 
-//        template< typename Store, typename DataType >
-//        struct initializer {
-//            static void init(Store& store, DataType const& init_data);
-//        };
-//
-//        template< typename DataFormat, typename BufferUsage, typename DataType >
-//        struct initializer< obj::buffer< DataFormat, BufferUsage >, DataType > {
-//            typedef obj::buffer< DataFormat, BufferUsage > store_t;
-//            typedef DataType data_type_t;
-//            typedef data::data_traits< DataType > data_traits;
-//
-//            template< typename TemporarySlotType = buf::copy_write_buffer_slot >
-//            static void init(store_t& store, data_type_t const& init_data) {
-//              store.bind< TemporarySlotType >();
-//              fct::gl_buffer_data< TemporarySlotType, BufferUsage >::call(data_traits::size(init_data),
-//                                                                          data_traits::read(init_data));
-//            }
-//        };
+      } // namespace detail
 
-      }// namespace detail
+      template< typename InitParameter = void, typename TargetStore, typename SourceStore >
+      void init(TargetStore& target_store, SourceStore const& source_store) {
+        detail::initializer< TargetStore, SourceStore >::template init< InitParameter >(target_store, source_store);
+      }
 
-//      template< typename Store, typename DataType >
-//      void init(Store& store, DataType const& init_data) {
-//        detail::initializer< Store, DataType >::init(store, init_data);
-//      }
-
-    }// namespace storage
+    } // namespace storage
 
   } // namespace internal
 } // namespace gtulu

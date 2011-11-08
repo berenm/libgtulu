@@ -50,7 +50,7 @@ namespace gtulu {
         template< typename TargetFormat, typename Component = fcmn::component::red_green_blue_alpha,
             typename Numeric = fcmn::numeric::ufixed8_, typename Compression = fcmn::compression::none,
             typename Order = fcmn::order::forward >
-        class select_format {
+        struct select_format {
             typedef typename fgrp::get_ideal_internal_component< Component >::type ideal_internal_component;
             typedef typename fint::select_format< ideal_internal_component, Numeric, Compression >::type internal_format;
 
@@ -62,7 +62,6 @@ namespace gtulu {
             typedef typename fint::get_ideal_group_integral< typename fnum::get_integral< Numeric >::type >::type ideal_group_integral;
             typedef typename fgrp::select_format< Component, ideal_group_integral, Order >::type group_format;
 
-          public:
             typedef texture_format< TargetFormat, internal_format, group_format, data_format > type;
         };
 

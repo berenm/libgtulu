@@ -8,6 +8,8 @@
 #ifndef GTULU_INTERNAL_STORAGE_DATA_RANGE_HPP_
 #define GTULU_INTERNAL_STORAGE_DATA_RANGE_HPP_
 
+#include "gtulu/internal/storage/data/traits.hpp"
+
 namespace gtulu {
   namespace internal {
 

@@ -18,6 +18,7 @@
 #include "generated/print_image_program_format.hpp"
 
 #include "gtulu/internal/storage/data/traits.hpp"
+#include "gtulu/internal/storage.hpp"
 
 int main(int argc, char *argv[]) {
   using namespace gtulu::internal;
@@ -25,12 +26,14 @@ int main(int argc, char *argv[]) {
 
   ctx::context::create(argc, argv);
 
-  float postisions_data[] = { -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f };
-  float texture_positions_data[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f };
-  std::uint8_t indexes_data[] = { 0, 1, 2, 3 };
-  obj::buffer< fdat::gl_float > positions(postisions_data);
+  float const positions_data[] = { -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f };
+  float const texture_positions_data[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f };
+  std::uint8_t const indexes_data[] = { 0, 1, 2, 3 };
+
+  obj::buffer< fdat::gl_float > positions(positions_data);
   obj::buffer< fdat::gl_float > texture_positions(texture_positions_data);
   obj::buffer< fdat::gl_unsigned_byte > indexes(indexes_data);
+
   obj::program< fprg::print_image_program_format > program;
 
   auto framebuffer = program.new_framebuffer();
@@ -58,11 +61,11 @@ int main(int argc, char *argv[]) {
 
   __gtulu_info() << "initializing output image...";
   output_image.recreate(image.width() / 4, image.height() / 4);
+  output_texture.resize(image.width() / 4, image.height() / 4);
   __gtulu_info() << "initialized output image.";
 
   __gtulu_info() << "loading images to GPU...";
-  texture.load(image);
-  output_texture.load(output_image);
+  sto::init(texture, image);
   __gtulu_info() << "loaded images to GPU.";
 
   __gtulu_info() << "resizing images on GPU...";
@@ -75,7 +78,7 @@ int main(int argc, char *argv[]) {
   __gtulu_info() << "resized images on GPU.";
 
   __gtulu_info() << "reading output image from GPU...";
-  output_texture.save(output_image);
+  sto::copy(output_image, output_texture);
   __gtulu_info() << "read output image from GPU.";
 
   __gtulu_info() << "writing png output image to disk...";
@@ -90,11 +93,12 @@ int main(int argc, char *argv[]) {
 
   __gtulu_info() << "initializing output image...";
   output_image.recreate(image.width() / 4, image.height() / 4);
+  output_texture.resize(image.width() / 4, image.height() / 4);
   __gtulu_info() << "initialized output image.";
 
   __gtulu_info() << "loading images to GPU...";
-  texture.load(image);
-  output_texture.load(output_image);
+  texture.resize(image.width(), image.height());
+  sto::copy(texture, image);
   __gtulu_info() << "loaded images to GPU.";
 
   __gtulu_info() << "resizing images on GPU...";
@@ -107,7 +111,7 @@ int main(int argc, char *argv[]) {
   __gtulu_info() << "resized images on GPU.";
 
   __gtulu_info() << "reading output image from GPU...";
-  output_texture.save(output_image);
+  sto::copy(output_image, output_texture);
   __gtulu_info() << "read output image from GPU.";
 
   __gtulu_info() << "writing jpg output image to disk...";

@@ -22,16 +22,16 @@ namespace gtulu {
                 width_(width_in), height_(height_in), depth_(depth_in) {
             }
 
-            void* write() {
+            void* write() const {
               return 0;
             }
-            void const* read() {
+            void const* read() const {
               return 0;
             }
-            std::size_t value_size() {
+            std::size_t value_size() const {
               return fcmn::size_of< DataFormat >::value;
             }
-            std::size_t size() {
+            std::size_t size() const {
               return 0;
             }
 
