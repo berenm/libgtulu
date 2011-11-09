@@ -10,8 +10,11 @@
 
 #include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
+
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
+
+#include "meta/type_traits.hpp"
 
 namespace gtulu {
   namespace internal {

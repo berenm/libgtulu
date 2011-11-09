@@ -51,6 +51,9 @@ namespace gtulu {
 
       class program_base: public plug< program_base > {
         public:
+          virtual void ~program_base() {
+          }
+
           void attach(obj::shader_base const& shader);
           void detach(obj::shader_base const& shader);
 
@@ -68,7 +71,7 @@ namespace gtulu {
           template< typename ProgramAttribute >
           inline std::uint32_t get() const {
             std::int32_t data;
-            fct::gl_get_program < ProgramAttribute > ::call(handle_, &data);
+            fct::gl_get_program< ProgramAttribute >::call(handle_, &data);
             return data;
           }
 

@@ -6,6 +6,7 @@
 *.[oa]
 *.pyc
 *~
+*.log
 
 # ignore hidden files
 .*
@@ -15,9 +16,12 @@
 !.cproject
 !.project
 !.dep.inc
+
 bin
 dist
 doc/html
+doc/web
+doc/wiki
 
 fhs.jam
 build-config.jam

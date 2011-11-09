@@ -22,12 +22,14 @@ namespace gtulu {
     namespace object {
       class shader_base: public plug< shader_base > {
         public:
+          virtual void ~shader_base();
+
           virtual void compile();
 
           template< typename ShaderAttribute >
           inline std::uint32_t get() const {
             std::int32_t data;
-            fct::gl_get_shader < ShaderAttribute > ::call(handle_, &data);
+            fct::gl_get_shader< ShaderAttribute >::call(handle_, &data);
             return data;
           }
           void set();
@@ -38,7 +40,7 @@ namespace gtulu {
           template< typename ShaderType >
           void create_shader() {
             if (handle_ == 0) {
-              handle_ = fct::gl_create_shader < ShaderType > ::call();
+              handle_ = fct::gl_create_shader< ShaderType >::call();
             }
           }
       };
