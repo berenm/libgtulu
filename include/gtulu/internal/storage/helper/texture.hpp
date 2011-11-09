@@ -12,7 +12,7 @@
 #include "gtulu/opengl.hpp"
 
 #include "gtulu/internal/object/object_fwd.hpp"
-#include "gtulu/internal/storage/data/offset.hpp"
+#include "gtulu/internal/storage/data/range.hpp"
 #include "gtulu/internal/storage/data/traits.hpp"
 
 namespace gtulu {
@@ -304,7 +304,7 @@ namespace gtulu {
 
           template< typename TargetStore, typename TextureFormat >
           static void copy(TargetStore& target_store,
-                           obj::texture< TextureFormat > const& soruce_store,
+                           obj::texture< TextureFormat > const& source_store,
                            std::uint32_t const mipmap = 0) {
             /* TODO: should we do mimap generation here? */
 
