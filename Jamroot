@@ -54,6 +54,8 @@ project libgtulu : requirements
   <cflags>-std=c++0x
   <cflags>-Wno-multichar
   <cflags>-DGTULU_USE_LIBLOGGING
+  <cflags>"`pkg-config --cflags pangocairo`"
+  <linkflags>"`pkg-config --libs pangocairo`"
   : default-build debug ;
 
 
@@ -91,11 +93,13 @@ unit-test test1exe : test/test1.cpp test1 common gtulu gtulu_opengl_pch.hpp : <l
 unit-test test2exe : test/test2.cpp test2 common gtulu gtulu_opengl_pch.hpp : <link>shared ;
 unit-test test3exe : test/test3.cpp test3 common gtulu gtulu_opengl_pch.hpp : <link>shared ;
 unit-test print_imageexe : test/print_image.cpp print_image common gtulu gtulu_opengl_pch.hpp jpeg png : <link>shared ;
+unit-test pango_test : test/pango_test.cpp print_image common gtulu gtulu_opengl_pch.hpp png : <link>shared ;
 
 alias test : test1exe/<link>shared
              test2exe/<link>shared
              test3exe/<link>shared
-             print_imageexe/<link>shared ;
+             print_imageexe/<link>shared
+             pango_test/<link>shared ;
 
 multiarch.build build libgtulu
                 : gtulu-compiler
