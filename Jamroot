@@ -54,6 +54,7 @@ project libgtulu : requirements
   <cflags>-std=c++0x
   <cflags>-Wno-multichar
   <cflags>-DGTULU_USE_LIBLOGGING
+  <cflags>-fpch-preprocess
   <cflags>"`pkg-config --cflags pangocairo`"
   <linkflags>"`pkg-config --libs pangocairo`"
   : default-build debug ;
