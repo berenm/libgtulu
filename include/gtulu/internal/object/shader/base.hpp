@@ -22,7 +22,8 @@ namespace gtulu {
     namespace object {
       class shader_base: public plug< shader_base > {
         public:
-          virtual void ~shader_base();
+          virtual ~shader_base() {
+          }
 
           virtual void compile();
 

@@ -51,7 +51,7 @@ namespace gtulu {
 
       class program_base: public plug< program_base > {
         public:
-          virtual void ~program_base() {
+          virtual ~program_base() {
           }
 
           void attach(obj::shader_base const& shader);

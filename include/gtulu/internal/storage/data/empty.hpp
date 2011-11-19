@@ -22,10 +22,10 @@ namespace gtulu {
                 width_(width_in), height_(height_in), depth_(depth_in) {
             }
 
-            void* write() const {
+            uint8_t* write() const {
               return 0;
             }
-            void const* read() const {
+            uint8_t const* read() const {
               return 0;
             }
             std::size_t value_size() const {

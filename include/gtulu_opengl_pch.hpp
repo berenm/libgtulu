@@ -10,6 +10,14 @@
 #include "gtulu/namespaces.hpp"
 #include "gtulu/opengl.hpp"
 
+#include <boost/gil/extension/io_new/png_all.hpp>
+#include <boost/gil/extension/io_new/targa_all.hpp>
+#include <boost/gil/extension/io_new/bmp_all.hpp>
+#include <boost/gil/extension/io_new/jpeg_all.hpp>
+#include <boost/gil/extension/io_new/pnm_all.hpp>
+#include <boost/gil/extension/io_new/tiff_all.hpp>
+#include <boost/gil/gil_all.hpp>
+
 #include <type_traits>
 
 #include <boost/config.hpp>
@@ -21,6 +29,7 @@
 #include <boost/thread.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/regex.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include <boost/mpl/bool.hpp>
 #include <boost/mpl/if.hpp>
@@ -30,18 +39,5 @@
 #include <boost/mpl/same_as.hpp>
 
 #include "meta/type_traits.hpp"
-
-#include "gtulu/internal/format/common.hpp"
-#include "gtulu/internal/format/attribute.hpp"
-#include "gtulu/internal/format/data.hpp"
-#include "gtulu/internal/format/group.hpp"
-#include "gtulu/internal/format/internal.hpp"
-#include "gtulu/internal/format/output.hpp"
-#include "gtulu/internal/format/program.hpp"
-#include "gtulu/internal/format/renderbuffer.hpp"
-#include "gtulu/internal/format/shader.hpp"
-#include "gtulu/internal/format/target.hpp"
-#include "gtulu/internal/format/texture.hpp"
-#include "gtulu/internal/format/uniform.hpp"
 
 #endif /*  BOOST_BUILD_PCH_ENABLED */

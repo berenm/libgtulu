@@ -14,6 +14,11 @@
 #include <string>
 #include <cstdint>
 
+#include <cairo/cairo.h>
+#include <pango/pango.h>
+#include <pango/pango-layout.h>
+#include <pango/pangocairo.h>
+
 #define GL3_PROTOTYPES 1
 #include <GL3/gl3.h>
 

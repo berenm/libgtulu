@@ -62,18 +62,19 @@ namespace gtulu {
             bind();
           }
 
-          texture(std::size_t const width, std::size_t const height = 1, std::size_t const depth = 1) :
-              object< buffer_base >() {
+          texture(std::size_t const width, std::size_t const height = 1, std::size_t const depth = 1) {
             resize(width, height, depth);
           }
           template< typename SourceStore >
-          texture(SourceStore const& source_store) :
-              object< buffer_base >() {
+          texture(SourceStore const& source_store) {
             sto::init(*this, source_store);
           }
 
           void resize(std::size_t const width, std::size_t const height = 1, std::size_t const depth = 1) {
             sto::init(*this, sto::data::empty< typename TextureFormat::data_format >(width, height, depth));
+            width_ = width;
+            height_ = height;
+            depth_ = depth;
           }
 
           template< typename MinFilter >
@@ -93,6 +94,21 @@ namespace gtulu {
           inline void unbind() const {
             tex::texture_slot< typename TextureFormat::target_format >::unbind(*this);
           }
+
+          std::size_t width() const {
+            return width_;
+          }
+          std::size_t height() const {
+            return height_;
+          }
+          std::size_t depth() const {
+            return depth_;
+          }
+
+        private:
+          std::size_t width_;
+          std::size_t height_;
+          std::size_t depth_;
       };
 
     } // namespace object

@@ -20,34 +20,71 @@ namespace gtulu {
         struct data_traits {
             typedef DataType data_type_t;
 
-            static auto write(data_type_t& data_in) -> decltype(data_in.write()) {
+            static uint8_t* write(data_type_t& data_in) {
               return data_in.write();
             }
 
-            static auto read(data_type_t const& data_in) -> decltype(data_in.read()) {
+            static uint8_t const* read(data_type_t const& data_in) {
               return data_in.read();
             }
 
-            static auto size(data_type_t const& data_in) -> decltype(data_in.size()) {
+            static std::size_t size(data_type_t const& data_in) {
               return data_in.size();
             }
 
-            static auto value_size(data_type_t const& data_in) -> decltype(data_in.value_size()) {
+            static std::size_t value_size(data_type_t const& data_in) {
               return data_in.value_size();
             }
 
-            static auto width(data_type_t const& data_in) -> decltype(data_in.width()) {
+            static std::size_t width(data_type_t const& data_in) {
               return data_in.width();
             }
 
-            static auto height(data_type_t const& data_in) -> decltype(data_in.height()) {
+            static std::size_t height(data_type_t const& data_in) {
               return data_in.height();
             }
 
-            static auto depth(data_type_t const& data_in) -> decltype(data_in.depth()) {
+            static std::size_t depth(data_type_t const& data_in) {
               return data_in.depth();
             }
         };
+
+        namespace traits {
+          template< typename StoreType >
+          static uint8_t* write(StoreType& store) {
+            return data_traits< StoreType >::write(store);
+          }
+
+          template< typename StoreType >
+          static uint8_t const* read(StoreType const& store) {
+            return data_traits< StoreType >::read(store);
+          }
+
+          template< typename StoreType >
+          static std::size_t size(StoreType const& store) {
+            return data_traits< StoreType >::size(store);
+          }
+
+          template< typename StoreType >
+          static std::size_t value_size(StoreType const& store) {
+            return data_traits< StoreType >::value_size(store);
+          }
+
+          template< typename StoreType >
+          static std::size_t width(StoreType const& store) {
+            return data_traits< StoreType >::width(store);
+          }
+
+          template< typename StoreType >
+          static std::size_t height(StoreType const& store) {
+            return data_traits< StoreType >::height(store);
+          }
+
+          template< typename StoreType >
+          static std::size_t depth(StoreType const& store) {
+            return data_traits< StoreType >::depth(store);
+          }
+        } // namespace traits
 
       } // namespace data
     } // namespace storage

@@ -36,6 +36,7 @@
 									<listOptionValue builtIn="false" value="/usr/include"/>
 									<listOptionValue builtIn="false" value="/home/remi/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libgtulu/libgtulu/include}&quot;"/>
+									<listOptionValue builtIn="false" value="/usr/include/pango-1.0"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1598571563" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -46,6 +47,7 @@
 									<listOptionValue builtIn="false" value="/home/remi/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libgtulu/libgtulu/include}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/pango-1.0"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.214052402" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -63,6 +65,7 @@
 									<listOptionValue builtIn="false" value="/home/remi/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/libgtulu/libgtulu/include}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/include"/>
+									<listOptionValue builtIn="false" value="/usr/include/pango-1.0"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1197888309" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
