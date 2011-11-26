@@ -75,6 +75,7 @@ namespace gtulu {
         context_info.acquire();
         context_info.release();
 
+        glXDestroyContext(context_info.display, context_info.context);
         XCloseDisplay(context_info.display);
       }
 

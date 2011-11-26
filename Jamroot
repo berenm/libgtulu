@@ -19,6 +19,7 @@ lib boost_iostreams : : [ multiarch.search-path ] ;
 lib boost_date_time : : [ multiarch.search-path ] ;
 lib boost_system : : [ multiarch.search-path ] ;
 lib boost_log : : [ multiarch.search-path ] ;
+lib boost_chrono : : [ multiarch.search-path ] ;
 lib logging : : [ multiarch.search-path ] ;
 lib glut : : [ multiarch.search-path ] ;
 lib X11 : : [ multiarch.search-path ] ;
@@ -42,6 +43,7 @@ project libgtulu : requirements
   <library>boost_date_time
   <library>boost_system
   <library>boost_log
+  <library>boost_chrono
   <library>logging
   <include>include/
   
@@ -95,12 +97,14 @@ unit-test test2exe : test/test2.cpp test2 common gtulu gtulu_opengl_pch.hpp : <l
 unit-test test3exe : test/test3.cpp test3 common gtulu gtulu_opengl_pch.hpp : <link>shared ;
 unit-test print_imageexe : test/print_image.cpp print_image common gtulu gtulu_opengl_pch.hpp jpeg png : <link>shared ;
 unit-test pango_test : test/pango_test.cpp print_image common gtulu gtulu_opengl_pch.hpp png : <link>shared ;
+unit-test context_switch : test/context_switch.cpp common gtulu gtulu_opengl_pch.hpp : <link>shared ;
 
 alias test : test1exe/<link>shared
              test2exe/<link>shared
              test3exe/<link>shared
              print_imageexe/<link>shared
-             pango_test/<link>shared ;
+             pango_test/<link>shared
+             context_switch/<link>shared ;
 
 multiarch.build build libgtulu
                 : gtulu-compiler
