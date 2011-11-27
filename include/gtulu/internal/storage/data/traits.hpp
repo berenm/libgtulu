@@ -10,11 +10,34 @@
 
 #include "gtulu/namespaces.hpp"
 
+#include <glm/glm.hpp>
+
 namespace gtulu {
   namespace internal {
 
     namespace storage {
       namespace data {
+
+        struct offset_type: public glm::uvec3 {
+            offset_type(std::size_t const x = 0, std::size_t const y = 0, std::size_t const z = 0) :
+                offset_type(x, y, z) {
+            }
+        };
+        struct dimension_type: public glm::uvec3 {
+            dimension_type(std::size_t const width = 1, std::size_t const height = 1, std::size_t const depth = 1) :
+                offset_type(width, height, depth) {
+            }
+
+            std::size_t const width() const {
+              return x();
+            }
+            std::size_t const height() const {
+              return y();
+            }
+            std::size_t const depth() const {
+              return z();
+            }
+        };
 
         template< typename DataType >
         struct data_traits {
@@ -28,12 +51,16 @@ namespace gtulu {
               return data_in.read();
             }
 
+            static std::size_t value_size(data_type_t const& data_in) {
+              return data_in.value_size();
+            }
+
             static std::size_t size(data_type_t const& data_in) {
               return data_in.size();
             }
 
-            static std::size_t value_size(data_type_t const& data_in) {
-              return data_in.value_size();
+            static offset_type offset(data_type_t const& data_in) {
+              return offset_type();
             }
 
             static std::size_t width(data_type_t const& data_in) {
@@ -61,13 +88,18 @@ namespace gtulu {
           }
 
           template< typename StoreType >
+          static std::size_t value_size(StoreType const& store) {
+            return data_traits< StoreType >::value_size(store);
+          }
+
+          template< typename StoreType >
           static std::size_t size(StoreType const& store) {
             return data_traits< StoreType >::size(store);
           }
 
           template< typename StoreType >
-          static std::size_t value_size(StoreType const& store) {
-            return data_traits< StoreType >::value_size(store);
+          static std::size_t offset(StoreType const& store) {
+            return data_traits< StoreType >::offset(store);
           }
 
           template< typename StoreType >

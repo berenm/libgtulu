@@ -115,7 +115,7 @@ namespace gtulu {
 
             static void copy(target_store_t& target_store, source_store_t const& source_store) {
               copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
-              detail::texture::copy(target_store.store(), source_store, target_store.get_offset());
+              detail::texture::copy(target_store.store(), source_store, target_traits_t::offset(target_store));
             }
         };
 

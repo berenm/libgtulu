@@ -25,12 +25,15 @@ namespace gtulu {
             uint8_t* write() const {
               return 0;
             }
+
             uint8_t const* read() const {
               return 0;
             }
+
             std::size_t value_size() const {
               return fcmn::size_of< DataFormat >::value;
             }
+
             std::size_t size() const {
               return 0;
             }
@@ -38,9 +41,11 @@ namespace gtulu {
             std::size_t width() const {
               return width_;
             }
+
             std::size_t height() const {
               return height_;
             }
+
             std::size_t depth() const {
               return depth_;
             }

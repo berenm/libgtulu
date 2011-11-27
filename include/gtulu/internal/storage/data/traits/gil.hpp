@@ -24,30 +24,38 @@ namespace gtulu {
 
         template< typename Pixel, typename Alloc >
         struct data_traits< boost::gil::image< Pixel, false, Alloc > > {
-            typedef boost::gil::image< Pixel, false, Alloc > image_type;
-            typedef typename image_type::view_t::value_type value_type;
+            typedef boost::gil::image< Pixel, false, Alloc > store_type;
+            typedef typename store_type::view_t::value_type value_type;
 
-            static value_type* write(image_type& image_in) {
-              return &image_in._view[0];
+            static uint8_t* write(store_type& store) {
+              return reinterpret_cast< uint8_t* >(&store._view[0]);
             }
 
-            static value_type const* read(image_type const& image_in) {
-              return &image_in._view[0];
+            static uint8_t const* read(store_type const& store) {
+              return reinterpret_cast< uint8_t const* >(&store._view[0]);
             }
 
-            static auto size(image_type const& image_in) -> decltype(image_in._view.size()) {
-              return image_in._view.size() * sizeof(value_type);
+            static std::size_t value_size(store_type const& store) {
+              return sizeof(value_type);
             }
 
-            static auto width(image_type const& image_in) -> decltype(image_in.width()) {
-              return image_in.width();
+            static std::size_t size(store_type const& store) {
+              return store._view.size() * sizeof(value_type);
             }
 
-            static auto height(image_type const& image_in) -> decltype(image_in.height()) {
-              return image_in.height();
+            static offset_type offset(store_type const& store) {
+              return offset_type();
             }
 
-            static std::size_t depth(image_type const& image_in) {
+            static std::size_t width(store_type const& store) {
+              return store.width();
+            }
+
+            static std::size_t height(store_type const& store) {
+              return store.height();
+            }
+
+            static std::size_t depth(store_type const& store) {
               return 1;
             }
         };

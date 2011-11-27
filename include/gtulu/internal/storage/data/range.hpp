@@ -8,6 +8,8 @@
 #ifndef GTULU_INTERNAL_STORAGE_DATA_RANGE_HPP_
 #define GTULU_INTERNAL_STORAGE_DATA_RANGE_HPP_
 
+#include "gtulu/namespaces.hpp"
+
 #include "gtulu/internal/storage/data/traits.hpp"
 
 namespace gtulu {
@@ -16,96 +18,37 @@ namespace gtulu {
     namespace storage {
       namespace data {
 
-        struct offset {
-            offset() :
-                x_(0), y_(0), z_(0) {
-            }
-            offset(std::size_t const x_in) :
-                x_(x_in), y_(0), z_(0) {
-            }
-            offset(std::size_t const x_in, std::size_t const y_in) :
-                x_(x_in), y_(y_in), z_(0) {
-            }
-            offset(std::size_t const x_in, std::size_t const y_in, std::size_t const z_in) :
-                x_(x_in), y_(y_in), z_(z_in) {
-            }
-
-            std::size_t x() const {
-              return x_;
-            }
-            std::size_t y() const {
-              return y_;
-            }
-            std::size_t z() const {
-              return z_;
-            }
-
-          private:
-            std::size_t x_;
-            std::size_t y_;
-            std::size_t z_;
-        };
-
         template< typename StoreType >
         struct range {
-            range(StoreType& store,
-                  std::size_t const x_in = 0,
-                  std::size_t const y_in = 0,
-                  std::size_t const z_in = 0,
-                  std::size_t const size_in = 0) :
-                store_(store), x_(x_in), y_(y_in), z_(z_in), size_(size_in) {
+            typedef data::data_traits< StoreType > store_traits;
+
+            range(StoreType& store, offset_type const& offset, std::size_t const size = 0) :
+                store_(store), offset_(offset), size_(size) {
             }
 
             StoreType& store() {
               return store_;
             }
 
-            auto read() -> decltype(data::data_traits< StoreType >::read(StoreType())) {
-              return store_.read() + value_size() * x_ * (y_ * store_.width()) + (z_ * store_.width() * store_.height());
-            }
-            auto write() -> decltype(data::data_traits< StoreType >::write(StoreType())) {
-              return store_.write() + value_size() * x_ * (y_ * store_.width())
-                  + (z_ * store_.width() * store_.height());
+            std::size_t value_offset() const {
+              std::size_t const width = store_traits::width(store_);
+              std::size_t const height = store_traits::height(store_);
+
+              return offset_.x() + offset_.y() * width + offset_.z() * width * height;
             }
 
-            std::size_t value_size() {
-              return data::data_traits< StoreType >::value_size(store_);
-            }
-            std::size_t size() {
-              return size_ == 0 ? (value_size() * width() * height() * depth()) : size_;
+            offset_type get_offset() const {
+              return offset_;
             }
 
-            std::size_t width() const {
-              return data_traits< StoreType >::width(store) - x_;
-            }
-            std::size_t height() const {
-              return data_traits< StoreType >::width(store) - y_;
-            }
-            std::size_t depth() const {
-              return data_traits< StoreType >::width(store) - z_;
-            }
-
-            std::size_t x() const {
-              return x_;
-            }
-            std::size_t y() const {
-              return y_;
-            }
-            std::size_t z() const {
-              return z_;
-            }
-
-            offset get_offset() const {
-              return offset(x_, y_, z_);
+            std::size_t get_size() const {
+              return size_ == 0 ? (store_traits::value_size(store_) * width() * height() * depth()) : size_;
             }
 
           private:
             StoreType& store_;
 
-            std::size_t x_;
-            std::size_t y_;
-            std::size_t z_;
-
+            offset_type const& offset_;
             std::size_t size_;
         };
 

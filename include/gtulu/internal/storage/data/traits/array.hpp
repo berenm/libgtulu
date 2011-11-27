@@ -20,99 +20,111 @@ namespace gtulu {
 
         template< class ValueType, std::size_t Width >
         struct data_traits< ValueType[Width] > {
-            typedef ValueType (array_type)[Width];
+            typedef ValueType (store_type)[Width];
 
-            static ValueType* write(array_type& array_in) {
-              return array_in;
+            static uint8_t* write(store_type& store) {
+              return reinterpret_cast< uint8_t* >(store);
             }
 
-            static ValueType const* read(array_type const& array_in) {
-              return array_in;
+            static uint8_t const* read(store_type const& store) {
+              return reinterpret_cast< uint8_t const* >(store);
             }
 
-            static std::size_t value_size(array_type const& container_in) {
+            static std::size_t value_size(store_type const& store) {
               return sizeof(ValueType);
             }
 
-            static std::size_t size(array_type const& data_in) {
-              return width(data_in) * height(data_in) * depth(data_in) * value_size(data_in);
+            static std::size_t size(store_type const& data_in) {
+              return Width * sizeof(ValueType);
             }
 
-            static std::size_t width(array_type const& container_in) {
+            static offset_type offset(store_type const& store) {
+              return offset_type();
+            }
+
+            static std::size_t width(store_type const& store) {
               return Width;
             }
 
-            static std::size_t height(array_type const& container_in) {
+            static std::size_t height(store_type const& store) {
               return 1;
             }
 
-            static std::size_t depth(array_type const& container_in) {
+            static std::size_t depth(store_type const& store) {
               return 1;
             }
         };
 
         template< class ValueType, std::size_t Width, std::size_t Height >
         struct data_traits< ValueType[Width][Height] > {
-            typedef ValueType (array_type)[Width][Height];
+            typedef ValueType (store_type)[Width][Height];
 
-            static ValueType* write(array_type& array_in) {
-              return array_in;
+            static uint8_t* write(store_type& store) {
+              return reinterpret_cast< uint8_t* >(store);
             }
 
-            static ValueType const* read(array_type const& array_in) {
-              return array_in;
+            static uint8_t const* read(store_type const& store) {
+              return reinterpret_cast< uint8_t const* >(store);
             }
 
-            static std::size_t value_size(array_type const& container_in) {
+            static std::size_t value_size(store_type const& store) {
               return sizeof(ValueType);
             }
 
-            static std::size_t size(array_type const& data_in) {
-              return width(data_in) * height(data_in) * depth(data_in) * value_size(data_in);
+            static std::size_t size(store_type const& data_in) {
+              return Width * Height * sizeof(ValueType);
             }
 
-            static std::size_t width(array_type const& container_in) {
+            static offset_type offset(store_type const& store) {
+              return offset_type();
+            }
+
+            static std::size_t width(store_type const& store) {
               return Width;
             }
 
-            static std::size_t height(array_type const& container_in) {
+            static std::size_t height(store_type const& store) {
               return Height;
             }
 
-            static std::size_t depth(array_type const& container_in) {
+            static std::size_t depth(store_type const& store) {
               return 1;
             }
         };
 
         template< class ValueType, std::size_t Width, std::size_t Height, std::size_t Depth >
         struct data_traits< ValueType[Width][Height][Depth] > {
-            typedef ValueType (array_type)[Width][Height][Depth];
+            typedef ValueType (store_type)[Width][Height][Depth];
 
-            static ValueType* write(array_type& array_in) {
-              return array_in;
+            static uint8_t* write(store_type& store) {
+              return reinterpret_cast< uint8_t* >(store);
             }
 
-            static ValueType const* read(array_type const& array_in) {
-              return array_in;
+            static uint8_t const* read(store_type const& store) {
+              return reinterpret_cast< uint8_t const* >(store);
             }
 
-            static std::size_t value_size(array_type const& container_in) {
+            static std::size_t value_size(store_type const& store) {
               return sizeof(ValueType);
             }
 
-            static std::size_t size(array_type const& data_in) {
-              return width(data_in) * height(data_in) * depth(data_in) * value_size(data_in);
+            static std::size_t size(store_type const& data_in) {
+              return Width * Height * Depth * sizeof(ValueType);
             }
 
-            static std::size_t width(array_type const& container_in) {
+            static offset_type offset(store_type const& store) {
+              return offset_type();
+            }
+
+            static std::size_t width(store_type const& store) {
               return Width;
             }
 
-            static std::size_t height(array_type const& container_in) {
+            static std::size_t height(store_type const& store) {
               return Height;
             }
 
-            static std::size_t depth(array_type const& container_in) {
+            static std::size_t depth(store_type const& store) {
               return Depth;
             }
         };
