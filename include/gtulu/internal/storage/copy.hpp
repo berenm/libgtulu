@@ -74,11 +74,11 @@ namespace gtulu {
             }
         };
 
-        /* Texture to Any */
+        /* Texture LOD to Any */
         template< typename TargetStore, typename TextureFormat >
-        struct copier< TargetStore, obj::texture< TextureFormat > > {
+        struct copier< TargetStore, obj::texture_lod< TextureFormat > > {
             typedef TargetStore target_store_t;
-            typedef obj::texture< TextureFormat > source_store_t;
+            typedef obj::texture_lod< TextureFormat > source_store_t;
 
             typedef data::data_traits< target_store_t > target_traits_t;
             typedef data::data_traits< source_store_t > source_traits_t;
@@ -88,11 +88,22 @@ namespace gtulu {
               detail::texture::copy(target_store, source_store);
             }
         };
+        template< typename TargetStore, typename TextureFormat >
+        struct copier< TargetStore, obj::texture< TextureFormat > > {
+            typedef TargetStore target_store_t;
+            typedef obj::texture< TextureFormat > source_store_t;
 
-        /* Any to Texture */
+            template< typename InitParameter = void >
+            static void copy(target_store_t& target_store, source_store_t const& source_store) {
+              copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
+              detail::texture::copy(target_store, source_store);
+            }
+        };
+
+        /* Any to Texture LOD */
         template< typename TextureFormat, typename SourceStore >
-        struct copier< obj::texture< TextureFormat >, SourceStore > {
-            typedef obj::texture< TextureFormat > target_store_t;
+        struct copier< obj::texture_lod< TextureFormat >, SourceStore > {
+            typedef obj::texture_lod< TextureFormat > target_store_t;
             typedef SourceStore source_store_t;
 
             typedef data::data_traits< target_store_t > target_traits_t;
@@ -103,8 +114,32 @@ namespace gtulu {
               detail::texture::copy(target_store, source_store);
             }
         };
+        template< typename TextureFormat, typename SourceStore >
+        struct copier< obj::texture< TextureFormat >, SourceStore > {
+            typedef obj::texture< TextureFormat > target_store_t;
+            typedef SourceStore source_store_t;
 
-        /* Any to Texture range */
+            template< typename InitParameter = void >
+            static void copy(target_store_t& target_store, source_store_t const& source_store) {
+              copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
+              detail::texture::copy(target_store, source_store);
+            }
+        };
+
+        /* Any to Texture LOD range */
+        template< typename TextureFormat, typename SourceStore >
+        struct copier< data::range< obj::texture_lod< TextureFormat > >, SourceStore > {
+            typedef data::range< obj::texture_lod< TextureFormat > > target_store_t;
+            typedef SourceStore source_store_t;
+
+            typedef data::data_traits< target_store_t > target_traits_t;
+            typedef data::data_traits< source_store_t > source_traits_t;
+
+            static void copy(target_store_t& target_store, source_store_t const& source_store) {
+              copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
+              detail::texture::copy(target_store.store(), source_store, target_traits_t::offset(target_store));
+            }
+        };
         template< typename TextureFormat, typename SourceStore >
         struct copier< data::range< obj::texture< TextureFormat > >, SourceStore > {
             typedef data::range< obj::texture< TextureFormat > > target_store_t;

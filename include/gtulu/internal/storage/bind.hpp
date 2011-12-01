@@ -63,51 +63,77 @@ namespace gtulu {
             }
         };
 
-        /* Texture to Host */
+        /* Texture LOD to Host */
         template< typename HostStore, typename TextureFormat >
-        struct copy_binder< HostStore, obj::texture< TextureFormat > > {
+        struct copy_binder< HostStore, obj::texture_lod< TextureFormat > > {
             typedef HostStore target_store_t;
-            typedef obj::texture< TextureFormat > source_store_t;
+            typedef obj::texture_lod< TextureFormat > source_store_t;
 
             static void bind(target_store_t& target_store, source_store_t const& source_store) {
-              source_store.bind();
+              source_store.get_texture().bind();
               buf::pixel_pack_buffer_slot::clear();
             }
         };
 
-        /* Host to Texture */
+        /* Host to Texture LOD */
         template< typename TextureFormat, typename HostStore >
-        struct copy_binder< obj::texture< TextureFormat >, HostStore > {
-            typedef obj::texture< TextureFormat > target_store_t;
+        struct copy_binder< obj::texture_lod< TextureFormat >, HostStore > {
+            typedef obj::texture_lod< TextureFormat > target_store_t;
             typedef HostStore source_store_t;
 
             static void bind(target_store_t& target_store, source_store_t const& source_store) {
               buf::pixel_unpack_buffer_slot::clear();
-              target_store.bind();
+              target_store.get_texture().bind();
             }
         };
 
-        /* Texture to Buffer */
+        /* Texture LOD to Buffer */
         template< typename DataFormat, typename TextureFormat >
-        struct copy_binder< obj::buffer< DataFormat >, obj::texture< TextureFormat > > {
+        struct copy_binder< obj::buffer< DataFormat >, obj::texture_lod< TextureFormat > > {
             typedef obj::buffer< DataFormat > target_store_t;
-            typedef obj::texture< TextureFormat > source_store_t;
+            typedef obj::texture_lod< TextureFormat > source_store_t;
 
             static void bind(target_store_t& target_store, source_store_t const& source_store) {
-              source_store.bind();
+              source_store.get_texture().bind();
               target_store.template bind< buf::pixel_pack_buffer_slot >();
             }
         };
 
-        /* Buffer to Texture */
+        /* Buffer to Texture LOD */
         template< typename TextureFormat, typename DataFormat >
-        struct copy_binder< obj::texture< TextureFormat >, obj::buffer< DataFormat > > {
-            typedef obj::texture< TextureFormat > target_store_t;
+        struct copy_binder< obj::texture_lod< TextureFormat >, obj::buffer< DataFormat > > {
+            typedef obj::texture_lod< TextureFormat > target_store_t;
             typedef obj::buffer< DataFormat > source_store_t;
 
             static void bind(target_store_t& target_store, source_store_t const& source_store) {
               source_store.template bind< buf::pixel_unpack_buffer_slot >();
-              target_store.bind();
+              target_store.get_texture().bind();
+            }
+        };
+
+        /* Texture / Texture LOD aliases */
+        template< typename TextureFormat, typename SourceStore >
+        struct copy_binder< obj::texture< TextureFormat >, SourceStore > {
+            typedef obj::texture< TextureFormat > target_store_t;
+            typedef SourceStore source_store_t;
+
+            typedef obj::texture_lod< TextureFormat > lod_type;
+
+            template< typename InitParameter = void >
+            static void bind(target_store_t& target_store, source_store_t const& source_store) {
+              copy_binder< lod_type, source_store_t >::bind(static_cast< lod_type& >(target_store), source_store);
+            }
+        };
+        template< typename TargetStore, typename TextureFormat >
+        struct copy_binder< TargetStore, obj::texture< TextureFormat > > {
+            typedef TargetStore target_store_t;
+            typedef obj::texture< TextureFormat > source_store_t;
+
+            typedef obj::texture_lod< TextureFormat > lod_type;
+
+            template< typename InitParameter = void >
+            static void bind(target_store_t& target_store, source_store_t const& source_store) {
+              copy_binder< target_store_t, lod_type >::bind(target_store, static_cast< lod_type const& >(source_store));
             }
         };
 

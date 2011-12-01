@@ -24,6 +24,9 @@
 #include "gtulu/internal/storage.hpp"
 #include "gtulu/internal/storage/data/empty.hpp"
 
+#include "gtulu/internal/property/texture.hpp"
+#include "gtulu/internal/property/texture_lod.hpp"
+
 #include <boost/shared_ptr.hpp>
 
 namespace gtulu {
@@ -58,28 +61,24 @@ namespace gtulu {
 
       template< typename TextureFormat >
       struct texture: public texture_base, public object< texture_base >, public drawable, private TextureFormat {
-          texture() {
+          typedef texture_lod< TextureFormat > lod_type;
+
+          texture() :
+              texture_base(), object< texture_base >(), drawable(), level_zero_(*this, 0) {
             bind();
           }
-
-          texture(std::size_t const width, std::size_t const height = 1, std::size_t const depth = 1) {
+          texture(std::size_t const width, std::size_t const height = 1, std::size_t const depth = 1) :
+              texture_base(), object< texture_base >(), drawable(), level_zero_(*this, 0) {
             resize(width, height, depth);
           }
           template< typename SourceStore >
-          texture(SourceStore const& source_store) {
+          texture(SourceStore const& source_store) :
+              texture_base(), object< texture_base >(), drawable(), level_zero_(*this, 0) {
             sto::init(*this, source_store);
           }
 
           void resize(std::size_t const width, std::size_t const height = 1, std::size_t const depth = 1) {
             sto::init(*this, sto::data::empty< typename TextureFormat::data_format >(width, height, depth));
-            width_ = width;
-            height_ = height;
-            depth_ = depth;
-          }
-
-          template< typename MinFilter >
-          inline void set_minification() {
-            fct::gl_tex_parameter< typename TextureFormat::target_format::aspect::format, cst::gl_texture_min_filter >::call(MinFilter::value);
           }
 
           inline void compute_mipmaps() {
@@ -90,25 +89,56 @@ namespace gtulu {
           inline void bind() const {
             tex::texture_slot< typename TextureFormat::target_format >::bind(*this);
           }
-
           inline void unbind() const {
             tex::texture_slot< typename TextureFormat::target_format >::unbind(*this);
           }
 
-          std::size_t width() const {
-            return width_;
+          operator lod_type&() {
+            return level_zero_;
           }
-          std::size_t height() const {
-            return height_;
-          }
-          std::size_t depth() const {
-            return depth_;
+          operator lod_type const&() const {
+            return level_zero_;
           }
 
-        private:
-          std::size_t width_;
-          std::size_t height_;
-          std::size_t depth_;
+          lod_type level(std::uint32_t level) {
+            return lod_type(*this, level);
+          }
+
+          std::size_t width() const {
+            return level_zero_.width();
+          }
+          std::size_t height() const {
+            return level_zero_.height();
+          }
+          std::size_t depth() const {
+            return level_zero_.depth();
+          }
+
+        protected:
+          lod_type level_zero_;
+      };
+
+      template< typename TextureFormat >
+      struct texture_lod: public property::properties_type< texture_lod< TextureFormat > > {
+          typedef texture< TextureFormat > texture_type;
+          typedef property::properties_type< texture_lod< TextureFormat > > properties_type;
+
+          texture_type const& get_texture() const {
+            return texture_;
+          }
+          std::uint32_t get_level() const {
+            return level_;
+          }
+
+        protected:
+          texture_lod(texture_type& texture, std::uint32_t level) :
+              properties_type(*this), texture_(texture), level_(level) {
+          }
+
+          texture_type& texture_;
+          std::uint32_t level_;
+
+          friend struct texture< TextureFormat > ;
       };
 
     } // namespace object

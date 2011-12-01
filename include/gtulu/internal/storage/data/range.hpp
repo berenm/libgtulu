@@ -34,7 +34,7 @@ namespace gtulu {
               std::size_t const width = store_traits::width(store_);
               std::size_t const height = store_traits::height(store_);
 
-              return offset_.x() + offset_.y() * width + offset_.z() * width * height;
+              return offset_.x + offset_.y * width + offset_.z * width * height;
             }
 
             offset_type get_offset() const {
@@ -43,6 +43,18 @@ namespace gtulu {
 
             std::size_t get_size() const {
               return size_ == 0 ? (store_traits::value_size(store_) * width() * height() * depth()) : size_;
+            }
+
+            std::size_t width() const {
+              return store_traits::width(store_) - offset_.x;
+            }
+
+            std::size_t height() const {
+              return store_traits::height(store_) - offset_.y;
+            }
+
+            std::size_t depth() const {
+              return store_traits::depth(store_) - offset_.z;
             }
 
           private:

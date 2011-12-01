@@ -20,22 +20,22 @@ namespace gtulu {
 
         struct offset_type: public glm::uvec3 {
             offset_type(std::size_t const x = 0, std::size_t const y = 0, std::size_t const z = 0) :
-                offset_type(x, y, z) {
+                glm::uvec3(x, y, z) {
             }
         };
         struct dimension_type: public glm::uvec3 {
             dimension_type(std::size_t const width = 1, std::size_t const height = 1, std::size_t const depth = 1) :
-                offset_type(width, height, depth) {
+                glm::uvec3(width, height, depth) {
             }
 
             std::size_t const width() const {
-              return x();
+              return x;
             }
             std::size_t const height() const {
-              return y();
+              return y;
             }
             std::size_t const depth() const {
-              return z();
+              return z;
             }
         };
 

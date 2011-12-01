@@ -35,10 +35,13 @@ namespace gtulu {
       struct shader;
       template< typename TextureFormat >
       struct texture;
+      template< typename TextureFormat >
+      struct texture_lod;
       template< typename BufferFormat >
       struct buffer;
       template< typename VertexarrayFormat >
       struct vertexarray;
+
     } // namespace object
 
   } // namespace internal

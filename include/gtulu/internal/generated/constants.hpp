@@ -4,7 +4,7 @@
  * Distributed under the Boost Software License, Version 1.0.
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
- 
+
 /******************************************************************************
  * THIS FILE IS AUTO GENERATED FROM scripts/generate_gl_headers.py,           *
  * ANY CHANGE WILL BE OVERWRITTEN                                             *
@@ -22,7 +22,7 @@
 
 namespace gtulu {
   namespace internal {
-  
+
     namespace generated {
 
       namespace gl {
@@ -4971,7 +4971,7 @@ namespace gtulu {
       } // namespace other
 
     } // namespace generated
-    
+
   } // namespace internal
 } // namespace gtulu
 

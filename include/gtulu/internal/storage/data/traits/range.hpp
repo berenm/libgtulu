@@ -45,15 +45,15 @@ namespace gtulu {
             }
 
             static std::size_t width(store_type const& store) {
-              return store_traits::width(store.store()) - store.get_offset().x();
+              return store.width();
             }
 
             static std::size_t height(store_type const& store) {
-              return store_traits::height(store.store()) - store.get_offset().y();
+              return store.height();
             }
 
             static std::size_t depth(store_type const& store) {
-              return store_traits::depth(store.store()) - store.get_offset().z();
+              return store.depth();
             }
         };
 
