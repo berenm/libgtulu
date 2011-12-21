@@ -6,6 +6,7 @@ import path ;
 import common ;
 
 using gcc : : ccache g++ ;
+using clang : : ccache clang++ ;
 
 path-constant BUILD_ROOT : . ;
 path-constant HOME : [ os.home-directories ] ;

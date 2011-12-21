@@ -61,14 +61,13 @@ namespace gtulu {
       };
 
       template< typename DataFormat >
-      struct buffer: public buffer_base, public object< buffer_base > {
+      struct buffer: virtual public buffer_base, virtual public object< buffer_base > {
         public:
           typedef typename fcmn::to_value_type< DataFormat >::type data_type_t;
 
           buffer() :
               object< buffer_base >() {
           }
-
           template< typename BufferUsage = buf::usage::gl_stream_draw >
           buffer(std::size_t const size) :
               object< buffer_base >() {

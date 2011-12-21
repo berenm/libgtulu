@@ -10,10 +10,11 @@
 
 #include "gtulu/namespaces.hpp"
 
-#include "gtulu/internal/object/buffer.hpp"
+#include "gtulu/internal/object/object_fwd.hpp"
 #include "gtulu/internal/storage/bind.hpp"
-#include "gtulu/internal/storage/data/empty.hpp"
 #include "gtulu/internal/storage/data/traits.hpp"
+#include "gtulu/internal/storage/data/range.hpp"
+#include "gtulu/internal/storage/helper/texture.hpp"
 
 namespace gtulu {
   namespace internal {

@@ -49,8 +49,7 @@ namespace gtulu {
 
     namespace object {
 
-      class program_base: public plug< program_base > {
-        public:
+      struct program_base: public plug< program_base > {
           virtual ~program_base() {
           }
 

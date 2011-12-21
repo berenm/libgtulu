@@ -29,7 +29,7 @@ namespace gtulu {
     struct cardinality_binder< fcmn::cardinality::cardinality_m > {                                       \
       template< typename Integral > struct attribute_binder;                                            \
     };                                                                                                  \
-    template< > template< >                                                                             \
+    template< >                                                                                         \
     struct cardinality_binder< fcmn::cardinality::cardinality_m >                                         \
          ::attribute_binder< fnum::integral::floating > {                                                 \
          template< typename DataFormat >                                                                \
@@ -47,7 +47,7 @@ namespace gtulu {
            fct::gl_disable_vertex_attrib_array< >::call(location_in);                                      \
          }                                                                                              \
     };                                                                                                  \
-    template< > template< >                                                                             \
+    template< >                                                                                          \
     struct cardinality_binder< fcmn::cardinality::cardinality_m >                                         \
          ::attribute_binder< fnum::integral::integral > {                                                 \
         template< typename DataFormat >                                                                 \

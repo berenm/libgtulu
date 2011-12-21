@@ -99,6 +99,8 @@ namespace gtulu {
     } // namespace object
     namespace program {
     } // namespace program
+    namespace property {
+    } // namespace property
     namespace renderbuffer {
     } // namespace renderbuffer
     namespace sampler {
@@ -122,6 +124,7 @@ namespace gtulu {
     namespace fbf = framebuffer;
     namespace obj = object;
     namespace prg = program;
+    namespace pro = property;
     namespace rdb = renderbuffer;
     namespace smp = sampler;
     namespace sto = storage;

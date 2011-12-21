@@ -24,7 +24,11 @@ namespace gtulu {
 
     namespace object {
       template< typename ProgramFormat >
-      struct program: virtual public program_base, public object< program_base >, public ProgramFormat {
+      struct program: virtual public program_base, virtual public object< program_base >, public ProgramFormat {
+          program() :
+              object< program_base >() {
+          }
+
           virtual ~program() {
           }
       };

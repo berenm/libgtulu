@@ -24,7 +24,7 @@ namespace gtulu {
     namespace object {
 
       template< typename ShaderFormat >
-      struct shader: virtual public shader_base, public object< shader_base >, public ShaderFormat {
+      struct shader: virtual public shader_base, virtual public object< shader_base >, public ShaderFormat {
           virtual ~shader() {
           }
       };

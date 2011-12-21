@@ -60,7 +60,10 @@ namespace gtulu {
     namespace object {
 
       template< typename TextureFormat >
-      struct texture: public texture_base, public object< texture_base >, public drawable, private TextureFormat {
+      struct texture: virtual public texture_base,
+                      virtual public object< texture_base >,
+                      public drawable,
+                      private TextureFormat {
           typedef texture_lod< TextureFormat > lod_type;
 
           texture() :
@@ -119,9 +122,9 @@ namespace gtulu {
       };
 
       template< typename TextureFormat >
-      struct texture_lod: public property::properties_type< texture_lod< TextureFormat > > {
+      struct texture_lod: public pro::properties_type< texture_lod< TextureFormat > > {
           typedef texture< TextureFormat > texture_type;
-          typedef property::properties_type< texture_lod< TextureFormat > > properties_type;
+          typedef pro::properties_type< texture_lod< TextureFormat > > properties_type;
 
           texture_type const& get_texture() const {
             return texture_;

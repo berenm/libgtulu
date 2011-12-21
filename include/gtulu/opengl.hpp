@@ -25,7 +25,7 @@
 #include "gtulu/utils/logging.hpp"
 
 namespace gtulu {
-  typedef std::uint32_t location_t;
+  typedef std::int32_t location_t;
   typedef std::uint32_t handle_t;
 } // namespace gtulu
 

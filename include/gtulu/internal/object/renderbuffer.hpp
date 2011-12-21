@@ -52,8 +52,8 @@ namespace gtulu {
       };
 
       template< typename RenderbufferFormat >
-      struct renderbuffer: public renderbuffer_base,
-                           public object< renderbuffer_base >,
+      struct renderbuffer: virtual public renderbuffer_base,
+                           virtual public object< renderbuffer_base >,
                            public drawable,
                            private RenderbufferFormat {
           inline void bind() const {

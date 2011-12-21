@@ -3,6 +3,7 @@
 	<name>libgtulu</name>
 	<comment></comment>
 	<projects>
+		<project>liblogging</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

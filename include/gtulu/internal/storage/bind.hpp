@@ -12,7 +12,6 @@
 
 #include "gtulu/internal/object/object_fwd.hpp"
 #include "gtulu/internal/object/buffer/slot.hpp"
-
 #include "gtulu/internal/storage/data/range.hpp"
 
 namespace gtulu {

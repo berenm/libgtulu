@@ -20,8 +20,7 @@ namespace gtulu {
   namespace internal {
 
     namespace object {
-      class shader_base: public plug< shader_base > {
-        public:
+      struct shader_base: public plug< shader_base > {
           virtual ~shader_base() {
           }
 
