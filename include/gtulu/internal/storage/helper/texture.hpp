@@ -30,8 +30,12 @@ namespace gtulu {
             };
 
             template< typename TextureFormat, typename OtherStore >
-            struct helper< TextureFormat, OtherStore,
-                typename boost::enable_if< fcmn::dimension::is_oned< typename TextureFormat::target_format > >::type,
+            struct helper<
+                TextureFormat,
+                OtherStore,
+                typename boost::enable_if<
+                    typename bm::and_< fcmn::dimension::is_oned< typename TextureFormat::target_format >,
+                        fcmn::cardinality::is_not_array< typename TextureFormat::target_format > >::type >::type,
                 typename boost::enable_if< fcmn::compression::is_none< typename TextureFormat::internal_format > >::type > {
 
                 typedef sto::data::data_traits< OtherStore > other_store_traits;
@@ -67,8 +71,15 @@ namespace gtulu {
             };
 
             template< typename TextureFormat, typename OtherStore >
-            struct helper< TextureFormat, OtherStore,
-                typename boost::enable_if< fcmn::dimension::is_twod< typename TextureFormat::target_format > >::type,
+            struct helper<
+                TextureFormat,
+                OtherStore,
+                typename boost::enable_if<
+                    typename bm::or_<
+                        typename bm::and_< fcmn::dimension::is_twod< typename TextureFormat::target_format >,
+                            fcmn::cardinality::is_not_array< typename TextureFormat::target_format > >::type,
+                        typename bm::and_< fcmn::dimension::is_oned< typename TextureFormat::target_format >,
+                            fcmn::cardinality::is_array< typename TextureFormat::target_format > >::type >::type >::type,
                 typename boost::enable_if< fcmn::compression::is_none< typename TextureFormat::internal_format > >::type > {
 
                 typedef sto::data::data_traits< OtherStore > other_store_traits;
@@ -107,8 +118,14 @@ namespace gtulu {
             };
 
             template< typename TextureFormat, typename OtherStore >
-            struct helper< TextureFormat, OtherStore,
-                typename boost::enable_if< fcmn::dimension::is_threed< typename TextureFormat::target_format > >::type,
+            struct helper<
+                TextureFormat,
+                OtherStore,
+                typename boost::enable_if<
+                    typename bm::or_<
+                        fcmn::dimension::is_threed< typename TextureFormat::target_format >,
+                        typename bm::and_< fcmn::dimension::is_twod< typename TextureFormat::target_format >,
+                            fcmn::cardinality::is_array< typename TextureFormat::target_format > >::type >::type >::type,
                 typename boost::enable_if< fcmn::compression::is_none< typename TextureFormat::internal_format > >::type > {
 
                 typedef sto::data::data_traits< OtherStore > other_store_traits;
@@ -153,7 +170,9 @@ namespace gtulu {
             struct helper<
                 TextureFormat,
                 OtherStore,
-                typename boost::enable_if< fcmn::dimension::is_oned< typename TextureFormat::target_format > >::type,
+                typename boost::enable_if<
+                    typename bm::and_< fcmn::dimension::is_oned< typename TextureFormat::target_format >,
+                        fcmn::cardinality::is_not_array< typename TextureFormat::target_format > >::type >::type,
                 typename boost::enable_if< fcmn::compression::is_compressed< typename TextureFormat::internal_format > >::type > {
 
                 typedef sto::data::data_traits< OtherStore > other_store_traits;
@@ -194,7 +213,12 @@ namespace gtulu {
             struct helper<
                 TextureFormat,
                 OtherStore,
-                typename boost::enable_if< fcmn::dimension::is_twod< typename TextureFormat::target_format > >::type,
+                typename boost::enable_if<
+                    typename bm::or_<
+                        typename bm::and_< fcmn::dimension::is_twod< typename TextureFormat::target_format >,
+                            fcmn::cardinality::is_not_array< typename TextureFormat::target_format > >::type,
+                        typename bm::and_< fcmn::dimension::is_oned< typename TextureFormat::target_format >,
+                            fcmn::cardinality::is_array< typename TextureFormat::target_format > >::type >::type >::type,
                 typename boost::enable_if< fcmn::compression::is_compressed< typename TextureFormat::internal_format > >::type > {
 
                 typedef sto::data::data_traits< OtherStore > other_store_traits;
@@ -237,7 +261,11 @@ namespace gtulu {
             struct helper<
                 TextureFormat,
                 OtherStore,
-                typename boost::enable_if< fcmn::dimension::is_threed< typename TextureFormat::target_format > >::type,
+                typename boost::enable_if<
+                    typename bm::or_<
+                        fcmn::dimension::is_threed< typename TextureFormat::target_format >,
+                        typename bm::and_< fcmn::dimension::is_twod< typename TextureFormat::target_format >,
+                            fcmn::cardinality::is_array< typename TextureFormat::target_format > >::type >::type >::type,
                 typename boost::enable_if< fcmn::compression::is_compressed< typename TextureFormat::internal_format > >::type > {
 
                 typedef sto::data::data_traits< OtherStore > other_store_traits;

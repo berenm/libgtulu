@@ -23,20 +23,21 @@ int main(int argc, char *argv[]) {
   ctx::context::create(argc, argv);
 
   float const positions_data[] = { -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f };
-  float const coordinates_data[] = { 0.0f, 40.0f, 0.0f, 0.0f, 80.0f, 40.0f, 80.0f, 0.0f };
   std::uint8_t const indexes_data[] = { 0, 1, 2, 3 };
 
   obj::buffer< fdat::gl_float > positions(positions_data);
-  obj::buffer< fdat::gl_float > coordinates(coordinates_data);
   obj::buffer< fdat::gl_unsigned_byte > indexes(indexes_data);
 
   obj::program< fprg::client_program_format > program;
-  auto framebuffer = program.new_framebuffer();
+  auto framebuffer = program.gnew_framebuffer();
   auto vertexarray = program.new_vertexarray();
 
   // Bind the vertex attribute named "position" to the positions buffer and "texture_position" to the texture_positions buffer.
   vertexarray->set_position(positions);
-  vertexarray->set_coordinates(coordinates);
+  vertexarray->set_width(80);
+  vertexarray->set_height(40);
+
+  vertexarray->set_last_frame(1);
 
   // Select default texture format for 2d texture.
   typedef ftex::select_format< ftgt::gl_texture_2d, fcmn::component::red_green_blue, fnum::ufixed8_ >::type texture_format;

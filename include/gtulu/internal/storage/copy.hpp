@@ -136,7 +136,11 @@ namespace gtulu {
             typedef data::data_traits< target_store_t > target_traits_t;
             typedef data::data_traits< source_store_t > source_traits_t;
 
-            static void copy(target_store_t& target_store, source_store_t const& source_store) {
+//            static void copy(target_store_t&& target_store, source_store_t const& source_store) {
+//              copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
+//              detail::texture::copy(target_store.store(), source_store, target_traits_t::offset(target_store));
+//            }
+            static void copy(target_store_t target_store, source_store_t const& source_store) {
               copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
               detail::texture::copy(target_store.store(), source_store, target_traits_t::offset(target_store));
             }
@@ -149,7 +153,11 @@ namespace gtulu {
             typedef data::data_traits< target_store_t > target_traits_t;
             typedef data::data_traits< source_store_t > source_traits_t;
 
-            static void copy(target_store_t& target_store, source_store_t const& source_store) {
+//            static void copy(target_store_t&& target_store, source_store_t const& source_store) {
+//              copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
+//              detail::texture::copy(target_store.store(), source_store, target_traits_t::offset(target_store));
+//            }
+            static void copy(target_store_t target_store, source_store_t const& source_store) {
               copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
               detail::texture::copy(target_store.store(), source_store, target_traits_t::offset(target_store));
             }
@@ -160,6 +168,11 @@ namespace gtulu {
       template< typename TargetStore, typename SourceStore >
       void copy(TargetStore& target_store, SourceStore const& source_store) {
         detail::copier< TargetStore, SourceStore >::copy(target_store, source_store);
+      }
+
+      template< typename TargetStore, typename SourceStore >
+      void copy(data::range< TargetStore > target_store, SourceStore const& source_store) {
+        detail::copier< data::range< TargetStore >, SourceStore >::copy(target_store, source_store);
       }
 
     } // namespace storage

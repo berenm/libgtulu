@@ -93,70 +93,13 @@ namespace gtulu {
 
             // #template#<uniform/>
 
-            typedef unf::gl_bool::binder use_tile_binder_t;
-            typedef unf::gl_bool::value_type use_tile_value_t;
-
-            void set_use_tile(BOOST_PP_ENUM_PARAMS(1, use_tile_value_t const use_tile_in)) {
-              obj::program_base::bind();
-              use_tile_binder_t::bind(4, BOOST_PP_ENUM_PARAMS(1, use_tile_in));
-            }
-            
-
             // #template#<uniform_sampler/>
-
-            typedef smp::gl_sampler_3d::binder tilesets_binder_t;
-            typedef smp::gl_sampler_3d::value_type tilesets_value_t;
-
-            template< typename TextureFormat >
-            void set_tilesets(obj::texture< TextureFormat > const& value_in) {
-              obj::program_base::bind();
-              tilesets_binder_t::bind(3, value_in);
-            }
-            
-
-            typedef smp::gl_unsigned_int_sampler_2d::binder tiles_color_binder_t;
-            typedef smp::gl_unsigned_int_sampler_2d::value_type tiles_color_value_t;
-
-            template< typename TextureFormat >
-            void set_tiles_color(obj::texture< TextureFormat > const& value_in) {
-              obj::program_base::bind();
-              tiles_color_binder_t::bind(2, value_in);
-            }
-            
-
-            typedef smp::gl_unsigned_int_sampler_2d::binder tiles_binder_t;
-            typedef smp::gl_unsigned_int_sampler_2d::value_type tiles_value_t;
-
-            template< typename TextureFormat >
-            void set_tiles(obj::texture< TextureFormat > const& value_in) {
-              obj::program_base::bind();
-              tiles_binder_t::bind(1, value_in);
-            }
-            
-
-            typedef smp::gl_unsigned_int_sampler_2d::binder characters_binder_t;
-            typedef smp::gl_unsigned_int_sampler_2d::value_type characters_value_t;
-
-            template< typename TextureFormat >
-            void set_characters(obj::texture< TextureFormat > const& value_in) {
-              obj::program_base::bind();
-              characters_binder_t::bind(0, value_in);
-            }
-            
 
             // #template#<uniform_array/>
 
             template< typename DrawableType = obj::drawable const& >
             struct framebuffer_format: public obj::framebuffer_base, public fbf::framebuffer_format_base< DrawableType > {
                 // #template#<output/>
-
-                template< typename TemporaryFramebufferSlot = fbf::draw_framebuffer_slot, typename NewDrawableType >
-                void set_output_image(NewDrawableType const& drawable_in) {
-                  obj::framebuffer_base::bind< TemporaryFramebufferSlot >();
-                  fbf::framebuffer_format_base< DrawableType >::template set<
-                      typename TemporaryFramebufferSlot::slot_type >(0, drawable_in);
-                }
-                
 
                 // #template#<output_array/>
             };
@@ -316,72 +259,6 @@ namespace gtulu {
                 }
 
                 // #template#<attribute/>
-
-                typedef att::gl_float_vec2::binder position_binder_t;
-                typedef att::gl_float_vec2::buffer_binder position_buffer_binder_t;
-
-                template< typename DataFormat >
-                void set_position(BOOST_PP_ENUM_PARAMS(2, DataFormat const position_in)) {
-                  obj::vertexarray_base::bind();
-                  position_binder_t::bind(0, BOOST_PP_ENUM_PARAMS(2, position_in));
-                }
-                template< typename BufferFormat >
-                void set_position(obj::buffer< BufferFormat > const& buffer_in,
-                                   std::uint32_t const offset_in = 0,
-                                   std::uint32_t const stride_in = 0) {
-                  obj::vertexarray_base::bind();
-                  position_buffer_binder_t::bind(0, buffer_in, offset_in, stride_in);
-                }
-                template< typename BufferFormat >
-                void set_position_normalized(obj::buffer< BufferFormat > const & buffer_in,
-                                              std::uint32_t const offset_in = 0,
-                                              std::uint32_t const stride_in = 0) {
-                  obj::vertexarray_base::bind();
-                  position_buffer_binder_t::bind < fcmn::normalization::normalized
-                      > (0, buffer_in, offset_in, stride_in);
-                }
-                template< typename BufferFormat >
-                void set_position_gbra(obj::buffer< BufferFormat > const & buffer_in,
-                                        std::uint32_t const offset_in = 0,
-                                        std::uint32_t const stride_in = 0) {
-                  obj::vertexarray_base::bind();
-                  position_buffer_binder_t::bind < fcmn::normalization::none, fcmn::order::reverse
-                      > (0, buffer_in, offset_in, stride_in);
-                }
-                
-
-                typedef att::gl_float_vec2::binder coordinates_binder_t;
-                typedef att::gl_float_vec2::buffer_binder coordinates_buffer_binder_t;
-
-                template< typename DataFormat >
-                void set_coordinates(BOOST_PP_ENUM_PARAMS(2, DataFormat const coordinates_in)) {
-                  obj::vertexarray_base::bind();
-                  coordinates_binder_t::bind(1, BOOST_PP_ENUM_PARAMS(2, coordinates_in));
-                }
-                template< typename BufferFormat >
-                void set_coordinates(obj::buffer< BufferFormat > const& buffer_in,
-                                   std::uint32_t const offset_in = 0,
-                                   std::uint32_t const stride_in = 0) {
-                  obj::vertexarray_base::bind();
-                  coordinates_buffer_binder_t::bind(1, buffer_in, offset_in, stride_in);
-                }
-                template< typename BufferFormat >
-                void set_coordinates_normalized(obj::buffer< BufferFormat > const & buffer_in,
-                                              std::uint32_t const offset_in = 0,
-                                              std::uint32_t const stride_in = 0) {
-                  obj::vertexarray_base::bind();
-                  coordinates_buffer_binder_t::bind < fcmn::normalization::normalized
-                      > (1, buffer_in, offset_in, stride_in);
-                }
-                template< typename BufferFormat >
-                void set_coordinates_gbra(obj::buffer< BufferFormat > const & buffer_in,
-                                        std::uint32_t const offset_in = 0,
-                                        std::uint32_t const stride_in = 0) {
-                  obj::vertexarray_base::bind();
-                  coordinates_buffer_binder_t::bind < fcmn::normalization::none, fcmn::order::reverse
-                      > (1, buffer_in, offset_in, stride_in);
-                }
-                
 
                 // #template#<attribute_array/>
             };

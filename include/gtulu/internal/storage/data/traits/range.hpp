@@ -40,7 +40,7 @@ namespace gtulu {
               return store.get_size();
             }
 
-            static offset offset(store_type const& store) {
+            static offset_type offset(store_type const& store) {
               return store.get_offset();
             }
 

@@ -7,9 +7,9 @@ import shader ;
 import testing ;
 
 lib GL : : [ multiarch.search-path ] <name>:libGL.so.1 ;
-lib GLU : : [ multiarch.search-path ] ;
-lib glfw : : [ multiarch.search-path ] ;
-lib jpeg : : [ multiarch.search-path ] ;
+lib GLU : : [ multiarch.search-path ] <search>lib ;
+lib glfw : : [ multiarch.search-path ] <search>lib ;
+lib jpeg : : [ multiarch.search-path ] <search>lib ;
 lib png : : [ multiarch.search-path ] ;
 lib boost_thread : : [ multiarch.search-path ] ;
 lib boost_program_options : : [ multiarch.search-path ] ;
@@ -23,7 +23,6 @@ lib boost_chrono : : [ multiarch.search-path ] ;
 lib logging : : [ multiarch.search-path ] ;
 lib glut : : [ multiarch.search-path ] ;
 lib X11 : : [ multiarch.search-path ] ;
-lib xcb : : [ multiarch.search-path ] ;
 lib Xau : : [ multiarch.search-path ] ;
 lib Xdmcp : : [ multiarch.search-path ] ;
 
@@ -31,7 +30,6 @@ project libgtulu : requirements
   <library>GL/<link>shared
   <library>GLU
   <library>X11
-  <library>xcb
   <library>Xau
   <library>Xdmcp
   <library>glfw
@@ -91,7 +89,6 @@ shader.program test1 : test/shaders/test1.vs test/shaders/test1.fs ;
 shader.program test2 : test/shaders/test2.vs test/shaders/test2.fs ;
 shader.program test3 : test/shaders/test3.vs test/shaders/test3.fs ;
 shader.program print_image : test/shaders/print_image.vs test/shaders/print_image.fs ;
-shader.program client : test/shaders/client.vs test/shaders/client.fs ;
 
 unit-test test1exe : test/test1.cpp generated/test1 common gtulu gtulu_opengl_pch.hpp : <link>shared ;
 unit-test test2exe : test/test2.cpp generated/test2 common gtulu gtulu_opengl_pch.hpp : <link>shared ;
@@ -99,13 +96,11 @@ unit-test test3exe : test/test3.cpp generated/test3 common gtulu gtulu_opengl_pc
 unit-test print_imageexe : test/print_image.cpp generated/print_image common gtulu gtulu_opengl_pch.hpp jpeg png : <link>shared ;
 unit-test pango_test : test/pango_test.cpp generated/print_image common gtulu gtulu_opengl_pch.hpp png : <link>shared ;
 unit-test context_switch : test/context_switch.cpp common gtulu gtulu_opengl_pch.hpp : <link>shared ;
-unit-test clientexe : test/client.cpp generated/client common gtulu gtulu_opengl_pch.hpp jpeg png : <link>shared ;
 
 alias test : test1exe/<link>shared
              test2exe/<link>shared
              test3exe/<link>shared
              print_imageexe/<link>shared
-             clientexe/<link>shared
              pango_test/<link>shared
              context_switch/<link>shared ;
 

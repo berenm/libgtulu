@@ -16,7 +16,7 @@ namespace gtulu {
 
         template< typename ValueType >
         struct wrapped_store {
-            wrapped_store(ValueType*& pointer,
+            wrapped_store(ValueType* pointer,
                           std::size_t width = 1,
                           std::size_t height = 1,
                           std::size_t depth = 1,
@@ -36,23 +36,23 @@ namespace gtulu {
               return size_ == 0 ? width_ * height_ * depth_ * sizeof(ValueType) : size_;
             }
 
-            std::size_t value_size() {
+            std::size_t value_size() const {
               return sizeof(ValueType);
             }
 
-            std::size_t width() {
+            std::size_t width() const {
               return width_;
             }
 
-            std::size_t height() {
+            std::size_t height() const {
               return height_;
             }
 
-            std::size_t depth() {
+            std::size_t depth() const {
               return depth_;
             }
 
-            ValueType*& pointer_;
+            ValueType* pointer_;
             std::size_t const width_;
             std::size_t const height_;
             std::size_t const depth_;
@@ -62,12 +62,12 @@ namespace gtulu {
       } // namespace data
 
       template< typename ValueType >
-      data::wrapped_store const wrap(ValueType*& pointer,
-                                     std::size_t width = 1,
-                                     std::size_t height = 1,
-                                     std::size_t depth = 1,
-                                     std::size_t size = 0) {
-        return data::wrapped_store(pointer, width, height, depth);
+      data::wrapped_store< ValueType > wrap(ValueType* pointer,
+                                            std::size_t width = 1,
+                                            std::size_t height = 1,
+                                            std::size_t depth = 1,
+                                            std::size_t size = 0) {
+        return data::wrapped_store< ValueType >(pointer, width, height, depth);
       }
 
     } // namespace storage

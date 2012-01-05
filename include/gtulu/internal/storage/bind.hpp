@@ -145,7 +145,7 @@ namespace gtulu {
             typedef data::range< SourceStore > source_store_t;
 
             static void bind(target_store_t& target_store, source_store_t const& source_store) {
-              copy_binder< TargetStore, SourceStore >::bind(source_store.store(), target_store);
+              copy_binder< TargetStore, SourceStore >::bind(target_store, source_store.store());
             }
         };
 
@@ -155,8 +155,11 @@ namespace gtulu {
             typedef data::range< TargetStore > target_store_t;
             typedef SourceStore source_store_t;
 
-            static void bind(target_store_t& target_store, source_store_t const& source_store) {
-              copy_binder< TargetStore, SourceStore >::bind(source_store, target_store.store());
+//            static void bind(target_store_t&& target_store, source_store_t const& source_store) {
+//              copy_binder< TargetStore, SourceStore >::bind(target_store.store(), source_store);
+//            }
+            static void bind(target_store_t target_store, source_store_t const& source_store) {
+              copy_binder< TargetStore, SourceStore >::bind(target_store.store(), source_store);
             }
         };
 
@@ -166,8 +169,11 @@ namespace gtulu {
             typedef data::range< TargetStore > target_store_t;
             typedef data::range< SourceStore > source_store_t;
 
-            static void bind(target_store_t& target_store, source_store_t const& source_store) {
-              copy_binder< TargetStore, SourceStore >::bind(source_store.store(), target_store.store());
+//            static void bind(target_store_t&& target_store, source_store_t const& source_store) {
+//              copy_binder< TargetStore, SourceStore >::bind(target_store.store(), source_store.store());
+//            }
+            static void bind(target_store_t target_store, source_store_t const& source_store) {
+              copy_binder< TargetStore, SourceStore >::bind(target_store.store(), source_store.store());
             }
         };
 

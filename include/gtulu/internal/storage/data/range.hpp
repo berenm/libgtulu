@@ -60,14 +60,31 @@ namespace gtulu {
           private:
             StoreType& store_;
 
-            offset_type const& offset_;
+            offset_type offset_;
             std::size_t size_;
         };
 
       } // namespace data
+
+      template< typename StoreType >
+      data::range< StoreType > at(StoreType& store, data::offset_type const& offset, std::size_t const size = 0) {
+        return data::range< StoreType >(store, offset, size);
+      }
+
+      template< typename StoreType >
+      data::range< StoreType > at(StoreType& store,
+                                  std::size_t const x = 0,
+                                  std::size_t const y = 0,
+                                  std::size_t const z = 0,
+                                  std::size_t const size = 0) {
+        return data::range< StoreType >(store, data::offset_type(x, y, z), size);
+      }
+
     } // namespace storage
 
   } // namespace internal
 } // namespace gtulu
+
+#include "gtulu/internal/storage/data/traits/range.hpp"
 
 #endif /* GTULU_INTERNAL_STORAGE_DATA_RANGE_HPP_ */

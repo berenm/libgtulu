@@ -1,5 +1,7 @@
-# Distributed under the Boost Software License, Version 1.0.
-# See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt
+# Copyright (c) 2008, Svein Ove Aas, parts by Tarn Adams, portions Bernard
+# Helyer, packaging and cleanup bits by Beren Minor. All rights reserved
+#
+# See accompanying file README.rst
 
 # Provides mechanism for installing whole packages into a specific directory
 # structure. This is opposed to the 'install' rule, that installs a number of
@@ -45,12 +47,12 @@ import sequence ;
 .architectures = [ string.words "$(.architectures)" ] ;
 .architectures = [ set.difference $(.architectures) : $(.default-architecture) ] ;
 
-feature.feature target-architecture : $(.default-architecture) $(.architectures) : composite ;
+feature.feature target-architecture : $(.default-architecture) $(.architectures) : composite propagated ;
 feature.feature kernel : : optional propagated ;
 feature.feature abi : : optional propagated ;
 feature.feature endian : little big : optional propagated ;
-feature.feature cpu : : free ;
-feature.feature multiarch : : free ;
+feature.feature cpu : : optional propagated ;
+feature.feature multiarch : : optional propagated ;
 
 ### BEGIN GENERATED CODE
 feature.compose <target-architecture>uclibc-linux-armel : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-linux-uclibceabi <kernel>linux <abi>uclibceabi <cpu>arm <endian>little ;
@@ -205,6 +207,8 @@ feature.compose <target-architecture>uclinux-sparc : <address-model>32 <architec
 feature.compose <target-architecture>uclinux-sparc64 : <address-model>64 <architecture>sparc <instruction-set>native <multiarch>sparc64-uclinux-uclibc <kernel>uclinux <abi>uclibc <cpu>sparc64 <endian>big ;
 feature.extend kernel : darwin freebsd hurd kfreebsd knetbsd kopensolaris linux netbsd openbsd solaris uclinux ;
 feature.extend abi : gnu gnueabi gnueabihf gnulp gnuspe uclibc uclibceabi ;
+feature.extend cpu : amd64 arm armeb hppa i386 ia64 mips mipsel powerpc ppc64 sparc sparc64 ;
+feature.extend multiarch : arm-darwin armeb-darwin armeb-freebsd armeb-gnu armeb-kfreebsd-gnu armeb-knetbsd-gnu armeb-kopensolaris-gnu armeb-linux-gnu armeb-linux-uclibc armeb-netbsd armeb-openbsd armeb-solaris armeb-uclinux-uclibc arm-freebsd arm-gnu arm-kfreebsd-gnu arm-knetbsd-gnu arm-kopensolaris-gnu arm-linux-gnu arm-linux-gnueabi arm-linux-gnueabihf arm-linux-uclibc arm-linux-uclibceabi arm-netbsd arm-openbsd arm-solaris arm-uclinux-uclibc arm-uclinux-uclibceabi hppa-darwin hppa-freebsd hppa-gnu hppa-kfreebsd-gnu hppa-knetbsd-gnu hppa-kopensolaris-gnu hppa-linux-gnu hppa-linux-uclibc hppa-netbsd hppa-openbsd hppa-solaris hppa-uclinux-uclibc i386-darwin i386-freebsd i386-gnu i386-kfreebsd-gnu i386-knetbsd-gnu i386-kopensolaris-gnu i386-linux-gnu i386-linux-gnulp i386-linux-uclibc i386-netbsd i386-openbsd i386-solaris i386-uclinux-uclibc ia64-darwin ia64-freebsd ia64-gnu ia64-kfreebsd-gnu ia64-knetbsd-gnu ia64-kopensolaris-gnu ia64-linux-gnu ia64-linux-uclibc ia64-netbsd ia64-openbsd ia64-solaris ia64-uclinux-uclibc mips-darwin mipsel-darwin mipsel-freebsd mipsel-gnu mipsel-kfreebsd-gnu mipsel-knetbsd-gnu mipsel-kopensolaris-gnu mipsel-linux-gnu mipsel-linux-uclibc mipsel-netbsd mipsel-openbsd mipsel-solaris mipsel-uclinux-uclibc mips-freebsd mips-gnu mips-kfreebsd-gnu mips-knetbsd-gnu mips-kopensolaris-gnu mips-linux-gnu mips-linux-uclibc mips-netbsd mips-openbsd mips-solaris mips-uclinux-uclibc powerpc64-darwin powerpc64-freebsd powerpc64-gnu powerpc64-kfreebsd-gnu powerpc64-knetbsd-gnu powerpc64-kopensolaris-gnu powerpc64-linux-gnu powerpc64-linux-uclibc powerpc64-netbsd powerpc64-openbsd powerpc64-solaris powerpc64-uclinux-uclibc powerpc-darwin powerpc-freebsd powerpc-gnu powerpc-kfreebsd-gnu powerpc-knetbsd-gnu powerpc-kopensolaris-gnu powerpc-linux-gnu powerpc-linux-gnuspe powerpc-linux-uclibc powerpc-netbsd powerpc-openbsd powerpc-solaris powerpc-uclinux-uclibc sparc64-darwin sparc64-freebsd sparc64-gnu sparc64-kfreebsd-gnu sparc64-knetbsd-gnu sparc64-kopensolaris-gnu sparc64-linux-gnu sparc64-linux-uclibc sparc64-netbsd sparc64-openbsd sparc64-solaris sparc64-uclinux-uclibc sparc-darwin sparc-freebsd sparc-gnu sparc-kfreebsd-gnu sparc-knetbsd-gnu sparc-kopensolaris-gnu sparc-linux-gnu sparc-linux-uclibc sparc-netbsd sparc-openbsd sparc-solaris sparc-uclinux-uclibc x86_64-darwin x86_64-freebsd x86_64-gnu x86_64-kfreebsd-gnu x86_64-knetbsd-gnu x86_64-kopensolaris-gnu x86_64-linux-gnu x86_64-linux-uclibc x86_64-netbsd x86_64-openbsd x86_64-solaris x86_64-uclinux-uclibc ;
 
 ### END GENERATED CODE
 
@@ -298,8 +302,9 @@ rule install ( name package-name ? : binaries * : libraries * : headers * : requ
   local bin-locate = [ option.get bindir : $(prefix)/bin ] ;
 
   # Object code libraries.
-  local triplet = [ property.select <multiarch> : $(properties) ] ;
-  local lib-locate = [ option.get libdir : $(prefix)/lib/$(triplet:G=) ] ;
+  # local triplet = [ property.select <multiarch> : $(properties) ] ;
+  # local lib-locate = [ option.get libdir : $(prefix)/lib/$(triplet:G=) ] ;
+  local lib-locate = [ option.get libdir : $(prefix)/lib/ ] ;
 
   # Source header files.
   local include-locate = [ option.get includedir : $(prefix)/include ] ;

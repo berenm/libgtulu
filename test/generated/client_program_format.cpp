@@ -18,6 +18,10 @@ namespace gtulu {
         // #template#<declare_shader_source/>
 
         char const* client_program_format::client_fragment_shader_shader_format::source = "#version 330 core\n"
+"uniform uint width;\n"
+"uniform uint height;\n"
+"uniform uint last_frame;\n"
+"uniform usampler2D last_update;\n"
 "uniform usampler2D characters;\n"
 "uniform usampler2D tiles;\n"
 "uniform usampler2D tiles_color;\n"
@@ -42,19 +46,26 @@ namespace gtulu {
 "    vec4 o = c;\n"
 "    output_image = o;\n"
 "  }\n"
+"  \n"
+"  uint r = texture(last_update, vertex.coordinates).r;\n"
+"  output_image.r = 1.0 - (last_frame - r) / 50.0; \n"
 "}\n"
 ;
         
 
         char const* client_program_format::client_vertex_shader_shader_format::source = "#version 330 core\n"
+"uniform uint width;\n"
+"uniform uint height;\n"
 "in vec2 position;\n"
-"in vec2 coordinates;\n"
 "out vert {\n"
 "  vec2 coordinates;\n"
 "} vertex;\n"
 "void main() {\n"
 "  gl_Position = vec4(position, 0.0, 1.0);\n"
-"  vertex.coordinates = coordinates;\n"
+"  \n"
+"  vertex.coordinates = vec2();\n"
+"  vertex.coordinates.x = coordinates.x * width;\n"
+"  vertex.coordinates.y = coordinates.y * height;\n"
 "}\n"
 ;
         

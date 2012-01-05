@@ -23,6 +23,7 @@ namespace gtulu {
                 glm::uvec3(x, y, z) {
             }
         };
+
         struct dimension_type: public glm::uvec3 {
             dimension_type(std::size_t const width = 1, std::size_t const height = 1, std::size_t const depth = 1) :
                 glm::uvec3(width, height, depth) {

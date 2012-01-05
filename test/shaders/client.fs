@@ -1,5 +1,11 @@
 #version 330 core
 
+uniform uint width;
+uniform uint height;
+
+uniform uint last_frame;
+uniform usampler2D last_update;
+
 uniform usampler2D characters;
 
 uniform usampler2D tiles;
@@ -33,4 +39,7 @@ void main() {
 
     output_image = o;
   }
+  
+  uint r = texture(last_update, vertex.coordinates).r;
+  output_image.r = 1.0 - float(last_frame - r) / 50.0; 
 }
