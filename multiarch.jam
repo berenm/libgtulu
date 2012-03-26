@@ -1,7 +1,5 @@
-# Copyright (c) 2008, Svein Ove Aas, parts by Tarn Adams, portions Bernard
-# Helyer, packaging and cleanup bits by Beren Minor. All rights reserved
-#
-# See accompanying file README.rst
+# Distributed under the Boost Software License, Version 1.0.
+# See accompanying file LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt
 
 # Provides mechanism for installing whole packages into a specific directory
 # structure. This is opposed to the 'install' rule, that installs a number of
@@ -53,6 +51,7 @@ feature.feature abi : : optional propagated ;
 feature.feature endian : little big : optional propagated ;
 feature.feature cpu : : optional propagated ;
 feature.feature multiarch : : optional propagated ;
+feature.feature package : : optional free ;
 
 ### BEGIN GENERATED CODE
 feature.compose <target-architecture>uclibc-linux-armel : <address-model>32 <architecture>arm <instruction-set>native <multiarch>arm-linux-uclibceabi <kernel>linux <abi>uclibceabi <cpu>arm <endian>little ;
@@ -212,53 +211,212 @@ feature.extend multiarch : arm-darwin armeb-darwin armeb-freebsd armeb-gnu armeb
 
 ### END GENERATED CODE
 
-local rule search-library-property ( properties * ) {
+local rule supported-architectures ( ) {
+  local architectures ;
+
+  for arch in [ feature.values target-architecture ] {
+    local properties = [ feature.expand-composites <target-architecture>$(arch) ] ;
+    local triplet = [ property.select <multiarch> : $(properties) ] ;
+    triplet = $(triplet:G=) ;
+
+    if $(triplet) {
+      architectures = $(architectures) $(arch) ;
+    }
+  }
+
+  return $(architectures) ;
+}
+
+local rule get-prefix ( properties * ) {
+  local stagedir = [ option.get stagedir ] ;
+  stagedir = $(stagedir:G=) ;
+
+  local triplet = [ property.select <multiarch> : $(properties) ] ;
+  triplet = $(triplet:G=) ;
+
+  local prefix = [ option.get prefix : [ property.select <install-default-prefix> : $(properties) ] ] ;
+  prefix = $(prefix:G=) ;
+
+  # Or some likely defaults if neither is given.
+  if ! $(prefix) {
+    if [ modules.peek : NT ] { prefix = C:\\usr\\local ; }
+    else if [ modules.peek : UNIX ] { prefix = /usr/local ; }
+  }
+
+  local location = "$(stagedir)/$(triplet)$(prefix)" ;
+  if ( ! $(stagedir) || $(stagedir) = "/" ) {
+    location = "$(prefix)" ;
+  }
+
+  return $(location) ;
+}
+
+local rule library-search-property ( properties * ) {
   local home = [ os.home-directories ] ;
 
   local address-model = [ property.select <address-model> : $(properties) ] ;
+  address-model = $(address-model:G=) ;
   local triplet = [ property.select <multiarch> : $(properties) ] ;
-  local search      = "$(home)/lib/$(triplet:G=)" ;
-  search = "$(search)&&$(home)/lib$(address-model:G=)" ;
-  search = "$(search)&&/usr/local/lib/$(triplet:G=)" ;
-  search = "$(search)&&/usr/local/lib$(address-model:G=)" ;
-  search = "$(search)&&/usr/lib/$(triplet:G=)" ;
-  search = "$(search)&&/usr/lib$(address-model:G=)" ;
+  triplet = $(triplet:G=) ;
+
+  local search      = "$(home)/lib/$(triplet)" ;
+  search = "$(search)&&$(home)/lib$(address-model)" ;
+  search = "$(search)&&/usr/local/lib/$(triplet)" ;
+  search = "$(search)&&/usr/local/lib$(address-model)" ;
+  search = "$(search)&&/usr/lib/$(triplet)" ;
+  search = "$(search)&&/usr/lib$(address-model)" ;
 
   return $(search) ;
 }
 
-rule search-path ( ) {
+rule library-search ( ) {
   local properties = [ feature.expand-composites <target-architecture>$(.default-architecture) ] ;
-  local search = [ search-library-property $(properties) ] ;
+  local search = [ library-search-property $(properties) ] ;
   out-properties = <search>$(search) ;
 
-  for arch in [ feature.values target-architecture ] {
+  for arch in [ supported-architectures ] {
     properties = [ feature.expand-composites <target-architecture>$(arch) ] ;
-    search = [ search-library-property $(properties) ] ;
+    search = [ library-search-property $(properties) ] ;
     out-properties = $(out-properties) <target-architecture>$(arch):<search>$(search) ;
   }
 
   return $(out-properties) ;
 }
 
-rule build ( name package-name ? : binaries * : libraries * : requirements * ) {
-  local properties = [ feature.expand-composites [ feature.add-defaults $(requirements) ] ] ;
-  package-name ?= $(name) ;
+local rule library-location-property ( properties * : package ? ) {
+  local prefix = [ get-prefix $(properties) ] ;
+
+  local triplet = [ property.select <multiarch> : $(properties) ] ;
+  triplet = $(triplet:G=) ;
+
+  local libdir = [ option.get libdir : $(prefix)/lib ] ;
+  local location = "$(libdir)/$(triplet)/$(package)" ;
+  if ! $(package) {
+    location = "$(libdir)/$(triplet)" ;
+  }
+
+  return $(location) ;
+}
+
+rule library-location ( package ? ) {
+  local properties = [ feature.expand-composites <target-architecture>$(.default-architecture) ] ;
+  local location = [ library-location-property $(properties) : $(package) ] ;
+  out-properties = <location>$(location) ;
+
+  for arch in [ supported-architectures ] {
+    properties = [ feature.expand-composites <target-architecture>$(arch) ] ;
+    location = [ library-location-property $(properties) : $(package) ] ;
+    out-properties = $(out-properties) <target-architecture>$(arch):<location>$(location) ;
+  }
+
+  return $(out-properties) ;
+}
+
+local rule binary-location-property ( properties * : package ? ) {
+  local prefix = [ get-prefix $(properties) ] ;
+
+  local triplet = [ property.select <multiarch> : $(properties) ] ;
+  triplet = $(triplet:G=) ;
+
+  local bindir = [ option.get bindir : $(prefix)/bin ] ;
+  local libdir = [ option.get libdir : $(prefix)/lib ] ;
+  local location = "$(libdir)/$(triplet)/$(package)" ;
+  if ! $(package) {
+    location = "$(bindir)" ;
+  }
+
+  return $(location) ;
+}
+
+rule binary-location ( package ? ) {
+  local properties = [ feature.expand-composites <target-architecture>$(.default-architecture) ] ;
+  local location = [ binary-location-property $(properties) : $(package) ] ;
+  out-properties = <location>$(location) ;
+
+  for arch in [ supported-architectures ] {
+    properties = [ feature.expand-composites <target-architecture>$(arch) ] ;
+    location = [ binary-location-property $(properties) : $(package) ] ;
+    out-properties = $(out-properties) <target-architecture>$(arch):<location>$(location) ;
+  }
+
+  return $(out-properties) ;
+}
+
+local rule header-location-property ( properties * : package ? ) {
+  local prefix = [ get-prefix $(properties) ] ;
+
+  local includedir = [ option.get includedir : $(prefix)/include ] ;
+  local location = "$(includedir)/$(package)" ;
+  if ! $(package) {
+    location = "$(includedir)" ;
+  }
+
+  return $(location) ;
+}
+
+rule header-location ( package ? ) {
+  local header-subdir = [ property.select <install-header-subdir> : $(properties) ] ;
+  header-subdir = /$(header-subdir:G=) ;
+  header-subdir ?= "" ;
+
+  local properties = [ feature.expand-composites <target-architecture>$(.default-architecture) ] ;
+  local location = [ header-location-property $(properties) : $(package) ] ;
+  out-properties = <location>$(location)$(header-subdir) ;
+
+  for arch in [ supported-architectures ] {
+    properties = [ feature.expand-composites <target-architecture>$(arch) ] ;
+    location = [ header-location-property $(properties) : $(package) ] ;
+    out-properties = $(out-properties) <target-architecture>$(arch):<location>$(location)$(header-subdir) ;
+  }
+
+  return $(out-properties) ;
+}
+
+local rule data-location-property ( properties * : package ? ) {
+  local prefix = [ get-prefix $(properties) ] ;
+
+  local datadir = [ option.get datarootdir : $(prefix)/share ] ;
+  local location = "$(datadir)/$(package)" ;
+  if ! $(package) {
+    local project = [ project.current ] ;
+    ECHO $(project) ;
+    location = "$(datadir)" ;
+  }
+
+  return $(location) ;
+}
+
+rule data-location ( package ? ) {
+  local properties = [ feature.expand-composites <target-architecture>$(.default-architecture) ] ;
+  local location = [ data-location-property $(properties) : $(package) ] ;
+  out-properties = <location>$(location) ;
+
+  for arch in [ supported-architectures ] {
+    properties = [ feature.expand-composites <target-architecture>$(arch) ] ;
+    location = [ data-location-property $(properties) : $(package) ] ;
+    out-properties = $(out-properties) <target-architecture>$(arch):<location>$(location) ;
+  }
+
+  return $(out-properties) ;
+}
+
+rule build ( name package ? : binaries * : libraries * : properties * ) {
+  package ?= $(name) ;
 
   alias $(name)-lib-shared
       : $(libraries)
-      : $(requirements)
+      : $(properties)
         <link>shared ;
   alias $(name)-lib-static
       : $(libraries)
-      : $(requirements)
+      : $(properties)
         <link>static ;
 
   alias $(name)
       : $(binaries)
         $(name)-lib-shared
         $(name)-lib-static
-      : $(requirements) ;
+      : $(properties) ;
 
   local c = [ project.current ] ;
   local project-module = [ $(c).project-module ] ;
@@ -271,9 +429,9 @@ rule build ( name package-name ? : binaries * : libraries * : requirements * ) {
   }
 }
 
-rule install ( name package-name ? : binaries * : libraries * : headers * : requirements * ) {
-  local properties = [ feature.expand-composites [ feature.add-defaults $(requirements) ] ] ;
-  package-name ?= $(name) ;
+rule install ( name : binaries * : libraries * : headers * : properties * ) {
+  package = [ property.select <package> : $(properties) ] ;
+  package = $(package:G=) ;
 
   if [ MATCH --prefix=(.*) : [ modules.peek : ARGV ] ] {
     # If --prefix is explicitly specified on the command line,
@@ -286,51 +444,32 @@ rule install ( name package-name ? : binaries * : libraries * : headers * : requ
 
   # If <install-source-root> is not specified, all headers are installed to prefix/include, no matter what their
   # relative path is. Sometimes that is what is needed.
-  local install-source-root = [ property.select <install-source-root> : $(requirements) ] ;
+  local install-source-root = [ property.select <install-source-root> : $(properties) ] ;
   install-source-root = $(install-source-root:G=) ;
-  requirements = [ property.change $(requirements) : <install-source-root> ] ;
-
-  local install-header-subdir = [ property.select <install-header-subdir> : $(requirements) ] ;
-  install-header-subdir = /$(install-header-subdir:G=) ;
-  install-header-subdir ?= "" ;
-  requirements = [ property.change $(requirements) : <install-header-subdir> ] ;
-
-  # First, figure out all locations. Use the default if no prefix option given.
-  local prefix = [ get-prefix $(name) : $(requirements) ] ;
-
-  # Binaries.
-  local bin-locate = [ option.get bindir : $(prefix)/bin ] ;
-
-  # Object code libraries.
-  # local triplet = [ property.select <multiarch> : $(properties) ] ;
-  # local lib-locate = [ option.get libdir : $(prefix)/lib/$(triplet:G=) ] ;
-  local lib-locate = [ option.get libdir : $(prefix)/lib/ ] ;
-
-  # Source header files.
-  local include-locate = [ option.get includedir : $(prefix)/include ] ;
+  properties = [ property.change $(properties) : <install-source-root> ] ;
 
   stage.install $(name)-bin
               : $(binaries)
-              : $(requirements)
-                <location>$(bin-locate) ;
+              : $(properties)
+                [ binary-location $(package) ] ;
 
   stage.install $(name)-lib-shared
               : $(libraries)
-              : $(requirements)
-                <location>$(lib-locate)
+              : $(properties)
+                [ library-location $(package) ]
                 <install-type>SHARED_LIB
                 <link>shared ;
   stage.install $(name)-lib-static
               : $(libraries)
-              : $(requirements)
-                <location>$(lib-locate)
+              : $(properties)
+                [ library-location $(package) ]
                 <install-type>STATIC_LIB
                 <link>static ;
 
   stage.install $(name)-headers
               : $(headers)
-              : $(requirements)
-                <location>$(include-locate)$(install-header-subdir)
+              : $(properties)
+                [ header-location $(package) ]
                 <install-source-root>$(install-source-root) ;
 
   alias $(name)
@@ -350,40 +489,34 @@ rule install ( name package-name ? : binaries * : libraries * : headers * : requ
   }
 }
 
-rule install-data ( name package-name ? : data * : requirements * ) {
-  package-name ?= $(name) ;
+rule install-data ( name : data * : properties * ) {
+  package = [ property.select <package> : $(properties) ] ;
+  package = $(package:G=) ;
 
   if [ MATCH --prefix=(.*) : [ modules.peek : ARGV ] ] {
     # If --prefix is explicitly specified on the command line, then we need wipe away any settings of datarootdir
     option.set datarootdir : ;
   }
 
-  local prefix = [ get-prefix $(package-name) : $(requirements) ] ;
-  local datadir = [ option.get datarootdir : $(prefix)/share ] ;
+  # If <install-source-root> is not specified, all headers are installed to prefix/include, no matter what their
+  # relative path is. Sometimes that is what is needed.
+  local install-source-root = [ property.select <install-source-root> : $(properties) ] ;
+  install-source-root = $(install-source-root:G=) ;
+  properties = [ property.change $(properties) : <install-source-root> ] ;
 
-  stage.install $(target-name)
+  stage.install $(name)-data
               : $(data)
-              : $(requirements) <location>$(datadir)/$(package-name) ;
+              : $(properties)
+                [ data-location $(package) ]
+                <install-source-root>$(install-source-root) ;
+
+  alias $(name)
+      : $(name)-data ;
 
   local c = [ project.current ] ;
   local project-module = [ $(c).project-module ] ;
   module $(project-module) {
-    explicit $(target-name) ;
+    explicit $(name)
+             $(name)-data ;
   }
-}
-
-local rule get-prefix ( package-name : requirements * ) {
-  local prefix = [ option.get prefix : [ property.select <install-default-prefix> : $(requirements) ] ] ;
-
-  # Remove ./ in prefix by
-  prefix = $(prefix:G=) ;
-  requirements = [ property.change $(requirements) : <install-default-prefix> ] ;
-
-  # Or some likely defaults if neither is given.
-  if ! $(prefix) {
-    if [ modules.peek : NT ] { prefix = C:\\$(package-name) ; }
-    else if [ modules.peek : UNIX ] { prefix = /usr/local ; }
-  }
-
-  return $(prefix) ;
 }

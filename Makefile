@@ -1,26 +1,30 @@
 # Distributed under the Boost Software License, Version 1.0.
-# See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt
+# See accompanying file LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt
 
-DESTDIR?=${HOME}/
-VARIANT?=debug
-TOOLSET?=gcc
+DESTDIR?=
+TOOLSET?=clang
+ARCH?=$(shell dpkg-architecture -qDEB_HOST_ARCH)
 UPDATE?=no
 
+build-debug: update-tools
+	# building debug...
+	b2 build --user-config=./build-config.jam --toolset=${TOOLSET} target-architecture=$(ARCH) -j2 debug
+
 build: update-tools
-	# building ${VARIANT}...
-	bjam build ${VARIANT} --user-config=./build-config.jam --toolset=${TOOLSET} -j2
+	# building release...
+	b2 build --user-config=./build-config.jam --toolset=${TOOLSET} target-architecture=$(ARCH) -j2 release
 
 clean: update-tools
 	# clean...
-	bjam --clean build --user-config=./build-config.jam --toolset=${TOOLSET} -j2
+	b2 build --user-config=./build-config.jam --toolset=${TOOLSET} target-architecture=$(ARCH) -j2 --clean
 
 install: update-tools
 	# install...
-	bjam install ${VARIANT} --user-config=./build-config.jam --prefix=${DESTDIR} --toolset=${TOOLSET} -j2
+	b2 install --user-config=./build-config.jam --toolset=${TOOLSET} target-architecture=$(ARCH) -j2 release --prefix=/usr/local --stagedir=${DESTDIR}
 
 uninstall: update-tools
 	# uninstall...
-	bjam --clean install --user-config=./build-config.jam --prefix=${DESTDIR} --toolset=${TOOLSET} -j2
+	b2 install --user-config=./build-config.jam --toolset=${TOOLSET} target-architecture=$(ARCH) -j2 --clean --prefix=/usr/local --stagedir=${DESTDIR}
 
 distclean: update-tools clean
 

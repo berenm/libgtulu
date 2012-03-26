@@ -6,25 +6,25 @@ import path ;
 import shader ;
 import testing ;
 
-lib GL : : [ multiarch.search-path ] <name>:libGL.so.1 ;
-lib GLU : : [ multiarch.search-path ] <search>lib ;
-lib glfw : : [ multiarch.search-path ] <search>lib ;
-lib jpeg : : [ multiarch.search-path ] <search>lib ;
-lib png : : [ multiarch.search-path ] ;
-lib boost_thread : : [ multiarch.search-path ] ;
-lib boost_program_options : : [ multiarch.search-path ] ;
-lib boost_filesystem : : [ multiarch.search-path ] ;
-lib boost_regex : : [ multiarch.search-path ] ;
-lib boost_iostreams : : [ multiarch.search-path ] ;
-lib boost_date_time : : [ multiarch.search-path ] ;
-lib boost_system : : [ multiarch.search-path ] ;
-lib boost_log : : [ multiarch.search-path ] ;
-lib boost_chrono : : [ multiarch.search-path ] ;
-lib logging : : [ multiarch.search-path ] ;
-lib glut : : [ multiarch.search-path ] ;
-lib X11 : : [ multiarch.search-path ] ;
-lib Xau : : [ multiarch.search-path ] ;
-lib Xdmcp : : [ multiarch.search-path ] ;
+lib GL : : [ multiarch.library-search ] <name>:libGL.so.1 ;
+lib GLU : : [ multiarch.library-search ] <search>lib ;
+lib glfw : : [ multiarch.library-search ] <search>lib ;
+lib jpeg : : [ multiarch.library-search ] <search>lib ;
+lib png : : [ multiarch.library-search ] ;
+lib boost_thread : : [ multiarch.library-search ] ;
+lib boost_program_options : : [ multiarch.library-search ] ;
+lib boost_filesystem : : [ multiarch.library-search ] ;
+lib boost_regex : : [ multiarch.library-search ] ;
+lib boost_iostreams : : [ multiarch.library-search ] ;
+lib boost_date_time : : [ multiarch.library-search ] ;
+lib boost_system : : [ multiarch.library-search ] ;
+lib boost_log : : [ multiarch.library-search ] ;
+lib boost_chrono : : [ multiarch.library-search ] ;
+lib logging : : [ multiarch.library-search ] ;
+lib glut : : [ multiarch.library-search ] ;
+lib X11 : : [ multiarch.library-search ] ;
+lib Xau : : [ multiarch.library-search ] ;
+lib Xdmcp : : [ multiarch.library-search ] ;
 
 project libgtulu : requirements
   <library>GL/<link>shared
@@ -53,7 +53,7 @@ project libgtulu : requirements
   <variant>release:<define>NO_GTULU_DEBUG
   <cflags>-std=c++0x
   <cflags>-Wno-multichar
-  <cflags>-DGTULU_USE_LIBLOGGING
+#  <cflags>-DGTULU_USE_LIBLOGGING
   <cflags>-fpch-preprocess
   <cflags>"`pkg-config --cflags pangocairo`"
   <linkflags>"`pkg-config --libs pangocairo`"
@@ -104,12 +104,12 @@ alias test : test1exe/<link>shared
              pango_test/<link>shared
              context_switch/<link>shared ;
 
-multiarch.build build libgtulu
+multiarch.build build
                 : gtulu-compiler
                 : gtulu test
                 : ;
 
-multiarch.install install libgtulu 
+multiarch.install install
                     : gtulu-compiler
                     : gtulu
                     : [ path.glob-tree include/ : *.* : ]
