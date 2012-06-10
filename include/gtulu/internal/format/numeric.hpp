@@ -9,7 +9,7 @@
 #define GTULU_INTERNAL_FORMAT_NUMERIC_HPP_
 
 #include "gtulu/namespaces.hpp"
-#include "meta/type_traits.hpp"
+#include "meta/type_aspects.hpp"
 
 namespace gtulu {
   namespace internal {

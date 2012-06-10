@@ -10,18 +10,15 @@
 
 # ignore hidden files
 .*
+
 # except for .gitignore
 !.gitignore
 !.gitmodules
-!.cproject
-!.project
-!.dep.inc
+!.uncrustifyrc
 
-bin
-dist
+build/
+install/
 doc/html
 doc/web
 doc/wiki
-
-fhs.jam
-build-config.jam
+include/GL3/

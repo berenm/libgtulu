@@ -14,7 +14,7 @@
 #include "gtulu/internal/constants.hpp"
 #include "gtulu/internal/functions.hpp"
 
-#include "meta/type_traits.hpp"
+#include "meta/type_aspects.hpp"
 
 namespace gtulu {
   namespace internal {

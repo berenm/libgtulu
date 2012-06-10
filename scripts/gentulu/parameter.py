@@ -21,8 +21,11 @@ class parameter:
     if type_modifier.startswith('const'):
       type_modifier = ' ' + type_modifier
 
+    type_modifier = re.sub('\s+', ' ', type_modifier)
     self.is_struct = 'struct' in type_modifier
+    type_modifier = re.sub('\s*struct\s*', '', type_modifier)
     self.is_const = 'const' in type_modifier
+    type_modifier = re.sub('\s*const\s*', '', type_modifier)
     self.is_pointer = '*' in type_modifier
     self.is_pointer_pointer = '**' in type_modifier
     self.is_reference = '&' in type_modifier

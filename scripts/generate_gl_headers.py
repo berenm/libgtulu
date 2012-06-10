@@ -10,7 +10,7 @@ import os
 from gentulu import gl3_parser
 from gentulu.function import function
 
-source_header = '/usr/local/include/GL3/gl3.h'
+source_header = '../include/GL3/gl3.h'
 source_header_prefix = os.path.basename(source_header)
 source_header_prefix = os.path.splitext(source_header_prefix)[0].lower()
 source_header_guard = source_header_prefix.upper()

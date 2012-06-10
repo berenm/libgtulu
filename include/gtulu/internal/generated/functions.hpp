@@ -104,7 +104,7 @@ namespace gtulu {
            */
           template< >
           struct gl_clear_depth< > {
-            inline static void call(GLclampd depth) {
+            inline static void call(double depth) {
                 __gtulu_debug() << "call glClearDepth "  "depth: '" << depth << "'" ;
                 glClearDepth(depth);
                 __gtulu_check_error();
@@ -228,7 +228,7 @@ namespace gtulu {
            */
           template< >
           struct gl_depth_range< > {
-            inline static void call(GLclampd near, GLclampd far) {
+            inline static void call(double near, double far) {
                 __gtulu_debug() << "call glDepthRange "  "near: '" << near << "'"  ", "  "far: '" << far << "'" ;
                 glDepthRange(near, far);
                 __gtulu_check_error();
@@ -5789,7 +5789,7 @@ namespace gtulu {
            */
           template< >
           struct gl_clear_depth< > {
-            inline static void call(GLclampd depth) {
+            inline static void call(double depth) {
                 __gtulu_debug() << "call glClearDepth "  "depth: '" << depth << "'" ;
                 glClearDepth(depth);
                 __gtulu_check_error();
@@ -5809,7 +5809,7 @@ namespace gtulu {
            */
           template< >
           struct gl_depth_range< > {
-            inline static void call(GLclampd near, GLclampd far) {
+            inline static void call(double near, double far) {
                 __gtulu_debug() << "call glDepthRange "  "near: '" << near << "'"  ", "  "far: '" << far << "'" ;
                 glDepthRange(near, far);
                 __gtulu_check_error();
@@ -11643,7 +11643,7 @@ namespace gtulu {
            */
           template< >
           struct gl_depth_range_array< > {
-            inline static void call(std::uint32_t first, GLsizei count, GLclampd const* v) {
+            inline static void call(std::uint32_t first, GLsizei count, double const* v) {
                 __gtulu_debug() << "call glDepthRangeArrayv "  "first: '" << first << "'"  ", "  "count: '" << count << "'"  ", "  "v: '" << v << "'" ;
                 glDepthRangeArrayv(first, count, v);
                 __gtulu_check_error();
@@ -11656,7 +11656,7 @@ namespace gtulu {
            */
           template< >
           struct gl_depth_range_indexed< > {
-            inline static void call(std::uint32_t index, GLclampd n, GLclampd f) {
+            inline static void call(std::uint32_t index, double n, double f) {
                 __gtulu_debug() << "call glDepthRangeIndexed "  "index: '" << index << "'"  ", "  "n: '" << n << "'"  ", "  "f: '" << f << "'" ;
                 glDepthRangeIndexed(index, n, f);
                 __gtulu_check_error();

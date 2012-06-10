@@ -15,7 +15,7 @@
 
 #include "gtulu/internal/object/object_fwd.hpp"
 
-#include "meta/type_traits.hpp"
+#include "meta/type_aspects.hpp"
 
 namespace gtulu {
   namespace internal {

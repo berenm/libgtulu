@@ -16,6 +16,7 @@
 
 #include <boost/thread/tss.hpp>
 #include <boost/smart_ptr.hpp>
+#include <boost/noncopyable.hpp>
 
 #include <map>
 

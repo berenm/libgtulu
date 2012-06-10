@@ -15,6 +15,8 @@
 
 #include "gtulu/internal/context_info.hpp"
 
+#include <boost/array.hpp>
+
 namespace gtulu {
   namespace internal {
 

@@ -4,7 +4,7 @@
  * Distributed under the Boost Software License, Version 1.0.
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
-
+ 
 /******************************************************************************
  * THIS FILE IS AUTO GENERATED FROM scripts/generate_gl_headers.py,           *
  * ANY CHANGE WILL BE OVERWRITTEN                                             *
@@ -22,7 +22,7 @@
 
 namespace gtulu {
   namespace internal {
-
+  
     namespace generated {
 
       namespace gl {
@@ -1904,10 +1904,6 @@ namespace gtulu {
               static inline char const* name() { return "context_flag_forward_compatible_bit"; }
               static std::uint64_t const value = GL_CONTEXT_FLAG_FORWARD_COMPATIBLE_BIT;
           };
-          struct gl_depth_buffer: public cst::gl_constant< gl_depth_buffer > {
-              static inline char const* name() { return "depth_buffer"; }
-              static std::uint64_t const value = GL_DEPTH_BUFFER;
-          };
           struct gl_fixed_only: public cst::gl_constant< gl_fixed_only > {
               static inline char const* name() { return "fixed_only"; }
               static std::uint64_t const value = GL_FIXED_ONLY;
@@ -2127,10 +2123,6 @@ namespace gtulu {
           struct gl_separate_attribs: public cst::gl_constant< gl_separate_attribs > {
               static inline char const* name() { return "separate_attribs"; }
               static std::uint64_t const value = GL_SEPARATE_ATTRIBS;
-          };
-          struct gl_stencil_buffer: public cst::gl_constant< gl_stencil_buffer > {
-              static inline char const* name() { return "stencil_buffer"; }
-              static std::uint64_t const value = GL_STENCIL_BUFFER;
           };
           struct gl_texture_1d_array: public cst::gl_constant< gl_texture_1d_array > {
               static inline char const* name() { return "texture_1d_array"; }
@@ -2606,6 +2598,10 @@ namespace gtulu {
               static inline char const* name() { return "num_shader_binary_formats"; }
               static std::uint64_t const value = GL_NUM_SHADER_BINARY_FORMATS;
           };
+          struct gl_rgb565: public cst::gl_constant< gl_rgb565 > {
+              static inline char const* name() { return "rgb565"; }
+              static std::uint64_t const value = GL_RGB565;
+          };
           struct gl_shader_compiler: public cst::gl_constant< gl_shader_compiler > {
               static inline char const* name() { return "shader_compiler"; }
               static std::uint64_t const value = GL_SHADER_COMPILER;
@@ -2718,9 +2714,17 @@ namespace gtulu {
               static inline char const* name() { return "copy_read_buffer"; }
               static std::uint64_t const value = GL_COPY_READ_BUFFER;
           };
+          struct gl_copy_read_buffer_binding: public cst::gl_constant< gl_copy_read_buffer_binding > {
+              static inline char const* name() { return "copy_read_buffer_binding"; }
+              static std::uint64_t const value = GL_COPY_READ_BUFFER_BINDING;
+          };
           struct gl_copy_write_buffer: public cst::gl_constant< gl_copy_write_buffer > {
               static inline char const* name() { return "copy_write_buffer"; }
               static std::uint64_t const value = GL_COPY_WRITE_BUFFER;
+          };
+          struct gl_copy_write_buffer_binding: public cst::gl_constant< gl_copy_write_buffer_binding > {
+              static inline char const* name() { return "copy_write_buffer_binding"; }
+              static std::uint64_t const value = GL_COPY_WRITE_BUFFER_BINDING;
           };
         } // namespace constant
       } // namespace copy_buffer
@@ -4690,6 +4694,10 @@ namespace gtulu {
               static inline char const* name() { return "transform_feedback"; }
               static std::uint64_t const value = GL_TRANSFORM_FEEDBACK;
           };
+          struct gl_transform_feedback_active: public cst::gl_constant< gl_transform_feedback_active > {
+              static inline char const* name() { return "transform_feedback_active"; }
+              static std::uint64_t const value = GL_TRANSFORM_FEEDBACK_ACTIVE;
+          };
           struct gl_transform_feedback_binding: public cst::gl_constant< gl_transform_feedback_binding > {
               static inline char const* name() { return "transform_feedback_binding"; }
               static std::uint64_t const value = GL_TRANSFORM_FEEDBACK_BINDING;
@@ -4701,6 +4709,10 @@ namespace gtulu {
           struct gl_transform_feedback_buffer_paused: public cst::gl_constant< gl_transform_feedback_buffer_paused > {
               static inline char const* name() { return "transform_feedback_buffer_paused"; }
               static std::uint64_t const value = GL_TRANSFORM_FEEDBACK_BUFFER_PAUSED;
+          };
+          struct gl_transform_feedback_paused: public cst::gl_constant< gl_transform_feedback_paused > {
+              static inline char const* name() { return "transform_feedback_paused"; }
+              static std::uint64_t const value = GL_TRANSFORM_FEEDBACK_PAUSED;
           };
         } // namespace constant
       } // namespace transform_feedback2
@@ -4971,7 +4983,7 @@ namespace gtulu {
       } // namespace other
 
     } // namespace generated
-
+    
   } // namespace internal
 } // namespace gtulu
 

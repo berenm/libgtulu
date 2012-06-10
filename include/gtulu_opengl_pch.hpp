@@ -38,6 +38,6 @@
 #include <boost/mpl/not.hpp>
 #include <boost/mpl/same_as.hpp>
 
-#include "meta/type_traits.hpp"
+#include "meta/type_aspects.hpp"
 
 #endif /*  BOOST_BUILD_PCH_ENABLED */

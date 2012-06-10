@@ -498,7 +498,6 @@ namespace gtulu {
       using gen::gl::v3_0::constant::gl_compressed_rg;
       using gen::gl::v3_0::constant::gl_context_flags;
       using gen::gl::v3_0::constant::gl_context_flag_forward_compatible_bit;
-      using gen::gl::v3_0::constant::gl_depth_buffer;
       using gen::gl::v3_0::constant::gl_fixed_only;
       using gen::gl::v3_0::constant::gl_green_integer;
       using gen::gl::v3_0::constant::gl_interleaved_attribs;
@@ -554,7 +553,6 @@ namespace gtulu {
       using gen::gl::v3_0::constant::gl_sampler_2d_array_shadow;
       using gen::gl::v3_0::constant::gl_sampler_cube_shadow;
       using gen::gl::v3_0::constant::gl_separate_attribs;
-      using gen::gl::v3_0::constant::gl_stencil_buffer;
       using gen::gl::v3_0::constant::gl_texture_1d_array;
       using gen::gl::v3_0::constant::gl_texture_2d_array;
       using gen::gl::v3_0::constant::gl_texture_binding_1d_array;

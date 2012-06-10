@@ -522,7 +522,6 @@ namespace gtulu {
             struct gl_compressed_rg;
             struct gl_context_flags;
             struct gl_context_flag_forward_compatible_bit;
-            struct gl_depth_buffer;
             struct gl_fixed_only;
             struct gl_green_integer;
             struct gl_interleaved_attribs;
@@ -578,7 +577,6 @@ namespace gtulu {
             struct gl_sampler_2d_array_shadow;
             struct gl_sampler_cube_shadow;
             struct gl_separate_attribs;
-            struct gl_stencil_buffer;
             struct gl_texture_1d_array;
             struct gl_texture_2d_array;
             struct gl_texture_binding_1d_array;
@@ -720,6 +718,7 @@ namespace gtulu {
             struct gl_medium_float;
             struct gl_medium_int;
             struct gl_num_shader_binary_formats;
+            struct gl_rgb565;
             struct gl_shader_compiler;
           } // namespace constant
         } // namespace es2_compatibility
@@ -766,7 +765,9 @@ namespace gtulu {
           namespace constant {
             struct gl_arb_copy_buffer;
             struct gl_copy_read_buffer;
+            struct gl_copy_read_buffer_binding;
             struct gl_copy_write_buffer;
+            struct gl_copy_write_buffer_binding;
           } // namespace constant
         } // namespace copy_buffer
         namespace debug_output {
@@ -1412,9 +1413,11 @@ namespace gtulu {
           namespace constant {
             struct gl_arb_transform_feedback2;
             struct gl_transform_feedback;
+            struct gl_transform_feedback_active;
             struct gl_transform_feedback_binding;
             struct gl_transform_feedback_buffer_active;
             struct gl_transform_feedback_buffer_paused;
+            struct gl_transform_feedback_paused;
           } // namespace constant
         } // namespace transform_feedback2
         namespace transform_feedback3 {
@@ -1884,6 +1887,7 @@ namespace gtulu {
           using gen::arb::get_program_binary::constant::gl_program_binary_retrievable_hint;
           using gen::arb::separate_shader_objects::constant::gl_program_pipeline_binding;
           using gen::arb::separate_shader_objects::constant::gl_program_separable;
+          using gen::arb::es2_compatibility::constant::gl_rgb565;
           using gen::arb::es2_compatibility::constant::gl_shader_compiler;
           using gen::arb::separate_shader_objects::constant::gl_tess_control_shader_bit;
           using gen::arb::separate_shader_objects::constant::gl_tess_evaluation_shader_bit;
