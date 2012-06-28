@@ -23,11 +23,50 @@ link_directories(
   ${Boost_LIBRARY_DIRS}
 )
 
-if(NOT EXISTS "include/GL3/gl3.h")
+if(NOT EXISTS "${CMAKE_SOURCE_DIR}/include/KHR" OR "${GTULU_FORCE_DOWNLOAD}" EQUAL 1)
+  file(MAKE_DIRECTORY "include/KHR")
+  message(STATUS "Downloading KHR/khrplatform.h...")
+  file(DOWNLOAD "http://www.khronos.org/registry/egl/api/KHR/khrplatform.h" "${CMAKE_SOURCE_DIR}/include/KHR/khrplatform.h")
+endif()
+
+if(NOT EXISTS "${CMAKE_SOURCE_DIR}/include/EGL" OR "${GTULU_FORCE_DOWNLOAD}" EQUAL 1)
+  file(MAKE_DIRECTORY "include/EGL")
+  message(STATUS "Downloading EGL/egl.h...")
+  file(DOWNLOAD "http://www.khronos.org/registry/egl/api/EGL/egl.h"         "${CMAKE_SOURCE_DIR}/include/EGL/egl.h")
+
+  message(STATUS "Downloading EGL/eglext.h...")
+  file(DOWNLOAD "http://www.khronos.org/registry/egl/api/EGL/eglext.h"      "${CMAKE_SOURCE_DIR}/include/EGL/eglext.h")
+
+  message(STATUS "Downloading EGL/eglplatform.h...")
+  file(DOWNLOAD "http://www.khronos.org/registry/egl/api/EGL/eglplatform.h" "${CMAKE_SOURCE_DIR}/include/EGL/eglplatform.h")
+endif()
+
+if(NOT EXISTS "${CMAKE_SOURCE_DIR}/include/GLES2" OR "${GTULU_FORCE_DOWNLOAD}" EQUAL 1)
+  file(MAKE_DIRECTORY "include/GLES2")
+  message(STATUS "Downloading GLES2/gl2.h...")
+  file(DOWNLOAD "http://www.khronos.org/registry/gles/api/2.0/gl2.h"         "${CMAKE_SOURCE_DIR}/include/GLES2/gl2.h")
+
+  message(STATUS "Downloading GLES2/gl2ext.h...")
+  file(DOWNLOAD "http://www.khronos.org/registry/gles/api/2.0/gl2ext.h"      "${CMAKE_SOURCE_DIR}/include/GLES2/gl2ext.h")
+
+  message(STATUS "Downloading GLES2/gl2platform.h...")
+  file(DOWNLOAD "http://www.khronos.org/registry/gles/api/2.0/gl2platform.h" "${CMAKE_SOURCE_DIR}/include/GLES2/gl2platform.h")
+endif()
+
+if(NOT EXISTS "${CMAKE_SOURCE_DIR}/include/GL3" OR "${GTULU_FORCE_DOWNLOAD}" EQUAL 1)
   file(MAKE_DIRECTORY "include/GL3")
+  message(STATUS "Downloading GL3/gl3.h...")
   file(DOWNLOAD "http://www.opengl.org/registry/api/gl3.h" "${CMAKE_SOURCE_DIR}/include/GL3/gl3.h")
 endif()
 
+if(NOT EXISTS "${CMAKE_SOURCE_DIR}/scripts/clang" OR "${GTULU_FORCE_DOWNLOAD}" EQUAL 1)
+  file(MAKE_DIRECTORY "scripts/clang")
+  message(STATUS "Downloading clang/__init__.py...")
+  file(DOWNLOAD "http://llvm.org/svn/llvm-project/cfe/trunk/bindings/python/clang/__init__.py" "${CMAKE_SOURCE_DIR}/scripts/clang/__init__.py")
+
+  message(STATUS "Downloading clang/cindex.py...")
+  file(DOWNLOAD "http://llvm.org/svn/llvm-project/cfe/trunk/bindings/python/clang/cindex.py" "${CMAKE_SOURCE_DIR}/scripts/clang/cindex.py")
+endif()
 
 # -------------------------------------------------------------------------
 # project version

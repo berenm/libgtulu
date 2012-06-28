@@ -1,0 +1,1402 @@
+.. debugging /home/remi/src/github/libgtulu/include/GLES2/gl2.h...
+<translation-unit name='/home/remi/src/github/libgtulu/include/GLES2/gl2.h'>
+<macro name='__llvm__' value=''/>
+<macro name='__clang__' value=''/>
+<macro name='__clang_major__' value=''/>
+<macro name='__clang_minor__' value=''/>
+<macro name='__clang_patchlevel__' value=''/>
+<macro name='__clang_version__' value=''/>
+<macro name='__GNUC_MINOR__' value=''/>
+<macro name='__GNUC_PATCHLEVEL__' value=''/>
+<macro name='__GNUC__' value=''/>
+<macro name='__GXX_ABI_VERSION' value=''/>
+<macro name='__ATOMIC_RELAXED' value=''/>
+<macro name='__ATOMIC_CONSUME' value=''/>
+<macro name='__ATOMIC_ACQUIRE' value=''/>
+<macro name='__ATOMIC_RELEASE' value=''/>
+<macro name='__ATOMIC_ACQ_REL' value=''/>
+<macro name='__ATOMIC_SEQ_CST' value=''/>
+<macro name='__PRAGMA_REDEFINE_EXTNAME' value=''/>
+<macro name='__VERSION__' value=''/>
+<macro name='__CONSTANT_CFSTRINGS__' value=''/>
+<macro name='__GXX_RTTI' value=''/>
+<macro name='__CHAR_BIT__' value=''/>
+<macro name='__SCHAR_MAX__' value=''/>
+<macro name='__SHRT_MAX__' value=''/>
+<macro name='__INT_MAX__' value=''/>
+<macro name='__LONG_MAX__' value=''/>
+<macro name='__LONG_LONG_MAX__' value=''/>
+<macro name='__WCHAR_MAX__' value=''/>
+<macro name='__INTMAX_MAX__' value=''/>
+<macro name='__SIZEOF_DOUBLE__' value=''/>
+<macro name='__SIZEOF_FLOAT__' value=''/>
+<macro name='__SIZEOF_INT__' value=''/>
+<macro name='__SIZEOF_LONG__' value=''/>
+<macro name='__SIZEOF_LONG_DOUBLE__' value=''/>
+<macro name='__SIZEOF_LONG_LONG__' value=''/>
+<macro name='__SIZEOF_POINTER__' value=''/>
+<macro name='__SIZEOF_SHORT__' value=''/>
+<macro name='__SIZEOF_PTRDIFF_T__' value=''/>
+<macro name='__SIZEOF_SIZE_T__' value=''/>
+<macro name='__SIZEOF_WCHAR_T__' value=''/>
+<macro name='__SIZEOF_WINT_T__' value=''/>
+<macro name='__INTMAX_TYPE__' value=''/>
+<macro name='__UINTMAX_TYPE__' value=''/>
+<macro name='__INTMAX_WIDTH__' value=''/>
+<macro name='__PTRDIFF_TYPE__' value=''/>
+<macro name='__PTRDIFF_WIDTH__' value=''/>
+<macro name='__INTPTR_TYPE__' value=''/>
+<macro name='__INTPTR_WIDTH__' value=''/>
+<macro name='__SIZE_TYPE__' value=''/>
+<macro name='__SIZE_WIDTH__' value=''/>
+<macro name='__WCHAR_TYPE__' value=''/>
+<macro name='__WCHAR_WIDTH__' value=''/>
+<macro name='__WINT_TYPE__' value=''/>
+<macro name='__WINT_WIDTH__' value=''/>
+<macro name='__SIG_ATOMIC_WIDTH__' value=''/>
+<macro name='__CHAR16_TYPE__' value=''/>
+<macro name='__CHAR32_TYPE__' value=''/>
+<macro name='__FLT_DENORM_MIN__' value=''/>
+<macro name='__FLT_HAS_DENORM__' value=''/>
+<macro name='__FLT_DIG__' value=''/>
+<macro name='__FLT_EPSILON__' value=''/>
+<macro name='__FLT_HAS_INFINITY__' value=''/>
+<macro name='__FLT_HAS_QUIET_NAN__' value=''/>
+<macro name='__FLT_MANT_DIG__' value=''/>
+<macro name='__FLT_MAX_10_EXP__' value=''/>
+<macro name='__FLT_MAX_EXP__' value=''/>
+<macro name='__FLT_MAX__' value=''/>
+<macro name='__FLT_MIN_10_EXP__' value=''/>
+<macro name='__FLT_MIN_EXP__' value=''/>
+<macro name='__FLT_MIN__' value=''/>
+<macro name='__DBL_DENORM_MIN__' value=''/>
+<macro name='__DBL_HAS_DENORM__' value=''/>
+<macro name='__DBL_DIG__' value=''/>
+<macro name='__DBL_EPSILON__' value=''/>
+<macro name='__DBL_HAS_INFINITY__' value=''/>
+<macro name='__DBL_HAS_QUIET_NAN__' value=''/>
+<macro name='__DBL_MANT_DIG__' value=''/>
+<macro name='__DBL_MAX_10_EXP__' value=''/>
+<macro name='__DBL_MAX_EXP__' value=''/>
+<macro name='__DBL_MAX__' value=''/>
+<macro name='__DBL_MIN_10_EXP__' value=''/>
+<macro name='__DBL_MIN_EXP__' value=''/>
+<macro name='__DBL_MIN__' value=''/>
+<macro name='__LDBL_DENORM_MIN__' value=''/>
+<macro name='__LDBL_HAS_DENORM__' value=''/>
+<macro name='__LDBL_DIG__' value=''/>
+<macro name='__LDBL_EPSILON__' value=''/>
+<macro name='__LDBL_HAS_INFINITY__' value=''/>
+<macro name='__LDBL_HAS_QUIET_NAN__' value=''/>
+<macro name='__LDBL_MANT_DIG__' value=''/>
+<macro name='__LDBL_MAX_10_EXP__' value=''/>
+<macro name='__LDBL_MAX_EXP__' value=''/>
+<macro name='__LDBL_MAX__' value=''/>
+<macro name='__LDBL_MIN_10_EXP__' value=''/>
+<macro name='__LDBL_MIN_EXP__' value=''/>
+<macro name='__LDBL_MIN__' value=''/>
+<macro name='__POINTER_WIDTH__' value=''/>
+<macro name='__WINT_UNSIGNED__' value=''/>
+<macro name='__INT8_TYPE__' value=''/>
+<macro name='__INT16_TYPE__' value=''/>
+<macro name='__INT32_TYPE__' value=''/>
+<macro name='__INT64_TYPE__' value=''/>
+<macro name='__INT64_C_SUFFIX__' value=''/>
+<macro name='__USER_LABEL_PREFIX__' value=''/>
+<macro name='__FINITE_MATH_ONLY__' value=''/>
+<macro name='__GNUC_STDC_INLINE__' value=''/>
+<macro name='__GCC_ATOMIC_TEST_AND_SET_TRUEVAL' value=''/>
+<macro name='__GCC_ATOMIC_BOOL_LOCK_FREE' value=''/>
+<macro name='__GCC_ATOMIC_CHAR_LOCK_FREE' value=''/>
+<macro name='__GCC_ATOMIC_CHAR16_T_LOCK_FREE' value=''/>
+<macro name='__GCC_ATOMIC_CHAR32_T_LOCK_FREE' value=''/>
+<macro name='__GCC_ATOMIC_WCHAR_T_LOCK_FREE' value=''/>
+<macro name='__GCC_ATOMIC_SHORT_LOCK_FREE' value=''/>
+<macro name='__GCC_ATOMIC_INT_LOCK_FREE' value=''/>
+<macro name='__GCC_ATOMIC_LONG_LOCK_FREE' value=''/>
+<macro name='__GCC_ATOMIC_LLONG_LOCK_FREE' value=''/>
+<macro name='__GCC_ATOMIC_POINTER_LOCK_FREE' value=''/>
+<macro name='__NO_INLINE__' value=''/>
+<macro name='__FLT_EVAL_METHOD__' value=''/>
+<macro name='__FLT_RADIX__' value=''/>
+<macro name='__DECIMAL_DIG__' value=''/>
+<macro name='_LP64' value=''/>
+<macro name='__LP64__' value=''/>
+<macro name='__amd64__' value=''/>
+<macro name='__amd64' value=''/>
+<macro name='__x86_64' value=''/>
+<macro name='__x86_64__' value=''/>
+<macro name='__k8' value=''/>
+<macro name='__k8__' value=''/>
+<macro name='__tune_k8__' value=''/>
+<macro name='__LITTLE_ENDIAN__' value=''/>
+<macro name='__REGISTER_PREFIX__' value=''/>
+<macro name='__NO_MATH_INLINES' value=''/>
+<macro name='__SSE2__' value=''/>
+<macro name='__SSE2_MATH__' value=''/>
+<macro name='__SSE__' value=''/>
+<macro name='__SSE_MATH__' value=''/>
+<macro name='__MMX__' value=''/>
+<macro name='unix' value=''/>
+<macro name='__unix' value=''/>
+<macro name='__unix__' value=''/>
+<macro name='linux' value=''/>
+<macro name='__linux' value=''/>
+<macro name='__linux__' value=''/>
+<macro name='__gnu_linux__' value=''/>
+<macro name='__ELF__' value=''/>
+<macro name='__STDC__' value=''/>
+<macro name='__STDC_HOSTED__' value=''/>
+<macro name='__STDC_VERSION__' value=''/>
+<macro name='GL_GLEXT_PROTOTYPES' value=''/>
+<macro name='__gl2_h_' value=''/>
+<macro name='__gl2platform_h_' value=''/>
+<macro name='__khrplatform_h_' value=''/>
+<macro name='KHRONOS_APICALL' value=''/>
+<macro name='KHRONOS_APIENTRY' value=''/>
+<macro name='KHRONOS_APIATTRIBUTES' value=''/>
+<macro name='_STDINT_H' value='1'/>
+<macro name='_FEATURES_H' value='1'/>
+<macro name='__KERNEL_STRICT_NAMES' value=''/>
+<macro name='__USE_ANSI' value='1'/>
+<macro name='__GNUC_PREREQ(maj, min)' value='((__GNUC__ << 16) + __GNUC_MINOR__ >= ((maj) << 16) + (min))'/>
+<macro name='_BSD_SOURCE' value='1'/>
+<macro name='_SVID_SOURCE' value='1'/>
+<macro name='__USE_ISOC99' value='1'/>
+<macro name='__USE_ISOC95' value='1'/>
+<macro name='_POSIX_SOURCE' value='1'/>
+<macro name='_POSIX_C_SOURCE' value='200809L'/>
+<macro name='__USE_POSIX_IMPLICITLY' value='1'/>
+<macro name='__USE_POSIX' value='1'/>
+<macro name='__USE_POSIX2' value='1'/>
+<macro name='__USE_POSIX199309' value='1'/>
+<macro name='__USE_POSIX199506' value='1'/>
+<macro name='__USE_XOPEN2K' value='1'/>
+<macro name='__USE_ISOC95' value='1'/>
+<macro name='__USE_ISOC99' value='1'/>
+<macro name='__USE_XOPEN2K8' value='1'/>
+<macro name='_ATFILE_SOURCE' value='1'/>
+<macro name='__USE_MISC' value='1'/>
+<macro name='__USE_BSD' value='1'/>
+<macro name='__USE_SVID' value='1'/>
+<macro name='__USE_ATFILE' value='1'/>
+<macro name='__USE_FORTIFY_LEVEL' value='0'/>
+<macro name='_PREDEFS_H' value=''/>
+<macro name='__STDC_IEC_559__' value='1'/>
+<macro name='__STDC_IEC_559_COMPLEX__' value='1'/>
+<macro name='__STDC_ISO_10646__' value='200009L'/>
+<macro name='__GNU_LIBRARY__' value='6'/>
+<macro name='__GLIBC__' value='2'/>
+<macro name='__GLIBC_MINOR__' value='13'/>
+<macro name='__GLIBC_PREREQ(maj, min)' value='((__GLIBC__ << 16) + __GLIBC_MINOR__ >= ((maj) << 16) + (min))'/>
+<macro name='__GLIBC_HAVE_LONG_LONG' value='1'/>
+<macro name='_SYS_CDEFS_H' value='1'/>
+<macro name='__THROW' value='__attribute__ ((__nothrow__))'/>
+<macro name='__NTH(fct)' value='__attribute__ ((__nothrow__)) fct'/>
+<macro name='__P(args)' value='args'/>
+<macro name='__PMT(args)' value='args'/>
+<macro name='__CONCAT(x,y)' value='x ## y'/>
+<macro name='__STRING(x)' value='#x'/>
+<macro name='__ptr_t' value='void *'/>
+<macro name='__long_double_t' value='long double'/>
+<macro name='__BEGIN_DECLS' value=''/>
+<macro name='__END_DECLS' value=''/>
+<macro name='__BEGIN_NAMESPACE_STD' value=''/>
+<macro name='__END_NAMESPACE_STD' value=''/>
+<macro name='__USING_NAMESPACE_STD(name)' value=''/>
+<macro name='__BEGIN_NAMESPACE_C99' value=''/>
+<macro name='__END_NAMESPACE_C99' value=''/>
+<macro name='__USING_NAMESPACE_C99(name)' value=''/>
+<macro name='__bounded' value=''/>
+<macro name='__unbounded' value=''/>
+<macro name='__ptrvalue' value=''/>
+<macro name='__bos(ptr)' value='__builtin_object_size (ptr, __USE_FORTIFY_LEVEL > 1)'/>
+<macro name='__bos0(ptr)' value='__builtin_object_size (ptr, 0)'/>
+<macro name='__warndecl(name, msg)' value='extern void name (void)'/>
+<macro name='__warnattr(msg)' value=''/>
+<macro name='__errordecl(name, msg)' value='extern void name (void)'/>
+<macro name='__flexarr' value='[]'/>
+<macro name='__REDIRECT(name, proto, alias)' value='name proto __asm__ (__ASMNAME (#alias))'/>
+<macro name='__REDIRECT_NTH(name, proto, alias)' value='name proto __asm__ (__ASMNAME (#alias)) __THROW'/>
+<macro name='__ASMNAME(cname)' value='__ASMNAME2 (__USER_LABEL_PREFIX__, cname)'/>
+<macro name='__ASMNAME2(prefix, cname)' value='__STRING (prefix) cname'/>
+<macro name='__attribute_malloc__' value='__attribute__ ((__malloc__))'/>
+<macro name='__attribute_pure__' value='__attribute__ ((__pure__))'/>
+<macro name='__attribute_used__' value='__attribute__ ((__used__))'/>
+<macro name='__attribute_noinline__' value='__attribute__ ((__noinline__))'/>
+<macro name='__attribute_deprecated__' value='__attribute__ ((__deprecated__))'/>
+<macro name='__attribute_format_arg__(x)' value='__attribute__ ((__format_arg__ (x)))'/>
+<macro name='__attribute_format_strfmon__(a,b)' value='__attribute__ ((__format__ (__strfmon__, a, b)))'/>
+<macro name='__nonnull(params)' value='__attribute__ ((__nonnull__ params))'/>
+<macro name='__attribute_warn_unused_result__' value='__attribute__ ((__warn_unused_result__))'/>
+<macro name='__wur' value=''/>
+<macro name='__always_inline' value='__inline __attribute__ ((__))'/>
+<macro name='__extern_inline' value='extern __inline __attribute__ ((__gnu_inline__))'/>
+<macro name='__extern_always_inline' value='extern __always_inline __attribute__ ((__gnu_inline__))'/>
+<macro name='__restrict_arr' value='__restrict'/>
+<macro name='__WORDSIZE' value='64'/>
+<macro name='__WORDSIZE_COMPAT32' value='1'/>
+<macro name='__LDBL_REDIR1(name, proto, alias)' value='name proto'/>
+<macro name='__LDBL_REDIR(name, proto)' value='name proto'/>
+<macro name='__LDBL_REDIR1_NTH(name, proto, alias)' value='name proto __THROW'/>
+<macro name='__LDBL_REDIR_NTH(name, proto)' value='name proto __THROW'/>
+<macro name='__LDBL_REDIR_DECL(name)' value=''/>
+<macro name='__REDIRECT_LDBL(name, proto, alias)' value='__REDIRECT (name, proto, alias)'/>
+<macro name='__REDIRECT_NTH_LDBL(name, proto, alias)' value='__REDIRECT_NTH (name, proto, alias)'/>
+<macro name='__WORDSIZE' value='64'/>
+<macro name='__WORDSIZE_COMPAT32' value='1'/>
+<macro name='__stub_bdflush' value=''/>
+<macro name='__stub_chflags' value=''/>
+<macro name='__stub_fattach' value=''/>
+<macro name='__stub_fchflags' value=''/>
+<macro name='__stub_fdetach' value=''/>
+<macro name='__stub_getmsg' value=''/>
+<macro name='__stub_gtty' value=''/>
+<macro name='__stub_lchmod' value=''/>
+<macro name='__stub_putmsg' value=''/>
+<macro name='__stub_revoke' value=''/>
+<macro name='__stub_setlogin' value=''/>
+<macro name='__stub_sigreturn' value=''/>
+<macro name='__stub_sstk' value=''/>
+<macro name='__stub_stty' value=''/>
+<macro name='_BITS_WCHAR_H' value='1'/>
+<macro name='__WCHAR_MAX' value='__'/>
+<macro name='__WCHAR_MIN' value='(-__WCHAR_MAX - 1)'/>
+<macro name='__WORDSIZE' value='64'/>
+<macro name='__WORDSIZE_COMPAT32' value='1'/>
+<macro name='__int8_t_defined' value=''/>
+<macro name='__uint32_t_defined' value=''/>
+<macro name='__intptr_t_defined' value=''/>
+<macro name='__INT64_C(c)' value='c ## L'/>
+<macro name='__UINT64_C(c)' value='c ## UL'/>
+<macro name='INT8_MIN' value='(-128)'/>
+<macro name='INT16_MIN' value='(-32767-1)'/>
+<macro name='INT32_MIN' value='(-2147483647-1)'/>
+<macro name='INT64_MIN' value='(-__INT64_C(9223372036854775807)-1)'/>
+<macro name='INT8_MAX' value='(127)'/>
+<macro name='INT16_MAX' value='(32767)'/>
+<macro name='INT32_MAX' value='(2147483647)'/>
+<macro name='INT64_MAX' value='(__INT64_C(9223372036854775807))'/>
+<macro name='UINT8_MAX' value='(255)'/>
+<macro name='UINT16_MAX' value='(65535)'/>
+<macro name='UINT32_MAX' value='(4294967295U)'/>
+<macro name='UINT64_MAX' value='(__UINT64_C(18446744073709551615))'/>
+<macro name='INT_LEAST8_MIN' value='(-128)'/>
+<macro name='INT_LEAST16_MIN' value='(-32767-1)'/>
+<macro name='INT_LEAST32_MIN' value='(-2147483647-1)'/>
+<macro name='INT_LEAST64_MIN' value='(-__INT64_C(9223372036854775807)-1)'/>
+<macro name='INT_LEAST8_MAX' value='(127)'/>
+<macro name='INT_LEAST16_MAX' value='(32767)'/>
+<macro name='INT_LEAST32_MAX' value='(2147483647)'/>
+<macro name='INT_LEAST64_MAX' value='(__INT64_C(9223372036854775807))'/>
+<macro name='UINT_LEAST8_MAX' value='(255)'/>
+<macro name='UINT_LEAST16_MAX' value='(65535)'/>
+<macro name='UINT_LEAST32_MAX' value='(4294967295U)'/>
+<macro name='UINT_LEAST64_MAX' value='(__UINT64_C(18446744073709551615))'/>
+<macro name='INT_FAST8_MIN' value='(-128)'/>
+<macro name='INT_FAST16_MIN' value='(-9223372036854775807L-1)'/>
+<macro name='INT_FAST32_MIN' value='(-9223372036854775807L-1)'/>
+<macro name='INT_FAST64_MIN' value='(-__INT64_C(9223372036854775807)-1)'/>
+<macro name='INT_FAST8_MAX' value='(127)'/>
+<macro name='INT_FAST16_MAX' value='(9223372036854775807L)'/>
+<macro name='INT_FAST32_MAX' value='(9223372036854775807L)'/>
+<macro name='INT_FAST64_MAX' value='(__INT64_C(9223372036854775807))'/>
+<macro name='UINT_FAST8_MAX' value='(255)'/>
+<macro name='UINT_FAST16_MAX' value='(18446744073709551615UL)'/>
+<macro name='UINT_FAST32_MAX' value='(18446744073709551615UL)'/>
+<macro name='UINT_FAST64_MAX' value='(__UINT64_C(18446744073709551615))'/>
+<macro name='INTPTR_MIN' value='(-9223372036854775807L-1)'/>
+<macro name='INTPTR_MAX' value='(9223372036854775807L)'/>
+<macro name='UINTPTR_MAX' value='(18446744073709551615UL)'/>
+<macro name='INTMAX_MIN' value='(-__INT64_C(9223372036854775807)-1)'/>
+<macro name='INTMAX_MAX' value='(__INT64_C(9223372036854775807))'/>
+<macro name='UINTMAX_MAX' value='(__UINT64_C(18446744073709551615))'/>
+<macro name='PTRDIFF_MIN' value='(-9223372036854775807L-1)'/>
+<macro name='PTRDIFF_MAX' value='(9223372036854775807L)'/>
+<macro name='SIG_ATOMIC_MIN' value='(-2147483647-1)'/>
+<macro name='SIG_ATOMIC_MAX' value='(2147483647)'/>
+<macro name='SIZE_MAX' value='(18446744073709551615UL)'/>
+<macro name='WCHAR_MIN' value='__'/>
+<macro name='WCHAR_MAX' value='__'/>
+<macro name='WINT_MIN' value='(0u)'/>
+<macro name='WINT_MAX' value='(4294967295u)'/>
+<macro name='INT8_C(c)' value='c'/>
+<macro name='INT16_C(c)' value='c'/>
+<macro name='INT32_C(c)' value='c'/>
+<macro name='INT64_C(c)' value='c ## L'/>
+<macro name='UINT8_C(c)' value='c'/>
+<macro name='UINT16_C(c)' value='c'/>
+<macro name='UINT32_C(c)' value='c ## U'/>
+<macro name='UINT64_C(c)' value='c ## UL'/>
+<macro name='INTMAX_C(c)' value='c ## L'/>
+<macro name='UINTMAX_C(c)' value='c ## UL'/>
+<macro name='KHRONOS_SUPPORT_INT64' value='1'/>
+<macro name='KHRONOS_SUPPORT_FLOAT' value='1'/>
+<macro name='KHRONOS_MAX_ENUM' value='0x7FFFFFFF'/>
+<macro name='GL_APICALL' value=''/>
+<macro name='GL_APIENTRY' value=''/>
+<macro name='GL_ES_VERSION_2_0' value='1'/>
+<macro name='GL_DEPTH_BUFFER_BIT' value='0x00000100'/>
+<macro name='GL_STENCIL_BUFFER_BIT' value='0x00000400'/>
+<macro name='GL_COLOR_BUFFER_BIT' value='0x00004000'/>
+<macro name='GL_FALSE' value='0'/>
+<macro name='GL_TRUE' value='1'/>
+<macro name='GL_POINTS' value='0x0000'/>
+<macro name='GL_LINES' value='0x0001'/>
+<macro name='GL_LINE_LOOP' value='0x0002'/>
+<macro name='GL_LINE_STRIP' value='0x0003'/>
+<macro name='GL_TRIANGLES' value='0x0004'/>
+<macro name='GL_TRIANGLE_STRIP' value='0x0005'/>
+<macro name='GL_TRIANGLE_FAN' value='0x0006'/>
+<macro name='GL_ZERO' value='0'/>
+<macro name='GL_ONE' value='1'/>
+<macro name='GL_SRC_COLOR' value='0x0300'/>
+<macro name='GL_ONE_MINUS_SRC_COLOR' value='0x0301'/>
+<macro name='GL_SRC_ALPHA' value='0x0302'/>
+<macro name='GL_ONE_MINUS_SRC_ALPHA' value='0x0303'/>
+<macro name='GL_DST_ALPHA' value='0x0304'/>
+<macro name='GL_ONE_MINUS_DST_ALPHA' value='0x0305'/>
+<macro name='GL_DST_COLOR' value='0x0306'/>
+<macro name='GL_ONE_MINUS_DST_COLOR' value='0x0307'/>
+<macro name='GL_SRC_ALPHA_SATURATE' value='0x0308'/>
+<macro name='GL_FUNC_ADD' value='0x8006'/>
+<macro name='GL_BLEND_EQUATION' value='0x8009'/>
+<macro name='GL_BLEND_EQUATION_RGB' value='0x8009'/>
+<macro name='GL_BLEND_EQUATION_ALPHA' value='0x883D'/>
+<macro name='GL_FUNC_SUBTRACT' value='0x800A'/>
+<macro name='GL_FUNC_REVERSE_SUBTRACT' value='0x800B'/>
+<macro name='GL_BLEND_DST_RGB' value='0x80C8'/>
+<macro name='GL_BLEND_SRC_RGB' value='0x80C9'/>
+<macro name='GL_BLEND_DST_ALPHA' value='0x80CA'/>
+<macro name='GL_BLEND_SRC_ALPHA' value='0x80CB'/>
+<macro name='GL_CONSTANT_COLOR' value='0x8001'/>
+<macro name='GL_ONE_MINUS_CONSTANT_COLOR' value='0x8002'/>
+<macro name='GL_CONSTANT_ALPHA' value='0x8003'/>
+<macro name='GL_ONE_MINUS_CONSTANT_ALPHA' value='0x8004'/>
+<macro name='GL_BLEND_COLOR' value='0x8005'/>
+<macro name='GL_ARRAY_BUFFER' value='0x8892'/>
+<macro name='GL_ELEMENT_ARRAY_BUFFER' value='0x8893'/>
+<macro name='GL_ARRAY_BUFFER_BINDING' value='0x8894'/>
+<macro name='GL_ELEMENT_ARRAY_BUFFER_BINDING' value='0x8895'/>
+<macro name='GL_STREAM_DRAW' value='0x88E0'/>
+<macro name='GL_STATIC_DRAW' value='0x88E4'/>
+<macro name='GL_DYNAMIC_DRAW' value='0x88E8'/>
+<macro name='GL_BUFFER_SIZE' value='0x8764'/>
+<macro name='GL_BUFFER_USAGE' value='0x8765'/>
+<macro name='GL_CURRENT_VERTEX_ATTRIB' value='0x8626'/>
+<macro name='GL_FRONT' value='0x0404'/>
+<macro name='GL_BACK' value='0x0405'/>
+<macro name='GL_FRONT_AND_BACK' value='0x0408'/>
+<macro name='GL_TEXTURE_2D' value='0x0DE1'/>
+<macro name='GL_CULL_FACE' value='0x0B44'/>
+<macro name='GL_BLEND' value='0x0BE2'/>
+<macro name='GL_DITHER' value='0x0BD0'/>
+<macro name='GL_STENCIL_TEST' value='0x0B90'/>
+<macro name='GL_DEPTH_TEST' value='0x0B71'/>
+<macro name='GL_SCISSOR_TEST' value='0x0C11'/>
+<macro name='GL_POLYGON_OFFSET_FILL' value='0x8037'/>
+<macro name='GL_SAMPLE_ALPHA_TO_COVERAGE' value='0x809E'/>
+<macro name='GL_SAMPLE_COVERAGE' value='0x80A0'/>
+<macro name='GL_NO_ERROR' value='0'/>
+<macro name='GL_INVALID_ENUM' value='0x0500'/>
+<macro name='GL_INVALID_VALUE' value='0x0501'/>
+<macro name='GL_INVALID_OPERATION' value='0x0502'/>
+<macro name='GL_OUT_OF_MEMORY' value='0x0505'/>
+<macro name='GL_CW' value='0x0900'/>
+<macro name='GL_CCW' value='0x0901'/>
+<macro name='GL_LINE_WIDTH' value='0x0B21'/>
+<macro name='GL_ALIASED_POINT_SIZE_RANGE' value='0x846D'/>
+<macro name='GL_ALIASED_LINE_WIDTH_RANGE' value='0x846E'/>
+<macro name='GL_CULL_FACE_MODE' value='0x0B45'/>
+<macro name='GL_FRONT_FACE' value='0x0B46'/>
+<macro name='GL_DEPTH_RANGE' value='0x0B70'/>
+<macro name='GL_DEPTH_WRITEMASK' value='0x0B72'/>
+<macro name='GL_DEPTH_CLEAR_VALUE' value='0x0B73'/>
+<macro name='GL_DEPTH_FUNC' value='0x0B74'/>
+<macro name='GL_STENCIL_CLEAR_VALUE' value='0x0B91'/>
+<macro name='GL_STENCIL_FUNC' value='0x0B92'/>
+<macro name='GL_STENCIL_FAIL' value='0x0B94'/>
+<macro name='GL_STENCIL_PASS_DEPTH_FAIL' value='0x0B95'/>
+<macro name='GL_STENCIL_PASS_DEPTH_PASS' value='0x0B96'/>
+<macro name='GL_STENCIL_REF' value='0x0B97'/>
+<macro name='GL_STENCIL_VALUE_MASK' value='0x0B93'/>
+<macro name='GL_STENCIL_WRITEMASK' value='0x0B98'/>
+<macro name='GL_STENCIL_BACK_FUNC' value='0x8800'/>
+<macro name='GL_STENCIL_BACK_FAIL' value='0x8801'/>
+<macro name='GL_STENCIL_BACK_PASS_DEPTH_FAIL' value='0x8802'/>
+<macro name='GL_STENCIL_BACK_PASS_DEPTH_PASS' value='0x8803'/>
+<macro name='GL_STENCIL_BACK_REF' value='0x8CA3'/>
+<macro name='GL_STENCIL_BACK_VALUE_MASK' value='0x8CA4'/>
+<macro name='GL_STENCIL_BACK_WRITEMASK' value='0x8CA5'/>
+<macro name='GL_VIEWPORT' value='0x0BA2'/>
+<macro name='GL_SCISSOR_BOX' value='0x0C10'/>
+<macro name='GL_COLOR_CLEAR_VALUE' value='0x0C22'/>
+<macro name='GL_COLOR_WRITEMASK' value='0x0C23'/>
+<macro name='GL_UNPACK_ALIGNMENT' value='0x0CF5'/>
+<macro name='GL_PACK_ALIGNMENT' value='0x0D05'/>
+<macro name='GL_MAX_TEXTURE_SIZE' value='0x0D33'/>
+<macro name='GL_MAX_VIEWPORT_DIMS' value='0x0D3A'/>
+<macro name='GL_SUBPIXEL_BITS' value='0x0D50'/>
+<macro name='GL_RED_BITS' value='0x0D52'/>
+<macro name='GL_GREEN_BITS' value='0x0D53'/>
+<macro name='GL_BLUE_BITS' value='0x0D54'/>
+<macro name='GL_ALPHA_BITS' value='0x0D55'/>
+<macro name='GL_DEPTH_BITS' value='0x0D56'/>
+<macro name='GL_STENCIL_BITS' value='0x0D57'/>
+<macro name='GL_POLYGON_OFFSET_UNITS' value='0x2A00'/>
+<macro name='GL_POLYGON_OFFSET_FACTOR' value='0x8038'/>
+<macro name='GL_TEXTURE_BINDING_2D' value='0x8069'/>
+<macro name='GL_SAMPLE_BUFFERS' value='0x80A8'/>
+<macro name='GL_SAMPLES' value='0x80A9'/>
+<macro name='GL_SAMPLE_COVERAGE_VALUE' value='0x80AA'/>
+<macro name='GL_SAMPLE_COVERAGE_INVERT' value='0x80AB'/>
+<macro name='GL_NUM_COMPRESSED_TEXTURE_FORMATS' value='0x86A2'/>
+<macro name='GL_COMPRESSED_TEXTURE_FORMATS' value='0x86A3'/>
+<macro name='GL_DONT_CARE' value='0x1100'/>
+<macro name='GL_FASTEST' value='0x1101'/>
+<macro name='GL_NICEST' value='0x1102'/>
+<macro name='GL_GENERATE_MIPMAP_HINT' value='0x8192'/>
+<macro name='GL_BYTE' value='0x1400'/>
+<macro name='GL_UNSIGNED_BYTE' value='0x1401'/>
+<macro name='GL_SHORT' value='0x1402'/>
+<macro name='GL_UNSIGNED_SHORT' value='0x1403'/>
+<macro name='GL_INT' value='0x1404'/>
+<macro name='GL_UNSIGNED_INT' value='0x1405'/>
+<macro name='GL_FLOAT' value='0x1406'/>
+<macro name='GL_FIXED' value='0x140C'/>
+<macro name='GL_DEPTH_COMPONENT' value='0x1902'/>
+<macro name='GL_ALPHA' value='0x1906'/>
+<macro name='GL_RGB' value='0x1907'/>
+<macro name='GL_RGBA' value='0x1908'/>
+<macro name='GL_LUMINANCE' value='0x1909'/>
+<macro name='GL_LUMINANCE_ALPHA' value='0x190A'/>
+<macro name='GL_UNSIGNED_SHORT_4_4_4_4' value='0x8033'/>
+<macro name='GL_UNSIGNED_SHORT_5_5_5_1' value='0x8034'/>
+<macro name='GL_UNSIGNED_SHORT_5_6_5' value='0x8363'/>
+<macro name='GL_FRAGMENT_SHADER' value='0x8B30'/>
+<macro name='GL_VERTEX_SHADER' value='0x8B31'/>
+<macro name='GL_MAX_VERTEX_ATTRIBS' value='0x8869'/>
+<macro name='GL_MAX_VERTEX_UNIFORM_VECTORS' value='0x8DFB'/>
+<macro name='GL_MAX_VARYING_VECTORS' value='0x8DFC'/>
+<macro name='GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS' value='0x8B4D'/>
+<macro name='GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS' value='0x8B4C'/>
+<macro name='GL_MAX_TEXTURE_IMAGE_UNITS' value='0x8872'/>
+<macro name='GL_MAX_FRAGMENT_UNIFORM_VECTORS' value='0x8DFD'/>
+<macro name='GL_SHADER_TYPE' value='0x8B4F'/>
+<macro name='GL_DELETE_STATUS' value='0x8B80'/>
+<macro name='GL_LINK_STATUS' value='0x8B82'/>
+<macro name='GL_VALIDATE_STATUS' value='0x8B83'/>
+<macro name='GL_ATTACHED_SHADERS' value='0x8B85'/>
+<macro name='GL_ACTIVE_UNIFORMS' value='0x8B86'/>
+<macro name='GL_ACTIVE_UNIFORM_MAX_LENGTH' value='0x8B87'/>
+<macro name='GL_ACTIVE_ATTRIBUTES' value='0x8B89'/>
+<macro name='GL_ACTIVE_ATTRIBUTE_MAX_LENGTH' value='0x8B8A'/>
+<macro name='GL_SHADING_LANGUAGE_VERSION' value='0x8B8C'/>
+<macro name='GL_CURRENT_PROGRAM' value='0x8B8D'/>
+<macro name='GL_NEVER' value='0x0200'/>
+<macro name='GL_LESS' value='0x0201'/>
+<macro name='GL_EQUAL' value='0x0202'/>
+<macro name='GL_LEQUAL' value='0x0203'/>
+<macro name='GL_GREATER' value='0x0204'/>
+<macro name='GL_NOTEQUAL' value='0x0205'/>
+<macro name='GL_GEQUAL' value='0x0206'/>
+<macro name='GL_ALWAYS' value='0x0207'/>
+<macro name='GL_KEEP' value='0x1E00'/>
+<macro name='GL_REPLACE' value='0x1E01'/>
+<macro name='GL_INCR' value='0x1E02'/>
+<macro name='GL_DECR' value='0x1E03'/>
+<macro name='GL_INVERT' value='0x150A'/>
+<macro name='GL_INCR_WRAP' value='0x8507'/>
+<macro name='GL_DECR_WRAP' value='0x8508'/>
+<macro name='GL_VENDOR' value='0x1F00'/>
+<macro name='GL_RENDERER' value='0x1F01'/>
+<macro name='GL_VERSION' value='0x1F02'/>
+<macro name='GL_EXTENSIONS' value='0x1F03'/>
+<macro name='GL_NEAREST' value='0x2600'/>
+<macro name='GL_LINEAR' value='0x2601'/>
+<macro name='GL_NEAREST_MIPMAP_NEAREST' value='0x2700'/>
+<macro name='GL_LINEAR_MIPMAP_NEAREST' value='0x2701'/>
+<macro name='GL_NEAREST_MIPMAP_LINEAR' value='0x2702'/>
+<macro name='GL_LINEAR_MIPMAP_LINEAR' value='0x2703'/>
+<macro name='GL_TEXTURE_MAG_FILTER' value='0x2800'/>
+<macro name='GL_TEXTURE_MIN_FILTER' value='0x2801'/>
+<macro name='GL_TEXTURE_WRAP_S' value='0x2802'/>
+<macro name='GL_TEXTURE_WRAP_T' value='0x2803'/>
+<macro name='GL_TEXTURE' value='0x1702'/>
+<macro name='GL_TEXTURE_CUBE_MAP' value='0x8513'/>
+<macro name='GL_TEXTURE_BINDING_CUBE_MAP' value='0x8514'/>
+<macro name='GL_TEXTURE_CUBE_MAP_POSITIVE_X' value='0x8515'/>
+<macro name='GL_TEXTURE_CUBE_MAP_NEGATIVE_X' value='0x8516'/>
+<macro name='GL_TEXTURE_CUBE_MAP_POSITIVE_Y' value='0x8517'/>
+<macro name='GL_TEXTURE_CUBE_MAP_NEGATIVE_Y' value='0x8518'/>
+<macro name='GL_TEXTURE_CUBE_MAP_POSITIVE_Z' value='0x8519'/>
+<macro name='GL_TEXTURE_CUBE_MAP_NEGATIVE_Z' value='0x851A'/>
+<macro name='GL_MAX_CUBE_MAP_TEXTURE_SIZE' value='0x851C'/>
+<macro name='GL_TEXTURE0' value='0x84C0'/>
+<macro name='GL_TEXTURE1' value='0x84C1'/>
+<macro name='GL_TEXTURE2' value='0x84C2'/>
+<macro name='GL_TEXTURE3' value='0x84C3'/>
+<macro name='GL_TEXTURE4' value='0x84C4'/>
+<macro name='GL_TEXTURE5' value='0x84C5'/>
+<macro name='GL_TEXTURE6' value='0x84C6'/>
+<macro name='GL_TEXTURE7' value='0x84C7'/>
+<macro name='GL_TEXTURE8' value='0x84C8'/>
+<macro name='GL_TEXTURE9' value='0x84C9'/>
+<macro name='GL_TEXTURE10' value='0x84CA'/>
+<macro name='GL_TEXTURE11' value='0x84CB'/>
+<macro name='GL_TEXTURE12' value='0x84CC'/>
+<macro name='GL_TEXTURE13' value='0x84CD'/>
+<macro name='GL_TEXTURE14' value='0x84CE'/>
+<macro name='GL_TEXTURE15' value='0x84CF'/>
+<macro name='GL_TEXTURE16' value='0x84D0'/>
+<macro name='GL_TEXTURE17' value='0x84D1'/>
+<macro name='GL_TEXTURE18' value='0x84D2'/>
+<macro name='GL_TEXTURE19' value='0x84D3'/>
+<macro name='GL_TEXTURE20' value='0x84D4'/>
+<macro name='GL_TEXTURE21' value='0x84D5'/>
+<macro name='GL_TEXTURE22' value='0x84D6'/>
+<macro name='GL_TEXTURE23' value='0x84D7'/>
+<macro name='GL_TEXTURE24' value='0x84D8'/>
+<macro name='GL_TEXTURE25' value='0x84D9'/>
+<macro name='GL_TEXTURE26' value='0x84DA'/>
+<macro name='GL_TEXTURE27' value='0x84DB'/>
+<macro name='GL_TEXTURE28' value='0x84DC'/>
+<macro name='GL_TEXTURE29' value='0x84DD'/>
+<macro name='GL_TEXTURE30' value='0x84DE'/>
+<macro name='GL_TEXTURE31' value='0x84DF'/>
+<macro name='GL_ACTIVE_TEXTURE' value='0x84E0'/>
+<macro name='GL_REPEAT' value='0x2901'/>
+<macro name='GL_CLAMP_TO_EDGE' value='0x812F'/>
+<macro name='GL_MIRRORED_REPEAT' value='0x8370'/>
+<macro name='GL_FLOAT_VEC2' value='0x8B50'/>
+<macro name='GL_FLOAT_VEC3' value='0x8B51'/>
+<macro name='GL_FLOAT_VEC4' value='0x8B52'/>
+<macro name='GL_INT_VEC2' value='0x8B53'/>
+<macro name='GL_INT_VEC3' value='0x8B54'/>
+<macro name='GL_INT_VEC4' value='0x8B55'/>
+<macro name='GL_BOOL' value='0x8B56'/>
+<macro name='GL_BOOL_VEC2' value='0x8B57'/>
+<macro name='GL_BOOL_VEC3' value='0x8B58'/>
+<macro name='GL_BOOL_VEC4' value='0x8B59'/>
+<macro name='GL_FLOAT_MAT2' value='0x8B5A'/>
+<macro name='GL_FLOAT_MAT3' value='0x8B5B'/>
+<macro name='GL_FLOAT_MAT4' value='0x8B5C'/>
+<macro name='GL_SAMPLER_2D' value='0x8B5E'/>
+<macro name='GL_SAMPLER_CUBE' value='0x8B60'/>
+<macro name='GL_VERTEX_ATTRIB_ARRAY_ENABLED' value='0x8622'/>
+<macro name='GL_VERTEX_ATTRIB_ARRAY_SIZE' value='0x8623'/>
+<macro name='GL_VERTEX_ATTRIB_ARRAY_STRIDE' value='0x8624'/>
+<macro name='GL_VERTEX_ATTRIB_ARRAY_TYPE' value='0x8625'/>
+<macro name='GL_VERTEX_ATTRIB_ARRAY_NORMALIZED' value='0x886A'/>
+<macro name='GL_VERTEX_ATTRIB_ARRAY_POINTER' value='0x8645'/>
+<macro name='GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING' value='0x889F'/>
+<macro name='GL_IMPLEMENTATION_COLOR_READ_TYPE' value='0x8B9A'/>
+<macro name='GL_IMPLEMENTATION_COLOR_READ_FORMAT' value='0x8B9B'/>
+<macro name='GL_COMPILE_STATUS' value='0x8B81'/>
+<macro name='GL_INFO_LOG_LENGTH' value='0x8B84'/>
+<macro name='GL_SHADER_SOURCE_LENGTH' value='0x8B88'/>
+<macro name='GL_SHADER_COMPILER' value='0x8DFA'/>
+<macro name='GL_SHADER_BINARY_FORMATS' value='0x8DF8'/>
+<macro name='GL_NUM_SHADER_BINARY_FORMATS' value='0x8DF9'/>
+<macro name='GL_LOW_FLOAT' value='0x8DF0'/>
+<macro name='GL_MEDIUM_FLOAT' value='0x8DF1'/>
+<macro name='GL_HIGH_FLOAT' value='0x8DF2'/>
+<macro name='GL_LOW_INT' value='0x8DF3'/>
+<macro name='GL_MEDIUM_INT' value='0x8DF4'/>
+<macro name='GL_HIGH_INT' value='0x8DF5'/>
+<macro name='GL_FRAMEBUFFER' value='0x8D40'/>
+<macro name='GL_RENDERBUFFER' value='0x8D41'/>
+<macro name='GL_RGBA4' value='0x8056'/>
+<macro name='GL_RGB5_A1' value='0x8057'/>
+<macro name='GL_RGB565' value='0x8D62'/>
+<macro name='GL_DEPTH_COMPONENT16' value='0x81A5'/>
+<macro name='GL_STENCIL_INDEX8' value='0x8D48'/>
+<macro name='GL_RENDERBUFFER_WIDTH' value='0x8D42'/>
+<macro name='GL_RENDERBUFFER_HEIGHT' value='0x8D43'/>
+<macro name='GL_RENDERBUFFER_INTERNAL_FORMAT' value='0x8D44'/>
+<macro name='GL_RENDERBUFFER_RED_SIZE' value='0x8D50'/>
+<macro name='GL_RENDERBUFFER_GREEN_SIZE' value='0x8D51'/>
+<macro name='GL_RENDERBUFFER_BLUE_SIZE' value='0x8D52'/>
+<macro name='GL_RENDERBUFFER_ALPHA_SIZE' value='0x8D53'/>
+<macro name='GL_RENDERBUFFER_DEPTH_SIZE' value='0x8D54'/>
+<macro name='GL_RENDERBUFFER_STENCIL_SIZE' value='0x8D55'/>
+<macro name='GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE' value='0x8CD0'/>
+<macro name='GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME' value='0x8CD1'/>
+<macro name='GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL' value='0x8CD2'/>
+<macro name='GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE' value='0x8CD3'/>
+<macro name='GL_COLOR_ATTACHMENT0' value='0x8CE0'/>
+<macro name='GL_DEPTH_ATTACHMENT' value='0x8D00'/>
+<macro name='GL_STENCIL_ATTACHMENT' value='0x8D20'/>
+<macro name='GL_NONE' value='0'/>
+<macro name='GL_FRAMEBUFFER_COMPLETE' value='0x8CD5'/>
+<macro name='GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT' value='0x8CD6'/>
+<macro name='GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT' value='0x8CD7'/>
+<macro name='GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS' value='0x8CD9'/>
+<macro name='GL_FRAMEBUFFER_UNSUPPORTED' value='0x8CDD'/>
+<macro name='GL_FRAMEBUFFER_BINDING' value='0x8CA6'/>
+<macro name='GL_RENDERBUFFER_BINDING' value='0x8CA7'/>
+<macro name='GL_MAX_RENDERBUFFER_SIZE' value='0x84E8'/>
+<macro name='GL_INVALID_FRAMEBUFFER_OPERATION' value='0x0506'/>
+<typedef type='int128' name='__int128_t'/>
+<typedef type='uint128' name='__uint128_t'/>
+<struct name='__va_list_tag'>
+<field name='gp_offset' type='uint32' typename='uint32'/>
+<field name='fp_offset' type='uint32' typename='uint32'/>
+<field name='overflow_arg_area' type='void*' typename='void*'/>
+<field name='reg_save_area' type='void*' typename='void*'/>
+</struct>
+<typedef type='__va_list_tag' name='__va_list_tag'/>
+<typedef type='__va_list_tag[1]' name='__builtin_va_list'/>
+<typedef type='int8' name='int8_t'/>
+<typedef type='int16' name='int16_t'/>
+<typedef type='int32' name='int32_t'/>
+<typedef type='int64' name='int64_t'/>
+<typedef type='uint8' name='uint8_t'/>
+<typedef type='uint16' name='uint16_t'/>
+<typedef type='uint32' name='uint32_t'/>
+<typedef type='uint64' name='uint64_t'/>
+<typedef type='int8' name='int_least8_t'/>
+<typedef type='int16' name='int_least16_t'/>
+<typedef type='int32' name='int_least32_t'/>
+<typedef type='int64' name='int_least64_t'/>
+<typedef type='uint8' name='uint_least8_t'/>
+<typedef type='uint16' name='uint_least16_t'/>
+<typedef type='uint32' name='uint_least32_t'/>
+<typedef type='uint64' name='uint_least64_t'/>
+<typedef type='int8' name='int_fast8_t'/>
+<typedef type='int64' name='int_fast16_t'/>
+<typedef type='int64' name='int_fast32_t'/>
+<typedef type='int64' name='int_fast64_t'/>
+<typedef type='uint8' name='uint_fast8_t'/>
+<typedef type='uint64' name='uint_fast16_t'/>
+<typedef type='uint64' name='uint_fast32_t'/>
+<typedef type='uint64' name='uint_fast64_t'/>
+<typedef type='int64' name='intptr_t'/>
+<typedef type='uint64' name='uintptr_t'/>
+<typedef type='int64' name='intmax_t'/>
+<typedef type='uint64' name='uintmax_t'/>
+<typedef type='int32' name='khronos_int32_t'/>
+<typedef type='uint32' name='khronos_uint32_t'/>
+<typedef type='int64' name='khronos_int64_t'/>
+<typedef type='uint64' name='khronos_uint64_t'/>
+<typedef type='int8' name='khronos_int8_t'/>
+<typedef type='uint8' name='khronos_uint8_t'/>
+<typedef type='int16' name='khronos_int16_t'/>
+<typedef type='uint16' name='khronos_uint16_t'/>
+<typedef type='int64' name='khronos_intptr_t'/>
+<typedef type='uint64' name='khronos_uintptr_t'/>
+<typedef type='int64' name='khronos_ssize_t'/>
+<typedef type='uint64' name='khronos_usize_t'/>
+<typedef type='float32' name='khronos_float_t'/>
+<typedef type='uint64' name='khronos_utime_nanoseconds_t'/>
+<typedef type='int64' name='khronos_stime_nanoseconds_t'/>
+<enum name=''>
+<enum-value name='KHRONOS_FALSE' value='0'/>
+<enum-value name='KHRONOS_TRUE' value='1'/>
+<enum-value name='KHRONOS_BOOLEAN_ENUM_FORCE_SIZE' value='0x7FFFFFFF'/>
+</enum>
+<typedef type='' name='khronos_boolean_enum_t'/>
+<typedef type='void' name='GLvoid'/>
+<typedef type='char' name='GLchar'/>
+<typedef type='uint32' name='GLenum'/>
+<typedef type='uint8' name='GLboolean'/>
+<typedef type='uint32' name='GLbitfield'/>
+<typedef type='int8' name='GLbyte'/>
+<typedef type='int16' name='GLshort'/>
+<typedef type='int32' name='GLint'/>
+<typedef type='int32' name='GLsizei'/>
+<typedef type='uint8' name='GLubyte'/>
+<typedef type='uint16' name='GLushort'/>
+<typedef type='uint32' name='GLuint'/>
+<typedef type='float32' name='GLfloat'/>
+<typedef type='float32' name='GLclampf'/>
+<typedef type='int32' name='GLfixed'/>
+<typedef type='int64' name='GLintptr'/>
+<typedef type='int64' name='GLsizeiptr'/>
+<function name='glActiveTexture' return-type='void' return-typename='void'>
+<param name='texture' type='uint32' typename='GLenum'/>
+</function>
+<function name='glAttachShader' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+<param name='shader' type='uint32' typename='GLuint'/>
+</function>
+<function name='glBindAttribLocation' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+<param name='index' type='uint32' typename='GLuint'/>
+<param name='name' type='char*' typename='char*'/>
+</function>
+<function name='glBindBuffer' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='buffer' type='uint32' typename='GLuint'/>
+</function>
+<function name='glBindFramebuffer' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='framebuffer' type='uint32' typename='GLuint'/>
+</function>
+<function name='glBindRenderbuffer' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='renderbuffer' type='uint32' typename='GLuint'/>
+</function>
+<function name='glBindTexture' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='texture' type='uint32' typename='GLuint'/>
+</function>
+<function name='glBlendColor' return-type='void' return-typename='void'>
+<param name='red' type='float32' typename='GLclampf'/>
+<param name='green' type='float32' typename='GLclampf'/>
+<param name='blue' type='float32' typename='GLclampf'/>
+<param name='alpha' type='float32' typename='GLclampf'/>
+</function>
+<function name='glBlendEquation' return-type='void' return-typename='void'>
+<param name='mode' type='uint32' typename='GLenum'/>
+</function>
+<function name='glBlendEquationSeparate' return-type='void' return-typename='void'>
+<param name='modeRGB' type='uint32' typename='GLenum'/>
+<param name='modeAlpha' type='uint32' typename='GLenum'/>
+</function>
+<function name='glBlendFunc' return-type='void' return-typename='void'>
+<param name='sfactor' type='uint32' typename='GLenum'/>
+<param name='dfactor' type='uint32' typename='GLenum'/>
+</function>
+<function name='glBlendFuncSeparate' return-type='void' return-typename='void'>
+<param name='srcRGB' type='uint32' typename='GLenum'/>
+<param name='dstRGB' type='uint32' typename='GLenum'/>
+<param name='srcAlpha' type='uint32' typename='GLenum'/>
+<param name='dstAlpha' type='uint32' typename='GLenum'/>
+</function>
+<function name='glBufferData' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='size' type='int64' typename='GLsizeiptr'/>
+<param name='data' type='void*' typename='void*'/>
+<param name='usage' type='uint32' typename='GLenum'/>
+</function>
+<function name='glBufferSubData' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='offset' type='int64' typename='GLintptr'/>
+<param name='size' type='int64' typename='GLsizeiptr'/>
+<param name='data' type='void*' typename='void*'/>
+</function>
+<function name='glCheckFramebufferStatus' return-type='uint32' return-typename='GLenum'>
+<param name='target' type='uint32' typename='GLenum'/>
+</function>
+<function name='glClear' return-type='void' return-typename='void'>
+<param name='mask' type='uint32' typename='GLbitfield'/>
+</function>
+<function name='glClearColor' return-type='void' return-typename='void'>
+<param name='red' type='float32' typename='GLclampf'/>
+<param name='green' type='float32' typename='GLclampf'/>
+<param name='blue' type='float32' typename='GLclampf'/>
+<param name='alpha' type='float32' typename='GLclampf'/>
+</function>
+<function name='glClearDepthf' return-type='void' return-typename='void'>
+<param name='depth' type='float32' typename='GLclampf'/>
+</function>
+<function name='glClearStencil' return-type='void' return-typename='void'>
+<param name='s' type='int32' typename='GLint'/>
+</function>
+<function name='glColorMask' return-type='void' return-typename='void'>
+<param name='red' type='uint8' typename='GLboolean'/>
+<param name='green' type='uint8' typename='GLboolean'/>
+<param name='blue' type='uint8' typename='GLboolean'/>
+<param name='alpha' type='uint8' typename='GLboolean'/>
+</function>
+<function name='glCompileShader' return-type='void' return-typename='void'>
+<param name='shader' type='uint32' typename='GLuint'/>
+</function>
+<function name='glCompressedTexImage2D' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='level' type='int32' typename='GLint'/>
+<param name='internalformat' type='uint32' typename='GLenum'/>
+<param name='width' type='int32' typename='GLsizei'/>
+<param name='height' type='int32' typename='GLsizei'/>
+<param name='border' type='int32' typename='GLint'/>
+<param name='imageSize' type='int32' typename='GLsizei'/>
+<param name='data' type='void*' typename='void*'/>
+</function>
+<function name='glCompressedTexSubImage2D' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='level' type='int32' typename='GLint'/>
+<param name='xoffset' type='int32' typename='GLint'/>
+<param name='yoffset' type='int32' typename='GLint'/>
+<param name='width' type='int32' typename='GLsizei'/>
+<param name='height' type='int32' typename='GLsizei'/>
+<param name='format' type='uint32' typename='GLenum'/>
+<param name='imageSize' type='int32' typename='GLsizei'/>
+<param name='data' type='void*' typename='void*'/>
+</function>
+<function name='glCopyTexImage2D' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='level' type='int32' typename='GLint'/>
+<param name='internalformat' type='uint32' typename='GLenum'/>
+<param name='x' type='int32' typename='GLint'/>
+<param name='y' type='int32' typename='GLint'/>
+<param name='width' type='int32' typename='GLsizei'/>
+<param name='height' type='int32' typename='GLsizei'/>
+<param name='border' type='int32' typename='GLint'/>
+</function>
+<function name='glCopyTexSubImage2D' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='level' type='int32' typename='GLint'/>
+<param name='xoffset' type='int32' typename='GLint'/>
+<param name='yoffset' type='int32' typename='GLint'/>
+<param name='x' type='int32' typename='GLint'/>
+<param name='y' type='int32' typename='GLint'/>
+<param name='width' type='int32' typename='GLsizei'/>
+<param name='height' type='int32' typename='GLsizei'/>
+</function>
+<function name='glCreateProgram' return-type='uint32' return-typename='GLuint'>
+
+</function>
+<function name='glCreateShader' return-type='uint32' return-typename='GLuint'>
+<param name='type' type='uint32' typename='GLenum'/>
+</function>
+<function name='glCullFace' return-type='void' return-typename='void'>
+<param name='mode' type='uint32' typename='GLenum'/>
+</function>
+<function name='glDeleteBuffers' return-type='void' return-typename='void'>
+<param name='n' type='int32' typename='GLsizei'/>
+<param name='buffers' type='uint32*' typename='uint32*'/>
+</function>
+<function name='glDeleteFramebuffers' return-type='void' return-typename='void'>
+<param name='n' type='int32' typename='GLsizei'/>
+<param name='framebuffers' type='uint32*' typename='uint32*'/>
+</function>
+<function name='glDeleteProgram' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+</function>
+<function name='glDeleteRenderbuffers' return-type='void' return-typename='void'>
+<param name='n' type='int32' typename='GLsizei'/>
+<param name='renderbuffers' type='uint32*' typename='uint32*'/>
+</function>
+<function name='glDeleteShader' return-type='void' return-typename='void'>
+<param name='shader' type='uint32' typename='GLuint'/>
+</function>
+<function name='glDeleteTextures' return-type='void' return-typename='void'>
+<param name='n' type='int32' typename='GLsizei'/>
+<param name='textures' type='uint32*' typename='uint32*'/>
+</function>
+<function name='glDepthFunc' return-type='void' return-typename='void'>
+<param name='func' type='uint32' typename='GLenum'/>
+</function>
+<function name='glDepthMask' return-type='void' return-typename='void'>
+<param name='flag' type='uint8' typename='GLboolean'/>
+</function>
+<function name='glDepthRangef' return-type='void' return-typename='void'>
+<param name='zNear' type='float32' typename='GLclampf'/>
+<param name='zFar' type='float32' typename='GLclampf'/>
+</function>
+<function name='glDetachShader' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+<param name='shader' type='uint32' typename='GLuint'/>
+</function>
+<function name='glDisable' return-type='void' return-typename='void'>
+<param name='cap' type='uint32' typename='GLenum'/>
+</function>
+<function name='glDisableVertexAttribArray' return-type='void' return-typename='void'>
+<param name='index' type='uint32' typename='GLuint'/>
+</function>
+<function name='glDrawArrays' return-type='void' return-typename='void'>
+<param name='mode' type='uint32' typename='GLenum'/>
+<param name='first' type='int32' typename='GLint'/>
+<param name='count' type='int32' typename='GLsizei'/>
+</function>
+<function name='glDrawElements' return-type='void' return-typename='void'>
+<param name='mode' type='uint32' typename='GLenum'/>
+<param name='count' type='int32' typename='GLsizei'/>
+<param name='type' type='uint32' typename='GLenum'/>
+<param name='indices' type='void*' typename='void*'/>
+</function>
+<function name='glEnable' return-type='void' return-typename='void'>
+<param name='cap' type='uint32' typename='GLenum'/>
+</function>
+<function name='glEnableVertexAttribArray' return-type='void' return-typename='void'>
+<param name='index' type='uint32' typename='GLuint'/>
+</function>
+<function name='glFinish' return-type='void' return-typename='void'>
+
+</function>
+<function name='glFlush' return-type='void' return-typename='void'>
+
+</function>
+<function name='glFramebufferRenderbuffer' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='attachment' type='uint32' typename='GLenum'/>
+<param name='renderbuffertarget' type='uint32' typename='GLenum'/>
+<param name='renderbuffer' type='uint32' typename='GLuint'/>
+</function>
+<function name='glFramebufferTexture2D' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='attachment' type='uint32' typename='GLenum'/>
+<param name='textarget' type='uint32' typename='GLenum'/>
+<param name='texture' type='uint32' typename='GLuint'/>
+<param name='level' type='int32' typename='GLint'/>
+</function>
+<function name='glFrontFace' return-type='void' return-typename='void'>
+<param name='mode' type='uint32' typename='GLenum'/>
+</function>
+<function name='glGenBuffers' return-type='void' return-typename='void'>
+<param name='n' type='int32' typename='GLsizei'/>
+<param name='buffers' type='uint32*' typename='uint32*'/>
+</function>
+<function name='glGenerateMipmap' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+</function>
+<function name='glGenFramebuffers' return-type='void' return-typename='void'>
+<param name='n' type='int32' typename='GLsizei'/>
+<param name='framebuffers' type='uint32*' typename='uint32*'/>
+</function>
+<function name='glGenRenderbuffers' return-type='void' return-typename='void'>
+<param name='n' type='int32' typename='GLsizei'/>
+<param name='renderbuffers' type='uint32*' typename='uint32*'/>
+</function>
+<function name='glGenTextures' return-type='void' return-typename='void'>
+<param name='n' type='int32' typename='GLsizei'/>
+<param name='textures' type='uint32*' typename='uint32*'/>
+</function>
+<function name='glGetActiveAttrib' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+<param name='index' type='uint32' typename='GLuint'/>
+<param name='bufsize' type='int32' typename='GLsizei'/>
+<param name='length' type='int32*' typename='int32*'/>
+<param name='size' type='int32*' typename='int32*'/>
+<param name='type' type='uint32*' typename='uint32*'/>
+<param name='name' type='char*' typename='char*'/>
+</function>
+<function name='glGetActiveUniform' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+<param name='index' type='uint32' typename='GLuint'/>
+<param name='bufsize' type='int32' typename='GLsizei'/>
+<param name='length' type='int32*' typename='int32*'/>
+<param name='size' type='int32*' typename='int32*'/>
+<param name='type' type='uint32*' typename='uint32*'/>
+<param name='name' type='char*' typename='char*'/>
+</function>
+<function name='glGetAttachedShaders' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+<param name='maxcount' type='int32' typename='GLsizei'/>
+<param name='count' type='int32*' typename='int32*'/>
+<param name='shaders' type='uint32*' typename='uint32*'/>
+</function>
+<function name='glGetAttribLocation' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+<param name='name' type='char*' typename='char*'/>
+</function>
+<function name='glGetBooleanv' return-type='void' return-typename='void'>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='params' type='uint8*' typename='uint8*'/>
+</function>
+<function name='glGetBufferParameteriv' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='params' type='int32*' typename='int32*'/>
+</function>
+<function name='glGetError' return-type='uint32' return-typename='GLenum'>
+
+</function>
+<function name='glGetFloatv' return-type='void' return-typename='void'>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='params' type='float32*' typename='float32*'/>
+</function>
+<function name='glGetFramebufferAttachmentParameteriv' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='attachment' type='uint32' typename='GLenum'/>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='params' type='int32*' typename='int32*'/>
+</function>
+<function name='glGetIntegerv' return-type='void' return-typename='void'>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='params' type='int32*' typename='int32*'/>
+</function>
+<function name='glGetProgramiv' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='params' type='int32*' typename='int32*'/>
+</function>
+<function name='glGetProgramInfoLog' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+<param name='bufsize' type='int32' typename='GLsizei'/>
+<param name='length' type='int32*' typename='int32*'/>
+<param name='infolog' type='char*' typename='char*'/>
+</function>
+<function name='glGetRenderbufferParameteriv' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='params' type='int32*' typename='int32*'/>
+</function>
+<function name='glGetShaderiv' return-type='void' return-typename='void'>
+<param name='shader' type='uint32' typename='GLuint'/>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='params' type='int32*' typename='int32*'/>
+</function>
+<function name='glGetShaderInfoLog' return-type='void' return-typename='void'>
+<param name='shader' type='uint32' typename='GLuint'/>
+<param name='bufsize' type='int32' typename='GLsizei'/>
+<param name='length' type='int32*' typename='int32*'/>
+<param name='infolog' type='char*' typename='char*'/>
+</function>
+<function name='glGetShaderPrecisionFormat' return-type='void' return-typename='void'>
+<param name='shadertype' type='uint32' typename='GLenum'/>
+<param name='precisiontype' type='uint32' typename='GLenum'/>
+<param name='range' type='int32*' typename='int32*'/>
+<param name='precision' type='int32*' typename='int32*'/>
+</function>
+<function name='glGetShaderSource' return-type='void' return-typename='void'>
+<param name='shader' type='uint32' typename='GLuint'/>
+<param name='bufsize' type='int32' typename='GLsizei'/>
+<param name='length' type='int32*' typename='int32*'/>
+<param name='source' type='char*' typename='char*'/>
+</function>
+<function name='glGetString' return-type='uint8' return-typename='GLubyte'>
+<param name='name' type='uint32' typename='GLenum'/>
+</function>
+<function name='glGetTexParameterfv' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='params' type='float32*' typename='float32*'/>
+</function>
+<function name='glGetTexParameteriv' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='params' type='int32*' typename='int32*'/>
+</function>
+<function name='glGetUniformfv' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+<param name='location' type='int32' typename='GLint'/>
+<param name='params' type='float32*' typename='float32*'/>
+</function>
+<function name='glGetUniformiv' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+<param name='location' type='int32' typename='GLint'/>
+<param name='params' type='int32*' typename='int32*'/>
+</function>
+<function name='glGetUniformLocation' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+<param name='name' type='char*' typename='char*'/>
+</function>
+<function name='glGetVertexAttribfv' return-type='void' return-typename='void'>
+<param name='index' type='uint32' typename='GLuint'/>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='params' type='float32*' typename='float32*'/>
+</function>
+<function name='glGetVertexAttribiv' return-type='void' return-typename='void'>
+<param name='index' type='uint32' typename='GLuint'/>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='params' type='int32*' typename='int32*'/>
+</function>
+<function name='glGetVertexAttribPointerv' return-type='void' return-typename='void'>
+<param name='index' type='uint32' typename='GLuint'/>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='pointer' type='void**' typename='void**'/>
+</function>
+<function name='glHint' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='mode' type='uint32' typename='GLenum'/>
+</function>
+<function name='glIsBuffer' return-type='uint8' return-typename='GLboolean'>
+<param name='buffer' type='uint32' typename='GLuint'/>
+</function>
+<function name='glIsEnabled' return-type='uint8' return-typename='GLboolean'>
+<param name='cap' type='uint32' typename='GLenum'/>
+</function>
+<function name='glIsFramebuffer' return-type='uint8' return-typename='GLboolean'>
+<param name='framebuffer' type='uint32' typename='GLuint'/>
+</function>
+<function name='glIsProgram' return-type='uint8' return-typename='GLboolean'>
+<param name='program' type='uint32' typename='GLuint'/>
+</function>
+<function name='glIsRenderbuffer' return-type='uint8' return-typename='GLboolean'>
+<param name='renderbuffer' type='uint32' typename='GLuint'/>
+</function>
+<function name='glIsShader' return-type='uint8' return-typename='GLboolean'>
+<param name='shader' type='uint32' typename='GLuint'/>
+</function>
+<function name='glIsTexture' return-type='uint8' return-typename='GLboolean'>
+<param name='texture' type='uint32' typename='GLuint'/>
+</function>
+<function name='glLineWidth' return-type='void' return-typename='void'>
+<param name='width' type='float32' typename='GLfloat'/>
+</function>
+<function name='glLinkProgram' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+</function>
+<function name='glPixelStorei' return-type='void' return-typename='void'>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='param' type='int32' typename='GLint'/>
+</function>
+<function name='glPolygonOffset' return-type='void' return-typename='void'>
+<param name='factor' type='float32' typename='GLfloat'/>
+<param name='units' type='float32' typename='GLfloat'/>
+</function>
+<function name='glReadPixels' return-type='void' return-typename='void'>
+<param name='x' type='int32' typename='GLint'/>
+<param name='y' type='int32' typename='GLint'/>
+<param name='width' type='int32' typename='GLsizei'/>
+<param name='height' type='int32' typename='GLsizei'/>
+<param name='format' type='uint32' typename='GLenum'/>
+<param name='type' type='uint32' typename='GLenum'/>
+<param name='pixels' type='void*' typename='void*'/>
+</function>
+<function name='glReleaseShaderCompiler' return-type='void' return-typename='void'>
+
+</function>
+<function name='glRenderbufferStorage' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='internalformat' type='uint32' typename='GLenum'/>
+<param name='width' type='int32' typename='GLsizei'/>
+<param name='height' type='int32' typename='GLsizei'/>
+</function>
+<function name='glSampleCoverage' return-type='void' return-typename='void'>
+<param name='value' type='float32' typename='GLclampf'/>
+<param name='invert' type='uint8' typename='GLboolean'/>
+</function>
+<function name='glScissor' return-type='void' return-typename='void'>
+<param name='x' type='int32' typename='GLint'/>
+<param name='y' type='int32' typename='GLint'/>
+<param name='width' type='int32' typename='GLsizei'/>
+<param name='height' type='int32' typename='GLsizei'/>
+</function>
+<function name='glShaderBinary' return-type='void' return-typename='void'>
+<param name='n' type='int32' typename='GLsizei'/>
+<param name='shaders' type='uint32*' typename='uint32*'/>
+<param name='binaryformat' type='uint32' typename='GLenum'/>
+<param name='binary' type='void*' typename='void*'/>
+<param name='length' type='int32' typename='GLsizei'/>
+</function>
+<function name='glShaderSource' return-type='void' return-typename='void'>
+<param name='shader' type='uint32' typename='GLuint'/>
+<param name='count' type='int32' typename='GLsizei'/>
+<param name='string' type='char**' typename='char**'/>
+<param name='length' type='int32*' typename='int32*'/>
+</function>
+<function name='glStencilFunc' return-type='void' return-typename='void'>
+<param name='func' type='uint32' typename='GLenum'/>
+<param name='ref' type='int32' typename='GLint'/>
+<param name='mask' type='uint32' typename='GLuint'/>
+</function>
+<function name='glStencilFuncSeparate' return-type='void' return-typename='void'>
+<param name='face' type='uint32' typename='GLenum'/>
+<param name='func' type='uint32' typename='GLenum'/>
+<param name='ref' type='int32' typename='GLint'/>
+<param name='mask' type='uint32' typename='GLuint'/>
+</function>
+<function name='glStencilMask' return-type='void' return-typename='void'>
+<param name='mask' type='uint32' typename='GLuint'/>
+</function>
+<function name='glStencilMaskSeparate' return-type='void' return-typename='void'>
+<param name='face' type='uint32' typename='GLenum'/>
+<param name='mask' type='uint32' typename='GLuint'/>
+</function>
+<function name='glStencilOp' return-type='void' return-typename='void'>
+<param name='fail' type='uint32' typename='GLenum'/>
+<param name='zfail' type='uint32' typename='GLenum'/>
+<param name='zpass' type='uint32' typename='GLenum'/>
+</function>
+<function name='glStencilOpSeparate' return-type='void' return-typename='void'>
+<param name='face' type='uint32' typename='GLenum'/>
+<param name='fail' type='uint32' typename='GLenum'/>
+<param name='zfail' type='uint32' typename='GLenum'/>
+<param name='zpass' type='uint32' typename='GLenum'/>
+</function>
+<function name='glTexImage2D' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='level' type='int32' typename='GLint'/>
+<param name='internalformat' type='int32' typename='GLint'/>
+<param name='width' type='int32' typename='GLsizei'/>
+<param name='height' type='int32' typename='GLsizei'/>
+<param name='border' type='int32' typename='GLint'/>
+<param name='format' type='uint32' typename='GLenum'/>
+<param name='type' type='uint32' typename='GLenum'/>
+<param name='pixels' type='void*' typename='void*'/>
+</function>
+<function name='glTexParameterf' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='param' type='float32' typename='GLfloat'/>
+</function>
+<function name='glTexParameterfv' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='params' type='float32*' typename='float32*'/>
+</function>
+<function name='glTexParameteri' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='param' type='int32' typename='GLint'/>
+</function>
+<function name='glTexParameteriv' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='pname' type='uint32' typename='GLenum'/>
+<param name='params' type='int32*' typename='int32*'/>
+</function>
+<function name='glTexSubImage2D' return-type='void' return-typename='void'>
+<param name='target' type='uint32' typename='GLenum'/>
+<param name='level' type='int32' typename='GLint'/>
+<param name='xoffset' type='int32' typename='GLint'/>
+<param name='yoffset' type='int32' typename='GLint'/>
+<param name='width' type='int32' typename='GLsizei'/>
+<param name='height' type='int32' typename='GLsizei'/>
+<param name='format' type='uint32' typename='GLenum'/>
+<param name='type' type='uint32' typename='GLenum'/>
+<param name='pixels' type='void*' typename='void*'/>
+</function>
+<function name='glUniform1f' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='x' type='float32' typename='GLfloat'/>
+</function>
+<function name='glUniform1fv' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='count' type='int32' typename='GLsizei'/>
+<param name='v' type='float32*' typename='float32*'/>
+</function>
+<function name='glUniform1i' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='x' type='int32' typename='GLint'/>
+</function>
+<function name='glUniform1iv' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='count' type='int32' typename='GLsizei'/>
+<param name='v' type='int32*' typename='int32*'/>
+</function>
+<function name='glUniform2f' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='x' type='float32' typename='GLfloat'/>
+<param name='y' type='float32' typename='GLfloat'/>
+</function>
+<function name='glUniform2fv' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='count' type='int32' typename='GLsizei'/>
+<param name='v' type='float32*' typename='float32*'/>
+</function>
+<function name='glUniform2i' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='x' type='int32' typename='GLint'/>
+<param name='y' type='int32' typename='GLint'/>
+</function>
+<function name='glUniform2iv' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='count' type='int32' typename='GLsizei'/>
+<param name='v' type='int32*' typename='int32*'/>
+</function>
+<function name='glUniform3f' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='x' type='float32' typename='GLfloat'/>
+<param name='y' type='float32' typename='GLfloat'/>
+<param name='z' type='float32' typename='GLfloat'/>
+</function>
+<function name='glUniform3fv' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='count' type='int32' typename='GLsizei'/>
+<param name='v' type='float32*' typename='float32*'/>
+</function>
+<function name='glUniform3i' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='x' type='int32' typename='GLint'/>
+<param name='y' type='int32' typename='GLint'/>
+<param name='z' type='int32' typename='GLint'/>
+</function>
+<function name='glUniform3iv' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='count' type='int32' typename='GLsizei'/>
+<param name='v' type='int32*' typename='int32*'/>
+</function>
+<function name='glUniform4f' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='x' type='float32' typename='GLfloat'/>
+<param name='y' type='float32' typename='GLfloat'/>
+<param name='z' type='float32' typename='GLfloat'/>
+<param name='w' type='float32' typename='GLfloat'/>
+</function>
+<function name='glUniform4fv' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='count' type='int32' typename='GLsizei'/>
+<param name='v' type='float32*' typename='float32*'/>
+</function>
+<function name='glUniform4i' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='x' type='int32' typename='GLint'/>
+<param name='y' type='int32' typename='GLint'/>
+<param name='z' type='int32' typename='GLint'/>
+<param name='w' type='int32' typename='GLint'/>
+</function>
+<function name='glUniform4iv' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='count' type='int32' typename='GLsizei'/>
+<param name='v' type='int32*' typename='int32*'/>
+</function>
+<function name='glUniformMatrix2fv' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='count' type='int32' typename='GLsizei'/>
+<param name='transpose' type='uint8' typename='GLboolean'/>
+<param name='value' type='float32*' typename='float32*'/>
+</function>
+<function name='glUniformMatrix3fv' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='count' type='int32' typename='GLsizei'/>
+<param name='transpose' type='uint8' typename='GLboolean'/>
+<param name='value' type='float32*' typename='float32*'/>
+</function>
+<function name='glUniformMatrix4fv' return-type='void' return-typename='void'>
+<param name='location' type='int32' typename='GLint'/>
+<param name='count' type='int32' typename='GLsizei'/>
+<param name='transpose' type='uint8' typename='GLboolean'/>
+<param name='value' type='float32*' typename='float32*'/>
+</function>
+<function name='glUseProgram' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+</function>
+<function name='glValidateProgram' return-type='void' return-typename='void'>
+<param name='program' type='uint32' typename='GLuint'/>
+</function>
+<function name='glVertexAttrib1f' return-type='void' return-typename='void'>
+<param name='indx' type='uint32' typename='GLuint'/>
+<param name='x' type='float32' typename='GLfloat'/>
+</function>
+<function name='glVertexAttrib1fv' return-type='void' return-typename='void'>
+<param name='indx' type='uint32' typename='GLuint'/>
+<param name='values' type='float32*' typename='float32*'/>
+</function>
+<function name='glVertexAttrib2f' return-type='void' return-typename='void'>
+<param name='indx' type='uint32' typename='GLuint'/>
+<param name='x' type='float32' typename='GLfloat'/>
+<param name='y' type='float32' typename='GLfloat'/>
+</function>
+<function name='glVertexAttrib2fv' return-type='void' return-typename='void'>
+<param name='indx' type='uint32' typename='GLuint'/>
+<param name='values' type='float32*' typename='float32*'/>
+</function>
+<function name='glVertexAttrib3f' return-type='void' return-typename='void'>
+<param name='indx' type='uint32' typename='GLuint'/>
+<param name='x' type='float32' typename='GLfloat'/>
+<param name='y' type='float32' typename='GLfloat'/>
+<param name='z' type='float32' typename='GLfloat'/>
+</function>
+<function name='glVertexAttrib3fv' return-type='void' return-typename='void'>
+<param name='indx' type='uint32' typename='GLuint'/>
+<param name='values' type='float32*' typename='float32*'/>
+</function>
+<function name='glVertexAttrib4f' return-type='void' return-typename='void'>
+<param name='indx' type='uint32' typename='GLuint'/>
+<param name='x' type='float32' typename='GLfloat'/>
+<param name='y' type='float32' typename='GLfloat'/>
+<param name='z' type='float32' typename='GLfloat'/>
+<param name='w' type='float32' typename='GLfloat'/>
+</function>
+<function name='glVertexAttrib4fv' return-type='void' return-typename='void'>
+<param name='indx' type='uint32' typename='GLuint'/>
+<param name='values' type='float32*' typename='float32*'/>
+</function>
+<function name='glVertexAttribPointer' return-type='void' return-typename='void'>
+<param name='indx' type='uint32' typename='GLuint'/>
+<param name='size' type='int32' typename='GLint'/>
+<param name='type' type='uint32' typename='GLenum'/>
+<param name='normalized' type='uint8' typename='GLboolean'/>
+<param name='stride' type='int32' typename='GLsizei'/>
+<param name='ptr' type='void*' typename='void*'/>
+</function>
+<function name='glViewport' return-type='void' return-typename='void'>
+<param name='x' type='int32' typename='GLint'/>
+<param name='y' type='int32' typename='GLint'/>
+<param name='width' type='int32' typename='GLsizei'/>
+<param name='height' type='int32' typename='GLsizei'/>
+</function>
+</translation-unit>
