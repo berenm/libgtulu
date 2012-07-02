@@ -4,6 +4,9 @@
 # See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
 
 import re
+import logging
+
+log = logging.getLogger(__name__)
 
 # The words that are used in the declaration are isolated
 words = [ '1D', '2D', '3D',
@@ -35,38 +38,22 @@ words = [ '1D', '2D', '3D',
       'X',
       'Zoom' ]
 
-class renamable(object):
-  def __init__(self):
-    new_name = self.name
-    if re.match(r'^[a-z_0-9]+$', new_name) is not None:
-      self.new_name = new_name
-      return
-    
-    print "RENM:", new_name
-    if self.name.endswith('ARB'):
-      self.is_arb = True
-      self.is_ext = False
-      new_name = re.sub(r'ARB$', r'', new_name)
-    elif self.name.endswith('EXT'):
-      self.is_arb = False
-      self.is_ext = True
-      new_name = re.sub(r'EXT$', r'', new_name)
+class Renamable(object):
+  def __init__(self, prefixes=[], suffixes=[]):
+    log.debug('renaming: %s' % self.name)
 
-    if self.name.startswith('glu'):
-      self.is_gl = False
-      self.is_glX = False
-      self.is_glu = True
-      new_name = re.sub(r'^glu', r'', new_name)
-    elif self.name.startswith('glX'):
-      self.is_gl = False
-      self.is_glX = True
-      self.is_glu = False
-      new_name = re.sub(r'^glX', r'', new_name)
-    elif self.name.startswith('gl'):
-      self.is_gl = True
-      self.is_glX = False
-      self.is_glu = False
-      new_name = re.sub(r'^gl', r'', new_name)
+    new_name = self.name
+    for suffix in suffixes:
+      if self.name.endswith(suffix):
+        self.suffix = suffix
+        new_name = re.sub(r'%s$' % suffix, '', new_name)
+        break
+
+    for prefix in prefixes:
+      if self.name.startswith(prefix):
+        self.prefix = prefix
+        new_name = re.sub(r'^%s' % prefix, '', new_name)
+        break
 
     name_words = re.findall(r'(' + '|'.join(words) + ')', new_name)
     new_name = new_name.replace(''.join(name_words), '')
@@ -116,11 +103,10 @@ class renamable(object):
     new_name = re.sub(r'@[^@]+@', r'', new_name)
     new_name = re.sub(r'#$', r'', new_name)
     
-    # That's all, we are clean!
-    print "RENM:", new_name
+    # That's all, we are - almost - clean!
     new_name = '_'.join([ w.lower() for w in name_words]) + new_name
     new_name = new_name.replace('getn_', 'get_n_')
     new_name = new_name.replace('readn_', 'read_n_')
     
-    print "RENM:", new_name
     self.new_name = new_name.strip('_')
+    log.debug('result: %s' % self.new_name)

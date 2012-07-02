@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+
+import parser
+import logging
+#logging.basicConfig(level=logging.DEBUG)
+
+from gentulu.library import GLES2
+from gentulu.serializer import LibrarySerializer
+
+def main():
+  from optparse import OptionParser, OptionGroup
+  global opts
+
+  opt = OptionParser("usage: %prog [-u] [-I INCLUDE_PATH]... [-D DEFINE[=VALUE]]... [-o OUTPUT] -i FILE")
+  opt.add_option("-u", "--uncrustify", dest="uncrustify", action='store_true', default=False,
+                 help="Run uncrustify ~/.uncrustifyrc on the generated file to format the source.")
+  opt.add_option("-I", dest="include_paths", action='append', default=[],
+                 help="Include paths to add to parse FILE.")
+  opt.add_option("-D", dest="defines", action='append', default=[],
+                 help="Preprocessor definitions to add to parse FILE.")
+  opt.add_option("-i", "--input", dest="input",
+                 help="Input file to parse.")
+  opt.add_option("-o", "--output", dest="output",
+                 help="Output file to generate from FILE.")
+  (opts, args) = opt.parse_args()
+
+  if opts.input is None:
+    opt.error('missing FILE')
+
+  filename = opts.input
+  target = opts.output
+
+  command_line = ['generate']
+  command_line.append('-i ' + filename)
+
+  if target is None:
+    target = filename.replace('.h', '_autogen.h')
+  else:
+    command_line.append('-o ' + target)
+
+  command_line.extend(['-I ' + i for i in opts.include_paths])
+  command_line.extend(['-D ' + d for d in opts.defines])
+
+  index = parser.FileFilteringIndexer(filename, opts.include_paths, opts.defines)
+  functions = [ n for n in index.nodes() if isinstance(n, parser.types.Function)]
+  for n in functions:
+    d = GLES2.declaration(n)
+    # print r.typename + ' ' + f.new_name + '(' + ', '.join([ Parameter(c).std_str() for c in n.children if isinstance(c, parser.types.Parameter)]) + ')'
+    # print d.str_define(True)
+    # for c in n.children:
+    # print c.name
+
+  print LibrarySerializer(GLES2).definitions()
+
+if __name__ == '__main__':
+  main()

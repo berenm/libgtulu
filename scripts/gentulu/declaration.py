@@ -6,7 +6,7 @@
 
 from parameter import parameter
 from gentulu.utils import plain_text, smart_wrap
-from gentulu.renamable import renamable
+from gentulu.renamable import Renamable as renamable
 
 class declaration(renamable):
   def __init__(self, name, output, parameters):

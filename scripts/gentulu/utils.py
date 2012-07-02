@@ -5,6 +5,22 @@
 
 import re
 
+uncamel_re1 = re.compile(r'(.)([A-Z][a-z]+)')
+uncamel_re2 = re.compile(r'([a-z])([0-9A-Z])')
+camel_re = re.compile(r'(?:^|_+)([0-9]*[0-9a-z])')
+
+def uncamel(s):
+  s = uncamel_re1.sub(r'\1_\2', s)
+  return uncamel_re2.sub(r'\1_\2', s).lower()
+
+def camel(s):
+  return camel_re.sub(lambda m: m.group(1).upper(), s).strip('_')
+
+def inherit(self, other):
+  d = dict(other.__dict__)
+  d.update(self.__dict__)
+  self.__dict__ = d
+
 def plain_text(node):
   return re.sub(r'\s*(?P<p>[,\.\?\!])\s*', r'\g<p> ', ' '.join([ l.strip() for s in node.itertext() for l in s.splitlines() if len(l.strip()) > 0 ])).strip()
 
