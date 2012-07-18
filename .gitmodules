@@ -4,3 +4,6 @@
 [submodule "ext/registry"]
 	path = ext/registry
 	url = git://github.com/berenm/libgtulu.git
+[submodule "lib/liblogging"]
+	path = lib/liblogging
+	url = git://github.com/berenm/liblogging.git

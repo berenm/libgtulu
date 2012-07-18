@@ -7,6 +7,9 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(GNUInstallDirs)
 include(GtuluCompiler)
 
+add_subdirectory(lib/liblogging)
+include_directories(lib/liblogging/include lib/liblogging/lib/boost-log)
+
 project(libgtulu CXX)
 
 find_package(Boost COMPONENTS program_options filesystem system regex thread chrono REQUIRED)
@@ -60,6 +63,7 @@ target_link_libraries(gtulu
   ${PANGO_LIBRARIES}
   ${OPENGL_LIBRARIES}
   ${Boost_LIBRARIES}
+  logging
 )
 
 # -------------------------------------------------------------------------

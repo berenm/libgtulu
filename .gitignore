@@ -16,9 +16,4 @@
 !.gitmodules
 !.uncrustifyrc
 
-build/
-install/
-doc/html
-doc/web
-doc/wiki
-include/GL3/
+build

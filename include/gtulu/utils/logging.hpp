@@ -13,9 +13,9 @@
 #ifndef GTULU_LOGGING_INITIALIZED
 #define GTULU_LOGGING_INITIALIZED
 
-#if defined(GTULU_USE_LIBLOGGING)
+// #if defined(GTULU_USE_LIBLOGGING)
 #  include <logging/logging.hpp>
-#endif
+// #endif
 
 #ifdef __logML
 #  define __gtulu_logL(level_m) __logML(gtulu,level_m)
