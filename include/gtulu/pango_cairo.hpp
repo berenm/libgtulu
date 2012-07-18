@@ -25,6 +25,7 @@ namespace gtulu {
     typedef obj::texture< cairo_texture_format > cairo_texture;
 
     void render(cairo_texture& texture, std::string const& text);
+    cairo_texture make_texture(std::string const& text);
 
   } // namespace cairo
 

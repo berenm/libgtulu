@@ -68,20 +68,48 @@ namespace gtulu {
     void render(cairo_texture& texture, std::string const& text) {
       using namespace gtulu::internal;
 
-      cairo_surface_t* cairo_surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32,
-                                                                  texture.width(),
-                                                                  texture.height());
+      cairo_surface_t* cairo_surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, texture.width(), texture.height());
       cairo_t* cairo = cairo_create(cairo_surface);
-      PangoLayout* pango = pango_cairo_create_layout(cairo);
+      PangoLayout* pango_layout = pango_cairo_create_layout(cairo);
 
-      pango_layout_set_markup(pango, text.c_str(), -1);
-      pango_cairo_show_layout(cairo, pango);
+      pango_layout_set_width(pango_layout, texture.width());
+      pango_layout_set_height(pango_layout, texture.height());
+
+      pango_layout_set_markup(pango_layout, text.c_str(), -1);
+      pango_cairo_show_layout(cairo, pango_layout);
 
       sto::copy(texture, cairo_surface);
 
       cairo_surface_finish(cairo_surface);
       cairo_destroy(cairo);
       cairo_surface_destroy(cairo_surface);
+    }
+
+    cairo_texture make_texture(std::string const& text) {
+      using namespace gtulu::internal;
+
+      PangoContext* pango = pango_font_map_create_context(pango_cairo_font_map_get_default());
+      PangoLayout* pango_layout = pango_layout_new(pango);
+
+      pango_layout_set_markup(pango_layout, text.c_str(), -1);
+
+      int width;
+      int height;
+      pango_layout_get_pixel_size(pango_layout, &width, &height);
+
+      cairo_surface_t* cairo_surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, width, height);
+      cairo_t* cairo = cairo_create(cairo_surface);
+      
+      pango_cairo_update_context(cairo, pango);
+      pango_cairo_show_layout(cairo, pango_layout);
+
+      cairo_texture texture(cairo_surface);
+
+      cairo_surface_finish(cairo_surface);
+      cairo_destroy(cairo);
+      cairo_surface_destroy(cairo_surface);
+
+      return texture;
     }
 
   } // namespace cairo

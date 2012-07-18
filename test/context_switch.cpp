@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
   boost::chrono::high_resolution_clock::time_point from;
   boost::chrono::high_resolution_clock::time_point to;
   from = boost::chrono::high_resolution_clock::now();
-  for (int i = 0; i < 100000; ++i) {
+  for (int i = 0; i < 10000; ++i) {
     alternate_context.acquire();
     alternate_context.release();
     main_context.acquire();

@@ -1,0 +1,6 @@
+[submodule "ext/boost-gil-contributions"]
+	path = ext/boost-gil-contributions
+	url = git://github.com/berenm/boost-gil-contributions.git
+[submodule "ext/registry"]
+	path = ext/registry
+	url = git://github.com/berenm/libgtulu.git

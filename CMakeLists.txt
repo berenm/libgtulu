@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
+find_package(Git REQUIRED)
+message(STATUS "updating libgtulu submodules...")
+execute_process(COMMAND git submodule update --init WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} OUTPUT_QUIET)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(GNUInstallDirs)
 include(GtuluCompiler)
 
@@ -16,6 +19,8 @@ include_directories(
   ${PANGO_INCLUDE_DIRS}
   ${OPENGL_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
+  ext/registry/include
+  ext/boost-gil-contributions
 )
 link_directories(
   ${PANGO_LIBRARY_DIRS}
@@ -23,49 +28,13 @@ link_directories(
   ${Boost_LIBRARY_DIRS}
 )
 
-if(NOT EXISTS "${CMAKE_SOURCE_DIR}/include/KHR" OR "${GTULU_FORCE_DOWNLOAD}" EQUAL 1)
-  file(MAKE_DIRECTORY "include/KHR")
-  message(STATUS "Downloading KHR/khrplatform.h...")
-  file(DOWNLOAD "http://www.khronos.org/registry/egl/api/KHR/khrplatform.h" "${CMAKE_SOURCE_DIR}/include/KHR/khrplatform.h")
-endif()
-
-if(NOT EXISTS "${CMAKE_SOURCE_DIR}/include/EGL" OR "${GTULU_FORCE_DOWNLOAD}" EQUAL 1)
-  file(MAKE_DIRECTORY "include/EGL")
-  message(STATUS "Downloading EGL/egl.h...")
-  file(DOWNLOAD "http://www.khronos.org/registry/egl/api/EGL/egl.h"         "${CMAKE_SOURCE_DIR}/include/EGL/egl.h")
-
-  message(STATUS "Downloading EGL/eglext.h...")
-  file(DOWNLOAD "http://www.khronos.org/registry/egl/api/EGL/eglext.h"      "${CMAKE_SOURCE_DIR}/include/EGL/eglext.h")
-
-  message(STATUS "Downloading EGL/eglplatform.h...")
-  file(DOWNLOAD "http://www.khronos.org/registry/egl/api/EGL/eglplatform.h" "${CMAKE_SOURCE_DIR}/include/EGL/eglplatform.h")
-endif()
-
-if(NOT EXISTS "${CMAKE_SOURCE_DIR}/include/GLES2" OR "${GTULU_FORCE_DOWNLOAD}" EQUAL 1)
-  file(MAKE_DIRECTORY "include/GLES2")
-  message(STATUS "Downloading GLES2/gl2.h...")
-  file(DOWNLOAD "http://www.khronos.org/registry/gles/api/2.0/gl2.h"         "${CMAKE_SOURCE_DIR}/include/GLES2/gl2.h")
-
-  message(STATUS "Downloading GLES2/gl2ext.h...")
-  file(DOWNLOAD "http://www.khronos.org/registry/gles/api/2.0/gl2ext.h"      "${CMAKE_SOURCE_DIR}/include/GLES2/gl2ext.h")
-
-  message(STATUS "Downloading GLES2/gl2platform.h...")
-  file(DOWNLOAD "http://www.khronos.org/registry/gles/api/2.0/gl2platform.h" "${CMAKE_SOURCE_DIR}/include/GLES2/gl2platform.h")
-endif()
-
-if(NOT EXISTS "${CMAKE_SOURCE_DIR}/include/GL3" OR "${GTULU_FORCE_DOWNLOAD}" EQUAL 1)
-  file(MAKE_DIRECTORY "include/GL3")
-  message(STATUS "Downloading GL3/gl3.h...")
-  file(DOWNLOAD "http://www.opengl.org/registry/api/gl3.h" "${CMAKE_SOURCE_DIR}/include/GL3/gl3.h")
-endif()
-
-if(NOT EXISTS "${CMAKE_SOURCE_DIR}/scripts/clang" OR "${GTULU_FORCE_DOWNLOAD}" EQUAL 1)
+if(NOT EXISTS "scripts/clang" OR "${GTULU_FORCE_DOWNLOAD}" EQUAL 1)
   file(MAKE_DIRECTORY "scripts/clang")
   message(STATUS "Downloading clang/__init__.py...")
-  file(DOWNLOAD "http://llvm.org/svn/llvm-project/cfe/trunk/bindings/python/clang/__init__.py" "${CMAKE_SOURCE_DIR}/scripts/clang/__init__.py")
+  file(DOWNLOAD "http://llvm.org/svn/llvm-project/cfe/trunk/bindings/python/clang/__init__.py" "scripts/clang/__init__.py")
 
   message(STATUS "Downloading clang/cindex.py...")
-  file(DOWNLOAD "http://llvm.org/svn/llvm-project/cfe/trunk/bindings/python/clang/cindex.py" "${CMAKE_SOURCE_DIR}/scripts/clang/cindex.py")
+  file(DOWNLOAD "http://llvm.org/svn/llvm-project/cfe/trunk/bindings/python/clang/cindex.py" "scripts/clang/cindex.py")
 endif()
 
 # -------------------------------------------------------------------------
@@ -110,7 +79,13 @@ install(TARGETS gtulu gtulu-compiler
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
-install(DIRECTORY include
+install(DIRECTORY include/gtulu
+                  include/meta
+                  ext/registry/include/EGL
+                  ext/registry/include/GL3
+                  ext/registry/include/GLES2
+                  ext/registry/include/KHR
+                  ext/boost-gil-contributions/boost
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
@@ -162,18 +137,23 @@ add_executable(unit-test-context-switch
 target_link_libraries(unit-test-context-switch gtulu)
 add_test(unit-test-context-switch unit-test-context-switch)
 
-if(EXISTS "${Boost_INCLUDE_DIRS}/boost/gil/extensions/io_new/png_read.hpp")
-  add_executable(unit-test-print-image
-    test/print_image.cpp
-    ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
-  )
-  target_link_libraries(unit-test-print-image gtulu)
-  add_test(unit-test-print-image unit-test-print-image)
+add_executable(unit-test-print-image
+  test/print_image.cpp
+  ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
+)
+target_link_libraries(unit-test-print-image gtulu)
+add_test(unit-test-print-image unit-test-print-image)
 
-  add_executable(unit-test-pango
-    test/pango_test.cpp
-    ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
-  )
-  target_link_libraries(unit-test-pango gtulu)
-  add_test(unit-test-pango unit-test-pango)
-endif()
+add_executable(unit-test-pango-render
+  test/pango_render_test.cpp
+  ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
+)
+target_link_libraries(unit-test-pango-render gtulu)
+add_test(unit-test-pango-render unit-test-pango-render)
+
+add_executable(unit-test-pango-create
+  test/pango_create_test.cpp
+  ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
+)
+target_link_libraries(unit-test-pango-create gtulu)
+add_test(unit-test-pango-create unit-test-pango-create)

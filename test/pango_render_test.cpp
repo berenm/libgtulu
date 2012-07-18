@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
   bgil::argb8_image_t output_image;
 
   // Select default texture format for 2d texture.
-  gtulu::cairo::cairo_texture texture(512, 512);
+  gtulu::cairo::cairo_texture texture(50, 50);
   typedef ftex::select_format< ftgt::gl_texture_2d, fcmn::component::red_green_blue_alpha, fnum::ufixed8_ >::type output_texture_format;
   obj::texture< output_texture_format > output_texture;
 
