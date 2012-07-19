@@ -1,16 +1,23 @@
 cmake_minimum_required(VERSION 2.8)
-find_package(Git REQUIRED)
-message(STATUS "updating libgtulu submodules...")
-execute_process(COMMAND git submodule update --init WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} OUTPUT_QUIET)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(GNUInstallDirs)
+include(DebianVersion)
+include(AddSubmodule)
 include(GtuluCompiler)
 
-add_subdirectory(lib/liblogging)
-include_directories(lib/liblogging/include lib/liblogging/lib/boost-log)
-
+parse_debian_version(LIBGTULU_VERSION)
 project(libgtulu CXX)
+
+add_submodule(liblogging lib/liblogging
+  INCLUDE_DIRS include lib/boost-log
+)
+add_submodule(boost-gil-contributions ext/boost-gil-contributions
+  INCLUDE_DIRS .
+)
+#add_submodule(registry ext/registry
+#  INCLUDE_DIRS include
+#)
 
 find_package(Boost COMPONENTS program_options filesystem system regex thread chrono REQUIRED)
 find_package(PkgConfig REQUIRED)
@@ -22,8 +29,6 @@ include_directories(
   ${PANGO_INCLUDE_DIRS}
   ${OPENGL_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
-  ext/registry/include
-  ext/boost-gil-contributions
 )
 link_directories(
   ${PANGO_LIBRARY_DIRS}
@@ -85,11 +90,11 @@ install(TARGETS gtulu gtulu-compiler
 )
 install(DIRECTORY include/gtulu
                   include/meta
-                  ext/registry/include/EGL
-                  ext/registry/include/GL3
-                  ext/registry/include/GLES2
-                  ext/registry/include/KHR
-                  ext/boost-gil-contributions/boost
+                  ${registry_SOURCE_DIR}/include/EGL
+                  ${registry_SOURCE_DIR}/include/GL3
+                  ${registry_SOURCE_DIR}/include/GLES2
+                  ${registry_SOURCE_DIR}/include/KHR
+                  ${boost-gil-contributions_SOURCE_DIR}/boost
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 

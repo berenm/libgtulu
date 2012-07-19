@@ -1,0 +1,14 @@
+function(parse_debian_version DPKG_VERSION_VARIABLE)
+
+  execute_process(
+    COMMAND dpkg-parsechangelog
+    COMMAND grep "Version"
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    OUTPUT_VARIABLE ${DPKG_VERSION_VARIABLE}
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+  )
+  string(REGEX REPLACE "Version: " "" ${DPKG_VERSION_VARIABLE} "${${DPKG_VERSION_VARIABLE}}")
+  string(REGEX REPLACE "[^.0-9].*$" "" ${DPKG_VERSION_VARIABLE} "${${DPKG_VERSION_VARIABLE}}")
+  set(${DPKG_VERSION_VARIABLE} "${${DPKG_VERSION_VARIABLE}}" PARENT_SCOPE)
+
+endfunction(parse_debian_version)
