@@ -1,9 +1,9 @@
-[submodule "ext/boost-gil-contributions"]
-	path = ext/boost-gil-contributions
+[submodule "lib/boost-gil-contributions"]
+	path = lib/boost-gil-contributions
 	url = git://github.com/berenm/boost-gil-contributions.git
-[submodule "ext/registry"]
-	path = ext/registry
+[submodule "lib/registry"]
+	path = lib/registry
 	url = git://github.com/berenm/libgtulu.git
-[submodule "lib/liblogging"]
-	path = lib/liblogging
+[submodule "lib/logging"]
+	path = lib/logging
 	url = git://github.com/berenm/liblogging.git

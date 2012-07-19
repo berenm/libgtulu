@@ -9,15 +9,15 @@ include(GtuluCompiler)
 parse_debian_version(LIBGTULU_VERSION)
 project(libgtulu CXX)
 
-add_submodule(liblogging lib/liblogging
+add_submodule(logging lib/logging
   INCLUDE_DIRS include lib/boost-log
 )
-add_submodule(boost-gil-contributions ext/boost-gil-contributions
+add_submodule(boost-gil-contributions lib/boost-gil-contributions
   INCLUDE_DIRS .
 )
-#add_submodule(registry ext/registry
-#  INCLUDE_DIRS include
-#)
+add_submodule(registry lib/registry
+  INCLUDE_DIRS include
+)
 
 find_package(Boost COMPONENTS program_options filesystem system regex thread chrono REQUIRED)
 find_package(PkgConfig REQUIRED)
