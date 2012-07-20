@@ -2,12 +2,13 @@ cmake_minimum_required(VERSION 2.8)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(GNUInstallDirs)
-include(DebianVersion)
+include(ParseVersion)
 include(AddSubmodule)
 include(GtuluCompiler)
 
-parse_debian_version(LIBGTULU_VERSION)
 project(libgtulu CXX)
+parse_version(libgtulu DEBIAN)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 add_submodule(logging lib/logging
   INCLUDE_DIRS include lib/boost-log
@@ -21,9 +22,9 @@ add_submodule(registry lib/registry
 
 find_package(Boost COMPONENTS program_options filesystem system regex thread chrono REQUIRED)
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(PANGO    REQUIRED pangocairo)
+pkg_check_modules(PANGO REQUIRED pangocairo)
 #pkg_check_modules(OPENGL   REQUIRED gl) # On debian, pkg-config finds the MESA libGL.so, this isn't right.
-set(OPENGL_LIBRARIES :libGL.so.1)
+set(OPENGL_LIBRARIES :libGL.so.1 X11)
 
 include_directories(
   ${PANGO_INCLUDE_DIRS}
@@ -45,24 +46,18 @@ if(NOT EXISTS "scripts/clang" OR "${GTULU_FORCE_DOWNLOAD}" EQUAL 1)
   file(DOWNLOAD "http://llvm.org/svn/llvm-project/cfe/trunk/bindings/python/clang/cindex.py" "scripts/clang/cindex.py")
 endif()
 
-# -------------------------------------------------------------------------
-# project version
-file(READ version LIBGTULU_VERSION)
-string(REGEX REPLACE "\\..*$" "" LIBGTULU_SOVERSION "${LIBGTULU_VERSION}")
-
 include_directories(include)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # -------------------------------------------------------------------------
 # libgtulu
-file(GLOB_RECURSE LIBGTULU_SOURCES src/lib/*.cpp)
+file(GLOB_RECURSE libgtulu_SOURCES src/lib/*.cpp)
 add_library(gtulu SHARED
-  ${LIBGTULU_SOURCES}
+  ${libgtulu_SOURCES}
 )
 set_target_properties(gtulu PROPERTIES
-  VERSION   "${LIBGTULU_VERSION}"
-  SOVERSION "${LIBGTULU_SOVERSION}"
-  SONAME    "libgtulu${LIBGTULU_SOVERSION}"
+  VERSION   ${libgtulu_VERSION}
+  SOVERSION ${libgtulu_SOVERSION}
+  SONAME    libgtulu${libgtulu_SOVERSION}
 )
 target_link_libraries(gtulu
   ${PANGO_LIBRARIES}
@@ -150,19 +145,19 @@ add_executable(unit-test-print-image
   test/print_image.cpp
   ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
 )
-target_link_libraries(unit-test-print-image gtulu)
+target_link_libraries(unit-test-print-image gtulu png12)
 add_test(unit-test-print-image unit-test-print-image)
 
 add_executable(unit-test-pango-render
   test/pango_render_test.cpp
   ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
 )
-target_link_libraries(unit-test-pango-render gtulu)
+target_link_libraries(unit-test-pango-render gtulu png12)
 add_test(unit-test-pango-render unit-test-pango-render)
 
 add_executable(unit-test-pango-create
   test/pango_create_test.cpp
   ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
 )
-target_link_libraries(unit-test-pango-create gtulu)
+target_link_libraries(unit-test-pango-create gtulu png12)
 add_test(unit-test-pango-create unit-test-pango-create)
