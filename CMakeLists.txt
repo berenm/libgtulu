@@ -95,69 +95,71 @@ install(DIRECTORY include/gtulu
 
 # -------------------------------------------------------------------------
 # tests
-enable_testing()
+if(CMAKE_BUILD_TESTS)
+  enable_testing()
 
-add_gtulu_program(test1
-  SOURCES     test/shaders/test1.vs test/shaders/test1.fs
-  DESTINATION test/generated
-)
-add_gtulu_program(test2
-  SOURCES     test/shaders/test2.vs test/shaders/test2.fs
-  DESTINATION test/generated
-)
-add_gtulu_program(test3
-  SOURCES     test/shaders/test3.vs test/shaders/test3.fs
-  DESTINATION test/generated
-)
-add_gtulu_program(print_image
-  SOURCES     test/shaders/print_image.vs test/shaders/print_image.fs
-  DESTINATION test/generated
-)
+  add_gtulu_program(test1
+    SOURCES     test/shaders/test1.vs test/shaders/test1.fs
+    DESTINATION test/generated
+  )
+  add_gtulu_program(test2
+    SOURCES     test/shaders/test2.vs test/shaders/test2.fs
+    DESTINATION test/generated
+  )
+  add_gtulu_program(test3
+    SOURCES     test/shaders/test3.vs test/shaders/test3.fs
+    DESTINATION test/generated
+  )
+  add_gtulu_program(print_image
+    SOURCES     test/shaders/print_image.vs test/shaders/print_image.fs
+    DESTINATION test/generated
+  )
 
-add_executable(unit-test-1
-  test/test1.cpp
-  ${GTULU_PROGRAM_TEST1_SOURCES}
-)
-target_link_libraries(unit-test-1 gtulu)
-add_test(unit-test-1 unit-test-1)
+  add_executable(unit-test-1
+    test/test1.cpp
+    ${GTULU_PROGRAM_TEST1_SOURCES}
+  )
+  target_link_libraries(unit-test-1 gtulu)
+  add_test(unit-test-1 unit-test-1)
 
-add_executable(unit-test-2
-  test/test2.cpp
-  ${GTULU_PROGRAM_TEST2_SOURCES}
-)
-target_link_libraries(unit-test-2 gtulu)
-add_test(unit-test-2 unit-test-2)
+  add_executable(unit-test-2
+    test/test2.cpp
+    ${GTULU_PROGRAM_TEST2_SOURCES}
+  )
+  target_link_libraries(unit-test-2 gtulu)
+  add_test(unit-test-2 unit-test-2)
 
-add_executable(unit-test-3
-  test/test3.cpp
-  ${GTULU_PROGRAM_TEST3_SOURCES}
-)
-target_link_libraries(unit-test-3 gtulu)
-add_test(unit-test-3 unit-test-3)
+  add_executable(unit-test-3
+    test/test3.cpp
+    ${GTULU_PROGRAM_TEST3_SOURCES}
+  )
+  target_link_libraries(unit-test-3 gtulu)
+  add_test(unit-test-3 unit-test-3)
 
-add_executable(unit-test-context-switch
-  test/context_switch.cpp
-)
-target_link_libraries(unit-test-context-switch gtulu)
-add_test(unit-test-context-switch unit-test-context-switch)
+  add_executable(unit-test-context-switch
+    test/context_switch.cpp
+  )
+  target_link_libraries(unit-test-context-switch gtulu)
+  add_test(unit-test-context-switch unit-test-context-switch)
 
-add_executable(unit-test-print-image
-  test/print_image.cpp
-  ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
-)
-target_link_libraries(unit-test-print-image gtulu png12)
-add_test(unit-test-print-image unit-test-print-image)
+  add_executable(unit-test-print-image
+    test/print_image.cpp
+    ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
+  )
+  target_link_libraries(unit-test-print-image gtulu png12)
+  add_test(unit-test-print-image unit-test-print-image)
 
-add_executable(unit-test-pango-render
-  test/pango_render_test.cpp
-  ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
-)
-target_link_libraries(unit-test-pango-render gtulu png12)
-add_test(unit-test-pango-render unit-test-pango-render)
+  add_executable(unit-test-pango-render
+    test/pango_render_test.cpp
+    ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
+  )
+  target_link_libraries(unit-test-pango-render gtulu png12)
+  add_test(unit-test-pango-render unit-test-pango-render)
 
-add_executable(unit-test-pango-create
-  test/pango_create_test.cpp
-  ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
-)
-target_link_libraries(unit-test-pango-create gtulu png12)
-add_test(unit-test-pango-create unit-test-pango-create)
+  add_executable(unit-test-pango-create
+    test/pango_create_test.cpp
+    ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
+  )
+  target_link_libraries(unit-test-pango-create gtulu png12)
+  add_test(unit-test-pango-create unit-test-pango-create)
+endif()
