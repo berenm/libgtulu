@@ -27,7 +27,7 @@ namespace gtulu {
         static std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
-          fct::gl_bind_vertex_array< >::call(handle_);
+          fct::bind_vertex_array< >::call(handle_);
           bound_handle_ = handle_;
         }
       }

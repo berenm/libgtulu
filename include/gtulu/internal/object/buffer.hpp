@@ -89,7 +89,7 @@ namespace gtulu {
             std::uint32_t data_out;
 
             typedef typename TemporarySlotType::type slot_t;
-            fct::gl_get_buffer_parameter< slot_t, Parameter >::call(&data_out);
+            fct::get_buffer_parameter< slot_t, Parameter >::call(&data_out);
             return data_out;
           }
       };

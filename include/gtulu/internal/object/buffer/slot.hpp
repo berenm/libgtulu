@@ -35,7 +35,7 @@ namespace gtulu {
         static std::uint32_t bound_handle_ = 0;
 
         if (bound_handle_ != handle_) {
-          fct::gl_bind_buffer< TargetType >::call(handle_);
+          fct::bind_buffer< TargetType >::call(handle_);
           bound_handle_ = handle_;
         }
       }
@@ -71,11 +71,11 @@ namespace gtulu {
                                   std::uint32_t const index,
                                   std::uint32_t const offset,
                                   std::uint32_t const size) {
-            fct::gl_bind_buffer_range< SlotType >::call(index, *buffer, offset, size);
+            fct::bind_buffer_range< SlotType >::call(index, *buffer, offset, size);
           }
 
           static inline void bind(obj::plug< obj::buffer_base > const& buffer, std::uint32_t const index) {
-            fct::gl_bind_buffer_base< SlotType >::call(index, *buffer);
+            fct::bind_buffer_base< SlotType >::call(index, *buffer);
           }
       };
 #define DECLARE_SLOT(slot_type_m) \

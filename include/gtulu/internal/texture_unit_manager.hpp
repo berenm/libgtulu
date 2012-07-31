@@ -29,7 +29,7 @@ namespace gtulu {
         }
 
         void activate() {
-          fct::gl_active_texture< >::call(cst::runtime_constant(cst::gl_texture0(), handle_));
+          fct::active_texture< >::call(cst::runtime_constant(cst::gl_texture0(), handle_));
         }
 
         template< typename TextureFormat >

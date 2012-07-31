@@ -2,9 +2,9 @@
 
 import parser
 import logging
-#logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG)
 
-from gentulu.library import GLES2
+from gentulu.library import GLES2, GL3
 from gentulu.serializer import LibrarySerializer
 
 def main():
@@ -18,39 +18,45 @@ def main():
                  help="Include paths to add to parse FILE.")
   opt.add_option("-D", dest="defines", action='append', default=[],
                  help="Preprocessor definitions to add to parse FILE.")
-  opt.add_option("-i", "--input", dest="input",
-                 help="Input file to parse.")
-  opt.add_option("-o", "--output", dest="output",
-                 help="Output file to generate from FILE.")
+  opt.add_option("-l", "--library", dest="library",
+                 help="Library to generate.")
   (opts, args) = opt.parse_args()
 
-  if opts.input is None:
-    opt.error('missing FILE')
+  if opts.library == 'gles2':
+    library = GLES2
+  elif opts.library == 'gl3':
+    library = GL3
 
-  filename = opts.input
-  target = opts.output
+  command_line = 'generate-functions -u -l %s' % opts.library
 
-  command_line = ['generate']
-  command_line.append('-i ' + filename)
+  target = 'include/gtulu/internal/generated/%s_functions' % library.name
+  # target_header_fwd = target + '_fwd.hpp'
+  target_header = target + '.hpp'
+  target_source = target.replace('include/', 'src/lib/') + '.cpp'
 
-  if target is None:
-    target = filename.replace('.h', '_autogen.h')
-  else:
-    command_line.append('-o ' + target)
-
-  command_line.extend(['-I ' + i for i in opts.include_paths])
-  command_line.extend(['-D ' + d for d in opts.defines])
-
-  index = parser.FileFilteringIndexer(filename, opts.include_paths, opts.defines)
-  functions = [ n for n in index.nodes() if isinstance(n, parser.types.Function)]
-  for n in functions:
-    d = GLES2.declaration(n)
+  for filename in library.files:
+    index = parser.FileFilteringIndexer('lib/registry/' + filename, opts.include_paths, opts.defines)
+    functions = [ n for n in index.nodes() if isinstance(n, parser.types.Function)]
+    for n in functions:
+      d = library.declaration(n)
     # print r.typename + ' ' + f.new_name + '(' + ', '.join([ Parameter(c).std_str() for c in n.children if isinstance(c, parser.types.Parameter)]) + ')'
     # print d.str_define(True)
     # for c in n.children:
     # print c.name
 
-  print LibrarySerializer(GLES2).definitions()
+  with open(target_header, 'w') as output:
+    print >>output, LibrarySerializer(library).declarations(command_line)
+
+  # with open(target_header, 'w') as output:
+  #   print >>output, LibrarySerializer(library).definitions(command_line)
+
+  with open(target_source, 'w') as output:
+    print >>output, LibrarySerializer(library).definitions(command_line)
+
+  if opts.uncrustify:
+    # parser.uncrustify_file(target_header_fwd)
+    parser.uncrustify_file(target_header)
+    parser.uncrustify_file(target_source)
 
 if __name__ == '__main__':
   main()

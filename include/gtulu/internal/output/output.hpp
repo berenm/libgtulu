@@ -26,10 +26,10 @@ namespace gtulu {
     template< > \
     struct output_binder< fout::type::type_m > { \
         inline static void bind(location_t const location_in, fout::to_typename< fout::type::type_m >::type const value_in) { \
-          fct::gl_uniform_1< >::call(location_in, value_in); \
+          fct::uniform_1< >::call(location_in, value_in); \
         } \
         inline static void bind(location_t const location_in, std::uint32_t const number_in, fout::to_typename< fout::type::type_m >::type const* values_in) { \
-          fct::gl_uniform_1< >::call(location_in, number_in, value_in); \
+          fct::uniform_1< >::call(location_in, number_in, value_in); \
         } \
     };
 

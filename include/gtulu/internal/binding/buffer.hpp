@@ -27,7 +27,7 @@ namespace gtulu {
             typedef obj::buffer< BufferFormat > source_type;
 
             void bind(target_type const& target, source_type& source) {
-              fct::gl_bind_buffer< typename target_type::slot_type >::call(*source);
+              fct::bind_buffer< typename target_type::slot_type >::call(*source);
             }
         };
 

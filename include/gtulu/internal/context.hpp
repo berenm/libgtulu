@@ -701,25 +701,25 @@ namespace gtulu {
       struct gettor< std::string > {
           template< typename Parameter >
           static void get(std::string* data) {
-            GLubyte const* bytes = fct::gl_get_string< Parameter >::call();
+            GLubyte const* bytes = fct::get_string< Parameter >::call();
             if (bytes != 0) {
               data->assign(reinterpret_cast< char const* >(bytes));
             }
           }
           template< typename Parameter >
           static void get(std::uint32_t const index_in, std::string* data) {
-            GLubyte const* bytes = fct::gl_get_string< Parameter >::call(index_in);
+            GLubyte const* bytes = fct::get_string< Parameter >::call(index_in);
             if (bytes != 0) {
               data->assign(reinterpret_cast< char const* >(bytes));
             }
           }
       };
 
-      DECLARE_GETTOR(float, gl_get_float)
-      DECLARE_GETTOR(double, gl_get_double)
-      DECLARE_GETTOR_INDEXED(std::uint8_t, gl_get_boolean, gl_get_boolean_indexed)
-      DECLARE_GETTOR_INDEXED(std::int32_t, gl_get_integer, gl_get_integer_indexed)
-      DECLARE_GETTOR_INDEXED(std::int64_t, gl_get_integer, gl_get_integer_indexed)
+      DECLARE_GETTOR(float, get_float)
+      DECLARE_GETTOR(double, get_double)
+      DECLARE_GETTOR_INDEXED(std::uint8_t, get_boolean, get_boolean_indexed)
+      DECLARE_GETTOR_INDEXED(std::int32_t, get_integer, get_integer_indexed)
+      DECLARE_GETTOR_INDEXED(std::int64_t, get_integer, get_integer_indexed)
 
 #undef DECLARE_GETTOR_INDEXED
 #undef DECLARE_GETTOR

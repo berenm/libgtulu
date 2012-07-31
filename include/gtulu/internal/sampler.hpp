@@ -31,36 +31,39 @@ namespace gtulu {
 
       template< typename TextureFormat >
       struct texture;
+
     }
 
     namespace sampler {
 
       template< typename SamplerFormat, typename TextureFormat >
-      struct sampler_texture_binder: fsmp::is_texture_compatible< SamplerFormat, TextureFormat > {
-          inline static void bind(location_t const location_in, obj::texture< TextureFormat > const& texture_in) {
-            boost::shared_ptr< texture_unit > unit_ptr = texture_unit_manager::instance().get_current_or_new(texture_in);
-            unit_ptr->bind(texture_in);
-            fct::gl_uniform_1< >::call(location_in, static_cast< std::int32_t >(**unit_ptr));
-          }
+      struct sampler_texture_binder : fsmp::is_texture_compatible< SamplerFormat, TextureFormat > {
+        inline static void bind(location_t const location_in, obj::texture< TextureFormat > const& texture_in) {
+          boost::shared_ptr< texture_unit > unit_ptr = texture_unit_manager::instance().get_current_or_new(texture_in);
+          unit_ptr->bind(texture_in);
+          fct::uniform< bm::int_< 1 > >::call(location_in, static_cast< std::int32_t >(**unit_ptr));
+        }
+
       };
 
       template< typename SamplerFormat >
       struct sampler_binder {
-          template< typename TextureFormat >
-          inline static void bind(location_t const location_in, obj::texture< TextureFormat > const& texture_in) {
-            sampler_texture_binder< SamplerFormat, TextureFormat >::bind(location_in, texture_in);
-          }
+        template< typename TextureFormat >
+        inline static void bind(location_t const location_in, obj::texture< TextureFormat > const& texture_in) {
+          sampler_texture_binder< SamplerFormat, TextureFormat >::bind(location_in, texture_in);
+        }
+
       };
 
       template< typename Format, typename BinderType = sampler_binder< Format >, typename ValueType = obj::texture_base >
       struct sampler {
-          typedef Format format;
-          typedef ValueType value_type;
-          typedef BinderType binder;
+        typedef Format     format;
+        typedef ValueType  value_type;
+        typedef BinderType binder;
       };
 
 #define DECLARE_UNIFORM_SAMPLER(sampler_m) \
-      typedef sampler< fsmp::sampler_m > sampler_m;
+  typedef sampler< fsmp::sampler_m > sampler_m;
 
       DECLARE_UNIFORM_SAMPLER(gl_sampler_1d)
       DECLARE_UNIFORM_SAMPLER(gl_sampler_2d)

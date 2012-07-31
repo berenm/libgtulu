@@ -25,285 +25,290 @@ namespace gtulu {
           namespace detail {
 
             template< typename TextureFormat, typename OtherStore, typename EnableIfDimension = void,
-                typename EnableIfCompressed = void >
-            struct helper {
+                      typename EnableIfCompressed                                             = void >
+            struct helper {};
+
+            template< typename TextureFormat, typename OtherStore >
+            struct helper<
+              TextureFormat,
+              OtherStore,
+              typename boost::enable_if<
+                typename bm::and_< fcmn::dimension::is_oned< typename TextureFormat::target_format >,
+                                   fcmn::cardinality::is_not_array< typename TextureFormat::target_format > >::type >::type,
+              typename boost::enable_if< fcmn::compression::is_none< typename TextureFormat::internal_format > >::type > {
+
+              typedef sto::data::data_traits< OtherStore > other_store_traits;
+
+              typedef typename TextureFormat::target_format::aspect::format   target_cst;
+              typedef typename TextureFormat::internal_format::aspect::format internal_cst;
+              typedef typename TextureFormat::group_format::aspect::format    group_cst;
+              typedef typename TextureFormat::data_format::aspect::format     data_cst;
+
+              typedef fct::tex_image< target_cst, internal_cst, group_cst, data_cst, bm::int_< 1 > > init_fct;
+              typedef fct::tex_sub_image< target_cst, group_cst, data_cst, bm::int_< 1 > >           write_fct;
+              typedef fct::get_tex_image< target_cst, group_cst, data_cst >                          read_fct;
+
+              static void init(OtherStore const& other_store, std::uint32_t const lod_level=0) {
+                init_fct::call(lod_level,
+                               other_store_traits::width(other_store),
+                               0,
+                               other_store_traits::read(other_store));
+              }
+
+              static void write(OtherStore const&             other_store,
+                                sto::data::offset_type const& offset_in,
+                                std::uint32_t const           lod_level=0) {
+                write_fct::call(lod_level,
+                                offset_in.x,
+                                other_store_traits::width(other_store),
+                                other_store_traits::read(other_store));
+              }
+
+              static void read(OtherStore& data_out, std::uint32_t const lod_level=0) {
+                read_fct::call(lod_level, other_store_traits::write(data_out));
+              }
+
             };
 
             template< typename TextureFormat, typename OtherStore >
             struct helper<
-                TextureFormat,
-                OtherStore,
-                typename boost::enable_if<
-                    typename bm::and_< fcmn::dimension::is_oned< typename TextureFormat::target_format >,
-                        fcmn::cardinality::is_not_array< typename TextureFormat::target_format > >::type >::type,
-                typename boost::enable_if< fcmn::compression::is_none< typename TextureFormat::internal_format > >::type > {
+              TextureFormat,
+              OtherStore,
+              typename boost::enable_if<
+                typename bm::or_<
+                  typename bm::and_< fcmn::dimension::is_twod< typename TextureFormat::target_format >,
+                                     fcmn::cardinality::is_not_array< typename TextureFormat::target_format > >::type,
+                  typename bm::and_< fcmn::dimension::is_oned< typename TextureFormat::target_format >,
+                                     fcmn::cardinality::is_array< typename TextureFormat::target_format > >::type >::type >::type,
+              typename boost::enable_if< fcmn::compression::is_none< typename TextureFormat::internal_format > >::type > {
 
-                typedef sto::data::data_traits< OtherStore > other_store_traits;
+              typedef sto::data::data_traits< OtherStore > other_store_traits;
 
-                typedef typename TextureFormat::target_format::aspect::format target_cst;
-                typedef typename TextureFormat::internal_format::aspect::format internal_cst;
-                typedef typename TextureFormat::group_format::aspect::format group_cst;
-                typedef typename TextureFormat::data_format::aspect::format data_cst;
+              typedef typename TextureFormat::target_format::aspect::format   target_cst;
+              typedef typename TextureFormat::internal_format::aspect::format internal_cst;
+              typedef typename TextureFormat::group_format::aspect::format    group_cst;
+              typedef typename TextureFormat::data_format::aspect::format     data_cst;
 
-                typedef fct::gl_tex_image_1d< target_cst, internal_cst, group_cst, data_cst > init_fct;
-                typedef fct::gl_tex_sub_image_1d< target_cst, group_cst, data_cst > write_fct;
-                typedef fct::gl_get_tex_image< target_cst, group_cst, data_cst > read_fct;
+              typedef fct::tex_image< target_cst, internal_cst, group_cst, data_cst, bm::int_< 2 > > init_fct;
+              typedef fct::tex_sub_image< target_cst, group_cst, data_cst, bm::int_< 2 > >           write_fct;
+              typedef fct::get_tex_image< target_cst, group_cst, data_cst >                          read_fct;
 
-                static void init(OtherStore const& other_store, std::uint32_t const lod_level = 0) {
-                  init_fct::call(lod_level,
-                                 other_store_traits::width(other_store),
-                                 0,
-                                 other_store_traits::read(other_store));
-                }
+              static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
+                init_fct::call(lod_level,
+                               other_store_traits::width(other_store),
+                               other_store_traits::height(other_store),
+                               0,
+                               other_store_traits::read(other_store));
+              }
 
-                static void write(OtherStore const& other_store,
-                                  sto::data::offset_type const& offset_in,
-                                  std::uint32_t const lod_level = 0) {
-                  write_fct::call(lod_level,
-                                  offset_in.x,
-                                  other_store_traits::width(other_store),
-                                  other_store_traits::read(other_store));
-                }
+              static void write(OtherStore const&             other_store,
+                                sto::data::offset_type const& offset_in,
+                                std::uint32_t const           lod_level=0) {
+                write_fct::call(lod_level,
+                                offset_in.x,
+                                offset_in.y,
+                                other_store_traits::width(other_store),
+                                other_store_traits::height(other_store),
+                                other_store_traits::read(other_store));
+              }
 
-                static void read(OtherStore& data_out, std::uint32_t const lod_level = 0) {
-                  read_fct::call(lod_level, other_store_traits::write(data_out));
-                }
+              static void read(OtherStore& data_out, std::uint32_t const lod_level=0) {
+                read_fct::call(lod_level, other_store_traits::write(data_out));
+              }
+
             };
 
             template< typename TextureFormat, typename OtherStore >
             struct helper<
-                TextureFormat,
-                OtherStore,
-                typename boost::enable_if<
-                    typename bm::or_<
-                        typename bm::and_< fcmn::dimension::is_twod< typename TextureFormat::target_format >,
-                            fcmn::cardinality::is_not_array< typename TextureFormat::target_format > >::type,
-                        typename bm::and_< fcmn::dimension::is_oned< typename TextureFormat::target_format >,
-                            fcmn::cardinality::is_array< typename TextureFormat::target_format > >::type >::type >::type,
-                typename boost::enable_if< fcmn::compression::is_none< typename TextureFormat::internal_format > >::type > {
+              TextureFormat,
+              OtherStore,
+              typename boost::enable_if<
+                typename bm::or_<
+                  fcmn::dimension::is_threed< typename TextureFormat::target_format >,
+                  typename bm::and_< fcmn::dimension::is_twod< typename TextureFormat::target_format >,
+                                     fcmn::cardinality::is_array< typename TextureFormat::target_format > >::type >::type >::type,
+              typename boost::enable_if< fcmn::compression::is_none< typename TextureFormat::internal_format > >::type > {
 
-                typedef sto::data::data_traits< OtherStore > other_store_traits;
+              typedef sto::data::data_traits< OtherStore > other_store_traits;
 
-                typedef typename TextureFormat::target_format::aspect::format target_cst;
-                typedef typename TextureFormat::internal_format::aspect::format internal_cst;
-                typedef typename TextureFormat::group_format::aspect::format group_cst;
-                typedef typename TextureFormat::data_format::aspect::format data_cst;
+              typedef typename TextureFormat::target_format::aspect::format   target_cst;
+              typedef typename TextureFormat::internal_format::aspect::format internal_cst;
+              typedef typename TextureFormat::group_format::aspect::format    group_cst;
+              typedef typename TextureFormat::data_format::aspect::format     data_cst;
 
-                typedef fct::gl_tex_image_2d< target_cst, internal_cst, group_cst, data_cst > init_fct;
-                typedef fct::gl_tex_sub_image_2d< target_cst, group_cst, data_cst > write_fct;
-                typedef fct::gl_get_tex_image< target_cst, group_cst, data_cst > read_fct;
+              typedef fct::tex_image< target_cst, internal_cst, group_cst, data_cst, bm::int_< 3 > > init_fct;
+              typedef fct::tex_sub_image< target_cst, group_cst, data_cst, bm::int_< 3 > >           write_fct;
+              typedef fct::get_tex_image< target_cst, group_cst, data_cst >                          read_fct;
 
-                static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
-                  init_fct::call(lod_level,
-                                 other_store_traits::width(other_store),
-                                 other_store_traits::height(other_store),
-                                 0,
-                                 other_store_traits::read(other_store));
-                }
+              static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
+                init_fct::call(lod_level,
+                               other_store_traits::width(other_store),
+                               other_store_traits::height(other_store),
+                               other_store_traits::depth(other_store),
+                               0,
+                               other_store_traits::read(other_store));
+              }
 
-                static void write(OtherStore const& other_store,
-                                  sto::data::offset_type const& offset_in,
-                                  std::uint32_t const lod_level = 0) {
-                  write_fct::call(lod_level,
-                                  offset_in.x,
-                                  offset_in.y,
-                                  other_store_traits::width(other_store),
-                                  other_store_traits::height(other_store),
-                                  other_store_traits::read(other_store));
-                }
+              static void write(OtherStore const&             other_store,
+                                sto::data::offset_type const& offset_in,
+                                std::uint32_t const           lod_level=0) {
+                write_fct::call(lod_level,
+                                offset_in.x,
+                                offset_in.y,
+                                offset_in.z,
+                                other_store_traits::width(other_store),
+                                other_store_traits::height(other_store),
+                                other_store_traits::depth(other_store),
+                                other_store_traits::read(other_store));
+              }
 
-                static void read(OtherStore& data_out, std::uint32_t const lod_level = 0) {
-                  read_fct::call(lod_level, other_store_traits::write(data_out));
-                }
+              static void read(OtherStore& data_out, std::uint32_t const lod_level=0) {
+                read_fct::call(lod_level, other_store_traits::write(data_out));
+              }
+
             };
 
             template< typename TextureFormat, typename OtherStore >
             struct helper<
-                TextureFormat,
-                OtherStore,
-                typename boost::enable_if<
-                    typename bm::or_<
-                        fcmn::dimension::is_threed< typename TextureFormat::target_format >,
-                        typename bm::and_< fcmn::dimension::is_twod< typename TextureFormat::target_format >,
-                            fcmn::cardinality::is_array< typename TextureFormat::target_format > >::type >::type >::type,
-                typename boost::enable_if< fcmn::compression::is_none< typename TextureFormat::internal_format > >::type > {
+              TextureFormat,
+              OtherStore,
+              typename boost::enable_if<
+                typename bm::and_< fcmn::dimension::is_oned< typename TextureFormat::target_format >,
+                                   fcmn::cardinality::is_not_array< typename TextureFormat::target_format > >::type >::type,
+              typename boost::enable_if< fcmn::compression::is_compressed< typename TextureFormat::internal_format > >::type > {
 
-                typedef sto::data::data_traits< OtherStore > other_store_traits;
+              typedef sto::data::data_traits< OtherStore > other_store_traits;
 
-                typedef typename TextureFormat::target_format::aspect::format target_cst;
-                typedef typename TextureFormat::internal_format::aspect::format internal_cst;
-                typedef typename TextureFormat::group_format::aspect::format group_cst;
-                typedef typename TextureFormat::data_format::aspect::format data_cst;
+              typedef typename TextureFormat::target_format::aspect::format   target_cst;
+              typedef typename TextureFormat::internal_format::aspect::format internal_cst;
+              typedef typename TextureFormat::group_format::aspect::format    group_cst;
+              typedef typename TextureFormat::data_format::aspect::format     data_cst;
 
-                typedef fct::gl_tex_image_3d< target_cst, internal_cst, group_cst, data_cst > init_fct;
-                typedef fct::gl_tex_sub_image_3d< target_cst, group_cst, data_cst > write_fct;
-                typedef fct::gl_get_tex_image< target_cst, group_cst, data_cst > read_fct;
+              typedef fct::compressed_tex_image< target_cst, internal_cst, bm::int_< 1 > >  init_fct;
+              typedef fct::compressed_tex_sub_image< target_cst, group_cst, bm::int_< 1 > > write_fct;
+              typedef fct::get_compressed_tex_image< target_cst >                           read_fct;
 
-                static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
-                  init_fct::call(lod_level,
-                                 other_store_traits::width(other_store),
-                                 other_store_traits::height(other_store),
-                                 other_store_traits::depth(other_store),
-                                 0,
-                                 other_store_traits::read(other_store));
-                }
+              static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
+                init_fct::call(lod_level,
+                               other_store_traits::width(other_store),
+                               0,
+                               other_store_traits::size(other_store),
+                               other_store_traits::read(other_store));
+              }
 
-                static void write(OtherStore const& other_store,
-                                  sto::data::offset_type const& offset_in,
-                                  std::uint32_t const lod_level = 0) {
-                  write_fct::call(lod_level,
-                                  offset_in.x,
-                                  offset_in.y,
-                                  offset_in.z,
-                                  other_store_traits::width(other_store),
-                                  other_store_traits::height(other_store),
-                                  other_store_traits::depth(other_store),
-                                  other_store_traits::read(other_store));
-                }
+              static void write(OtherStore const&             other_store,
+                                sto::data::offset_type const& offset_in,
+                                std::uint32_t const           lod_level=0) {
+                write_fct::call(lod_level,
+                                offset_in.x,
+                                other_store_traits::width(other_store),
+                                other_store_traits::size(other_store),
+                                other_store_traits::read(other_store));
+              }
 
-                static void read(OtherStore& data_out, std::uint32_t const lod_level = 0) {
-                  read_fct::call(lod_level, other_store_traits::write(data_out));
-                }
+              static void read(OtherStore& data_out, std::uint32_t const lod_level=0) {
+                read_fct::call(lod_level, other_store_traits::write(data_out));
+              }
+
             };
 
             template< typename TextureFormat, typename OtherStore >
             struct helper<
-                TextureFormat,
-                OtherStore,
-                typename boost::enable_if<
-                    typename bm::and_< fcmn::dimension::is_oned< typename TextureFormat::target_format >,
-                        fcmn::cardinality::is_not_array< typename TextureFormat::target_format > >::type >::type,
-                typename boost::enable_if< fcmn::compression::is_compressed< typename TextureFormat::internal_format > >::type > {
+              TextureFormat,
+              OtherStore,
+              typename boost::enable_if<
+                typename bm::or_<
+                  typename bm::and_< fcmn::dimension::is_twod< typename TextureFormat::target_format >,
+                                     fcmn::cardinality::is_not_array< typename TextureFormat::target_format > >::type,
+                  typename bm::and_< fcmn::dimension::is_oned< typename TextureFormat::target_format >,
+                                     fcmn::cardinality::is_array< typename TextureFormat::target_format > >::type >::type >::type,
+              typename boost::enable_if< fcmn::compression::is_compressed< typename TextureFormat::internal_format > >::type > {
 
-                typedef sto::data::data_traits< OtherStore > other_store_traits;
+              typedef sto::data::data_traits< OtherStore > other_store_traits;
 
-                typedef typename TextureFormat::target_format::aspect::format target_cst;
-                typedef typename TextureFormat::internal_format::aspect::format internal_cst;
-                typedef typename TextureFormat::group_format::aspect::format group_cst;
-                typedef typename TextureFormat::data_format::aspect::format data_cst;
+              typedef typename TextureFormat::target_format::aspect::format   target_cst;
+              typedef typename TextureFormat::internal_format::aspect::format internal_cst;
+              typedef typename TextureFormat::group_format::aspect::format    group_cst;
+              typedef typename TextureFormat::data_format::aspect::format     data_cst;
 
-                typedef fct::gl_compressed_tex_image_1d< target_cst, internal_cst > init_fct;
-                typedef fct::gl_compressed_tex_sub_image_1d< target_cst, group_cst > write_fct;
-                typedef fct::gl_get_compressed_tex_image< target_cst > read_fct;
+              typedef fct::compressed_tex_image< target_cst, internal_cst, bm::int_< 2 > >  init_fct;
+              typedef fct::compressed_tex_sub_image< target_cst, group_cst, bm::int_< 2 > > write_fct;
+              typedef fct::get_compressed_tex_image< target_cst >                           read_fct;
 
-                static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
-                  init_fct::call(lod_level,
-                                 other_store_traits::width(other_store),
-                                 0,
-                                 other_store_traits::size(other_store),
-                                 other_store_traits::read(other_store));
-                }
+              static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
+                init_fct::call(lod_level,
+                               other_store_traits::width(other_store),
+                               other_store_traits::height(other_store),
+                               0,
+                               other_store_traits::size(other_store),
+                               other_store_traits::read(other_store));
+              }
 
-                static void write(OtherStore const& other_store,
-                                  sto::data::offset_type const& offset_in,
-                                  std::uint32_t const lod_level = 0) {
-                  write_fct::call(lod_level,
-                                  offset_in.x,
-                                  other_store_traits::width(other_store),
-                                  other_store_traits::size(other_store),
-                                  other_store_traits::read(other_store));
-                }
+              static void write(OtherStore const&             other_store,
+                                sto::data::offset_type const& offset_in,
+                                std::uint32_t const           lod_level=0) {
+                write_fct::call(lod_level,
+                                offset_in.x,
+                                other_store_traits::width(other_store),
+                                other_store_traits::height(other_store),
+                                other_store_traits::size(other_store),
+                                other_store_traits::read(other_store));
+              }
 
-                static void read(OtherStore& data_out, std::uint32_t const lod_level = 0) {
-                  read_fct::call(lod_level, other_store_traits::write(data_out));
-                }
+              static void read(OtherStore& data_out, std::uint32_t const lod_level=0) {
+                read_fct::call(lod_level, other_store_traits::write(data_out));
+              }
+
             };
 
             template< typename TextureFormat, typename OtherStore >
             struct helper<
-                TextureFormat,
-                OtherStore,
-                typename boost::enable_if<
-                    typename bm::or_<
-                        typename bm::and_< fcmn::dimension::is_twod< typename TextureFormat::target_format >,
-                            fcmn::cardinality::is_not_array< typename TextureFormat::target_format > >::type,
-                        typename bm::and_< fcmn::dimension::is_oned< typename TextureFormat::target_format >,
-                            fcmn::cardinality::is_array< typename TextureFormat::target_format > >::type >::type >::type,
-                typename boost::enable_if< fcmn::compression::is_compressed< typename TextureFormat::internal_format > >::type > {
+              TextureFormat,
+              OtherStore,
+              typename boost::enable_if<
+                typename bm::or_<
+                  fcmn::dimension::is_threed< typename TextureFormat::target_format >,
+                  typename bm::and_< fcmn::dimension::is_twod< typename TextureFormat::target_format >,
+                                     fcmn::cardinality::is_array< typename TextureFormat::target_format > >::type >::type >::type,
+              typename boost::enable_if< fcmn::compression::is_compressed< typename TextureFormat::internal_format > >::type > {
 
-                typedef sto::data::data_traits< OtherStore > other_store_traits;
+              typedef sto::data::data_traits< OtherStore > other_store_traits;
 
-                typedef typename TextureFormat::target_format::aspect::format target_cst;
-                typedef typename TextureFormat::internal_format::aspect::format internal_cst;
-                typedef typename TextureFormat::group_format::aspect::format group_cst;
-                typedef typename TextureFormat::data_format::aspect::format data_cst;
+              typedef typename TextureFormat::target_format::aspect::format   target_cst;
+              typedef typename TextureFormat::internal_format::aspect::format internal_cst;
+              typedef typename TextureFormat::group_format::aspect::format    group_cst;
+              typedef typename TextureFormat::data_format::aspect::format     data_cst;
 
-                typedef fct::gl_compressed_tex_image_2d< target_cst, internal_cst > init_fct;
-                typedef fct::gl_compressed_tex_sub_image_2d< target_cst, group_cst > write_fct;
-                typedef fct::gl_get_compressed_tex_image< target_cst > read_fct;
+              typedef fct::compressed_tex_image< target_cst, internal_cst, bm::int_< 3 > >  init_fct;
+              typedef fct::compressed_tex_sub_image< target_cst, group_cst, bm::int_< 3 > > write_fct;
+              typedef fct::get_compressed_tex_image< target_cst >                           read_fct;
 
-                static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
-                  init_fct::call(lod_level,
-                                 other_store_traits::width(other_store),
-                                 other_store_traits::height(other_store),
-                                 0,
-                                 other_store_traits::size(other_store),
-                                 other_store_traits::read(other_store));
-                }
+              static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
+                init_fct::call(lod_level,
+                               other_store_traits::width(other_store),
+                               other_store_traits::height(other_store),
+                               other_store_traits::depth(other_store),
+                               0,
+                               other_store_traits::size(other_store),
+                               other_store_traits::read(other_store));
+              }
 
-                static void write(OtherStore const& other_store,
-                                  sto::data::offset_type const& offset_in,
-                                  std::uint32_t const lod_level = 0) {
-                  write_fct::call(lod_level,
-                                  offset_in.x,
-                                  other_store_traits::width(other_store),
-                                  other_store_traits::height(other_store),
-                                  other_store_traits::size(other_store),
-                                  other_store_traits::read(other_store));
-                }
+              static void write(OtherStore const&             other_store,
+                                sto::data::offset_type const& offset_in,
+                                std::uint32_t const           lod_level=0) {
+                write_fct::call(lod_level,
+                                offset_in.x,
+                                other_store_traits::width(other_store),
+                                other_store_traits::height(other_store),
+                                other_store_traits::depth(other_store),
+                                other_store_traits::size(other_store),
+                                other_store_traits::read(other_store));
+              }
 
-                static void read(OtherStore& data_out, std::uint32_t const lod_level = 0) {
-                  read_fct::call(lod_level, other_store_traits::write(data_out));
-                }
-            };
+              static void read(OtherStore& data_out, std::uint32_t const lod_level=0) {
+                read_fct::call(lod_level, other_store_traits::write(data_out));
+              }
 
-            template< typename TextureFormat, typename OtherStore >
-            struct helper<
-                TextureFormat,
-                OtherStore,
-                typename boost::enable_if<
-                    typename bm::or_<
-                        fcmn::dimension::is_threed< typename TextureFormat::target_format >,
-                        typename bm::and_< fcmn::dimension::is_twod< typename TextureFormat::target_format >,
-                            fcmn::cardinality::is_array< typename TextureFormat::target_format > >::type >::type >::type,
-                typename boost::enable_if< fcmn::compression::is_compressed< typename TextureFormat::internal_format > >::type > {
-
-                typedef sto::data::data_traits< OtherStore > other_store_traits;
-
-                typedef typename TextureFormat::target_format::aspect::format target_cst;
-                typedef typename TextureFormat::internal_format::aspect::format internal_cst;
-                typedef typename TextureFormat::group_format::aspect::format group_cst;
-                typedef typename TextureFormat::data_format::aspect::format data_cst;
-
-                typedef fct::gl_compressed_tex_image_3d< target_cst, internal_cst > init_fct;
-                typedef fct::gl_compressed_tex_sub_image_3d< target_cst, group_cst > write_fct;
-                typedef fct::gl_get_compressed_tex_image< target_cst > read_fct;
-
-                static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
-                  init_fct::call(lod_level,
-                                 other_store_traits::width(other_store),
-                                 other_store_traits::height(other_store),
-                                 other_store_traits::depth(other_store),
-                                 0,
-                                 other_store_traits::size(other_store),
-                                 other_store_traits::read(other_store));
-                }
-
-                static void write(OtherStore const& other_store,
-                                  sto::data::offset_type const& offset_in,
-                                  std::uint32_t const lod_level = 0) {
-                  write_fct::call(lod_level,
-                                  offset_in.x,
-                                  other_store_traits::width(other_store),
-                                  other_store_traits::height(other_store),
-                                  other_store_traits::depth(other_store),
-                                  other_store_traits::size(other_store),
-                                  other_store_traits::read(other_store));
-                }
-
-                static void read(OtherStore& data_out, std::uint32_t const lod_level = 0) {
-                  read_fct::call(lod_level, other_store_traits::write(data_out));
-                }
             };
 
           } // namespace detail
@@ -321,14 +326,15 @@ namespace gtulu {
 
           template< typename TextureFormat, typename SourceStore >
           static void copy(obj::texture_lod< TextureFormat >& target_store,
-                           SourceStore const& source_store,
-                           sto::data::offset_type const& offset_in = sto::data::offset_type()) {
+                           SourceStore const&                 source_store,
+                           sto::data::offset_type const&      offset_in=sto::data::offset_type()) {
             detail::helper< TextureFormat, SourceStore >::write(source_store, offset_in, target_store.get_level());
           }
+
           template< typename TextureFormat, typename SourceStore >
           static void copy(obj::texture< TextureFormat >& target_store,
-                           SourceStore const& source_store,
-                           sto::data::offset_type const& offset_in = sto::data::offset_type()) {
+                           SourceStore const&             source_store,
+                           sto::data::offset_type const&  offset_in=sto::data::offset_type()) {
             copy(static_cast< obj::texture_lod< TextureFormat >& >(target_store), source_store, offset_in);
             target_store.compute_mipmaps();
           }
@@ -337,6 +343,7 @@ namespace gtulu {
           static void copy(TargetStore& target_store, obj::texture_lod< TextureFormat > const& source_store) {
             detail::helper< TextureFormat, TargetStore >::read(target_store, source_store.get_level());
           }
+
           template< typename TargetStore, typename TextureFormat >
           static void copy(TargetStore& target_store, obj::texture< TextureFormat > const& source_store) {
             /* TODO: should we do mimap generation here? */

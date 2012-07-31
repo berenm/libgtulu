@@ -88,6 +88,8 @@ namespace gtulu {
     } // namespace constant
 
   } // namespace internal
+
+  typedef internal::constant::gl_constant_base constant_base;
 } // namespace gtulu
 
 #define IN_GTULU_INTERNAL_CONSTANTS_HPP_

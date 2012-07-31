@@ -27,11 +27,11 @@ class Function(object):
 
 
 class Parameter(object):
-  def __init__(self, library, node):
+  def __init__(self, library, node, is_output=False):
     gu.inherit(self, node)
 
     self.name = gu.uncamel(self.name)
-    self.is_template, self.tpl_name = library.template(self)
+    self.is_template, self.tpl_name = library.template(self, is_output)
 
     if self.typename.endswith('boolean'):
       self.type = 'bool'
@@ -49,7 +49,7 @@ class Declaration(Renamable):
 
     super(Declaration, self).__init__(library.prefixes, library.suffixes)
 
-    self.output = Parameter(library, node.children[0])
+    self.output = Parameter(library, node.children[0], True)
     self.parameters = [ Parameter(library, p) for p in node.children[1:] ]
 
     self.template_parameters = [ p for p in self.parameters if p.is_template ]
@@ -57,11 +57,15 @@ class Declaration(Renamable):
 
     self.has_template = len(self.template_parameters) > 0
     self.has_output = self.output.typename != 'void'
-    self.has_cardinality = re.search(r'\d+d?$', self.new_name) is not None
-    self.function = re.sub(r'_\d+d?$', '', self.new_name)
 
-    self.cardinality = int('0' + self.new_name.replace(self.function, '').strip('_d'))
-
+    self.cardinality = re.search(r'_(?P<card>\d+)d?(_|$)', self.new_name)
+    self.has_cardinality = self.cardinality is not None
+    if self.has_cardinality:
+      self.cardinality = int(self.cardinality.group('card'))
+    else:
+      self.cardinality = 0
+    self.function = re.sub(r'_\d+d?(?P<end>_|$)', '\g<end>', self.new_name)
+    log.error('%s -> %s %s', self.new_name, self.function, self.cardinality)
 
 class Library(object):
   def __init__(self, name, **kwargs):
@@ -93,9 +97,9 @@ class Library(object):
     return d
 
 
-gl_template = lambda p: (p.typename == 'GLenum')                               and (True, gu.camel(p.name) + 'Constant') \
-                     or (p.name == 'internalformat' and p.typename == 'GLint') and (True, 'InternalFormatConstant') \
+gl_template = lambda p, o: (not o and p.typename == 'GLenum')                            and (True, gu.camel(p.name) + 'Constant') \
+                     or (not o and p.name == 'internalformat' and p.typename == 'GLint') and (True, 'InternalFormatConstant') \
                      or (False, p.name)
 
 GLES2 = Library(name='gles2', prefixes=['gl', 'GL_'], files=['include/GLES2/gl2.h'], template=gl_template)
-GL3 = Library(name='gl3', prefixes=['gl', 'GL_', 'glu', 'GLU_', 'glX', 'GLX_'], suffixes=['EXT', 'ARB'], files=['include/GL3/gl3.h'], template=gl_template)
+GL3 = Library(name='gl3', prefixes=['gl', 'GL_', 'glu', 'GLU_', 'glX', 'GLX_'], suffixes=[], files=['include/GL3/gl3.h'], template=gl_template)

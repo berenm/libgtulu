@@ -36,7 +36,7 @@ namespace gtulu {
       template< >
       template< typename TargetType >
       void slot_binder< texture_base >::bind(std::uint32_t handle_) {
-        fct::gl_bind_texture< typename TargetType::aspect::format >::call(handle_);
+        fct::bind_texture< typename TargetType::aspect::format >::call(handle_);
       }
     } // namespace object
 
@@ -86,7 +86,7 @@ namespace gtulu {
 
           inline void compute_mipmaps() {
             bind();
-            fct::gl_generate_mipmap< typename TextureFormat::target_format::aspect::format >::call();
+            fct::generate_mipmap< typename TextureFormat::target_format::aspect::format >::call();
           }
 
           inline void bind() const {

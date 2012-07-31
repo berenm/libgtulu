@@ -25,7 +25,7 @@ namespace gtulu {
       template< >
       template< typename TargetType >
       void slot_binder< renderbuffer_base >::bind(std::uint32_t handle_) {
-        fct::gl_bind_renderbuffer< typename TargetType::aspect::format >::call(handle_);
+        fct::bind_renderbuffer< typename TargetType::aspect::format >::call(handle_);
       }
     } // namespace object
 

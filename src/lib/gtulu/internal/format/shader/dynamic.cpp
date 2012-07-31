@@ -109,7 +109,7 @@ namespace gtulu {
             char* buffer = new char[length];
             buffer[0] = 0;
 
-            fct::gl_get_shader_info_log< >::call(obj::shader_base::handle_,
+            fct::get_shader_info_log< >::call(obj::shader_base::handle_,
                                               length,
                                               reinterpret_cast< std::int32_t* >(&length),
                                               buffer);

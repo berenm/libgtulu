@@ -43,7 +43,7 @@ namespace gtulu {
                                                                      check_t::count,
                                                                      check_t::normalized);
 
-            fct::gl_enable_vertex_attrib_array< >::call(location_in);
+            fct::enable_vertex_attrib_array< >::call(location_in);
           }
       };
 

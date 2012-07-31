@@ -43,7 +43,7 @@ namespace gtulu {
             template< typename InitParameter = void >
             static void init(target_store_t& target_store, source_store_t const& source_store) {
               copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
-              fct::gl_buffer_data< buf::slot::gl_copy_write_buffer, InitParameter >::call(source_traits_t::size(source_store),
+              fct::buffer_data< buf::slot::gl_copy_write_buffer, InitParameter >::call(source_traits_t::size(source_store),
                                                                                           source_traits_t::read(source_store));
             }
         };
@@ -62,7 +62,7 @@ namespace gtulu {
               copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
 
               /* Two steps here as we cannot initialize the buffer directly from the texture */
-              fct::gl_buffer_data< buf::slot::gl_pixel_pack_buffer, InitParameter >::call(source_traits_t::size(source_store),
+              fct::buffer_data< buf::slot::gl_pixel_pack_buffer, InitParameter >::call(source_traits_t::size(source_store),
                                                                                           0);
               detail::texture::copy(target_store, source_store);
             }
@@ -80,7 +80,7 @@ namespace gtulu {
               copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
 
               /* Two steps here as we cannot initialize the buffer directly from the texture */
-              fct::gl_buffer_data< buf::slot::gl_pixel_pack_buffer, InitParameter >::call(source_traits_t::size(source_store),
+              fct::buffer_data< buf::slot::gl_pixel_pack_buffer, InitParameter >::call(source_traits_t::size(source_store),
                                                                                           0);
               detail::texture::copy(target_store, source_store);
             }
@@ -100,7 +100,7 @@ namespace gtulu {
               copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
 
               /* Two steps here as we cannot initialize the buffer directly from the texture */
-              fct::gl_buffer_data< buf::slot::gl_pixel_pack_buffer, InitParameter >::call(source_traits_t::size(source_store),
+              fct::buffer_data< buf::slot::gl_pixel_pack_buffer, InitParameter >::call(source_traits_t::size(source_store),
                                                                                           0);
               detail::texture::copy(target_store, source_store);
             }
@@ -118,7 +118,7 @@ namespace gtulu {
               copy_binder< target_store_t, source_store_t >::bind(target_store, source_store);
 
               /* Two steps here as we cannot initialize the buffer directly from the texture */
-              fct::gl_buffer_data< buf::slot::gl_pixel_pack_buffer, InitParameter >::call(source_traits_t::size(source_store),
+              fct::buffer_data< buf::slot::gl_pixel_pack_buffer, InitParameter >::call(source_traits_t::size(source_store),
                                                                                           0);
               detail::texture::copy(target_store, source_store.level(0));
             }

@@ -36,7 +36,7 @@ namespace gtulu {
               typedef typename TextureFormat::target_format::aspect::format target_cst;         \
               texture_lod.get_texture().bind();                                                 \
               std::int32_t output;                                                              \
-              fct::gl_get_tex_level_parameter<                                                  \
+              fct::get_tex_level_parameter<                                                  \
                      target_cst,                                                                \
                      property::gl_property_m                                                    \
                    >::call(texture_lod.get_level(), &output);                                   \
