@@ -14,13 +14,17 @@
 #include <string>
 #include <cstdint>
 
+#define GL3_PROTOTYPES 1
+#include <GL3/gl3.h>
+
+#define GLX_GLXEXT_PROTOTYPES 1
+#include <GL/glx.h>
+#include <GL/glxext.h>
+
 #include <cairo/cairo.h>
 #include <pango/pango.h>
 #include <pango/pango-layout.h>
 #include <pango/pangocairo.h>
-
-#define GL3_PROTOTYPES 1
-#include <GL3/gl3.h>
 
 #include "gtulu/utils/logging.hpp"
 

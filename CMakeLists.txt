@@ -5,6 +5,7 @@ include(GNUInstallDirs)
 include(ParseVersion)
 include(AddSubmodule)
 include(GtuluCompiler)
+include(FindCotire)
 
 project(libgtulu CXX)
 parse_version(libgtulu DEBIAN)
@@ -58,6 +59,7 @@ set_target_properties(gtulu PROPERTIES
   VERSION   ${libgtulu_VERSION}
   SOVERSION ${libgtulu_SOVERSION}
   SONAME    libgtulu${libgtulu_SOVERSION}
+  COTIRE_PREFIX_HEADER_INCLUDE_PATH "${CMAKE_SOURCE_DIR}/include/gtulu_opengl_pch.hpp"
 )
 target_link_libraries(gtulu
   ${PANGO_LIBRARIES}
@@ -65,6 +67,8 @@ target_link_libraries(gtulu
   ${Boost_LIBRARIES}
   logging
 )
+add_definitions(-DBOOST_BUILD_PCH_ENABLED)
+add_cotire(gtulu)
 
 # -------------------------------------------------------------------------
 # gtulu-compiler
@@ -76,6 +80,7 @@ target_link_libraries(gtulu-compiler
   gtulu
   ${Boost_LIBRARIES}
 )
+cotire(gtulu-compiler)
 
 # -------------------------------------------------------------------------
 # installation

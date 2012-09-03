@@ -42,10 +42,6 @@ namespace gtulu {
 
 #ifdef GTULU_PLATFORM_LINUX
 
-#define GLX_GLXEXT_PROTOTYPES
-#include <GL/glx.h>
-#include <GL/glxext.h>
-
 namespace gtulu {
   namespace internal {
 
