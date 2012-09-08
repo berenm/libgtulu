@@ -91,7 +91,7 @@ install(TARGETS gtulu gtulu-compiler
 install(DIRECTORY include/gtulu
                   include/meta
                   ${registry_SOURCE_DIR}/include/EGL
-                  ${registry_SOURCE_DIR}/include/GL3
+                  ${registry_SOURCE_DIR}/include/GL
                   ${registry_SOURCE_DIR}/include/GLES2
                   ${registry_SOURCE_DIR}/include/KHR
                   ${boost-gil-contributions_SOURCE_DIR}/boost
@@ -117,6 +117,10 @@ if(CMAKE_BUILD_TESTS)
   )
   add_gtulu_program(print_image
     SOURCES     test/shaders/print_image.vs test/shaders/print_image.fs
+    DESTINATION test/generated
+  )
+  add_gtulu_program(plot_image
+    SOURCES     test/shaders/plot_image.vs test/shaders/plot_image.fs
     DESTINATION test/generated
   )
 
@@ -167,4 +171,11 @@ if(CMAKE_BUILD_TESTS)
   )
   target_link_libraries(unit-test-pango-create gtulu png12)
   add_test(unit-test-pango-create unit-test-pango-create)
+
+  add_executable(unit-test-plot-image
+    test/plot_image.cpp
+    ${GTULU_PROGRAM_PLOT_IMAGE_SOURCES}
+  )
+  target_link_libraries(unit-test-plot-image gtulu png12)
+  add_test(unit-test-plot-image unit-test-plot-image)
 endif()

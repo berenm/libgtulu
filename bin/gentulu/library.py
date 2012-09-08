@@ -67,6 +67,7 @@ class Declaration(Renamable):
     self.function = re.sub(r'_\d+d?(?P<end>_|$)', '\g<end>', self.new_name)
     log.error('%s -> %s %s', self.new_name, self.function, self.cardinality)
 
+
 class Library(object):
   def __init__(self, name, **kwargs):
     super(Library, self).__init__()
@@ -76,6 +77,7 @@ class Library(object):
     self.template = kwargs.get('template', [])
     self.namespace = kwargs.get('namespace', name)
     self.files = kwargs.get('files', [])
+    self.defines = kwargs.get('defines', [])
 
     self.functions = {}
     self.constants = {}
@@ -92,14 +94,56 @@ class Library(object):
 
   def declaration(self, node):
     d = Declaration(self, node)
-    d.function = self.function(d.function, d.has_cardinality)
-    d.function.declarations.append(d)
+
+    if d.suffix is None:
+      d.function = self.function(d.function, d.has_cardinality)
+      d.function.declarations.append(d)
+
     return d
+
+
+glx_template = lambda p, o: (not o and p.typename == 'GLXenum')                            and (True, gu.camel(p.name) + 'Constant') \
+                      or (not o and p.name == 'internalformat' and p.typename == 'GLXint') and (True, 'InternalFormatConstant') \
+                      or (False, p.name)
+
+GLX = Library(name='glx', \
+              prefixes=['glX', 'GLX_'], \
+              suffixes=['ARB', 'MESA'], \
+              files=['include/GL/glx.h'], \
+              template=glx_template,\
+              defines=['GLX_PROTOTYPES'])
+
+
+egl_template = lambda p, o: (not o and p.typename == 'EGLenum')                            and (True, gu.camel(p.name) + 'Constant') \
+                      or (not o and p.name == 'internalformat' and p.typename == 'EGLint') and (True, 'InternalFormatConstant') \
+                      or (False, p.name)
+
+EGL = Library(name='egl', \
+              prefixes=['egl', 'EGL_'], \
+              files=['include/EGL/egl.h'], \
+              template=egl_template, \
+              defines=['EGL_PROTOTYPES'])
 
 
 gl_template = lambda p, o: (not o and p.typename == 'GLenum')                            and (True, gu.camel(p.name) + 'Constant') \
                      or (not o and p.name == 'internalformat' and p.typename == 'GLint') and (True, 'InternalFormatConstant') \
                      or (False, p.name)
 
-GLES2 = Library(name='gles2', prefixes=['gl', 'GL_'], files=['include/GLES2/gl2.h'], template=gl_template)
-GL3 = Library(name='gl3', prefixes=['gl', 'GL_', 'glu', 'GLU_', 'glX', 'GLX_'], suffixes=[], files=['include/GL3/gl3.h'], template=gl_template)
+GLES2 = Library(name='gles2', \
+                prefixes=['gl', 'GL_'], \
+                files=['include/GLES2/gl2.h'], \
+                template=gl_template, \
+                defines=['GLES2_PROTOTYPES'])
+
+GLES3 = Library(name='gles3', \
+                prefixes=['gl', 'GL_'], \
+                files=['include/GLES3/gl3.h'], \
+                template=gl_template, \
+                defines=['GLES3_PROTOTYPES'])
+
+GL3 = Library(name='gl3', \
+              prefixes=['gl', 'GL_'], \
+              suffixes=['ARB', 'EXT'], \
+              files=['include/GL/glcorearb.h'], \
+              template=gl_template, \
+              defines=['GLCOREARB_PROTOTYPES'])

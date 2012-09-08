@@ -126,6 +126,7 @@ namespace gtulu {
 } // namespace gtulu
 
 #include "gtulu/internal/storage/data/traits/array.hpp"
+#include "gtulu/internal/storage/data/traits/vector.hpp"
 #include "gtulu/internal/storage/data/traits/gil.hpp"
 
 #endif /* GTULU_INTERNAL_STORAGE_DATA_TRAITS_HPP_ */

@@ -14,8 +14,8 @@
 #include <string>
 #include <cstdint>
 
-#define GL3_PROTOTYPES 1
-#include <GL3/gl3.h>
+#define GLCOREARB_PROTOTYPES 1
+#include <GL/glcorearb.h>
 
 #define GLX_GLXEXT_PROTOTYPES 1
 #include <GL/glx.h>

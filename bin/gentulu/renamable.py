@@ -13,27 +13,28 @@ words = [ '1D', '2D', '3D',
       'Accum', 'Active', 'Alpha', 'Are', 'Arrays', 'Array', 'Attachment', 'Attached', 'Attach', 'Attrib', 'Atomic', 'At', 'Address',
       'Base', 'Begin', 'Binary', 'Binding', 'Bind', 'Blend', 'Blit', 'Block', 'Boolean', 'Buffers', 'Buffer', 'Bitmap', 'Build', 'Barrier',
       'Callback', 'Check', 'Choose', 'Clamp', 'Clear', 'CLevent', 'Client', 'Color', 'Compiler', 'Compile', 'Compressed', 'Conditional', 'Context',
-      'Control', 'Config', 'Convolution', 'Coord', 'Copy', 'Counter', 'Coverage', 'Create', 'Cull', 'Current', 'Curve', 'Call', 'Contour', 'Clip', 'Cylinder',
-      'Data', 'Debug', 'Delete', 'Depth', 'Detach', 'Divisor', 'Double', 'Disable', 'Drawable', 'Draw', 'Destroy', 'Disk', 'Direct', 'Display',
+      'Compute', 'Control', 'Config', 'Convolution', 'Coord', 'Copy', 'Counter', 'Coverage', 'Create', 'Cull', 'Current', 'Curve', 'Call', 'Contour', 'Clip', 'Cylinder',
+      'Data', 'Debug', 'Delete', 'Depth', 'Detach', 'Divisor', 'Double', 'Disable', 'Drawable', 'Draw', 'Destroy', 'Disk', 'Direct', 'Display', 'Dispatch',
       'Elements', 'Element', 'Enabled', 'Enable', 'End', 'Equation', 'Error', 'Extensions', 'Env', 'Edge', 'Eval', 'Event', 'Extension',
       'Face', 'Feedbacks', 'Feedback', 'Fence', 'Filter', 'Finish', 'Float', 'Flush', 'Format', 'Frag', 'Framebuffers', 'Framebuffer', 'From', 'Front', 'Func', 'Fog',
       'Font', 'Free', 'Flag', 'Frustum', 'FB',
-      'Generate', 'Gen', 'Getn', 'Get', 'Graphics', 'GLX', 'GL',
+      'Generate', 'Gen', 'Getn', 'Get', 'Graphics', 'GLX', 'GL', 'Group',
       'Hint', 'Histogram',
-      'Image', 'Include', 'Indexed', 'Index', 'Indices', 'Indirect', 'Info', 'Instanced', 'Instance', 'Insert', 'Integer', 'Interleaved', 'Internalformat', 'Internal', 'Is', 'Init', 'Import', 'Intro', 'Identity', 'ID',
-      'Layer', 'Level', 'Line', 'Link', 'List', 'Location', 'Logic', 'Log', 'Light', 'Load', 'Look',
+      'Image', 'Include', 'Indexed', 'Index', 'Indices', 'Indirect', 'Info', 'Instanced', 'Instance', 'Insert', 'Integer', 'Interleaved', 'Internalformat',
+      'Internal', 'Is', 'Init', 'Import', 'Intro', 'Identity', 'ID', 'Invalidate', 'Interface',
+      'Layer', 'Level', 'Line', 'Link', 'List', 'Location', 'Logic', 'Log', 'Light', 'Load', 'Look', 'Label',
       'Mapped', 'Map', 'Mask', 'Matrix', 'Message', 'Minmax', 'Min', 'Mipmap', 'Model', 'Mode', 'Multisample', 'Multi', 'Material', 'Mult', 'Make', 'Matrice', 'Mesh', 'Memory',
       'Named', 'Name', 'Normal', 'New', 'Nurbs', 'Next',
       'Object', 'Offset', 'Op', 'Ortho', 'Orientation',
       'Parameter', 'Patch', 'Pause', 'Pipelines', 'Pipeline', 'Pixels', 'Pixel', 'Pointer', 'Point', 'Pos', 'Polygon', 'Precision', 'Primitive', 'Program', 'Project', 'Provoking', 'Push', 'Prioritize',
-      'Property', 'Pwl', 'Pixmap', 'Partial', 'Pass', 'Pbuffer', 'Perspective', 'Pick', 'Plane', 'Proc',
+      'Property', 'Pwl', 'Pixmap', 'Partial', 'Pass', 'Pbuffer', 'Perspective', 'Pick', 'Plane', 'Proc', 'Pop', 'Ptr',
       'Queries', 'Query', 'Quadric',
-      'Range', 'Readn', 'Read', 'Release', 'Renderbuffers', 'Renderbuffer', 'Renderer', 'Render', 'Reset', 'Restart', 'Resume', 'Rotate', 'Resident', 'Raster', 'Rect',
+      'Range', 'Readn', 'Read', 'Release', 'Renderbuffers', 'Renderbuffer', 'Renderer', 'Render', 'Reset', 'Restart', 'Resume', 'Rotate', 'Resident', 'Raster', 'Rect', 'Resource',
       'Samplers', 'Sampler', 'Sample', 'Scissor', 'Secondary', 'Separable', 'Separate', 'Shaders', 'Shader', 'Shading', 'Size', 'Source', 'Stages', 'Stage', 'Status', 'Stencil', 'Stipple', 'Storage',
       'Store', 'String', 'Stream', 'Subroutines', 'Subroutine', 'Sub', 'Sync', 'Surface', 'Server', 'Style', 'State', 'Swap', 'Sphere', 'Shade', 'Selected', 'Select', 'Scale', 'Sampling',
       'Table', 'Textures', 'Texture', 'Tex', 'Transform', 'Translate', 'Tess', 'Transfer', 'Trim', 'Transpose', 'Through',
       'Uniforms', 'Uniform', 'Unmap', 'Use', 'Un',
-      'Validate', 'Varyings', 'Varying', 'Vertex', 'Version', 'Viewport', 'Visual',
+      'Validate', 'Varyings', 'Varying', 'Vertex', 'Version', 'Viewport', 'Visual', 'View',
       'Wait', 'Width', 'Window',
       'X',
       'Zoom' ]
@@ -43,12 +44,14 @@ class Renamable(object):
     log.debug('renaming: %s' % self.name)
 
     new_name = self.name
+    self.suffix = None
     for suffix in suffixes:
       if self.name.endswith(suffix):
         self.suffix = suffix
         new_name = re.sub(r'%s$' % suffix, '', new_name)
         break
 
+    self.prefix = None
     for prefix in prefixes:
       if self.name.startswith(prefix):
         self.prefix = prefix
@@ -86,6 +89,8 @@ class Renamable(object):
     # Handle remaning things
     new_name = re.sub(r'^.*IPointer', r'_integer', new_name)
     new_name = re.sub(r'^.*LPointer', r'_large_integer', new_name)
+    new_name = re.sub(r'^.*IFormat', r'_integer', new_name)
+    new_name = re.sub(r'^.*LFormat', r'_large_integer', new_name)
     new_name = re.sub(r'cLevent', r'cl_event', new_name)
 
     self.is_vector = r'@vector@' in new_name

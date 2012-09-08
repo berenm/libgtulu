@@ -4,7 +4,7 @@ import parser
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
-from gentulu.library import GLES2, GL3
+from gentulu.library import GLES2, GLES3, GL3, EGL, GLX
 from gentulu.serializer import LibrarySerializer
 
 def main():
@@ -24,8 +24,14 @@ def main():
 
   if opts.library == 'gles2':
     library = GLES2
+  elif opts.library == 'gles3':
+    library = GLES3
   elif opts.library == 'gl3':
     library = GL3
+  elif opts.library == 'egl':
+    library = EGL
+  elif opts.library == 'glx':
+    library = GLX
 
   command_line = 'generate-functions -u -l %s' % opts.library
 
@@ -34,6 +40,7 @@ def main():
   target_header = target + '.hpp'
   target_source = target.replace('include/', 'src/lib/') + '.cpp'
 
+  opts.defines.extend(library.defines)
   for filename in library.files:
     index = parser.FileFilteringIndexer('lib/registry/' + filename, opts.include_paths, opts.defines)
     functions = [ n for n in index.nodes() if isinstance(n, parser.types.Function)]
