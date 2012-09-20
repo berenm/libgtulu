@@ -14,6 +14,7 @@ float almostIdentity(float x, float m, float n) {
 }
 
 void main() {
-  gl_PointSize = almostIdentity((-position.y + 1.0) * 10.0f, 25.0f, 0.001f);
+  float factor = smoothstep(0.3f, 0.6f, (-position.y + 1.0) / 2.0);
+  gl_PointSize = almostIdentity(factor * 20.0f, 50.0f, 0.001f);
   gl_Position = vec4(position, 0.0, 1.0);
 }

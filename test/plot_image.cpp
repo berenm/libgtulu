@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
     std::size_t y_position;
     std::cin >> y_position;
     y_positions.push_back(y_position);
-    max_y = std::max(static_cast< float >(log(y_position) / log(10)), max_y);
+    // max_y = std::max(static_cast< float >(log(y_position) / log(10)), max_y);
   }
 
   std::vector< float > host_positions;
@@ -101,6 +101,10 @@ int main(int argc, char* argv[]) {
 
   framebuffer->set_viewport(output_image.width(), output_image.height(), 10, 0, 0, 0);
   framebuffer->set_output_image(output_texture);
+
+  glClearColor(1.0, 1.0, 1.0, 1.0);
+  glClear(GL_COLOR_BUFFER_BIT);
+
   vertexarray->draw< drw::mode::gl_points >(program, *framebuffer, 0, host_positions.size() / 2);
   __gtulu_info() << "resized images on GPU.";
 

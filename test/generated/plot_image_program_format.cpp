@@ -37,7 +37,8 @@ namespace gtulu {
 "  return (a * t + b) * t * t + n;\n"
 "}\n"
 "void main() {\n"
-"  gl_PointSize = almostIdentity((-position.y + 1.0) * 10.0f, 25.0f, 0.001f);\n"
+"  float factor = smoothstep(0.3f, 0.6f, (-position.y + 1.0) / 2.0);\n"
+"  gl_PointSize = almostIdentity(factor * 20.0f, 50.0f, 0.001f);\n"
 "  gl_Position = vec4(position, 0.0, 1.0);\n"
 "}\n"
 ;
