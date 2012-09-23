@@ -39,6 +39,7 @@ namespace gtulu {
             typedef _1              TextureConstant;
             typedef TextureConstant texture_t;
             inline static void call() { active_texture< >::call(texture_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -70,6 +71,7 @@ namespace gtulu {
             typedef _1             TargetConstant;
             typedef TargetConstant target_t;
             inline static void call(gtulu::uint32_t buffer) { bind_buffer< >::call(target_t(), buffer); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -85,6 +87,7 @@ namespace gtulu {
             typedef _1             TargetConstant;
             typedef TargetConstant target_t;
             inline static void call(gtulu::uint32_t framebuffer) { bind_framebuffer< >::call(target_t(), framebuffer); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -100,6 +103,7 @@ namespace gtulu {
             typedef _1             TargetConstant;
             typedef TargetConstant target_t;
             inline static void call(gtulu::uint32_t renderbuffer) { bind_renderbuffer< >::call(target_t(), renderbuffer); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -115,6 +119,7 @@ namespace gtulu {
             typedef _1             TargetConstant;
             typedef TargetConstant target_t;
             inline static void call(gtulu::uint32_t texture) { bind_texture< >::call(target_t(), texture); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -138,6 +143,7 @@ namespace gtulu {
             typedef _1           ModeConstant;
             typedef ModeConstant mode_t;
             inline static void call() { blend_equation< >::call(mode_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -155,6 +161,7 @@ namespace gtulu {
             typedef ModeAlphaConstant mode_alpha_t;
             typedef ModeRgbConstant   mode_rgb_t;
             inline static void call() { blend_equation_separate< >::call(mode_rgb_t(), mode_alpha_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -172,6 +179,7 @@ namespace gtulu {
             typedef SfactorConstant sfactor_t;
             typedef DfactorConstant dfactor_t;
             inline static void call() { blend_func< >::call(sfactor_t(), dfactor_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -193,6 +201,7 @@ namespace gtulu {
             typedef DstRgbConstant   dst_rgb_t;
             typedef SrcRgbConstant   src_rgb_t;
             inline static void call() { blend_func_separate< >::call(src_rgb_t(), dst_rgb_t(), src_alpha_t(), dst_alpha_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -210,6 +219,7 @@ namespace gtulu {
             typedef TargetConstant target_t;
             typedef UsageConstant  usage_t;
             inline static void call(gtulu::int64_t size, void const* data) { buffer_data< >::call(target_t(), size, data, usage_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -225,6 +235,7 @@ namespace gtulu {
             typedef _1             TargetConstant;
             typedef TargetConstant target_t;
             inline static void call(gtulu::int64_t offset, gtulu::int64_t size, void const* data) { buffer_sub_data< >::call(target_t(), offset, size, data); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -240,6 +251,7 @@ namespace gtulu {
             typedef _1             TargetConstant;
             typedef TargetConstant target_t;
             inline static gtulu::uint32_t call() { return check_framebuffer_status< >::call(target_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -307,6 +319,7 @@ namespace gtulu {
             typedef InternalformatConstant internalformat_t;
             typedef TargetConstant         target_t;
             inline static void call(gtulu::int32_t level, gtulu::int32_t width, gtulu::int32_t height, gtulu::int32_t border, gtulu::int32_t image_size, void const* data) { compressed_tex_image< Cardinality >::call(target_t(), level, internalformat_t(), width, height, border, image_size, data); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -326,6 +339,7 @@ namespace gtulu {
             typedef TargetConstant target_t;
             typedef FormatConstant format_t;
             inline static void call(gtulu::int32_t level, gtulu::int32_t xoffset, gtulu::int32_t yoffset, gtulu::int32_t width, gtulu::int32_t height, gtulu::int32_t image_size, void const* data) { compressed_tex_sub_image< Cardinality >::call(target_t(), level, xoffset, yoffset, width, height, format_t(), image_size, data); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -345,6 +359,7 @@ namespace gtulu {
             typedef InternalformatConstant internalformat_t;
             typedef TargetConstant         target_t;
             inline static void call(gtulu::int32_t level, gtulu::int32_t x, gtulu::int32_t y, gtulu::int32_t width, gtulu::int32_t height, gtulu::int32_t border) { copy_tex_image< Cardinality >::call(target_t(), level, internalformat_t(), x, y, width, height, border); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -362,6 +377,7 @@ namespace gtulu {
             typedef _2             Cardinality;
             typedef TargetConstant target_t;
             inline static void call(gtulu::int32_t level, gtulu::int32_t xoffset, gtulu::int32_t yoffset, gtulu::int32_t x, gtulu::int32_t y, gtulu::int32_t width, gtulu::int32_t height) { copy_tex_sub_image< Cardinality >::call(target_t(), level, xoffset, yoffset, x, y, width, height); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -385,6 +401,7 @@ namespace gtulu {
             typedef _1           TypeConstant;
             typedef TypeConstant type_t;
             inline static gtulu::uint32_t call() { return create_shader< >::call(type_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -400,6 +417,7 @@ namespace gtulu {
             typedef _1           ModeConstant;
             typedef ModeConstant mode_t;
             inline static void call() { cull_face< >::call(mode_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -463,6 +481,7 @@ namespace gtulu {
             typedef _1           FuncConstant;
             typedef FuncConstant func_t;
             inline static void call() { depth_func< >::call(func_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -502,6 +521,7 @@ namespace gtulu {
             typedef _1          CapConstant;
             typedef CapConstant cap_t;
             inline static void call() { disable< >::call(cap_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -525,6 +545,7 @@ namespace gtulu {
             typedef _1           ModeConstant;
             typedef ModeConstant mode_t;
             inline static void call(gtulu::int32_t first, gtulu::int32_t count) { draw_arrays< >::call(mode_t(), first, count); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -542,6 +563,7 @@ namespace gtulu {
             typedef ModeConstant mode_t;
             typedef TypeConstant type_t;
             inline static void call(gtulu::int32_t count, void const* indices) { draw_elements< >::call(mode_t(), count, type_t(), indices); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -557,6 +579,7 @@ namespace gtulu {
             typedef _1          CapConstant;
             typedef CapConstant cap_t;
             inline static void call() { enable< >::call(cap_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -600,6 +623,7 @@ namespace gtulu {
             typedef AttachmentConstant         attachment_t;
             typedef TargetConstant             target_t;
             inline static void call(gtulu::uint32_t renderbuffer) { framebuffer_renderbuffer< >::call(target_t(), attachment_t(), renderbuffertarget_t(), renderbuffer); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -621,6 +645,7 @@ namespace gtulu {
             typedef TargetConstant     target_t;
             typedef TextargetConstant  textarget_t;
             inline static void call(gtulu::uint32_t texture, gtulu::int32_t level) { framebuffer_texture< Cardinality >::call(target_t(), attachment_t(), textarget_t(), texture, level); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -636,6 +661,7 @@ namespace gtulu {
             typedef _1           ModeConstant;
             typedef ModeConstant mode_t;
             inline static void call() { front_face< >::call(mode_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -683,6 +709,7 @@ namespace gtulu {
             typedef _1             TargetConstant;
             typedef TargetConstant target_t;
             inline static void call() { generate_mipmap< >::call(target_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -730,6 +757,7 @@ namespace gtulu {
             typedef _1            PnameConstant;
             typedef PnameConstant pname_t;
             inline static void call(gtulu::uint8_t* params) { get_boolean< >::call(pname_t(), params); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -747,6 +775,7 @@ namespace gtulu {
             typedef TargetConstant target_t;
             typedef PnameConstant  pname_t;
             inline static void call(gtulu::int32_t* params) { get_buffer_parameter< >::call(target_t(), pname_t(), params); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -770,6 +799,7 @@ namespace gtulu {
             typedef _1            PnameConstant;
             typedef PnameConstant pname_t;
             inline static void call(gtulu::float32_t* params) { get_float< >::call(pname_t(), params); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -789,6 +819,7 @@ namespace gtulu {
             typedef AttachmentConstant attachment_t;
             typedef TargetConstant     target_t;
             inline static void call(gtulu::int32_t* params) { get_framebuffer_attachment_parameter< >::call(target_t(), attachment_t(), pname_t(), params); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -804,6 +835,7 @@ namespace gtulu {
             typedef _1            PnameConstant;
             typedef PnameConstant pname_t;
             inline static void call(gtulu::int32_t* params) { get_integer< >::call(pname_t(), params); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -819,6 +851,7 @@ namespace gtulu {
             typedef _1            PnameConstant;
             typedef PnameConstant pname_t;
             inline static void call(gtulu::uint32_t program, gtulu::int32_t* params) { get_program< >::call(program, pname_t(), params); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -844,6 +877,7 @@ namespace gtulu {
             typedef TargetConstant target_t;
             typedef PnameConstant  pname_t;
             inline static void call(gtulu::int32_t* params) { get_renderbuffer_parameter< >::call(target_t(), pname_t(), params); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -859,6 +893,7 @@ namespace gtulu {
             typedef _1            PnameConstant;
             typedef PnameConstant pname_t;
             inline static void call(gtulu::uint32_t shader, gtulu::int32_t* params) { get_shader< >::call(shader, pname_t(), params); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -884,6 +919,7 @@ namespace gtulu {
             typedef PrecisiontypeConstant precisiontype_t;
             typedef ShadertypeConstant    shadertype_t;
             inline static void call(gtulu::int32_t* range, gtulu::int32_t* precision) { get_shader_precision_format< >::call(shadertype_t(), precisiontype_t(), range, precision); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -907,6 +943,7 @@ namespace gtulu {
             typedef _1           NameConstant;
             typedef NameConstant name_t;
             inline static gtulu::uint8_t const* call() { return get_string< >::call(name_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -925,7 +962,9 @@ namespace gtulu {
             typedef TargetConstant target_t;
             typedef PnameConstant  pname_t;
             inline static void call(gtulu::float32_t* params) { get_tex_parameter< >::call(target_t(), pname_t(), params); }
+
             inline static void call(gtulu::int32_t* params) { get_tex_parameter< >::call(target_t(), pname_t(), params); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -959,7 +998,9 @@ namespace gtulu {
             typedef _1            PnameConstant;
             typedef PnameConstant pname_t;
             inline static void call(gtulu::uint32_t index, gtulu::float32_t* params) { get_vertex_attrib< >::call(index, pname_t(), params); }
+
             inline static void call(gtulu::uint32_t index, gtulu::int32_t* params) { get_vertex_attrib< >::call(index, pname_t(), params); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -975,6 +1016,7 @@ namespace gtulu {
             typedef _1            PnameConstant;
             typedef PnameConstant pname_t;
             inline static void call(gtulu::uint32_t index, void** pointer) { get_vertex_attrib_pointer< >::call(index, pname_t(), pointer); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -992,6 +1034,7 @@ namespace gtulu {
             typedef TargetConstant target_t;
             typedef ModeConstant   mode_t;
             inline static void call() { hint< >::call(target_t(), mode_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -1015,6 +1058,7 @@ namespace gtulu {
             typedef _1          CapConstant;
             typedef CapConstant cap_t;
             inline static bool call() { return is_enabled< >::call(cap_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -1086,6 +1130,7 @@ namespace gtulu {
             typedef _1            PnameConstant;
             typedef PnameConstant pname_t;
             inline static void call(gtulu::int32_t param) { pixel_store< >::call(pname_t(), param); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -1111,6 +1156,7 @@ namespace gtulu {
             typedef TypeConstant   type_t;
             typedef FormatConstant format_t;
             inline static void call(gtulu::int32_t x, gtulu::int32_t y, gtulu::int32_t width, gtulu::int32_t height, void* pixels) { read_pixels< >::call(x, y, width, height, format_t(), type_t(), pixels); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -1136,6 +1182,7 @@ namespace gtulu {
             typedef InternalformatConstant internalformat_t;
             typedef TargetConstant         target_t;
             inline static void call(gtulu::int32_t width, gtulu::int32_t height) { renderbuffer_storage< >::call(target_t(), internalformat_t(), width, height); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -1167,6 +1214,7 @@ namespace gtulu {
             typedef _1                   BinaryformatConstant;
             typedef BinaryformatConstant binaryformat_t;
             inline static void call(gtulu::int32_t n, gtulu::uint32_t const* shaders, void const* binary, gtulu::int32_t length) { shader_binary< >::call(n, shaders, binaryformat_t(), binary, length); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -1190,6 +1238,7 @@ namespace gtulu {
             typedef _1           FuncConstant;
             typedef FuncConstant func_t;
             inline static void call(gtulu::int32_t ref, gtulu::uint32_t mask) { stencil_func< >::call(func_t(), ref, mask); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -1207,6 +1256,7 @@ namespace gtulu {
             typedef FaceConstant face_t;
             typedef FuncConstant func_t;
             inline static void call(gtulu::int32_t ref, gtulu::uint32_t mask) { stencil_func_separate< >::call(face_t(), func_t(), ref, mask); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -1230,6 +1280,7 @@ namespace gtulu {
             typedef _1           FaceConstant;
             typedef FaceConstant face_t;
             inline static void call(gtulu::uint32_t mask) { stencil_mask_separate< >::call(face_t(), mask); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -1249,6 +1300,7 @@ namespace gtulu {
             typedef FailConstant  fail_t;
             typedef ZpassConstant zpass_t;
             inline static void call() { stencil_op< >::call(fail_t(), zfail_t(), zpass_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -1270,6 +1322,7 @@ namespace gtulu {
             typedef FailConstant  fail_t;
             typedef ZpassConstant zpass_t;
             inline static void call() { stencil_op_separate< >::call(face_t(), fail_t(), zfail_t(), zpass_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -1293,6 +1346,7 @@ namespace gtulu {
             typedef TypeConstant           type_t;
             typedef InternalformatConstant internalformat_t;
             inline static void call(gtulu::int32_t level, gtulu::int32_t width, gtulu::int32_t height, gtulu::int32_t border, void const* pixels) { tex_image< Cardinality >::call(target_t(), level, internalformat_t(), width, height, border, format_t(), type_t(), pixels); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -1313,9 +1367,13 @@ namespace gtulu {
             typedef TargetConstant target_t;
             typedef PnameConstant  pname_t;
             inline static void call(gtulu::float32_t param) { tex_parameter< >::call(target_t(), pname_t(), param); }
+
             inline static void call(gtulu::int32_t const* params) { tex_parameter< >::call(target_t(), pname_t(), params); }
+
             inline static void call(gtulu::float32_t const* params) { tex_parameter< >::call(target_t(), pname_t(), params); }
+
             inline static void call(gtulu::int32_t param) { tex_parameter< >::call(target_t(), pname_t(), param); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -1337,6 +1395,7 @@ namespace gtulu {
             typedef TargetConstant target_t;
             typedef TypeConstant   type_t;
             inline static void call(gtulu::int32_t level, gtulu::int32_t xoffset, gtulu::int32_t yoffset, gtulu::int32_t width, gtulu::int32_t height, void const* pixels) { tex_sub_image< Cardinality >::call(target_t(), level, xoffset, yoffset, width, height, format_t(), type_t(), pixels); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
@@ -1408,6 +1467,7 @@ namespace gtulu {
             typedef _1           TypeConstant;
             typedef TypeConstant type_t;
             inline static void call(gtulu::uint32_t indx, gtulu::int32_t size, bool normalized, gtulu::int32_t stride, void const* ptr) { vertex_attrib_pointer< >::call(indx, size, type_t(), normalized, stride, ptr); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >

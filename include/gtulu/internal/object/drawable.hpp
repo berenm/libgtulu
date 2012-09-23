@@ -20,8 +20,7 @@ namespace gtulu {
 
     namespace object {
 
-      struct drawable: public virtual object_base {
-      };
+      struct drawable : public virtual object_base {};
 
     } // namespace object
 

@@ -20,42 +20,41 @@ namespace gtulu {
 
         template< typename StoreType >
         struct range {
-            typedef data::data_traits< StoreType > store_traits;
+          typedef data::data_traits< StoreType > store_traits;
 
-            range(StoreType& store, offset_type const& offset, std::size_t const size = 0) :
-                store_(store), offset_(offset), size_(size) {
-            }
+          range(StoreType& store, offset_type const& offset, std::size_t const size=0) :
+            store_(store), offset_(offset), size_(size) {}
 
-            StoreType& store() {
-              return store_;
-            }
+          StoreType& store() {
+            return store_;
+          }
 
-            std::size_t value_offset() const {
-              std::size_t const width = store_traits::width(store_);
-              std::size_t const height = store_traits::height(store_);
+          std::size_t value_offset() const {
+            std::size_t const width  = store_traits::width(store_);
+            std::size_t const height = store_traits::height(store_);
 
-              return offset_.x + offset_.y * width + offset_.z * width * height;
-            }
+            return offset_.x + offset_.y * width + offset_.z * width * height;
+          }
 
-            offset_type get_offset() const {
-              return offset_;
-            }
+          offset_type get_offset() const {
+            return offset_;
+          }
 
-            std::size_t get_size() const {
-              return size_ == 0 ? (store_traits::value_size(store_) * width() * height() * depth()) : size_;
-            }
+          std::size_t get_size() const {
+            return size_ == 0 ? (store_traits::value_size(store_) * width() * height() * depth()) : size_;
+          }
 
-            std::size_t width() const {
-              return store_traits::width(store_) - offset_.x;
-            }
+          std::size_t width() const {
+            return store_traits::width(store_) - offset_.x;
+          }
 
-            std::size_t height() const {
-              return store_traits::height(store_) - offset_.y;
-            }
+          std::size_t height() const {
+            return store_traits::height(store_) - offset_.y;
+          }
 
-            std::size_t depth() const {
-              return store_traits::depth(store_) - offset_.z;
-            }
+          std::size_t depth() const {
+            return store_traits::depth(store_) - offset_.z;
+          }
 
           private:
             StoreType& store_;
@@ -67,16 +66,16 @@ namespace gtulu {
       } // namespace data
 
       template< typename StoreType >
-      data::range< StoreType > at(StoreType& store, data::offset_type const& offset, std::size_t const size = 0) {
+      data::range< StoreType > at(StoreType& store, data::offset_type const& offset, std::size_t const size=0) {
         return data::range< StoreType >(store, offset, size);
       }
 
       template< typename StoreType >
-      data::range< StoreType > at(StoreType& store,
-                                  std::size_t const x = 0,
-                                  std::size_t const y = 0,
-                                  std::size_t const z = 0,
-                                  std::size_t const size = 0) {
+      data::range< StoreType > at(StoreType&        store,
+                                  std::size_t const x=0,
+                                  std::size_t const y=0,
+                                  std::size_t const z=0,
+                                  std::size_t const size=0) {
         return data::range< StoreType >(store, data::offset_type(x, y, z), size);
       }
 

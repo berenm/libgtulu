@@ -31,37 +31,43 @@ namespace gtulu {
           bound_handle_ = handle_;
         }
       }
+
     } // namespace object
 
     namespace vertexarray {
       struct vertexarray_slot {
-          static inline void bind(obj::plug< obj::vertexarray_base > const& vertexarray) {
-            obj::slot_binder< obj::vertexarray_base >::bind(vertexarray);
-          }
-          static inline void unbind(obj::plug< obj::vertexarray_base > const& vertexarray) {
-            obj::slot_binder< obj::vertexarray_base >::clear();
-          }
-          static inline void clear() {
-            obj::slot_binder< obj::vertexarray_base >::clear();
-          }
+        static inline void bind(obj::plug< obj::vertexarray_base > const& vertexarray) {
+          obj::slot_binder< obj::vertexarray_base >::bind(vertexarray);
+        }
+
+        static inline void unbind(obj::plug< obj::vertexarray_base > const& vertexarray) {
+          obj::slot_binder< obj::vertexarray_base >::clear();
+        }
+
+        static inline void clear() {
+          obj::slot_binder< obj::vertexarray_base >::clear();
+        }
+
       };
+
     } // namespace vertexarray
 
     namespace object {
 
-      struct vertexarray_base: public plug< vertexarray_base > {
-          inline void bind() const {
-            vxa::vertexarray_slot::bind(*this);
-          }
+      struct vertexarray_base : public plug< vertexarray_base > {
+        inline void bind() const {
+          vxa::vertexarray_slot::bind(*this);
 
-          inline void unbind() const {
-            vxa::vertexarray_slot::unbind(*this);
-          }
+        }
+
+        inline void unbind() const {
+          vxa::vertexarray_slot::unbind(*this);
+        }
+
       };
 
       template< typename VertexarrayFormat >
-      struct vertexarray: public object< vertexarray_base >, public VertexarrayFormat {
-      };
+      struct vertexarray : public object< vertexarray_base >, public VertexarrayFormat {};
 
     } // namespace object
 

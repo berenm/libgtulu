@@ -51,12 +51,12 @@ namespace gtulu {
         std::uint32_t unit_nb = unit_it->first;
 
         unit_ptr.reset(new attachment(unit_nb));
-        attachments[unit_nb] = unit_ptr;
+        attachments[unit_nb]        = unit_ptr;
         attachment_mappings[handle] = unit_ptr;
       } else {
         __gtulu_error() << "unable to find a free color attachment slot."
-              << "Maybe some attachment pointers are still active, or maybe the " << max_attachment
-              << " color attachment limit has been reached.";
+                        << "Maybe some attachment pointers are still active, or maybe the " << max_attachment
+                        << " color attachment limit has been reached.";
       }
 
       return unit_ptr;
@@ -79,9 +79,11 @@ namespace gtulu {
     boost::shared_ptr< attachment > attachment_manager::get_current(obj::texture_base const& texture) {
       return get_current(*texture);
     }
+
     boost::shared_ptr< attachment > attachment_manager::get_new(obj::texture_base const& texture) {
       return get_new(*texture);
     }
+
     boost::shared_ptr< attachment > attachment_manager::get_current_or_new(obj::texture_base const& texture) {
       return get_current_or_new(*texture);
     }
@@ -89,9 +91,11 @@ namespace gtulu {
     boost::shared_ptr< attachment > attachment_manager::get_current(obj::renderbuffer_base const& renderbuffer) {
       return get_current(*renderbuffer);
     }
+
     boost::shared_ptr< attachment > attachment_manager::get_new(obj::renderbuffer_base const& renderbuffer) {
       return get_new(*renderbuffer);
     }
+
     boost::shared_ptr< attachment > attachment_manager::get_current_or_new(obj::renderbuffer_base const& renderbuffer) {
       return get_current_or_new(*renderbuffer);
     }

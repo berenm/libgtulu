@@ -62,6 +62,7 @@ int main(int argc, char* argv[]) {
     std::size_t y_position;
     std::cin >> y_position;
     y_positions.push_back(y_position);
+
     // max_y = std::max(static_cast< float >(log(y_position) / log(10)), max_y);
   }
 

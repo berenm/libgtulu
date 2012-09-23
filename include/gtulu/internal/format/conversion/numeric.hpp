@@ -22,10 +22,10 @@ namespace gtulu {
         template< typename NumericFormat >
         struct to_value_type;
 
-#define DECLARE_CONVERSION(value_type_m, numeric_format_m)      \
-  template< >                                                   \
-  struct to_value_type< numeric::numeric_format_m > {           \
-      typedef value_type_m type;                                \
+#define DECLARE_CONVERSION(value_type_m, numeric_format_m) \
+  template< >                                              \
+  struct to_value_type< numeric::numeric_format_m > {      \
+    typedef value_type_m type;                             \
   };
 
         DECLARE_CONVERSION(bool, bool_)
@@ -61,10 +61,10 @@ namespace gtulu {
         template< typename Width >
         struct size_of;
 
-#define DECLARE_CONVERSION(value_m, width_m)            \
-  template< >                                           \
-  struct size_of< numeric::width::width_m > {           \
-      static std::uint8_t const value = value_m;        \
+#define DECLARE_CONVERSION(value_m, width_m)   \
+  template< >                                  \
+  struct size_of< numeric::width::width_m > {  \
+    static std::uint8_t const value = value_m; \
   };
 
         DECLARE_CONVERSION(1, one_bit)

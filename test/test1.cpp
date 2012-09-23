@@ -10,7 +10,7 @@
 #include "gtulu/internal/context.hpp"
 #include "generated/test1_program_format.hpp"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   using namespace gtulu::internal;
 
   context::context::create(argc, argv);
@@ -20,11 +20,13 @@ int main(int argc, char *argv[]) {
   obj::texture< texture_format > texture;
 
   // New data buffers.
-  float postisions_data[] = { -0.9f, 0.9f, -0.9f, -0.9f, 0.9f, 0.9f, 0.9f, -0.9f };
-  float texture_positions_data[] = { 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f };
-  std::uint8_t indexes_data[] = { 0, 1, 2, 3 };
-  obj::buffer< fdat::gl_float > positions(postisions_data);
-  obj::buffer< fdat::gl_float > texture_positions(texture_positions_data);
+  float                                 postisions_data[] = {
+    -0.9f, 0.9f, -0.9f, -0.9f, 0.9f, 0.9f, 0.9f, -0.9f
+  };
+  float                                 texture_positions_data[] = { 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f };
+  std::uint8_t                          indexes_data[]           = { 0, 1, 2, 3 };
+  obj::buffer< fdat::gl_float >         positions(postisions_data);
+  obj::buffer< fdat::gl_float >         texture_positions(texture_positions_data);
   obj::buffer< fdat::gl_unsigned_byte > indexes(indexes_data);
 
   // New shader program.

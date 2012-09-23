@@ -67,6 +67,7 @@ namespace gtulu {
               return cst::invalid_constant();
             }
           }
+
         } // namespace format
 
       } // namespace output

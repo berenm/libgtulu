@@ -22,27 +22,27 @@ namespace gtulu {
         META_ASPECT_DECLARE(format,
                             Format,
                             using cst::,
-                            (gl_r8)(gl_r8_snorm)(gl_r16)(gl_r16_snorm)(gl_rg8)(gl_rg8_snorm)(gl_rg16)(gl_rg16_snorm)(gl_r3_g3_b2)(gl_rgb4)(gl_rgb5)(gl_rgb8)(gl_rgb8_snorm)(gl_rgb10)(gl_rgb12)(gl_rgb16)(gl_rgb16_snorm)(gl_rgba2)(gl_rgba4)(gl_rgb5_a1)(gl_rgba8)(gl_rgba8_snorm)(gl_rgb10_a2)(gl_rgba12)(gl_rgba16)(gl_rgba16_snorm)(gl_srgb8)(gl_srgb8_alpha8)(gl_r16f)(gl_rg16f)(gl_rgb16f)(gl_rgba16f)(gl_r32f)(gl_rg32f)(gl_rgb32f)(gl_rgba32f)(gl_r11f_g11f_b10f)(gl_rgb9_e5)(gl_r8i)(gl_r8ui)(gl_r16i)(gl_r16ui)(gl_r32i)(gl_r32ui)(gl_rg8i)(gl_rg8ui)(gl_rg16i)(gl_rg16ui)(gl_rg32i)(gl_rg32ui)(gl_rgb8i)(gl_rgb8ui)(gl_rgb16i)(gl_rgb16ui)(gl_rgb32i)(gl_rgb32ui)(gl_rgba8i)(gl_rgba8ui)(gl_rgba16i)(gl_rgba16ui)(gl_rgba32i)(gl_rgba32ui)(gl_depth_component16 )(gl_depth_component24 )(gl_depth_component32 )(gl_depth_component32f )(gl_depth24_stencil8)(gl_depth32f_stencil8)(gl_compressed_red)(gl_compressed_rg)(gl_compressed_rgb)(gl_compressed_rgba)(gl_compressed_srgb)(gl_compressed_srgb_alpha)(gl_compressed_red_rgtc1)(gl_compressed_signed_red_rgtc1)(gl_compressed_rg_rgtc2)(gl_compressed_signed_rg_rgtc2)(gl_stencil_index1 )(gl_stencil_index4 )(gl_stencil_index8 )(gl_stencil_index16 ))
+                                  (gl_r8) (gl_r8_snorm) (gl_r16) (gl_r16_snorm) (gl_rg8) (gl_rg8_snorm) (gl_rg16) (gl_rg16_snorm) (gl_r3_g3_b2) (gl_rgb4) (gl_rgb5) (gl_rgb8) (gl_rgb8_snorm) (gl_rgb10) (gl_rgb12) (gl_rgb16) (gl_rgb16_snorm) (gl_rgba2) (gl_rgba4) (gl_rgb5_a1) (gl_rgba8) (gl_rgba8_snorm) (gl_rgb10_a2) (gl_rgba12) (gl_rgba16) (gl_rgba16_snorm) (gl_srgb8) (gl_srgb8_alpha8) (gl_r16f) (gl_rg16f) (gl_rgb16f) (gl_rgba16f) (gl_r32f) (gl_rg32f) (gl_rgb32f) (gl_rgba32f) (gl_r11f_g11f_b10f) (gl_rgb9_e5) (gl_r8i) (gl_r8ui) (gl_r16i) (gl_r16ui) (gl_r32i) (gl_r32ui) (gl_rg8i) (gl_rg8ui) (gl_rg16i) (gl_rg16ui) (gl_rg32i) (gl_rg32ui) (gl_rgb8i) (gl_rgb8ui) (gl_rgb16i) (gl_rgb16ui) (gl_rgb32i) (gl_rgb32ui) (gl_rgba8i) (gl_rgba8ui) (gl_rgba16i) (gl_rgba16ui) (gl_rgba32i) (gl_rgba32ui) (gl_depth_component16) (gl_depth_component24) (gl_depth_component32) (gl_depth_component32f) (gl_depth24_stencil8) (gl_depth32f_stencil8) (gl_compressed_red) (gl_compressed_rg) (gl_compressed_rgb) (gl_compressed_rgba) (gl_compressed_srgb) (gl_compressed_srgb_alpha) (gl_compressed_red_rgtc1) (gl_compressed_signed_red_rgtc1) (gl_compressed_rg_rgtc2) (gl_compressed_signed_rg_rgtc2) (gl_stencil_index1) (gl_stencil_index4) (gl_stencil_index8) (gl_stencil_index16))
         namespace format {
-          typedef cst::gl_depth_component16 gl_depth16;
-          typedef cst::gl_depth_component24 gl_depth24;
-          typedef cst::gl_depth_component32 gl_depth32;
+          typedef cst::gl_depth_component16  gl_depth16;
+          typedef cst::gl_depth_component24  gl_depth24;
+          typedef cst::gl_depth_component32  gl_depth32;
           typedef cst::gl_depth_component32f gl_depth32f;
-          typedef cst::gl_stencil_index1 gl_stencil1;
-          typedef cst::gl_stencil_index4 gl_stencil4;
-          typedef cst::gl_stencil_index8 gl_stencil8;
-          typedef cst::gl_stencil_index16 gl_stencil16;
+          typedef cst::gl_stencil_index1     gl_stencil1;
+          typedef cst::gl_stencil_index4     gl_stencil4;
+          typedef cst::gl_stencil_index8     gl_stencil8;
+          typedef cst::gl_stencil_index16    gl_stencil16;
         } // namespace format
 
         typedef std::uint32_t size_type;
 
         template< typename Format, typename Component, typename Numeric, typename Compression, typename Target >
         struct internal_format_aspect {
-            typedef Format format;
-            typedef Component component;
-            typedef Numeric numeric;
-            typedef Compression compression;
-            typedef Target target;
+          typedef Format      format;
+          typedef Component   component;
+          typedef Numeric     numeric;
+          typedef Compression compression;
+          typedef Target      target;
         };
 
         template< typename Format >
@@ -50,31 +50,31 @@ namespace gtulu {
 
         template< typename Component, typename Numeric, typename Compression >
         struct select_format {
-            template< typename Type >
-            struct lazy_false: boost::false_type {
-            };
-            static_assert(lazy_false< Component >::value, "Unable to find an internal format with such criterias.");
+          template< typename Type >
+          struct lazy_false : boost::false_type {};
 
-            typedef void type;
+          static_assert(lazy_false< Component >::value, "Unable to find an internal format with such criterias.");
+
+          typedef void type;
         };
 
-#define DECLARE_FORMAT(format_m, component_m, numeric_m, compression_m, target_m)       \
-    template< > struct internal_format< format::format_m > {                            \
-        typedef internal_format_aspect< format::format_m,                               \
-                                        fcmn::component::component_m,                     \
-                                        fcmn::numeric::numeric_m,                         \
-                                        fcmn::compression::compression_m,                 \
-                                        fcmn::target::target_m > aspect;                  \
-    };                                                                                  \
-    typedef internal_format< format::format_m > format_m;
+#define DECLARE_FORMAT(format_m, component_m, numeric_m, compression_m, target_m) \
+  template< > struct internal_format< format::format_m > {                        \
+    typedef internal_format_aspect< format::format_m,                             \
+                                    fcmn::component::component_m,                 \
+                                    fcmn::numeric::numeric_m,                     \
+                                    fcmn::compression::compression_m,             \
+                                    fcmn::target::target_m > aspect;              \
+  };                                                                              \
+  typedef internal_format< format::format_m > format_m;
 
-#define DECLARE_FORMAT_DEFAULT(format_m, component_m, numeric_m, compression_m, target_m)       \
-    DECLARE_FORMAT(format_m, component_m, numeric_m, compression_m, target_m)                   \
-    template< > struct select_format< fcmn::component::component_m,                               \
-                                      fcmn::numeric::numeric_m,                                   \
-                                      fcmn::compression::compression_m > {                        \
-        typedef format_m type;                                                                  \
-    };
+#define DECLARE_FORMAT_DEFAULT(format_m, component_m, numeric_m, compression_m, target_m) \
+  DECLARE_FORMAT(format_m, component_m, numeric_m, compression_m, target_m)               \
+  template< > struct select_format< fcmn::component::component_m,                         \
+                                    fcmn::numeric::numeric_m,                             \
+                                    fcmn::compression::compression_m > {                  \
+    typedef format_m type;                                                                \
+  };
 
         DECLARE_FORMAT_DEFAULT(gl_r8, red, ufixed8_, none, any)
         DECLARE_FORMAT_DEFAULT(gl_r8_snorm, red, fixed8_, none, texture)
@@ -163,10 +163,11 @@ namespace gtulu {
 #undef DECLARE_FORMAT
 
         template< typename Format > struct base_internal_format;
-#define DECLARE_DEFAULT_FORMAT(component_m, numeric_m, compression_m)           \
-    typedef select_format< fcmn::component::component_m,                          \
-                           fcmn::numeric::numeric_m,                              \
-                           fcmn::compression::compression_m >::type component_m;
+
+#define DECLARE_DEFAULT_FORMAT(component_m, numeric_m, compression_m) \
+  typedef select_format< fcmn::component::component_m,                \
+                         fcmn::numeric::numeric_m,                    \
+                         fcmn::compression::compression_m >::type component_m;
 
         DECLARE_DEFAULT_FORMAT(red, ufixed8_, none)
         DECLARE_DEFAULT_FORMAT(red_green, ufixed8_, none)

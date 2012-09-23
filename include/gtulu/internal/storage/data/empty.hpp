@@ -18,37 +18,36 @@ namespace gtulu {
 
         template< typename DataFormat >
         struct empty {
-            empty(std::size_t const width_in, std::size_t const height_in = 1, std::size_t const depth_in = 1) :
-                width_(width_in), height_(height_in), depth_(depth_in) {
-            }
+          empty(std::size_t const width_in, std::size_t const height_in=1, std::size_t const depth_in=1) :
+            width_(width_in), height_(height_in), depth_(depth_in) {}
 
-            uint8_t* write() const {
-              return 0;
-            }
+          uint8_t* write() const {
+            return 0;
+          }
 
-            uint8_t const* read() const {
-              return 0;
-            }
+          uint8_t const* read() const {
+            return 0;
+          }
 
-            std::size_t value_size() const {
-              return fcmn::size_of< DataFormat >::value;
-            }
+          std::size_t value_size() const {
+            return fcmn::size_of< DataFormat >::value;
+          }
 
-            std::size_t size() const {
-              return 0;
-            }
+          std::size_t size() const {
+            return 0;
+          }
 
-            std::size_t width() const {
-              return width_;
-            }
+          std::size_t width() const {
+            return width_;
+          }
 
-            std::size_t height() const {
-              return height_;
-            }
+          std::size_t height() const {
+            return height_;
+          }
 
-            std::size_t depth() const {
-              return depth_;
-            }
+          std::size_t depth() const {
+            return depth_;
+          }
 
           private:
             std::size_t width_;

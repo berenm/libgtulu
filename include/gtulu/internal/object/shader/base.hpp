@@ -20,21 +20,22 @@ namespace gtulu {
   namespace internal {
 
     namespace object {
-      struct shader_base: public plug< shader_base > {
-          virtual ~shader_base() {
-          }
+      struct shader_base : public plug< shader_base > {
+        virtual ~shader_base() {}
 
-          virtual void compile();
+        virtual void compile();
 
-          template< typename ShaderAttribute >
-          inline std::uint32_t get() const {
-            std::int32_t data;
-            fct::get_shader< ShaderAttribute >::call(handle_, &data);
-            return data;
-          }
-          void set();
+        template< typename ShaderAttribute >
+        inline std::uint32_t get() const {
+          std::int32_t data;
 
-          void set_source(char const* code);
+          fct::get_shader< ShaderAttribute >::call(handle_, &data);
+          return data;
+        }
+
+        void set();
+
+        void set_source(char const* code);
 
         protected:
           template< typename ShaderType >
@@ -43,7 +44,9 @@ namespace gtulu {
               handle_ = fct::create_shader< ShaderType >::call();
             }
           }
+
       };
+
     } // namespace object
 
   } // namespace internal

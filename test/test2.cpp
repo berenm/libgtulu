@@ -10,7 +10,7 @@
 #include "gtulu/internal/context.hpp"
 #include "generated/test2_program_format.hpp"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   using namespace gtulu::internal;
 
   context::context::create(argc, argv);

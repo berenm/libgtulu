@@ -15,6 +15,7 @@
 template< int Parameter >
 void print_config_attrib(EGLDisplay& display, EGLConfig& config) {
   EGLint value;
+
   eglGetConfigAttrib(display, config, Parameter, &value);
 
   if (value > 1024 * 1024) {
@@ -29,14 +30,17 @@ void print_config_attrib(EGLDisplay& display, EGLConfig& config) {
 template< >
 void print_config_attrib< EGL_COLOR_BUFFER_TYPE >(EGLDisplay& display, EGLConfig& config) {
   EGLint value;
+
   eglGetConfigAttrib(display, config, EGL_COLOR_BUFFER_TYPE, &value);
   switch (value) {
     case EGL_RGB_BUFFER:
       std::cout << "   RGB ";
       break;
+
     case EGL_LUMINANCE_BUFFER:
       std::cout << "   LUM ";
       break;
+
     default:
       std::cout << "     ? ";
       break;
@@ -46,17 +50,21 @@ void print_config_attrib< EGL_COLOR_BUFFER_TYPE >(EGLDisplay& display, EGLConfig
 template< >
 void print_config_attrib< EGL_CONFIG_CAVEAT >(EGLDisplay& display, EGLConfig& config) {
   EGLint value;
+
   eglGetConfigAttrib(display, config, EGL_CONFIG_CAVEAT, &value);
   switch (value) {
     case EGL_NONE:
       std::cout << "     - ";
       break;
+
     case EGL_SLOW_CONFIG:
       std::cout << "  SLOW ";
       break;
+
     case EGL_NON_CONFORMANT_CONFIG:
       std::cout << " NCONF ";
       break;
+
     default:
       std::cout << "     ? ";
       break;
@@ -66,6 +74,7 @@ void print_config_attrib< EGL_CONFIG_CAVEAT >(EGLDisplay& display, EGLConfig& co
 template< >
 void print_config_attrib< EGL_CONFORMANT >(EGLDisplay& display, EGLConfig& config) {
   EGLint value;
+
   eglGetConfigAttrib(display, config, EGL_CONFORMANT, &value);
   char conf[] = ".-..-. ";
   if (value & EGL_OPENGL_BIT) {
@@ -88,6 +97,7 @@ void print_config_attrib< EGL_CONFORMANT >(EGLDisplay& display, EGLConfig& confi
 template< >
 void print_config_attrib< EGL_RENDERABLE_TYPE >(EGLDisplay& display, EGLConfig& config) {
   EGLint value;
+
   eglGetConfigAttrib(display, config, EGL_RENDERABLE_TYPE, &value);
   char rdr[] = ".-..-. ";
   if (value & EGL_OPENGL_BIT) {
@@ -110,6 +120,7 @@ void print_config_attrib< EGL_RENDERABLE_TYPE >(EGLDisplay& display, EGLConfig& 
 template< >
 void print_config_attrib< EGL_SURFACE_TYPE >(EGLDisplay& display, EGLConfig& config) {
   EGLint value;
+
   eglGetConfigAttrib(display, config, EGL_SURFACE_TYPE, &value);
   char surf[] = ".......";
   if (value & EGL_WINDOW_BIT) {
@@ -139,25 +150,28 @@ void print_config_attrib< EGL_SURFACE_TYPE >(EGLDisplay& display, EGLConfig& con
 template< >
 void print_config_attrib< EGL_TRANSPARENT_TYPE >(EGLDisplay& display, EGLConfig& config) {
   EGLint value;
+
   eglGetConfigAttrib(display, config, EGL_TRANSPARENT_TYPE, &value);
   switch (value) {
     case EGL_NONE:
       std::cout << "     - ";
       break;
+
     case EGL_TRANSPARENT_RGB:
       std::cout << "   RGB ";
       break;
+
     default:
       std::cout << "     ? ";
       break;
   }
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
   setenv("EGL_DRIVER", "egl_glx", 0);
 
   EGLNativeDisplayType native_display = XOpenDisplay(NULL);
-  EGLDisplay display = eglGetDisplay(native_display);
+  EGLDisplay           display        = eglGetDisplay(native_display);
 
   EGLint major;
   EGLint minor;
@@ -178,10 +192,10 @@ int main(int argc, char **argv) {
   eglChooseConfig(display, attributes, configs, config_count, &config_count);
 
   std::cout
-      << "BUF_SZ RED_SZ GRE_SZ BLU_SZ LUM_SZ ALP_SZ AMS_SZ  T_RGB T_RGBA COL_BF CAVEAT     ID CONFMT DEP_SZ  LEVEL M_PB_W M_PB_H M_PB_P MX_SWP MN_SWP NTV_RD NTV_VI NTV_VT  RDR_T SM_BUF SM_NUM STC_SZ SURF_T TS_TYP TS_RED TS_GRE TS_BLU\n";
+  << "BUF_SZ RED_SZ GRE_SZ BLU_SZ LUM_SZ ALP_SZ AMS_SZ  T_RGB T_RGBA COL_BF CAVEAT     ID CONFMT DEP_SZ  LEVEL M_PB_W M_PB_H M_PB_P MX_SWP MN_SWP NTV_RD NTV_VI NTV_VT  RDR_T SM_BUF SM_NUM STC_SZ SURF_T TS_TYP TS_RED TS_GRE TS_BLU\n";
   for (size_t i = 0; i < config_count; ++i) {
     EGLConfig& config = configs[i];
-    EGLint value;
+    EGLint     value;
     print_config_attrib< EGL_BUFFER_SIZE >(display, config);
     print_config_attrib< EGL_RED_SIZE >(display, config);
     print_config_attrib< EGL_GREEN_SIZE >(display, config);
@@ -222,4 +236,4 @@ int main(int argc, char **argv) {
   delete[] configs;
 
   eglTerminate(display);
-}
+} // main

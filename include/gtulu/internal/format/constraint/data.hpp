@@ -58,13 +58,13 @@ namespace gtulu {
         struct packing_check {
           typedef bm::and_< fcmn::packing::is_four_in_one< DataFormat >,
                             bm::not_< fcmn::component::is_red_green_blue_alpha< InternalFormat > > >
-            data_is_four_packed_but_internal_is_not_rgba;
+          data_is_four_packed_but_internal_is_not_rgba;
           typedef bm::and_< fcmn::packing::is_three_in_one< DataFormat >,
                             bm::not_< fcmn::component::is_red_green_blue< InternalFormat > > >
-            data_is_three_packed_but_internal_is_not_rgb;
+          data_is_three_packed_but_internal_is_not_rgb;
           typedef bm::and_< fcmn::packing::is_two_in_one< DataFormat >,
                             bm::not_< fcmn::component::is_depth_stencil< InternalFormat > > >
-            data_is_two_packed_but_internal_is_not_depth_stencil;
+          data_is_two_packed_but_internal_is_not_depth_stencil;
 
           typedef bm::and_< bm::not_< data_is_four_packed_but_internal_is_not_rgba >,
                             bm::not_< data_is_three_packed_but_internal_is_not_rgb >,

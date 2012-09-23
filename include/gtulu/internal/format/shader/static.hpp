@@ -18,16 +18,17 @@ namespace gtulu {
       namespace shader {
 
         template< typename ShaderType >
-        struct static_shader_format: virtual public obj::shader_base {
-            static_shader_format() {
-              create_shader();
-            }
+        struct static_shader_format : virtual public obj::shader_base {
+          static_shader_format() {
+            create_shader();
 
-            void create_shader() {
-              obj::shader_base::create_shader< ShaderType >();
-            }
+          }
 
-            virtual char const* get_source() const = 0;
+          void create_shader() {
+            obj::shader_base::create_shader< ShaderType >();
+          }
+
+          virtual char const* get_source() const = 0;
         };
 
       } // namespace shader

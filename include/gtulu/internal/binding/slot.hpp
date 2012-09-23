@@ -18,8 +18,8 @@ namespace gtulu {
 
         template< typename ObjectBase, typename ObjectBaseSlot >
         struct object_slot {
-            typedef ObjectBase object_type;
-            typedef ObjectBaseSlot slot_type;
+          typedef ObjectBase     object_type;
+          typedef ObjectBaseSlot slot_type;
         };
 
       } // namespace slot

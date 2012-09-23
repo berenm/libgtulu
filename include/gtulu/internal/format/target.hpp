@@ -22,29 +22,29 @@ namespace gtulu {
         META_ASPECT_DECLARE(format,
                             Format,
                             using cst::,
-                            (gl_texture_1d)(gl_texture_1d_array)(gl_texture_2d)(gl_texture_2d_array)(gl_texture_2d_multisample)(gl_texture_2d_multisample_array)(gl_texture_3d)(gl_texture_rectangle)(gl_texture_buffer)(gl_texture_cube_map)(gl_texture_cube_map_negative_x)(gl_texture_cube_map_negative_y)(gl_texture_cube_map_negative_z)(gl_texture_cube_map_positive_x)(gl_texture_cube_map_positive_y)(gl_texture_cube_map_positive_z)(gl_renderbuffer))
+                                  (gl_texture_1d) (gl_texture_1d_array) (gl_texture_2d) (gl_texture_2d_array) (gl_texture_2d_multisample) (gl_texture_2d_multisample_array) (gl_texture_3d) (gl_texture_rectangle) (gl_texture_buffer) (gl_texture_cube_map) (gl_texture_cube_map_negative_x) (gl_texture_cube_map_negative_y) (gl_texture_cube_map_negative_z) (gl_texture_cube_map_positive_x) (gl_texture_cube_map_positive_y) (gl_texture_cube_map_positive_z) (gl_renderbuffer))
 
         template< typename Format, typename Target, typename Dimension, typename Cardinality, typename Sample >
         struct target_aspect {
-            typedef Format format;
-            typedef Target target;
-            typedef Dimension dimension;
-            typedef Cardinality cardinality;
-            typedef Sample sample;
+          typedef Format      format;
+          typedef Target      target;
+          typedef Dimension   dimension;
+          typedef Cardinality cardinality;
+          typedef Sample      sample;
         };
 
         template< typename Format >
         struct target_format;
 
 #define DECLARE_TARGET_FORMAT(format_m, target_m, dimension_m, cardinality_m, sample_m) \
-      template< > struct target_format< format::format_m > {                            \
-          typedef target_aspect< format::format_m,                                      \
-                                 fcmn::target::target_m,                                  \
-                                 fcmn::dimension::dimension_m,                            \
-                                 fcmn::cardinality::cardinality_m,                        \
-                                 fcmn::sample::sample_m > aspect;                         \
-      };                                                                                \
-      typedef target_format< format::format_m > format_m;
+  template< > struct target_format< format::format_m > {                                \
+    typedef target_aspect< format::format_m,                                            \
+                           fcmn::target::target_m,                                      \
+                           fcmn::dimension::dimension_m,                                \
+                           fcmn::cardinality::cardinality_m,                            \
+                           fcmn::sample::sample_m > aspect;                             \
+  };                                                                                    \
+  typedef target_format< format::format_m > format_m;
 
         DECLARE_TARGET_FORMAT(gl_texture_1d, texture, oned, one, simple)
         DECLARE_TARGET_FORMAT(gl_texture_1d_array, texture, oned, array, simple)

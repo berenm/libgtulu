@@ -27,6 +27,7 @@ namespace gtulu {
       struct gl_constant;
 
       struct runtime_constant;
+
       struct invalid_constant;
 
       using gen::gl::v1_0::constant::gl_version_1_0;
@@ -634,6 +635,7 @@ namespace gtulu {
       using gen::gl::v3_0::constant::gl_framebuffer_undefined;
       using gen::gl::v3_0::constant::gl_framebuffer_unsupported;
       using gen::gl::v3_0::constant::gl_half_float;
+
       // ERROR: using unknown constant GL_INDEX;
       using gen::gl::v3_0::constant::gl_invalid_framebuffer_operation;
       using gen::gl::v3_0::constant::gl_map_flush_explicit_bit;

@@ -30,51 +30,54 @@ namespace gtulu {
 
       template< >
       struct framebuffer_format_base< obj::drawable const& > {
-          attachment_manager manager;
-          std::vector< std::uint32_t > colors;
+        attachment_manager manager;
 
-          framebuffer_format_base() {
-            colors.resize(manager.max_attachment, 0);
-          }
+        std::vector< std::uint32_t > colors;
 
-          void bind_colors() const {
-            fct::draw_buffers< >::call(colors.size(), colors.data());
-          }
+        framebuffer_format_base() {
+          colors.resize(manager.max_attachment, 0);
+        }
 
-          template< typename FramebufferSlotType, typename TextureFormat >
-          void set(std::uint32_t const location, obj::texture< TextureFormat > const& drawable) {
-            boost::shared_ptr< attachment > attachment = manager.get_current_or_new(drawable);
-            fbf::attacher< FramebufferSlotType >::template attach< fbf::layered::no >(attachment->get_color(),
-                                                                                      drawable,
-                                                                                      0,
-                                                                                      0);
-            colors[location] = std::uint32_t(attachment->get_color());
-          }
+        void bind_colors() const {
+          fct::draw_buffers< >::call(colors.size(), colors.data());
+        }
 
-          template< typename FramebufferSlotType >
-          void set(std::uint32_t const location, obj::renderbuffer_base const& drawable) {
-            boost::shared_ptr< attachment > attachment = manager.get_current_or_new(drawable);
-            fbf::attacher< FramebufferSlotType >::attach(attachment->get_color(), drawable);
-            colors[location] = std::uint32_t(attachment->get_color());
-          }
+        template< typename FramebufferSlotType, typename TextureFormat >
+        void set(std::uint32_t const location, obj::texture< TextureFormat > const& drawable) {
+          boost::shared_ptr< attachment > attachment = manager.get_current_or_new(drawable);
+          fbf::attacher< FramebufferSlotType >::template attach< fbf::layered::no >(attachment->get_color(),
+                                                                                    drawable,
+                                                                                    0,
+                                                                                    0);
+          colors[location] = std::uint32_t(attachment->get_color());
+        }
+
+        template< typename FramebufferSlotType >
+        void set(std::uint32_t const location, obj::renderbuffer_base const& drawable) {
+          boost::shared_ptr< attachment > attachment = manager.get_current_or_new(drawable);
+          fbf::attacher< FramebufferSlotType >::attach(attachment->get_color(), drawable);
+          colors[location] = std::uint32_t(attachment->get_color());
+        }
+
       };
 
       template< >
       struct framebuffer_format_base< const obj::default_drawable > {
-          std::vector< std::uint32_t > colors;
+        std::vector< std::uint32_t > colors;
 
-          framebuffer_format_base() {
-            colors.resize(4, 0);
-          }
+        framebuffer_format_base() {
+          colors.resize(4, 0);
+        }
 
-          void bind_colors() const {
-            fct::draw_buffers< >::call(4, colors.data());
-          }
+        void bind_colors() const {
+          fct::draw_buffers< >::call(4, colors.data());
+        }
 
-          template< typename FramebufferSlotType >
-          void set(std::uint32_t const location, obj::default_drawable const drawable) {
-            colors[location] = static_cast< std::uint32_t >(drawable);
-          }
+        template< typename FramebufferSlotType >
+        void set(std::uint32_t const location, obj::default_drawable const drawable) {
+          colors[location] = static_cast< std::uint32_t >(drawable);
+        }
+
       };
 
     } // namespace framebuffer

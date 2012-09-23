@@ -16,21 +16,23 @@
 #include "gtulu/internal/storage/data/traits.hpp"
 #include "gtulu/internal/storage.hpp"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   using namespace gtulu::internal;
   namespace bgil = ::boost::gil;
 
   ctx::context::create(argc, argv);
 
-  float const positions_data[] = { -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f };
+  float const        positions_data[] = {
+    -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f
+  };
   std::uint8_t const indexes_data[] = { 0, 1, 2, 3 };
 
-  obj::buffer< fdat::gl_float > positions(positions_data);
+  obj::buffer< fdat::gl_float >         positions(positions_data);
   obj::buffer< fdat::gl_unsigned_byte > indexes(indexes_data);
 
   obj::program< fprg::client_program_format > program;
-  auto framebuffer = program.gnew_framebuffer();
-  auto vertexarray = program.new_vertexarray();
+  auto                                        framebuffer = program.gnew_framebuffer();
+  auto                                        vertexarray = program.new_vertexarray();
 
   // Bind the vertex attribute named "position" to the positions buffer and "texture_position" to the texture_positions buffer.
   vertexarray->set_position(positions);
@@ -42,12 +44,12 @@ int main(int argc, char *argv[]) {
   // Select default texture format for 2d texture.
   typedef ftex::select_format< ftgt::gl_texture_2d, fcmn::component::red_green_blue, fnum::ufixed8_ >::type texture_format;
   typedef ftex::select_format< ftgt::gl_texture_3d, fcmn::component::red_green_blue, fnum::ufixed8_ >::type texture_format_3d;
-  typedef ftex::select_format< ftgt::gl_texture_2d, fcmn::component::red_green_blue, fnum::uint8_ >::type utexture_format;
-  obj::texture< utexture_format > characters;
-  obj::texture< utexture_format > tiles;
-  obj::texture< utexture_format > tiles_color;
+  typedef ftex::select_format< ftgt::gl_texture_2d, fcmn::component::red_green_blue, fnum::uint8_ >::type   utexture_format;
+  obj::texture< utexture_format >   characters;
+  obj::texture< utexture_format >   tiles;
+  obj::texture< utexture_format >   tiles_color;
   obj::texture< texture_format_3d > tilesets;
-  obj::texture< texture_format > output_texture;
+  obj::texture< texture_format >    output_texture;
 
   /* ----- PNG Version ---------------------------------------------------------------------------------------------- */
 
@@ -63,14 +65,14 @@ int main(int argc, char *argv[]) {
   framebuffer->set_output_image(output_texture);
   vertexarray->draw< drw::mode::gl_triangle_strip >(program, *framebuffer, indexes, 4);
 
-//  __gtulu_info() << "reading output image from GPU...";
-//  sto::copy(output_image, output_texture);
-//  __gtulu_info() << "read output image from GPU.";
-//
-//  __gtulu_info() << "writing png output image to disk...";
-//  bgil::write_view("test/data/mona_lisa_out.png", boost::gil::view(output_image), bgil::png_tag());
+  // __gtulu_info() << "reading output image from GPU...";
+  // sto::copy(output_image, output_texture);
+  // __gtulu_info() << "read output image from GPU.";
+  //
+  // __gtulu_info() << "writing png output image to disk...";
+  // bgil::write_view("test/data/mona_lisa_out.png", boost::gil::view(output_image), bgil::png_tag());
   __gtulu_info() << "written png output image to disk.";
 
   ctx::context::destroy();
   return 0;
-}
+} // main

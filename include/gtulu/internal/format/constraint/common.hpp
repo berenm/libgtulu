@@ -24,44 +24,43 @@ namespace gtulu {
         namespace component {
 
           template< typename Format >
-          struct has_no_red: bm::and_< is_not_red< Format >, is_not_red_green< Format >,
-              is_not_red_green_blue< Format >, is_not_red_green_blue_alpha< Format > > {
-          };
+          struct has_no_red : bm::and_< is_not_red< Format >, is_not_red_green< Format >,
+                                        is_not_red_green_blue< Format >, is_not_red_green_blue_alpha< Format > > {};
+
           template< typename Format >
-          struct has_red: bm::not_< has_no_red< Format > > {
-          };
+          struct has_red : bm::not_< has_no_red< Format > > {};
+
           template< typename Format >
-          struct has_no_green: bm::and_< is_not_green< Format >, is_not_red_green< Format >,
-              is_not_red_green_blue< Format >, is_not_red_green_blue_alpha< Format > > {
-          };
+          struct has_no_green : bm::and_< is_not_green< Format >, is_not_red_green< Format >,
+                                          is_not_red_green_blue< Format >, is_not_red_green_blue_alpha< Format > > {};
+
           template< typename Format >
-          struct has_green: bm::not_< has_no_green< Format > > {
-          };
+          struct has_green : bm::not_< has_no_green< Format > > {};
+
           template< typename Format >
-          struct has_no_blue: bm::and_< is_not_blue< Format >, is_not_red_green_blue< Format >,
-              is_not_red_green_blue_alpha< Format > > {
-          };
+          struct has_no_blue : bm::and_< is_not_blue< Format >, is_not_red_green_blue< Format >,
+                                         is_not_red_green_blue_alpha< Format > > {};
+
           template< typename Format >
-          struct has_blue: bm::not_< has_no_blue< Format > > {
-          };
+          struct has_blue : bm::not_< has_no_blue< Format > > {};
+
           template< typename Format >
-          struct has_no_alpha: is_not_red_green_blue_alpha< Format > {
-          };
+          struct has_no_alpha : is_not_red_green_blue_alpha< Format > {};
+
           template< typename Format >
-          struct has_alpha: bm::not_< has_no_alpha< Format > > {
-          };
+          struct has_alpha : bm::not_< has_no_alpha< Format > > {};
+
           template< typename Format >
-          struct has_no_depth: bm::and_< is_not_depth< Format >, is_not_depth_stencil< Format > > {
-          };
+          struct has_no_depth : bm::and_< is_not_depth< Format >, is_not_depth_stencil< Format > > {};
+
           template< typename Format >
-          struct has_depth: bm::not_< has_no_depth< Format > > {
-          };
+          struct has_depth : bm::not_< has_no_depth< Format > > {};
+
           template< typename Format >
-          struct has_no_stencil: bm::and_< is_not_stencil< Format >, is_not_depth_stencil< Format > > {
-          };
+          struct has_no_stencil : bm::and_< is_not_stencil< Format >, is_not_depth_stencil< Format > > {};
+
           template< typename Format >
-          struct has_stencil: bm::not_< has_no_stencil< Format > > {
-          };
+          struct has_stencil : bm::not_< has_no_stencil< Format > > {};
 
         } // namespace component
 

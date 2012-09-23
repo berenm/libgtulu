@@ -11,28 +11,33 @@
 #include "gtulu/namespaces.hpp"
 
 #ifndef GTULU_LOGGING_INITIALIZED
-#define GTULU_LOGGING_INITIALIZED
+# define GTULU_LOGGING_INITIALIZED
 
 // #if defined(GTULU_USE_LIBLOGGING)
-#  include <logging/logging.hpp>
+# include <logging/logging.hpp>
+
 // #endif
 
-#ifdef __logML
-#  define __gtulu_logL(level_m) __logML(gtulu,level_m)
-#else
-#  define __gtulu_logL(level_m) if(0) std::cout
-#endif
+# ifdef __logML
+#  define __gtulu_logL(level_m) __logML(gtulu, level_m)
+# else // ifdef __logML
+#  define __gtulu_logL(level_m) \
+  if (0)                        \
+    std::cout
+# endif // ifdef __logML
 
-#define __gtulu_fatal() __gtulu_logL(fatal)
-#define __gtulu_error() __gtulu_logL(error)
-#define __gtulu_warn()  __gtulu_logL(warning)
-#define __gtulu_info()  __gtulu_logL(info)
+# define __gtulu_fatal() __gtulu_logL(fatal)
+# define __gtulu_error() __gtulu_logL(error)
+# define __gtulu_warn()  __gtulu_logL(warning)
+# define __gtulu_info()  __gtulu_logL(info)
 
-#if defined(GTULU_NO_DEBUG) || defined(NDEBUG)
-#  define __gtulu_debug() if(0) std::cout
-#else
+# if defined(GTULU_NO_DEBUG) || defined(NDEBUG)
+#  define __gtulu_debug() \
+  if (0)                  \
+    std::cout
+# else // if defined(GTULU_NO_DEBUG) || defined(NDEBUG)
 #  define __gtulu_debug() __gtulu_logL(debug)
-#endif
+# endif // if defined(GTULU_NO_DEBUG) || defined(NDEBUG)
 
 #endif /* GTULU_LOGGING_INITIALIZED */
 

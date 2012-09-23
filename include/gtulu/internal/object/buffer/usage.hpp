@@ -23,7 +23,7 @@ namespace gtulu {
       META_ASPECT_DECLARE(usage,
                           Usage,
                           using cst::,
-                          (gl_stream_draw)(gl_stream_read)(gl_stream_copy)(gl_static_draw)(gl_static_read)(gl_static_copy)(gl_dynamic_draw)(gl_dynamic_read)(gl_dynamic_copy))
+                                (gl_stream_draw) (gl_stream_read) (gl_stream_copy) (gl_static_draw) (gl_static_read) (gl_static_copy) (gl_dynamic_draw) (gl_dynamic_read) (gl_dynamic_copy))
 
     } // namespace buffer
 

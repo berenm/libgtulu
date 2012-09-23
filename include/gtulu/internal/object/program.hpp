@@ -24,13 +24,12 @@ namespace gtulu {
 
     namespace object {
       template< typename ProgramFormat >
-      struct program: virtual public program_base, virtual public object< program_base >, public ProgramFormat {
-          program() :
-              object< program_base >() {
-          }
+      struct program : virtual public program_base, virtual public object< program_base >, public ProgramFormat {
+        program() :
+          object< program_base >() {}
 
-          virtual ~program() {
-          }
+        virtual ~program() {}
+
       };
 
       typedef program< fprg::dynamic_program_format > dynamic_program_t;

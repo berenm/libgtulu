@@ -10,7 +10,6 @@
 
 #include "gtulu/namespaces.hpp"
 
-struct texture_unit {
-};
+struct texture_unit {};
 
 #endif /* GTULU_INTERNAL_TEXTURE_UNIT_HPP_ */

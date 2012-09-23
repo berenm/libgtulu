@@ -20,18 +20,20 @@
 #include "gtulu/internal/storage/data/traits.hpp"
 #include "gtulu/internal/storage.hpp"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   using namespace gtulu::internal;
   namespace bgil = ::boost::gil;
 
   ctx::context::create(argc, argv);
 
-  float const positions_data[] = { -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f };
-  float const texture_positions_data[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f };
-  std::uint8_t const indexes_data[] = { 0, 1, 2, 3 };
+  float const        positions_data[] = {
+    -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f
+  };
+  float const        texture_positions_data[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f };
+  std::uint8_t const indexes_data[]           = { 0, 1, 2, 3 };
 
-  obj::buffer< fdat::gl_float > positions(positions_data);
-  obj::buffer< fdat::gl_float > texture_positions(texture_positions_data);
+  obj::buffer< fdat::gl_float >         positions(positions_data);
+  obj::buffer< fdat::gl_float >         texture_positions(texture_positions_data);
   obj::buffer< fdat::gl_unsigned_byte > indexes(indexes_data);
 
   obj::program< fprg::print_image_program_format > program;
@@ -69,6 +71,7 @@ int main(int argc, char *argv[]) {
   __gtulu_info() << "loaded images to GPU.";
 
   __gtulu_info() << "resizing images on GPU...";
+
   // Bind the uniform sampler named "background" to texture.
   program.set_background(texture);
 
@@ -85,39 +88,39 @@ int main(int argc, char *argv[]) {
   bgil::write_view("test/data/mona_lisa_out.png", boost::gil::view(output_image), bgil::png_tag());
   __gtulu_info() << "written png output image to disk.";
 
-//  /* ----- JPEG Version --------------------------------------------------------------------------------------------- */
-//
-//  __gtulu_info() << "loading jpg image from disk...";
-//  bgil::read_image("test/data/mona_lisa.jpg", image, bgil::jpeg_tag());
-//  __gtulu_info() << "loaded jpg image from disk.";
-//
-//  __gtulu_info() << "initializing output image...";
-//  output_image.recreate(image.width() / 4, image.height() / 4);
-//  output_texture.resize(image.width() / 4, image.height() / 4);
-//  __gtulu_info() << "initialized output image.";
-//
-//  __gtulu_info() << "loading images to GPU...";
-//  texture.resize(image.width(), image.height());
-//  sto::copy(texture, image);
-//  __gtulu_info() << "loaded images to GPU.";
-//
-//  __gtulu_info() << "resizing images on GPU...";
-//  // Bind the uniform sampler named "background" to texture.
-//  program.set_background(texture);
-//
-//  framebuffer->set_viewport(output_image.width(), output_image.height(), 10, 0, 0, 0);
-//  framebuffer->set_output_image(output_texture);
-//  vertexarray->draw< drw::mode::gl_triangle_strip >(program, *framebuffer, indexes, 4);
-//  __gtulu_info() << "resized images on GPU.";
-//
-//  __gtulu_info() << "reading output image from GPU...";
-//  sto::copy(output_image, output_texture);
-//  __gtulu_info() << "read output image from GPU.";
-//
-//  __gtulu_info() << "writing jpg output image to disk...";
-//  bgil::write_view("test/data/mona_lisa_out.jpg", boost::gil::view(output_image), bgil::jpeg_tag());
-//  __gtulu_info() << "written jpg output image to disk.";
+  // /* ----- JPEG Version --------------------------------------------------------------------------------------------- */
+  //
+  // __gtulu_info() << "loading jpg image from disk...";
+  // bgil::read_image("test/data/mona_lisa.jpg", image, bgil::jpeg_tag());
+  // __gtulu_info() << "loaded jpg image from disk.";
+  //
+  // __gtulu_info() << "initializing output image...";
+  // output_image.recreate(image.width() / 4, image.height() / 4);
+  // output_texture.resize(image.width() / 4, image.height() / 4);
+  // __gtulu_info() << "initialized output image.";
+  //
+  // __gtulu_info() << "loading images to GPU...";
+  // texture.resize(image.width(), image.height());
+  // sto::copy(texture, image);
+  // __gtulu_info() << "loaded images to GPU.";
+  //
+  // __gtulu_info() << "resizing images on GPU...";
+  // // Bind the uniform sampler named "background" to texture.
+  // program.set_background(texture);
+  //
+  // framebuffer->set_viewport(output_image.width(), output_image.height(), 10, 0, 0, 0);
+  // framebuffer->set_output_image(output_texture);
+  // vertexarray->draw< drw::mode::gl_triangle_strip >(program, *framebuffer, indexes, 4);
+  // __gtulu_info() << "resized images on GPU.";
+  //
+  // __gtulu_info() << "reading output image from GPU...";
+  // sto::copy(output_image, output_texture);
+  // __gtulu_info() << "read output image from GPU.";
+  //
+  // __gtulu_info() << "writing jpg output image to disk...";
+  // bgil::write_view("test/data/mona_lisa_out.jpg", boost::gil::view(output_image), bgil::jpeg_tag());
+  // __gtulu_info() << "written jpg output image to disk.";
 
   ctx::context::destroy();
   return 0;
-}
+} // main

@@ -17,11 +17,10 @@ namespace gtulu {
 
       template< typename ObjectType >
       struct properties_type {
-          typedef ObjectType object_type;
+        typedef ObjectType object_type;
 
-          properties_type(object_type& object) :
-              object_(object) {
-          }
+        properties_type(object_type& object) :
+          object_(object) {}
 
         protected:
           object_type& object_;
@@ -29,28 +28,29 @@ namespace gtulu {
 
       template< typename ObjectType, typename PropertyType, typename ValueType >
       struct property {
-          typedef ObjectType object_type;
-          typedef PropertyType property_type;
-          typedef ValueType value_type;
+        typedef ObjectType   object_type;
+        typedef PropertyType property_type;
+        typedef ValueType    value_type;
 
-          value_type get();
-          operator value_type() {
-            return get();
-          }
+        value_type get();
+        operator value_type() {
+          return get();
+        }
 
-          void set(value_type const& value);
-          property& operator=(value_type const& value) {
-            set(value);
-            return *this;
-          }
+        void set(value_type const& value);
+        property& operator=(value_type const& value) {
+          set(value);
+          return *this;
+        }
 
         protected:
           property(object_type& object) :
-              object_(object) {
-          }
+            object_(object) {}
+
           object_type& object_;
 
-          friend struct properties_type< ObjectType > ;
+          friend struct properties_type< ObjectType >;
+
       };
 
     } // namespace property

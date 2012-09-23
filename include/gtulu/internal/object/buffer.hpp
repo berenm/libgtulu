@@ -32,50 +32,51 @@ namespace gtulu {
       META_ASPECT_DECLARE(parameter,
                           Parameter,
                           using cst::,
-                          (gl_buffer_access)(gl_buffer_mapped)(gl_buffer_size)(gl_buffer_usage))
+                                (gl_buffer_access) (gl_buffer_mapped) (gl_buffer_size) (gl_buffer_usage))
 
     } // namespace buffer
 
     namespace object {
 
-      struct buffer_base: public plug< buffer_base > {
-          template< typename SlotType >
-          inline void bind() const {
-            SlotType::bind(*this);
-          }
+      struct buffer_base : public plug< buffer_base > {
+        template< typename SlotType >
+        inline void bind() const {
+          SlotType::bind(*this);
 
-          template< typename SlotType >
-          inline void bind(std::uint32_t const index) const {
-            SlotType::bind(*this, index);
-          }
+        }
 
-          template< typename SlotType >
-          inline void bind(std::uint32_t const index, std::size_t const offset, std::size_t const size) const {
-            SlotType::bind(*this, index, offset, size);
-          }
+        template< typename SlotType >
+        inline void bind(std::uint32_t const index) const {
+          SlotType::bind(*this, index);
+        }
 
-          template< typename SlotType >
-          inline void unbind() const {
-            SlotType::unbind(*this);
-          }
+        template< typename SlotType >
+        inline void bind(std::uint32_t const index, std::size_t const offset, std::size_t const size) const {
+          SlotType::bind(*this, index, offset, size);
+        }
+
+        template< typename SlotType >
+        inline void unbind() const {
+          SlotType::unbind(*this);
+        }
+
       };
 
       template< typename DataFormat >
-      struct buffer: virtual public buffer_base, virtual public object< buffer_base > {
+      struct buffer : virtual public buffer_base, virtual public object< buffer_base > {
         public:
           typedef typename fcmn::to_value_type< DataFormat >::type data_type_t;
 
           buffer() :
-              object< buffer_base >() {
-          }
-          template< typename BufferUsage = buf::usage::gl_stream_draw >
-          buffer(std::size_t const size) :
-              object< buffer_base >() {
+            object< buffer_base >() {}
+
+          template< typename BufferUsage = buf::usage::gl_stream_draw > buffer(std::size_t const size) :
+            object< buffer_base >() {
             resize< BufferUsage >(size);
           }
-          template< typename SourceStore, typename BufferUsage = buf::usage::gl_stream_draw >
-          buffer(SourceStore const& source_store) :
-              object< buffer_base >() {
+
+          template< typename SourceStore, typename BufferUsage = buf::usage::gl_stream_draw > buffer(SourceStore const& source_store) :
+            object< buffer_base >() {
             sto::init< BufferUsage >(*this, source_store);
           }
 
@@ -92,6 +93,7 @@ namespace gtulu {
             fct::get_buffer_parameter< slot_t, Parameter >::call(&data_out);
             return data_out;
           }
+
       };
 
     } // namespace object

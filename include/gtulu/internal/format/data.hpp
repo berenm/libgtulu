@@ -22,46 +22,46 @@ namespace gtulu {
         META_ASPECT_DECLARE(format,
                             Format,
                             using cst::,
-                            (gl_unsigned_byte)(gl_byte)(gl_unsigned_short)(gl_short)(gl_unsigned_int)(gl_int)(gl_half_float)(gl_float)(gl_double)(gl_unsigned_byte_3_3_2)(gl_unsigned_byte_2_3_3_rev)(gl_unsigned_short_5_6_5)(gl_unsigned_short_5_6_5_rev)(gl_unsigned_short_4_4_4_4)(gl_unsigned_short_4_4_4_4_rev)(gl_unsigned_short_5_5_5_1)(gl_unsigned_short_1_5_5_5_rev)(gl_unsigned_int_8_8_8_8)(gl_unsigned_int_8_8_8_8_rev)(gl_unsigned_int_10_10_10_2)(gl_unsigned_int_2_10_10_10_rev)(gl_int_2_10_10_10_rev)(gl_unsigned_int_24_8)(gl_unsigned_int_10f_11f_11f_rev)(gl_unsigned_int_5_9_9_9_rev)(gl_float_32_unsigned_int_24_8_rev))
+                                  (gl_unsigned_byte) (gl_byte) (gl_unsigned_short) (gl_short) (gl_unsigned_int) (gl_int) (gl_half_float) (gl_float) (gl_double) (gl_unsigned_byte_3_3_2) (gl_unsigned_byte_2_3_3_rev) (gl_unsigned_short_5_6_5) (gl_unsigned_short_5_6_5_rev) (gl_unsigned_short_4_4_4_4) (gl_unsigned_short_4_4_4_4_rev) (gl_unsigned_short_5_5_5_1) (gl_unsigned_short_1_5_5_5_rev) (gl_unsigned_int_8_8_8_8) (gl_unsigned_int_8_8_8_8_rev) (gl_unsigned_int_10_10_10_2) (gl_unsigned_int_2_10_10_10_rev) (gl_int_2_10_10_10_rev) (gl_unsigned_int_24_8) (gl_unsigned_int_10f_11f_11f_rev) (gl_unsigned_int_5_9_9_9_rev) (gl_float_32_unsigned_int_24_8_rev))
         typedef std::uint32_t size_type;
 
         template< typename Format, typename Numeric, typename Packing, typename Order >
         struct data_format_aspect {
-            typedef Format format;
-            typedef Numeric numeric;
-            typedef Packing packing;
-            typedef Order order;
+          typedef Format  format;
+          typedef Numeric numeric;
+          typedef Packing packing;
+          typedef Order   order;
         };
 
         template< typename Format >
         struct data_format;
 
         template< typename Width, typename Packing = fcmn::packing::one_in_one, typename Order = fcmn::order::forward,
-            typename Sign = fnum::sign::unsigned_, typename Integral = fnum::integral::integral >
+                  typename Sign                    = fnum::sign::unsigned_, typename Integral = fnum::integral::integral >
         struct select_format;
 
-#define DECLARE_FORMAT(format_m, numeric_m, packing_m, order_m)         \
-      template< > struct data_format< format::format_m > {              \
-         typedef data_format_aspect< format::format_m,                  \
-                                     fcmn::numeric::numeric_m,            \
-                                     fcmn::packing::packing_m,            \
-                                     fcmn::order::order_m > aspect;       \
-      };                                                                \
-      typedef data_format< format::format_m > format_m;
+#define DECLARE_FORMAT(format_m, numeric_m, packing_m, order_m) \
+  template< > struct data_format< format::format_m > {          \
+    typedef data_format_aspect< format::format_m,               \
+                                fcmn::numeric::numeric_m,       \
+                                fcmn::packing::packing_m,       \
+                                fcmn::order::order_m > aspect;  \
+  };                                                            \
+  typedef data_format< format::format_m > format_m;
 
-#define DECLARE_FORMAT_SELECT(format_m, numeric_m, packing_m, order_m, width_m)         \
-     DECLARE_FORMAT(format_m, numeric_m, packing_m, order_m)                            \
-     template < > struct select_format< fnum::width::width_m,                             \
-                                        fcmn::packing::packing_m,                         \
-                                        fcmn::order::order_m,                             \
-                                        typename fnum::get_sign<                          \
-                                          fcmn::numeric::numeric_m                        \
-                                        >::type,                                        \
-                                        typename fnum::get_integral<                      \
-                                          fcmn::numeric::numeric_m                        \
-                                        >::type > {                                     \
-         typedef format_m type;                                                         \
-     };
+#define DECLARE_FORMAT_SELECT(format_m, numeric_m, packing_m, order_m, width_m) \
+  DECLARE_FORMAT(format_m, numeric_m, packing_m, order_m)                       \
+  template< > struct select_format< fnum::width::width_m,                       \
+                                    fcmn::packing::packing_m,                   \
+                                    fcmn::order::order_m,                       \
+                                    typename fnum::get_sign<                    \
+                                      fcmn::numeric::numeric_m                  \
+                                      >::type,                                  \
+                                    typename fnum::get_integral<                \
+                                      fcmn::numeric::numeric_m                  \
+                                      >::type > {                               \
+    typedef format_m type;                                                      \
+  };
 
         DECLARE_FORMAT_SELECT(gl_unsigned_byte, uint8_, one_in_one, forward, one_byte)
         DECLARE_FORMAT_SELECT(gl_byte, int8_, one_in_one, forward, one_byte)
@@ -92,7 +92,7 @@ namespace gtulu {
 
         template< typename Width, typename Packing, typename Order, typename Sign, typename Integral >
         struct select_format {
-            typedef gl_unsigned_byte type;
+          typedef gl_unsigned_byte type;
         };
 
 #undef DECLARE_FORMAT_SELECT

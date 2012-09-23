@@ -60,12 +60,12 @@ namespace gtulu {
         std::uint32_t unit_nb = unit_it->first;
 
         unit_ptr.reset(new texture_unit(unit_nb));
-        texture_units[unit_nb] = unit_ptr;
+        texture_units[unit_nb]          = unit_ptr;
         texture_unit_mappings[*texture] = unit_ptr;
       } else {
         __gtulu_error() << "unable to find a free texture unit."
-              << "Maybe some texture unit pointers are still active, or maybe the " << max_texture_unit
-              << " texture unit limit has been reached.";
+                        << "Maybe some texture unit pointers are still active, or maybe the " << max_texture_unit
+                        << " texture unit limit has been reached.";
       }
 
       return unit_ptr;

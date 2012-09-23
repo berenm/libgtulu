@@ -22,7 +22,7 @@ namespace gtulu {
         META_ASPECT_DECLARE(format,
                             Format,
                             using cst::,
-                            (gl_float)(gl_float_vec2)(gl_float_vec3)(gl_float_vec4)(gl_int)(gl_int_vec2)(gl_int_vec3)(gl_int_vec4)(gl_unsigned_int)(gl_unsigned_int_vec2)(gl_unsigned_int_vec3)(gl_unsigned_int_vec4))
+                                  (gl_float) (gl_float_vec2) (gl_float_vec3) (gl_float_vec4) (gl_int) (gl_int_vec2) (gl_int_vec3) (gl_int_vec4) (gl_unsigned_int) (gl_unsigned_int_vec2) (gl_unsigned_int_vec3) (gl_unsigned_int_vec4))
 
         namespace format {
           cst::gl_constant_base const get(std::string type_name);
@@ -30,23 +30,23 @@ namespace gtulu {
 
         template< typename Format, typename Numeric, typename Dimension, typename Cardinality >
         struct output_aspect {
-            typedef Format format;
-            typedef Dimension dimension;
-            typedef Cardinality cardinality;
-            typedef Numeric numeric;
+          typedef Format      format;
+          typedef Dimension   dimension;
+          typedef Cardinality cardinality;
+          typedef Numeric     numeric;
         };
 
         template< typename Format >
         struct output_format;
 
 #define DECLARE_FORMAT(format_m, numeric_m, dimension_m, cardinality_m) \
-    template< > struct output_format< format::format_m > {              \
-        typedef output_aspect< format::format_m,                        \
-                               fcmn::numeric::numeric_m,                  \
-                               fcmn::dimension::dimension_m,              \
-                               fcmn::cardinality::cardinality_m > aspect; \
-    };                                                                  \
-    typedef output_format< format::format_m > format_m;
+  template< > struct output_format< format::format_m > {                \
+    typedef output_aspect< format::format_m,                            \
+                           fcmn::numeric::numeric_m,                    \
+                           fcmn::dimension::dimension_m,                \
+                           fcmn::cardinality::cardinality_m > aspect;   \
+  };                                                                    \
+  typedef output_format< format::format_m > format_m;
 
         DECLARE_FORMAT(gl_float, signed_floating, oned, one)
         DECLARE_FORMAT(gl_int, signed_integral, oned, one)

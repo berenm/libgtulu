@@ -18,8 +18,8 @@ namespace gtulu {
 
         template< typename Target, typename Source >
         struct binder {
-            void bind(Target& target, Source& source);
-            void bind(Target const& target, Source& source);
+          void bind(Target& target, Source& source);
+          void bind(Target const& target, Source& source);
         };
 
       } // namespace detail
@@ -28,6 +28,7 @@ namespace gtulu {
       void bind(Target& target, Source& source) {
         detail::binder< Target, Source >::bind(target, source);
       }
+
       template< typename Target, typename Source >
       void bind(Target const& target, Source& source) {
         detail::binder< Target, Source >::bind(target, source);

@@ -20,37 +20,37 @@ namespace gtulu {
         META_ASPECT_DECLARE(format,
                             Format,
                             using cst::,
-                            (gl_sampler_1d)(gl_sampler_2d)(gl_sampler_3d)(gl_sampler_cube)(gl_sampler_1d_shadow)(gl_sampler_2d_shadow)(gl_sampler_1d_array)(gl_sampler_2d_array)(gl_sampler_1d_array_shadow)(gl_sampler_2d_array_shadow)(gl_sampler_2d_multisample)(gl_sampler_2d_multisample_array)(gl_sampler_cube_shadow)(gl_sampler_buffer)(gl_sampler_2d_rect)(gl_sampler_2d_rect_shadow)(gl_int_sampler_1d)(gl_int_sampler_2d)(gl_int_sampler_3d)(gl_int_sampler_cube)(gl_int_sampler_1d_array)(gl_int_sampler_2d_array)(gl_int_sampler_2d_multisample)(gl_int_sampler_2d_multisample_array)(gl_int_sampler_buffer)(gl_int_sampler_2d_rect)(gl_unsigned_int_sampler_1d)(gl_unsigned_int_sampler_2d)(gl_unsigned_int_sampler_3d)(gl_unsigned_int_sampler_cube)(gl_unsigned_int_sampler_1d_array)(gl_unsigned_int_sampler_2d_array)(gl_unsigned_int_sampler_2d_multisample)(gl_unsigned_int_sampler_2d_multisample_array)(gl_unsigned_int_sampler_buffer)(gl_unsigned_int_sampler_2d_rect))
+                                  (gl_sampler_1d) (gl_sampler_2d) (gl_sampler_3d) (gl_sampler_cube) (gl_sampler_1d_shadow) (gl_sampler_2d_shadow) (gl_sampler_1d_array) (gl_sampler_2d_array) (gl_sampler_1d_array_shadow) (gl_sampler_2d_array_shadow) (gl_sampler_2d_multisample) (gl_sampler_2d_multisample_array) (gl_sampler_cube_shadow) (gl_sampler_buffer) (gl_sampler_2d_rect) (gl_sampler_2d_rect_shadow) (gl_int_sampler_1d) (gl_int_sampler_2d) (gl_int_sampler_3d) (gl_int_sampler_cube) (gl_int_sampler_1d_array) (gl_int_sampler_2d_array) (gl_int_sampler_2d_multisample) (gl_int_sampler_2d_multisample_array) (gl_int_sampler_buffer) (gl_int_sampler_2d_rect) (gl_unsigned_int_sampler_1d) (gl_unsigned_int_sampler_2d) (gl_unsigned_int_sampler_3d) (gl_unsigned_int_sampler_cube) (gl_unsigned_int_sampler_1d_array) (gl_unsigned_int_sampler_2d_array) (gl_unsigned_int_sampler_2d_multisample) (gl_unsigned_int_sampler_2d_multisample_array) (gl_unsigned_int_sampler_buffer) (gl_unsigned_int_sampler_2d_rect))
 
         namespace format {
-          bool is_sampler(std::uint32_t value);
+          bool                        is_sampler(std::uint32_t value);
           cst::gl_constant_base const get(std::uint32_t value);
         } // namespace format
 
         template< typename Format, typename Numeric, typename Dimension, typename Cardinality, typename TargetFormat,
-            typename Compare >
+                  typename Compare >
         struct sampler_aspect {
-            typedef Format format;
-            typedef Numeric numeric;
-            typedef Dimension dimension;
-            typedef Cardinality cardinality;
-            typedef TargetFormat target_format;
-            typedef Compare compare;
+          typedef Format       format;
+          typedef Numeric      numeric;
+          typedef Dimension    dimension;
+          typedef Cardinality  cardinality;
+          typedef TargetFormat target_format;
+          typedef Compare      compare;
         };
 
         template< typename Format >
         struct sampler_format;
 
-#define DECLARE_FORMAT(format_m, numeric_m, target_m, compare_m)        \
-        template< > struct sampler_format< format::format_m > {         \
-            typedef sampler_aspect< format::format_m,                   \
-                fcmn::numeric::numeric_m,                                 \
-                fcmn::dimension::oned,                                    \
-                fcmn::cardinality::one,                                   \
-                ftgt::target_m,                                           \
-                fcmn::compare::compare_m > aspect;                        \
-        };                                                              \
-        typedef sampler_format< format::format_m > format_m;
+#define DECLARE_FORMAT(format_m, numeric_m, target_m, compare_m) \
+  template< > struct sampler_format< format::format_m > {        \
+    typedef sampler_aspect< format::format_m,                    \
+                            fcmn::numeric::numeric_m,            \
+                            fcmn::dimension::oned,               \
+                            fcmn::cardinality::one,              \
+                            ftgt::target_m,                      \
+                            fcmn::compare::compare_m > aspect;   \
+  };                                                             \
+  typedef sampler_format< format::format_m > format_m;
 
         DECLARE_FORMAT(gl_sampler_1d, signed_floating, gl_texture_1d, normal)
         DECLARE_FORMAT(gl_sampler_2d, signed_floating, gl_texture_2d, normal)

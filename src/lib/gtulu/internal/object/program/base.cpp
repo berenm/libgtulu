@@ -30,6 +30,7 @@ namespace gtulu {
       void program_base::detach(obj::shader_base const& shader) {
         fct::detach_shader< >::call(handle_, *shader);
       }
+
     } // namespace object
 
   } // namespace internal

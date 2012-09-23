@@ -23,7 +23,7 @@ namespace gtulu {
         struct get_ideal_internal_component;
 
 #define DECLARE_CONVERT(group_component_m, internal_component_m) \
-    template< > struct get_ideal_internal_component< fcmn::component::group_component_m > { typedef fcmn::component::internal_component_m type; };
+  template< > struct get_ideal_internal_component< fcmn::component::group_component_m > { typedef fcmn::component::internal_component_m type; };
 
         DECLARE_CONVERT(depth, depth)
         DECLARE_CONVERT(depth_stencil, depth_stencil)

@@ -21,14 +21,14 @@ namespace gtulu {
   namespace utils {
 
     struct file {
-        static std::string get_contents(boost::filesystem::path const& path_in);
+      static std::string get_contents(boost::filesystem::path const& path_in);
     };
 
     struct file_template {
       protected:
-        std::string name;
+        std::string                name;
         std::vector< std::string > arguments;
-        std::string end_name;
+        std::string                end_name;
 
         std::string raw_data;
         std::string content;
@@ -41,8 +41,8 @@ namespace gtulu {
         file_template();
         explicit file_template(boost::sregex_iterator& iterator_inout);
         file_template(file_template const& copy_in);
-        file_template(std::string const& template_file_in,
-                      boost::filesystem::path const& template_path_in = "include/gtulu/templates/");
+        file_template(std::string const&             template_file_in,
+                      boost::filesystem::path const& template_path_in="include/gtulu/templates/");
 
         void reset();
 
@@ -51,9 +51,9 @@ namespace gtulu {
         std::string get_content();
 
         void populate(std::map< std::string, std::string >& arguments_inout,
-        std::vector< file_template > sub_templates_in = std::vector< file_template >());
+                      std::vector< file_template > sub_templates_in=std::vector< file_template >());
 
-        void debug(std::string prefix_in = "");
+        void debug(std::string prefix_in="");
     };
 
   } // namespace utils

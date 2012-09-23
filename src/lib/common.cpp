@@ -14,10 +14,10 @@
 
 #ifdef GTULU_PLATFORM_LINUX
 
-#else
-#include <GL/glfw3.h>
+#else // ifdef GTULU_PLATFORM_LINUX
+# include <GL/glfw3.h>
 
-#endif
+#endif // ifdef GTULU_PLATFORM_LINUX
 
 #include <iostream>
 
@@ -26,7 +26,7 @@ void init_gl(std::int32_t argc, char** argv) {
 
 #ifdef GTULU_PLATFORM_LINUX
 
-#else
+#else // ifdef GTULU_PLATFORM_LINUX
 
   glfwInit();
   GLFWvidmode mode;
@@ -42,11 +42,11 @@ void init_gl(std::int32_t argc, char** argv) {
   GLFWwindow window = glfwOpenWindow(1, 1, GLFW_WINDOWED, "framebuffer", NULL);
   glfwIconifyWindow(window);
 
-#endif
+#endif // ifdef GTULU_PLATFORM_LINUX
 
-  std::string const gl_vendor = ctx::gl_vendor::get();
-  std::string const gl_renderer = ctx::gl_renderer::get();
-  std::string const gl_version = ctx::gl_version::get();
+  std::string const gl_vendor                   = ctx::gl_vendor::get();
+  std::string const gl_renderer                 = ctx::gl_renderer::get();
+  std::string const gl_version                  = ctx::gl_version::get();
   std::string const gl_shading_language_version = ctx::gl_shading_language_version::get();
 
   __gtulu_info() << ctx::parameter::gl_vendor() << ": " << gl_vendor;
@@ -58,22 +58,21 @@ void init_gl(std::int32_t argc, char** argv) {
 void close_gl() {
 #ifdef GTULU_PLATFORM_LINUX
 
-#else
+#else // ifdef GTULU_PLATFORM_LINUX
   glfwCloseWindow(glfwGetCurrentWindow());
   glfwTerminate();
 
-#endif
+#endif // ifdef GTULU_PLATFORM_LINUX
 }
 
-void main_loop() {
-}
+void main_loop() {}
 
 void swap_buffers() {
 #ifdef GTULU_PLATFORM_LINUX
   glXSwapBuffers(glXGetCurrentDisplay(), glXGetCurrentDrawable());
 
-#else
+#else // ifdef GTULU_PLATFORM_LINUX
   glfwSwapBuffers();
 
-#endif
+#endif // ifdef GTULU_PLATFORM_LINUX
 }

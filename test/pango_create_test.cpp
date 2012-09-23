@@ -22,18 +22,20 @@
 
 #include "gtulu/pango_cairo.hpp"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   using namespace gtulu::internal;
   namespace bgil = ::boost::gil;
 
   ctx::context::create(argc, argv);
 
-  float const positions_data[] = { -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f };
-  float const texture_positions_data[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f };
-  std::uint8_t const indexes_data[] = { 0, 1, 2, 3 };
+  float const        positions_data[] = {
+    -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f
+  };
+  float const        texture_positions_data[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f };
+  std::uint8_t const indexes_data[]           = { 0, 1, 2, 3 };
 
-  obj::buffer< fdat::gl_float > positions(positions_data);
-  obj::buffer< fdat::gl_float > texture_positions(texture_positions_data);
+  obj::buffer< fdat::gl_float >         positions(positions_data);
+  obj::buffer< fdat::gl_float >         texture_positions(texture_positions_data);
   obj::buffer< fdat::gl_unsigned_byte > indexes(indexes_data);
 
   obj::program< fprg::print_image_program_format > program;
@@ -57,8 +59,9 @@ int main(int argc, char *argv[]) {
   /* ----- PNG Version ---------------------------------------------------------------------------------------------- */
 
   __gtulu_info() << "loading png image from disk...";
-//  bgil::read_image("test/data/mona_lisa.png", image, bgil::png_tag());
-//  image.recreate(512, 512);
+
+  // bgil::read_image("test/data/mona_lisa.png", image, bgil::png_tag());
+  // image.recreate(512, 512);
   gtulu::cairo::cairo_texture texture = gtulu::cairo::make_texture("<span foreground='blue' size='x-large'>Blue text</span> is <i>cool</i>!");
   __gtulu_info() << "loaded png image from disk.";
 
@@ -68,6 +71,7 @@ int main(int argc, char *argv[]) {
   __gtulu_info() << "initialized output image.";
 
   __gtulu_info() << "resizing images on GPU...";
+
   // Bind the uniform sampler named "background" to texture.
   program.set_background(texture);
 
@@ -86,4 +90,4 @@ int main(int argc, char *argv[]) {
 
   ctx::context::destroy();
   return 0;
-}
+} // main

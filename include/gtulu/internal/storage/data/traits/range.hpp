@@ -21,40 +21,41 @@ namespace gtulu {
 
         template< class StoreType >
         struct data_traits< range< StoreType > > {
-            typedef range< StoreType > store_type;
-            typedef typename store_type::store_traits store_traits;
+          typedef range< StoreType >                store_type;
+          typedef typename store_type::store_traits store_traits;
 
-            static uint8_t* write(store_type& store) {
-              return store_traits::write(store.store()) + store_traits::value_size(store.store()) * store.value_offset();
-            }
+          static uint8_t* write(store_type& store) {
+            return store_traits::write(store.store()) + store_traits::value_size(store.store()) * store.value_offset();
+          }
 
-            static uint8_t const* read(store_type const& store) {
-              return store_traits::read(store.store()) + store_traits::value_size(store.store()) * store.value_offset();
-            }
+          static uint8_t const* read(store_type const& store) {
+            return store_traits::read(store.store()) + store_traits::value_size(store.store()) * store.value_offset();
+          }
 
-            static std::size_t value_size(store_type const& store) {
-              return store_traits::value_size(store.store());
-            }
+          static std::size_t value_size(store_type const& store) {
+            return store_traits::value_size(store.store());
+          }
 
-            static std::size_t size(store_type const& store) {
-              return store.get_size();
-            }
+          static std::size_t size(store_type const& store) {
+            return store.get_size();
+          }
 
-            static offset_type offset(store_type const& store) {
-              return store.get_offset();
-            }
+          static offset_type offset(store_type const& store) {
+            return store.get_offset();
+          }
 
-            static std::size_t width(store_type const& store) {
-              return store.width();
-            }
+          static std::size_t width(store_type const& store) {
+            return store.width();
+          }
 
-            static std::size_t height(store_type const& store) {
-              return store.height();
-            }
+          static std::size_t height(store_type const& store) {
+            return store.height();
+          }
 
-            static std::size_t depth(store_type const& store) {
-              return store.depth();
-            }
+          static std::size_t depth(store_type const& store) {
+            return store.depth();
+          }
+
         };
 
       } // namespace data

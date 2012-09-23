@@ -20,39 +20,40 @@ namespace gtulu {
 
         template< class ValueType >
         struct data_traits< std::vector< ValueType > > {
-            typedef std::vector< ValueType > store_type;
+          typedef std::vector< ValueType > store_type;
 
-            static uint8_t* write(store_type& store) {
-              return reinterpret_cast< uint8_t* >(store.data());
-            }
+          static uint8_t* write(store_type& store) {
+            return reinterpret_cast< uint8_t* >(store.data());
+          }
 
-            static uint8_t const* read(store_type const& store) {
-              return reinterpret_cast< uint8_t const* >(store.data());
-            }
+          static uint8_t const* read(store_type const& store) {
+            return reinterpret_cast< uint8_t const* >(store.data());
+          }
 
-            static std::size_t value_size(store_type const& store) {
-              return sizeof(ValueType);
-            }
+          static std::size_t value_size(store_type const& store) {
+            return sizeof(ValueType);
+          }
 
-            static std::size_t size(store_type const& store) {
-              return store.size() * sizeof(ValueType);
-            }
+          static std::size_t size(store_type const& store) {
+            return store.size() * sizeof(ValueType);
+          }
 
-            static offset_type offset(store_type const& store) {
-              return offset_type();
-            }
+          static offset_type offset(store_type const& store) {
+            return offset_type();
+          }
 
-            static std::size_t width(store_type const& store) {
-              return store.size();
-            }
+          static std::size_t width(store_type const& store) {
+            return store.size();
+          }
 
-            static std::size_t height(store_type const& store) {
-              return 1;
-            }
+          static std::size_t height(store_type const& store) {
+            return 1;
+          }
 
-            static std::size_t depth(store_type const& store) {
-              return 1;
-            }
+          static std::size_t depth(store_type const& store) {
+            return 1;
+          }
+
         };
 
       } // namespace data

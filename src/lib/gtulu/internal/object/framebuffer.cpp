@@ -20,22 +20,30 @@ namespace gtulu {
           switch (value) {
             case gl_framebuffer_undefined::value:
               return gl_framebuffer_undefined();
+
             case gl_framebuffer_incomplete_attachment::value:
               return gl_framebuffer_incomplete_attachment();
+
             case gl_framebuffer_incomplete_missing_attachment::value:
               return gl_framebuffer_incomplete_missing_attachment();
+
             case gl_framebuffer_unsupported::value:
               return gl_framebuffer_unsupported();
+
             case gl_framebuffer_incomplete_multisample::value:
               return gl_framebuffer_incomplete_multisample();
+
             case gl_framebuffer_incomplete_layer_targets::value:
               return gl_framebuffer_incomplete_layer_targets();
+
             case gl_framebuffer_complete::value:
               return gl_framebuffer_complete();
+
             default:
               return cst::invalid_constant();
           }
         }
+
       } // namespace status
     } // namespace framebuffer
 

@@ -16,57 +16,56 @@ namespace gtulu {
 
         template< typename ValueType >
         struct wrapped_store {
-            wrapped_store(ValueType* pointer,
-                          std::size_t width = 1,
-                          std::size_t height = 1,
-                          std::size_t depth = 1,
-                          std::size_t size = 0) :
-                pointer_(pointer), width_(width), height_(height), depth_(depth), size_(size) {
-            }
+          wrapped_store(ValueType*  pointer,
+                        std::size_t width=1,
+                        std::size_t height=1,
+                        std::size_t depth=1,
+                        std::size_t size=0) :
+            pointer_(pointer), width_(width), height_(height), depth_(depth), size_(size) {}
 
-            ValueType* write() {
-              return pointer_;
-            }
+          ValueType* write() {
+            return pointer_;
+          }
 
-            ValueType const* read() const {
-              return pointer_;
-            }
+          ValueType const* read() const {
+            return pointer_;
+          }
 
-            std::size_t size() const {
-              return size_ == 0 ? width_ * height_ * depth_ * sizeof(ValueType) : size_;
-            }
+          std::size_t size() const {
+            return size_ == 0 ? width_ * height_ * depth_ * sizeof(ValueType) : size_;
+          }
 
-            std::size_t value_size() const {
-              return sizeof(ValueType);
-            }
+          std::size_t value_size() const {
+            return sizeof(ValueType);
+          }
 
-            std::size_t width() const {
-              return width_;
-            }
+          std::size_t width() const {
+            return width_;
+          }
 
-            std::size_t height() const {
-              return height_;
-            }
+          std::size_t height() const {
+            return height_;
+          }
 
-            std::size_t depth() const {
-              return depth_;
-            }
+          std::size_t depth() const {
+            return depth_;
+          }
 
-            ValueType* pointer_;
-            std::size_t const width_;
-            std::size_t const height_;
-            std::size_t const depth_;
-            std::size_t const size_;
+          ValueType*        pointer_;
+          std::size_t const width_;
+          std::size_t const height_;
+          std::size_t const depth_;
+          std::size_t const size_;
         };
 
       } // namespace data
 
       template< typename ValueType >
-      data::wrapped_store< ValueType > wrap(ValueType* pointer,
-                                            std::size_t width = 1,
-                                            std::size_t height = 1,
-                                            std::size_t depth = 1,
-                                            std::size_t size = 0) {
+      data::wrapped_store< ValueType > wrap(ValueType*  pointer,
+                                            std::size_t width=1,
+                                            std::size_t height=1,
+                                            std::size_t depth=1,
+                                            std::size_t size=0) {
         return data::wrapped_store< ValueType >(pointer, width, height, depth);
       }
 

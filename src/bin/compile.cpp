@@ -40,145 +40,148 @@ namespace gtulu {
     namespace compiler {
 
       struct program_compiler {
-          gu::file_template header_template;
-          gu::file_template source_template;
+        gu::file_template header_template;
+        gu::file_template source_template;
 
-          std::string name;
+        std::string name;
 
-          program_compiler(std::string name_in, bfs::path template_path = "include/gtulu/templates/") :
-              header_template("static_program_format.hpp", template_path), source_template("static_program_format.cpp",
-                                                                                           template_path), name(name_in) {
-          }
+        program_compiler(std::string name_in, bfs::path template_path="include/gtulu/templates/") :
+          header_template("static_program_format.hpp", template_path), source_template("static_program_format.cpp",
+                                                                                       template_path), name(name_in) {}
 
-          void add_shader(std::string name, std::string type, std::string source) {
-            gu::file_template define_shader = header_template.get("define_shader");
-            gu::file_template declare_shader = header_template.get("declare_shader");
-            gu::file_template shader_source = source_template.get("declare_shader_source");
+        void add_shader(std::string name, std::string type, std::string source) {
+          gu::file_template define_shader  = header_template.get("define_shader");
+          gu::file_template declare_shader = header_template.get("declare_shader");
+          gu::file_template shader_source  = source_template.get("declare_shader_source");
 
-            std::map< std::string, std::string > arguments;
-            arguments["shader"] = name;
-            arguments["type"] = type;
-            arguments["source"] = source;
+          std::map< std::string, std::string > arguments;
+          arguments["shader"] = name;
+          arguments["type"]   = type;
+          arguments["source"] = source;
 
-            define_shader.populate(arguments);
-            declare_shader.populate(arguments);
-            shader_source.populate(arguments);
+          define_shader.populate(arguments);
+          declare_shader.populate(arguments);
+          shader_source.populate(arguments);
 
-            arguments.clear();
+          arguments.clear();
 
-            std::vector< gu::file_template > subtemplates;
-            subtemplates.push_back(define_shader);
-            subtemplates.push_back(declare_shader);
-            header_template.populate(arguments, subtemplates);
+          std::vector< gu::file_template > subtemplates;
+          subtemplates.push_back(define_shader);
+          subtemplates.push_back(declare_shader);
+          header_template.populate(arguments, subtemplates);
 
-            subtemplates.clear();
-            subtemplates.push_back(shader_source);
-            source_template.populate(arguments, subtemplates);
-          }
+          subtemplates.clear();
+          subtemplates.push_back(shader_source);
+          source_template.populate(arguments, subtemplates);
+        }
 
-          void add_uniform(std::string suffix,
+        void add_uniform(std::string suffix,
+                         std::string name,
+                         std::string type,
+                         std::string location,
+                         std::string size="",
+                         std::string count="") {
+          std::string template_name = "uniform";
+
+          template_name.append(suffix);
+
+          gu::file_template uniform = header_template.get(template_name);
+
+          std::map< std::string, std::string > arguments;
+          arguments["name"]     = name;
+          arguments["type"]     = type;
+          arguments["location"] = location;
+          arguments["size"]     = size;
+          arguments["count"]    = count;
+
+          uniform.populate(arguments);
+
+          arguments.clear();
+          std::vector< gu::file_template > subtemplates;
+          subtemplates.push_back(uniform);
+          header_template.populate(arguments, subtemplates);
+        }
+
+        void add_attribute(std::string suffix,
                            std::string name,
                            std::string type,
                            std::string location,
-                           std::string size = "",
-                           std::string count = "") {
-            std::string template_name = "uniform";
-            template_name.append(suffix);
+                           std::string size="",
+                           std::string count="") {
+          std::string template_name = "attribute";
 
-            gu::file_template uniform = header_template.get(template_name);
+          template_name.append(suffix);
 
-            std::map< std::string, std::string > arguments;
-            arguments["name"] = name;
-            arguments["type"] = type;
-            arguments["location"] = location;
-            arguments["size"] = size;
-            arguments["count"] = count;
+          gu::file_template attribute = header_template.get(template_name);
 
-            uniform.populate(arguments);
+          std::map< std::string, std::string > arguments;
+          arguments["name"]     = name;
+          arguments["type"]     = type;
+          arguments["location"] = location;
+          arguments["size"]     = size;
+          arguments["count"]    = count;
 
-            arguments.clear();
-            std::vector< gu::file_template > subtemplates;
-            subtemplates.push_back(uniform);
-            header_template.populate(arguments, subtemplates);
-          }
+          attribute.populate(arguments);
 
-          void add_attribute(std::string suffix,
-                             std::string name,
-                             std::string type,
-                             std::string location,
-                             std::string size = "",
-                             std::string count = "") {
-            std::string template_name = "attribute";
-            template_name.append(suffix);
+          arguments.clear();
+          std::vector< gu::file_template > subtemplates;
+          subtemplates.push_back(attribute);
+          header_template.populate(arguments, subtemplates);
+        }
 
-            gu::file_template attribute = header_template.get(template_name);
+        void add_output(std::string suffix,
+                        std::string name,
+                        std::string type,
+                        std::string location,
+                        std::string size="") {
+          std::string template_name = "output";
 
-            std::map< std::string, std::string > arguments;
-            arguments["name"] = name;
-            arguments["type"] = type;
-            arguments["location"] = location;
-            arguments["size"] = size;
-            arguments["count"] = count;
+          template_name.append(suffix);
+          gu::file_template output = header_template.get(template_name);
 
-            attribute.populate(arguments);
+          template_name = "default_output";
+          template_name.append(suffix);
+          gu::file_template default_output = header_template.get(template_name);
 
-            arguments.clear();
-            std::vector< gu::file_template > subtemplates;
-            subtemplates.push_back(attribute);
-            header_template.populate(arguments, subtemplates);
-          }
+          std::map< std::string, std::string > arguments;
+          arguments["name"]     = name;
+          arguments["type"]     = type;
+          arguments["location"] = location;
+          arguments["size"]     = size;
 
-          void add_output(std::string suffix,
-                          std::string name,
-                          std::string type,
-                          std::string location,
-                          std::string size = "") {
-            std::string template_name = "output";
-            template_name.append(suffix);
-            gu::file_template output = header_template.get(template_name);
+          output.populate(arguments);
+          default_output.populate(arguments);
 
-            template_name = "default_output";
-            template_name.append(suffix);
-            gu::file_template default_output = header_template.get(template_name);
+          arguments.clear();
+          std::vector< gu::file_template > subtemplates;
+          subtemplates.push_back(output);
+          subtemplates.push_back(default_output);
+          header_template.populate(arguments, subtemplates);
+        }
 
-            std::map< std::string, std::string > arguments;
-            arguments["name"] = name;
-            arguments["type"] = type;
-            arguments["location"] = location;
-            arguments["size"] = size;
+        void save(bfs::path const& destination) {
+          std::map< std::string, std::string > arguments;
+          arguments["program"] = name;
 
-            output.populate(arguments);
-            default_output.populate(arguments);
+          header_template.populate(arguments);
+          source_template.populate(arguments);
 
-            arguments.clear();
-            std::vector< gu::file_template > subtemplates;
-            subtemplates.push_back(output);
-            subtemplates.push_back(default_output);
-            header_template.populate(arguments, subtemplates);
-          }
+          std::string header_file_name = name;
+          header_file_name.append("_program_format.hpp");
+          bfs::ofstream header(destination / header_file_name);
+          header << header_template.get_content();
 
-          void save(bfs::path const& destination) {
-            std::map< std::string, std::string > arguments;
-            arguments["program"] = name;
+          std::string source_file_name = name;
+          source_file_name.append("_program_format.cpp");
+          bfs::ofstream source(destination / source_file_name);
+          source << source_template.get_content();
+        }
 
-            header_template.populate(arguments);
-            source_template.populate(arguments);
+        void debug() {
+          header_template.debug();
+          source_template.debug();
+        }
 
-            std::string header_file_name = name;
-            header_file_name.append("_program_format.hpp");
-            bfs::ofstream header(destination / header_file_name);
-            header << header_template.get_content();
-
-            std::string source_file_name = name;
-            source_file_name.append("_program_format.cpp");
-            bfs::ofstream source(destination / source_file_name);
-            source << source_template.get_content();
-          }
-
-          void debug() {
-            header_template.debug();
-            source_template.debug();
-          }
       };
 
       const std::string get_shader_name(bfs::path const& shader_file) {
@@ -195,43 +198,44 @@ namespace gtulu {
       const cst::gl_constant_base get_shader_type(bfs::path const& shader_file) {
         std::string extension = shader_file.extension().string();
 
-        if (extension.compare(".fs") == 0 || extension.compare(".frag") == 0) {
+        if ((extension.compare(".fs") == 0) || (extension.compare(".frag") == 0)) {
           return fshd::type::gl_fragment_shader();
-        } else if (extension.compare(".vs") == 0 || extension.compare(".vert") == 0) {
+        } else if ((extension.compare(".vs") == 0) || (extension.compare(".vert") == 0)) {
           return fshd::type::gl_vertex_shader();
-        } else if (extension.compare(".gs") == 0 || extension.compare(".geom") == 0) {
+        } else if ((extension.compare(".gs") == 0) || (extension.compare(".geom") == 0)) {
           return fshd::type::gl_geometry_shader();
         } else {
           __gtulu_error() << "Unknown shader extension " << extension
-                << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
+                          << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
         }
 
         return cst::invalid_constant();
       }
 
       struct uniform_type_info {
-          std::uint32_t count;
-          bool is_sampler;
-          std::string name;
+        std::uint32_t count;
+        bool          is_sampler;
+        std::string   name;
       };
 
       struct attribute_type_info {
-          std::uint32_t count;
-          std::string name;
+        std::uint32_t count;
+        std::string   name;
       };
 
-#define COMPLETE_UNIFORM_INFO(type_m)                                                   \
-        case funf::format::gl_ ##type_m::value:                                           \
-        info.count = fcmn::get_cardinality_literal< funf::gl_##type_m >::type::value;       \
-        info.name = #type_m;                                                            \
-        info.is_sampler = false;                                                        \
-        break;
-#define COMPLETE_SAMPLER_INFO(type_m)                                                   \
-        case fsmp::format::gl_ ##type_m::value:                                          \
-        info.count = fcmn::get_cardinality_literal< fsmp::gl_##type_m >::type::value;      \
-        info.name = #type_m;                                                            \
-        info.is_sampler = true;                                                         \
-        break;
+#define COMPLETE_UNIFORM_INFO(type_m)                                                    \
+  case funf::format::gl_ ## type_m::value:                                               \
+    info.count      = fcmn::get_cardinality_literal< funf::gl_ ## type_m >::type::value; \
+    info.name       = # type_m;                                                          \
+    info.is_sampler = false;                                                             \
+    break;
+
+#define COMPLETE_SAMPLER_INFO(type_m)                                                    \
+  case fsmp::format::gl_ ## type_m::value:                                               \
+    info.count      = fcmn::get_cardinality_literal< fsmp::gl_ ## type_m >::type::value; \
+    info.name       = # type_m;                                                          \
+    info.is_sampler = true;                                                              \
+    break;
 
       const uniform_type_info get_uniform_info(cst::gl_constant_base const& type) {
         uniform_type_info info;
@@ -298,17 +302,18 @@ namespace gtulu {
           COMPLETE_SAMPLER_INFO(unsigned_int_sampler_2d_multisample_array)
           COMPLETE_SAMPLER_INFO(unsigned_int_sampler_buffer)
           COMPLETE_SAMPLER_INFO(unsigned_int_sampler_2d_rect)
-        }
+        } // switch
 
         return info;
-      }
+      } // get_uniform_info
+
 #undef COMPLETE_UNIFORM_INFO
 
-#define COMPLETE_ATTRIBUTE_INFO(type_m)                                                 \
-        case fatt::format::gl_ ##type_m::value:                                           \
-        info.count = fcmn::get_cardinality_literal< fatt::gl_##type_m >::type::value;       \
-        info.name = #type_m;                                                            \
-        break;                                                                          \
+#define COMPLETE_ATTRIBUTE_INFO(type_m)                                             \
+  case fatt::format::gl_ ## type_m::value:                                          \
+    info.count = fcmn::get_cardinality_literal< fatt::gl_ ## type_m >::type::value; \
+    info.name  = # type_m;                                                          \
+    break;                                                                          \
 
       const attribute_type_info get_attribute_info(cst::gl_constant_base const& type) {
         attribute_type_info info;
@@ -339,6 +344,7 @@ namespace gtulu {
 
         return info;
       }
+
 #undef COMPLETE_ATTRIBUTE_INFO
 
       void add_shader(obj::dynamic_program_t& program, bfs::path shader_file) {
@@ -352,9 +358,9 @@ namespace gtulu {
 
         program.attach(shader);
 
-        //  std::vector< ::program::output_info > shader_infos = shader.get_output_infos();
+        // std::vector< ::program::output_info > shader_infos = shader.get_output_infos();
         //
-        //  infos.insert(infos.end(), shader_infos.begin(), shader_infos.end());
+        // infos.insert(infos.end(), shader_infos.begin(), shader_infos.end());
       }
 
     } // namespace compiler
@@ -362,9 +368,9 @@ namespace gtulu {
   } // namespace internal
 } // namespace gtulu
 
-int main(int argc, char *argv[]) {
-  using namespace ::gtulu::internal;
-  using namespace ::gtulu::utils;
+int main(int argc, char* argv[]) {
+  using namespace::gtulu::internal;
+  using namespace::gtulu::utils;
   namespace bpo = boost::program_options;
 
   std::ostringstream cmdline;
@@ -422,16 +428,16 @@ int main(int argc, char *argv[]) {
 
   cmp::program_compiler compiler(program, templates);
 
-  //  int attribute_count = inspector.get_attribute_count();
-  //  __log
-  //<<  "attribute count " << attribute_count;
-  //  for (int i = 0; i < attribute_count; ++i) {
-  //    ::program::attribute_info info = inspector.get_attribute_info(i);
-  //    __logL(info) << info.index << " " << info.location << " " << info.name
-  //    << " " << info.size << " " << info.type;
-  //  }
-  //  int uniform_block_count = prog.get_uniform_block_count();
-  //  __log << "uniform block count " << uniform_block_count;
+  // int attribute_count = inspector.get_attribute_count();
+  // __log
+  // <<  "attribute count " << attribute_count;
+  // for (int i = 0; i < attribute_count; ++i) {
+  // ::program::attribute_info info = inspector.get_attribute_info(i);
+  // __logL(info) << info.index << " " << info.location << " " << info.name
+  // << " " << info.size << " " << info.type;
+  // }
+  // int uniform_block_count = prog.get_uniform_block_count();
+  // __log << "uniform block count " << uniform_block_count;
 
   for (std::vector< std::string >::iterator it = inputs.begin(); it != inputs.end(); ++it) {
     std::string& file = *it;
@@ -453,10 +459,10 @@ int main(int argc, char *argv[]) {
     compiler.add_shader(shader_name, shader_type.str(), shader_source.str());
   }
 
-  fprg::uniform_vector_t const& uniforms = prog.get_uniforms();
+  fprg::uniform_vector_t const& uniforms            = prog.get_uniforms();
   fprg::uniform_vector_t::const_iterator uniform_it = uniforms.begin();
   for (; uniform_it != uniforms.end(); ++uniform_it) {
-    fprg::uniform_info const& info = *uniform_it;
+    fprg::uniform_info const& info   = *uniform_it;
     cmp::uniform_type_info type_info = cmp::get_uniform_info(info.type);
 
     std::string prefix;
@@ -476,10 +482,10 @@ int main(int argc, char *argv[]) {
                          boost::lexical_cast< std::string >(info.size));
   }
 
-  fprg::attribute_vector_t const& attributes = prog.get_attributes();
+  fprg::attribute_vector_t const& attributes            = prog.get_attributes();
   fprg::attribute_vector_t::const_iterator attribute_it = attributes.begin();
   for (; attribute_it != attributes.end(); ++attribute_it) {
-    fprg::attribute_info const& info = *attribute_it;
+    fprg::attribute_info const& info   = *attribute_it;
     cmp::attribute_type_info type_info = cmp::get_attribute_info(info.type);
 
     std::string name = info.name;
@@ -499,7 +505,7 @@ int main(int argc, char *argv[]) {
                            boost::lexical_cast< std::string >(info.size));
   }
 
-  fprg::output_vector_t const& outputs = prog.get_outputs();
+  fprg::output_vector_t const& outputs            = prog.get_outputs();
   fprg::output_vector_t::const_iterator output_it = outputs.begin();
   for (; output_it != outputs.end(); ++output_it) {
     fprg::output_info const& info = *output_it;
@@ -525,7 +531,7 @@ int main(int argc, char *argv[]) {
                           boost::lexical_cast< std::string >(info.size));
     } else {
       __gtulu_warn() << "shader: " << "Output data '" << info.type << "' " << info.name
-            << " not bound. Maybe only used internally.";
+                     << " not bound. Maybe only used internally.";
     }
   }
 
@@ -533,4 +539,4 @@ int main(int argc, char *argv[]) {
 
   context::context::destroy();
   return 0;
-}
+} // main

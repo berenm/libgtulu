@@ -19,8 +19,8 @@ namespace gtulu {
   namespace internal {
 
     namespace object {
-      struct texture_base: public plug< texture_base > {
-      };
+      struct texture_base : public plug< texture_base > {};
+
     } // namespace object
 
   } // namespace internal

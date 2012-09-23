@@ -31,52 +31,58 @@ namespace gtulu {
           bound_handle_ = handle_;
         }
       }
+
     } // namespace object
 
     namespace program {
       struct program_slot {
-          static inline void bind(obj::plug< obj::program_base > const& program) {
-            obj::slot_binder< obj::program_base >::bind(program);
-          }
-          static inline void unbind(obj::plug< obj::program_base > const& program) {
-            obj::slot_binder< obj::program_base >::clear();
-          }
-          static inline void clear() {
-            obj::slot_binder< obj::program_base >::clear();
-          }
+        static inline void bind(obj::plug< obj::program_base > const& program) {
+          obj::slot_binder< obj::program_base >::bind(program);
+        }
+
+        static inline void unbind(obj::plug< obj::program_base > const& program) {
+          obj::slot_binder< obj::program_base >::clear();
+        }
+
+        static inline void clear() {
+          obj::slot_binder< obj::program_base >::clear();
+        }
+
       };
+
     } // namespace program
 
     namespace object {
 
-      struct program_base: public plug< program_base > {
-          virtual ~program_base() {
-          }
+      struct program_base : public plug< program_base > {
+        virtual ~program_base() {}
 
-          void attach(obj::shader_base const& shader);
-          void detach(obj::shader_base const& shader);
+        void attach(obj::shader_base const& shader);
+        void detach(obj::shader_base const& shader);
 
-          virtual void link();
-          virtual void validate();
+        virtual void link();
+        virtual void validate();
 
-          inline void bind() const {
-            prg::program_slot::bind(*this);
-          }
+        inline void bind() const {
+          prg::program_slot::bind(*this);
+        }
 
-          inline void unbind() const {
-            prg::program_slot::unbind(*this);
-          }
+        inline void unbind() const {
+          prg::program_slot::unbind(*this);
+        }
 
-          template< typename ProgramAttribute >
-          inline std::uint32_t get() const {
-            std::int32_t data;
-            fct::get_program< ProgramAttribute >::call(handle_, &data);
-            return data;
-          }
+        template< typename ProgramAttribute >
+        inline std::uint32_t get() const {
+          std::int32_t data;
 
-          void set();
-          void loc();
+          fct::get_program< ProgramAttribute >::call(handle_, &data);
+          return data;
+        }
+
+        void set();
+        void loc();
       };
+
     } // namespace object
 
   } // namespace internal

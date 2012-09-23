@@ -23,123 +23,124 @@ namespace gtulu {
     namespace format {
       namespace program {
         struct attribute_info {
-            attribute_info(std::uint32_t id_in,
-                           std::string name_in,
-                           cst::gl_constant_base const& type_in,
-                           std::uint32_t size_in,
-                           location_t location_in) :
-                id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
-            }
-            attribute_info(attribute_info const& copy) :
-                id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
-            }
+          attribute_info(std::uint32_t                id_in,
+                         std::string                  name_in,
+                         cst::gl_constant_base const& type_in,
+                         std::uint32_t                size_in,
+                         location_t                   location_in) :
+            id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {}
 
-            attribute_info& operator=(attribute_info const& copy) {
-              id = copy.id;
-              name = copy.name;
-              type = copy.type;
-              size = copy.size;
-              location = copy.location;
-              return *this;
-            }
+          attribute_info(attribute_info const& copy) :
+            id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {}
 
-            std::uint32_t id;
-            std::string name;
-            cst::gl_constant_base type;
-            std::uint32_t size;
-            location_t location;
+          attribute_info& operator=(attribute_info const& copy) {
+            id       = copy.id;
+            name     = copy.name;
+            type     = copy.type;
+            size     = copy.size;
+            location = copy.location;
+            return *this;
+          }
+
+          std::uint32_t         id;
+          std::string           name;
+          cst::gl_constant_base type;
+          std::uint32_t         size;
+          location_t            location;
         };
+
         typedef std::vector< attribute_info > attribute_vector_t;
 
         struct uniform_info {
-            uniform_info(std::uint32_t id_in,
-                         std::string name_in,
-                         cst::gl_constant_base const& type_in,
-                         std::uint32_t size_in,
-                         location_t location_in) :
-                id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
-            }
-            uniform_info(attribute_info const& copy) :
-                id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
-            }
+          uniform_info(std::uint32_t                id_in,
+                       std::string                  name_in,
+                       cst::gl_constant_base const& type_in,
+                       std::uint32_t                size_in,
+                       location_t                   location_in) :
+            id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {}
 
-            uniform_info& operator=(uniform_info const& copy) {
-              id = copy.id;
-              name = copy.name;
-              type = copy.type;
-              size = copy.size;
-              location = copy.location;
-              return *this;
-            }
+          uniform_info(attribute_info const& copy) :
+            id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {}
 
-            std::uint32_t id;
-            std::string name;
-            cst::gl_constant_base type;
-            std::uint32_t size;
-            location_t location;
+          uniform_info& operator=(uniform_info const& copy) {
+            id       = copy.id;
+            name     = copy.name;
+            type     = copy.type;
+            size     = copy.size;
+            location = copy.location;
+            return *this;
+          }
+
+          std::uint32_t         id;
+          std::string           name;
+          cst::gl_constant_base type;
+          std::uint32_t         size;
+          location_t            location;
         };
+
         typedef std::vector< uniform_info > uniform_vector_t;
 
         struct uniform_block_info {
-            uniform_block_info(std::uint32_t id_in,
-                               std::string name_in,
-                               cst::gl_constant_base const& type_in,
-                               std::uint32_t size_in,
-                               location_t location_in) :
-                id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {
-            }
-            uniform_block_info(attribute_info const& copy) :
-                id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {
-            }
+          uniform_block_info(std::uint32_t                id_in,
+                             std::string                  name_in,
+                             cst::gl_constant_base const& type_in,
+                             std::uint32_t                size_in,
+                             location_t                   location_in) :
+            id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {}
 
-            uniform_block_info& operator=(uniform_block_info const& copy) {
-              id = copy.id;
-              name = copy.name;
-              type = copy.type;
-              size = copy.size;
-              location = copy.location;
-              return *this;
-            }
+          uniform_block_info(attribute_info const& copy) :
+            id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {}
 
-            std::uint32_t id;
-            std::string name;
-            cst::gl_constant_base type;
-            std::uint32_t size;
-            location_t location;
+          uniform_block_info& operator=(uniform_block_info const& copy) {
+            id       = copy.id;
+            name     = copy.name;
+            type     = copy.type;
+            size     = copy.size;
+            location = copy.location;
+            return *this;
+          }
+
+          std::uint32_t         id;
+          std::string           name;
+          cst::gl_constant_base type;
+          std::uint32_t         size;
+          location_t            location;
         };
+
         typedef std::vector< uniform_block_info > uniform_block_vector_t;
 
         using fshd::output_info;
         using fshd::output_vector_t;
 
-        struct dynamic_program_format: virtual public obj::program_base {
-            typedef fshd::dynamic_shader_format shader_t;
-            typedef std::vector< shader_t > shader_vector_t;
+        struct dynamic_program_format : virtual public obj::program_base {
+          typedef fshd::dynamic_shader_format shader_t;
+          typedef std::vector< shader_t >     shader_vector_t;
 
           protected:
-            shader_vector_t shaders_;
-            attribute_vector_t attributes_;
-            uniform_vector_t uniforms_;
+            shader_vector_t        shaders_;
+            attribute_vector_t     attributes_;
+            uniform_vector_t       uniforms_;
             uniform_block_vector_t uniform_blocks_;
-            output_vector_t outputs_;
+            output_vector_t        outputs_;
 
           protected:
-            std::uint32_t get_attribute_count();
-            std::uint32_t get_attribute_max_length();
+            std::uint32_t        get_attribute_count();
+            std::uint32_t        get_attribute_max_length();
             attribute_info const get_attribute_info(std::uint32_t id);
 
-            std::uint32_t get_uniform_count();
-            std::uint32_t get_uniform_max_length();
+            std::uint32_t      get_uniform_count();
+            std::uint32_t      get_uniform_max_length();
             uniform_info const get_uniform_info(std::uint32_t index);
 
-            std::uint32_t get_uniform_block_count();
-            std::uint32_t get_uniform_block_max_length();
+            std::uint32_t            get_uniform_block_count();
+            std::uint32_t            get_uniform_block_max_length();
             uniform_block_info const get_uniform_block_info(std::uint32_t index);
 
             std::uint32_t get_outputs_count();
             std::uint32_t get_output_location(std::string name);
 
             void refresh_outputs();
+
           public:
             dynamic_program_format();
             void print();
@@ -158,10 +159,10 @@ namespace gtulu {
             virtual void link();
             virtual void validate();
 
-            attribute_vector_t const& get_attributes();
-            uniform_vector_t const& get_uniforms();
+            attribute_vector_t const&     get_attributes();
+            uniform_vector_t const&       get_uniforms();
             uniform_block_vector_t const& get_uniform_blocks();
-            output_vector_t const& get_outputs();
+            output_vector_t const&        get_outputs();
         };
 
       } // namespace program

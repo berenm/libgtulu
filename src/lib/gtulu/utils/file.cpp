@@ -46,7 +46,7 @@ namespace gtulu {
     void file_template::parse(boost::sregex_iterator& iterator) {
       const boost::sregex_iterator end;
 
-      name = iterator->str(1);
+      name     = iterator->str(1);
       raw_data = "";
 
       end_name = "/";
@@ -79,9 +79,9 @@ namespace gtulu {
     }
 
     file_template::file_template() {
-      content = "";
+      content  = "";
       raw_data = "";
-      name = "";
+      name     = "";
       end_name = "";
     }
 
@@ -90,22 +90,23 @@ namespace gtulu {
     }
 
     file_template::file_template(file_template const& copy) {
-      arguments = copy.arguments;
-      content = copy.content;
-      end_name = copy.end_name;
-      name = copy.name;
-      raw_data = copy.raw_data;
+      arguments     = copy.arguments;
+      content       = copy.content;
+      end_name      = copy.end_name;
+      name          = copy.name;
+      raw_data      = copy.raw_data;
       sub_templates = copy.sub_templates;
     }
 
     file_template::file_template(std::string const& template_file, boost::filesystem::path const& template_path) {
       boost::filesystem::path file_path = template_path;
+
       file_path /= template_file;
 
       if (boost::filesystem::exists(file_path) && boost::filesystem::is_regular_file(file_path)) {
         std::string content = file::get_contents(file_path);
 
-        boost::regex templates("// #template#<(.*)>(.*)$");
+        boost::regex           templates("// #template#<(.*)>(.*)$");
         boost::sregex_iterator iterator(content.begin(), content.end(), templates, boost::match_not_dot_newline);
 
         parse(iterator);
@@ -127,9 +128,9 @@ namespace gtulu {
     }
 
     void file_template::populate(std::map< std::string, std::string >& arguments_in,
-    std::vector< file_template > sub_templates) {
+                                 std::vector< file_template > sub_templates) {
       typedef std::map< std::string, std::string >::iterator args_it_t;
-      typedef std::vector< file_template >::iterator subs_in_it_t;
+      typedef std::vector< file_template >::iterator         subs_in_it_t;
 
       std::string replace;
       std::string replacement;
@@ -182,10 +183,10 @@ namespace gtulu {
 
       std::cout << prefix << "  contents: " << std::endl;
       std::cout << prefix << "  ------------------------------------------------------------------------------ "
-          << std::endl;
+                << std::endl;
       std::cout << raw_data << std::endl;
       std::cout << prefix << "  ------------------------------------------------------------------------------ "
-          << std::endl;
+                << std::endl;
 
       if (!sub_templates.empty()) {
         std::cout << prefix << "  sub templates: " << std::endl;

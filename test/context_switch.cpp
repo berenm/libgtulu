@@ -12,7 +12,7 @@
 #include <boost/chrono.hpp>
 #include <boost/timer.hpp>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   using namespace gtulu::internal;
 
   context::context_info main_context = context::context::create(argc, argv);

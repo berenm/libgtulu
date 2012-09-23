@@ -35,26 +35,24 @@ namespace gtulu {
         }
 
         dynamic_shader_format::dynamic_shader_format() :
-            has_log_(false), log_("") {
-        }
+          has_log_(false), log_("") {}
 
-        void dynamic_shader_format::print() {
-        }
+        void dynamic_shader_format::print() {}
 
         void dynamic_shader_format::load_shader(boost::filesystem::path const& filename) {
-          std::string extension = filename.extension().string();
-          bool parse_outputs = false;
+          std::string extension     = filename.extension().string();
+          bool        parse_outputs = false;
 
-          if (extension.compare(".fs") == 0 || extension.compare(".frag") == 0) {
+          if ((extension.compare(".fs") == 0) || (extension.compare(".frag") == 0)) {
             obj::shader_base::create_shader< fshd::type::gl_fragment_shader >();
             parse_outputs = true;
-          } else if (extension.compare(".vs") == 0 || extension.compare(".vert") == 0) {
+          } else if ((extension.compare(".vs") == 0) || (extension.compare(".vert") == 0)) {
             obj::shader_base::create_shader< fshd::type::gl_vertex_shader >();
-          } else if (extension.compare(".gs") == 0 || extension.compare(".geom") == 0) {
+          } else if ((extension.compare(".gs") == 0) || (extension.compare(".geom") == 0)) {
             obj::shader_base::create_shader< fshd::type::gl_geometry_shader >();
           } else {
             __gtulu_error() << "Unknown shader extension " << extension
-                  << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
+                            << ", please use one of .fs/.frag, .gs/.geom or .vs/.vert.";
           }
 
           std::string source = gu::file::get_contents(filename);
@@ -62,15 +60,15 @@ namespace gtulu {
 
           outputs_.clear();
           if (parse_outputs) {
-            boost::regex expression("out\\s+(\\S+)\\s+(\\S+);");
-            boost::regex array_expression("\\s*(\\S+)\\s*\\[(\\S*)\\]\\s*");
+            boost::regex           expression("out\\s+(\\S+)\\s+(\\S+);");
+            boost::regex           array_expression("\\s*(\\S+)\\s*\\[(\\S*)\\]\\s*");
             boost::sregex_iterator it(source.begin(), source.end(), expression);
             boost::sregex_iterator end;
 
             std::uint32_t id = 0;
             while (it != end) {
               std::string type_name = it->str(1);
-              std::string name = it->str(2);
+              std::string name      = it->str(2);
 
               std::uint32_t size = 1;
 
@@ -85,14 +83,14 @@ namespace gtulu {
                 // We've just found a dynamic sized output vector, what a wonderful idea...
               } else if (type_it != end) {
                 type_name = type_it->str(1);
-                size = -1;
+                size      = -1;
               }
 
               outputs_.push_back(output_info(id++, name, fout::format::get(type_name), size, -1, -1));
               ++it;
             }
           }
-        }
+        } // load_shader
 
         void dynamic_shader_format::compile() {
           obj::shader_base::compile();

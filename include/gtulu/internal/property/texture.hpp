@@ -22,7 +22,7 @@ namespace gtulu {
         META_ASPECT_DECLARE(property,
                             Property,
                             using cst::,
-                            (gl_texture_base_level)(gl_texture_border_color)(gl_texture_compare_func)(gl_texture_compare_mode)(gl_texture_lod_bias)(gl_texture_min_filter)(gl_texture_mag_filter)(gl_texture_min_lod)(gl_texture_max_lod)(gl_texture_max_level)(gl_texture_swizzle_r)(gl_texture_swizzle_g)(gl_texture_swizzle_b)(gl_texture_swizzle_a)(gl_texture_swizzle_rgba)(gl_texture_wrap_s)(gl_texture_wrap_t)(gl_texture_wrap_r))
+                                  (gl_texture_base_level) (gl_texture_border_color) (gl_texture_compare_func) (gl_texture_compare_mode) (gl_texture_lod_bias) (gl_texture_min_filter) (gl_texture_mag_filter) (gl_texture_min_lod) (gl_texture_max_lod) (gl_texture_max_level) (gl_texture_swizzle_r) (gl_texture_swizzle_g) (gl_texture_swizzle_b) (gl_texture_swizzle_a) (gl_texture_swizzle_rgba) (gl_texture_wrap_s) (gl_texture_wrap_t) (gl_texture_wrap_r))
 
       } // namespace texture
 

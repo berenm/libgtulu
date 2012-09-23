@@ -8,6 +8,4 @@
 #include "gtulu/internal/property/texture.hpp"
 #include "gtulu/internal/property/texture_lod.hpp"
 
-int main(int argc, char **argv) {
-
-}
+int main(int argc, char** argv) {}

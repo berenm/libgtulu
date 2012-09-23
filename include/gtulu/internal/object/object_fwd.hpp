@@ -18,27 +18,39 @@ namespace gtulu {
       struct object_base;
 
       struct texture_base;
+
       struct buffer_base;
+
       struct renderbuffer_base;
+
       struct framebuffer_base;
+
       struct vertexarray_base;
+
       struct query_base;
 
       struct shader_base;
+
       struct program_base;
 
       template< typename ProgramFormat >
       struct program;
+
       template< typename RenderbufferFormat >
       struct renderbuffer;
+
       template< typename ShaderFormat >
       struct shader;
+
       template< typename TextureFormat >
       struct texture;
+
       template< typename TextureFormat >
       struct texture_lod;
+
       template< typename BufferFormat >
       struct buffer;
+
       template< typename VertexarrayFormat >
       struct vertexarray;
 

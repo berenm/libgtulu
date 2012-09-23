@@ -28,7 +28,7 @@ namespace gtulu {
           META_ASPECT_DECLARE(slot,
                               SlotType,
                               using cst::,
-                              (gl_array_buffer)(gl_copy_read_buffer)(gl_copy_write_buffer)(gl_element_array_buffer)(gl_pixel_pack_buffer)(gl_pixel_unpack_buffer)(gl_texture_buffer)(gl_transform_feedback_buffer)(gl_uniform_buffer)(gl_draw_indirect_buffer))
+                                    (gl_array_buffer) (gl_copy_read_buffer) (gl_copy_write_buffer) (gl_element_array_buffer) (gl_pixel_pack_buffer) (gl_pixel_unpack_buffer) (gl_texture_buffer) (gl_transform_feedback_buffer) (gl_uniform_buffer) (gl_draw_indirect_buffer))
 
           typedef object_slot< obj::buffer_base, slot::gl_array_buffer > array_buffer;
 

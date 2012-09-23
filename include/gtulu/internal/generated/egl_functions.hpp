@@ -47,6 +47,7 @@ namespace gtulu {
             typedef _1          ApiConstant;
             typedef ApiConstant api_t;
             inline static gtulu::uint32_t call() { return bindAPI< >::call(api_t()); }
+
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >

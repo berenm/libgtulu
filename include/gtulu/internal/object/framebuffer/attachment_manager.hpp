@@ -23,36 +23,37 @@
 namespace gtulu {
   namespace internal {
 
-    struct attachment: obj::object_base {
-        explicit attachment(std::uint32_t const handle_in) :
-            object_base(handle_in) {
-        }
+    struct attachment : obj::object_base {
+      explicit attachment(std::uint32_t const handle_in) :
+        object_base(handle_in) {}
 
-        cst::gl_constant_base get_color() {
-          return cst::runtime_constant(cst::gl_color_attachment0(), handle_);
-        }
+      cst::gl_constant_base get_color() {
+        return cst::runtime_constant(cst::gl_color_attachment0(), handle_);
+
+      }
+
     };
 
-    struct attachment_manager: boost::noncopyable {
-        typedef std::map< std::uint32_t, boost::weak_ptr< attachment > > attachment_map;
-        typedef std::map< std::uint32_t, boost::shared_ptr< attachment > > attachment_mappings_map;
+    struct attachment_manager : boost::noncopyable {
+      typedef std::map< std::uint32_t, boost::weak_ptr< attachment > >   attachment_map;
+      typedef std::map< std::uint32_t, boost::shared_ptr< attachment > > attachment_mappings_map;
 
-        std::uint32_t max_attachment;
-        attachment_mappings_map attachment_mappings;
-        attachment_map attachments;
+      std::uint32_t           max_attachment;
+      attachment_mappings_map attachment_mappings;
+      attachment_map          attachments;
 
-        attachment_manager();
-        ~attachment_manager();
+      attachment_manager();
+      ~attachment_manager();
 
-        boost::shared_ptr< attachment > get_current(obj::texture_base const& texture);
-        boost::shared_ptr< attachment > get_new(obj::texture_base const& texture);
-        boost::shared_ptr< attachment > get_current_or_new(obj::texture_base const& texture);
+      boost::shared_ptr< attachment > get_current(obj::texture_base const& texture);
+      boost::shared_ptr< attachment > get_new(obj::texture_base const& texture);
+      boost::shared_ptr< attachment > get_current_or_new(obj::texture_base const& texture);
 
-        boost::shared_ptr< attachment > get_current(obj::renderbuffer_base const& renderbuffer);
-        boost::shared_ptr< attachment > get_new(obj::renderbuffer_base const& renderbuffer);
-        boost::shared_ptr< attachment > get_current_or_new(obj::renderbuffer_base const& renderbuffer);
+      boost::shared_ptr< attachment > get_current(obj::renderbuffer_base const& renderbuffer);
+      boost::shared_ptr< attachment > get_new(obj::renderbuffer_base const& renderbuffer);
+      boost::shared_ptr< attachment > get_current_or_new(obj::renderbuffer_base const& renderbuffer);
 
-        void clear();
+      void clear();
 
       protected:
         boost::shared_ptr< attachment > get_current(std::uint32_t const handle);

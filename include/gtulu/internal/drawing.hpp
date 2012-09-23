@@ -24,149 +24,152 @@ namespace gtulu {
       META_ASPECT_DECLARE(mode,
                           Mode,
                           using cst::,
-                          (gl_points)(gl_lines)(gl_line_strip)(gl_lines_adjacency)(gl_line_strip_adjacency)(gl_line_loop)(gl_triangles)(gl_triangle_strip)(gl_triangles_adjacency)(gl_triangle_strip_adjacency)(gl_triangle_fan))
+                                (gl_points) (gl_lines) (gl_line_strip) (gl_lines_adjacency) (gl_line_strip_adjacency) (gl_line_loop) (gl_triangles) (gl_triangle_strip) (gl_triangles_adjacency) (gl_triangle_strip_adjacency) (gl_triangle_fan))
 
       typedef std::uint32_t draw_mode_t;
 
       template< typename BufferFormat >
       struct is_buffer_unsigned_integer;
+
       template< >
-      struct is_buffer_unsigned_integer< fdat::gl_unsigned_byte > {
-      };
+      struct is_buffer_unsigned_integer< fdat::gl_unsigned_byte > {};
+
       template< >
-      struct is_buffer_unsigned_integer< fdat::gl_unsigned_short > {
-      };
+      struct is_buffer_unsigned_integer< fdat::gl_unsigned_short > {};
+
       template< >
-      struct is_buffer_unsigned_integer< fdat::gl_unsigned_int > {
-      };
+      struct is_buffer_unsigned_integer< fdat::gl_unsigned_int > {};
 
       template< typename DrawingMode, typename BufferFormat >
-      struct checked_drawer: is_buffer_unsigned_integer< BufferFormat > {
-          inline static void draw(obj::buffer< BufferFormat > const& buffer_in,
-                                  std::uint32_t const count_in,
-                                  std::uint32_t const offset_in,
-                                  std::uint32_t const base_vertex_in) {
-            buf::element_array_buffer_slot::bind(buffer_in);
-            if (base_vertex_in == 0) {
-              fct::draw_elements< DrawingMode, typename BufferFormat::aspect::format >::call(count_in,
-                                                                                                reinterpret_cast< GLvoid* >(offset_in));
-            } else {
-              fct::draw_elements_base_vertex< DrawingMode, typename BufferFormat::aspect::format >::call(count_in,
-                                                                                                            reinterpret_cast< GLvoid* >(offset_in),
-                                                                                                            base_vertex_in);
-            }
-          }
+      struct checked_drawer : is_buffer_unsigned_integer< BufferFormat > {
+        inline static void draw(obj::buffer< BufferFormat > const& buffer_in,
+                                std::uint32_t const                count_in,
+                                std::uint32_t const                offset_in,
+                                std::uint32_t const                base_vertex_in) {
+          buf::element_array_buffer_slot::bind(buffer_in);
 
-          inline static void draw(obj::buffer< BufferFormat > const& buffer_in,
-                                  std::uint32_t const count_in,
-                                  std::uint32_t const offset_in,
-                                  std::uint32_t const instance_count_in,
-                                  std::uint32_t const base_vertex_in) {
-            buf::element_array_buffer_slot::bind(buffer_in);
-            if (base_vertex_in == 0) {
-              fct::draw_elements_instanced< DrawingMode, typename BufferFormat::aspect::format >::call(count_in,
-                                                                                                          reinterpret_cast< GLvoid* >(offset_in),
-                                                                                                          instance_count_in);
-            } else {
-              fct::draw_elements_instanced_base_vertex< DrawingMode, typename BufferFormat::aspect::format >::call(count_in,
-                                                                                                                      reinterpret_cast< GLvoid* >(offset_in),
-                                                                                                                      instance_count_in,
-                                                                                                                      base_vertex_in);
-            }
+          if (base_vertex_in == 0) {
+            fct::draw_elements< DrawingMode, typename BufferFormat::aspect::format >::call(count_in,
+                                                                                           reinterpret_cast< GLvoid* >(offset_in));
+          } else {
+            fct::draw_elements_base_vertex< DrawingMode, typename BufferFormat::aspect::format >::call(count_in,
+                                                                                                       reinterpret_cast< GLvoid* >(offset_in),
+                                                                                                       base_vertex_in);
           }
+        }
 
-          inline static void draw(obj::buffer< BufferFormat > const& buffer_in,
-                                  std::uint32_t const count_in,
-                                  std::uint32_t const min_index_in,
-                                  std::uint32_t const max_index_in,
-                                  std::uint32_t const offset_in,
-                                  std::uint32_t const base_vertex_in) {
-            buf::element_array_buffer_slot::bind(buffer_in);
-            if (base_vertex_in == 0) {
-              fct::draw_range_elements< DrawingMode, typename BufferFormat::aspect::format >::call(min_index_in,
-                                                                                                      max_index_in,
-                                                                                                      count_in,
-                                                                                                      reinterpret_cast< GLvoid* >(offset_in));
-            } else {
-              fct::draw_range_elements_base_vertex< DrawingMode, typename BufferFormat::aspect::format >::call(min_index_in,
-                                                                                                                  max_index_in,
-                                                                                                                  count_in,
-                                                                                                                  reinterpret_cast< GLvoid* >(offset_in),
-                                                                                                                  base_vertex_in);
-            }
+        inline static void draw(obj::buffer< BufferFormat > const& buffer_in,
+                                std::uint32_t const                count_in,
+                                std::uint32_t const                offset_in,
+                                std::uint32_t const                instance_count_in,
+                                std::uint32_t const                base_vertex_in) {
+          buf::element_array_buffer_slot::bind(buffer_in);
+          if (base_vertex_in == 0) {
+            fct::draw_elements_instanced< DrawingMode, typename BufferFormat::aspect::format >::call(count_in,
+                                                                                                     reinterpret_cast< GLvoid* >(offset_in),
+                                                                                                     instance_count_in);
+          } else {
+            fct::draw_elements_instanced_base_vertex< DrawingMode, typename BufferFormat::aspect::format >::call(count_in,
+                                                                                                                 reinterpret_cast< GLvoid* >(offset_in),
+                                                                                                                 instance_count_in,
+                                                                                                                 base_vertex_in);
           }
+        }
 
-          inline static void draw(obj::buffer< BufferFormat > const& buffer_in,
-                                  std::uint32_t const counts_in[],
-                                  std::uint32_t const offsets_in[],
-                                  std::size_t const count_in) {
-            buf::element_array_buffer_slot::bind(buffer_in);
-            fct::multi_draw_elements< DrawingMode, typename BufferFormat::aspect::format >::call(counts_in,
-                                                                                                    offsets_in,
-                                                                                                    count_in);
+        inline static void draw(obj::buffer< BufferFormat > const& buffer_in,
+                                std::uint32_t const                count_in,
+                                std::uint32_t const                min_index_in,
+                                std::uint32_t const                max_index_in,
+                                std::uint32_t const                offset_in,
+                                std::uint32_t const                base_vertex_in) {
+          buf::element_array_buffer_slot::bind(buffer_in);
+          if (base_vertex_in == 0) {
+            fct::draw_range_elements< DrawingMode, typename BufferFormat::aspect::format >::call(min_index_in,
+                                                                                                 max_index_in,
+                                                                                                 count_in,
+                                                                                                 reinterpret_cast< GLvoid* >(offset_in));
+          } else {
+            fct::draw_range_elements_base_vertex< DrawingMode, typename BufferFormat::aspect::format >::call(min_index_in,
+                                                                                                             max_index_in,
+                                                                                                             count_in,
+                                                                                                             reinterpret_cast< GLvoid* >(offset_in),
+                                                                                                             base_vertex_in);
           }
+        }
+
+        inline static void draw(obj::buffer< BufferFormat > const& buffer_in,
+                                std::uint32_t const                counts_in[],
+                                std::uint32_t const                offsets_in[],
+                                std::size_t const                  count_in) {
+          buf::element_array_buffer_slot::bind(buffer_in);
+          fct::multi_draw_elements< DrawingMode, typename BufferFormat::aspect::format >::call(counts_in,
+                                                                                               offsets_in,
+                                                                                               count_in);
+        }
+
       };
 
       struct drawable {
-          template< typename DrawingMode >
-          inline static void draw(std::uint32_t const start_in,
-                                  std::uint32_t const count_in,
-                                  std::uint32_t const instance_count_in) {
-            if (instance_count_in > 1) {
-              fct::draw_arrays_instanced< DrawingMode >::call(start_in, count_in, instance_count_in);
-            } else {
-              fct::draw_arrays< DrawingMode >::call(start_in, count_in);
-            }
+        template< typename DrawingMode >
+        inline static void draw(std::uint32_t const start_in,
+                                std::uint32_t const count_in,
+                                std::uint32_t const instance_count_in) {
+          if (instance_count_in > 1) {
+            fct::draw_arrays_instanced< DrawingMode >::call(start_in, count_in, instance_count_in);
+          } else {
+            fct::draw_arrays< DrawingMode >::call(start_in, count_in);
           }
+        }
 
-          template< typename DrawingMode >
-          inline static void draw(std::uint32_t const starts_in[],
-                                  std::uint32_t const counts_in[],
-                                  std::size_t const count_in) {
-            fct::multi_draw_arrays< DrawingMode >::call(starts_in, counts_in, count_in);
-          }
+        template< typename DrawingMode >
+        inline static void draw(std::uint32_t const starts_in[],
+                                std::uint32_t const counts_in[],
+                                std::size_t const   count_in) {
+          fct::multi_draw_arrays< DrawingMode >::call(starts_in, counts_in, count_in);
+        }
 
-          template< typename DrawingMode, typename BufferFormat >
-          inline static void draw(obj::buffer< BufferFormat > const& buffer_in,
-                                  std::uint32_t const count_in,
-                                  std::uint32_t const offset_in,
-                                  std::uint32_t const instance_count_in,
-                                  std::uint32_t const base_vertex_in) {
-            if (instance_count_in > 1) {
-              checked_drawer< DrawingMode, BufferFormat >::draw(buffer_in,
-                                                                count_in,
-                                                                offset_in,
-                                                                instance_count_in,
-                                                                base_vertex_in);
-            } else {
-              checked_drawer< DrawingMode, BufferFormat >::draw(buffer_in, count_in, offset_in, base_vertex_in);
-            }
-          }
-
-          template< typename DrawingMode, typename BufferFormat >
-          inline static void draw(draw_mode_t const mode_in,
-                                  obj::buffer< BufferFormat > const& buffer_in,
-                                  std::uint32_t const count_in,
-                                  std::uint32_t const min_index_in,
-                                  std::uint32_t const max_index_in,
-                                  std::uint32_t const offset_in,
-                                  std::uint32_t const base_vertex_in) {
+        template< typename DrawingMode, typename BufferFormat >
+        inline static void draw(obj::buffer< BufferFormat > const& buffer_in,
+                                std::uint32_t const                count_in,
+                                std::uint32_t const                offset_in,
+                                std::uint32_t const                instance_count_in,
+                                std::uint32_t const                base_vertex_in) {
+          if (instance_count_in > 1) {
             checked_drawer< DrawingMode, BufferFormat >::draw(buffer_in,
                                                               count_in,
-                                                              min_index_in,
-                                                              max_index_in,
                                                               offset_in,
+                                                              instance_count_in,
                                                               base_vertex_in);
+          } else {
+            checked_drawer< DrawingMode, BufferFormat >::draw(buffer_in, count_in, offset_in, base_vertex_in);
           }
+        }
 
-          template< typename DrawingMode, typename BufferFormat >
-          inline static void draw(draw_mode_t const mode_in,
-                                  obj::buffer< BufferFormat > const& buffer_in,
-                                  std::uint32_t const counts_in[],
-                                  std::uint32_t const offsets_in[],
-                                  std::size_t const count_in) {
-            checked_drawer< DrawingMode, BufferFormat >::draw(buffer_in, counts_in, offsets_in, count_in);
-          }
+        template< typename DrawingMode, typename BufferFormat >
+        inline static void draw(draw_mode_t const                  mode_in,
+                                obj::buffer< BufferFormat > const& buffer_in,
+                                std::uint32_t const                count_in,
+                                std::uint32_t const                min_index_in,
+                                std::uint32_t const                max_index_in,
+                                std::uint32_t const                offset_in,
+                                std::uint32_t const                base_vertex_in) {
+          checked_drawer< DrawingMode, BufferFormat >::draw(buffer_in,
+                                                            count_in,
+                                                            min_index_in,
+                                                            max_index_in,
+                                                            offset_in,
+                                                            base_vertex_in);
+        }
+
+        template< typename DrawingMode, typename BufferFormat >
+        inline static void draw(draw_mode_t const                  mode_in,
+                                obj::buffer< BufferFormat > const& buffer_in,
+                                std::uint32_t const                counts_in[],
+                                std::uint32_t const                offsets_in[],
+                                std::size_t const                  count_in) {
+          checked_drawer< DrawingMode, BufferFormat >::draw(buffer_in, counts_in, offsets_in, count_in);
+        }
+
       };
 
     } // namespace drawing

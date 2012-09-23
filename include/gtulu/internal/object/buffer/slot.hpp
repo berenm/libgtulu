@@ -24,7 +24,7 @@ namespace gtulu {
       META_ASPECT_DECLARE(slot,
                           SlotType,
                           using cst::,
-                          (gl_array_buffer)(gl_copy_read_buffer)(gl_copy_write_buffer)(gl_element_array_buffer)(gl_pixel_pack_buffer)(gl_pixel_unpack_buffer)(gl_texture_buffer)(gl_transform_feedback_buffer)(gl_uniform_buffer)(gl_draw_indirect_buffer))
+                                (gl_array_buffer) (gl_copy_read_buffer) (gl_copy_write_buffer) (gl_element_array_buffer) (gl_pixel_pack_buffer) (gl_pixel_unpack_buffer) (gl_texture_buffer) (gl_transform_feedback_buffer) (gl_uniform_buffer) (gl_draw_indirect_buffer))
 
     } // namespace buffer
 
@@ -39,55 +39,62 @@ namespace gtulu {
           bound_handle_ = handle_;
         }
       }
+
     } // namespace object
 
     namespace buffer {
       template< typename SlotType >
       struct buffer_slot {
-          static_assert(is_a_slot< SlotType >::type::value, "SlotType is not a valid buffer slot.");
+        static_assert(is_a_slot< SlotType >::type::value, "SlotType is not a valid buffer slot.");
 
-          typedef SlotType type;
+        typedef SlotType type;
 
-          static inline void bind(obj::plug< obj::buffer_base > const& buffer) {
-            obj::slot_binder< obj::buffer_base >::bind< SlotType >(buffer);
-          }
-          static inline void unbind(obj::plug< obj::buffer_base > const& buffer) {
-            obj::slot_binder< obj::buffer_base >::clear< SlotType >();
-          }
-          static inline void clear() {
-            obj::slot_binder< obj::buffer_base >::clear< SlotType >();
-          }
+        static inline void bind(obj::plug< obj::buffer_base > const& buffer) {
+          obj::slot_binder< obj::buffer_base >::bind< SlotType >(buffer);
+        }
+
+        static inline void unbind(obj::plug< obj::buffer_base > const& buffer) {
+          obj::slot_binder< obj::buffer_base >::clear< SlotType >();
+        }
+
+        static inline void clear() {
+          obj::slot_binder< obj::buffer_base >::clear< SlotType >();
+        }
+
       };
 
       template< typename SlotType >
-      struct buffer_indexed_slot: public buffer_slot< SlotType > {
-          typedef SlotType type;
+      struct buffer_indexed_slot : public buffer_slot< SlotType > {
+        typedef SlotType type;
 
-          using buffer_slot< SlotType >::bind;
-          using buffer_slot< SlotType >::unbind;
-          using buffer_slot< SlotType >::clear;
+        using buffer_slot< SlotType >::bind;
+        using buffer_slot< SlotType >::unbind;
+        using buffer_slot< SlotType >::clear;
 
-          static inline void bind(obj::plug< obj::buffer_base > const& buffer,
-                                  std::uint32_t const index,
-                                  std::uint32_t const offset,
-                                  std::uint32_t const size) {
-            fct::bind_buffer_range< SlotType >::call(index, *buffer, offset, size);
-          }
+        static inline void bind(obj::plug< obj::buffer_base > const& buffer,
+                                std::uint32_t const                  index,
+                                std::uint32_t const                  offset,
+                                std::uint32_t const                  size) {
+          fct::bind_buffer_range< SlotType >::call(index, *buffer, offset, size);
+        }
 
-          static inline void bind(obj::plug< obj::buffer_base > const& buffer, std::uint32_t const index) {
-            fct::bind_buffer_base< SlotType >::call(index, *buffer);
-          }
+        static inline void bind(obj::plug< obj::buffer_base > const& buffer, std::uint32_t const index) {
+          fct::bind_buffer_base< SlotType >::call(index, *buffer);
+        }
+
       };
-#define DECLARE_SLOT(slot_type_m) \
-  typedef buffer_slot< slot::gl_##slot_type_m > slot_type_m##_slot; \
 
-#define DECLARE_INDEXED_SLOT(slot_type_m) \
-  typedef buffer_indexed_slot< slot::gl_##slot_type_m > slot_type_m##_slot; \
+#define DECLARE_SLOT(slot_type_m)                                       \
+  typedef buffer_slot< slot::gl_ ## slot_type_m > slot_type_m ## _slot; \
+
+#define DECLARE_INDEXED_SLOT(slot_type_m)                                       \
+  typedef buffer_indexed_slot< slot::gl_ ## slot_type_m > slot_type_m ## _slot; \
 
       DECLARE_SLOT(array_buffer)
       DECLARE_SLOT(copy_read_buffer)
       DECLARE_SLOT(copy_write_buffer)
-      //  DECLARE_SLOT(draw_indirect_buffer)
+
+      // DECLARE_SLOT(draw_indirect_buffer)
       DECLARE_SLOT(element_array_buffer)
       DECLARE_SLOT(pixel_pack_buffer)
       DECLARE_SLOT(pixel_unpack_buffer)

@@ -23,41 +23,42 @@
 namespace gtulu {
   namespace internal {
 
-    struct texture_unit: obj::object_base {
-        explicit texture_unit(const std::int32_t handle_in) :
-            object_base(handle_in) {
-        }
+    struct texture_unit : obj::object_base {
+      explicit texture_unit(const std::int32_t handle_in) :
+        object_base(handle_in) {}
 
-        void activate() {
-          fct::active_texture< >::call(cst::runtime_constant(cst::gl_texture0(), handle_));
-        }
+      void activate() {
+        fct::active_texture< >::call(cst::runtime_constant(cst::gl_texture0(), handle_));
 
-        template< typename TextureFormat >
-        void bind(obj::texture< TextureFormat > const& texture_in) {
-          activate();
-          texture_in.bind();
-        }
+      }
+
+      template< typename TextureFormat >
+      void bind(obj::texture< TextureFormat > const& texture_in) {
+        activate();
+        texture_in.bind();
+      }
+
     };
 
     struct texture_unit_manager {
-        typedef std::map< std::uint32_t, boost::weak_ptr< texture_unit > > texture_unit_map;
-        typedef std::map< std::uint32_t, boost::shared_ptr< texture_unit > > texture_unit_mappings_map;
+      typedef std::map< std::uint32_t, boost::weak_ptr< texture_unit > >   texture_unit_map;
+      typedef std::map< std::uint32_t, boost::shared_ptr< texture_unit > > texture_unit_mappings_map;
 
-        static boost::thread_specific_ptr< texture_unit_manager > instance_ptr;
-        static texture_unit_manager& instance();
+      static boost::thread_specific_ptr< texture_unit_manager > instance_ptr;
+      static texture_unit_manager&                              instance();
 
-        std::int32_t max_texture_unit;
-        texture_unit_mappings_map texture_unit_mappings;
-        texture_unit_map texture_units;
+      std::int32_t              max_texture_unit;
+      texture_unit_mappings_map texture_unit_mappings;
+      texture_unit_map          texture_units;
 
-        texture_unit_manager();
-        ~texture_unit_manager();
+      texture_unit_manager();
+      ~texture_unit_manager();
 
-        boost::shared_ptr< texture_unit > get_current(obj::texture_base const& texture_in);
-        boost::shared_ptr< texture_unit > get_new(obj::texture_base const& texture_in);
-        boost::shared_ptr< texture_unit > get_current_or_new(obj::texture_base const& texture_in);
+      boost::shared_ptr< texture_unit > get_current(obj::texture_base const& texture_in);
+      boost::shared_ptr< texture_unit > get_new(obj::texture_base const& texture_in);
+      boost::shared_ptr< texture_unit > get_current_or_new(obj::texture_base const& texture_in);
 
-        void clear();
+      void clear();
     };
 
   } // namespace internal

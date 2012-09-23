@@ -258,7 +258,8 @@ namespace gtulu {
         using cst::gl_blend_dst_alpha;
         using cst::gl_blend_equation_rgb;
         using cst::gl_blend_equation_alpha;
-        //        using cst::gl_blend_color;
+
+        // using cst::gl_blend_color;
         using cst::gl_framebuffer_srgb;
         using cst::gl_dither;
         using cst::gl_color_logic_op;
@@ -424,7 +425,8 @@ namespace gtulu {
         using cst::gl_uniform_block_active_uniforms;
         using cst::gl_uniform_block_active_uniform_indices;
         using cst::gl_uniform_block_referenced_by_vertex_shader;
-        //        using cst::gl_uniform_block_referenced_by_geometry_shader;
+
+        // using cst::gl_uniform_block_referenced_by_geometry_shader;
         using cst::gl_uniform_block_referenced_by_fragment_shader;
         using cst::gl_uniform_block_referenced_by_tess_control_shader;
 
@@ -565,7 +567,7 @@ namespace gtulu {
         // Table 6.47. Implementation Dependent Geometry Shader Limits
         // ......................................................................
 
-        //        using cst::gl_max_geometry_uniform_blocks;
+        // using cst::gl_max_geometry_uniform_blocks;
         using cst::gl_max_geometry_input_components;
         using cst::gl_max_geometry_output_components;
         using cst::gl_max_geometry_output_vertices;
@@ -602,12 +604,13 @@ namespace gtulu {
         // ......................................................................
 
         using cst::gl_max_combined_vertex_uniform_components;
-        //        using cst::gl_max_combined_geometry_uniform_components;
+
+        // using cst::gl_max_combined_geometry_uniform_components;
         using cst::gl_max_combined_fragment_uniform_components;
         using cst::gl_max_combined_tess_control_uniform_components;
         using cst::gl_max_combined_tess_evaluation_uniform_components;
 
-        // † The minimum value for each stage is MAX_stage_UNIFORM_BLOCKS ×
+        // The minimum value for each stage is MAX_stage_UNIFORM_BLOCKS ×
         // MAX_UNIFORM_BLOCK_SIZE / 4 + MAX_stage_UNIFORM_COMPONENTS
 
         // Table 6.51. Implementation Dependent Values ((cont.)
@@ -667,52 +670,56 @@ namespace gtulu {
 
       template< typename ReturnType >
       struct gettor {
-          template< typename Parameter >
-          static void get(ReturnType* data);
+        template< typename Parameter >
+        static void get(ReturnType* data);
 
-          template< typename Parameter >
-          static void get(std::uint32_t const index_in, ReturnType* data);
+        template< typename Parameter >
+        static void get(std::uint32_t const index_in, ReturnType* data);
       };
 
 #define DECLARE_GETTOR(return_type_m, function_m) \
-      template< > \
-      struct gettor< return_type_m > { \
-          template< typename Parameter > \
-          static void get(return_type_m* data) { \
-            fct:: function_m < Parameter >::call(data); \
-          } \
-      };
+  template< >                                     \
+  struct gettor< return_type_m > {                \
+    template< typename Parameter >                \
+    static void get(return_type_m * data) {       \
+      fct::function_m< Parameter >::call(data);   \
+    }                                             \
+  };
 
 #define DECLARE_GETTOR_INDEXED(return_type_m, function_m, indexed_function_m) \
-      template< > \
-      struct gettor< return_type_m > { \
-          template< typename Parameter > \
-          static void get(return_type_m* data) { \
-            fct:: function_m < Parameter >::call(data); \
-          } \
-          \
-          template< typename Parameter > \
-          static void get(std::uint32_t const index_in, return_type_m* data) { \
-            fct:: indexed_function_m < Parameter >::call(index_in, data); \
-          } \
-      };
+  template< >                                                                 \
+  struct gettor< return_type_m > {                                            \
+    template< typename Parameter >                                            \
+    static void get(return_type_m * data) {                                   \
+      fct::function_m< Parameter >::call(data);                               \
+    }                                                                         \
+                                                                              \
+    template< typename Parameter >                                            \
+    static void get(std::uint32_t const index_in, return_type_m * data) {     \
+      fct::indexed_function_m< Parameter >::call(index_in, data);             \
+    }                                                                         \
+  };
 
       template< >
       struct gettor< std::string > {
-          template< typename Parameter >
-          static void get(std::string* data) {
-            GLubyte const* bytes = fct::get_string< Parameter >::call();
-            if (bytes != 0) {
-              data->assign(reinterpret_cast< char const* >(bytes));
-            }
+        template< typename Parameter >
+        static void get(std::string* data) {
+          GLubyte const* bytes = fct::get_string< Parameter >::call();
+
+          if (bytes != 0) {
+            data->assign(reinterpret_cast< char const* >(bytes));
           }
-          template< typename Parameter >
-          static void get(std::uint32_t const index_in, std::string* data) {
-            GLubyte const* bytes = fct::get_string< Parameter >::call(index_in);
-            if (bytes != 0) {
-              data->assign(reinterpret_cast< char const* >(bytes));
-            }
+        }
+
+        template< typename Parameter >
+        static void get(std::uint32_t const index_in, std::string* data) {
+          GLubyte const* bytes = fct::get_string< Parameter >::call(index_in);
+
+          if (bytes != 0) {
+            data->assign(reinterpret_cast< char const* >(bytes));
           }
+        }
+
       };
 
       DECLARE_GETTOR(float, get_float)
@@ -726,117 +733,127 @@ namespace gtulu {
 
       template< std::size_t Size >
       struct sized_gettor {
-          template< typename ReturnType >
-          struct strong_gettor {
-              typedef boost::array< ReturnType, Size > gettor_return_type_t;
+        template< typename ReturnType >
+        struct strong_gettor {
+          typedef boost::array< ReturnType, Size > gettor_return_type_t;
 
-              template< typename Parameter >
-              static gettor_return_type_t get() {
-                gettor_return_type_t data;
-                gettor< ReturnType >::template get< Parameter >(data.c_array());
-                return data;
-              }
+          template< typename Parameter >
+          static gettor_return_type_t get() {
+            gettor_return_type_t data;
 
-              template< typename Parameter >
-              static gettor_return_type_t get(std::uint32_t index_in) {
-                gettor_return_type_t data;
-                gettor< ReturnType >::template get< Parameter >(index_in, data.c_array());
-                return data;
-              }
-          };
+            gettor< ReturnType >::template get< Parameter >(data.c_array());
+            return data;
+          }
+
+          template< typename Parameter >
+          static gettor_return_type_t get(std::uint32_t index_in) {
+            gettor_return_type_t data;
+
+            gettor< ReturnType >::template get< Parameter >(index_in, data.c_array());
+            return data;
+          }
+
+        };
+
       };
 
       template< >
       struct sized_gettor< 1 > {
-          template< typename ReturnType >
-          struct strong_gettor {
-              typedef ReturnType gettor_return_type_t;
+        template< typename ReturnType >
+        struct strong_gettor {
+          typedef ReturnType gettor_return_type_t;
 
-              template< typename Parameter >
-              static gettor_return_type_t get() {
-                gettor_return_type_t data;
-                gettor< ReturnType >::template get< Parameter >(&data);
-                return data;
-              }
+          template< typename Parameter >
+          static gettor_return_type_t get() {
+            gettor_return_type_t data;
 
-              template< typename Parameter >
-              static gettor_return_type_t get(std::uint32_t index_in) {
-                gettor_return_type_t data;
-                gettor< ReturnType >::template get< Parameter >(index_in, &data);
-                return data;
-              }
-          };
+            gettor< ReturnType >::template get< Parameter >(&data);
+            return data;
+          }
+
+          template< typename Parameter >
+          static gettor_return_type_t get(std::uint32_t index_in) {
+            gettor_return_type_t data;
+
+            gettor< ReturnType >::template get< Parameter >(index_in, &data);
+            return data;
+          }
+
+        };
+
       };
 
       template< >
       struct sized_gettor< 0 > {
-          template< typename ReturnType >
-          struct strong_gettor {
-              typedef std::vector< ReturnType > gettor_return_type_t;
+        template< typename ReturnType >
+        struct strong_gettor {
+          typedef std::vector< ReturnType > gettor_return_type_t;
 
-              template< typename Parameter >
-              static gettor_return_type_t get(std::size_t size_in) {
-                ReturnType* array = new ReturnType[size_in];
-                gettor< ReturnType >::template get< Parameter >(array);
+          template< typename Parameter >
+          static gettor_return_type_t get(std::size_t size_in) {
+            ReturnType* array = new ReturnType[size_in];
 
-                gettor_return_type_t data(array, array + size_in);
-                delete[] array;
-                return data;
-              }
-          };
+            gettor< ReturnType >::template get< Parameter >(array);
+
+            gettor_return_type_t data(array, array + size_in);
+            delete[] array;
+            return data;
+          }
+
+        };
+
       };
 
       template< typename Parameter >
-      struct parameter_gettor {
-      };
+      struct parameter_gettor {};
 
-#define DECLARE_GETTOR(parameter_m, size_m) \
-      template< > \
-      struct parameter_gettor< parameter::parameter_m > { \
-          template< typename ReturnType > \
-          static boost::array< ReturnType, size_m > get() { \
-            typedef typename sized_gettor< size_m >::strong_gettor< ReturnType > gettor_type_t; \
-            return gettor_type_t::template get< parameter::parameter_m >(); \
-          } \
-      }; \
-      typedef parameter_gettor< parameter::parameter_m > parameter_m;
+#define DECLARE_GETTOR(parameter_m, size_m)                                               \
+  template< >                                                                             \
+  struct parameter_gettor< parameter::parameter_m > {                                     \
+    template< typename ReturnType >                                                       \
+    static boost::array< ReturnType, size_m > get() {                                     \
+      typedef typename sized_gettor< size_m >::strong_gettor< ReturnType > gettor_type_t; \
+      return gettor_type_t::template get< parameter::parameter_m >();                     \
+    }                                                                                     \
+  };                                                                                      \
+  typedef parameter_gettor< parameter::parameter_m > parameter_m;
 
-#define DECLARE_GETTOR_INDEXED(parameter_m, size_m, return_type_m) \
-      template< > \
-      struct parameter_gettor< parameter::parameter_m > { \
-          typedef sized_gettor< size_m >::strong_gettor< return_type_m > gettor_type_t; \
-          typedef gettor_type_t::gettor_return_type_t gettor_return_type_t; \
-          \
-          static gettor_return_type_t get(std::uint32_t index_in) { \
-            return gettor_type_t::get< parameter::parameter_m >(index_in); \
-          } \
-      }; \
-      typedef parameter_gettor< parameter::parameter_m > parameter_m;
+#define DECLARE_GETTOR_INDEXED(parameter_m, size_m, return_type_m)                       \
+  template< >                                                                            \
+  struct parameter_gettor< parameter::parameter_m > {                                    \
+    typedef sized_gettor< size_m >::strong_gettor< return_type_m > gettor_type_t;        \
+    typedef gettor_type_t::gettor_return_type_t                    gettor_return_type_t; \
+                                                                                         \
+    static gettor_return_type_t get(std::uint32_t index_in) {                            \
+      return gettor_type_t::get< parameter::parameter_m >(index_in);                     \
+    }                                                                                    \
+  };                                                                                     \
+  typedef parameter_gettor< parameter::parameter_m > parameter_m;
 
-#define DECLARE_GETTOR_TYPED(parameter_m, size_m, return_type_m) \
-      template< > \
-      struct parameter_gettor< parameter::parameter_m > { \
-          typedef sized_gettor< size_m >::strong_gettor< return_type_m > gettor_type_t; \
-          typedef gettor_type_t::gettor_return_type_t gettor_return_type_t; \
-          \
-          static gettor_return_type_t get() { \
-            return gettor_type_t::get< parameter::parameter_m >(); \
-          } \
-      }; \
-      typedef parameter_gettor< parameter::parameter_m > parameter_m;
+#define DECLARE_GETTOR_TYPED(parameter_m, size_m, return_type_m)                         \
+  template< >                                                                            \
+  struct parameter_gettor< parameter::parameter_m > {                                    \
+    typedef sized_gettor< size_m >::strong_gettor< return_type_m > gettor_type_t;        \
+    typedef gettor_type_t::gettor_return_type_t                    gettor_return_type_t; \
+                                                                                         \
+    static gettor_return_type_t get() {                                                  \
+      return gettor_type_t::get< parameter::parameter_m >();                             \
+    }                                                                                    \
+  };                                                                                     \
+  typedef parameter_gettor< parameter::parameter_m > parameter_m;
 
-#define DECLARE_GETTOR_DYNAMIC(parameter_m, size_parameter_m, return_type_m) \
-      template< > \
-      struct parameter_gettor< parameter::parameter_m > { \
-          typedef sized_gettor< 0 >::strong_gettor< return_type_m > gettor_type_t; \
-          typedef gettor_type_t::gettor_return_type_t gettor_return_type_t; \
-          \
-          static gettor_return_type_t get(){ \
-            std::size_t size = parameter_gettor< parameter::size_parameter_m >::get(); \
-            return gettor_type_t::get< parameter::parameter_m >(size); \
-          } \
-      }; \
-      typedef parameter_gettor< parameter::parameter_m > parameter_m;
+#define DECLARE_GETTOR_DYNAMIC(parameter_m, size_parameter_m, return_type_m)        \
+  template< >                                                                       \
+  struct parameter_gettor< parameter::parameter_m > {                               \
+    typedef sized_gettor< 0 >::strong_gettor< return_type_m > gettor_type_t;        \
+    typedef gettor_type_t::gettor_return_type_t               gettor_return_type_t; \
+                                                                                    \
+    static gettor_return_type_t get() {                                             \
+      std::size_t size = parameter_gettor< parameter::size_parameter_m >::get();    \
+      return gettor_type_t::get< parameter::parameter_m >(size);                    \
+    }                                                                               \
+  };                                                                                \
+  typedef parameter_gettor< parameter::parameter_m > parameter_m;
 
       DECLARE_GETTOR_TYPED(gl_active_texture, 1, std::uint32_t)
       DECLARE_GETTOR_TYPED(gl_aliased_line_width_range, 2, float)
@@ -844,7 +861,8 @@ namespace gtulu {
       DECLARE_GETTOR(gl_smooth_line_width_granularity, 1)
       DECLARE_GETTOR_TYPED(gl_array_buffer_binding, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_blend, 1, std::uint8_t)
-      //      DECLARE_GETTOR(gl_blend_color, 4)
+
+      // DECLARE_GETTOR(gl_blend_color, 4)
       DECLARE_GETTOR_TYPED(gl_blend_dst_alpha, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_blend_dst_rgb, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_blend_equation_alpha, 1, std::int32_t)
@@ -868,7 +886,8 @@ namespace gtulu {
       DECLARE_GETTOR_TYPED(gl_dither, 1, std::uint8_t)
       DECLARE_GETTOR_TYPED(gl_doublebuffer, 1, std::uint8_t)
       DECLARE_GETTOR_TYPED(gl_draw_buffer, 1, std::int32_t)
-      //      DECLARE_GETTOR_TYPED(gl_draw_buffer_i, 1, std::int32_t)
+
+      // DECLARE_GETTOR_TYPED(gl_draw_buffer_i, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_draw_framebuffer_binding, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_read_framebuffer_binding, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_element_array_buffer_binding, 1, std::int32_t)
@@ -885,7 +904,8 @@ namespace gtulu {
       DECLARE_GETTOR_TYPED(gl_max_combined_fragment_uniform_components, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_max_combined_texture_image_units, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_max_combined_vertex_uniform_components, 1, std::int32_t)
-      //      DECLARE_GETTOR_TYPED(gl_max_combined_geometry_uniform_components, 1, std::int32_t)
+
+      // DECLARE_GETTOR_TYPED(gl_max_combined_geometry_uniform_components, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_max_varying_components, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_max_combined_uniform_blocks, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_max_cube_map_texture_size, 1, std::int32_t)
@@ -921,7 +941,8 @@ namespace gtulu {
       DECLARE_GETTOR_TYPED(gl_max_uniform_buffer_bindings, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_uniform_buffer_offset_alignment, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_max_vertex_uniform_blocks, 1, std::int32_t)
-      //      DECLARE_GETTOR_TYPED(gl_max_geometry_uniform_blocks, 1, std::int32_t)
+
+      // DECLARE_GETTOR_TYPED(gl_max_geometry_uniform_blocks, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_max_geometry_input_components, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_max_geometry_output_components, 1, std::int32_t)
       DECLARE_GETTOR_TYPED(gl_max_viewport_dims, 2, std::int32_t)
@@ -1021,7 +1042,9 @@ namespace gtulu {
 
       namespace toolkit {
         struct glx;
+
         struct glfw;
+
         struct wgl;
 
         typedef glx default_;
@@ -1029,7 +1052,9 @@ namespace gtulu {
 
       namespace platform {
         struct linux_;
+
         struct windows;
+
         struct macosx;
 
         typedef linux_ default_;
@@ -1037,6 +1062,7 @@ namespace gtulu {
 
       namespace policy {
         struct none;
+
         struct detached;
 
         typedef none default_;
@@ -1047,40 +1073,42 @@ namespace gtulu {
 
       template< >
       struct context_info_selector< toolkit::glx, platform::linux_ > {
-          typedef glx_context context_info;
-          typedef glx_current_context current_context_info;
+        typedef glx_context         context_info;
+        typedef glx_current_context current_context_info;
       };
 
       template< typename Toolkit = toolkit::default_, typename Platform = platform::default_ >
       struct platform_context {
-          typedef platform_context< Toolkit, Platform > platform_context_t;
-          typedef typename context_info_selector< Toolkit, Platform >::context_info context_info_t;
-          typedef typename context_info_selector< Toolkit, Platform >::current_context_info current_context_info_t;
+        typedef platform_context< Toolkit, Platform >                                     platform_context_t;
+        typedef typename context_info_selector< Toolkit, Platform >::context_info         context_info_t;
+        typedef typename context_info_selector< Toolkit, Platform >::current_context_info current_context_info_t;
 
-          template< typename Policy = policy::detached >
-          static context_info_t create(int arg_count, char** arg_values) {
-            platform_context_t::_create< Policy >(arg_count, arg_values);
-            context_info_t context_info = current_context_info_t();
-            context_info.acquire();
+        template< typename Policy = policy::detached >
+        static context_info_t create(int arg_count, char** arg_values) {
+          platform_context_t::_create< Policy >(arg_count, arg_values);
+          context_info_t context_info = current_context_info_t();
+          context_info.acquire();
 
-            std::string const gl_vendor = ctx::gl_vendor::get();
-            std::string const gl_renderer = ctx::gl_renderer::get();
-            std::string const gl_version = ctx::gl_version::get();
-            std::string const gl_shading_language_version = ctx::gl_shading_language_version::get();
+          std::string const gl_vendor                   = ctx::gl_vendor::get();
+          std::string const gl_renderer                 = ctx::gl_renderer::get();
+          std::string const gl_version                  = ctx::gl_version::get();
+          std::string const gl_shading_language_version = ctx::gl_shading_language_version::get();
 
-            __gtulu_info() << parameter::gl_vendor() << ": " << gl_vendor;
-            __gtulu_info() << parameter::gl_renderer() << ": " << gl_renderer;
-            __gtulu_info() << parameter::gl_version() << ": " << gl_version;
-            __gtulu_info() << parameter::gl_shading_language_version() << ": " << gl_shading_language_version;
+          __gtulu_info() << parameter::gl_vendor() << ": " << gl_vendor;
+          __gtulu_info() << parameter::gl_renderer() << ": " << gl_renderer;
+          __gtulu_info() << parameter::gl_version() << ": " << gl_version;
+          __gtulu_info() << parameter::gl_shading_language_version() << ": " << gl_shading_language_version;
 
-            return context_info;
-          }
-          static context_info_t current() {
-            return current_context_info_t();
-          }
-          static void destroy() {
-            platform_context_t::_destroy();
-          }
+          return context_info;
+        }
+
+        static context_info_t current() {
+          return current_context_info_t();
+        }
+
+        static void destroy() {
+          platform_context_t::_destroy();
+        }
 
         protected:
           template< typename Policy = policy::detached >
@@ -1096,4 +1124,3 @@ namespace gtulu {
 } // namespace gtulu
 
 #endif /* GTULU_INTERNAL_CONTEXT_HPP_ */
-

@@ -54,7 +54,7 @@ namespace gtulu {
 
           shader_vector_t::iterator shader_it = shaders_.begin();
           for (; shader_it != shaders_.end(); shader_it++) {
-            fprg::output_vector_t const& outputs = shader_it->get_outputs();
+            fprg::output_vector_t const&          outputs   = shader_it->get_outputs();
             fprg::output_vector_t::const_iterator output_it = outputs.begin();
 
             for (; output_it != outputs.end(); ++output_it) {
@@ -71,9 +71,9 @@ namespace gtulu {
                   real_info.name.append("]");
                 }
 
-                real_info.size = 1;
+                real_info.size     = 1;
                 real_info.location = fct::get_frag_data_location< >::call(program_base::handle_,
-                                                                             real_info.name.c_str());
+                                                                          real_info.name.c_str());
                 real_info.index = fct::get_frag_data_index< >::call(program_base::handle_, real_info.name.c_str());
 
                 if (real_info.location >= 0) {
@@ -111,12 +111,13 @@ namespace gtulu {
 
         const fprg::attribute_info dynamic_program_format::get_attribute_info(std::uint32_t id) {
           std::uint32_t max_len = get_attribute_max_length();
-          char* buffer = new char[max_len];
+          char*         buffer  = new char[max_len];
+
           buffer[0] = 0;
 
           GLsizei length;
-          GLint size;
-          GLenum type;
+          GLint   size;
+          GLenum  type;
           fct::get_active_attrib< >::call(**this, id, max_len, &length, &size, &type, buffer);
           GLint location = fct::get_attrib_location< >::call(**this, buffer);
 
@@ -136,12 +137,13 @@ namespace gtulu {
 
         const fprg::uniform_info dynamic_program_format::get_uniform_info(std::uint32_t id) {
           std::uint32_t max_len = get_uniform_max_length();
-          char* buffer = new char[max_len];
+          char*         buffer  = new char[max_len];
+
           buffer[0] = 0;
 
           GLsizei length;
-          GLint size;
-          GLenum type;
+          GLint   size;
+          GLenum  type;
           fct::get_active_uniform< >::call(**this, id, max_len, &length, &size, &type, buffer);
           GLint location = fct::get_uniform_location< >::call(**this, buffer);
 
@@ -170,26 +172,25 @@ namespace gtulu {
         }
 
         dynamic_program_format::dynamic_program_format() :
-            has_link_log_(false), has_validation_log_(false), link_log_(""), validation_log_("") {
-        }
+          has_link_log_(false), has_validation_log_(false), link_log_(""), validation_log_("") {}
 
         void dynamic_program_format::print() {
           __gtulu_info() << " ----- " << attributes_.size() << " attribute(s) ----- ";
           for (fprg::attribute_vector_t::iterator it = attributes_.begin(); it != attributes_.end(); ++it) {
             __gtulu_info() << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: "
-                  << it->size << ", location: " << it->location;
+                           << it->size << ", location: " << it->location;
           }
 
           __gtulu_info() << " ----- " << uniforms_.size() << " uniform(s)   ----- ";
           for (fprg::uniform_vector_t::iterator it = uniforms_.begin(); it != uniforms_.end(); ++it) {
             __gtulu_info() << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: "
-                  << it->size << ", location: " << it->location;
+                           << it->size << ", location: " << it->location;
           }
 
           __gtulu_info() << " ----- " << outputs_.size() << " output(s)    ----- ";
           for (fprg::output_vector_t::iterator it = outputs_.begin(); it != outputs_.end(); ++it) {
             __gtulu_info() << "id: " << it->id << ", name: " << it->name << ", type: " << it->type << ", size: "
-                  << it->size << ", location: " << it->location << ", index: " << it->index;
+                           << it->size << ", location: " << it->location << ", index: " << it->index;
           }
         }
 
@@ -208,9 +209,9 @@ namespace gtulu {
             buffer[0] = 0;
 
             fct::get_program_info_log< >::call(program_base::handle_,
-                                                  length,
-                                                  reinterpret_cast< std::int32_t* >(&length),
-                                                  buffer);
+                                               length,
+                                               reinterpret_cast< std::int32_t* >(&length),
+                                               buffer);
 
             link_log_ = std::string(buffer);
 
@@ -250,9 +251,9 @@ namespace gtulu {
             buffer[0] = 0;
 
             fct::get_program_info_log< >::call(program_base::handle_,
-                                                  length,
-                                                  reinterpret_cast< std::int32_t* >(&length),
-                                                  buffer);
+                                               length,
+                                               reinterpret_cast< std::int32_t* >(&length),
+                                               buffer);
 
             validation_log_ = std::string(buffer);
 

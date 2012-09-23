@@ -23,12 +23,13 @@ namespace gtulu {
 
         template< typename BufferFormat, typename BufferSlot >
         struct binder< slot::object_slot< obj::buffer_base, BufferSlot >, obj::buffer< BufferFormat > > {
-            typedef slot::object_slot< obj::buffer_base, BufferSlot > target_type;
-            typedef obj::buffer< BufferFormat > source_type;
+          typedef slot::object_slot< obj::buffer_base, BufferSlot > target_type;
+          typedef obj::buffer< BufferFormat >                       source_type;
 
-            void bind(target_type const& target, source_type& source) {
-              fct::bind_buffer< typename target_type::slot_type >::call(*source);
-            }
+          void bind(target_type const& target, source_type& source) {
+            fct::bind_buffer< typename target_type::slot_type >::call(*source);
+          }
+
         };
 
       } // namespace detail

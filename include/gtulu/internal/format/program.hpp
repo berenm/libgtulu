@@ -22,7 +22,7 @@ namespace gtulu {
         META_ASPECT_DECLARE(property,
                             Attribute,
                             using cst::,
-                            (gl_delete_status)(gl_link_status)(gl_validate_status)(gl_info_log_length)(gl_attached_shaders)(gl_active_attributes)(gl_active_attribute_max_length)(gl_active_uniforms)(gl_active_uniform_max_length)(gl_active_uniform_blocks)(gl_active_uniform_block_max_name_length))
+                                  (gl_delete_status) (gl_link_status) (gl_validate_status) (gl_info_log_length) (gl_attached_shaders) (gl_active_attributes) (gl_active_attribute_max_length) (gl_active_uniforms) (gl_active_uniform_max_length) (gl_active_uniform_blocks) (gl_active_uniform_block_max_name_length))
 
       } // namespace program
     } // namespace format

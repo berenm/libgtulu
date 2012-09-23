@@ -17,9 +17,9 @@ namespace gtulu {
     namespace format {
       namespace program {
 
-        struct static_program_format: virtual public obj::program_base {
-            virtual ~static_program_format() {
-            }
+        struct static_program_format : virtual public obj::program_base {
+          virtual ~static_program_format() {}
+
         };
 
       } // namespace program
