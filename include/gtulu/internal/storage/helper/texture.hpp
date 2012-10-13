@@ -44,9 +44,9 @@ namespace gtulu {
               typedef typename TextureFormat::group_format::aspect::format    group_cst;
               typedef typename TextureFormat::data_format::aspect::format     data_cst;
 
-              typedef fct::tex_image< target_cst, internal_cst, group_cst, data_cst, bm::int_< 1 > > init_fct;
-              typedef fct::tex_sub_image< target_cst, group_cst, data_cst, bm::int_< 1 > >           write_fct;
-              typedef fct::get_tex_image< target_cst, group_cst, data_cst >                          read_fct;
+              typedef fct::tex_image< target_cst, internal_cst, group_cst, data_cst > init_fct;
+              typedef fct::tex_sub_image< target_cst, group_cst, data_cst >           write_fct;
+              typedef fct::get_tex_image< target_cst, group_cst, data_cst >           read_fct;
 
               static void init(OtherStore const& other_store, std::uint32_t const lod_level=0) {
                 init_fct::call(lod_level,
@@ -89,9 +89,9 @@ namespace gtulu {
               typedef typename TextureFormat::group_format::aspect::format    group_cst;
               typedef typename TextureFormat::data_format::aspect::format     data_cst;
 
-              typedef fct::tex_image< target_cst, internal_cst, group_cst, data_cst, bm::int_< 2 > > init_fct;
-              typedef fct::tex_sub_image< target_cst, group_cst, data_cst, bm::int_< 2 > >           write_fct;
-              typedef fct::get_tex_image< target_cst, group_cst, data_cst >                          read_fct;
+              typedef fct::tex_image< target_cst, internal_cst, group_cst, data_cst > init_fct;
+              typedef fct::tex_sub_image< target_cst, group_cst, data_cst >           write_fct;
+              typedef fct::get_tex_image< target_cst, group_cst, data_cst >           read_fct;
 
               static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
                 init_fct::call(lod_level,
@@ -136,9 +136,9 @@ namespace gtulu {
               typedef typename TextureFormat::group_format::aspect::format    group_cst;
               typedef typename TextureFormat::data_format::aspect::format     data_cst;
 
-              typedef fct::tex_image< target_cst, internal_cst, group_cst, data_cst, bm::int_< 3 > > init_fct;
-              typedef fct::tex_sub_image< target_cst, group_cst, data_cst, bm::int_< 3 > >           write_fct;
-              typedef fct::get_tex_image< target_cst, group_cst, data_cst >                          read_fct;
+              typedef fct::tex_image< target_cst, internal_cst, group_cst, data_cst > init_fct;
+              typedef fct::tex_sub_image< target_cst, group_cst, data_cst >           write_fct;
+              typedef fct::get_tex_image< target_cst, group_cst, data_cst >           read_fct;
 
               static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
                 init_fct::call(lod_level,
@@ -184,9 +184,9 @@ namespace gtulu {
               typedef typename TextureFormat::group_format::aspect::format    group_cst;
               typedef typename TextureFormat::data_format::aspect::format     data_cst;
 
-              typedef fct::compressed_tex_image< target_cst, internal_cst, bm::int_< 1 > >  init_fct;
-              typedef fct::compressed_tex_sub_image< target_cst, group_cst, bm::int_< 1 > > write_fct;
-              typedef fct::get_compressed_tex_image< target_cst >                           read_fct;
+              typedef fct::compressed_tex_image< target_cst, internal_cst >  init_fct;
+              typedef fct::compressed_tex_sub_image< target_cst, group_cst > write_fct;
+              typedef fct::get_compressed_tex_image< target_cst >            read_fct;
 
               static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
                 init_fct::call(lod_level,
@@ -231,9 +231,9 @@ namespace gtulu {
               typedef typename TextureFormat::group_format::aspect::format    group_cst;
               typedef typename TextureFormat::data_format::aspect::format     data_cst;
 
-              typedef fct::compressed_tex_image< target_cst, internal_cst, bm::int_< 2 > >  init_fct;
-              typedef fct::compressed_tex_sub_image< target_cst, group_cst, bm::int_< 2 > > write_fct;
-              typedef fct::get_compressed_tex_image< target_cst >                           read_fct;
+              typedef fct::compressed_tex_image< target_cst, internal_cst >  init_fct;
+              typedef fct::compressed_tex_sub_image< target_cst, group_cst > write_fct;
+              typedef fct::get_compressed_tex_image< target_cst >            read_fct;
 
               static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
                 init_fct::call(lod_level,
@@ -279,9 +279,9 @@ namespace gtulu {
               typedef typename TextureFormat::group_format::aspect::format    group_cst;
               typedef typename TextureFormat::data_format::aspect::format     data_cst;
 
-              typedef fct::compressed_tex_image< target_cst, internal_cst, bm::int_< 3 > >  init_fct;
-              typedef fct::compressed_tex_sub_image< target_cst, group_cst, bm::int_< 3 > > write_fct;
-              typedef fct::get_compressed_tex_image< target_cst >                           read_fct;
+              typedef fct::compressed_tex_image< target_cst, internal_cst >  init_fct;
+              typedef fct::compressed_tex_sub_image< target_cst, group_cst > write_fct;
+              typedef fct::get_compressed_tex_image< target_cst >            read_fct;
 
               static void init(OtherStore const& other_store, std::uint32_t const lod_level) {
                 init_fct::call(lod_level,

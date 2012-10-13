@@ -12,6 +12,7 @@
 #include "gtulu/namespaces.hpp"
 
 #include <string>
+#include <array>
 #include <cstdint>
 
 #define GLCOREARB_PROTOTYPES 1
@@ -44,6 +45,56 @@ namespace gtulu {
 
   typedef float  float32_t;
   typedef double float64_t;
+
+  template< class T > using vec1 = std::array< T, 1 >;
+  template< class T > using vec2 = std::array< T, 2 >;
+  template< class T > using vec3 = std::array< T, 3 >;
+  template< class T > using vec4 = std::array< T, 4 >;
+
+  template< class T > using mat2x2 = std::array< std::array< T, 2 >, 2 >;
+  template< class T > using mat2x3 = std::array< std::array< T, 2 >, 3 >;
+  template< class T > using mat2x4 = std::array< std::array< T, 2 >, 4 >;
+  template< class T > using mat3x2 = std::array< std::array< T, 3 >, 2 >;
+  template< class T > using mat3x3 = std::array< std::array< T, 3 >, 3 >;
+  template< class T > using mat3x4 = std::array< std::array< T, 3 >, 4 >;
+  template< class T > using mat4x2 = std::array< std::array< T, 4 >, 2 >;
+  template< class T > using mat4x3 = std::array< std::array< T, 4 >, 3 >;
+  template< class T > using mat4x4 = std::array< std::array< T, 4 >, 4 >;
+
+  template< typename S, typename T >
+  static inline S& operator<<(S& s, std::vector< T > const& v) {
+    s << "[ ";
+
+    size_t i = 0;
+    for (T const& t : v) {
+      s << t;
+
+      if (++i < v.size()) {
+        s << ", ";
+      }
+    }
+    s << " ]";
+
+    return s;
+  }
+
+  template< typename S, typename T, size_t const N >
+  static inline S& operator<<(S& s, std::array< T, N > const& v) {
+    s << "[ ";
+
+    size_t i = 0;
+    for (T const& t : v) {
+      s << t;
+
+      if (++i < N) {
+        s << ", ";
+      }
+    }
+    s << " ]";
+
+    return s;
+  }
+
 } // namespace gtulu
 
 #include <boost/config.hpp>

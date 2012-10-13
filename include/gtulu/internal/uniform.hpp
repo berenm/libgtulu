@@ -27,18 +27,21 @@ namespace gtulu {
         template< typename Cardinality >
         struct cardinality_binder;
 
-#define DECLARE_BINDER(count_m, cardinality_m)                                                                                                                  \
-  template< >                                                                                                                                                   \
-  struct cardinality_binder< fcmn::cardinality::cardinality_m > {                                                                                               \
-    template< typename DataFormat >                                                                                                                             \
-    struct uniform_binder {                                                                                                                                     \
-      inline static void bind(location_t const location_in, BOOST_PP_ENUM_PARAMS(count_m, typename fcmn::to_value_type< DataFormat >::type const value_in)) {   \
-        fct::uniform< >::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in));                                                                            \
-      }                                                                                                                                                         \
-      inline static void bind(location_t const location_in, std::uint32_t const number_in, typename fcmn::to_value_type< DataFormat >::type const* values_in) { \
-        fct::uniform< >::call(location_in, number_in, values_in);                                                                                               \
-      }                                                                                                                                                         \
-    };                                                                                                                                                          \
+#define DECLARE_BINDER(count_m, cardinality_m)                                                                          \
+  template< >                                                                                                           \
+  struct cardinality_binder< fcmn::cardinality::cardinality_m > {                                                       \
+    template< typename DataFormat >                                                                                     \
+    struct uniform_binder {                                                                                             \
+      typedef typename fcmn::to_value_type< DataFormat >::type                 value_type;                              \
+      typedef typename fcmn::to_container_type< DataFormat, value_type >::type container_type;                          \
+                                                                                                                        \
+      inline static void bind(location_t const location_in, BOOST_PP_ENUM_PARAMS(count_m, value_type const value_in)) { \
+        fct::uniform< >::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in));                                    \
+      }                                                                                                                 \
+      inline static void bind(location_t const location_in, std::vector< container_type > const & values_in) {          \
+        fct::uniform< >::call(location_in, values_in);                                                                  \
+      }                                                                                                                 \
+    };                                                                                                                  \
   };
 
         DECLARE_BINDER(1, one)
@@ -48,15 +51,18 @@ namespace gtulu {
 
 #undef DECLARE_BINDER
 
-#define DECLARE_BINDER(count_m, cardinality_m)                                                                                                                  \
-  template< >                                                                                                                                                   \
-  struct cardinality_binder< fcmn::cardinality::cardinality_m > {                                                                                               \
-    template< typename DataFormat >                                                                                                                             \
-    struct uniform_binder {                                                                                                                                     \
-      inline static void bind(location_t const location_in, std::uint32_t const number_in, typename fcmn::to_value_type< DataFormat >::type const* values_in) { \
-        fct::uniform_matrix< >::call(location_in, number_in, values_in);                                                                                        \
-      }                                                                                                                                                         \
-    };                                                                                                                                                          \
+#define DECLARE_BINDER(count_m, cardinality_m)                                                                 \
+  template< >                                                                                                  \
+  struct cardinality_binder< fcmn::cardinality::cardinality_m > {                                              \
+    template< typename DataFormat >                                                                            \
+    struct uniform_binder {                                                                                    \
+      typedef typename fcmn::to_value_type< DataFormat >::type                 value_type;                     \
+      typedef typename fcmn::to_container_type< DataFormat, value_type >::type container_type;                 \
+                                                                                                               \
+      inline static void bind(location_t const location_in, std::vector< container_type > const & values_in) { \
+        fct::uniform< >::call(location_in, values_in);                                                         \
+      }                                                                                                        \
+    };                                                                                                         \
   };
 
         DECLARE_BINDER(2, two_by_two)

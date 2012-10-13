@@ -29,6 +29,34 @@ namespace gtulu {
             typename fnum::get_width< typename fcmn::get_numeric< Format >::type >::type >::value;
         };
 
+        namespace dimension {
+          template< typename Dimension >
+          struct get_literal {
+            typedef bm::int_< 0 > type;
+          };
+
+          template< >
+          struct get_literal< fcmn::dimension::oned > {
+            typedef bm::int_< 1 > type;
+          };
+
+          template< >
+          struct get_literal< fcmn::dimension::twod > {
+            typedef bm::int_< 2 > type;
+          };
+
+          template< >
+          struct get_literal< fcmn::dimension::threed > {
+            typedef bm::int_< 3 > type;
+          };
+
+        } // namespace dimension
+
+        template< typename Format >
+        struct get_dimension_literal {
+          typedef typename fcmn::dimension::get_literal< typename fcmn::get_dimension< Format >::type >::type type;
+        };
+
         namespace cardinality {
           template< typename Cardinality >
           struct get_literal {
@@ -55,11 +83,86 @@ namespace gtulu {
             typedef bm::int_< 4 > type;
           };
 
+          template< typename Cardinality >
+          struct get_container {
+            template< typename T > using type = T;
+          };
+
+          template< >
+          struct get_container< fcmn::cardinality::one > {
+            template< typename T > using type = gtulu::vec1< T >;
+          };
+
+          template< >
+          struct get_container< fcmn::cardinality::two > {
+            template< typename T > using type = gtulu::vec2< T >;
+          };
+
+          template< >
+          struct get_container< fcmn::cardinality::three > {
+            template< typename T > using type = gtulu::vec3< T >;
+          };
+
+          template< >
+          struct get_container< fcmn::cardinality::four > {
+            template< typename T > using type = gtulu::vec4< T >;
+          };
+
+          template< >
+          struct get_container< fcmn::cardinality::two_by_two > {
+            template< typename T > using type = gtulu::mat2x2< T >;
+          };
+
+          template< >
+          struct get_container< fcmn::cardinality::two_by_three > {
+            template< typename T > using type = gtulu::mat2x3< T >;
+          };
+
+          template< >
+          struct get_container< fcmn::cardinality::two_by_four > {
+            template< typename T > using type = gtulu::mat2x4< T >;
+          };
+
+          template< >
+          struct get_container< fcmn::cardinality::three_by_two > {
+            template< typename T > using type = gtulu::mat3x2< T >;
+          };
+
+          template< >
+          struct get_container< fcmn::cardinality::three_by_three > {
+            template< typename T > using type = gtulu::mat3x3< T >;
+          };
+
+          template< >
+          struct get_container< fcmn::cardinality::three_by_four > {
+            template< typename T > using type = gtulu::mat3x4< T >;
+          };
+
+          template< >
+          struct get_container< fcmn::cardinality::four_by_two > {
+            template< typename T > using type = gtulu::mat4x2< T >;
+          };
+
+          template< >
+          struct get_container< fcmn::cardinality::four_by_three > {
+            template< typename T > using type = gtulu::mat4x3< T >;
+          };
+
+          template< >
+          struct get_container< fcmn::cardinality::four_by_four > {
+            template< typename T > using type = gtulu::mat4x4< T >;
+          };
+
         } // namespace cardinality
 
         template< typename Format >
         struct get_cardinality_literal {
           typedef typename fcmn::cardinality::get_literal< typename fcmn::get_cardinality< Format >::type >::type type;
+        };
+
+        template< typename Cardinality, typename T >
+        struct to_container_type {
+          typedef typename cardinality::get_container< Cardinality >::template type< T > type;
         };
 
       } // namespace common
