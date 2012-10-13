@@ -297,7 +297,10 @@ class Enum(Type):
         if prev is None:
           c.value = 0
         else:
-          c.value = prev.value + 1
+          try:
+            c.value = prev.value + 1
+          except:
+            pass
       prev = c
 
   def __repr__(self):
@@ -322,7 +325,9 @@ class EnumValue(Type):
       if self.value in MacroDefinition.macros:
         self.value = MacroDefinition.macros[self.value]
 
-      if self.value[0] == "'":
+      if len(self.value) == 0:
+        self.value = None
+      elif self.value[0] == "'":
         self.value = ord(self.value[1])
       elif all([ c in '0123456789' for c in self.value]):
         self.value = eval(self.value)

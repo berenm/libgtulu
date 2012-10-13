@@ -41,7 +41,7 @@ words = [ '1D', '2D', '3D',
 
 class Renamable(object):
   def __init__(self, prefixes=[], suffixes=[]):
-    log.debug('renaming: %s' % self.name)
+    # log.debug('renaming: %s' % self.name)
 
     new_name = self.name
     self.suffix = None
@@ -114,4 +114,4 @@ class Renamable(object):
     new_name = new_name.replace('readn_', 'read_n_')
     
     self.new_name = new_name.strip('_')
-    log.debug('result: %s' % self.new_name)
+    # log.debug('result: %s' % self.new_name)

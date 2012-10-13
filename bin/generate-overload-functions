@@ -5,7 +5,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 from gentulu.library import GLES2, GLES3, GL4, GL3, EGL, GLX, GTULU33, GTULU43
-from gentulu.serializer import LibrarySerializer
+from gentulu.overload_serializer import LibrarySerializer
 
 def main():
   from optparse import OptionParser, OptionGroup

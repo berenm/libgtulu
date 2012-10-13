@@ -10,39 +10,20 @@ import gentulu.utils as gu
 log = logging.getLogger(__name__)
 
 class ParameterSerializer(object):
-  typename='typename %(name)s_t'
-  template='%(name)s'
-  typedef='typedef %(camelname)s %(uncamelname)s_t;'
   parameter='%(typename)s %(name)s'
   argument='%(value)s'
   debug='"%(debugname)s: \'" << %(value)s << "\'"'
 
-  def __init__(self, parameter, as_template=False):
+  def __init__(self, parameter):
     super(ParameterSerializer, self).__init__()
     gu.inherit(self, parameter)
-
-    self.as_template = as_template
 
     self.uncamelname = gu.uncamel(self.name)
     self.name = self.uncamelname
 
-  def typenames(self):
-    return ParameterSerializer.typename % self.__dict__
-
-  def templates(self):
-    return ParameterSerializer.template % self.__dict__
-
-  def typedefs(self):
-    return ''
-    # ParameterSerializer.typedef % self.__dict__
-
   def debugs(self):
     self.debugname = self.uncamelname
-
-    if self.as_template:
-      self.value = '%(uncamelname)s_t::name()' % self.__dict__
-    else:
-      self.value = self.name
+    self.value = self.name
 
     if self.hardcoded is not None:
       self.value = self.hardcoded
@@ -56,9 +37,7 @@ class ParameterSerializer(object):
     if self.hardcoded is not None:
       return self.hardcoded
 
-    if self.as_template:
-      self.value = '%(uncamelname)s_t()' % self.__dict__
-    elif self.is_template:
+    if self.is_template:
       self.value = 'static_cast< std::%(type)s_t >(%(name)s)' % self.__dict__
     elif 'std::vector< gtulu::mat' in self.typename:
       self.value = '%(name)s.data()->data()->data()' % self.__dict__
@@ -80,20 +59,9 @@ class ParameterSerializer(object):
 
 
 class DeclarationSerializer(object):
-  signature='''%(prefix)s %(specifier)s %(outtype)s %(scope)scall(%(parameters)s)'''
-
+  signature='''%(prefix)s %(specifier)s %(outtype)s %(function_name)s%(suffix)s(%(parameters)s)'''
   declare='''%(signature)s;'''
-  define_template='''%(signature)s { %(returns)s %(scope)s::call(%(arguments)s); }'''
-
-  declare_template='''
-%(signature)s {%(typedefs)s
-  %(assign)s %(new_name)s< >::call(%(arguments)s);
-  %(returns)s
-}
-'''
-
-  define='''
-%(signature)s {%(typedefs)s
+  define='''%(signature)s {
   __gtulu_debug() << "call %(name)s " %(debug)s;
   %(assign)s %(name)s(%(arguments)s);
   __gtulu_check_error();
@@ -106,8 +74,7 @@ class DeclarationSerializer(object):
     gu.inherit(self, declaration)
 
     self.template_count = template_count
-    self.as_template = self.template_count != 0
-    self.serializers = [ ParameterSerializer(p, self.as_template and p.is_template) for p in self.parameters ]
+    self.serializers = [ ParameterSerializer(p) for p in self.parameters ]
     self.function_name = self.function.name
 
     self.outtype = self.output.typename
@@ -121,74 +88,48 @@ class DeclarationSerializer(object):
       self.declare_returns = 'return'
 
     if self.has_cardinality:
-      self.declare_prefix = 'template< std::uint8_t const Cardinality >'
-      self.declare_suffix = 'Cardinality'
-      self.define_prefix = 'template< >'
-      self.define_suffix = 'boost::mpl::int_< %d >' % self.cardinality;
+      self.declare_prefix = 'template< std::uint8_t const Cardinality >\n'
+      self.declare_suffix = ''
+      self.define_prefix = 'template< >\n'
+      self.define_suffix = '< %d >' % self.cardinality;
     elif self.has_dimension:
-      self.declare_prefix = 'template< std::uint8_t const Dimension >'
-      self.declare_suffix = 'Dimension'
-      self.define_prefix = 'template< >'
-      self.define_suffix = 'boost::mpl::int_< %d >' % self.dimension;
+      self.declare_prefix = 'template< std::uint8_t const Dimension >\n'
+      self.declare_suffix = ''
+      self.define_prefix = 'template< >\n'
+      self.define_suffix = '< %d >' % self.dimension;
     else:
       self.declare_prefix = ''
       self.declare_suffix = ''
       self.define_prefix = ''
       self.define_suffix = ''
 
-  def typenames(self):
-    typenames = [ s.typenames() for s in self.serializers if s.as_template ]
-    if self.has_cardinality:
-      typenames.append('typename Cardinality')
-    elif self.has_dimension:
-      typenames.append('typename Dimension')
-    return typenames
-
-  def templates(self):
-    return [ s.templates() for s in self.serializers if s.as_template ]
-
-  def typedefs(self):
-    return [ s.typedefs() for s in self.serializers if s.as_template ]
-
   def declaration(self):
-    self.scope = ''
+    # self.specifier = 'BOOST_SYMBOL_EXPORT'
+    self.specifier = ''
 
-    if self.as_template:
-      self.specifier = 'inline static'
-    else:
-      self.specifier = 'static'
-
-    self.prefix = ''
-    self.parameters = ', '.join([ s.parameters() for s in self.serializers if not s.as_template if s.hardcoded is None ])
+    self.prefix = self.declare_prefix
+    self.suffix = self.declare_suffix
+    self.parameters = ', '.join([ s.parameters() for s in self.serializers if s.hardcoded is None ])
     self.signature = DeclarationSerializer.signature % self.__dict__
 
     self.returns = self.declare_returns
-    self.arguments = ', '.join([ s.arguments() for s in self.serializers if s.hardcoded is None ])
-    self.scope = '%(function_name)s< %(declare_suffix)s >' % self.__dict__
+    self.arguments = ', '.join([ s.arguments() for s in self.serializers ])
 
     if '__invalid' in self.parameters or  '__invalid' in self.outtype:
       self.signature = '// ' + self.signature
 
-    if self.as_template:
-      return DeclarationSerializer.define_template % self.__dict__
-    else:
-      return DeclarationSerializer.declare % self.__dict__
+    return DeclarationSerializer.declare % self.__dict__
 
   def definition(self):
-    if self.as_template:
-      return ''
-
     self.specifier = ''
-    self.scope = '%(function_name)s< %(define_suffix)s >::' % self.__dict__
 
     self.prefix = self.define_prefix
-    self.parameters = ', '.join([ s.parameters() for s in self.serializers if not s.as_template if s.hardcoded is None ])
+    self.suffix = self.define_suffix
+    self.parameters = ', '.join([ s.parameters() for s in self.serializers if s.hardcoded is None ])
     self.signature = DeclarationSerializer.signature % self.__dict__
 
     self.returns = self.define_returns
-    self.suffix = self.declare_suffix
     self.arguments = ', '.join([ s.arguments() for s in self.serializers ])
-    self.typedefs = '\n'.join([ s.typedefs() for s in self.serializers if s.as_template ])
     self.debug = '", "'.join([ s.debugs() for s in self.serializers ])
 
     if '__invalid' in self.parameters or  '__invalid' in self.outtype:
@@ -196,32 +137,10 @@ class DeclarationSerializer(object):
 
     return DeclarationSerializer.define % self.__dict__
 
-    # if self.as_template:
-    #   return ''
-    # else:
-    #   self.parameters = ', '.join([ s.parameters() for s in self.serializers if not s.as_template ])
-    #   self.arguments = ', '.join([ s.arguments() for s in self.serializers ])
-    #   self.specifier = 'static'
-    #   self.scope = ''
-    #   self.suffix = ''
-    #   self.signature = DeclarationSerializer.signature % self.__dict__
-    #   return DeclarationSerializer.define % self.__dict__
-
-
 class FunctionSerializer(object):
-  signature='''template< %(typenames)s >
-struct %(name)s%(templates)s'''
-
   declare='''
-%(signature)s;
+%(declarations)s
 '''
-
-  declare_template='''
-%(signature)s {%(typedefs)s
-  %(declarations)s
-};
-'''
-
   define='''
 %(definitions)s
 '''
@@ -231,58 +150,23 @@ struct %(name)s%(templates)s'''
     gu.inherit(self, function)
 
     self.serializers = [ DeclarationSerializer(d) for d in self.declarations ]
-    self.serializers += [ DeclarationSerializer(d, len(d.template_parameters)) for d in self.declarations if len(d.template_parameters) > 0 ]
-    self.template_counts = set([ len(s.typenames()) for s in self.serializers ])
-
     self.comments = ''
 
   def declaration(self):
-    self.typenames = 'typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void'
-    self.templates = ''
-    self.signature = FunctionSerializer.signature % self.__dict__
-    declaration = FunctionSerializer.declare % self.__dict__
-    
-    for template_count in self.template_counts:
-      self.typenames = ','.join([ 'typename _%d' % (i + 1) for i in range(0, template_count) ])
-      self.templates = '<%s>' % ','.join([ '_%d' % (i + 1) for i in range(0, template_count) ])
-      self.signature = FunctionSerializer.signature % self.__dict__
+    self.declarations = []
+    for s in [ s for s in self.serializers ]:
+      self.declarations.append(s.declaration())
 
-      self.declarations = set()
-      self.typedefs = set()
-
-      for s in [ s for s in self.serializers if len(s.typenames()) == template_count ]:
-        self.declarations.add(s.declaration())
-
-        self.typedefs.update(['typedef %s %s;' % ('_' + str(i+1), t.replace('typename', '')) for i,t in enumerate(s.typenames())])
-        for t in s.typedefs():
-          self.typedefs.add(t)
-
-      def compare_typedef(x, y):
-        if x[0:9] == y[0:9]:
-          return cmp(x, y)
-        elif x[0:9] == 'typedef _':
-          return -1
-        else:
-          return 1
-
-      self.typedefs = '\n'.join(sorted(self.typedefs, cmp=compare_typedef))
-      self.declarations = '\n'.join(sorted(self.declarations))
-      declaration += FunctionSerializer.declare_template % self.__dict__
-
-    return declaration
+    self.declarations = '\n'.join(sorted(self.declarations))
+    return FunctionSerializer.declare % self.__dict__
 
   def definition(self):
-    definition = ''
-    for template_count in self.template_counts:
-      self.definitions = []
+    self.definitions = []
+    for s in [ s for s in self.serializers ]:
+      self.definitions.append(s.definition())
 
-      for s in [ s for s in self.serializers if len(s.typenames()) == template_count ]:
-        self.definitions.append(s.definition())
-
-      self.definitions = '\n'.join(sorted(self.definitions))
-      definition += FunctionSerializer.define % self.__dict__
-
-    return definition
+    self.definitions = '\n'.join(sorted(self.definitions))
+    return FunctionSerializer.define % self.__dict__
 
 
 class LibrarySerializer(object):

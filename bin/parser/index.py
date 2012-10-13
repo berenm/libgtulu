@@ -32,9 +32,14 @@ class Indexer(object):
 
     self.index = Index.create()
 
-    arguments = [filename]
+    arguments = []
     arguments.extend(['-I' + i for i in include_paths])
     arguments.extend(['-D' + d for d in defines])
+    arguments.extend(['-x', 'c++'])
+    arguments.extend(['-std=c++11'])
+    arguments.extend([filename])
+
+    print ' '.join(arguments)
     self.translation_unit = self.index.parse(None, arguments, [], 0x43)
     if not self.translation_unit:
       self.root = None
