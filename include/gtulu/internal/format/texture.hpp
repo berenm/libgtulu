@@ -35,11 +35,15 @@ namespace gtulu {
         struct texture_format;
 
         template< typename TargetFormat, typename InternalFormat, typename GroupFormat, typename DataFormat >
-        struct texture_format :
-          fgrp::is_internal_compatible< GroupFormat, InternalFormat >,
-          fdat::are_group_internal_compatible< DataFormat, GroupFormat, InternalFormat >,
-          ftgt::is_internal_compatible< TargetFormat, InternalFormat >,
-          fcmn::target::is_texture< TargetFormat > {
+        struct texture_format {
+          using group_check   = fgrp::is_internal_compatible< GroupFormat, InternalFormat >;
+          using format_check  = fdat::are_group_internal_compatible< DataFormat, GroupFormat, InternalFormat >;
+          using target_check  = ftgt::is_internal_compatible< TargetFormat, InternalFormat >;
+          using texture_check = fcmn::target::is_texture< TargetFormat >;
+
+          typedef meta::and_< group_check, format_check, target_check, texture_check > type;
+          static_assert(type::value, "TextureFormat is invalid.");
+
           typedef TargetFormat   target_format;
           typedef InternalFormat internal_format;
           typedef GroupFormat    group_format;
@@ -52,16 +56,16 @@ namespace gtulu {
                   typename Compression = fcmn::compression::none,
                   typename Order       = fcmn::order::forward >
         struct select_format {
-          typedef typename fgrp::get_ideal_internal_component< Component >::type                       ideal_internal_component;
-          typedef typename fint::select_format< ideal_internal_component, Numeric, Compression >::type internal_format;
+          using ideal_internal_component = typename fgrp::get_ideal_internal_component< Component >::type;
+          using internal_format          = typename fint::select_format< ideal_internal_component, Numeric, Compression >::type;
 
-          typedef typename fint::get_ideal_data_integral< fnum::get_integral< Numeric > >::type ideal_data_integral;
-          typedef typename fint::get_ideal_component_packing< ideal_internal_component >::type  ideal_data_packing;
-          typedef typename fdat::select_format< fnum::get_width< Numeric >, ideal_data_packing, Order,
-                                                fnum::get_sign< Numeric >, ideal_data_integral >::type data_format;
+          using ideal_data_integral = typename fint::get_ideal_data_integral< fnum::get_integral< Numeric > >::type;
+          using ideal_data_packing  = typename fint::get_ideal_component_packing< ideal_internal_component >::type;
+          using data_format         = typename fdat::select_format< fnum::get_width< Numeric >, ideal_data_packing, Order,
+                                                                    fnum::get_sign< Numeric >, ideal_data_integral >::type;
 
-          typedef typename fint::get_ideal_group_integral< fnum::get_integral< Numeric > >::type ideal_group_integral;
-          typedef typename fgrp::select_format< Component, ideal_group_integral, Order >::type   group_format;
+          using ideal_group_integral = typename fint::get_ideal_group_integral< fnum::get_integral< Numeric > >::type;
+          using group_format         = typename fgrp::select_format< Component, ideal_group_integral, Order >::type;
 
           typedef texture_format< TargetFormat, internal_format, group_format, data_format > type;
         };

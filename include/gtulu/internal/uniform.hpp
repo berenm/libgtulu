@@ -49,22 +49,6 @@ namespace gtulu {
         DECLARE_BINDER(3, three)
         DECLARE_BINDER(4, four)
 
-#undef DECLARE_BINDER
-
-#define DECLARE_BINDER(count_m, cardinality_m)                                                                 \
-  template< >                                                                                                  \
-  struct cardinality_binder< fcmn::cardinality::cardinality_m > {                                              \
-    template< typename DataFormat >                                                                            \
-    struct uniform_binder {                                                                                    \
-      typedef typename fcmn::to_value_type< DataFormat >::type                 value_type;                     \
-      typedef typename fcmn::to_container_type< DataFormat, value_type >::type container_type;                 \
-                                                                                                               \
-      inline static void bind(location_t const location_in, std::vector< container_type > const & values_in) { \
-        fct::uniform< >::call(location_in, values_in);                                                         \
-      }                                                                                                        \
-    };                                                                                                         \
-  };
-
         DECLARE_BINDER(2, two_by_two)
         DECLARE_BINDER(2x3, two_by_three)
         DECLARE_BINDER(2x4, two_by_four)

@@ -38,10 +38,10 @@ namespace gtulu {
 
       template< typename SamplerFormat, typename TextureFormat >
       struct sampler_texture_binder : fsmp::is_texture_compatible< SamplerFormat, TextureFormat > {
-        inline static void bind(location_t const location_in, obj::texture< TextureFormat > const& texture_in) {
-          boost::shared_ptr< texture_unit > unit_ptr = texture_unit_manager::instance().get_current_or_new(texture_in);
-          unit_ptr->bind(texture_in);
-          fct::uniform< >::call(location_in, static_cast< std::int32_t >(**unit_ptr));
+        inline static void bind(location_t const location, obj::texture< TextureFormat > const& texture) {
+          boost::shared_ptr< texture_unit > unit_ptr = texture_unit_manager::instance().get_current_or_new(texture);
+          unit_ptr->bind(texture);
+          fct::uniform< >::call(location, static_cast< std::int32_t >(**unit_ptr));
         }
 
       };
@@ -49,8 +49,8 @@ namespace gtulu {
       template< typename SamplerFormat >
       struct sampler_binder {
         template< typename TextureFormat >
-        inline static void bind(location_t const location_in, obj::texture< TextureFormat > const& texture_in) {
-          sampler_texture_binder< SamplerFormat, TextureFormat >::bind(location_in, texture_in);
+        inline static void bind(location_t const location, obj::texture< TextureFormat > const& texture) {
+          sampler_texture_binder< SamplerFormat, TextureFormat >::bind(location, texture);
         }
 
       };
