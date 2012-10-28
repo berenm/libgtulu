@@ -11,9 +11,6 @@
 #include "gtulu/namespaces.hpp"
 #include "gtulu/internal/format/common.hpp"
 
-#include <boost/mpl/not.hpp>
-#include <boost/mpl/and.hpp>
-
 namespace gtulu {
   namespace internal {
 

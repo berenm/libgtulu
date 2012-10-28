@@ -11,8 +11,6 @@
 #include "gtulu/namespaces.hpp"
 #include "gtulu/internal/format/numeric.hpp"
 
-#include <boost/mpl/or.hpp>
-
 namespace gtulu {
   namespace internal {
 

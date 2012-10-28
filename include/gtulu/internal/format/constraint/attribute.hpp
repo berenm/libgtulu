@@ -15,10 +15,6 @@
 #include "gtulu/internal/format/attribute.hpp"
 #include "gtulu/internal/format/data.hpp"
 
-#include <boost/mpl/not.hpp>
-#include <boost/mpl/or.hpp>
-#include <boost/mpl/and.hpp>
-
 namespace gtulu {
   namespace internal {
 
