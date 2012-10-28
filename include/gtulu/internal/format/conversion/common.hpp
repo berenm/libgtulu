@@ -58,6 +58,35 @@ namespace gtulu {
         };
 
         namespace cardinality {
+
+          template< typename Cardinality, typename Order >
+          struct get_binder_count;
+
+          template< >
+          struct get_binder_count< fcmn::cardinality::one, fcmn::order::forward > {
+            static std::int32_t const value = 1;
+          };
+
+          template< >
+          struct get_binder_count< fcmn::cardinality::two, fcmn::order::forward > {
+            static std::int32_t const value = 2;
+          };
+
+          template< >
+          struct get_binder_count< fcmn::cardinality::three, fcmn::order::forward > {
+            static std::int32_t const value = 3;
+          };
+
+          template< >
+          struct get_binder_count< fcmn::cardinality::four, fcmn::order::forward > {
+            static std::int32_t const value = 4;
+          };
+
+          template< >
+          struct get_binder_count< fcmn::cardinality::four, fcmn::order::reverse > {
+            static std::int32_t const value = cst::gl_bgra::value;
+          };
+
           template< typename Cardinality >
           struct get_literal {
             typedef meta::int_< 1 > type;
@@ -155,14 +184,17 @@ namespace gtulu {
 
         } // namespace cardinality
 
+        template< typename Format, typename Order >
+        struct get_cardinality_binder_count : fcmn::cardinality::get_binder_count< fcmn::get_cardinality< Format >, Order > {};
+
         template< typename Format >
         struct get_cardinality_literal {
-          typedef typename fcmn::cardinality::get_literal< fcmn::get_cardinality< Format > >::type type;
+          using type = typename fcmn::cardinality::get_literal< fcmn::get_cardinality< Format > >::type;
         };
 
         template< typename Cardinality, typename T >
         struct to_container_type {
-          typedef typename cardinality::get_container< Cardinality >::template type< T > type;
+          using type = typename cardinality::get_container< Cardinality >::template type< T >;
         };
 
       } // namespace common

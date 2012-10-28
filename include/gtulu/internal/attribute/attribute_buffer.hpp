@@ -22,10 +22,10 @@ namespace gtulu {
 
     namespace attribute {
 
-      template< typename AttributeFormat, typename DataFormat >
-      using vertex_attrib_pointer = typename meta::if_< fnum::integral::is_floating< AttributeFormat >,
-                                                        fct::vertex_attrib_pointer< typename DataFormat::aspect::format >,
-                                                        fct::vertex_attrib_pointer_integer< typename DataFormat::aspect::format >
+      template< typename AttributeFormat, typename ... Ts >
+      using vertex_attrib_pointer = typename meta::if_< fnum::integral::is_integral< AttributeFormat >,
+                                                        fct::vertex_attrib_pointer_integer< Ts ... >,
+                                                        fct::vertex_attrib_pointer< Ts ... >
                                                         >::type;
 
       template< typename AttributeFormat >

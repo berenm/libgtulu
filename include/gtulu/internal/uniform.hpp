@@ -22,11 +22,11 @@ namespace gtulu {
 
     namespace uniform {
 
-      template< typename Format >
+      template< typename UniformFormat >
       struct uniform_binder {
-        typedef typename fcmn::to_value_type< Format >::type                 value_type;
-        typedef typename fcmn::to_container_type< Format, value_type >::type container_type;
-        typedef std::vector< container_type >                                containers_type;
+        typedef typename fcmn::to_value_type< UniformFormat >::type                 value_type;
+        typedef typename fcmn::to_container_type< UniformFormat, value_type >::type container_type;
+        typedef std::vector< container_type >                                       containers_type;
 
         inline static void bind(location_t const location, container_type const& values) { fct::uniform< >::call(location, { values }); }
         inline static void bind(location_t const location, containers_type const& values) { fct::uniform< >::call(location, values); }

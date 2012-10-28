@@ -20,65 +20,35 @@ namespace gtulu {
 
     namespace attribute {
 
-      namespace detail {
-        template< typename Cardinality >
-        struct cardinality_binder;
-
-# define DECLARE_BINDER(count_m, cardinality_m)                                                                                                       \
-  template< >                                                                                                                                         \
-  struct cardinality_binder< fcmn::cardinality::cardinality_m > {                                                                                     \
-    template< typename Integral > struct attribute_binder;                                                                                            \
-  };                                                                                                                                                  \
-  template< >                                                                                                                                         \
-  struct cardinality_binder< fcmn::cardinality::cardinality_m >                                                                                       \
-  ::attribute_binder< fnum::integral::floating > {                                                                                                    \
-    template< typename DataFormat >                                                                                                                   \
-    inline static void bind(location_t const location, BOOST_PP_ENUM_PARAMS(count_m, typename fcmn::to_value_type< DataFormat >::type const value)) { \
-      fct::vertex_attrib< >::call(location, BOOST_PP_ENUM_PARAMS(count_m, value));                                                                    \
-      fct::disable_vertex_attrib_array< >::call(location);                                                                                            \
-    }                                                                                                                                                 \
-    template< typename DataFormat >                                                                                                                   \
-    inline static void bind(location_t const location, std::uint32_t const number, typename fcmn::to_value_type< DataFormat >::type const* values) {  \
-      fct::vertex_attrib< >::call(location, values);                                                                                                  \
-      fct::disable_vertex_attrib_array< >::call(location);                                                                                            \
-    }                                                                                                                                                 \
-  };                                                                                                                                                  \
-  template< >                                                                                                                                         \
-  struct cardinality_binder< fcmn::cardinality::cardinality_m >                                                                                       \
-  ::attribute_binder< fnum::integral::integral > {                                                                                                    \
-    template< typename DataFormat >                                                                                                                   \
-    inline static void bind(location_t const location, BOOST_PP_ENUM_PARAMS(count_m, typename fcmn::to_value_type< DataFormat >::type const value)) { \
-      fct::vertex_attrib ## _integer< >::call(location, BOOST_PP_ENUM_PARAMS(count_m, value));                                                        \
-      fct::disable_vertex_attrib_array< >::call(location);                                                                                            \
-    }                                                                                                                                                 \
-    template< typename DataFormat >                                                                                                                   \
-    inline static void bind(location_t const location, std::uint32_t const number, typename fcmn::to_value_type< DataFormat >::type const* values) {  \
-      fct::vertex_attrib ## _integer< >::call(location, values);                                                                                      \
-      fct::disable_vertex_attrib_array< >::call(location);                                                                                            \
-    }                                                                                                                                                 \
-  };
-
-        DECLARE_BINDER(1, one)
-        DECLARE_BINDER(2, two)
-        DECLARE_BINDER(3, three)
-        DECLARE_BINDER(4, four)
-
-# undef DECLARE_BINDER
-
-      } // namespace detail
+      template< typename AttributeFormat, typename ... Ts >
+      using vertex_attrib = typename meta::if_< fnum::integral::is_integral< AttributeFormat >,
+                                                fct::vertex_attrib_integer< Ts ... >,
+                                                fct::vertex_attrib< Ts ... >
+                                                >::type;
 
       template< typename AttributeFormat >
-      struct attribute_binder :
-        detail::cardinality_binder< fcmn::get_cardinality< AttributeFormat > >::template attribute_binder< fnum::get_integral< AttributeFormat > > {};
+      struct attribute_binder {
+        typedef typename fcmn::to_value_type< AttributeFormat >::type                 value_type;
+        typedef typename fcmn::to_container_type< AttributeFormat, value_type >::type container_type;
+        typedef std::vector< container_type >                                         containers_type;
 
-      template< typename Format, typename BinderType = attribute_binder< Format >,
-                typename BufferBinderType            = attribute_buffer_binder< Format > >
+        inline static void bind(location_t const location, container_type const& values) {
+          vertex_attrib< AttributeFormat >::call(location, { values });
+          fct::disable_vertex_attrib_array< >::call(location);
+        }
 
-      // , typename ValueType = typename fcmn::to_value_type< Format >::type >
+        inline static void bind(location_t const location, containers_type const& values) {
+          vertex_attrib< AttributeFormat >::call(location, values);
+          fct::disable_vertex_attrib_array< >::call(location);
+        }
+
+      };
+
+      template< typename Format,
+                typename BinderType       = attribute_binder< Format >,
+                typename BufferBinderType = attribute_buffer_binder< Format > >
       struct attribute {
-        typedef Format format;
-
-        // typedef ValueType value_type;
+        typedef Format           format;
         typedef BinderType       binder;
         typedef BufferBinderType buffer_binder;
       };
