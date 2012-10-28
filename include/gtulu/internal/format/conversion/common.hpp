@@ -20,67 +20,67 @@ namespace gtulu {
 
         template< typename Format >
         struct to_value_type {
-          typedef typename fnum::to_value_type< typename fcmn::get_numeric< Format >::type >::type type;
+          typedef typename fnum::to_value_type< fcmn::get_numeric< Format > >::type type;
         };
 
         template< typename Format >
         struct size_of {
           static std::uint8_t const value = fnum::size_of<
-            typename fnum::get_width< typename fcmn::get_numeric< Format >::type >::type >::value;
+            typename fnum::get_width< Format >::type >::value;
         };
 
         namespace dimension {
           template< typename Dimension >
           struct get_literal {
-            typedef bm::int_< 0 > type;
+            typedef meta::int_< 0 > type;
           };
 
           template< >
           struct get_literal< fcmn::dimension::oned > {
-            typedef bm::int_< 1 > type;
+            typedef meta::int_< 1 > type;
           };
 
           template< >
           struct get_literal< fcmn::dimension::twod > {
-            typedef bm::int_< 2 > type;
+            typedef meta::int_< 2 > type;
           };
 
           template< >
           struct get_literal< fcmn::dimension::threed > {
-            typedef bm::int_< 3 > type;
+            typedef meta::int_< 3 > type;
           };
 
         } // namespace dimension
 
         template< typename Format >
         struct get_dimension_literal {
-          typedef typename fcmn::dimension::get_literal< typename fcmn::get_dimension< Format >::type >::type type;
+          typedef typename fcmn::dimension::get_literal< fcmn::get_dimension< Format > >::type type;
         };
 
         namespace cardinality {
           template< typename Cardinality >
           struct get_literal {
-            typedef bm::int_< 1 > type;
+            typedef meta::int_< 1 > type;
           };
 
           template< >
           struct get_literal< fcmn::cardinality::one > {
-            typedef bm::int_< 1 > type;
+            typedef meta::int_< 1 > type;
           };
 
           template< >
           struct get_literal< fcmn::cardinality::two > {
-            typedef bm::int_< 2 > type;
+            typedef meta::int_< 2 > type;
           };
 
           template< >
           struct get_literal< fcmn::cardinality::three > {
-            typedef bm::int_< 3 > type;
+            typedef meta::int_< 3 > type;
           };
 
           template< >
           struct get_literal< fcmn::cardinality::four > {
-            typedef bm::int_< 4 > type;
+            typedef meta::int_< 4 > type;
           };
 
           template< typename Cardinality >
@@ -157,7 +157,7 @@ namespace gtulu {
 
         template< typename Format >
         struct get_cardinality_literal {
-          typedef typename fcmn::cardinality::get_literal< typename fcmn::get_cardinality< Format >::type >::type type;
+          typedef typename fcmn::cardinality::get_literal< fcmn::get_cardinality< Format > >::type type;
         };
 
         template< typename Cardinality, typename T >

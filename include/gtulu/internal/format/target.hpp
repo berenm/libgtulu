@@ -9,9 +9,9 @@
 #define GTULU_INTERNAL_FORMAT_TARGET_HPP_
 
 #include "gtulu/namespaces.hpp"
-#include "gtulu/internal/constants_fwd.hpp"
-
 #include "gtulu/internal/format/common.hpp"
+
+#include "gtulu/internal/constants_fwd.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -22,7 +22,24 @@ namespace gtulu {
         META_ASPECT_DECLARE(format,
                             Format,
                             using cst::,
-                                  (gl_texture_1d) (gl_texture_1d_array) (gl_texture_2d) (gl_texture_2d_array) (gl_texture_2d_multisample) (gl_texture_2d_multisample_array) (gl_texture_3d) (gl_texture_rectangle) (gl_texture_buffer) (gl_texture_cube_map) (gl_texture_cube_map_negative_x) (gl_texture_cube_map_negative_y) (gl_texture_cube_map_negative_z) (gl_texture_cube_map_positive_x) (gl_texture_cube_map_positive_y) (gl_texture_cube_map_positive_z) (gl_renderbuffer))
+                                  (gl_texture_1d)
+                                  (gl_texture_1d_array)
+                                  (gl_texture_2d)
+                                  (gl_texture_2d_array)
+                                  (gl_texture_2d_multisample)
+                                  (gl_texture_2d_multisample_array)
+                                  (gl_texture_3d)
+                                  (gl_texture_rectangle)
+                                  (gl_texture_buffer)
+                                  (gl_texture_cube_map)
+                                  (gl_texture_cube_map_negative_x)
+                                  (gl_texture_cube_map_negative_y)
+                                  (gl_texture_cube_map_negative_z)
+                                  (gl_texture_cube_map_positive_x)
+                                  (gl_texture_cube_map_positive_y)
+                                  (gl_texture_cube_map_positive_z)
+                                  (gl_renderbuffer)
+                            )
 
         template< typename Format, typename Target, typename Dimension, typename Cardinality, typename Sample >
         struct target_aspect {

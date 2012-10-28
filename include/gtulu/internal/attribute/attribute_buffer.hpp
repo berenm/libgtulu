@@ -26,7 +26,7 @@ namespace gtulu {
       template< typename AttributeFormat >
       struct attribute_buffer_binder {
         typedef attribute_buffer_binder_callable<
-          fnum::integral::is_floating< typename fcmn::get_numeric< AttributeFormat >::type >::value > fnc_vertex_attrib_pointer_t;
+          fnum::integral::is_floating< AttributeFormat >::value > fnc_vertex_attrib_pointer_t;
 
         template< typename Normalize = fcmn::normalization::none, typename Order = fcmn::order::forward,
                   typename DataFormat >

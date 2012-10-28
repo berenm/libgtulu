@@ -68,8 +68,8 @@ namespace gtulu {
       } // namespace detail
 
       template< typename AttributeFormat >
-      struct attribute_binder : detail::cardinality_binder< typename fcmn::get_cardinality< AttributeFormat >::type >::template attribute_binder<
-          typename fnum::get_integral< typename fcmn::get_numeric< AttributeFormat >::type >::type > {};
+      struct attribute_binder :
+        detail::cardinality_binder< fcmn::get_cardinality< AttributeFormat > >::template attribute_binder< fnum::get_integral< AttributeFormat > > {};
 
       template< typename Format, typename BinderType = attribute_binder< Format >,
                 typename BufferBinderType            = attribute_buffer_binder< Format > >

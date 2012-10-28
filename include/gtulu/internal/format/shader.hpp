@@ -9,9 +9,9 @@
 #define GTULU_INTERNAL_FORMAT_SHADER_HPP_
 
 #include "gtulu/namespaces.hpp"
-#include "gtulu/internal/constants_fwd.hpp"
-
 #include "gtulu/internal/format/common.hpp"
+
+#include "gtulu/internal/constants_fwd.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -22,9 +22,20 @@ namespace gtulu {
         META_ASPECT_DECLARE(property,
                             Attribute,
                             using cst::,
-                                  (gl_shader_type) (gl_delete_status) (gl_compile_status) (gl_info_log_length) (gl_shader_source_length))
+                                  (gl_shader_type)
+                                  (gl_delete_status)
+                                  (gl_compile_status)
+                                  (gl_info_log_length)
+                                  (gl_shader_source_length)
+                            )
 
-        META_ASPECT_DECLARE(type, Type, using cst::, (gl_vertex_shader) (gl_geometry_shader) (gl_fragment_shader))
+        META_ASPECT_DECLARE(type,
+                            Type,
+                            using cst::,
+                                  (gl_vertex_shader)
+                                  (gl_geometry_shader)
+                                  (gl_fragment_shader)
+                            )
 
       } // namespace shader
     } // namespace format

@@ -6,7 +6,7 @@
  */
 
 /******************************************************************************
- * THIS FILE IS AUTO GENERATED FROM generate-functions -u -l gl3,                              *
+ * THIS FILE IS AUTO GENERATED FROM generate-functions -u -l gtulu3.3,                              *
  * ANY CHANGE WILL BE OVERWRITTEN                                             *
  ******************************************************************************/
 
@@ -1016,6 +1016,13 @@ namespace gtulu {
             static void call(gtulu::constant_base const& target, gtulu::constant_base const& attachment, gtulu::uint32_t const texture, gtulu::int32_t const level);
           };
 
+          template< typename _1 >
+          struct framebuffer_texture< _1 > {
+            typedef _1 Dimension;
+            static void call(gtulu::constant_base const& target, gtulu::constant_base const& attachment, gtulu::constant_base const& textarget, gtulu::uint32_t const texture, gtulu::int32_t const level);
+            static void call(gtulu::constant_base const& target, gtulu::constant_base const& attachment, gtulu::constant_base const& textarget, gtulu::uint32_t const texture, gtulu::int32_t const level, gtulu::int32_t const layer);
+          };
+
           template< typename _1, typename _2 >
           struct framebuffer_texture< _1, _2 > {
             typedef _1 target_t;
@@ -1024,55 +1031,15 @@ namespace gtulu {
             inline static void call(gtulu::uint32_t const texture, gtulu::int32_t const level) { framebuffer_texture< >::call(target_t(), attachment_t(), texture, level); }
           };
 
-          template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
-          struct framebuffer_texture_1d;
-
-          template< >
-          struct framebuffer_texture_1d< > {
-            static void call(gtulu::constant_base const& target, gtulu::constant_base const& attachment, gtulu::constant_base const& textarget, gtulu::uint32_t const texture, gtulu::int32_t const level);
-          };
-
-          template< typename _1, typename _2, typename _3 >
-          struct framebuffer_texture_1d< _1, _2, _3 > {
+          template< typename _1, typename _2, typename _3, typename _4 >
+          struct framebuffer_texture< _1, _2, _3, _4 > {
             typedef _1 target_t;
             typedef _2 attachment_t;
             typedef _3 textarget_t;
+            typedef _4 Dimension;
 
-            inline static void call(gtulu::uint32_t const texture, gtulu::int32_t const level) { framebuffer_texture_1d< >::call(target_t(), attachment_t(), textarget_t(), texture, level); }
-          };
-
-          template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
-          struct framebuffer_texture_2d;
-
-          template< >
-          struct framebuffer_texture_2d< > {
-            static void call(gtulu::constant_base const& target, gtulu::constant_base const& attachment, gtulu::constant_base const& textarget, gtulu::uint32_t const texture, gtulu::int32_t const level);
-          };
-
-          template< typename _1, typename _2, typename _3 >
-          struct framebuffer_texture_2d< _1, _2, _3 > {
-            typedef _1 target_t;
-            typedef _2 attachment_t;
-            typedef _3 textarget_t;
-
-            inline static void call(gtulu::uint32_t const texture, gtulu::int32_t const level) { framebuffer_texture_2d< >::call(target_t(), attachment_t(), textarget_t(), texture, level); }
-          };
-
-          template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >
-          struct framebuffer_texture_3d;
-
-          template< >
-          struct framebuffer_texture_3d< > {
-            static void call(gtulu::constant_base const& target, gtulu::constant_base const& attachment, gtulu::constant_base const& textarget, gtulu::uint32_t const texture, gtulu::int32_t const level, gtulu::int32_t const layer);
-          };
-
-          template< typename _1, typename _2, typename _3 >
-          struct framebuffer_texture_3d< _1, _2, _3 > {
-            typedef _1 target_t;
-            typedef _2 attachment_t;
-            typedef _3 textarget_t;
-
-            inline static void call(gtulu::uint32_t const texture, gtulu::int32_t const level, gtulu::int32_t const layer) { framebuffer_texture_3d< >::call(target_t(), attachment_t(), textarget_t(), texture, level, layer); }
+            inline static void call(gtulu::uint32_t const texture, gtulu::int32_t const level) { framebuffer_texture< Dimension >::call(target_t(), attachment_t(), textarget_t(), texture, level); }
+            inline static void call(gtulu::uint32_t const texture, gtulu::int32_t const level, gtulu::int32_t const layer) { framebuffer_texture< Dimension >::call(target_t(), attachment_t(), textarget_t(), texture, level, layer); }
           };
 
           template< typename _1 = void, typename _2 = void, typename _3 = void, typename _4 = void, typename _5 = void, typename _6 = void >

@@ -10,12 +10,12 @@
 
 namespace boost {
   namespace filesystem {} // namespace filesystem
-  namespace mpl {} // namespace mpl
 } // namespace boost
 
 namespace gtulu {
   namespace bfs = ::boost::filesystem;
-  namespace bm  = ::boost::mpl;
+
+  namespace meta {}
 
   namespace internal {
     namespace format {

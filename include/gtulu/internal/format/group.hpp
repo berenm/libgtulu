@@ -9,9 +9,9 @@
 #define GTULU_INTERNAL_FORMAT_GROUP_HPP_
 
 #include "gtulu/namespaces.hpp"
-#include "gtulu/internal/constants_fwd.hpp"
-
 #include "gtulu/internal/format/common.hpp"
+
+#include "gtulu/internal/constants_fwd.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -22,7 +22,27 @@ namespace gtulu {
         META_ASPECT_DECLARE(format,
                             Format,
                             using cst::,
-                                  (gl_depth) (gl_stencil) (gl_depth_stencil) (gl_red) (gl_green) (gl_blue) (gl_rg) (gl_rgb) (gl_rgba) (gl_bgr) (gl_bgra) (gl_red_integer) (gl_green_integer) (gl_blue_integer) (gl_rg_integer) (gl_rgb_integer) (gl_rgba_integer) (gl_bgr_integer) (gl_bgra_integer))
+                                  (gl_depth)
+                                  (gl_stencil)
+                                  (gl_depth_stencil)
+                                  (gl_red)
+                                  (gl_green)
+                                  (gl_blue)
+                                  (gl_rg)
+                                  (gl_rgb)
+                                  (gl_rgba)
+                                  (gl_bgr)
+                                  (gl_bgra)
+                                  (gl_red_integer)
+                                  (gl_green_integer)
+                                  (gl_blue_integer)
+                                  (gl_rg_integer)
+                                  (gl_rgb_integer)
+                                  (gl_rgba_integer)
+                                  (gl_bgr_integer)
+                                  (gl_bgra_integer)
+                            )
+
         namespace format {
           typedef cst::gl_red           gl_r;
           typedef cst::gl_green         gl_g;
@@ -33,7 +53,7 @@ namespace gtulu {
         } // namespace format
 
         template< typename Format, typename Component, typename Numeric, typename Order >
-        struct group_format_aspect {
+        struct group_format_aspect : Numeric::aspect {
           typedef Format    format;
           typedef Component component;
           typedef Numeric   numeric;
@@ -46,21 +66,19 @@ namespace gtulu {
         template< typename Base, typename Integral, typename Order >
         struct select_format;
 
-#define DECLARE_FORMAT(format_m, component_m, numeric_m, order_m) \
-  template< > struct group_format< format::format_m > {           \
-    typedef group_format_aspect< format::format_m,                \
-                                 fcmn::component::component_m,    \
-                                 fcmn::numeric::numeric_m,        \
-                                 fcmn::order::order_m > aspect;   \
-  };                                                              \
-  typedef group_format< format::format_m > format_m;              \
-                                                                  \
-  template< > struct select_format< fcmn::component::component_m, \
-                                    typename fnum::get_integral<  \
-                                      fcmn::numeric::numeric_m    \
-                                      >::type,                    \
-                                    fcmn::order::order_m > {      \
-    typedef format_m type;                                        \
+#define DECLARE_FORMAT(format_m, component_m, numeric_m, order_m)                   \
+  template< > struct group_format< format::format_m > {                             \
+    typedef group_format_aspect< format::format_m,                                  \
+                                 fcmn::component::component_m,                      \
+                                 fcmn::numeric::numeric_m,                          \
+                                 fcmn::order::order_m > aspect;                     \
+  };                                                                                \
+  typedef group_format< format::format_m > format_m;                                \
+                                                                                    \
+  template< > struct select_format< fcmn::component::component_m,                   \
+                                    fnum::get_integral< fcmn::numeric::numeric_m >, \
+                                    fcmn::order::order_m > {                        \
+    typedef format_m type;                                                          \
   };
 
         DECLARE_FORMAT(gl_depth, depth, floating_, forward)

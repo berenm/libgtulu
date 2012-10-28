@@ -20,7 +20,43 @@ namespace gtulu {
         META_ASPECT_DECLARE(format,
                             Format,
                             using cst::,
-                                  (gl_sampler_1d) (gl_sampler_2d) (gl_sampler_3d) (gl_sampler_cube) (gl_sampler_1d_shadow) (gl_sampler_2d_shadow) (gl_sampler_1d_array) (gl_sampler_2d_array) (gl_sampler_1d_array_shadow) (gl_sampler_2d_array_shadow) (gl_sampler_2d_multisample) (gl_sampler_2d_multisample_array) (gl_sampler_cube_shadow) (gl_sampler_buffer) (gl_sampler_2d_rect) (gl_sampler_2d_rect_shadow) (gl_int_sampler_1d) (gl_int_sampler_2d) (gl_int_sampler_3d) (gl_int_sampler_cube) (gl_int_sampler_1d_array) (gl_int_sampler_2d_array) (gl_int_sampler_2d_multisample) (gl_int_sampler_2d_multisample_array) (gl_int_sampler_buffer) (gl_int_sampler_2d_rect) (gl_unsigned_int_sampler_1d) (gl_unsigned_int_sampler_2d) (gl_unsigned_int_sampler_3d) (gl_unsigned_int_sampler_cube) (gl_unsigned_int_sampler_1d_array) (gl_unsigned_int_sampler_2d_array) (gl_unsigned_int_sampler_2d_multisample) (gl_unsigned_int_sampler_2d_multisample_array) (gl_unsigned_int_sampler_buffer) (gl_unsigned_int_sampler_2d_rect))
+                                  (gl_sampler_1d)
+                                  (gl_sampler_2d)
+                                  (gl_sampler_3d)
+                                  (gl_sampler_cube)
+                                  (gl_sampler_1d_shadow)
+                                  (gl_sampler_2d_shadow)
+                                  (gl_sampler_1d_array)
+                                  (gl_sampler_2d_array)
+                                  (gl_sampler_1d_array_shadow)
+                                  (gl_sampler_2d_array_shadow)
+                                  (gl_sampler_2d_multisample)
+                                  (gl_sampler_2d_multisample_array)
+                                  (gl_sampler_cube_shadow)
+                                  (gl_sampler_buffer)
+                                  (gl_sampler_2d_rect)
+                                  (gl_sampler_2d_rect_shadow)
+                                  (gl_int_sampler_1d)
+                                  (gl_int_sampler_2d)
+                                  (gl_int_sampler_3d)
+                                  (gl_int_sampler_cube)
+                                  (gl_int_sampler_1d_array)
+                                  (gl_int_sampler_2d_array)
+                                  (gl_int_sampler_2d_multisample)
+                                  (gl_int_sampler_2d_multisample_array)
+                                  (gl_int_sampler_buffer)
+                                  (gl_int_sampler_2d_rect)
+                                  (gl_unsigned_int_sampler_1d)
+                                  (gl_unsigned_int_sampler_2d)
+                                  (gl_unsigned_int_sampler_3d)
+                                  (gl_unsigned_int_sampler_cube)
+                                  (gl_unsigned_int_sampler_1d_array)
+                                  (gl_unsigned_int_sampler_2d_array)
+                                  (gl_unsigned_int_sampler_2d_multisample)
+                                  (gl_unsigned_int_sampler_2d_multisample_array)
+                                  (gl_unsigned_int_sampler_buffer)
+                                  (gl_unsigned_int_sampler_2d_rect)
+                            )
 
         namespace format {
           bool                        is_sampler(std::uint32_t value);
@@ -29,7 +65,7 @@ namespace gtulu {
 
         template< typename Format, typename Numeric, typename Dimension, typename Cardinality, typename TargetFormat,
                   typename Compare >
-        struct sampler_aspect {
+        struct sampler_aspect : Numeric::aspect {
           typedef Format       format;
           typedef Numeric      numeric;
           typedef Dimension    dimension;

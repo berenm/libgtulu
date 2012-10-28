@@ -1,7 +1,8 @@
 /**
  * @file
  *
- * Distributed under the Boost Software License, Version 1.0.
+ * Distributed under the Boost Software License,
+ * Version 1.0.
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
 
@@ -17,7 +18,9 @@ namespace gtulu {
     namespace format {
       namespace numeric {
 
-        META_ASPECT_DECLARE(format, Format, struct,
+        META_ASPECT_DECLARE(format,
+                            Format,
+                            struct,
                             (signed_)
                             (unsigned_)
                             (integral_)
@@ -62,21 +65,30 @@ namespace gtulu {
                             (uint1_)
                             (uint2_)
                             (uint4_)
-                            (float_least10_))
+                            (float_least10_)
+                            )
 
-        META_ASPECT_DECLARE(sign, Sign, struct,
+        META_ASPECT_DECLARE(sign,
+                            Sign,
+                            struct,
                             (signed_)
                             (unsigned_)
-                            (any))
+                            (any)
+                            )
 
-        META_ASPECT_DECLARE(integral, Integral, struct,
+        META_ASPECT_DECLARE(integral,
+                            Integral,
+                            struct,
                             (floating)
                             (fixed)
                             (integral)
                             (boolean)
-                            (any))
+                            (any)
+                            )
 
-        META_ASPECT_DECLARE(width, Width, struct,
+        META_ASPECT_DECLARE(width,
+                            Width,
+                            struct,
                             (one_bit)
                             (two_bits)
                             (three_bits)
@@ -91,7 +103,8 @@ namespace gtulu {
                             (two_bytes)
                             (four_bytes)
                             (eight_bytes)
-                            (any))
+                            (any)
+                            )
 
         template< typename Format, typename Sign, typename Integral, typename Width >
         struct numeric_format_aspect {

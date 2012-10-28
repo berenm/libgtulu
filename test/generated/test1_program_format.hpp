@@ -1,3 +1,5 @@
+
+
 /**
  * @file
  *
@@ -56,6 +58,8 @@ namespace gtulu {
 
             typedef obj::shader< test1_fragment_shader_shader_format > test1_fragment_shader_shader_t;
 
+            
+
             class test1_vertex_shader_shader_format : public fshd::static_shader_format< fshd::type::gl_vertex_shader > {
               protected:
                 static char const* source;
@@ -76,6 +80,8 @@ namespace gtulu {
 
             typedef obj::shader< test1_vertex_shader_shader_format > test1_vertex_shader_shader_t;
 
+            
+
           public:
             test1_program_format() {
               // #template#<declare_shader/>
@@ -84,8 +90,13 @@ namespace gtulu {
 
               attach(test1_fragment_shader_shader);
 
+              
+
               test1_vertex_shader_shader_t test1_vertex_shader_shader;
+
               attach(test1_vertex_shader_shader);
+
+              
 
               link();
             }
@@ -103,6 +114,8 @@ namespace gtulu {
               background_binder_t::bind(0, value_in);
             }
 
+            
+
             // #template#<uniform_array/>
 
             template< typename DrawableType = obj::drawable const& >
@@ -115,6 +128,8 @@ namespace gtulu {
                 fbf::framebuffer_format_base< DrawableType >::template set<
                   typename TemporaryFramebufferSlot::slot_type >(0, drawable_in);
               }
+
+              
 
               // #template#<output_array/>
             };
@@ -132,9 +147,9 @@ namespace gtulu {
             struct vertex_array_format : public obj::vertexarray_base, public drw::drawable {
               template< typename DrawingMode = drw::mode::gl_triangles >
               inline void draw(obj::program< test1_program_format > const& program_in,
-                               std::uint32_t const                         start_in,
-                               std::uint32_t const                         count_in,
-                               std::uint32_t const                         instance_count_in=1) {
+                               std::uint32_t const                                start_in,
+                               std::uint32_t const                                count_in,
+                               std::uint32_t const                                instance_count_in=1) {
                 draw< DrawingMode >(program_in,
                                     *program_in.get_default_framebuffer(),
                                     start_in,
@@ -144,9 +159,9 @@ namespace gtulu {
 
               template< typename DrawingMode = drw::mode::gl_triangles >
               inline void draw_multiple(obj::program< test1_program_format > const& program_in,
-                                        std::uint32_t const                         starts_in[],
-                                        std::uint32_t const                         counts_in[],
-                                        std::size_t const                           count_in) {
+                                        std::uint32_t const                                starts_in[],
+                                        std::uint32_t const                                counts_in[],
+                                        std::size_t const                                  count_in) {
                 draw_multiple< DrawingMode >(program_in,
                                              *program_in.get_default_framebuffer(),
                                              starts_in,
@@ -156,11 +171,11 @@ namespace gtulu {
 
               template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat >
               inline void draw(obj::program< test1_program_format > const& program_in,
-                               obj::buffer< BufferFormat > const&          buffer_in,
-                               std::uint32_t const                         count_in,
-                               std::uint32_t const                         offset_in=0,
-                               std::uint32_t const                         instance_count_in=1,
-                               std::uint32_t const                         base_vertex_in=0) {
+                               obj::buffer< BufferFormat > const&                 buffer_in,
+                               std::uint32_t const                                count_in,
+                               std::uint32_t const                                offset_in=0,
+                               std::uint32_t const                                instance_count_in=1,
+                               std::uint32_t const                                base_vertex_in=0) {
                 draw< DrawingMode >(program_in,
                                     *program_in.get_default_framebuffer(),
                                     buffer_in,
@@ -172,12 +187,12 @@ namespace gtulu {
 
               template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat >
               inline void draw_range(obj::program< test1_program_format > const& program_in,
-                                     obj::buffer< BufferFormat > const&          buffer_in,
-                                     std::uint32_t const                         count_in,
-                                     std::uint32_t const                         min_index_in,
-                                     std::uint32_t const                         max_index_in,
-                                     std::uint32_t const                         offset_in=0,
-                                     std::uint32_t const                         base_vertex_in=0) {
+                                     obj::buffer< BufferFormat > const&                 buffer_in,
+                                     std::uint32_t const                                count_in,
+                                     std::uint32_t const                                min_index_in,
+                                     std::uint32_t const                                max_index_in,
+                                     std::uint32_t const                                offset_in=0,
+                                     std::uint32_t const                                base_vertex_in=0) {
                 draw_range< DrawingMode >(program_in,
                                           *program_in.get_default_framebuffer(),
                                           buffer_in,
@@ -190,10 +205,10 @@ namespace gtulu {
 
               template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat >
               inline void draw_multiple(obj::program< test1_program_format > const& program_in,
-                                        obj::buffer< BufferFormat > const&          buffer_in,
-                                        std::uint32_t const                         counts_in[],
-                                        std::uint32_t const                         offsets_in[],
-                                        std::size_t const                           count_in) {
+                                        obj::buffer< BufferFormat > const&                 buffer_in,
+                                        std::uint32_t const                                counts_in[],
+                                        std::uint32_t const                                offsets_in[],
+                                        std::size_t const                                  count_in) {
                 draw_multiple< DrawingMode >(program_in,
                                              *program_in.get_default_framebuffer(),
                                              buffer_in,
@@ -204,10 +219,10 @@ namespace gtulu {
 
               template< typename DrawingMode = drw::mode::gl_triangles >
               inline void draw(obj::program< test1_program_format > const& program_in,
-                               obj::framebuffer_base const&                framebuffer_in,
-                               std::uint32_t const                         start_in,
-                               std::uint32_t const                         count_in,
-                               std::uint32_t const                         instance_count_in=1) {
+                               obj::framebuffer_base const&                       framebuffer_in,
+                               std::uint32_t const                                start_in,
+                               std::uint32_t const                                count_in,
+                               std::uint32_t const                                instance_count_in=1) {
                 program_in.bind();
                 framebuffer_in.bind< fbf::draw_framebuffer_slot >();
                 obj::vertexarray_base::bind();
@@ -216,10 +231,10 @@ namespace gtulu {
 
               template< typename DrawingMode = drw::mode::gl_triangles >
               inline void draw_multiple(obj::program< test1_program_format > const& program_in,
-                                        obj::framebuffer_base const&                framebuffer_in,
-                                        std::uint32_t const                         starts_in[],
-                                        std::uint32_t const                         counts_in[],
-                                        std::size_t const                           count_in) {
+                                        obj::framebuffer_base const&                       framebuffer_in,
+                                        std::uint32_t const                                starts_in[],
+                                        std::uint32_t const                                counts_in[],
+                                        std::size_t const                                  count_in) {
                 program_in.bind();
                 framebuffer_in.bind< fbf::draw_framebuffer_slot >();
                 obj::vertexarray_base::bind();
@@ -228,12 +243,12 @@ namespace gtulu {
 
               template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat >
               inline void draw(obj::program< test1_program_format > const& program_in,
-                               obj::framebuffer_base const&                framebuffer_in,
-                               obj::buffer< BufferFormat > const&          buffer_in,
-                               std::uint32_t const                         count_in,
-                               std::uint32_t const                         offset_in=0,
-                               std::uint32_t const                         instance_count_in=1,
-                               std::uint32_t const                         base_vertex_in=0) {
+                               obj::framebuffer_base const&                       framebuffer_in,
+                               obj::buffer< BufferFormat > const&                 buffer_in,
+                               std::uint32_t const                                count_in,
+                               std::uint32_t const                                offset_in=0,
+                               std::uint32_t const                                instance_count_in=1,
+                               std::uint32_t const                                base_vertex_in=0) {
                 program_in.bind();
                 framebuffer_in.bind< fbf::draw_framebuffer_slot >();
                 obj::vertexarray_base::bind();
@@ -242,13 +257,13 @@ namespace gtulu {
 
               template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat >
               inline void draw_range(obj::program< test1_program_format > const& program_in,
-                                     obj::framebuffer_base const&                framebuffer_in,
-                                     obj::buffer< BufferFormat > const&          buffer_in,
-                                     std::uint32_t const                         count_in,
-                                     std::uint32_t const                         min_index_in,
-                                     std::uint32_t const                         max_index_in,
-                                     std::uint32_t const                         offset_in=0,
-                                     std::uint32_t const                         base_vertex_in=0) {
+                                     obj::framebuffer_base const&                       framebuffer_in,
+                                     obj::buffer< BufferFormat > const&                 buffer_in,
+                                     std::uint32_t const                                count_in,
+                                     std::uint32_t const                                min_index_in,
+                                     std::uint32_t const                                max_index_in,
+                                     std::uint32_t const                                offset_in=0,
+                                     std::uint32_t const                                base_vertex_in=0) {
                 program_in.bind();
                 framebuffer_in.bind< fbf::draw_framebuffer_slot >();
                 obj::vertexarray_base::bind();
@@ -262,11 +277,11 @@ namespace gtulu {
 
               template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat >
               inline void draw_multiple(obj::program< test1_program_format > const& program_in,
-                                        obj::framebuffer_base const&                framebuffer_in,
-                                        obj::buffer< BufferFormat > const&          buffer_in,
-                                        std::uint32_t const                         counts_in[],
-                                        std::uint32_t const                         offsets_in[],
-                                        std::size_t const                           count_in) {
+                                        obj::framebuffer_base const&                       framebuffer_in,
+                                        obj::buffer< BufferFormat > const&                 buffer_in,
+                                        std::uint32_t const                                counts_in[],
+                                        std::uint32_t const                                offsets_in[],
+                                        std::size_t const                                  count_in) {
                 program_in.bind();
                 framebuffer_in.bind< fbf::draw_framebuffer_slot >();
                 obj::vertexarray_base::bind();
@@ -286,29 +301,31 @@ namespace gtulu {
 
               template< typename BufferFormat >
               void set_texture_position(obj::buffer< BufferFormat > const& buffer_in,
-                                        std::uint32_t const                offset_in=0,
-                                        std::uint32_t const                stride_in=0) {
+                                 std::uint32_t const                offset_in=0,
+                                 std::uint32_t const                stride_in=0) {
                 obj::vertexarray_base::bind();
                 texture_position_buffer_binder_t::bind(1, buffer_in, offset_in, stride_in);
               }
 
               template< typename BufferFormat >
               void set_texture_position_normalized(obj::buffer< BufferFormat > const& buffer_in,
-                                                   std::uint32_t const                offset_in=0,
-                                                   std::uint32_t const                stride_in=0) {
+                                            std::uint32_t const                offset_in=0,
+                                            std::uint32_t const                stride_in=0) {
                 obj::vertexarray_base::bind();
                 texture_position_buffer_binder_t::bind< fcmn::normalization::normalized
-                                                        >(1, buffer_in, offset_in, stride_in);
+                                                 >(1, buffer_in, offset_in, stride_in);
               }
 
               template< typename BufferFormat >
               void set_texture_position_gbra(obj::buffer< BufferFormat > const& buffer_in,
-                                             std::uint32_t const                offset_in=0,
-                                             std::uint32_t const                stride_in=0) {
+                                      std::uint32_t const                offset_in=0,
+                                      std::uint32_t const                stride_in=0) {
                 obj::vertexarray_base::bind();
                 texture_position_buffer_binder_t::bind< fcmn::normalization::none, fcmn::order::reverse
-                                                        >(1, buffer_in, offset_in, stride_in);
+                                                 >(1, buffer_in, offset_in, stride_in);
               }
+
+              
 
               typedef att::gl_float_vec2::binder        position_binder_t;
               typedef att::gl_float_vec2::buffer_binder position_buffer_binder_t;
@@ -321,29 +338,31 @@ namespace gtulu {
 
               template< typename BufferFormat >
               void set_position(obj::buffer< BufferFormat > const& buffer_in,
-                                std::uint32_t const                offset_in=0,
-                                std::uint32_t const                stride_in=0) {
+                                 std::uint32_t const                offset_in=0,
+                                 std::uint32_t const                stride_in=0) {
                 obj::vertexarray_base::bind();
                 position_buffer_binder_t::bind(0, buffer_in, offset_in, stride_in);
               }
 
               template< typename BufferFormat >
               void set_position_normalized(obj::buffer< BufferFormat > const& buffer_in,
-                                           std::uint32_t const                offset_in=0,
-                                           std::uint32_t const                stride_in=0) {
+                                            std::uint32_t const                offset_in=0,
+                                            std::uint32_t const                stride_in=0) {
                 obj::vertexarray_base::bind();
                 position_buffer_binder_t::bind< fcmn::normalization::normalized
-                                                >(0, buffer_in, offset_in, stride_in);
+                                                 >(0, buffer_in, offset_in, stride_in);
               }
 
               template< typename BufferFormat >
               void set_position_gbra(obj::buffer< BufferFormat > const& buffer_in,
-                                     std::uint32_t const                offset_in=0,
-                                     std::uint32_t const                stride_in=0) {
+                                      std::uint32_t const                offset_in=0,
+                                      std::uint32_t const                stride_in=0) {
                 obj::vertexarray_base::bind();
                 position_buffer_binder_t::bind< fcmn::normalization::none, fcmn::order::reverse
-                                                >(0, buffer_in, offset_in, stride_in);
+                                                 >(0, buffer_in, offset_in, stride_in);
               }
+
+              
 
               // #template#<attribute_array/>
             };
@@ -362,3 +381,4 @@ namespace gtulu {
 } // namespace gtulu
 
 #endif /* GTULU_PROGRAM_FORMATTEST1_HPP_ */
+

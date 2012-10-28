@@ -9,6 +9,7 @@
 #define GTULU_INTERNAL_FORMAT_CONSTRAINT_UNIFORM_HPP_
 
 #include "gtulu/namespaces.hpp"
+#include "gtulu/internal/format/constraint/numeric.hpp"
 #include "gtulu/internal/format/constraint/common.hpp"
 
 #include "gtulu/internal/format/uniform.hpp"
@@ -25,61 +26,51 @@ namespace gtulu {
 
         template< typename SamplerFormat, typename InternalFormat >
         struct shadow_stencil_check {
-          typedef bm::and_< fcmn::compare::is_shadow< SamplerFormat >, fcmn::component::has_no_depth< InternalFormat > > sampler_is_shadow_and_internal_has_no_depth;
-          typedef fcmn::component::is_stencil< InternalFormat >                                                          internal_is_stencil;
+          using shadow_check  = meta::imply< fcmn::compare::is_shadow< SamplerFormat >, fcmn::component::has_depth< InternalFormat > >;
+          using stencil_check = fcmn::component::is_not_stencil< InternalFormat >;
 
-          typedef bm::and_< bm::not_< sampler_is_shadow_and_internal_has_no_depth >, bm::not_< internal_is_stencil > > type;
+          typedef meta::and_< shadow_check, stencil_check > type;
+
           static_assert(type::value, "SamplerFormat is not compatible with InternalFormat.");
           static_assert(type::value, "");
           static_assert(type::value, "  [x.x.x ?]");
-          static_assert(bm::not_< sampler_is_shadow_and_internal_has_no_depth >::value, "  - SamplerFormat is shadow and InternalFormat has no depth component.");
-          static_assert(bm::not_< internal_is_stencil >::value, "  - InternalFormat is stencil component only and uniform samplers do no support stencil only textures.");
+          static_assert(shadow_check::value, "  - SamplerFormat is shadow and InternalFormat has no depth component.");
+          static_assert(stencil_check::value, "  - InternalFormat is stencil component only and uniform samplers do no support stencil only textures.");
         };
 
         template< typename SamplerFormat, typename InternalFormat >
         struct internal_type_check {
-          typedef bm::and_<
-            bm::not_< fnum::integral::is_floating< typename fcmn::get_numeric< InternalFormat >::type > >,
-            bm::not_< fnum::integral::is_fixed< typename fcmn::get_numeric< InternalFormat >::type > > > internal_is_not_floating;
+          using floating_check = fnum::integral::floating_implies_convertible< SamplerFormat, InternalFormat >;
+          using integral_check = meta::imply_same< fnum::integral::is_integral, SamplerFormat, InternalFormat >;
 
-          typedef bm::and_< fnum::integral::is_floating< typename fcmn::get_numeric< SamplerFormat >::type >,
-                            internal_is_not_floating > sampler_is_floating_but_internal_is_not;
-          typedef bm::and_< fnum::integral::is_integral< typename fcmn::get_numeric< SamplerFormat >::type >,
-                            bm::not_< fnum::integral::is_integral< typename fcmn::get_numeric< InternalFormat >::type > > > sampler_is_integral_but_internal_is_not;
+          using signed_check = meta::or_< fnum::integral::is_not_integral< SamplerFormat >,
+                                          meta::imply_same< fnum::sign::is_signed_, SamplerFormat, InternalFormat > >;
+          using unsign_check = meta::or_< fnum::integral::is_not_integral< SamplerFormat >,
+                                          meta::imply_same< fnum::sign::is_unsigned_, SamplerFormat, InternalFormat > >;
 
-          typedef bm::and_< fnum::integral::is_integral< typename fcmn::get_numeric< SamplerFormat >::type >,
-                            fnum::sign::is_signed_< typename fcmn::get_numeric< SamplerFormat >::type >,
-                            fnum::sign::is_unsigned_< typename fcmn::get_numeric< InternalFormat >::type > > sampler_is_signed_but_internal_is_not;
-          typedef bm::and_< fnum::integral::is_integral< typename fcmn::get_numeric< SamplerFormat >::type >,
-                            fnum::sign::is_unsigned_< typename fcmn::get_numeric< SamplerFormat >::type >,
-                            fnum::sign::is_signed_< typename fcmn::get_numeric< InternalFormat >::type > > sampler_is_unsigned_but_internal_is_not;
+          typedef meta::and_< floating_check, integral_check, signed_check, unsign_check > type;
 
-          typedef bm::and_< bm::not_< sampler_is_floating_but_internal_is_not >,
-                            bm::not_< sampler_is_integral_but_internal_is_not >, bm::not_< sampler_is_signed_but_internal_is_not >,
-                            bm::not_< sampler_is_unsigned_but_internal_is_not > > type;
           static_assert(type::value, "SamplerFormat is not compatible with InternalFormat.");
           static_assert(type::value, "");
           static_assert(type::value, "  [x.x.x ?]");
-          static_assert(bm::not_< sampler_is_floating_but_internal_is_not >::value, "  - SamplerFormat is floating but InternalFormat is not.");
-          static_assert(bm::not_< sampler_is_integral_but_internal_is_not >::value, "  - SamplerFormat is integral but InternalFormat is not.");
-          static_assert(bm::not_< sampler_is_signed_but_internal_is_not >::value, "  - SamplerFormat is signed but InternalFormat is not.");
-          static_assert(bm::not_< sampler_is_unsigned_but_internal_is_not >::value, "  - SamplerFormat is unsigned but InternalFormat is not.");
+          static_assert(floating_check::value, "  - SamplerFormat is floating but InternalFormat is not.");
+          static_assert(integral_check::value, "  - SamplerFormat is integral but InternalFormat is not.");
+          static_assert(signed_check::value, "  - SamplerFormat is signed but InternalFormat is not.");
+          static_assert(unsign_check::value, "  - SamplerFormat is unsigned but InternalFormat is not.");
         };
 
         template< typename SamplerFormat, typename TargetFormat >
         struct is_target_same {
           typedef std::is_same< typename SamplerFormat::aspect::target_format, TargetFormat > type;
+
           static_assert(type::value, "SamplerTargetFormat and TextureTargetFormat are not same.");
         };
 
         template< typename SamplerFormat, typename TextureFormat >
-        struct is_texture_compatible {
-          typedef typename shadow_stencil_check< SamplerFormat, typename TextureFormat::internal_format >::type shadow_stencil_c;
-          typedef typename internal_type_check< SamplerFormat, typename TextureFormat::internal_format >::type  internal_type_c;
-          typedef typename is_target_same< SamplerFormat, typename TextureFormat::target_format >::type         target_same_c;
-
-          typedef bm::and_< shadow_stencil_c, internal_type_c, target_same_c > type;
-        };
+        using is_texture_compatible =
+                meta::and_< typename shadow_stencil_check< SamplerFormat, typename TextureFormat::internal_format >::type,
+                            typename internal_type_check< SamplerFormat, typename TextureFormat::internal_format >::type,
+                            typename is_target_same< SamplerFormat, typename TextureFormat::target_format >::type >;
 
       } // namespace sampler
     } // namespace format

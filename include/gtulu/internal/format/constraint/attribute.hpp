@@ -9,6 +9,7 @@
 #define GTULU_INTERNAL_FORMAT_CONSTRAINT_ATTRIBUTE_HPP_
 
 #include "gtulu/namespaces.hpp"
+#include "gtulu/internal/format/constraint/numeric.hpp"
 #include "gtulu/internal/format/constraint/common.hpp"
 
 #include "gtulu/internal/format/attribute.hpp"
@@ -26,48 +27,40 @@ namespace gtulu {
 
         template< typename AttributeFormat, typename DataFormat >
         struct data_packing_check {
-          typedef fcmn::packing::is_one_in_one< DataFormat >    is_one_in_one_packed;
-          typedef fcmn::packing::is_four_in_one< DataFormat >   is_four_in_one_packed;
-          typedef fcmn::cardinality::is_four< AttributeFormat > is_four_elements;
+          using is_one_in_one_packed  = fcmn::packing::is_one_in_one< DataFormat >;
+          using is_four_in_one_packed = fcmn::packing::is_four_in_one< DataFormat >;
+          using is_four_elements      = fcmn::cardinality::is_four< AttributeFormat >;
+          using is_2_10_10_10         = meta::or_< fdat::format::is_gl_unsigned_int_2_10_10_10_rev< DataFormat >,
+                                                   fdat::format::is_gl_int_2_10_10_10_rev< DataFormat > >;
 
-          typedef bm::and_< bm::not_< is_one_in_one_packed >, bm::not_< is_four_in_one_packed > > is_not_one_or_four_packed;
-          typedef bm::and_< is_four_in_one_packed, bm::not_< is_four_elements > >                 is_packed_but_not_four_elements;
-          typedef bm::and_<
-            is_four_in_one_packed,
-            bm::and_< bm::not_< fdat::format::is_gl_unsigned_int_2_10_10_10_rev< DataFormat > >,
-                      bm::not_< fdat::format::is_gl_int_2_10_10_10_rev< DataFormat > > > > is_packed_but_not_2_10_10_10;
+          using packed_check   = meta::or_< is_one_in_one_packed, is_four_in_one_packed >;
+          using packed4_check1 = meta::imply< is_four_in_one_packed, is_four_elements >;
+          using packed4_check2 = meta::imply< is_four_in_one_packed, is_2_10_10_10 >;
 
-          typedef bm::and_< bm::not_< is_not_one_or_four_packed >, bm::not_< is_packed_but_not_four_elements >,
-                            bm::not_< is_packed_but_not_2_10_10_10 > > type;
+          typedef meta::and_< packed_check, packed4_check1, packed4_check2 > type;
 
           static_assert(type::value, "AttributeFormat is not compatible with DataFormat");
           static_assert(type::value, "");
           static_assert(type::value, "  [2.8 Vertex Arrays]");
-          static_assert(bm::not_< is_not_one_or_four_packed >::value, "  - AttributeFormat requires one- or four-packed data and DataFormat is not.");
-          static_assert(bm::not_< is_packed_but_not_four_elements >::value, "  - DataFormat is packed but AttributeFormat doesn't have four elements.");
-          static_assert(bm::not_< is_packed_but_not_2_10_10_10 >::value, "  - DataFormat is packed but is not gl_unsigned_int_2_10_10_10_rev or gl_int_2_10_10_10_rev.");
+          static_assert(packed_check::value, "  - AttributeFormat requires one- or four-packed data and DataFormat is not.");
+          static_assert(packed4_check1::value, "  - DataFormat is packed but AttributeFormat doesn't have four elements.");
+          static_assert(packed4_check2::value, "  - DataFormat is four-packed but is not gl_unsigned_int_2_10_10_10_rev or gl_int_2_10_10_10_rev.");
         };
 
         template< typename AttributeFormat, typename DataFormat >
         struct data_type_check {
-          typedef bm::and_< fnum::integral::is_integral< typename fcmn::get_numeric< AttributeFormat >::type >,
-                            bm::not_< fnum::integral::is_integral< typename fcmn::get_numeric< DataFormat >::type > > > attribute_is_integral_but_data_is_not;
-
-          typedef bm::not_< attribute_is_integral_but_data_is_not > type;
+          typedef meta::imply_same< fnum::integral::is_integral, AttributeFormat, DataFormat > type;
 
           static_assert(type::value, "AttributeFormat is not compatible with DataFormat");
           static_assert(type::value, "");
           static_assert(type::value, "  [2.8 Vertex Arrays]");
-          static_assert(bm::not_< attribute_is_integral_but_data_is_not >::value, "  - AttributeFormat is integral but DataFormat is not.");
+          static_assert(type::value, "  - AttributeFormat is integral but DataFormat is not.");
         };
 
         template< typename AttributeFormat, typename DataFormat >
-        struct is_data_compatible {
-          typedef typename data_type_check< AttributeFormat, DataFormat >::type    data_type_c;
-          typedef typename data_packing_check< AttributeFormat, DataFormat >::type data_packing_c;
-
-          typedef bm::and_< data_type_c, data_packing_c > type;
-        };
+        using is_data_compatible =
+                meta::and_< typename data_type_check< AttributeFormat, DataFormat >::type,
+                            typename data_packing_check< AttributeFormat, DataFormat >::type >;
 
       } // namespace attribute
     } // namespace format

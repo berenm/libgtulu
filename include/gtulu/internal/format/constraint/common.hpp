@@ -12,7 +12,6 @@
 #include "gtulu/internal/format/common.hpp"
 
 #include <boost/mpl/not.hpp>
-#include <boost/mpl/or.hpp>
 #include <boost/mpl/and.hpp>
 
 namespace gtulu {
@@ -23,46 +22,39 @@ namespace gtulu {
 
         namespace component {
 
-          template< typename Format >
-          struct has_no_red : bm::and_< is_not_red< Format >, is_not_red_green< Format >,
-                                        is_not_red_green_blue< Format >, is_not_red_green_blue_alpha< Format > > {};
+          template< typename F > using has_no_red = meta::and_< is_not_red< F >,
+                                                                is_not_red_green< F >,
+                                                                is_not_red_green_blue< F >,
+                                                                is_not_red_green_blue_alpha< F > >;
+          template< typename F > using has_no_green = meta::and_< is_not_green< F >,
+                                                                  is_not_red_green< F >,
+                                                                  is_not_red_green_blue< F >,
+                                                                  is_not_red_green_blue_alpha< F > >;
+          template< typename F > using has_no_blue = meta::and_< is_not_blue< F >,
+                                                                 is_not_red_green_blue< F >,
+                                                                 is_not_red_green_blue_alpha< F > >;
 
-          template< typename Format >
-          struct has_red : bm::not_< has_no_red< Format > > {};
+          template< typename F > using has_no_alpha   = is_not_red_green_blue_alpha< F >;
+          template< typename F > using has_no_depth   = meta::and_< is_not_depth< F >, is_not_depth_stencil< F > >;
+          template< typename F > using has_no_stencil = meta::and_< is_not_stencil< F >, is_not_depth_stencil< F > >;
 
-          template< typename Format >
-          struct has_no_green : bm::and_< is_not_green< Format >, is_not_red_green< Format >,
-                                          is_not_red_green_blue< Format >, is_not_red_green_blue_alpha< Format > > {};
+          template< typename F > using has_red     = meta::not_< has_no_red< F > >;
+          template< typename F > using has_green   = meta::not_< has_no_green< F > >;
+          template< typename F > using has_blue    = meta::not_< has_no_blue< F > >;
+          template< typename F > using has_alpha   = meta::not_< has_no_alpha< F > >;
+          template< typename F > using has_depth   = meta::not_< has_no_depth< F > >;
+          template< typename F > using has_stencil = meta::not_< has_no_stencil< F > >;
 
-          template< typename Format >
-          struct has_green : bm::not_< has_no_green< Format > > {};
-
-          template< typename Format >
-          struct has_no_blue : bm::and_< is_not_blue< Format >, is_not_red_green_blue< Format >,
-                                         is_not_red_green_blue_alpha< Format > > {};
-
-          template< typename Format >
-          struct has_blue : bm::not_< has_no_blue< Format > > {};
-
-          template< typename Format >
-          struct has_no_alpha : is_not_red_green_blue_alpha< Format > {};
-
-          template< typename Format >
-          struct has_alpha : bm::not_< has_no_alpha< Format > > {};
-
-          template< typename Format >
-          struct has_no_depth : bm::and_< is_not_depth< Format >, is_not_depth_stencil< Format > > {};
-
-          template< typename Format >
-          struct has_depth : bm::not_< has_no_depth< Format > > {};
-
-          template< typename Format >
-          struct has_no_stencil : bm::and_< is_not_stencil< Format >, is_not_depth_stencil< Format > > {};
-
-          template< typename Format >
-          struct has_stencil : bm::not_< has_no_stencil< Format > > {};
+          template< typename F > using has_depth_or_stencil = meta::or_< fcmn::component::has_depth< F >,
+                                                                         fcmn::component::has_stencil< F > >;
+          template< typename F > using has_no_depth_or_stencil = meta::not_< has_depth_or_stencil< F > >;
 
         } // namespace component
+
+        template< typename F > using is_depth_stencil_capable = meta::and_< fcmn::dimension::is_not_buffer< F >,
+                                                                            fcmn::dimension::is_not_threed< F >,
+                                                                            fcmn::sample::is_simple< F > >;
+        template< typename F > using is_not_depth_stencil_capable = meta::not_< is_depth_stencil_capable< F > >;
 
       } // namespace common
     } // namespace format

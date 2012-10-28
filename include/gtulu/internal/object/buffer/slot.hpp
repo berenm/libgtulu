@@ -45,7 +45,7 @@ namespace gtulu {
     namespace buffer {
       template< typename SlotType >
       struct buffer_slot {
-        static_assert(is_a_slot< SlotType >::type::value, "SlotType is not a valid buffer slot.");
+        static_assert(is_a_slot< SlotType >::value, "SlotType is not a valid buffer slot.");
 
         typedef SlotType type;
 

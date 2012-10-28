@@ -11,6 +11,8 @@
 #include "gtulu/namespaces.hpp"
 #include "gtulu/internal/format/common.hpp"
 
+#include "gtulu/internal/constants_fwd.hpp"
+
 namespace gtulu {
   namespace internal {
 
@@ -20,14 +22,35 @@ namespace gtulu {
         META_ASPECT_DECLARE(format,
                             Format,
                             using cst::,
-                                  (gl_float) (gl_float_vec2) (gl_float_vec3) (gl_float_vec4) (gl_int) (gl_int_vec2) (gl_int_vec3) (gl_int_vec4) (gl_unsigned_int) (gl_unsigned_int_vec2) (gl_unsigned_int_vec3) (gl_unsigned_int_vec4) (gl_float_mat2) (gl_float_mat3) (gl_float_mat4) (gl_float_mat2x3) (gl_float_mat2x4) (gl_float_mat3x2) (gl_float_mat3x4) (gl_float_mat4x2) (gl_float_mat4x3))
+                                  (gl_float)
+                                  (gl_float_vec2)
+                                  (gl_float_vec3)
+                                  (gl_float_vec4)
+                                  (gl_int)
+                                  (gl_int_vec2)
+                                  (gl_int_vec3)
+                                  (gl_int_vec4)
+                                  (gl_unsigned_int)
+                                  (gl_unsigned_int_vec2)
+                                  (gl_unsigned_int_vec3)
+                                  (gl_unsigned_int_vec4)
+                                  (gl_float_mat2)
+                                  (gl_float_mat3)
+                                  (gl_float_mat4)
+                                  (gl_float_mat2x3)
+                                  (gl_float_mat2x4)
+                                  (gl_float_mat3x2)
+                                  (gl_float_mat3x4)
+                                  (gl_float_mat4x2)
+                                  (gl_float_mat4x3)
+                            )
 
         namespace format {
           cst::gl_constant_base const get(std::uint32_t value);
         } // namespace format
 
         template< typename Format, typename Numeric, typename Dimension, typename Cardinality >
-        struct attribute_aspect {
+        struct attribute_aspect : Numeric::aspect {
           typedef Format      format;
           typedef Numeric     numeric;
           typedef Dimension   dimension;

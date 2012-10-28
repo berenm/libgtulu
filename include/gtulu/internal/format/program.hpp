@@ -9,9 +9,9 @@
 #define GTULU_INTERNAL_FORMAT_PROGRAM_HPP_
 
 #include "gtulu/namespaces.hpp"
-#include "gtulu/internal/constants_fwd.hpp"
-
 #include "gtulu/internal/format/common.hpp"
+
+#include "gtulu/internal/constants_fwd.hpp"
 
 namespace gtulu {
   namespace internal {
@@ -22,7 +22,18 @@ namespace gtulu {
         META_ASPECT_DECLARE(property,
                             Attribute,
                             using cst::,
-                                  (gl_delete_status) (gl_link_status) (gl_validate_status) (gl_info_log_length) (gl_attached_shaders) (gl_active_attributes) (gl_active_attribute_max_length) (gl_active_uniforms) (gl_active_uniform_max_length) (gl_active_uniform_blocks) (gl_active_uniform_block_max_name_length))
+                                  (gl_delete_status)
+                                  (gl_link_status)
+                                  (gl_validate_status)
+                                  (gl_info_log_length)
+                                  (gl_attached_shaders)
+                                  (gl_active_attributes)
+                                  (gl_active_attribute_max_length)
+                                  (gl_active_uniforms)
+                                  (gl_active_uniform_max_length)
+                                  (gl_active_uniform_blocks)
+                                  (gl_active_uniform_block_max_name_length)
+                            )
 
       } // namespace program
     } // namespace format

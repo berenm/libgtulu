@@ -111,17 +111,17 @@ class Declaration(Renamable):
             p.typename = 'std::vector< %s > const&' % (p.typename.replace(' const&', ''))
             p.name = 'values'
 
+    self.has_dimension = False
     self.dimension = re.search(r'_(?P<dim>\d+)d(_|$)', self.new_name)
     if self.dimension is not None:
       self.dimension = int(self.dimension.group('dim'))
-      self.has_dimension = True
     else:
       self.dimension = 0
-      self.has_dimension = False
-    self.has_dimension = False
 
-    if not 'framebuffer_texture' in self.function:
-      self.function = re.sub(r'_\d+d', '', self.function)
+    if self.dimension > 0 and 'framebuffer_texture' in self.function:
+      self.has_dimension = True
+
+    self.function = re.sub(r'_\d+d(?P<end>_|$)', '\g<end>', self.function)
 
     # log.error('%s -> %s %s', self.new_name, self.function, self.cardinality)
 

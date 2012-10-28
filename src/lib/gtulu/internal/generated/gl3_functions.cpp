@@ -634,21 +634,21 @@ namespace gtulu {
 
           }
 
-          void framebuffer_texture_1d< >::call(gtulu::constant_base const& target, gtulu::constant_base const& attachment, gtulu::constant_base const& textarget, gtulu::uint32_t const texture, gtulu::int32_t const level) {
+          template< > void framebuffer_texture< boost::mpl::int_< 1 > >::call(gtulu::constant_base const& target, gtulu::constant_base const& attachment, gtulu::constant_base const& textarget, gtulu::uint32_t const texture, gtulu::int32_t const level) {
             __gtulu_debug() << "call glFramebufferTexture1D " "target: '" << target << "'" ", " "attachment: '" << attachment << "'" ", " "textarget: '" << textarget << "'" ", " "texture: '" << texture << "'" ", " "level: '" << level << "'";
             glFramebufferTexture1D(static_cast< std::uint32_t >(target), static_cast< std::uint32_t >(attachment), static_cast< std::uint32_t >(textarget), texture, level);
             __gtulu_check_error();
 
           }
 
-          void framebuffer_texture_2d< >::call(gtulu::constant_base const& target, gtulu::constant_base const& attachment, gtulu::constant_base const& textarget, gtulu::uint32_t const texture, gtulu::int32_t const level) {
+          template< > void framebuffer_texture< boost::mpl::int_< 2 > >::call(gtulu::constant_base const& target, gtulu::constant_base const& attachment, gtulu::constant_base const& textarget, gtulu::uint32_t const texture, gtulu::int32_t const level) {
             __gtulu_debug() << "call glFramebufferTexture2D " "target: '" << target << "'" ", " "attachment: '" << attachment << "'" ", " "textarget: '" << textarget << "'" ", " "texture: '" << texture << "'" ", " "level: '" << level << "'";
             glFramebufferTexture2D(static_cast< std::uint32_t >(target), static_cast< std::uint32_t >(attachment), static_cast< std::uint32_t >(textarget), texture, level);
             __gtulu_check_error();
 
           }
 
-          void framebuffer_texture_3d< >::call(gtulu::constant_base const& target, gtulu::constant_base const& attachment, gtulu::constant_base const& textarget, gtulu::uint32_t const texture, gtulu::int32_t const level, gtulu::int32_t const layer) {
+          template< > void framebuffer_texture< boost::mpl::int_< 3 > >::call(gtulu::constant_base const& target, gtulu::constant_base const& attachment, gtulu::constant_base const& textarget, gtulu::uint32_t const texture, gtulu::int32_t const level, gtulu::int32_t const layer) {
             __gtulu_debug() << "call glFramebufferTexture3D " "target: '" << target << "'" ", " "attachment: '" << attachment << "'" ", " "textarget: '" << textarget << "'" ", " "texture: '" << texture << "'" ", " "level: '" << level << "'" ", " "layer: '" << layer << "'";
             glFramebufferTexture3D(static_cast< std::uint32_t >(target), static_cast< std::uint32_t >(attachment), static_cast< std::uint32_t >(textarget), texture, level, layer);
             __gtulu_check_error();

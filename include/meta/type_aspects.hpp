@@ -5,42 +5,21 @@
  * See accompanying file LICENSE or copy at http://www.boost.org/LICENSE
  */
 
-#ifndef META_TYPE_TRAITS_HPP_
-#define META_TYPE_TRAITS_HPP_
+#ifndef __META_TYPE_TRAITS_HPP__
+#define __META_TYPE_TRAITS_HPP__
 
 #include "gtulu/namespaces.hpp"
 
-#include <type_traits>
-#include <boost/type_traits.hpp>
-#include <boost/mpl/bool.hpp>
-#include <boost/mpl/if.hpp>
-#include <boost/mpl/and.hpp>
-#include <boost/mpl/or.hpp>
-#include <boost/mpl/not.hpp>
-#include <boost/mpl/same_as.hpp>
-#include <boost/preprocessor.hpp>
+#include <meta/logic.hpp>
 
-#define META_ASPECT_DECLARE_TRAIT(aspect_m, prefix_m, trait_m)             \
-  namespace aspect_m {                                                     \
-    prefix_m trait_m;                                                      \
-    template< typename Type >                                              \
-    struct BOOST_PP_CAT (is_, trait_m) :                                   \
-      std::is_same< typename BOOST_PP_CAT(get_, aspect_m) < Type > ::type, \
-                    trait_m > {                                            \
-    };                                                                     \
-    template< typename Type >                                              \
-    struct BOOST_PP_CAT (is_not_, trait_m) :                               \
-      boost::mpl::not_< BOOST_PP_CAT(is_, trait_m) < Type > > {            \
-    };                                                                     \
-  }                                                                        \
-  template< >                                                              \
-  struct BOOST_PP_CAT (is_a_, aspect_m) < aspect_m::trait_m > :            \
-    boost::mpl::true_ {                                                    \
-  };                                                                       \
-  template< >                                                              \
-  struct BOOST_PP_CAT (get_, aspect_m) < aspect_m::trait_m > {             \
-    typedef aspect_m::trait_m type;                                        \
-  };
+#define META_ASPECT_DECLARE_TRAIT(aspect_m, prefix_m, trait_m)                                                                   \
+  namespace aspect_m {                                                                                                           \
+    prefix_m trait_m;                                                                                                            \
+                                                                                                                                 \
+    template< typename T > struct BOOST_PP_CAT (is_, trait_m) : meta::is_same< BOOST_PP_CAT(get_, aspect_m) < T >, trait_m > {}; \
+    template< typename T > using BOOST_PP_CAT(is_not_, trait_m) = meta::not_< BOOST_PP_CAT(is_, trait_m) < T > >;                \
+  }                                                                                                                              \
+  template< > struct BOOST_PP_CAT (is_a_, aspect_m) < aspect_m::trait_m > : meta::true_ {};                                      \
 
 #define META_ASPECT_DECLARE_TRAIT_EACH(n, data_m, trait_m) \
   META_ASPECT_DECLARE_TRAIT(BOOST_PP_TUPLE_ELEM(2, 0, data_m), BOOST_PP_TUPLE_ELEM(2, 1, data_m), trait_m)
@@ -52,25 +31,21 @@
 #define META_ASPECT_DECLARE_PRINT_TRAIT_EACH(n, data_m, trait_m) \
   META_ASPECT_DECLARE_PRINT_TRAIT(data_m, trait_m)
 
-#define META_ASPECT_DECLARE(aspect_m, aspect_template_m, prefix_m, traits_m)            \
-  template< typename Type >                                                             \
-  struct BOOST_PP_CAT (get_, aspect_m) {                                                \
-    typedef typename Type::aspect::aspect_m type;                                       \
-  };                                                                                    \
-  template< typename Trait >                                                            \
-  struct BOOST_PP_CAT (is_a_, aspect_m) : boost::mpl::false_ {};                        \
-                                                                                        \
-  BOOST_PP_SEQ_FOR_EACH(META_ASPECT_DECLARE_TRAIT_EACH, (aspect_m, prefix_m), traits_m) \
-                                                                                        \
-  template< typename aspect_template_m >                                                \
-  struct BOOST_PP_CAT (aspect_m, _check) {                                              \
-    static_assert(BOOST_PP_CAT(is_a_, aspect_m) < aspect_template_m > ::value,          \
-                  BOOST_PP_STRINGIZE(aspect_template_m) " is not a valid "              \
-                  BOOST_PP_STRINGIZE(aspect_m) ", valid values are: ");                 \
-    BOOST_PP_SEQ_FOR_EACH(META_ASPECT_DECLARE_PRINT_TRAIT_EACH,                         \
-                          BOOST_PP_CAT(is_a_, aspect_m) < aspect_template_m > ::value,  \
-                          traits_m)                                                     \
-    typedef aspect_template_m type;                                                     \
+#define META_ASPECT_DECLARE(aspect_m, aspect_template_m, prefix_m, traits_m)                \
+  template< typename T > using BOOST_PP_CAT(get_, aspect_m) = typename T::aspect::aspect_m; \
+  template< typename Trait > struct BOOST_PP_CAT (is_a_, aspect_m) : meta::false_ {};       \
+                                                                                            \
+  BOOST_PP_SEQ_FOR_EACH(META_ASPECT_DECLARE_TRAIT_EACH, (aspect_m, prefix_m), traits_m)     \
+                                                                                            \
+  template< typename aspect_template_m >                                                    \
+  struct BOOST_PP_CAT (aspect_m, _check) {                                                  \
+    static_assert(BOOST_PP_CAT(is_a_, aspect_m) < aspect_template_m > ::value,              \
+                  BOOST_PP_STRINGIZE(aspect_template_m) " is not a valid "                  \
+                  BOOST_PP_STRINGIZE(aspect_m) ", valid values are: ");                     \
+    BOOST_PP_SEQ_FOR_EACH(META_ASPECT_DECLARE_PRINT_TRAIT_EACH,                             \
+                          BOOST_PP_CAT(is_a_, aspect_m) < aspect_template_m > ::value,      \
+                          traits_m)                                                         \
+    typedef aspect_template_m type;                                                         \
   };
 
-#endif /* META_TYPE_TRAITS_HPP_ */
+#endif /* __META_TYPE_TRAITS_HPP_ */
