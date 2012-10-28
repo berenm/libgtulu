@@ -24,8 +24,8 @@ namespace gtulu {
   namespace internal {
 
     struct attachment : obj::object_base {
-      explicit attachment(std::uint32_t const handle_in) :
-        object_base(handle_in) {}
+      explicit attachment(std::uint32_t const handle) :
+        object_base(handle) {}
 
       cst::gl_constant_base get_color() {
         return cst::runtime_constant(cst::gl_color_attachment0(), handle_);

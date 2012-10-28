@@ -23,12 +23,8 @@ namespace gtulu {
     namespace format {
       namespace program {
         struct attribute_info {
-          attribute_info(std::uint32_t                id_in,
-                         std::string                  name_in,
-                         cst::gl_constant_base const& type_in,
-                         std::uint32_t                size_in,
-                         location_t                   location_in) :
-            id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {}
+          attribute_info(std::uint32_t const id, std::string const name, cst::gl_constant_base const& type, std::uint32_t const size, location_t const location) :
+            id(id), name(name), type(type), size(size), location(location) {}
 
           attribute_info(attribute_info const& copy) :
             id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {}
@@ -52,12 +48,8 @@ namespace gtulu {
         typedef std::vector< attribute_info > attribute_vector_t;
 
         struct uniform_info {
-          uniform_info(std::uint32_t                id_in,
-                       std::string                  name_in,
-                       cst::gl_constant_base const& type_in,
-                       std::uint32_t                size_in,
-                       location_t                   location_in) :
-            id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {}
+          uniform_info(std::uint32_t const id, std::string const name, cst::gl_constant_base const& type, std::uint32_t const size, location_t const location) :
+            id(id), name(name), type(type), size(size), location(location) {}
 
           uniform_info(attribute_info const& copy) :
             id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {}
@@ -81,12 +73,8 @@ namespace gtulu {
         typedef std::vector< uniform_info > uniform_vector_t;
 
         struct uniform_block_info {
-          uniform_block_info(std::uint32_t                id_in,
-                             std::string                  name_in,
-                             cst::gl_constant_base const& type_in,
-                             std::uint32_t                size_in,
-                             location_t                   location_in) :
-            id(id_in), name(name_in), type(type_in), size(size_in), location(location_in) {}
+          uniform_block_info(std::uint32_t const id, std::string const name, cst::gl_constant_base const& type, std::uint32_t const size, location_t const location) :
+            id(id), name(name), type(type), size(size), location(location) {}
 
           uniform_block_info(attribute_info const& copy) :
             id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location) {}

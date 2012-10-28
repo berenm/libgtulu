@@ -25,20 +25,20 @@ namespace gtulu {
         typedef typename boost::range_pointer< const Range >::type  pointer_type;
         typedef typename boost::range_size< const Range >::type     size_type;
 
-        data_range(Range const& range_in) :
-          data_(boost::begin(range_in)), size_(boost::size(range_in)), width_(size_), height_(1), depth_(1) {}
+        data_range(Range const& range) :
+          data_(boost::begin(range)), size_(boost::size(range)), width_(size_), height_(1), depth_(1) {}
 
-        data_range(Range const& range_in, std::size_t const width_in) :
-          data_(boost::begin(range_in)), size_(boost::size(range_in)), width_(width_in), height_(1), depth_(1) {}
+        data_range(Range const& range, std::size_t const width) :
+          data_(boost::begin(range)), size_(boost::size(range)), width_(width), height_(1), depth_(1) {}
 
-        data_range(Range const& range_in, std::size_t const width_in, std::size_t const height_in) :
-          data_(boost::begin(range_in)), size_(boost::size(range_in)), width_(width_in), height_(width_in), depth_(1) {}
+        data_range(Range const& range, std::size_t const width, std::size_t const height) :
+          data_(boost::begin(range)), size_(boost::size(range)), width_(width), height_(width), depth_(1) {}
 
-        data_range(Range const&      range_in,
-                   std::size_t const width_in,
-                   std::size_t const height_in,
-                   std::size_t const depth_in) :
-          data_(boost::begin(range_in)), size_(boost::size(range_in)), width_(width_in), height_(height_in), depth_(depth_in) {}
+        data_range(Range const&      range,
+                   std::size_t const width,
+                   std::size_t const height,
+                   std::size_t const depth) :
+          data_(boost::begin(range)), size_(boost::size(range)), width_(width), height_(height), depth_(depth) {}
 
         pointer_type data() const {
           return data_;

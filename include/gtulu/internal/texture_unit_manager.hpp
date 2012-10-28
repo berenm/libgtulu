@@ -24,8 +24,8 @@ namespace gtulu {
   namespace internal {
 
     struct texture_unit : obj::object_base {
-      explicit texture_unit(const std::int32_t handle_in) :
-        object_base(handle_in) {}
+      explicit texture_unit(const std::int32_t handle) :
+        object_base(handle) {}
 
       void activate() {
         fct::active_texture< >::call(cst::runtime_constant(cst::gl_texture0(), handle_));
@@ -33,9 +33,9 @@ namespace gtulu {
       }
 
       template< typename TextureFormat >
-      void bind(obj::texture< TextureFormat > const& texture_in) {
+      void bind(obj::texture< TextureFormat > const& texture) {
         activate();
-        texture_in.bind();
+        texture.bind();
       }
 
     };
@@ -54,9 +54,9 @@ namespace gtulu {
       texture_unit_manager();
       ~texture_unit_manager();
 
-      boost::shared_ptr< texture_unit > get_current(obj::texture_base const& texture_in);
-      boost::shared_ptr< texture_unit > get_new(obj::texture_base const& texture_in);
-      boost::shared_ptr< texture_unit > get_current_or_new(obj::texture_base const& texture_in);
+      boost::shared_ptr< texture_unit > get_current(obj::texture_base const& texture);
+      boost::shared_ptr< texture_unit > get_new(obj::texture_base const& texture);
+      boost::shared_ptr< texture_unit > get_current_or_new(obj::texture_base const& texture);
 
       void clear();
     };

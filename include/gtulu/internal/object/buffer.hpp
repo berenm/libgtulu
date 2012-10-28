@@ -87,11 +87,11 @@ namespace gtulu {
 
           template< typename Parameter, typename TemporarySlotType = buf::copy_read_buffer_slot >
           int get() {
-            std::uint32_t data_out;
+            std::uint32_t data;
 
             typedef typename TemporarySlotType::type slot_t;
-            fct::get_buffer_parameter< slot_t, Parameter >::call(&data_out);
-            return data_out;
+            fct::get_buffer_parameter< slot_t, Parameter >::call(&data);
+            return data;
           }
 
       };

@@ -674,7 +674,7 @@ namespace gtulu {
         static void get(ReturnType* data);
 
         template< typename Parameter >
-        static void get(std::uint32_t const index_in, ReturnType* data);
+        static void get(std::uint32_t const index, ReturnType* data);
       };
 
 #define DECLARE_GETTOR(return_type_m, function_m) \
@@ -695,8 +695,8 @@ namespace gtulu {
     }                                                                         \
                                                                               \
     template< typename Parameter >                                            \
-    static void get(std::uint32_t const index_in, return_type_m * data) {     \
-      fct::indexed_function_m< Parameter >::call(index_in, data);             \
+    static void get(std::uint32_t const index, return_type_m * data) {     \
+      fct::indexed_function_m< Parameter >::call(index, data);             \
     }                                                                         \
   };
 
@@ -712,8 +712,8 @@ namespace gtulu {
         }
 
         template< typename Parameter >
-        static void get(std::uint32_t const index_in, std::string* data) {
-          GLubyte const* bytes = fct::get_string< Parameter >::call(index_in);
+        static void get(std::uint32_t const index, std::string* data) {
+          GLubyte const* bytes = fct::get_string< Parameter >::call(index);
 
           if (bytes != 0) {
             data->assign(reinterpret_cast< char const* >(bytes));
@@ -746,10 +746,10 @@ namespace gtulu {
           }
 
           template< typename Parameter >
-          static gettor_return_type_t get(std::uint32_t index_in) {
+          static gettor_return_type_t get(std::uint32_t index) {
             gettor_return_type_t data;
 
-            gettor< ReturnType >::template get< Parameter >(index_in, data.c_array());
+            gettor< ReturnType >::template get< Parameter >(index, data.c_array());
             return data;
           }
 
@@ -772,10 +772,10 @@ namespace gtulu {
           }
 
           template< typename Parameter >
-          static gettor_return_type_t get(std::uint32_t index_in) {
+          static gettor_return_type_t get(std::uint32_t index) {
             gettor_return_type_t data;
 
-            gettor< ReturnType >::template get< Parameter >(index_in, &data);
+            gettor< ReturnType >::template get< Parameter >(index, &data);
             return data;
           }
 
@@ -790,12 +790,12 @@ namespace gtulu {
           typedef std::vector< ReturnType > gettor_return_type_t;
 
           template< typename Parameter >
-          static gettor_return_type_t get(std::size_t size_in) {
-            ReturnType* array = new ReturnType[size_in];
+          static gettor_return_type_t get(std::size_t size) {
+            ReturnType* array = new ReturnType[size];
 
             gettor< ReturnType >::template get< Parameter >(array);
 
-            gettor_return_type_t data(array, array + size_in);
+            gettor_return_type_t data(array, array + size);
             delete[] array;
             return data;
           }
@@ -824,8 +824,8 @@ namespace gtulu {
     typedef sized_gettor< size_m >::strong_gettor< return_type_m > gettor_type_t;        \
     typedef gettor_type_t::gettor_return_type_t                    gettor_return_type_t; \
                                                                                          \
-    static gettor_return_type_t get(std::uint32_t index_in) {                            \
-      return gettor_type_t::get< parameter::parameter_m >(index_in);                     \
+    static gettor_return_type_t get(std::uint32_t index) {                            \
+      return gettor_type_t::get< parameter::parameter_m >(index);                     \
     }                                                                                    \
   };                                                                                     \
   typedef parameter_gettor< parameter::parameter_m > parameter_m;

@@ -93,8 +93,8 @@ namespace gtulu {
           object_base() :
             handle_(0) {}
 
-          explicit object_base(handle_t const& handle_in) :
-            handle_(handle_in) {}
+          explicit object_base(handle_t const& handle) :
+            handle_(handle) {}
 
       };
 

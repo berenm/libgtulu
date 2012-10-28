@@ -18,8 +18,8 @@ namespace gtulu {
 
         template< typename DataFormat >
         struct empty {
-          empty(std::size_t const width_in, std::size_t const height_in=1, std::size_t const depth_in=1) :
-            width_(width_in), height_(height_in), depth_(depth_in) {}
+          empty(std::size_t const width, std::size_t const height=1, std::size_t const depth=1) :
+            width_(width), height_(height), depth_(depth) {}
 
           uint8_t* write() const {
             return 0;

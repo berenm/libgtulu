@@ -34,7 +34,7 @@ namespace gtulu {
             return sizeof(ValueType);
           }
 
-          static std::size_t size(store_type const& data_in) {
+          static std::size_t size(store_type const& data) {
             return Width * sizeof(ValueType);
           }
 
@@ -72,7 +72,7 @@ namespace gtulu {
             return sizeof(ValueType);
           }
 
-          static std::size_t size(store_type const& data_in) {
+          static std::size_t size(store_type const& data) {
             return Width * Height * sizeof(ValueType);
           }
 
@@ -110,7 +110,7 @@ namespace gtulu {
             return sizeof(ValueType);
           }
 
-          static std::size_t size(store_type const& data_in) {
+          static std::size_t size(store_type const& data) {
             return Width * Height * Depth * sizeof(ValueType);
           }
 

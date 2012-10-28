@@ -46,36 +46,36 @@ namespace gtulu {
         struct data_traits {
           typedef DataType data_type_t;
 
-          static uint8_t* write(data_type_t& data_in) {
-            return data_in.write();
+          static uint8_t* write(data_type_t& data) {
+            return data.write();
           }
 
-          static uint8_t const* read(data_type_t const& data_in) {
-            return data_in.read();
+          static uint8_t const* read(data_type_t const& data) {
+            return data.read();
           }
 
-          static std::size_t value_size(data_type_t const& data_in) {
-            return data_in.value_size();
+          static std::size_t value_size(data_type_t const& data) {
+            return data.value_size();
           }
 
-          static std::size_t size(data_type_t const& data_in) {
-            return data_in.size();
+          static std::size_t size(data_type_t const& data) {
+            return data.size();
           }
 
-          static offset_type offset(data_type_t const& data_in) {
+          static offset_type offset(data_type_t const& data) {
             return offset_type();
           }
 
-          static std::size_t width(data_type_t const& data_in) {
-            return data_in.width();
+          static std::size_t width(data_type_t const& data) {
+            return data.width();
           }
 
-          static std::size_t height(data_type_t const& data_in) {
-            return data_in.height();
+          static std::size_t height(data_type_t const& data) {
+            return data.height();
           }
 
-          static std::size_t depth(data_type_t const& data_in) {
-            return data_in.depth();
+          static std::size_t depth(data_type_t const& data) {
+            return data.depth();
           }
 
         };

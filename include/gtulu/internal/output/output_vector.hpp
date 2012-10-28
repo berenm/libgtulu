@@ -24,15 +24,15 @@ namespace gtulu {
         template< typename DataType, typename Count >
         struct output_binder;
 
-# define DECLARE_BINDER(type_m, count_m)                                                                                                                   \
-  template< >                                                                                                                                              \
-  struct output_binder< fout::type::type_m, fcmn::to_typename< count_m >::type > {                                                                         \
-    inline static void bind(location_t const location_in, BOOST_PP_ENUM_PARAMS(count_m, fout::to_typename< fout::type::type_m >::type const value_in)) {   \
-      fct::uniform_ ## count_m< >::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in));                                                             \
-    }                                                                                                                                                      \
-    inline static void bind(location_t const location_in, std::uint32_t const number_in, fout::to_typename< fout::type::type_m >::type const* values_in) { \
-      fct::uniform_ ## count_m< >::call(location_in, number_in, values_in);                                                                                \
-    }                                                                                                                                                      \
+# define DECLARE_BINDER(type_m, count_m)                                                                                                           \
+  template< >                                                                                                                                      \
+  struct output_binder< fout::type::type_m, fcmn::to_typename< count_m >::type > {                                                                 \
+    inline static void bind(location_t const location, BOOST_PP_ENUM_PARAMS(count_m, fout::to_typename< fout::type::type_m >::type const value)) { \
+      fct::uniform_ ## count_m< >::call(location, BOOST_PP_ENUM_PARAMS(count_m, value));                                                           \
+    }                                                                                                                                              \
+    inline static void bind(location_t const location, std::uint32_t const number, fout::to_typename< fout::type::type_m >::type const* values) {  \
+      fct::uniform_ ## count_m< >::call(location, number, values);                                                                                 \
+    }                                                                                                                                              \
   };
 
         DECLARE_BINDER(floating, 2)
@@ -47,9 +47,9 @@ namespace gtulu {
 
 # undef DECLARE_BINDER
 
-        template< typename Format, typename BinderType                                                                                                                                             = output_binder< typename Format::aspect::type,
-                                                                                                                                              typename Format::aspect::count >, typename ValueType = typename fout::to_typename<
-                    typename Format::aspect::type >::type >
+        template< typename Format,
+                  typename BinderType = output_binder< typename Format::aspect::type, typename Format::aspect::count >,
+                  typename ValueType  = typename fout::to_typename< typename Format::aspect::type >::type >
         struct output {
           typedef Format     format;
           typedef ValueType  value_type;

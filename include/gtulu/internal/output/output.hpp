@@ -22,15 +22,15 @@ namespace gtulu {
       template< typename DataType >
       struct output_binder;
 
-# define DECLARE_BINDER(type_m)                                                                                                                            \
-  template< >                                                                                                                                              \
-  struct output_binder< fout::type::type_m > {                                                                                                             \
-    inline static void bind(location_t const location_in, fout::to_typename< fout::type::type_m >::type const value_in) {                                  \
-      fct::uniform_1< >::call(location_in, value_in);                                                                                                      \
-    }                                                                                                                                                      \
-    inline static void bind(location_t const location_in, std::uint32_t const number_in, fout::to_typename< fout::type::type_m >::type const* values_in) { \
-      fct::uniform_1< >::call(location_in, number_in, value_in);                                                                                           \
-    }                                                                                                                                                      \
+# define DECLARE_BINDER(type_m)                                                                                                                   \
+  template< >                                                                                                                                     \
+  struct output_binder< fout::type::type_m > {                                                                                                    \
+    inline static void bind(location_t const location, fout::to_typename< fout::type::type_m >::type const value) {                               \
+      fct::uniform_1< >::call(location, value);                                                                                                   \
+    }                                                                                                                                             \
+    inline static void bind(location_t const location, std::uint32_t const number, fout::to_typename< fout::type::type_m >::type const* values) { \
+      fct::uniform_1< >::call(location, number, value);                                                                                           \
+    }                                                                                                                                             \
   };
 
       DECLARE_BINDER(floating)
@@ -39,8 +39,9 @@ namespace gtulu {
 
 # undef DECLARE_BINDER
 
-      template< typename Format, typename BinderType = output_binder< typename Format::aspect::type >,
-                typename ValueType                   = typename fout::to_typename< typename Format::aspect::type >::type >
+      template< typename Format,
+                typename BinderType = output_binder< typename Format::aspect::type >,
+                typename ValueType  = typename fout::to_typename< typename Format::aspect::type >::type >
       struct output {
         typedef Format     format;
         typedef ValueType  value_type;

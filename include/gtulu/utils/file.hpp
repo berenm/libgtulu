@@ -21,7 +21,7 @@ namespace gtulu {
   namespace utils {
 
     struct file {
-      static std::string get_contents(boost::filesystem::path const& path_in);
+      static std::string get_contents(boost::filesystem::path const& path);
     };
 
     struct file_template {
@@ -35,25 +35,23 @@ namespace gtulu {
 
         std::map< std::string, file_template > sub_templates;
 
-        void parse(boost::sregex_iterator& iterator_inout);
+        void parse(boost::sregex_iterator& iterator);
 
       public:
         file_template();
-        explicit file_template(boost::sregex_iterator& iterator_inout);
-        file_template(file_template const& copy_in);
-        file_template(std::string const&             template_file_in,
-                      boost::filesystem::path const& template_path_in="include/gtulu/templates/");
+        explicit file_template(boost::sregex_iterator& iterator);
+        file_template(file_template const& copy);
+        file_template(std::string const& template_file, boost::filesystem::path const& template_path="include/gtulu/templates/");
 
         void reset();
 
-        file_template get(std::string const& sub_template_in);
+        file_template get(std::string const& sub_template);
 
         std::string get_content();
 
-        void populate(std::map< std::string, std::string >& arguments_inout,
-                      std::vector< file_template > sub_templates_in=std::vector< file_template >());
+        void populate(std::map< std::string, std::string >& arguments, std::vector< file_template > sub_templates=std::vector< file_template >());
 
-        void debug(std::string prefix_in="");
+        void debug(std::string prefix="");
     };
 
   } // namespace utils

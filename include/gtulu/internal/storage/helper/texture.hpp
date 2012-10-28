@@ -56,16 +56,16 @@ namespace gtulu {
               }
 
               static void write(OtherStore const&             other_store,
-                                sto::data::offset_type const& offset_in,
+                                sto::data::offset_type const& offset,
                                 std::uint32_t const           lod_level=0) {
                 write_fct::call(lod_level,
-                                offset_in.x,
+                                offset.x,
                                 other_store_traits::width(other_store),
                                 other_store_traits::read(other_store));
               }
 
-              static void read(OtherStore& data_out, std::uint32_t const lod_level=0) {
-                read_fct::call(lod_level, other_store_traits::write(data_out));
+              static void read(OtherStore& data, std::uint32_t const lod_level=0) {
+                read_fct::call(lod_level, other_store_traits::write(data));
               }
 
             };
@@ -102,18 +102,18 @@ namespace gtulu {
               }
 
               static void write(OtherStore const&             other_store,
-                                sto::data::offset_type const& offset_in,
+                                sto::data::offset_type const& offset,
                                 std::uint32_t const           lod_level=0) {
                 write_fct::call(lod_level,
-                                offset_in.x,
-                                offset_in.y,
+                                offset.x,
+                                offset.y,
                                 other_store_traits::width(other_store),
                                 other_store_traits::height(other_store),
                                 other_store_traits::read(other_store));
               }
 
-              static void read(OtherStore& data_out, std::uint32_t const lod_level=0) {
-                read_fct::call(lod_level, other_store_traits::write(data_out));
+              static void read(OtherStore& data, std::uint32_t const lod_level=0) {
+                read_fct::call(lod_level, other_store_traits::write(data));
               }
 
             };
@@ -150,20 +150,20 @@ namespace gtulu {
               }
 
               static void write(OtherStore const&             other_store,
-                                sto::data::offset_type const& offset_in,
+                                sto::data::offset_type const& offset,
                                 std::uint32_t const           lod_level=0) {
                 write_fct::call(lod_level,
-                                offset_in.x,
-                                offset_in.y,
-                                offset_in.z,
+                                offset.x,
+                                offset.y,
+                                offset.z,
                                 other_store_traits::width(other_store),
                                 other_store_traits::height(other_store),
                                 other_store_traits::depth(other_store),
                                 other_store_traits::read(other_store));
               }
 
-              static void read(OtherStore& data_out, std::uint32_t const lod_level=0) {
-                read_fct::call(lod_level, other_store_traits::write(data_out));
+              static void read(OtherStore& data, std::uint32_t const lod_level=0) {
+                read_fct::call(lod_level, other_store_traits::write(data));
               }
 
             };
@@ -197,17 +197,17 @@ namespace gtulu {
               }
 
               static void write(OtherStore const&             other_store,
-                                sto::data::offset_type const& offset_in,
+                                sto::data::offset_type const& offset,
                                 std::uint32_t const           lod_level=0) {
                 write_fct::call(lod_level,
-                                offset_in.x,
+                                offset.x,
                                 other_store_traits::width(other_store),
                                 other_store_traits::size(other_store),
                                 other_store_traits::read(other_store));
               }
 
-              static void read(OtherStore& data_out, std::uint32_t const lod_level=0) {
-                read_fct::call(lod_level, other_store_traits::write(data_out));
+              static void read(OtherStore& data, std::uint32_t const lod_level=0) {
+                read_fct::call(lod_level, other_store_traits::write(data));
               }
 
             };
@@ -245,18 +245,18 @@ namespace gtulu {
               }
 
               static void write(OtherStore const&             other_store,
-                                sto::data::offset_type const& offset_in,
+                                sto::data::offset_type const& offset,
                                 std::uint32_t const           lod_level=0) {
                 write_fct::call(lod_level,
-                                offset_in.x,
+                                offset.x,
                                 other_store_traits::width(other_store),
                                 other_store_traits::height(other_store),
                                 other_store_traits::size(other_store),
                                 other_store_traits::read(other_store));
               }
 
-              static void read(OtherStore& data_out, std::uint32_t const lod_level=0) {
-                read_fct::call(lod_level, other_store_traits::write(data_out));
+              static void read(OtherStore& data, std::uint32_t const lod_level=0) {
+                read_fct::call(lod_level, other_store_traits::write(data));
               }
 
             };
@@ -294,10 +294,10 @@ namespace gtulu {
               }
 
               static void write(OtherStore const&             other_store,
-                                sto::data::offset_type const& offset_in,
+                                sto::data::offset_type const& offset,
                                 std::uint32_t const           lod_level=0) {
                 write_fct::call(lod_level,
-                                offset_in.x,
+                                offset.x,
                                 other_store_traits::width(other_store),
                                 other_store_traits::height(other_store),
                                 other_store_traits::depth(other_store),
@@ -305,8 +305,8 @@ namespace gtulu {
                                 other_store_traits::read(other_store));
               }
 
-              static void read(OtherStore& data_out, std::uint32_t const lod_level=0) {
-                read_fct::call(lod_level, other_store_traits::write(data_out));
+              static void read(OtherStore& data, std::uint32_t const lod_level=0) {
+                read_fct::call(lod_level, other_store_traits::write(data));
               }
 
             };
@@ -327,15 +327,15 @@ namespace gtulu {
           template< typename TextureFormat, typename SourceStore >
           static void copy(obj::texture_lod< TextureFormat >& target_store,
                            SourceStore const&                 source_store,
-                           sto::data::offset_type const&      offset_in=sto::data::offset_type()) {
-            detail::helper< TextureFormat, SourceStore >::write(source_store, offset_in, target_store.get_level());
+                           sto::data::offset_type const&      offset=sto::data::offset_type()) {
+            detail::helper< TextureFormat, SourceStore >::write(source_store, offset, target_store.get_level());
           }
 
           template< typename TextureFormat, typename SourceStore >
           static void copy(obj::texture< TextureFormat >& target_store,
                            SourceStore const&             source_store,
-                           sto::data::offset_type const&  offset_in=sto::data::offset_type()) {
-            copy(static_cast< obj::texture_lod< TextureFormat >& >(target_store), source_store, offset_in);
+                           sto::data::offset_type const&  offset=sto::data::offset_type()) {
+            copy(static_cast< obj::texture_lod< TextureFormat >& >(target_store), source_store, offset);
             target_store.compute_mipmaps();
           }
 

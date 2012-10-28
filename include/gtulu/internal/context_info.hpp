@@ -22,6 +22,8 @@ namespace gtulu {
 
       template< typename ContextImpl >
       struct context_info_base : ContextImpl {
+        template< typename ... Ts > context_info_base(Ts ... vs) : ContextImpl(vs ...) {}
+
         void acquire() {
           while (!ContextImpl::acquire()) {
             boost::this_thread::sleep(boost::posix_time::milliseconds(1));
@@ -52,10 +54,16 @@ namespace gtulu {
     namespace context {
       struct glx_context_impl {
         Display*    display;
+        GLXContext  context;
         GLXDrawable drawable;
         GLXDrawable readable;
-        GLXContext  context;
         bool        status;
+
+        glx_context_impl(Display* const display, GLXContext const context, GLXDrawable const drawable, GLXDrawable const readable) :
+          display(display),
+          context(context),
+          drawable(drawable),
+          readable(readable) {}
 
         bool acquire() {
           return glXMakeContextCurrent(display, drawable, readable, context);
@@ -68,25 +76,13 @@ namespace gtulu {
       };
 
       struct glx_context : context_info_base< glx_context_impl > {
-        glx_context(Display* const    display_in=nullptr,
-                    GLXContext const  context_in=nullptr,
-                    GLXDrawable const drawable_in=None,
-                    GLXDrawable const readable_in=None) {
-          display  = display_in;
-          drawable = drawable_in;
-          readable = readable_in;
-          context  = context_in;
-        }
-
+        glx_context(Display* const display=nullptr, GLXContext const context=nullptr, GLXDrawable const drawable=None, GLXDrawable const readable=None) :
+          context_info_base< glx_context_impl >(display, context, drawable, readable) {}
       };
 
       struct glx_current_context : public glx_context {
         glx_current_context() :
-          glx_context(glXGetCurrentDisplay(),
-                      glXGetCurrentContext(),
-                      glXGetCurrentDrawable(),
-                      glXGetCurrentReadDrawable()) {}
-
+          glx_context(glXGetCurrentDisplay(), glXGetCurrentContext(), glXGetCurrentDrawable(), glXGetCurrentReadDrawable()) {}
       };
 
       typedef glx_context         context_info;

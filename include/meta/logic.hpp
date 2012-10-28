@@ -97,6 +97,7 @@ namespace gtulu {
     using mpl::int_;
     using mpl::true_;
     using mpl::false_;
+    using mpl::if_;
 
     template< typename A, typename B >
     struct is_same : mpl::false_ {};

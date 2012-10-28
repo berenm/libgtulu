@@ -25,13 +25,8 @@ namespace gtulu {
       namespace shader {
 
         struct output_info {
-          output_info(std::uint32_t                id_in,
-                      std::string                  name_in,
-                      cst::gl_constant_base const& type_in,
-                      std::uint32_t                size_in,
-                      location_t                   location_in,
-                      std::uint32_t                index_in) :
-            id(id_in), name(name_in), type(type_in), size(size_in), location(location_in), index(index_in) {}
+          output_info(std::uint32_t const id, std::string const name, cst::gl_constant_base const& type, std::uint32_t const size, location_t const location, std::uint32_t const index) :
+            id(id), name(name), type(type), size(size), location(location), index(index) {}
 
           output_info(output_info const& copy) :
             id(copy.id), name(copy.name), type(copy.type), size(copy.size), location(copy.location), index(copy.index) {}

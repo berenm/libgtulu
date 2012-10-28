@@ -25,8 +25,8 @@ namespace gtulu {
           std::string   string_value;
           std::uint64_t integer_value;
 
-          gl_constant_base(char const* string_value_in, std::uint64_t integer_value_in) :
-            string_value(string_value_in), integer_value(integer_value_in) {}
+          gl_constant_base(char const* string_value, std::uint64_t integer_value) :
+            string_value(string_value), integer_value(integer_value) {}
 
         public:
           gl_constant_base() :
@@ -35,9 +35,9 @@ namespace gtulu {
           gl_constant_base(gl_constant_base const& copy) :
             string_value(copy.string_value), integer_value(copy.integer_value) {}
 
-          gl_constant_base& operator=(gl_constant_base const& copy_in) {
-            string_value  = copy_in.string_value;
-            integer_value = copy_in.integer_value;
+          gl_constant_base& operator=(gl_constant_base const& copy) {
+            string_value  = copy.string_value;
+            integer_value = copy.integer_value;
             return *this;
           }
 
@@ -48,7 +48,7 @@ namespace gtulu {
             return integer_value;
           }
 
-          friend std::ostream& operator<<(std::ostream& stream_inout, gl_constant_base const& constant_in);
+          friend std::ostream& operator<<(std::ostream& stream, gl_constant_base const& constant);
       };
 
       template< typename ConstantImpl >
@@ -69,12 +69,12 @@ namespace gtulu {
       gl_constant< ConstantImpl > const gl_constant< ConstantImpl >::instance;
 
       struct runtime_constant : public gl_constant_base {
-        runtime_constant(gl_constant_base const& base, std::uint64_t offset_in) :
+        runtime_constant(gl_constant_base const& base, std::uint64_t offset) :
           gl_constant_base(base) {
           string_value.erase(string_value.end() - 1);
 
-          string_value  += boost::lexical_cast< std::string >(offset_in);
-          integer_value += offset_in;
+          string_value  += boost::lexical_cast< std::string >(offset);
+          integer_value += offset;
         }
 
       };

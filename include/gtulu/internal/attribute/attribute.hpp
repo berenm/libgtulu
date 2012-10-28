@@ -24,38 +24,38 @@ namespace gtulu {
         template< typename Cardinality >
         struct cardinality_binder;
 
-# define DECLARE_BINDER(count_m, cardinality_m)                                                                                                               \
-  template< >                                                                                                                                                 \
-  struct cardinality_binder< fcmn::cardinality::cardinality_m > {                                                                                             \
-    template< typename Integral > struct attribute_binder;                                                                                                    \
-  };                                                                                                                                                          \
-  template< >                                                                                                                                                 \
-  struct cardinality_binder< fcmn::cardinality::cardinality_m >                                                                                               \
-  ::attribute_binder< fnum::integral::floating > {                                                                                                            \
-    template< typename DataFormat >                                                                                                                           \
-    inline static void bind(location_t const location_in, BOOST_PP_ENUM_PARAMS(count_m, typename fcmn::to_value_type< DataFormat >::type const value_in)) {   \
-      fct::vertex_attrib< >::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in));                                                                      \
-      fct::disable_vertex_attrib_array< >::call(location_in);                                                                                                 \
-    }                                                                                                                                                         \
-    template< typename DataFormat >                                                                                                                           \
-    inline static void bind(location_t const location_in, std::uint32_t const number_in, typename fcmn::to_value_type< DataFormat >::type const* values_in) { \
-      fct::vertex_attrib< >::call(location_in, values_in);                                                                                                    \
-      fct::disable_vertex_attrib_array< >::call(location_in);                                                                                                 \
-    }                                                                                                                                                         \
-  };                                                                                                                                                          \
-  template< >                                                                                                                                                 \
-  struct cardinality_binder< fcmn::cardinality::cardinality_m >                                                                                               \
-  ::attribute_binder< fnum::integral::integral > {                                                                                                            \
-    template< typename DataFormat >                                                                                                                           \
-    inline static void bind(location_t const location_in, BOOST_PP_ENUM_PARAMS(count_m, typename fcmn::to_value_type< DataFormat >::type const value_in)) {   \
-      fct::vertex_attrib ## _integer< >::call(location_in, BOOST_PP_ENUM_PARAMS(count_m, value_in));                                                          \
-      fct::disable_vertex_attrib_array< >::call(location_in);                                                                                                 \
-    }                                                                                                                                                         \
-    template< typename DataFormat >                                                                                                                           \
-    inline static void bind(location_t const location_in, std::uint32_t const number_in, typename fcmn::to_value_type< DataFormat >::type const* values_in) { \
-      fct::vertex_attrib ## _integer< >::call(location_in, values_in);                                                                                        \
-      fct::disable_vertex_attrib_array< >::call(location_in);                                                                                                 \
-    }                                                                                                                                                         \
+# define DECLARE_BINDER(count_m, cardinality_m)                                                                                                       \
+  template< >                                                                                                                                         \
+  struct cardinality_binder< fcmn::cardinality::cardinality_m > {                                                                                     \
+    template< typename Integral > struct attribute_binder;                                                                                            \
+  };                                                                                                                                                  \
+  template< >                                                                                                                                         \
+  struct cardinality_binder< fcmn::cardinality::cardinality_m >                                                                                       \
+  ::attribute_binder< fnum::integral::floating > {                                                                                                    \
+    template< typename DataFormat >                                                                                                                   \
+    inline static void bind(location_t const location, BOOST_PP_ENUM_PARAMS(count_m, typename fcmn::to_value_type< DataFormat >::type const value)) { \
+      fct::vertex_attrib< >::call(location, BOOST_PP_ENUM_PARAMS(count_m, value));                                                                    \
+      fct::disable_vertex_attrib_array< >::call(location);                                                                                            \
+    }                                                                                                                                                 \
+    template< typename DataFormat >                                                                                                                   \
+    inline static void bind(location_t const location, std::uint32_t const number, typename fcmn::to_value_type< DataFormat >::type const* values) {  \
+      fct::vertex_attrib< >::call(location, values);                                                                                                  \
+      fct::disable_vertex_attrib_array< >::call(location);                                                                                            \
+    }                                                                                                                                                 \
+  };                                                                                                                                                  \
+  template< >                                                                                                                                         \
+  struct cardinality_binder< fcmn::cardinality::cardinality_m >                                                                                       \
+  ::attribute_binder< fnum::integral::integral > {                                                                                                    \
+    template< typename DataFormat >                                                                                                                   \
+    inline static void bind(location_t const location, BOOST_PP_ENUM_PARAMS(count_m, typename fcmn::to_value_type< DataFormat >::type const value)) { \
+      fct::vertex_attrib ## _integer< >::call(location, BOOST_PP_ENUM_PARAMS(count_m, value));                                                        \
+      fct::disable_vertex_attrib_array< >::call(location);                                                                                            \
+    }                                                                                                                                                 \
+    template< typename DataFormat >                                                                                                                   \
+    inline static void bind(location_t const location, std::uint32_t const number, typename fcmn::to_value_type< DataFormat >::type const* values) {  \
+      fct::vertex_attrib ## _integer< >::call(location, values);                                                                                      \
+      fct::disable_vertex_attrib_array< >::call(location);                                                                                            \
+    }                                                                                                                                                 \
   };
 
         DECLARE_BINDER(1, one)
