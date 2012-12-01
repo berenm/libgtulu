@@ -6,10 +6,10 @@ include(ParseVersion)
 include(AddSubmodule)
 include(GtuluCompiler)
 include(FindCotire)
+include(FindCXX11)
 
 project(libgtulu CXX)
 parse_version(libgtulu DEBIAN)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 add_submodule(logging lib/logging
   INCLUDE_DIRS include lib/boost-log

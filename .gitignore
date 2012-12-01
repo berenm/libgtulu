@@ -15,5 +15,6 @@
 !.gitignore
 !.gitmodules
 !.uncrustifyrc
+!.travis.yml
 
 build
