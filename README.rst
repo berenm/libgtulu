@@ -1,6 +1,9 @@
 ==================================
 libgtulu — opengl template library
 ==================================
+.. image:: https://secure.travis-ci.org/berenm/libgtulu.png?branch=master
+    :alt: Build Status
+    :target: https://travis-ci.org/berenm/libgtulu
 
 COPYING INFORMATION
 `````````````````````
