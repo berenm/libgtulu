@@ -10,4 +10,4 @@ compiler:
 before_install:
   - sudo apt-add-repository -y ppa:ubuntu-x-swat/mesa9
   - sudo apt-get update
-  - sudo apt-get install libboost1.48-all-dev libglm-dev libgl1-mesa-dev>=9.0-0ubuntu1
+  - sudo apt-get install libboost1.48-all-dev libglm-dev libgl1-mesa-dev libegl1-mesa-dev

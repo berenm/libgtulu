@@ -22,7 +22,7 @@ namespace gtulu {
 
       template< typename ContextImpl >
       struct context_info_base : ContextImpl {
-        template< typename ... Ts > context_info_base(Ts ... vs) : ContextImpl(vs ...) {}
+        template< typename... Ts > context_info_base(Ts... vs) : ContextImpl(vs...) {}
 
         void acquire() {
           while (!ContextImpl::acquire()) {
@@ -52,41 +52,41 @@ namespace gtulu {
   namespace internal {
 
     namespace context {
-      struct glx_context_impl {
-        Display*    display;
-        GLXContext  context;
-        GLXDrawable drawable;
-        GLXDrawable readable;
-        bool        status;
+      struct egl_context_impl {
+        EGLDisplay display;
+        EGLContext context;
+        EGLSurface drawable;
+        EGLSurface readable;
+        bool       status;
 
-        glx_context_impl(Display* const display, GLXContext const context, GLXDrawable const drawable, GLXDrawable const readable) :
+        egl_context_impl(EGLDisplay const display, EGLContext const context, EGLSurface const drawable, EGLSurface const readable) :
           display(display),
           context(context),
           drawable(drawable),
           readable(readable) {}
 
         bool acquire() {
-          return glXMakeContextCurrent(display, drawable, readable, context);
+          return eglMakeCurrent(display, drawable, readable, context);
         }
 
         void release() {
-          glXMakeContextCurrent(display, None, None, NULL);
+          eglMakeCurrent(display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
         }
 
       };
 
-      struct glx_context : context_info_base< glx_context_impl > {
-        glx_context(Display* const display=nullptr, GLXContext const context=nullptr, GLXDrawable const drawable=None, GLXDrawable const readable=None) :
-          context_info_base< glx_context_impl >(display, context, drawable, readable) {}
+      struct egl_context : context_info_base< egl_context_impl > {
+        egl_context(EGLDisplay const display=nullptr, EGLContext const context=EGL_NO_CONTEXT, EGLSurface const drawable=EGL_NO_SURFACE, EGLSurface const readable=EGL_NO_SURFACE) :
+          context_info_base< egl_context_impl >(display, context, drawable, readable) {}
       };
 
-      struct glx_current_context : public glx_context {
-        glx_current_context() :
-          glx_context(glXGetCurrentDisplay(), glXGetCurrentContext(), glXGetCurrentDrawable(), glXGetCurrentReadDrawable()) {}
+      struct egl_current_context : public egl_context {
+        egl_current_context() :
+          egl_context(eglGetCurrentDisplay(), eglGetCurrentContext(), eglGetCurrentSurface(EGL_DRAW), eglGetCurrentSurface(EGL_READ)) {}
       };
 
-      typedef glx_context         context_info;
-      typedef glx_current_context current_context_info;
+      typedef egl_context         context_info;
+      typedef egl_current_context current_context_info;
 
     } // namespace context
 

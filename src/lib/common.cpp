@@ -69,7 +69,7 @@ void main_loop() {}
 
 void swap_buffers() {
 #ifdef GTULU_PLATFORM_LINUX
-  glXSwapBuffers(glXGetCurrentDisplay(), glXGetCurrentDrawable());
+  eglSwapBuffers(eglGetCurrentDisplay(), eglGetCurrentSurface(EGL_DRAW));
 
 #else // ifdef GTULU_PLATFORM_LINUX
   glfwSwapBuffers();

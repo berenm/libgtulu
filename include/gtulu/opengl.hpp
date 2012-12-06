@@ -16,11 +16,11 @@
 #include <cstdint>
 
 #define GLCOREARB_PROTOTYPES 1
+#define GLAPI                extern __attribute__((weak))
 #include <GL/glcorearb.h>
 
-#define GLX_GLXEXT_PROTOTYPES 1
-#include <GL/glx.h>
-#include <GL/glxext.h>
+#include <EGL/egl.h>
+#include <EGL/eglext.h>
 
 #include <cairo/cairo.h>
 #include <pango/pango.h>

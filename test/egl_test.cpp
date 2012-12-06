@@ -231,7 +231,8 @@ int main(int argc, char** argv) {
     std::cout << "\n";
   }
 
-  eglCreateWindowSurface(display, configs[0], NULL, NULL);
+  XSync(native_display, false);
+  eglCreateWindowSurface(display, configs[0], DefaultRootWindow(native_display), NULL);
 
   delete[] configs;
 

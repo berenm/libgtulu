@@ -1041,13 +1041,13 @@ namespace gtulu {
 #undef DECLARE_GETTOR
 
       namespace toolkit {
-        struct glx;
+        struct egl;
 
         struct glfw;
 
         struct wgl;
 
-        typedef glx default_;
+        typedef egl default_;
       } // namespace toolkit
 
       namespace platform {
@@ -1072,9 +1072,9 @@ namespace gtulu {
       struct context_info_selector;
 
       template< >
-      struct context_info_selector< toolkit::glx, platform::linux_ > {
-        typedef glx_context         context_info;
-        typedef glx_current_context current_context_info;
+      struct context_info_selector< toolkit::egl, platform::linux_ > {
+        typedef egl_context         context_info;
+        typedef egl_current_context current_context_info;
       };
 
       template< typename Toolkit = toolkit::default_, typename Platform = platform::default_ >

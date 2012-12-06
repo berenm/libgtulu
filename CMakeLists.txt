@@ -29,9 +29,9 @@ pkg_check_modules(PANGO REQUIRED pangocairo)
 find_library(OPENGL_LIBRARIES libnvidia-cfg.so.1)
 if(OPENGL_LIBRARIES)
   string(REPLACE "libnvidia-cfg.so.1" "libGL.so.1" OPENGL_LIBRARIES ":${OPENGL_LIBRARIES}")
-  list(APPEND OPENGL_LIBRARIES X11)
+  list(APPEND OPENGL_LIBRARIES X11 EGL)
 else()
-  pkg_check_modules(OPENGL REQUIRED gl)
+  pkg_check_modules(OPENGL REQUIRED gl egl)
 endif()
 
 
