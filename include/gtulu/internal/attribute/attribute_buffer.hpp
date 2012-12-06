@@ -22,11 +22,19 @@ namespace gtulu {
 
     namespace attribute {
 
-      template< typename AttributeFormat, typename ... Ts >
-      using vertex_attrib_pointer = typename meta::if_< fnum::integral::is_integral< AttributeFormat >,
-                                                        fct::vertex_attrib_pointer_integer< Ts ... >,
-                                                        fct::vertex_attrib_pointer< Ts ... >
-                                                        >::type;
+      template< typename... Ts >
+      struct vertex_attrib_pointer_integer {
+        inline static void call(gtulu::uint32_t const index, gtulu::int32_t const size, bool const normalized, gtulu::int32_t const stride, void const* pointer) {
+          fct::vertex_attrib_pointer_integer< Ts... >::call(index, size, stride, pointer);
+        }
+      };
+
+      template< typename AttributeFormat, typename... Ts >
+      using vertex_attrib_pointer =
+              typename meta::if_< fnum::integral::is_integral< AttributeFormat >,
+                                  vertex_attrib_pointer_integer< Ts... >,
+                                  fct::vertex_attrib_pointer< Ts... >
+                                  >::type;
 
       template< typename AttributeFormat >
       struct attribute_buffer_binder {
@@ -38,8 +46,7 @@ namespace gtulu {
           typedef attribute_buffer_binder_check< AttributeFormat, DataFormat, Normalize, Order > check_t;
 
           buf::array_buffer_slot::bind(buffer);
-          vertex_attrib_pointer< AttributeFormat, DataFormat >(location, offset, stride, check_t::count, check_t::normalized);
-
+          vertex_attrib_pointer< AttributeFormat, fdat::get_format< DataFormat > >::call(location, check_t::count, check_t::normalized, stride, reinterpret_cast< void const* >(offset));
           fct::enable_vertex_attrib_array< >::call(location);
         }
 

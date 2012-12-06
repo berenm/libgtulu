@@ -109,9 +109,9 @@ namespace gtulu {
             typedef smp::gl_sampler_2d::value_type background_value_t;
 
             template< typename TextureFormat >
-            void set_background(obj::texture< TextureFormat > const& value_in) {
+            void set_background(obj::texture< TextureFormat > const& value) {
               obj::program_base::bind();
-              background_binder_t::bind(0, value_in);
+              background_binder_t::bind(0, value);
             }
 
             
@@ -123,10 +123,10 @@ namespace gtulu {
               // #template#<output/>
 
               template< typename TemporaryFramebufferSlot = fbf::draw_framebuffer_slot, typename NewDrawableType >
-              void set_color(NewDrawableType const& drawable_in) {
+              void set_color(NewDrawableType const& drawable) {
                 obj::framebuffer_base::bind< TemporaryFramebufferSlot >();
                 fbf::framebuffer_format_base< DrawableType >::template set<
-                  typename TemporaryFramebufferSlot::slot_type >(0, drawable_in);
+                  typename TemporaryFramebufferSlot::slot_type >(0, drawable);
               }
 
               
@@ -146,146 +146,146 @@ namespace gtulu {
 
             struct vertex_array_format : public obj::vertexarray_base, public drw::drawable {
               template< typename DrawingMode = drw::mode::gl_triangles >
-              inline void draw(obj::program< test1_program_format > const& program_in,
-                               std::uint32_t const                                start_in,
-                               std::uint32_t const                                count_in,
-                               std::uint32_t const                                instance_count_in=1) {
-                draw< DrawingMode >(program_in,
-                                    *program_in.get_default_framebuffer(),
-                                    start_in,
-                                    count_in,
-                                    instance_count_in);
+              inline void draw(obj::program< test1_program_format > const& program,
+                               std::uint32_t const                                start,
+                               std::uint32_t const                                count,
+                               std::uint32_t const                                instance_count=1) {
+                draw< DrawingMode >(program,
+                                    *program.get_default_framebuffer(),
+                                    start,
+                                    count,
+                                    instance_count);
               }
 
               template< typename DrawingMode = drw::mode::gl_triangles >
-              inline void draw_multiple(obj::program< test1_program_format > const& program_in,
-                                        std::uint32_t const                                starts_in[],
-                                        std::uint32_t const                                counts_in[],
-                                        std::size_t const                                  count_in) {
-                draw_multiple< DrawingMode >(program_in,
-                                             *program_in.get_default_framebuffer(),
-                                             starts_in,
-                                             counts_in,
-                                             count_in);
+              inline void draw_multiple(obj::program< test1_program_format > const& program,
+                                        std::uint32_t const                                starts[],
+                                        std::uint32_t const                                counts[],
+                                        std::size_t const                                  count) {
+                draw_multiple< DrawingMode >(program,
+                                             *program.get_default_framebuffer(),
+                                             starts,
+                                             counts,
+                                             count);
               }
 
               template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat >
-              inline void draw(obj::program< test1_program_format > const& program_in,
-                               obj::buffer< BufferFormat > const&                 buffer_in,
-                               std::uint32_t const                                count_in,
-                               std::uint32_t const                                offset_in=0,
-                               std::uint32_t const                                instance_count_in=1,
-                               std::uint32_t const                                base_vertex_in=0) {
-                draw< DrawingMode >(program_in,
-                                    *program_in.get_default_framebuffer(),
-                                    buffer_in,
-                                    count_in,
-                                    offset_in,
-                                    instance_count_in,
-                                    base_vertex_in);
+              inline void draw(obj::program< test1_program_format > const& program,
+                               obj::buffer< BufferFormat > const&                 buffer,
+                               std::uint32_t const                                count,
+                               std::uint32_t const                                offset=0,
+                               std::uint32_t const                                instance_count=1,
+                               std::uint32_t const                                base_vertex=0) {
+                draw< DrawingMode >(program,
+                                    *program.get_default_framebuffer(),
+                                    buffer,
+                                    count,
+                                    offset,
+                                    instance_count,
+                                    base_vertex);
               }
 
               template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat >
-              inline void draw_range(obj::program< test1_program_format > const& program_in,
-                                     obj::buffer< BufferFormat > const&                 buffer_in,
-                                     std::uint32_t const                                count_in,
-                                     std::uint32_t const                                min_index_in,
-                                     std::uint32_t const                                max_index_in,
-                                     std::uint32_t const                                offset_in=0,
-                                     std::uint32_t const                                base_vertex_in=0) {
-                draw_range< DrawingMode >(program_in,
-                                          *program_in.get_default_framebuffer(),
-                                          buffer_in,
-                                          count_in,
-                                          min_index_in,
-                                          max_index_in,
-                                          offset_in,
-                                          base_vertex_in);
+              inline void draw_range(obj::program< test1_program_format > const& program,
+                                     obj::buffer< BufferFormat > const&                 buffer,
+                                     std::uint32_t const                                count,
+                                     std::uint32_t const                                min_index,
+                                     std::uint32_t const                                max_index,
+                                     std::uint32_t const                                offset=0,
+                                     std::uint32_t const                                base_vertex=0) {
+                draw_range< DrawingMode >(program,
+                                          *program.get_default_framebuffer(),
+                                          buffer,
+                                          count,
+                                          min_index,
+                                          max_index,
+                                          offset,
+                                          base_vertex);
               }
 
               template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat >
-              inline void draw_multiple(obj::program< test1_program_format > const& program_in,
-                                        obj::buffer< BufferFormat > const&                 buffer_in,
-                                        std::uint32_t const                                counts_in[],
-                                        std::uint32_t const                                offsets_in[],
-                                        std::size_t const                                  count_in) {
-                draw_multiple< DrawingMode >(program_in,
-                                             *program_in.get_default_framebuffer(),
-                                             buffer_in,
-                                             counts_in,
-                                             offsets_in,
-                                             count_in);
+              inline void draw_multiple(obj::program< test1_program_format > const& program,
+                                        obj::buffer< BufferFormat > const&                 buffer,
+                                        std::uint32_t const                                counts[],
+                                        std::uint32_t const                                offsets[],
+                                        std::size_t const                                  count) {
+                draw_multiple< DrawingMode >(program,
+                                             *program.get_default_framebuffer(),
+                                             buffer,
+                                             counts,
+                                             offsets,
+                                             count);
               }
 
               template< typename DrawingMode = drw::mode::gl_triangles >
-              inline void draw(obj::program< test1_program_format > const& program_in,
-                               obj::framebuffer_base const&                       framebuffer_in,
-                               std::uint32_t const                                start_in,
-                               std::uint32_t const                                count_in,
-                               std::uint32_t const                                instance_count_in=1) {
-                program_in.bind();
-                framebuffer_in.bind< fbf::draw_framebuffer_slot >();
+              inline void draw(obj::program< test1_program_format > const& program,
+                               obj::framebuffer_base const&                       framebuffer,
+                               std::uint32_t const                                start,
+                               std::uint32_t const                                count,
+                               std::uint32_t const                                instance_count=1) {
+                program.bind();
+                framebuffer.bind< fbf::draw_framebuffer_slot >();
                 obj::vertexarray_base::bind();
-                drw::drawable::draw< DrawingMode >(start_in, count_in, instance_count_in);
+                drw::drawable::draw< DrawingMode >(start, count, instance_count);
               }
 
               template< typename DrawingMode = drw::mode::gl_triangles >
-              inline void draw_multiple(obj::program< test1_program_format > const& program_in,
-                                        obj::framebuffer_base const&                       framebuffer_in,
-                                        std::uint32_t const                                starts_in[],
-                                        std::uint32_t const                                counts_in[],
-                                        std::size_t const                                  count_in) {
-                program_in.bind();
-                framebuffer_in.bind< fbf::draw_framebuffer_slot >();
+              inline void draw_multiple(obj::program< test1_program_format > const& program,
+                                        obj::framebuffer_base const&                       framebuffer,
+                                        std::uint32_t const                                starts[],
+                                        std::uint32_t const                                counts[],
+                                        std::size_t const                                  count) {
+                program.bind();
+                framebuffer.bind< fbf::draw_framebuffer_slot >();
                 obj::vertexarray_base::bind();
-                drw::drawable::draw< DrawingMode >(starts_in, counts_in, count_in);
+                drw::drawable::draw< DrawingMode >(starts, counts, count);
               }
 
               template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat >
-              inline void draw(obj::program< test1_program_format > const& program_in,
-                               obj::framebuffer_base const&                       framebuffer_in,
-                               obj::buffer< BufferFormat > const&                 buffer_in,
-                               std::uint32_t const                                count_in,
-                               std::uint32_t const                                offset_in=0,
-                               std::uint32_t const                                instance_count_in=1,
-                               std::uint32_t const                                base_vertex_in=0) {
-                program_in.bind();
-                framebuffer_in.bind< fbf::draw_framebuffer_slot >();
+              inline void draw(obj::program< test1_program_format > const& program,
+                               obj::framebuffer_base const&                       framebuffer,
+                               obj::buffer< BufferFormat > const&                 buffer,
+                               std::uint32_t const                                count,
+                               std::uint32_t const                                offset=0,
+                               std::uint32_t const                                instance_count=1,
+                               std::uint32_t const                                base_vertex=0) {
+                program.bind();
+                framebuffer.bind< fbf::draw_framebuffer_slot >();
                 obj::vertexarray_base::bind();
-                drw::drawable::draw< DrawingMode >(buffer_in, count_in, offset_in, instance_count_in, base_vertex_in);
+                drw::drawable::draw< DrawingMode >(buffer, count, offset, instance_count, base_vertex);
               }
 
               template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat >
-              inline void draw_range(obj::program< test1_program_format > const& program_in,
-                                     obj::framebuffer_base const&                       framebuffer_in,
-                                     obj::buffer< BufferFormat > const&                 buffer_in,
-                                     std::uint32_t const                                count_in,
-                                     std::uint32_t const                                min_index_in,
-                                     std::uint32_t const                                max_index_in,
-                                     std::uint32_t const                                offset_in=0,
-                                     std::uint32_t const                                base_vertex_in=0) {
-                program_in.bind();
-                framebuffer_in.bind< fbf::draw_framebuffer_slot >();
+              inline void draw_range(obj::program< test1_program_format > const& program,
+                                     obj::framebuffer_base const&                       framebuffer,
+                                     obj::buffer< BufferFormat > const&                 buffer,
+                                     std::uint32_t const                                count,
+                                     std::uint32_t const                                min_index,
+                                     std::uint32_t const                                max_index,
+                                     std::uint32_t const                                offset=0,
+                                     std::uint32_t const                                base_vertex=0) {
+                program.bind();
+                framebuffer.bind< fbf::draw_framebuffer_slot >();
                 obj::vertexarray_base::bind();
-                drw::drawable::draw< DrawingMode >(buffer_in,
-                                                   count_in,
-                                                   min_index_in,
-                                                   max_index_in,
-                                                   offset_in,
-                                                   base_vertex_in);
+                drw::drawable::draw< DrawingMode >(buffer,
+                                                   count,
+                                                   min_index,
+                                                   max_index,
+                                                   offset,
+                                                   base_vertex);
               }
 
               template< typename DrawingMode = drw::mode::gl_triangles, typename BufferFormat >
-              inline void draw_multiple(obj::program< test1_program_format > const& program_in,
-                                        obj::framebuffer_base const&                       framebuffer_in,
-                                        obj::buffer< BufferFormat > const&                 buffer_in,
-                                        std::uint32_t const                                counts_in[],
-                                        std::uint32_t const                                offsets_in[],
-                                        std::size_t const                                  count_in) {
-                program_in.bind();
-                framebuffer_in.bind< fbf::draw_framebuffer_slot >();
+              inline void draw_multiple(obj::program< test1_program_format > const& program,
+                                        obj::framebuffer_base const&                       framebuffer,
+                                        obj::buffer< BufferFormat > const&                 buffer,
+                                        std::uint32_t const                                counts[],
+                                        std::uint32_t const                                offsets[],
+                                        std::size_t const                                  count) {
+                program.bind();
+                framebuffer.bind< fbf::draw_framebuffer_slot >();
                 obj::vertexarray_base::bind();
-                drw::drawable::draw< DrawingMode >(buffer_in, counts_in, offsets_in, count_in);
+                drw::drawable::draw< DrawingMode >(buffer, counts, offsets, count);
               }
 
               // #template#<attribute/>
@@ -294,35 +294,35 @@ namespace gtulu {
               typedef att::gl_float_vec2::buffer_binder texture_position_buffer_binder_t;
 
               template< typename DataFormat >
-              void set_texture_position(BOOST_PP_ENUM_PARAMS(2, DataFormat const texture_position_in)) {
+              void set_texture_position(BOOST_PP_ENUM_PARAMS(2, DataFormat const texture_position)) {
                 obj::vertexarray_base::bind();
-                texture_position_binder_t::bind(1, BOOST_PP_ENUM_PARAMS(2, texture_position_in));
+                texture_position_binder_t::bind(1, BOOST_PP_ENUM_PARAMS(2, texture_position));
               }
 
               template< typename BufferFormat >
-              void set_texture_position(obj::buffer< BufferFormat > const& buffer_in,
-                                 std::uint32_t const                offset_in=0,
-                                 std::uint32_t const                stride_in=0) {
+              void set_texture_position(obj::buffer< BufferFormat > const& buffer,
+                                 std::uint32_t const                offset=0,
+                                 std::uint32_t const                stride=0) {
                 obj::vertexarray_base::bind();
-                texture_position_buffer_binder_t::bind(1, buffer_in, offset_in, stride_in);
+                texture_position_buffer_binder_t::bind(1, buffer, offset, stride);
               }
 
               template< typename BufferFormat >
-              void set_texture_position_normalized(obj::buffer< BufferFormat > const& buffer_in,
-                                            std::uint32_t const                offset_in=0,
-                                            std::uint32_t const                stride_in=0) {
+              void set_texture_position_normalized(obj::buffer< BufferFormat > const& buffer,
+                                            std::uint32_t const                offset=0,
+                                            std::uint32_t const                stride=0) {
                 obj::vertexarray_base::bind();
                 texture_position_buffer_binder_t::bind< fcmn::normalization::normalized
-                                                 >(1, buffer_in, offset_in, stride_in);
+                                                 >(1, buffer, offset, stride);
               }
 
               template< typename BufferFormat >
-              void set_texture_position_gbra(obj::buffer< BufferFormat > const& buffer_in,
-                                      std::uint32_t const                offset_in=0,
-                                      std::uint32_t const                stride_in=0) {
+              void set_texture_position_gbra(obj::buffer< BufferFormat > const& buffer,
+                                      std::uint32_t const                offset=0,
+                                      std::uint32_t const                stride=0) {
                 obj::vertexarray_base::bind();
                 texture_position_buffer_binder_t::bind< fcmn::normalization::none, fcmn::order::reverse
-                                                 >(1, buffer_in, offset_in, stride_in);
+                                                 >(1, buffer, offset, stride);
               }
 
               
@@ -331,35 +331,35 @@ namespace gtulu {
               typedef att::gl_float_vec2::buffer_binder position_buffer_binder_t;
 
               template< typename DataFormat >
-              void set_position(BOOST_PP_ENUM_PARAMS(2, DataFormat const position_in)) {
+              void set_position(BOOST_PP_ENUM_PARAMS(2, DataFormat const position)) {
                 obj::vertexarray_base::bind();
-                position_binder_t::bind(0, BOOST_PP_ENUM_PARAMS(2, position_in));
+                position_binder_t::bind(0, BOOST_PP_ENUM_PARAMS(2, position));
               }
 
               template< typename BufferFormat >
-              void set_position(obj::buffer< BufferFormat > const& buffer_in,
-                                 std::uint32_t const                offset_in=0,
-                                 std::uint32_t const                stride_in=0) {
+              void set_position(obj::buffer< BufferFormat > const& buffer,
+                                 std::uint32_t const                offset=0,
+                                 std::uint32_t const                stride=0) {
                 obj::vertexarray_base::bind();
-                position_buffer_binder_t::bind(0, buffer_in, offset_in, stride_in);
+                position_buffer_binder_t::bind(0, buffer, offset, stride);
               }
 
               template< typename BufferFormat >
-              void set_position_normalized(obj::buffer< BufferFormat > const& buffer_in,
-                                            std::uint32_t const                offset_in=0,
-                                            std::uint32_t const                stride_in=0) {
+              void set_position_normalized(obj::buffer< BufferFormat > const& buffer,
+                                            std::uint32_t const                offset=0,
+                                            std::uint32_t const                stride=0) {
                 obj::vertexarray_base::bind();
                 position_buffer_binder_t::bind< fcmn::normalization::normalized
-                                                 >(0, buffer_in, offset_in, stride_in);
+                                                 >(0, buffer, offset, stride);
               }
 
               template< typename BufferFormat >
-              void set_position_gbra(obj::buffer< BufferFormat > const& buffer_in,
-                                      std::uint32_t const                offset_in=0,
-                                      std::uint32_t const                stride_in=0) {
+              void set_position_gbra(obj::buffer< BufferFormat > const& buffer,
+                                      std::uint32_t const                offset=0,
+                                      std::uint32_t const                stride=0) {
                 obj::vertexarray_base::bind();
                 position_buffer_binder_t::bind< fcmn::normalization::none, fcmn::order::reverse
-                                                 >(0, buffer_in, offset_in, stride_in);
+                                                 >(0, buffer, offset, stride);
               }
 
               

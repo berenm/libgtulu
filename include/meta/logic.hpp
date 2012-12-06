@@ -25,70 +25,30 @@ namespace gtulu {
     namespace mpl = ::boost::mpl;
 
     namespace detail {
-      template< typename ... Ts >
+      template< typename T1 = mpl::true_, typename T2 = mpl::true_, typename T3 = mpl::true_, typename T4 = mpl::true_, typename... Ts >
       struct and_;
-
-      template< >
-      struct and_< > {
-        typedef mpl::and_< > type;
-      };
-
-      template< typename T1 >
-      struct and_< T1 > {
-        typedef mpl::and_< T1 > type;
-      };
-
-      template< typename T1, typename T2 >
-      struct and_< T1, T2 > {
-        typedef mpl::and_< T1, T2 > type;
-      };
-
-      template< typename T1, typename T2, typename T3 >
-      struct and_< T1, T2, T3 > {
-        typedef mpl::and_< T1, T2, T3 > type;
-      };
 
       template< typename T1, typename T2, typename T3, typename T4 >
       struct and_< T1, T2, T3, T4 > {
-        typedef mpl::and_< T1, T2, T3, T4 > type;
+        using type = mpl::and_< T1, T2, T3, T4 >;
       };
 
-      template< typename T1, typename T2, typename T3, typename T4, typename ... Ts >
-      struct and_< T1, T2, T3, T4, Ts ... > {
-        typedef mpl::and_< T1, T2, T3, T4, typename and_< Ts ... >::type > type;
+      template< typename T1, typename T2, typename T3, typename T4, typename T, typename... Ts >
+      struct and_< T1, T2, T3, T4, T, Ts... > {
+        using type = mpl::and_< T1, T2, T3, T4, typename and_< T, Ts... >::type >;
       };
 
-      template< typename ... Ts >
+      template< typename T1 = mpl::false_, typename T2 = mpl::false_, typename T3 = mpl::false_, typename T4 = mpl::false_, typename... Ts >
       struct or_;
-
-      template< >
-      struct or_< > {
-        typedef mpl::or_< > type;
-      };
-
-      template< typename T1 >
-      struct or_< T1 > {
-        typedef mpl::or_< T1 > type;
-      };
-
-      template< typename T1, typename T2 >
-      struct or_< T1, T2 > {
-        typedef mpl::or_< T1, T2 > type;
-      };
-
-      template< typename T1, typename T2, typename T3 >
-      struct or_< T1, T2, T3 > {
-        typedef mpl::or_< T1, T2, T3 > type;
-      };
 
       template< typename T1, typename T2, typename T3, typename T4 >
       struct or_< T1, T2, T3, T4 > {
-        typedef mpl::or_< T1, T2, T3, T4 > type;
+        using type = mpl::or_< T1, T2, T3, T4 >;
       };
 
-      template< typename T1, typename T2, typename T3, typename T4, typename ... Ts >
-      struct or_< T1, T2, T3, T4, Ts ... > {
-        typedef mpl::or_< T1, T2, T3, T4, typename or_< Ts ... >::type > type;
+      template< typename T1, typename T2, typename T3, typename T4, typename T, typename... Ts >
+      struct or_< T1, T2, T3, T4, T, Ts... > {
+        using type = mpl::or_< T1, T2, T3, T4, typename or_< T, Ts... >::type >;
       };
 
     }
@@ -105,11 +65,11 @@ namespace gtulu {
     template< typename A >
     struct is_same< A, A > : mpl::true_ {};
 
-    template< typename ... Ts >
-    using or_ = typename detail::or_< Ts ... >::type;
+    template< typename... Ts >
+    using or_ = typename detail::or_< Ts... >::type;
 
-    template< typename ... Ts >
-    using and_ = typename  detail::and_< Ts ... >::type;
+    template< typename... Ts >
+    using and_ = typename detail::and_< Ts... >::type;
 
     template< typename A, typename B >
     using imply = mpl::or_< mpl::not_< A >, B >;

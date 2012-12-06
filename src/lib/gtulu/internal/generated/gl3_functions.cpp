@@ -2,7 +2,7 @@
 #include "gtulu/opengl.hpp"
 #include "gtulu/internal/functions.hpp"
 
-#include "gtulu/utils/array.hpp"
+#include "gtulu/utils/stl_ostream.hpp"
 
 namespace gtulu {
   namespace internal {

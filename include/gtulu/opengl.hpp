@@ -61,40 +61,6 @@ namespace gtulu {
   template< class T > using mat4x3 = std::array< std::array< T, 4 >, 3 >;
   template< class T > using mat4x4 = std::array< std::array< T, 4 >, 4 >;
 
-  template< typename S, typename T >
-  static inline S& operator<<(S& s, std::vector< T > const& v) {
-    s << "[ ";
-
-    size_t i = 0;
-    for (T const& t : v) {
-      s << t;
-
-      if (++i < v.size()) {
-        s << ", ";
-      }
-    }
-    s << " ]";
-
-    return s;
-  }
-
-  template< typename S, typename T, size_t const N >
-  static inline S& operator<<(S& s, std::array< T, N > const& v) {
-    s << "[ ";
-
-    size_t i = 0;
-    for (T const& t : v) {
-      s << t;
-
-      if (++i < N) {
-        s << ", ";
-      }
-    }
-    s << " ]";
-
-    return s;
-  }
-
 } // namespace gtulu
 
 #include <boost/config.hpp>

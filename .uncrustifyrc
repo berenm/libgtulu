@@ -383,7 +383,7 @@ sp_after_comma                           = force   # ignore/add/remove/force
 sp_paren_comma                           = remove    # ignore/add/remove/force
 
 # Add or remove space before the variadic '...' when preceded by a non-punctuator
-sp_before_ellipsis                       = force   # ignore/add/remove/force
+sp_before_ellipsis                       = remove   # ignore/add/remove/force
 
 # Add or remove space after class ':'
 sp_after_class_colon                     = force   # ignore/add/remove/force
@@ -1177,13 +1177,13 @@ ls_code_width                            = false    # false/true
 nl_max                                   = 2        # number
 
 # The number of newlines after a function prototype, if followed by another function prototype
-nl_after_func_proto                      = 1        # number
+nl_after_func_proto                      = 0        # number
 
 # The number of newlines after a function prototype, if not followed by another function prototype
-nl_after_func_proto_group                = 1        # number
+nl_after_func_proto_group                = 0        # number
 
 # The number of newlines after '}' of a multi-line function body
-nl_after_func_body                       = 2        # number
+nl_after_func_body                       = 0        # number
 
 # The number of newlines after '}' of a multi-line function body in a class declaration
 nl_after_func_body_class                 = 0        # number
@@ -1207,10 +1207,10 @@ nl_before_cpp_comment                    = 2        # number
 nl_after_multiline_comment               = true    # false/true
 
 # The number of newlines after '}' or ';' of a struct/enum/union definition
-nl_after_struct                          = 2        # number
+nl_after_struct                          = 1        # number
 
 # The number of newlines after '}' or ';' of a class definition
-nl_after_class                           = 2        # number
+nl_after_class                           = 1        # number
 
 # The number of newlines before a 'private:', 'public:', 'protected:', 'signals:', or 'slots:' label.
 # Will not change the newline count if after a brace open.
@@ -1272,7 +1272,7 @@ mod_full_brace_for                       = force   # ignore/add/remove/force
 mod_full_brace_function                  = force   # ignore/add/remove/force
 
 # Add or remove braces on single-line 'if' statement. Will not remove the braces if they contain an 'else'.
-mod_full_brace_if                        = force   # ignore/add/remove/force
+mod_full_brace_if                        = remove   # ignore/add/remove/force
 
 # Make all if/elseif/else statements in a chain be braced or not. Overrides mod_full_brace_if.
 # If any must be braced, they are all braced.  If all can be unbraced, then the braces are removed.

@@ -59,7 +59,7 @@ set_target_properties(gtulu PROPERTIES
   VERSION   ${libgtulu_VERSION}
   SOVERSION ${libgtulu_SOVERSION}
   SONAME    libgtulu${libgtulu_SOVERSION}
-  COTIRE_PREFIX_HEADER_INCLUDE_PATH "${CMAKE_SOURCE_DIR}/include/gtulu_opengl_pch.hpp"
+  COTIRE_PREFIX_HEADER_INCLUDE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/include/gtulu_opengl_pch.hpp"
 )
 target_link_libraries(gtulu
   ${PANGO_LIBRARIES}
@@ -102,6 +102,8 @@ install(DIRECTORY include/gtulu
 # tests
 if(CMAKE_BUILD_TESTS)
   enable_testing()
+
+  execute_process(COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/test/data ${CMAKE_CURRENT_BINARY_DIR}/test/data)
 
   add_gtulu_program(test1
     SOURCES     test/shaders/test1.vs test/shaders/test1.fs
@@ -177,5 +179,5 @@ if(CMAKE_BUILD_TESTS)
     ${GTULU_PROGRAM_PLOT_IMAGE_SOURCES}
   )
   target_link_libraries(unit-test-plot-image gtulu png12)
-  add_test(unit-test-plot-image unit-test-plot-image)
+  # add_test(unit-test-plot-image unit-test-plot-image)
 endif()

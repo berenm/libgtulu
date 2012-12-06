@@ -12,14 +12,20 @@
 
 #include <meta/logic.hpp>
 
-#define META_ASPECT_DECLARE_TRAIT(aspect_m, prefix_m, trait_m)                                                                   \
-  namespace aspect_m {                                                                                                           \
-    prefix_m trait_m;                                                                                                            \
-                                                                                                                                 \
-    template< typename T > struct BOOST_PP_CAT (is_, trait_m) : meta::is_same< BOOST_PP_CAT(get_, aspect_m) < T >, trait_m > {}; \
-    template< typename T > using BOOST_PP_CAT(is_not_, trait_m) = meta::not_< BOOST_PP_CAT(is_, trait_m) < T > >;                \
-  }                                                                                                                              \
-  template< > struct BOOST_PP_CAT (is_a_, aspect_m) < aspect_m::trait_m > : meta::true_ {};                                      \
+#define META_ASPECT_DECLARE_TRAIT(aspect_m, prefix_m, trait_m)                                                                                  \
+  namespace aspect_m {                                                                                                                          \
+    prefix_m trait_m;                                                                                                                           \
+                                                                                                                                                \
+    namespace detail {                                                                                                                          \
+      template< typename T, bool const IsA = BOOST_PP_CAT(is_a_, aspect_m) < T > ::value > struct BOOST_PP_CAT (is_, trait_m);                  \
+      template< typename T > struct BOOST_PP_CAT (is_, trait_m) < T, false > : meta::is_same< BOOST_PP_CAT(get_, aspect_m) < T >, trait_m > {}; \
+      template< typename T > struct BOOST_PP_CAT (is_, trait_m) < T, true > : meta::is_same< T, trait_m > {};                                   \
+    }                                                                                                                                           \
+                                                                                                                                                \
+    template< typename T > using BOOST_PP_CAT(is_, trait_m)     = detail::BOOST_PP_CAT(is_, trait_m) < T >;                                     \
+    template< typename T > using BOOST_PP_CAT(is_not_, trait_m) = meta::not_< BOOST_PP_CAT(is_, trait_m) < T > >;                               \
+  }                                                                                                                                             \
+  template< > struct BOOST_PP_CAT (is_a_, aspect_m) < aspect_m::trait_m > : meta::true_ {};                                                     \
 
 #define META_ASPECT_DECLARE_TRAIT_EACH(n, data_m, trait_m) \
   META_ASPECT_DECLARE_TRAIT(BOOST_PP_TUPLE_ELEM(2, 0, data_m), BOOST_PP_TUPLE_ELEM(2, 1, data_m), trait_m)
