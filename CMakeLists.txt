@@ -24,8 +24,16 @@ add_submodule(registry lib/registry
 find_package(Boost COMPONENTS program_options filesystem system regex thread chrono REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(PANGO REQUIRED pangocairo)
-#pkg_check_modules(OPENGL   REQUIRED gl) # On debian, pkg-config finds the MESA libGL.so, this isn't right.
-set(OPENGL_LIBRARIES :libGL.so.1 X11)
+
+# On debian, pkg-config finds the MESA libGL.so, lets try using NVidia's if available.
+find_library(OPENGL_LIBRARIES libnvidia-cfg.so.1)
+if(OPENGL_LIBRARIES)
+  string(REPLACE "libnvidia-cfg.so.1" "libGL.so.1" OPENGL_LIBRARIES ":${OPENGL_LIBRARIES}")
+  list(APPEND OPENGL_LIBRARIES X11)
+else()
+  pkg_check_modules(OPENGL REQUIRED gl)
+endif()
+
 
 include_directories(
   ${PANGO_INCLUDE_DIRS}
