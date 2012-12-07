@@ -2,9 +2,8 @@ language: cpp
 script:
   - mkdir build
   - cd build
-  - cmake -DCMAKE_BUILD_TESTS=1 ..
+  - cmake ..
   - make
-  - make test
 compiler:
   - clang
 before_install:
