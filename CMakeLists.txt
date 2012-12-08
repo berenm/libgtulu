@@ -20,6 +20,7 @@ add_submodule(boost-gil-contributions lib/boost-gil-contributions
 add_submodule(registry lib/registry
   INCLUDE_DIRS include
 )
+add_submodule(gtulu-reference lib/gtulu-reference)
 
 find_package(Boost COMPONENTS program_options filesystem system regex thread chrono REQUIRED)
 find_package(PkgConfig REQUIRED)
@@ -39,6 +40,7 @@ include_directories(
   ${PANGO_INCLUDE_DIRS}
   ${OPENGL_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
+  ${gtulu-reference_BUILD_DIR}/gl/3.3/core/
 )
 link_directories(
   ${PANGO_LIBRARY_DIRS}
@@ -74,6 +76,7 @@ target_link_libraries(gtulu
   ${OPENGL_LIBRARIES}
   ${Boost_LIBRARIES}
   logging
+  gtulu-api-3.3
 )
 add_definitions(-DBOOST_BUILD_PCH_ENABLED)
 add_cotire(gtulu)

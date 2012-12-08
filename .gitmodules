@@ -7,3 +7,6 @@
 [submodule "lib/logging"]
 	path = lib/logging
 	url = git://github.com/berenm/liblogging.git
+[submodule "lib/gtulu-reference"]
+	path = lib/gtulu-reference
+	url = git://github.com/berenm/gtulu-reference.git
