@@ -3478,12 +3478,6 @@ namespace gtulu {
               static std::uint64_t const value = GL_TEXTURE_BUFFER_DATA_STORE_BINDING;
             };
 
-            struct gl_texture_buffer_format : public cst::gl_constant< gl_texture_buffer_format > {
-              static inline char const* name() { return "texture_buffer_format"; }
-
-              static std::uint64_t const value = GL_TEXTURE_BUFFER_FORMAT;
-            };
-
             struct gl_texture_rectangle : public cst::gl_constant< gl_texture_rectangle > {
               static inline char const* name() { return "texture_rectangle"; }
 

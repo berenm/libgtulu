@@ -1203,8 +1203,6 @@ namespace gtulu {
 
             struct gl_texture_buffer_data_store_binding;
 
-            struct gl_texture_buffer_format;
-
             struct gl_texture_rectangle;
 
             struct gl_unsigned_int_sampler_2d_rect;

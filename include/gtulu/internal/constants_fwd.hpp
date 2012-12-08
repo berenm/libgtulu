@@ -725,7 +725,6 @@ namespace gtulu {
       using gen::gl::v3_1::constant::gl_texture_binding_rectangle;
       using gen::gl::v3_1::constant::gl_texture_buffer;
       using gen::gl::v3_1::constant::gl_texture_buffer_data_store_binding;
-      using gen::gl::v3_1::constant::gl_texture_buffer_format;
       using gen::gl::v3_1::constant::gl_texture_rectangle;
       using gen::gl::v3_1::constant::gl_unsigned_int_sampler_2d_rect;
       using gen::gl::v3_1::constant::gl_unsigned_int_sampler_buffer;
