@@ -22,6 +22,8 @@ add_submodule(boost-gil-contributions lib/boost-gil-contributions
 add_submodule(registry lib/registry
   INCLUDE_DIRS include
 )
+
+set(GTULU_API_VERSION 3.3)
 add_submodule(gtulu-reference lib/gtulu-reference)
 
 find_package(Boost COMPONENTS program_options filesystem system regex thread chrono REQUIRED)
