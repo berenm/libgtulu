@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(CMakeExtraBootstrap)
+
 include(GNUInstallDirs)
 include(ParseVersion)
 include(AddSubmodule)
@@ -9,6 +10,8 @@ include(GtuluCompiler)
 include(FindCotire)
 include(FindCXX11)
 include(FindOpenGL)
+include(FixCCache)
+include(FixStaticLink)
 
 project(libgtulu CXX)
 parse_version(libgtulu DEBIAN)
@@ -23,9 +26,6 @@ add_submodule(registry lib/registry
   INCLUDE_DIRS include
 )
 
-set(GTULU_API_VERSION 3.3)
-add_submodule(gtulu-reference lib/gtulu-reference)
-
 find_package(Boost COMPONENTS program_options filesystem system regex thread chrono REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(PANGO REQUIRED pangocairo)
@@ -34,7 +34,6 @@ include_directories(
   ${PANGO_INCLUDE_DIRS}
   ${OPENGL_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
-  ${gtulu-reference_BUILD_DIR}/gl/3.3/core/
 )
 link_directories(
   ${PANGO_LIBRARY_DIRS}
@@ -70,10 +69,8 @@ target_link_libraries(gtulu
   ${OPENGL_LIBRARIES}
   ${Boost_LIBRARIES}
   logging
-  gtulu-api-3.3
 )
 add_definitions(-DBOOST_BUILD_PCH_ENABLED)
-add_cotire(gtulu)
 
 # -------------------------------------------------------------------------
 # gtulu-compiler
@@ -85,7 +82,6 @@ target_link_libraries(gtulu-compiler
   gtulu
   ${Boost_LIBRARIES}
 )
-cotire(gtulu-compiler)
 
 # -------------------------------------------------------------------------
 # installation
