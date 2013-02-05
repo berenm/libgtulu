@@ -101,7 +101,7 @@ install(DIRECTORY include/gtulu
 
 # -------------------------------------------------------------------------
 # tests
-if(CMAKE_BUILD_TESTS)
+if(BUILD_TESTS)
   enable_testing()
 
   execute_process(COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/test/data ${CMAKE_CURRENT_BINARY_DIR}/test/data)
