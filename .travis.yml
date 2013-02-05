@@ -2,14 +2,23 @@ language: cpp
 script:
   - mkdir build
   - cd build
-  - cmake .. -DCMAKE_BUILD_TESTS=1
-  - make
+  - cmake -DBUILD_TESTS=1 .. && make && make test
 compiler:
   - clang
+  - gcc
 before_install:
-  - sudo apt-add-repository -y ppa:ubuntu-x-swat/mesa9
-  - sudo apt-get update
-  - sudo apt-get install libboost1.48-all-dev libglm-dev libgl1-mesa-dev libegl1-mesa-dev python-lxml
+  - sudo apt-add-repository --yes ppa:mapnik/boost
+  - sudo apt-add-repository --yes ppa:ubuntu-x-swat/mesa9
+  - sudo apt-get update --quiet --quiet
+  - sudo apt-get install --quiet --quiet libglm-dev libgl1-mesa-dev libegl1-mesa-dev python-lxml
+    gcc-snapshot libboost1.49-dev libboost-chrono1.49-dev libboost-date-time1.49-dev 
+    libboost-filesystem1.49-dev libboost-graph1.49-dev libboost-iostreams1.49-dev libboost-locale1.49-dev
+    libboost-math1.49-dev libboost-program-options1.49-dev libboost-python1.49-dev libboost-random1.49-dev
+    libboost-regex1.49-dev libboost-serialization1.49-dev libboost-signals1.49-dev libboost-system1.49-dev
+    libboost-test1.49-dev libboost-thread1.49-dev libboost-timer1.49-dev libboost-wave1.49-dev
+  - sudo update-alternatives --quiet --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.6
+  - sudo update-alternatives --quiet --install /usr/bin/gcc gcc /usr/lib/gcc-snapshot/bin/gcc 40 --slave /usr/bin/g++ g++ /usr/lib/gcc-snapshot/bin/g++
+  - sudo update-alternatives --quiet --set gcc /usr/lib/gcc-snapshot/bin/gcc
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 branches:
