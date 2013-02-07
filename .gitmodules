@@ -1,6 +1,6 @@
 [submodule "lib/boost-gil-contributions"]
 	path = lib/boost-gil-contributions
-	url = git://github.com/bminor/boost-gil-contributions.git
+	url = git://github.com/berenm/boost-gil-contributions.git
 [submodule "lib/registry"]
 	path = lib/registry
 	url = git://github.com/berenm/gtulu-reference.git

@@ -20,10 +20,7 @@
 
 namespace gtulu {
   namespace logging {
-    struct context {
-      static std::string const module;
-    };
-    typedef::logging::logger_maker< context > log;
+    static constexpr char module_name[] = "gtulu";
   }
 }
 

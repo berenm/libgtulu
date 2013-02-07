@@ -16,15 +16,9 @@ include(FixStaticLink)
 project(libgtulu CXX)
 parse_version(libgtulu DEBIAN)
 
-add_submodule(logging lib/logging
-  INCLUDE_DIRS include lib/boost-log
-)
-add_submodule(boost-gil-contributions lib/boost-gil-contributions
-  INCLUDE_DIRS .
-)
-add_submodule(registry lib/registry
-  INCLUDE_DIRS include
-)
+add_submodule(logging git://github.com/berenm/liblogging.git lib/logging BRANCH master INCLUDE_DIRS include lib/boost-log)
+add_submodule(boost-gil-contributions git://github.com/berenm/boost-gil-contributions.git lib/boost-gil-contributions BRANCH master INCLUDE_DIRS .)
+add_submodule(registry git://github.com/berenm/gtulu-reference.git lib/registry BRANCH registry INCLUDE_DIRS include)
 
 find_package(Boost COMPONENTS program_options filesystem system regex thread chrono REQUIRED)
 find_package(PkgConfig REQUIRED)
@@ -55,7 +49,7 @@ include_directories(include)
 # -------------------------------------------------------------------------
 # libgtulu
 file(GLOB_RECURSE libgtulu_SOURCES src/lib/*.cpp)
-add_library(gtulu SHARED
+add_library(gtulu
   ${libgtulu_SOURCES}
 )
 set_target_properties(gtulu PROPERTIES
@@ -88,6 +82,7 @@ target_link_libraries(gtulu-compiler
 install(TARGETS gtulu gtulu-compiler
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 install(DIRECTORY include/gtulu
                   include/meta
@@ -127,58 +122,58 @@ if(BUILD_TESTS)
     DESTINATION test/generated
   )
 
-  add_executable(unit-test-1
+  add_executable(unit-test-libgtulu-1
     test/test1.cpp
     ${GTULU_PROGRAM_TEST1_SOURCES}
   )
-  target_link_libraries(unit-test-1 gtulu)
-  add_test(unit-test-1 unit-test-1)
+  target_link_libraries(unit-test-libgtulu-1 gtulu)
+  add_test(unit-test-libgtulu-1 unit-test-libgtulu-1)
 
-  add_executable(unit-test-2
+  add_executable(unit-test-libgtulu-2
     test/test2.cpp
     ${GTULU_PROGRAM_TEST2_SOURCES}
   )
-  target_link_libraries(unit-test-2 gtulu)
-  add_test(unit-test-2 unit-test-2)
+  target_link_libraries(unit-test-libgtulu-2 gtulu)
+  add_test(unit-test-libgtulu-2 unit-test-libgtulu-2)
 
-  add_executable(unit-test-3
+  add_executable(unit-test-libgtulu-3
     test/test3.cpp
     ${GTULU_PROGRAM_TEST3_SOURCES}
   )
-  target_link_libraries(unit-test-3 gtulu)
-  add_test(unit-test-3 unit-test-3)
+  target_link_libraries(unit-test-libgtulu-3 gtulu)
+  add_test(unit-test-libgtulu-3 unit-test-libgtulu-3)
 
-  add_executable(unit-test-context-switch
+  add_executable(unit-test-libgtulu-context-switch
     test/context_switch.cpp
   )
-  target_link_libraries(unit-test-context-switch gtulu)
-  add_test(unit-test-context-switch unit-test-context-switch)
+  target_link_libraries(unit-test-libgtulu-context-switch gtulu)
+  add_test(unit-test-libgtulu-context-switch unit-test-libgtulu-context-switch)
 
-  add_executable(unit-test-print-image
+  add_executable(unit-test-libgtulu-print-image
     test/print_image.cpp
     ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
   )
-  target_link_libraries(unit-test-print-image gtulu png12)
-  add_test(unit-test-print-image unit-test-print-image)
+  target_link_libraries(unit-test-libgtulu-print-image gtulu png12)
+  add_test(unit-test-libgtulu-print-image unit-test-libgtulu-print-image)
 
-  add_executable(unit-test-pango-render
+  add_executable(unit-test-libgtulu-pango-render
     test/pango_render_test.cpp
     ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
   )
-  target_link_libraries(unit-test-pango-render gtulu png12)
-  add_test(unit-test-pango-render unit-test-pango-render)
+  target_link_libraries(unit-test-libgtulu-pango-render gtulu png12)
+  add_test(unit-test-libgtulu-pango-render unit-test-libgtulu-pango-render)
 
-  add_executable(unit-test-pango-create
+  add_executable(unit-test-libgtulu-pango-create
     test/pango_create_test.cpp
     ${GTULU_PROGRAM_PRINT_IMAGE_SOURCES}
   )
-  target_link_libraries(unit-test-pango-create gtulu png12)
-  add_test(unit-test-pango-create unit-test-pango-create)
+  target_link_libraries(unit-test-libgtulu-pango-create gtulu png12)
+  add_test(unit-test-libgtulu-pango-create unit-test-libgtulu-pango-create)
 
-  add_executable(unit-test-plot-image
+  add_executable(unit-test-libgtulu-plot-image
     test/plot_image.cpp
     ${GTULU_PROGRAM_PLOT_IMAGE_SOURCES}
   )
-  target_link_libraries(unit-test-plot-image gtulu png12)
-  # add_test(unit-test-plot-image unit-test-plot-image)
+  target_link_libraries(unit-test-libgtulu-plot-image gtulu png12)
+  # add_test(unit-test-libgtulu-plot-image unit-test-libgtulu-plot-image)
 endif()
