@@ -24,7 +24,6 @@ namespace gtulu {
       template< >
       template< >
       void platform_context< toolkit::egl, platform::linux_ >::_create< policy::detached >(int arg_count, char** arg_values) {
-        setenv("EGL_DRIVER", "egl_glx", 0);
         XSetErrorHandler(_x_error);
 
         EGLNativeDisplayType const native_display = XOpenDisplay(nullptr);
