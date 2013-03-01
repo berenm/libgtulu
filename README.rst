@@ -5,6 +5,10 @@ libgtulu — opengl template library
     :alt: Build Status
     :target: https://travis-ci.org/berenm/libgtulu
 
+.. image:: http://stillmaintained.com/berenm/libgtulu.png
+    :alt: Still Maintained?
+    :target: http://stillmaintained.com/berenm/libgtulu
+
 COPYING INFORMATION
 `````````````````````
 
