@@ -177,3 +177,8 @@ if(BUILD_TESTS)
   target_link_libraries(unit-test-libgtulu-plot-image gtulu png12)
   # add_test(unit-test-libgtulu-plot-image unit-test-libgtulu-plot-image)
 endif()
+
+if(ENABLE_GCOVERALLS)
+  include(GCoveralls)
+  enable_gcoveralls()
+endif()
